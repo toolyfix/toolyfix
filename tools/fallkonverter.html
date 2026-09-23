@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fallkonverter – Groß-, Klein- & Titelschreibung | Toolyfix</title>
+<meta name="description" content="Text kostenlos in GROSSBUCHSTABEN, kleinbuchstaben oder Titelschreibung umwandeln. Direkt im Browser, ohne Anmeldung.">
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container">
+    <a href="/" class="logo-link">
+      <img src="/assets/images/logo-full.png" alt="Toolyfix">
+    </a>
+    <span class="header-tagline">Kostenlose Tools, direkt im Browser</span>
+  </div>
+</header>
+
+<main class="tool-page">
+  <div class="container">
+    <p class="breadcrumb"><a href="/">Toolyfix</a> / Fallkonverter</p>
+    <h1>Fallkonverter</h1>
+    <p>Wandle deinen Text mit einem Klick in eine andere Schreibweise um.</p>
+
+    <div class="tool-panel">
+      <textarea id="input" rows="8" placeholder="Text hier einfügen …"></textarea>
+      <div class="field-row" style="margin-top:16px;">
+        <button class="btn btn-primary" data-mode="upper">GROSSBUCHSTABEN</button>
+        <button class="btn btn-primary" data-mode="lower">kleinbuchstaben</button>
+        <button class="btn btn-primary" data-mode="title">Titelschreibung</button>
+        <button class="btn btn-primary" data-mode="sentence">Satzschreibung</button>
+        <button class="btn btn-ghost" id="copyBtn">Kopieren</button>
+      </div>
+      <textarea id="output" rows="8" readonly placeholder="Ergebnis erscheint hier …" style="margin-top:16px;"></textarea>
+    </div>
+
+    <section class="explainer">
+      <h2>Die Schreibweisen im Überblick</h2>
+      <p><strong>Titelschreibung</strong> schreibt jedes Wort groß (z. B. "Das Ist Ein Beispiel"). <strong>Satzschreibung</strong> schreibt nur den ersten Buchstaben jedes Satzes groß – nützlich für Texte, die versehentlich komplett in Großbuchstaben eingegeben wurden.</p>
+      <p>Dein Text wird ausschließlich lokal in deinem Browser verarbeitet.</p>
+    </section>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <img src="/assets/images/logo-full.png" alt="Toolyfix">
+    <p class="footer-note">© 2026 Toolyfix – Alle Tools laufen lokal in deinem Browser.</p>
+  </div>
+</footer>
+
+<script>
+const input = document.getElementById('input');
+const output = document.getElementById('output');
+
+function toTitle(text) {
+  return text.replace(/\S+/g, w => w.charAt(0).toUpperCase() + w.slice(1).toLowerCase());
+}
+
+function toSentence(text) {
+  return text.toLowerCase().replace(/(^\s*\w|[.!?]\s*\w)/g, c => c.toUpperCase());
+}
+
+document.querySelectorAll('button[data-mode]').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const mode = btn.dataset.mode;
+    const text = input.value;
+    if (mode === 'upper') output.value = text.toUpperCase();
+    if (mode === 'lower') output.value = text.toLowerCase();
+    if (mode === 'title') output.value = toTitle(text);
+    if (mode === 'sentence') output.value = toSentence(text);
+  });
+});
+
+document.getElementById('copyBtn').addEventListener('click', () => {
+  if (output.value) navigator.clipboard.writeText(output.value);
+});
+</script>
+
+</body>
+</html>

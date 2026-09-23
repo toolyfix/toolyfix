@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Wortzähler – Wörter, Zeichen & Lesezeit zählen | Toolyfix</title>
+<meta name="description" content="Kostenloser Wortzähler: Zähle Wörter, Zeichen, Sätze und Absätze in Echtzeit. Direkt im Browser, ohne Anmeldung.">
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container">
+    <a href="/" class="logo-link">
+      <img src="/assets/images/logo-full.png" alt="Toolyfix">
+    </a>
+    <span class="header-tagline">Kostenlose Tools, direkt im Browser</span>
+  </div>
+</header>
+
+<main class="tool-page">
+  <div class="container">
+    <p class="breadcrumb"><a href="/">Toolyfix</a> / Wortzähler</p>
+    <h1>Wortzähler</h1>
+    <p>Füge deinen Text ein und sieh sofort, wie viele Wörter, Zeichen und Sätze er enthält.</p>
+
+    <div class="tool-panel">
+      <textarea id="input" rows="10" placeholder="Text hier einfügen oder eintippen …"></textarea>
+
+      <div class="stat-row">
+        <div class="stat">
+          <span class="value" id="words">0</span>
+          <span class="label">Wörter</span>
+        </div>
+        <div class="stat">
+          <span class="value" id="chars">0</span>
+          <span class="label">Zeichen</span>
+        </div>
+        <div class="stat">
+          <span class="value" id="charsNoSpace">0</span>
+          <span class="label">Zeichen ohne Leerzeichen</span>
+        </div>
+        <div class="stat">
+          <span class="value" id="sentences">0</span>
+          <span class="label">Sätze</span>
+        </div>
+        <div class="stat">
+          <span class="value" id="paragraphs">0</span>
+          <span class="label">Absätze</span>
+        </div>
+        <div class="stat">
+          <span class="value" id="readTime">0 Min</span>
+          <span class="label">Lesezeit</span>
+        </div>
+      </div>
+    </div>
+
+    <section class="explainer">
+      <h2>Wie wird gezählt?</h2>
+      <p><strong>Wörter</strong> werden anhand von Leerzeichen und Zeilenumbrüchen getrennt. <strong>Sätze</strong> werden anhand von Punkt, Ausrufe- und Fragezeichen erkannt. Die <strong>Lesezeit</strong> wird mit durchschnittlich 200 Wörtern pro Minute berechnet – ein gängiger Richtwert für deutschsprachige Texte.</p>
+      <p>Der gesamte Text bleibt in deinem Browser. Es wird nichts an einen Server gesendet oder gespeichert.</p>
+    </section>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <img src="/assets/images/logo-full.png" alt="Toolyfix">
+    <p class="footer-note">© 2026 Toolyfix – Alle Tools laufen lokal in deinem Browser.</p>
+  </div>
+</footer>
+
+<script>
+const input = document.getElementById('input');
+
+function update() {
+  const text = input.value;
+  const trimmed = text.trim();
+
+  const words = trimmed.length ? trimmed.split(/\s+/).length : 0;
+  const chars = text.length;
+  const charsNoSpace = text.replace(/\s/g, '').length;
+  const sentences = trimmed.length ? (trimmed.match(/[.!?]+(\s|$)/g) || []).length || (trimmed ? 1 : 0) : 0;
+  const paragraphs = trimmed.length ? trimmed.split(/\n\s*\n/).filter(p => p.trim().length).length : 0;
+  const readTime = Math.max(1, Math.ceil(words / 200));
+
+  document.getElementById('words').textContent = words;
+  document.getElementById('chars').textContent = chars;
+  document.getElementById('charsNoSpace').textContent = charsNoSpace;
+  document.getElementById('sentences').textContent = sentences;
+  document.getElementById('paragraphs').textContent = paragraphs;
+  document.getElementById('readTime').textContent = (words === 0 ? '0 Min' : readTime + ' Min');
+}
+
+input.addEventListener('input', update);
+update();
+</script>
+
+</body>
+</html>

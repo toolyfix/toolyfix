@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>JSON-Formatter & Validator | Toolyfix</title>
+<meta name="description" content="JSON kostenlos formatieren und validieren. Fehler sofort erkennen, Struktur übersichtlich einrücken – direkt im Browser.">
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/style.css">
+<style>
+  #output { font-family: 'Menlo', 'Consolas', monospace; font-size: 0.9rem; white-space: pre-wrap; word-break: break-word; min-height: 240px; }
+  .status { font-size: 0.9rem; font-weight: 600; margin-bottom: 12px; }
+  .status.ok { color: var(--success); }
+  .status.error { color: #B23A3A; }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container">
+    <a href="/" class="logo-link">
+      <img src="/assets/images/logo-full.png" alt="Toolyfix">
+    </a>
+    <span class="header-tagline">Kostenlose Tools, direkt im Browser</span>
+  </div>
+</header>
+
+<main class="tool-page">
+  <div class="container">
+    <p class="breadcrumb"><a href="/">Toolyfix</a> / JSON-Formatter</p>
+    <h1>JSON-Formatter & Validator</h1>
+    <p>Füge dein JSON ein. Fehler werden sofort angezeigt, gültiges JSON wird übersichtlich formatiert.</p>
+
+    <div class="tool-panel">
+      <div class="field-row">
+        <textarea id="input" rows="8" placeholder='{"beispiel": "text", "zahl": 42}'></textarea>
+      </div>
+      <div class="field-row">
+        <button class="btn btn-primary" id="formatBtn">Formatieren</button>
+        <button class="btn btn-ghost" id="minifyBtn">Minimieren</button>
+        <button class="btn btn-ghost" id="copyBtn">Kopieren</button>
+      </div>
+      <p class="status" id="status"></p>
+      <div id="output" class="tool-panel"></div>
+    </div>
+
+    <section class="explainer">
+      <h2>Häufige JSON-Fehler</h2>
+      <p>Die häufigsten Fehler sind ein fehlendes Komma zwischen Werten, ein Komma nach dem letzten Element, oder einfache statt doppelte Anführungszeichen um Schlüssel und Text. Dieses Tool zeigt an, wo genau der Fehler liegt.</p>
+      <p>Dein JSON wird ausschließlich lokal in deinem Browser verarbeitet und nirgendwo hochgeladen.</p>
+    </section>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <img src="/assets/images/logo-full.png" alt="Toolyfix">
+    <p class="footer-note">© 2026 Toolyfix – Alle Tools laufen lokal in deinem Browser.</p>
+  </div>
+</footer>
+
+<script>
+const input = document.getElementById('input');
+const output = document.getElementById('output');
+const status = document.getElementById('status');
+
+function showError(e) {
+  status.textContent = 'Ungültiges JSON: ' + e.message;
+  status.className = 'status error';
+  output.textContent = '';
+}
+
+function format() {
+  try {
+    const parsed = JSON.parse(input.value);
+    output.textContent = JSON.stringify(parsed, null, 2);
+    status.textContent = 'Gültiges JSON';
+    status.className = 'status ok';
+  } catch (e) {
+    showError(e);
+  }
+}
+
+function minify() {
+  try {
+    const parsed = JSON.parse(input.value);
+    output.textContent = JSON.stringify(parsed);
+    status.textContent = 'Gültiges JSON';
+    status.className = 'status ok';
+  } catch (e) {
+    showError(e);
+  }
+}
+
+document.getElementById('formatBtn').addEventListener('click', format);
+document.getElementById('minifyBtn').addEventListener('click', minify);
+document.getElementById('copyBtn').addEventListener('click', () => {
+  if (output.textContent) navigator.clipboard.writeText(output.textContent);
+});
+</script>
+
+</body>
+</html>

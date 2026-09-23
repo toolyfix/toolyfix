@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Passwort-Generator – Sichere Passwörter erstellen | Toolyfix</title>
+<meta name="description" content="Kostenloser Passwort-Generator. Erstelle sichere, zufällige Passwörter mit einstellbarer Länge und Zeichenarten – direkt im Browser.">
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/style.css">
+<style>
+  #result { font-family: 'Menlo', 'Consolas', monospace; font-size: 1.3rem; text-align: center; padding: 20px; letter-spacing: 1px; word-break: break-all; }
+  .option-row { display: flex; align-items: center; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid var(--border); }
+  .option-row:last-child { border-bottom: none; }
+  .length-value { font-weight: 600; color: var(--primary); }
+  input[type="range"] { width: 100%; accent-color: var(--primary); }
+  .switch { position: relative; width: 44px; height: 24px; }
+  .switch input { opacity: 0; width: 0; height: 0; }
+  .slider { position: absolute; inset: 0; background: var(--border); border-radius: 24px; cursor: pointer; transition: 0.15s; }
+  .slider::before { content: ""; position: absolute; height: 18px; width: 18px; left: 3px; top: 3px; background: white; border-radius: 50%; transition: 0.15s; }
+  input:checked + .slider { background: var(--primary); }
+  input:checked + .slider::before { transform: translateX(20px); }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container">
+    <a href="/" class="logo-link">
+      <img src="/assets/images/logo-full.png" alt="Toolyfix">
+    </a>
+    <span class="header-tagline">Kostenlose Tools, direkt im Browser</span>
+  </div>
+</header>
+
+<main class="tool-page">
+  <div class="container">
+    <p class="breadcrumb"><a href="/">Toolyfix</a> / Passwort-Generator</p>
+    <h1>Passwort-Generator</h1>
+    <p>Erstelle ein sicheres, zufälliges Passwort mit den Einstellungen deiner Wahl.</p>
+
+    <div class="tool-panel">
+      <div class="tool-panel" id="result">Klicke auf "Passwort erstellen"</div>
+
+      <div class="field-row">
+        <button class="btn btn-primary" id="generateBtn">Passwort erstellen</button>
+        <button class="btn btn-ghost" id="copyBtn">Kopieren</button>
+      </div>
+
+      <div style="margin-top: 24px;">
+        <div class="option-row">
+          <label for="length">Länge</label>
+          <span class="length-value"><span id="lengthValue">16</span> Zeichen</span>
+        </div>
+        <input type="range" id="length" min="6" max="64" value="16">
+
+        <div class="option-row">
+          <label for="uppercase">Großbuchstaben (A–Z)</label>
+          <label class="switch"><input type="checkbox" id="uppercase" checked><span class="slider"></span></label>
+        </div>
+        <div class="option-row">
+          <label for="lowercase">Kleinbuchstaben (a–z)</label>
+          <label class="switch"><input type="checkbox" id="lowercase" checked><span class="slider"></span></label>
+        </div>
+        <div class="option-row">
+          <label for="numbers">Zahlen (0–9)</label>
+          <label class="switch"><input type="checkbox" id="numbers" checked><span class="slider"></span></label>
+        </div>
+        <div class="option-row">
+          <label for="symbols">Sonderzeichen (!@#$%)</label>
+          <label class="switch"><input type="checkbox" id="symbols"><span class="slider"></span></label>
+        </div>
+      </div>
+    </div>
+
+    <section class="explainer">
+      <h2>Was macht ein Passwort sicher?</h2>
+      <p>Ein sicheres Passwort ist lang (mindestens 12–16 Zeichen) und zufällig – also nicht aus echten Wörtern oder persönlichen Daten zusammengesetzt. Je mehr Zeichenarten (Groß-, Kleinbuchstaben, Zahlen, Sonderzeichen) verwendet werden, desto schwerer ist es zu erraten.</p>
+      <p>Dieses Passwort wird lokal in deinem Browser erzeugt und niemals an einen Server gesendet oder gespeichert.</p>
+    </section>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <img src="/assets/images/logo-full.png" alt="Toolyfix">
+    <p class="footer-note">© 2026 Toolyfix – Alle Tools laufen lokal in deinem Browser.</p>
+  </div>
+</footer>
+
+<script>
+const lengthInput = document.getElementById('length');
+const lengthValue = document.getElementById('lengthValue');
+const result = document.getElementById('result');
+
+lengthInput.addEventListener('input', () => lengthValue.textContent = lengthInput.value);
+
+function generate() {
+  const upper = 'ABCDEFGHJKLMNPQRSTUVWXYZ';
+  const lower = 'abcdefghijkmnopqrstuvwxyz';
+  const nums = '23456789';
+  const syms = '!@#$%^&*()-_=+';
+
+  let pool = '';
+  if (document.getElementById('uppercase').checked) pool += upper;
+  if (document.getElementById('lowercase').checked) pool += lower;
+  if (document.getElementById('numbers').checked) pool += nums;
+  if (document.getElementById('symbols').checked) pool += syms;
+
+  if (!pool) {
+    result.textContent = 'Bitte mindestens eine Zeichenart auswählen.';
+    return;
+  }
+
+  const len = parseInt(lengthInput.value, 10);
+  const bytes = new Uint32Array(len);
+  crypto.getRandomValues(bytes);
+  let pw = '';
+  for (let i = 0; i < len; i++) pw += pool[bytes[i] % pool.length];
+
+  result.textContent = pw;
+}
+
+document.getElementById('generateBtn').addEventListener('click', generate);
+document.getElementById('copyBtn').addEventListener('click', () => {
+  const text = result.textContent;
+  if (text && !text.startsWith('Klicke') && !text.startsWith('Bitte')) {
+    navigator.clipboard.writeText(text);
+  }
+});
+
+generate();
+</script>
+
+</body>
+</html>
