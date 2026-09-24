@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Bilder Komprimieren – Bildgröße Verkleinern | Toolyfix</title>
-<meta name="description" content="Bilder kostenlos komprimieren, ohne sichtbaren Qualitätsverlust. JPG, PNG und WebP direkt im Browser verkleinern – ohne Upload auf einen Server.">
+<title>Bilder Komprimieren – Auf Zielgröße (KB) Verkleinern | Toolyfix</title>
+<meta name="description" content="Bilder kostenlos komprimieren und auf eine exakte Zielgröße in KB verkleinern. JPG und PNG direkt im Browser optimieren – ohne Upload, ohne Anmeldung, ohne Wasserzeichen.">
 <link rel="icon" type="image/x-icon" href="/favicon.ico">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
@@ -24,14 +24,31 @@
   .dropzone.dragover { border-color: var(--primary); background: var(--accent-soft); }
   .dropzone p { margin: 0; }
   #fileInput { display: none; }
-  .result-row { display: flex; gap: 24px; flex-wrap: wrap; align-items: center; margin-top: 20px; }
-  .preview-box { flex: 1; min-width: 220px; }
-  .preview-box img { max-width: 100%; border-radius: var(--radius); border: 1px solid var(--border); display: block; }
-  .preview-box .caption { font-size: 0.85rem; color: var(--ink-soft); margin-top: 6px; }
-  .slider-row { margin: 20px 0; }
+
+  .mode-toggle { display: flex; gap: 8px; margin-bottom: 20px; }
+  .mode-btn {
+    padding: 10px 16px; border-radius: var(--radius); border: 1px solid var(--border);
+    background: var(--surface); cursor: pointer; font-family: 'Inter', sans-serif; font-weight: 600; font-size: 0.88rem;
+  }
+  .mode-btn.active { background: var(--primary); color: #fff; border-color: var(--primary); }
+
+  .mode-panel { display: none; margin-bottom: 16px; }
+  .mode-panel.active { display: block; }
+
   .slider-row label { display: flex; justify-content: space-between; font-size: 0.9rem; margin-bottom: 6px; }
   input[type="range"] { width: 100%; accent-color: var(--primary); }
+
+  .kb-input-row { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+  .kb-input-row input[type="number"] { width: 120px; }
+
+  .result-row { display: flex; gap: 24px; flex-wrap: wrap; align-items: flex-start; margin-top: 20px; }
+  .preview-box { flex: 1; min-width: 220px; }
+  .preview-box img { max-width: 100%; border-radius: var(--radius); border: 1px solid var(--border); display: block; }
+  .preview-box .caption { font-size: 0.9rem; color: var(--ink); margin-top: 8px; font-weight: 600; }
+  .preview-box .caption .sub { display: block; font-weight: 400; color: var(--ink-soft); font-size: 0.82rem; margin-top: 2px; }
+
   .savings-badge { display: inline-block; background: var(--accent-soft); color: var(--primary-dark); padding: 4px 10px; border-radius: 6px; font-size: 0.85rem; font-weight: 600; margin-left: 8px; }
+  .status-note { font-size: 0.85rem; color: var(--ink-soft); margin-top: 10px; }
 </style>
 </head>
 <body>
@@ -49,7 +66,7 @@
   <div class="container">
     <p class="breadcrumb"><a href="/">Toolyfix</a> / Bilder Komprimieren</p>
     <h1>Bilder Komprimieren</h1>
-    <p>Verkleinere JPG-, PNG- oder WebP-Dateien direkt im Browser. Nichts wird hochgeladen – die Komprimierung läuft komplett auf deinem Gerät.</p>
+    <p>Verkleinere ein Bild nach Qualität oder gib direkt eine gewünschte Zielgröße in KB an. Alles läuft im Browser – nichts wird auf einen Server hochgeladen.</p>
 
     <div class="tool-panel">
       <div class="dropzone" id="dropzone">
@@ -58,32 +75,63 @@
       </div>
       <input type="file" id="fileInput" accept="image/jpeg,image/png,image/webp">
 
-      <div class="slider-row">
-        <label for="quality"><span>Qualität</span> <span id="qualityValue">80%</span></label>
-        <input type="range" id="quality" min="10" max="100" value="80">
+      <div id="controls" style="display:none; margin-top:20px;">
+        <div class="mode-toggle">
+          <button class="mode-btn active" data-mode="quality">Nach Qualität</button>
+          <button class="mode-btn" data-mode="targetkb">Nach Zielgröße (KB)</button>
+        </div>
+
+        <div class="mode-panel active" id="qualityPanel">
+          <div class="slider-row">
+            <label for="quality"><span>Qualität</span> <span id="qualityValue">80%</span></label>
+            <input type="range" id="quality" min="10" max="100" value="80">
+          </div>
+        </div>
+
+        <div class="mode-panel" id="targetPanel">
+          <label style="font-size:0.85rem; color:var(--ink-soft); display:block; margin-bottom:6px;">Gewünschte Dateigröße</label>
+          <div class="kb-input-row">
+            <input type="number" id="targetKb" value="200" min="5">
+            <span>KB</span>
+            <button class="btn btn-ghost" id="targetGoBtn">Auf Zielgröße komprimieren</button>
+          </div>
+          <p class="status-note" id="targetStatus"></p>
+        </div>
       </div>
 
-      <div class="field-row">
+      <div class="field-row" style="margin-top:16px;">
         <button class="btn btn-primary" id="downloadBtn" disabled>Komprimiertes Bild herunterladen</button>
+        <button class="btn btn-ghost" id="resetBtn" style="display:none;">Anderes Bild komprimieren</button>
       </div>
 
       <div class="result-row" id="results" style="display:none;">
         <div class="preview-box">
           <img id="originalPreview" alt="Original">
-          <p class="caption">Original: <span id="originalSize"></span></p>
+          <p class="caption">Original<span class="sub" id="originalSize"></span></p>
         </div>
         <div class="preview-box">
           <img id="compressedPreview" alt="Komprimiert">
-          <p class="caption">Komprimiert: <span id="compressedSize"></span> <span class="savings-badge" id="savings"></span></p>
+          <p class="caption">Komprimiert <span class="savings-badge" id="savings"></span><span class="sub" id="compressedSize"></span></p>
         </div>
       </div>
     </div>
 
-    <section class="explainer">
-      <h2>Wie funktioniert die Komprimierung?</h2>
-      <p>Das Bild wird über die interne Canvas-Funktion deines Browsers neu kodiert. Ein niedrigerer Qualitätswert verkleinert die Dateigröße stärker, kann aber bei Fotos mit vielen Details sichtbar werden. Für die meisten Webseiten sind 70–85 % ein guter Kompromiss zwischen Größe und Qualität.</p>
-      <p>Da alles lokal im Browser passiert, verlässt dein Bild nie dein Gerät.</p>
-    </section>
+    <article class="explainer">
+      <h2>Bilder online komprimieren, ohne Qualität zu verlieren</h2>
+      <p>Ein Bild zu komprimieren bedeutet, die Dateigröße zu verringern, ohne dass der Unterschied für das Auge stark auffällt. Das ist besonders wichtig, wenn du Fotos per E-Mail verschickst, ein Bild in ein Formular oder Bewerbungsportal hochladen musst, oder wenn eine Webseite durch zu große Bilddateien langsam lädt. Google bewertet die Ladegeschwindigkeit einer Webseite als Ranking-Faktor, weshalb komprimierte Bilder auch für die Suchmaschinenoptimierung (SEO) eine Rolle spielen.</p>
+
+      <h2>JPG oder PNG komprimieren – was ist der Unterschied?</h2>
+      <p>JPG-Dateien eignen sich besonders gut zum Komprimieren, weil sie ohnehin ein verlustbehaftetes Format sind – man kann die Qualität stufenlos absenken und dadurch die Dateigröße deutlich reduzieren, meist ohne sichtbaren Unterschied bei einem Qualitätswert zwischen 70 und 85 Prozent. PNG-Dateien sind dagegen verlustfrei aufgebaut und werden vor allem für Grafiken, Logos oder Screenshots mit klaren Kanten verwendet. Ein PNG lässt sich durch die Qualitätsreduzierung kaum verkleinern – hier hilft es eher, die Bildabmessungen zu verringern oder in ein JPG umzuwandeln, falls Transparenz nicht benötigt wird.</p>
+
+      <h2>Bild auf eine bestimmte KB-Größe verkleinern</h2>
+      <p>Viele Formulare, Jobportale oder Uploadfelder verlangen eine maximale Dateigröße, zum Beispiel "Bild darf nicht größer als 200 KB sein". Mit der Funktion "Nach Zielgröße" oben kannst du genau diese Größe angeben, und das Tool sucht automatisch die passende Qualitätsstufe, um möglichst nah an diesen Wert heranzukommen, ohne das Bild unnötig stark zu verschlechtern.</p>
+
+      <h2>Bilder für WhatsApp, Instagram und E-Mail optimieren</h2>
+      <p>Auch beim Versenden über WhatsApp oder beim Hochladen auf Instagram werden Bilder automatisch komprimiert – oft mit sichtbarem Qualitätsverlust, weil die Plattform die Kompression übernimmt und du keine Kontrolle darüber hast. Wenn du dein Bild vorher selbst kontrolliert verkleinerst, bleibt das Ergebnis meist deutlich schärfer, als wenn du das der jeweiligen App überlässt. Das gleiche gilt für den E-Mail-Versand: Viele Postfächer haben ein Anhang-Limit von etwa 10 bis 25 MB, und ein einzelnes unkomprimiertes Foto von einer modernen Handykamera kann bereits mehrere MB groß sein.</p>
+
+      <h2>Datenschutz bei der Bildkomprimierung</h2>
+      <p>Dieses Tool verarbeitet dein Bild vollständig lokal über die Canvas-Funktion deines Browsers. Es findet kein Upload auf einen Server statt, und das Bild wird nirgendwo gespeichert – sobald du die Seite verlässt, ist es wieder verschwunden.</p>
+    </article>
   </div>
 </main>
 
@@ -97,18 +145,25 @@
 <script>
 const dropzone = document.getElementById('dropzone');
 const fileInput = document.getElementById('fileInput');
+const controls = document.getElementById('controls');
 const qualitySlider = document.getElementById('quality');
 const qualityValue = document.getElementById('qualityValue');
 const downloadBtn = document.getElementById('downloadBtn');
+const resetBtn = document.getElementById('resetBtn');
 const results = document.getElementById('results');
 const originalPreview = document.getElementById('originalPreview');
 const compressedPreview = document.getElementById('compressedPreview');
 const originalSize = document.getElementById('originalSize');
 const compressedSize = document.getElementById('compressedSize');
 const savings = document.getElementById('savings');
+const targetKbInput = document.getElementById('targetKb');
+const targetGoBtn = document.getElementById('targetGoBtn');
+const targetStatus = document.getElementById('targetStatus');
 
 let currentFile = null;
+let currentImg = null;
 let compressedBlob = null;
+let mode = 'quality';
 
 function formatBytes(bytes) {
   if (bytes < 1024) return bytes + ' B';
@@ -116,36 +171,111 @@ function formatBytes(bytes) {
   return (bytes / (1024 * 1024)).toFixed(2) + ' MB';
 }
 
-function compress() {
-  if (!currentFile) return;
-  const img = new Image();
-  img.onload = () => {
-    const canvas = document.createElement('canvas');
-    canvas.width = img.width;
-    canvas.height = img.height;
-    const ctx = canvas.getContext('2d');
-    ctx.drawImage(img, 0, 0);
-    const quality = parseInt(qualitySlider.value, 10) / 100;
-    const mime = currentFile.type === 'image/png' ? 'image/png' : 'image/jpeg';
-    canvas.toBlob(blob => {
-      compressedBlob = blob;
-      compressedPreview.src = URL.createObjectURL(blob);
-      compressedSize.textContent = formatBytes(blob.size);
-      const reduction = Math.round((1 - blob.size / currentFile.size) * 100);
-      savings.textContent = reduction > 0 ? `-${reduction}%` : `+${Math.abs(reduction)}%`;
-      downloadBtn.disabled = false;
-      results.style.display = 'flex';
-    }, mime, mime === 'image/png' ? undefined : quality);
-  };
-  img.src = URL.createObjectURL(currentFile);
+function toBlobPromise(canvas, mimeType, quality) {
+  return new Promise(resolve => canvas.toBlob(resolve, mimeType, quality));
+}
+
+function makeCanvas(img, scale) {
+  const canvas = document.createElement('canvas');
+  canvas.width = Math.max(1, Math.round(img.width * scale));
+  canvas.height = Math.max(1, Math.round(img.height * scale));
+  const ctx = canvas.getContext('2d');
+  ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+  return canvas;
+}
+
+function showResult(blob) {
+  compressedBlob = blob;
+  compressedPreview.src = URL.createObjectURL(blob);
+  compressedSize.textContent = formatBytes(blob.size);
+  const reduction = Math.round((1 - blob.size / currentFile.size) * 100);
+  savings.textContent = reduction > 0 ? `-${reduction}%` : `+${Math.abs(reduction)}%`;
+  downloadBtn.disabled = false;
+  resetBtn.style.display = 'inline-flex';
+  results.style.display = 'flex';
+}
+
+async function compressByQuality() {
+  if (!currentImg) return;
+  const canvas = makeCanvas(currentImg, 1);
+  const quality = parseInt(qualitySlider.value, 10) / 100;
+  const mime = currentFile.type === 'image/png' ? 'image/png' : 'image/jpeg';
+  const blob = await toBlobPromise(canvas, mime, mime === 'image/png' ? undefined : quality);
+  showResult(blob);
+}
+
+async function compressToTarget() {
+  if (!currentImg) return;
+  const targetBytes = parseFloat(targetKbInput.value) * 1024;
+  if (!targetBytes || targetBytes <= 0) {
+    targetStatus.textContent = 'Bitte eine gültige Zielgröße in KB eingeben.';
+    return;
+  }
+  targetStatus.textContent = 'Suche passende Qualität …';
+
+  let scale = 1;
+  let bestBlob = null;
+
+  for (let attempt = 0; attempt < 6; attempt++) {
+    const canvas = makeCanvas(currentImg, scale);
+    let lo = 5, hi = 95, foundAtThisScale = null;
+
+    for (let i = 0; i < 7; i++) {
+      const mid = Math.round((lo + hi) / 2);
+      const blob = await toBlobPromise(canvas, 'image/jpeg', mid / 100);
+      if (blob.size > targetBytes) {
+        hi = mid - 1;
+      } else {
+        foundAtThisScale = blob;
+        lo = mid + 1;
+      }
+    }
+
+    if (foundAtThisScale) {
+      bestBlob = foundAtThisScale;
+      break;
+    }
+
+    const lowQualityBlob = await toBlobPromise(canvas, 'image/jpeg', 0.05);
+    bestBlob = lowQualityBlob;
+    scale *= 0.75;
+    if (canvas.width < 80 || canvas.height < 80) break;
+  }
+
+  if (bestBlob.size > targetBytes * 1.15) {
+    targetStatus.textContent = `Zielgröße war auch mit reduzierten Abmessungen nicht sauber erreichbar. Nächstmögliches Ergebnis: ${formatBytes(bestBlob.size)}.`;
+  } else {
+    targetStatus.textContent = `Zielgröße erreicht: ${formatBytes(bestBlob.size)} (Format: JPG).`;
+  }
+  showResult(bestBlob);
 }
 
 function handleFile(file) {
   if (!file || !file.type.startsWith('image/')) return;
   currentFile = file;
-  originalPreview.src = URL.createObjectURL(file);
-  originalSize.textContent = formatBytes(file.size);
-  compress();
+  const img = new Image();
+  img.onload = () => {
+    currentImg = img;
+    originalPreview.src = URL.createObjectURL(file);
+    originalSize.textContent = formatBytes(file.size);
+    controls.style.display = 'block';
+    dropzone.style.display = 'none';
+    compressByQuality();
+  };
+  img.src = URL.createObjectURL(file);
+}
+
+function resetTool() {
+  currentFile = null;
+  currentImg = null;
+  compressedBlob = null;
+  fileInput.value = '';
+  controls.style.display = 'none';
+  results.style.display = 'none';
+  downloadBtn.disabled = true;
+  resetBtn.style.display = 'none';
+  dropzone.style.display = 'block';
+  targetStatus.textContent = '';
 }
 
 dropzone.addEventListener('click', () => fileInput.click());
@@ -161,16 +291,32 @@ dropzone.addEventListener('drop', e => handleFile(e.dataTransfer.files[0]));
 
 qualitySlider.addEventListener('input', () => {
   qualityValue.textContent = qualitySlider.value + '%';
-  if (currentFile) compress();
+  if (currentImg) compressByQuality();
 });
+
+document.querySelectorAll('.mode-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.mode-btn').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.mode-panel').forEach(p => p.classList.remove('active'));
+    btn.classList.add('active');
+    mode = btn.dataset.mode;
+    document.getElementById(mode === 'quality' ? 'qualityPanel' : 'targetPanel').classList.add('active');
+    if (mode === 'quality' && currentImg) compressByQuality();
+  });
+});
+
+targetGoBtn.addEventListener('click', compressToTarget);
 
 downloadBtn.addEventListener('click', () => {
   if (!compressedBlob) return;
   const a = document.createElement('a');
+  const ext = mode === 'targetkb' ? 'jpg' : (currentFile.type === 'image/png' ? 'png' : 'jpg');
   a.href = URL.createObjectURL(compressedBlob);
-  a.download = 'komprimiert-' + (currentFile ? currentFile.name : 'bild.jpg');
+  a.download = 'komprimiert.' + ext;
   a.click();
 });
+
+resetBtn.addEventListener('click', resetTool);
 </script>
 
 </body>
