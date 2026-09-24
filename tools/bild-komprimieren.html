@@ -77,18 +77,18 @@
 
       <div id="controls" style="display:none; margin-top:20px;">
         <div class="mode-toggle">
-          <button class="mode-btn active" data-mode="quality">Nach Qualität</button>
-          <button class="mode-btn" data-mode="targetkb">Nach Zielgröße (KB)</button>
+          <button class="mode-btn" data-mode="quality">Nach Qualität</button>
+          <button class="mode-btn active" data-mode="targetkb">Nach Zielgröße (KB)</button>
         </div>
 
-        <div class="mode-panel active" id="qualityPanel">
+        <div class="mode-panel" id="qualityPanel">
           <div class="slider-row">
             <label for="quality"><span>Qualität</span> <span id="qualityValue">80%</span></label>
             <input type="range" id="quality" min="10" max="100" value="80">
           </div>
         </div>
 
-        <div class="mode-panel" id="targetPanel">
+        <div class="mode-panel active" id="targetPanel">
           <label style="font-size:0.85rem; color:var(--ink-soft); display:block; margin-bottom:6px;">Gewünschte Dateigröße</label>
           <div class="kb-input-row">
             <input type="number" id="targetKb" value="200" min="5">
@@ -102,7 +102,7 @@
       <div id="filenameRow" style="display:none; margin-top:16px;">
         <label style="font-size:0.85rem; color:var(--ink-soft); display:block; margin-bottom:6px;">Dateiname beim Download</label>
         <div class="kb-input-row">
-          <input type="text" id="filenameInput" value="komprimiert">
+          <input type="text" id="filenameInput" value="">
           <span id="filenameExt">.jpg</span>
         </div>
       </div>
@@ -173,13 +173,19 @@ const filenameExt = document.getElementById('filenameExt');
 
 function sanitizeFilename(name) {
   const cleaned = name.trim().replace(/[\\/:*?"<>|]/g, '').replace(/\s+/g, '-');
-  return cleaned || 'komprimiert';
+  return cleaned || 'bild-toolyfix';
 }
 
 let currentFile = null;
 let currentImg = null;
 let compressedBlob = null;
-let mode = 'quality';
+let mode = 'targetkb';
+
+function getDefaultFilename(originalName) {
+  const base = originalName.replace(/\.[a-zA-Z0-9]+$/, '');
+  const cleaned = base.trim().replace(/[\\/:*?"<>|]/g, '').replace(/\s+/g, '-');
+  return (cleaned || 'bild') + '-toolyfix';
+}
 
 function formatBytes(bytes) {
   if (bytes < 1024) return bytes + ' B';
@@ -277,9 +283,14 @@ function handleFile(file) {
     currentImg = img;
     originalPreview.src = URL.createObjectURL(file);
     originalSize.textContent = formatBytes(file.size);
+    filenameInput.value = getDefaultFilename(file.name);
     controls.style.display = 'block';
     dropzone.style.display = 'none';
-    compressByQuality();
+    if (mode === 'targetkb') {
+      compressToTarget();
+    } else {
+      compressByQuality();
+    }
   };
   img.src = URL.createObjectURL(file);
 }
@@ -296,7 +307,7 @@ function resetTool() {
   dropzone.style.display = 'block';
   targetStatus.textContent = '';
   filenameRow.style.display = 'none';
-  filenameInput.value = 'komprimiert';
+  filenameInput.value = '';
 }
 
 dropzone.addEventListener('click', () => fileInput.click());
