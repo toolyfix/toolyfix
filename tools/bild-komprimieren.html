@@ -99,6 +99,14 @@
         </div>
       </div>
 
+      <div id="filenameRow" style="display:none; margin-top:16px;">
+        <label style="font-size:0.85rem; color:var(--ink-soft); display:block; margin-bottom:6px;">Dateiname beim Download</label>
+        <div class="kb-input-row">
+          <input type="text" id="filenameInput" value="komprimiert">
+          <span id="filenameExt">.jpg</span>
+        </div>
+      </div>
+
       <div class="field-row" style="margin-top:16px;">
         <button class="btn btn-primary" id="downloadBtn" disabled>Komprimiertes Bild herunterladen</button>
         <button class="btn btn-ghost" id="resetBtn" style="display:none;">Anderes Bild komprimieren</button>
@@ -159,6 +167,14 @@ const savings = document.getElementById('savings');
 const targetKbInput = document.getElementById('targetKb');
 const targetGoBtn = document.getElementById('targetGoBtn');
 const targetStatus = document.getElementById('targetStatus');
+const filenameRow = document.getElementById('filenameRow');
+const filenameInput = document.getElementById('filenameInput');
+const filenameExt = document.getElementById('filenameExt');
+
+function sanitizeFilename(name) {
+  const cleaned = name.trim().replace(/[\\/:*?"<>|]/g, '').replace(/\s+/g, '-');
+  return cleaned || 'komprimiert';
+}
 
 let currentFile = null;
 let currentImg = null;
@@ -193,6 +209,9 @@ function showResult(blob) {
   downloadBtn.disabled = false;
   resetBtn.style.display = 'inline-flex';
   results.style.display = 'flex';
+  filenameRow.style.display = 'block';
+  const ext = mode === 'targetkb' ? 'jpg' : (currentFile.type === 'image/png' ? 'png' : 'jpg');
+  filenameExt.textContent = '.' + ext;
 }
 
 async function compressByQuality() {
@@ -276,6 +295,8 @@ function resetTool() {
   resetBtn.style.display = 'none';
   dropzone.style.display = 'block';
   targetStatus.textContent = '';
+  filenameRow.style.display = 'none';
+  filenameInput.value = 'komprimiert';
 }
 
 dropzone.addEventListener('click', () => fileInput.click());
@@ -311,8 +332,9 @@ downloadBtn.addEventListener('click', () => {
   if (!compressedBlob) return;
   const a = document.createElement('a');
   const ext = mode === 'targetkb' ? 'jpg' : (currentFile.type === 'image/png' ? 'png' : 'jpg');
+  const name = sanitizeFilename(filenameInput.value);
   a.href = URL.createObjectURL(compressedBlob);
-  a.download = 'komprimiert.' + ext;
+  a.download = name + '.' + ext;
   a.click();
 });
 
