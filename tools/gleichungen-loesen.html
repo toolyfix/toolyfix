@@ -22,7 +22,14 @@
   .tab-panel { display: none; }
   .tab-panel.active { display: block; }
   .eq-row { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; font-size: 1.1rem; margin-bottom: 20px; }
+  .num-group { display: flex; align-items: center; gap: 4px; }
   .eq-row input { width: 70px; text-align: center; padding: 10px; }
+  .sign-btn {
+    width: 40px; height: 40px; border-radius: 8px; border: 1px solid var(--border);
+    background: var(--surface); cursor: pointer; font-size: 1.1rem; font-weight: 600; color: var(--primary);
+    display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+  }
+  .sign-btn:active { background: var(--accent-soft); }
   .result-box { background: var(--accent-soft); border-radius: var(--radius); padding: 18px; font-family: 'Space Grotesk', sans-serif; font-size: 1.15rem; color: var(--primary-dark); margin-top: 16px; min-height: 24px; }
 </style>
 </head>
@@ -52,9 +59,20 @@
       <div class="tab-panel active" id="linear">
         <p style="font-size:0.9rem; color:var(--ink-soft); margin-bottom:16px;">Form: a·x + b = c</p>
         <div class="eq-row">
-          <input type="number" id="lin_a" value="2"> · x +
-          <input type="number" id="lin_b" value="3"> =
-          <input type="number" id="lin_c" value="11">
+          <div class="num-group">
+            <button class="sign-btn" data-target="lin_a" type="button">±</button>
+            <input type="number" id="lin_a" placeholder="z. B. 2">
+          </div>
+          · x +
+          <div class="num-group">
+            <button class="sign-btn" data-target="lin_b" type="button">±</button>
+            <input type="number" id="lin_b" placeholder="z. B. 3">
+          </div>
+          =
+          <div class="num-group">
+            <button class="sign-btn" data-target="lin_c" type="button">±</button>
+            <input type="number" id="lin_c" placeholder="z. B. 11">
+          </div>
         </div>
         <button class="btn btn-primary" id="linSolve">Lösen</button>
         <div class="result-box" id="linResult"></div>
@@ -63,9 +81,21 @@
       <div class="tab-panel" id="quadratic">
         <p style="font-size:0.9rem; color:var(--ink-soft); margin-bottom:16px;">Form: a·x² + b·x + c = 0</p>
         <div class="eq-row">
-          <input type="number" id="quad_a" value="1"> · x² +
-          <input type="number" id="quad_b" value="-3"> · x +
-          <input type="number" id="quad_c" value="2"> = 0
+          <div class="num-group">
+            <button class="sign-btn" data-target="quad_a" type="button">±</button>
+            <input type="number" id="quad_a" placeholder="z. B. 1">
+          </div>
+          · x² +
+          <div class="num-group">
+            <button class="sign-btn" data-target="quad_b" type="button">±</button>
+            <input type="number" id="quad_b" placeholder="z. B. -3">
+          </div>
+          · x +
+          <div class="num-group">
+            <button class="sign-btn" data-target="quad_c" type="button">±</button>
+            <input type="number" id="quad_c" placeholder="z. B. 2">
+          </div>
+          = 0
         </div>
         <button class="btn btn-primary" id="quadSolve">Lösen</button>
         <div class="result-box" id="quadResult"></div>
@@ -77,6 +107,32 @@
       <p><strong>Lineare Gleichung:</strong> a·x + b = c wird nach x aufgelöst: x = (c − b) ÷ a.</p>
       <p><strong>Quadratische Gleichung:</strong> gelöst wird mit der Mitternachtsformel (kleine Lösungsformel): x = (−b ± √(b² − 4ac)) ÷ (2a). Ist die Diskriminante (b² − 4ac) negativ, gibt es keine reelle Lösung.</p>
     </section>
+
+    <article class="explainer">
+      <h2>Gleichungen online lösen: linear und quadratisch, Schritt für Schritt</h2>
+      <p>Das Lösen von Gleichungen gehört zu den häufigsten Aufgaben im Matheunterricht, in der Berufsschule und im Studium – von der einfachen linearen Gleichung in der 7. oder 8. Klasse bis zur quadratischen Gleichung in der Oberstufe. Dieser Gleichungslöser hilft dir, sowohl lineare als auch quadratische Gleichungen sofort und kostenlos zu berechnen, ohne dass du eine App installieren oder dich anmelden musst. Trage einfach die Koeffizienten ein und du erhältst direkt das Ergebnis inklusive der zugrunde liegenden Rechenmethode.</p>
+
+      <h2>Lineare Gleichungen lösen – die Grundform a·x + b = c</h2>
+      <p>Eine lineare Gleichung ist eine Gleichung, in der die Variable x nur in der ersten Potenz vorkommt, also ohne x² oder höhere Potenzen. Die allgemeine Form lautet a·x + b = c, wobei a, b und c beliebige Zahlen sind. Um nach x aufzulösen, wird zunächst b auf beiden Seiten subtrahiert, sodass a·x = c − b übrig bleibt, und anschließend wird durch a geteilt: x = (c − b) ÷ a. Ein Sonderfall tritt auf, wenn a gleich 0 ist – dann gibt es entweder unendlich viele Lösungen (wenn b = c) oder gar keine Lösung (wenn b ≠ c), da x aus der Gleichung verschwindet.</p>
+
+      <h2>Quadratische Gleichungen lösen – die Mitternachtsformel</h2>
+      <p>Eine quadratische Gleichung hat die Form a·x² + b·x + c = 0, wobei a nicht 0 sein darf. Die bekannteste Methode zur Lösung ist die sogenannte Mitternachtsformel (auch als "kleine Lösungsformel" oder allgemeine Lösungsformel bekannt): x = (−b ± √(b² − 4ac)) ÷ (2a). Der Ausdruck unter der Wurzel, b² − 4ac, wird als Diskriminante bezeichnet und entscheidet über die Anzahl der Lösungen: Ist die Diskriminante positiv, gibt es zwei unterschiedliche reelle Lösungen x₁ und x₂. Ist sie genau 0, gibt es eine doppelte Lösung. Ist sie negativ, existiert keine reelle Lösung, weil man aus einer negativen Zahl keine reelle Wurzel ziehen kann.</p>
+
+      <h2>Mitternachtsformel oder pq-Formel – was ist der Unterschied?</h2>
+      <p>Neben der Mitternachtsformel wird im deutschen Schulunterricht häufig auch die pq-Formel gelehrt. Sie funktioniert nur, wenn die Gleichung zuvor auf die Form x² + p·x + q = 0 normiert wurde, also wenn der Koeffizient vor x² gleich 1 ist. Die pq-Formel lautet dann x = −p/2 ± √((p/2)² − q). Beide Formeln führen zum exakt gleichen Ergebnis – die Mitternachtsformel hat den Vorteil, dass sie direkt mit den ursprünglichen Koeffizienten a, b und c funktioniert, ohne dass vorher umgeformt werden muss. Deshalb verwendet dieser Rechner die Mitternachtsformel.</p>
+
+      <h2>Typische Fehler beim Lösen von Gleichungen</h2>
+      <p>Ein häufiger Fehler bei linearen Gleichungen ist ein Vorzeichenfehler beim Umstellen – zum Beispiel wird beim Subtrahieren von b vergessen, dass sich das Vorzeichen von b umkehrt. Bei quadratischen Gleichungen wird die Diskriminante oft falsch berechnet, insbesondere wenn b oder c negativ sind und die Klammersetzung nicht sauber beachtet wird (b² ist bei negativem b trotzdem immer positiv, weil eine negative Zahl zum Quadrat positiv wird). Mit den ± Vorzeichen-Tasten neben jedem Eingabefeld in diesem Tool kannst du negative Werte sicher eingeben, ohne dich beim Tippen zu vertun – besonders praktisch auf dem Smartphone, wo die Minustaste bei Zahlenfeldern oft schwer zu erreichen ist.</p>
+
+      <h2>Wofür braucht man Gleichungen im Alltag?</h2>
+      <p>Auch außerhalb der Schule kommen lineare und quadratische Gleichungen häufiger vor, als man zunächst denkt: bei der Berechnung von Flugbahnen und Wurfparabeln in der Physik, bei Break-Even-Analysen in der Betriebswirtschaft, bei der Optimierung von Flächen (zum Beispiel maximale Fläche bei gegebenem Umfang), oder bei technischen Berechnungen im Handwerk und in der Elektrotechnik. Wer den Rechenweg verstehen möchte, kann mit diesem Tool auch einfach verschiedene Werte ausprobieren und beobachten, wie sich das Ergebnis verändert.</p>
+
+      <h2>Genauigkeit und Rundung</h2>
+      <p>Die Ergebnisse werden auf bis zu drei Nachkommastellen gerundet angezeigt, sofern kein glattes Ergebnis vorliegt. Für die meisten schulischen und praktischen Zwecke ist diese Genauigkeit ausreichend. Bei sehr großen oder sehr kleinen Koeffizienten kann es durch die Fließkommaberechnung im Browser in seltenen Fällen zu minimalen Rundungsungenauigkeiten kommen, die aber praktisch keine Rolle spielen.</p>
+
+      <h2>Datenschutz</h2>
+      <p>Alle Eingaben und Berechnungen finden ausschließlich lokal in deinem Browser statt. Es werden keine Daten an einen Server übertragen oder gespeichert.</p>
+    </article>
   </div>
 </main>
 
@@ -97,15 +153,35 @@ document.querySelectorAll('.tab-btn').forEach(btn => {
   });
 });
 
+document.querySelectorAll('.sign-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const input = document.getElementById(btn.dataset.target);
+    if (input.value === '' || isNaN(parseFloat(input.value))) {
+      input.focus();
+      return;
+    }
+    input.value = (parseFloat(input.value) * -1).toString();
+  });
+});
+
 function fmt(n) {
   return Number.isInteger(n) ? n : Math.round(n * 1000) / 1000;
 }
 
+function getVal(id) {
+  const v = document.getElementById(id).value;
+  return v === '' ? NaN : parseFloat(v);
+}
+
 document.getElementById('linSolve').addEventListener('click', () => {
-  const a = parseFloat(document.getElementById('lin_a').value);
-  const b = parseFloat(document.getElementById('lin_b').value);
-  const c = parseFloat(document.getElementById('lin_c').value);
+  const a = getVal('lin_a');
+  const b = getVal('lin_b');
+  const c = getVal('lin_c');
   const result = document.getElementById('linResult');
+  if (isNaN(a) || isNaN(b) || isNaN(c)) {
+    result.textContent = 'Bitte alle drei Felder ausfüllen.';
+    return;
+  }
   if (a === 0) {
     result.textContent = b === c ? 'Unendlich viele Lösungen (a = 0, Gleichung immer wahr).' : 'Keine Lösung (a = 0, Gleichung ist falsch).';
     return;
@@ -115,10 +191,14 @@ document.getElementById('linSolve').addEventListener('click', () => {
 });
 
 document.getElementById('quadSolve').addEventListener('click', () => {
-  const a = parseFloat(document.getElementById('quad_a').value);
-  const b = parseFloat(document.getElementById('quad_b').value);
-  const c = parseFloat(document.getElementById('quad_c').value);
+  const a = getVal('quad_a');
+  const b = getVal('quad_b');
+  const c = getVal('quad_c');
   const result = document.getElementById('quadResult');
+  if (isNaN(a) || isNaN(b) || isNaN(c)) {
+    result.textContent = 'Bitte alle drei Felder ausfüllen.';
+    return;
+  }
   if (a === 0) {
     result.textContent = 'a darf bei einer quadratischen Gleichung nicht 0 sein.';
     return;
