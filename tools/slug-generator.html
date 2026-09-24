@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Slug Generator – URL Slugs Erstellen | Toolyfix</title>
+<meta name="description" content="Kostenloser Slug Generator: Wandle Titel in saubere URL-Slugs um. Umlaute korrekt (ä→ae, ß→ss), Bindestrich oder Unterstrich, Stoppwörter entfernen, mehrere Zeilen auf einmal.">
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/style.css">
+<style>
+  .options-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin-bottom: 20px;
+  }
+  @media (max-width: 780px) {
+    .options-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 460px) {
+    .options-grid { grid-template-columns: 1fr; }
+  }
+  .option-block label.opt-label {
+    font-size: 0.82rem; color: var(--ink-soft); display: block; margin-bottom: 6px;
+  }
+  .seg-toggle { display: flex; border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; }
+  .seg-btn {
+    flex: 1; padding: 9px 6px; border: none; background: var(--surface); cursor: pointer;
+    font-family: 'Inter', sans-serif; font-weight: 600; font-size: 0.85rem; color: var(--ink);
+  }
+  .seg-btn.active { background: var(--primary); color: #fff; }
+  .switch { position: relative; width: 44px; height: 24px; display: inline-block; }
+  .switch input { opacity: 0; width: 0; height: 0; }
+  .slider-switch { position: absolute; inset: 0; background: var(--border); border-radius: 24px; cursor: pointer; transition: 0.15s; }
+  .slider-switch::before { content: ""; position: absolute; height: 18px; width: 18px; left: 3px; top: 3px; background: white; border-radius: 50%; transition: 0.15s; }
+  input:checked + .slider-switch { background: var(--primary); }
+  input:checked + .slider-switch::before { transform: translateX(20px); }
+  .switch-row { display: flex; align-items: center; gap: 10px; height: 38px; }
+
+  .stopwords-box { display: none; margin-bottom: 20px; }
+  .stopwords-box.visible { display: block; }
+  .stopwords-box textarea { font-size: 0.85rem; }
+
+  #output {
+    font-family: 'Menlo', 'Consolas', monospace;
+    font-size: 0.95rem;
+    min-height: 120px;
+    background: var(--bg);
+  }
+
+  .textarea-pair { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  @media (max-width: 780px) {
+    .textarea-pair { grid-template-columns: 1fr; }
+  }
+  .textarea-pair label { font-size: 0.85rem; color: var(--ink-soft); display: block; margin-bottom: 6px; }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container">
+    <a href="/" class="logo-link">
+      <img src="/assets/images/logo-full.png" alt="Toolyfix">
+    </a>
+    <span class="header-tagline">Kostenlose Tools, direkt im Browser</span>
+  </div>
+</header>
+
+<main class="tool-page">
+  <div class="container">
+    <p class="breadcrumb"><a href="/">Toolyfix</a> / Slug Generator</p>
+    <h1>Slug Generator</h1>
+    <p>Wandle einen Titel oder mehrere Zeilen in saubere URL-Slugs um. Deutsche Umlaute werden korrekt übersetzt (ä → ae, nicht nur a), nicht einfach entfernt.</p>
+
+    <div class="tool-panel">
+      <div class="options-grid">
+        <div class="option-block">
+          <label class="opt-label">Trennzeichen</label>
+          <div class="seg-toggle">
+            <button class="seg-btn active" data-sep="-">Bindestrich -</button>
+            <button class="seg-btn" data-sep="_">Unterstrich _</button>
+          </div>
+        </div>
+
+        <div class="option-block">
+          <label class="opt-label">Kleinbuchstaben</label>
+          <div class="switch-row">
+            <label class="switch"><input type="checkbox" id="lowercaseToggle" checked><span class="slider-switch"></span></label>
+            <span style="font-size:0.85rem;">immer klein schreiben</span>
+          </div>
+        </div>
+
+        <div class="option-block">
+          <label class="opt-label">Stoppwörter entfernen</label>
+          <div class="switch-row">
+            <label class="switch"><input type="checkbox" id="stopwordsToggle"><span class="slider-switch"></span></label>
+            <span style="font-size:0.85rem;">z. B. "und", "der", "für"</span>
+          </div>
+        </div>
+
+        <div class="option-block">
+          <label class="opt-label" for="maxLength">Maximale Länge (0 = unbegrenzt)</label>
+          <input type="number" id="maxLength" min="0" value="0">
+        </div>
+      </div>
+
+      <div class="stopwords-box" id="stopwordsBox">
+        <label class="opt-label" for="stopwordsList">Stoppwörter (kommagetrennt, editierbar)</label>
+        <textarea id="stopwordsList" rows="2">und, oder, der, die, das, den, dem, des, ein, eine, einen, einem, für, mit, von, zu, im, in, auf, an, am, ist, sind, wird, werden, bei, aus, über, unter</textarea>
+      </div>
+
+      <div class="textarea-pair">
+        <div>
+          <label for="input">Titel eingeben (eine Zeile = ein Slug, für mehrere auf einmal)</label>
+          <textarea id="input" rows="8" placeholder="z. B. Wie man einen Slug Generator benutzt"></textarea>
+        </div>
+        <div>
+          <label for="output">Generierte Slugs</label>
+          <textarea id="output" rows="8" readonly></textarea>
+        </div>
+      </div>
+
+      <div class="field-row" style="margin-top:16px;">
+        <button class="btn btn-primary" id="copyBtn">Alle Slugs kopieren</button>
+      </div>
+    </div>
+
+    <article class="explainer">
+      <h2>Was ist ein URL-Slug und wofür wird er gebraucht?</h2>
+      <p>Ein URL-Slug ist der lesbare Teil einer Webadresse, der eine bestimmte Seite eindeutig identifiziert – zum Beispiel steht in der Adresse example.de/blog/slug-generator-erstellen der Teil "slug-generator-erstellen" für den Slug. Ein guter Slug ist kurz, gut lesbar, besteht nur aus Kleinbuchstaben, Zahlen und Bindestrichen, und beschreibt den Inhalt der Seite treffend – sowohl für Menschen als auch für Suchmaschinen. Dieser Slug Generator wandelt einen beliebigen Titel automatisch in ein solches sauberes Format um.</p>
+
+      <h2>Warum sind saubere Slugs wichtig für SEO?</h2>
+      <p>Suchmaschinen wie Google nutzen die URL einer Seite als einen von vielen Rankingfaktoren. Eine URL wie example.de/p?id=48291 sagt weder Google noch dem Nutzer etwas über den Inhalt der Seite, während example.de/kaffeemaschine-testsieger sofort erkennen lässt, worum es geht. Zusätzlich werden lesbare Slugs häufiger angeklickt, wenn sie in den Suchergebnissen angezeigt werden, weil Nutzer intuitiv einschätzen können, ob die Seite relevant ist. Auch beim Teilen eines Links in sozialen Netzwerken oder per E-Mail wirkt eine kurze, verständliche URL vertrauenswürdiger als eine mit kryptischen Zeichen oder Parametern.</p>
+
+      <h2>Warum deutsche Umlaute besondere Behandlung brauchen</h2>
+      <p>Viele einfache Slug-Tools entfernen Umlaute einfach und wandeln ä in a, ö in o und ü in u um – das verändert jedoch die Bedeutung des Wortes und kann zu Verwechslungen führen (aus "Größe" würde "grosse" oder schlimmer "groe" statt der korrekten Form "groesse"). Die korrekte deutsche Transliteration ersetzt ä durch ae, ö durch oe, ü durch ue und ß durch ss – genau wie es auch bei der manuellen Adressumschreibung, in E-Mail-Adressen und in Domainnamen ohne Umlaute üblich ist. Dieser Generator wendet automatisch diese korrekte Umschreibung an, statt die Umlaute einfach zu verschlucken.</p>
+
+      <h2>Bindestrich oder Unterstrich als Trennzeichen?</h2>
+      <p>Google und die meisten SEO-Experten empfehlen den Bindestrich (-) als Trennzeichen in URLs, weil Google einzelne, durch Bindestriche getrennte Wörter als separate Suchbegriffe erkennt, während Unterstriche (_) historisch von manchen Suchmaschinen als Verbindung zwischen den Wörtern interpretiert wurden (aus "wort_wort" wurde teilweise "wortwort" statt zwei getrennter Begriffe). Für die meisten Webseiten, Blogs und Shopsysteme ist der Bindestrich daher die sicherere und empfohlene Wahl. Der Unterstrich wird gelegentlich noch für interne Kennungen, Dateinamen oder in speziellen Systemen verwendet, bei denen der Bindestrich bereits anderweitig belegt ist.</p>
+
+      <h2>Stoppwörter entfernen – sinnvoll oder nicht?</h2>
+      <p>Stoppwörter sind häufige Füllwörter wie "und", "der", "für" oder "mit", die für die Bedeutung eines Satzes wichtig sind, in einem Slug aber oft nur unnötige Länge hinzufügen, ohne zusätzliche Suchrelevanz zu bringen. Aus dem Titel "Die besten Rezepte für den Sommer" würde ohne Stoppwörter der Slug "besten-rezepte-sommer" statt "die-besten-rezepte-fuer-den-sommer" entstehen – kürzer, prägnanter und trotzdem verständlich. Für Blogartikel und Produktseiten ist das Entfernen von Stoppwörtern meist empfehlenswert, für Slugs, die exakt einem offiziellen Titel entsprechen müssen (zum Beispiel Buchtitel oder Firmennamen), sollte die Option eher deaktiviert bleiben.</p>
+
+      <h2>Slugs im Bulk-Modus für ganze Listen erstellen</h2>
+      <p>Wenn du mehrere Seitentitel gleichzeitig in Slugs umwandeln möchtest, zum Beispiel für eine Migration von einem alten CMS zu einem neuen System, kannst du einfach jeden Titel in eine eigene Zeile im Eingabefeld schreiben. Das Tool erzeugt dann für jede Zeile automatisch den passenden Slug in der gleichen Reihenfolge im Ausgabefeld, sodass du die komplette Liste mit einem Klick kopieren und in eine Tabelle oder ein CMS einfügen kannst.</p>
+
+      <h2>Wo werden Slugs überall verwendet?</h2>
+      <p>Slugs kommen nicht nur bei Blogartikeln vor, sondern auch bei Produktseiten in Onlineshops, bei Kategorieseiten, in der Dokumentenverwaltung, in Wissensdatenbanken und Wikis, bei Veranstaltungsseiten und sogar außerhalb von Webseiten – etwa als eindeutige ID in Datenbanken, als Dateiname beim Export von Inhalten, oder als Ordnername in Projektstrukturen. Überall dort, wo ein menschenlesbarer, aber technisch sicherer Bezeichner benötigt wird, ist ein Slug die passende Lösung.</p>
+
+      <h2>Häufige Fehler bei der manuellen Slug-Erstellung</h2>
+      <p>Wer Slugs von Hand schreibt, vergisst häufig, Leerzeichen konsequent durch das gewählte Trennzeichen zu ersetzen, lässt Großbuchstaben stehen, die zu Problemen bei case-sensitiven Servern führen können, oder übersieht Sonderzeichen wie Anführungszeichen, Schrägstriche oder Klammern, die in einer URL technisch problematisch sind. Auch doppelte Trennzeichen (zum Beispiel durch zwei aufeinanderfolgende Leerzeichen im Originaltitel) werden oft übersehen. Dieses Tool behandelt all diese Fälle automatisch: Sonderzeichen werden entfernt, mehrere Trennzeichen hintereinander werden zu einem zusammengefasst, und führende oder abschließende Trennzeichen werden abgeschnitten.</p>
+
+      <h2>Datenschutz</h2>
+      <p>Alle eingegebenen Titel werden ausschließlich lokal in deinem Browser in Slugs umgewandelt. Es findet keine Übertragung an einen Server statt.</p>
+    </article>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <img src="/assets/images/logo-full.png" alt="Toolyfix">
+    <p class="footer-note">© 2026 Toolyfix – Alle Tools laufen lokal in deinem Browser.</p>
+  </div>
+</footer>
+
+<script>
+const input = document.getElementById('input');
+const output = document.getElementById('output');
+const maxLengthInput = document.getElementById('maxLength');
+const lowercaseToggle = document.getElementById('lowercaseToggle');
+const stopwordsToggle = document.getElementById('stopwordsToggle');
+const stopwordsBox = document.getElementById('stopwordsBox');
+const stopwordsList = document.getElementById('stopwordsList');
+const copyBtn = document.getElementById('copyBtn');
+
+let separator = '-';
+
+const umlautMap = {
+  'ä': 'ae', 'ö': 'oe', 'ü': 'ue',
+  'Ä': 'Ae', 'Ö': 'Oe', 'Ü': 'Ue',
+  'ß': 'ss'
+};
+
+function replaceUmlauts(str) {
+  return str.replace(/[äöüÄÖÜß]/g, ch => umlautMap[ch]);
+}
+
+function slugifyLine(line) {
+  let s = replaceUmlauts(line);
+
+  // Strip remaining accents (é, à, etc.) via unicode normalization
+  s = s.normalize('NFKD').replace(/[\u0300-\u036f]/g, '');
+
+  if (lowercaseToggle.checked) s = s.toLowerCase();
+
+  if (stopwordsToggle.checked) {
+    const stops = stopwordsList.value.split(',').map(w => w.trim().toLowerCase()).filter(Boolean);
+    const words = s.split(/\s+/).filter(w => !stops.includes(w.toLowerCase()));
+    s = words.join(' ');
+  }
+
+  // Replace anything that's not a letter/number with the separator
+  s = s.replace(/[^a-zA-Z0-9]+/g, separator);
+
+  // Collapse repeated separators
+  const escSep = separator.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  s = s.replace(new RegExp(escSep + '{2,}', 'g'), separator);
+
+  // Trim leading/trailing separators
+  s = s.replace(new RegExp('^' + escSep + '+|' + escSep + '+$', 'g'), '');
+
+  const maxLen = parseInt(maxLengthInput.value, 10);
+  if (maxLen > 0 && s.length > maxLen) {
+    s = s.slice(0, maxLen);
+    // avoid ending mid-separator run
+    s = s.replace(new RegExp(escSep + '+$'), '');
+  }
+
+  return s;
+}
+
+function update() {
+  const lines = input.value.split('\n');
+  const slugs = lines.map(line => line.trim() === '' ? '' : slugifyLine(line));
+  output.value = slugs.join('\n');
+}
+
+document.querySelectorAll('.seg-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.seg-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    separator = btn.dataset.sep;
+    update();
+  });
+});
+
+stopwordsToggle.addEventListener('change', () => {
+  stopwordsBox.classList.toggle('visible', stopwordsToggle.checked);
+  update();
+});
+
+[input, maxLengthInput, lowercaseToggle, stopwordsList].forEach(el =>
+  el.addEventListener('input', update)
+);
+
+copyBtn.addEventListener('click', () => {
+  if (output.value) navigator.clipboard.writeText(output.value);
+});
+
+update();
+</script>
+
+</body>
+</html>
