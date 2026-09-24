@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>E-Mail Signatur Generator – Kostenlos Erstellen | Toolyfix</title>
+<meta name="description" content="Erstelle kostenlos eine professionelle E-Mail-Signatur mit Live-Vorschau. Als HTML kopieren und direkt in Outlook, Gmail oder Apple Mail einfügen.">
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/style.css">
+<style>
+  .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  @media (max-width: 640px) { .form-grid { grid-template-columns: 1fr; } }
+  .form-grid .full { grid-column: 1 / -1; }
+  label.field-label { font-size: 0.85rem; color: var(--ink-soft); display: block; margin-bottom: 4px; }
+  .preview-panel {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 20px;
+    font-family: Arial, sans-serif;
+    color: #222;
+    font-size: 14px;
+    line-height: 1.5;
+  }
+  .preview-panel table { border-collapse: collapse; }
+  .color-swatches { display: flex; gap: 8px; margin-top: 4px; }
+  .swatch { width: 28px; height: 28px; border-radius: 6px; cursor: pointer; border: 2px solid transparent; }
+  .swatch.active { border-color: var(--ink); }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container">
+    <a href="/" class="logo-link">
+      <img src="/assets/images/logo-full.png" alt="Toolyfix">
+    </a>
+    <span class="header-tagline">Kostenlose Tools, direkt im Browser</span>
+  </div>
+</header>
+
+<main class="tool-page">
+  <div class="container">
+    <p class="breadcrumb"><a href="/">Toolyfix</a> / E-Mail Signatur Generator</p>
+    <h1>E-Mail Signatur Generator</h1>
+    <p>Fülle deine Daten aus, sieh die Vorschau live, und kopiere den fertigen HTML-Code in dein E-Mail-Programm.</p>
+
+    <div class="tool-panel">
+      <div class="form-grid">
+        <div>
+          <label class="field-label" for="name">Vollständiger Name</label>
+          <input type="text" id="name" value="Max Mustermann">
+        </div>
+        <div>
+          <label class="field-label" for="jobtitle">Position</label>
+          <input type="text" id="jobtitle" value="Marketing Manager">
+        </div>
+        <div>
+          <label class="field-label" for="company">Firma</label>
+          <input type="text" id="company" value="Musterfirma GmbH">
+        </div>
+        <div>
+          <label class="field-label" for="phone">Telefon</label>
+          <input type="text" id="phone" value="+49 30 123456">
+        </div>
+        <div>
+          <label class="field-label" for="email">E-Mail</label>
+          <input type="text" id="email" value="max@musterfirma.de">
+        </div>
+        <div>
+          <label class="field-label" for="website">Webseite</label>
+          <input type="text" id="website" value="www.musterfirma.de">
+        </div>
+        <div class="full">
+          <label class="field-label" for="address">Adresse (optional)</label>
+          <input type="text" id="address" value="Musterstraße 1, 10115 Berlin">
+        </div>
+        <div class="full">
+          <label class="field-label">Akzentfarbe</label>
+          <div class="color-swatches" id="swatches">
+            <div class="swatch active" style="background:#1D3557" data-color="#1D3557"></div>
+            <div class="swatch" style="background:#3A7D5C" data-color="#3A7D5C"></div>
+            <div class="swatch" style="background:#B23A3A" data-color="#B23A3A"></div>
+            <div class="swatch" style="background:#7B4B94" data-color="#7B4B94"></div>
+            <div class="swatch" style="background:#1A1A1A" data-color="#1A1A1A"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <h2>Vorschau</h2>
+    <div class="preview-panel" id="preview"></div>
+
+    <div class="field-row" style="margin-top:16px;">
+      <button class="btn btn-primary" id="copyBtn">HTML-Code kopieren</button>
+    </div>
+
+    <section class="explainer">
+      <h2>Wo füge ich die Signatur ein?</h2>
+      <p><strong>Outlook:</strong> Datei → Optionen → E-Mail → Signaturen → Neu, dann den kopierten Code in das Bearbeitungsfeld einfügen. <strong>Gmail:</strong> Einstellungen → Allgemein → Signatur → Neu erstellen, dann einfügen. Der kopierte Code enthält bereits die passende Formatierung.</p>
+    </section>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <img src="/assets/images/logo-full.png" alt="Toolyfix">
+    <p class="footer-note">© 2026 Toolyfix – Alle Tools laufen lokal in deinem Browser.</p>
+  </div>
+</footer>
+
+<script>
+const fields = ['name','jobtitle','company','phone','email','website','address'];
+const preview = document.getElementById('preview');
+let accentColor = '#1D3557';
+
+function buildHTML() {
+  const v = {};
+  fields.forEach(f => v[f] = document.getElementById(f).value.trim());
+
+  return `<table cellpadding="0" cellspacing="0" style="font-family:Arial,sans-serif;font-size:14px;color:#222;line-height:1.5;">
+  <tr><td style="font-weight:bold;font-size:16px;color:${accentColor};">${v.name}</td></tr>
+  <tr><td>${v.jobtitle}${v.company ? ' · ' + v.company : ''}</td></tr>
+  <tr><td style="padding-top:8px;border-top:2px solid ${accentColor};margin-top:8px;">
+    ${v.phone ? 'Tel: ' + v.phone + '<br>' : ''}
+    ${v.email ? '<a href="mailto:' + v.email + '" style="color:' + accentColor + ';text-decoration:none;">' + v.email + '</a><br>' : ''}
+    ${v.website ? '<a href="https://' + v.website.replace(/^https?:\\/\\//,'') + '" style="color:' + accentColor + ';text-decoration:none;">' + v.website + '</a><br>' : ''}
+    ${v.address ? '<span style="color:#666;font-size:12px;">' + v.address + '</span>' : ''}
+  </td></tr>
+</table>`;
+}
+
+function update() {
+  preview.innerHTML = buildHTML();
+}
+
+fields.forEach(f => document.getElementById(f).addEventListener('input', update));
+
+document.querySelectorAll('.swatch').forEach(sw => {
+  sw.addEventListener('click', () => {
+    document.querySelectorAll('.swatch').forEach(s => s.classList.remove('active'));
+    sw.classList.add('active');
+    accentColor = sw.dataset.color;
+    update();
+  });
+});
+
+document.getElementById('copyBtn').addEventListener('click', () => {
+  navigator.clipboard.writeText(buildHTML());
+});
+
+update();
+</script>
+
+</body>
+</html>

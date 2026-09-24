@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bilder Komprimieren – Bildgröße Verkleinern | Toolyfix</title>
+<meta name="description" content="Bilder kostenlos komprimieren, ohne sichtbaren Qualitätsverlust. JPG, PNG und WebP direkt im Browser verkleinern – ohne Upload auf einen Server.">
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/style.css">
+<style>
+  .dropzone {
+    border: 2px dashed var(--border);
+    border-radius: var(--radius);
+    padding: 40px 20px;
+    text-align: center;
+    cursor: pointer;
+    transition: border-color 0.15s ease, background-color 0.15s ease;
+  }
+  .dropzone.dragover { border-color: var(--primary); background: var(--accent-soft); }
+  .dropzone p { margin: 0; }
+  #fileInput { display: none; }
+  .result-row { display: flex; gap: 24px; flex-wrap: wrap; align-items: center; margin-top: 20px; }
+  .preview-box { flex: 1; min-width: 220px; }
+  .preview-box img { max-width: 100%; border-radius: var(--radius); border: 1px solid var(--border); display: block; }
+  .preview-box .caption { font-size: 0.85rem; color: var(--ink-soft); margin-top: 6px; }
+  .slider-row { margin: 20px 0; }
+  .slider-row label { display: flex; justify-content: space-between; font-size: 0.9rem; margin-bottom: 6px; }
+  input[type="range"] { width: 100%; accent-color: var(--primary); }
+  .savings-badge { display: inline-block; background: var(--accent-soft); color: var(--primary-dark); padding: 4px 10px; border-radius: 6px; font-size: 0.85rem; font-weight: 600; margin-left: 8px; }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container">
+    <a href="/" class="logo-link">
+      <img src="/assets/images/logo-full.png" alt="Toolyfix">
+    </a>
+    <span class="header-tagline">Kostenlose Tools, direkt im Browser</span>
+  </div>
+</header>
+
+<main class="tool-page">
+  <div class="container">
+    <p class="breadcrumb"><a href="/">Toolyfix</a> / Bilder Komprimieren</p>
+    <h1>Bilder Komprimieren</h1>
+    <p>Verkleinere JPG-, PNG- oder WebP-Dateien direkt im Browser. Nichts wird hochgeladen – die Komprimierung läuft komplett auf deinem Gerät.</p>
+
+    <div class="tool-panel">
+      <div class="dropzone" id="dropzone">
+        <p><strong>Bild hierher ziehen</strong> oder klicken zum Auswählen</p>
+        <p style="font-size:0.85rem; margin-top:8px;">JPG, PNG oder WebP</p>
+      </div>
+      <input type="file" id="fileInput" accept="image/jpeg,image/png,image/webp">
+
+      <div class="slider-row">
+        <label for="quality"><span>Qualität</span> <span id="qualityValue">80%</span></label>
+        <input type="range" id="quality" min="10" max="100" value="80">
+      </div>
+
+      <div class="field-row">
+        <button class="btn btn-primary" id="downloadBtn" disabled>Komprimiertes Bild herunterladen</button>
+      </div>
+
+      <div class="result-row" id="results" style="display:none;">
+        <div class="preview-box">
+          <img id="originalPreview" alt="Original">
+          <p class="caption">Original: <span id="originalSize"></span></p>
+        </div>
+        <div class="preview-box">
+          <img id="compressedPreview" alt="Komprimiert">
+          <p class="caption">Komprimiert: <span id="compressedSize"></span> <span class="savings-badge" id="savings"></span></p>
+        </div>
+      </div>
+    </div>
+
+    <section class="explainer">
+      <h2>Wie funktioniert die Komprimierung?</h2>
+      <p>Das Bild wird über die interne Canvas-Funktion deines Browsers neu kodiert. Ein niedrigerer Qualitätswert verkleinert die Dateigröße stärker, kann aber bei Fotos mit vielen Details sichtbar werden. Für die meisten Webseiten sind 70–85 % ein guter Kompromiss zwischen Größe und Qualität.</p>
+      <p>Da alles lokal im Browser passiert, verlässt dein Bild nie dein Gerät.</p>
+    </section>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <img src="/assets/images/logo-full.png" alt="Toolyfix">
+    <p class="footer-note">© 2026 Toolyfix – Alle Tools laufen lokal in deinem Browser.</p>
+  </div>
+</footer>
+
+<script>
+const dropzone = document.getElementById('dropzone');
+const fileInput = document.getElementById('fileInput');
+const qualitySlider = document.getElementById('quality');
+const qualityValue = document.getElementById('qualityValue');
+const downloadBtn = document.getElementById('downloadBtn');
+const results = document.getElementById('results');
+const originalPreview = document.getElementById('originalPreview');
+const compressedPreview = document.getElementById('compressedPreview');
+const originalSize = document.getElementById('originalSize');
+const compressedSize = document.getElementById('compressedSize');
+const savings = document.getElementById('savings');
+
+let currentFile = null;
+let compressedBlob = null;
+
+function formatBytes(bytes) {
+  if (bytes < 1024) return bytes + ' B';
+  if (bytes < 1024 * 1024) return (bytes / 1024).toFixed(1) + ' KB';
+  return (bytes / (1024 * 1024)).toFixed(2) + ' MB';
+}
+
+function compress() {
+  if (!currentFile) return;
+  const img = new Image();
+  img.onload = () => {
+    const canvas = document.createElement('canvas');
+    canvas.width = img.width;
+    canvas.height = img.height;
+    const ctx = canvas.getContext('2d');
+    ctx.drawImage(img, 0, 0);
+    const quality = parseInt(qualitySlider.value, 10) / 100;
+    const mime = currentFile.type === 'image/png' ? 'image/png' : 'image/jpeg';
+    canvas.toBlob(blob => {
+      compressedBlob = blob;
+      compressedPreview.src = URL.createObjectURL(blob);
+      compressedSize.textContent = formatBytes(blob.size);
+      const reduction = Math.round((1 - blob.size / currentFile.size) * 100);
+      savings.textContent = reduction > 0 ? `-${reduction}%` : `+${Math.abs(reduction)}%`;
+      downloadBtn.disabled = false;
+      results.style.display = 'flex';
+    }, mime, mime === 'image/png' ? undefined : quality);
+  };
+  img.src = URL.createObjectURL(currentFile);
+}
+
+function handleFile(file) {
+  if (!file || !file.type.startsWith('image/')) return;
+  currentFile = file;
+  originalPreview.src = URL.createObjectURL(file);
+  originalSize.textContent = formatBytes(file.size);
+  compress();
+}
+
+dropzone.addEventListener('click', () => fileInput.click());
+fileInput.addEventListener('change', e => handleFile(e.target.files[0]));
+
+['dragenter', 'dragover'].forEach(evt =>
+  dropzone.addEventListener(evt, e => { e.preventDefault(); dropzone.classList.add('dragover'); })
+);
+['dragleave', 'drop'].forEach(evt =>
+  dropzone.addEventListener(evt, e => { e.preventDefault(); dropzone.classList.remove('dragover'); })
+);
+dropzone.addEventListener('drop', e => handleFile(e.dataTransfer.files[0]));
+
+qualitySlider.addEventListener('input', () => {
+  qualityValue.textContent = qualitySlider.value + '%';
+  if (currentFile) compress();
+});
+
+downloadBtn.addEventListener('click', () => {
+  if (!compressedBlob) return;
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(compressedBlob);
+  a.download = 'komprimiert-' + (currentFile ? currentFile.name : 'bild.jpg');
+  a.click();
+});
+</script>
+
+</body>
+</html>
