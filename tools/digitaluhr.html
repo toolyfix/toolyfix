@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Digitaluhr Online – Mit Weltzeit & Vollbild | Toolyfix</title>
+<meta name="description" content="Kostenlose Digitaluhr online: 12- oder 24-Stunden-Format, Sekundenanzeige, mehrere Zeitzonen gleichzeitig und Vollbildmodus als Tischuhr.">
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/style.css">
+<style>
+  .clock-display {
+    text-align: center; padding: 48px 16px; background: var(--bg); border-radius: var(--radius);
+    margin-bottom: 20px;
+  }
+  #mainTime {
+    font-family: 'Space Grotesk', sans-serif; font-size: clamp(2.8rem, 10vw, 5rem); font-weight: 700;
+    color: var(--primary-dark); letter-spacing: 2px; line-height: 1;
+  }
+  #mainDate { font-size: 1rem; color: var(--ink-soft); margin-top: 12px; }
+
+  .toggle-row { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 20px; }
+  .toggle-btn {
+    padding: 9px 16px; border-radius: var(--radius); border: 1px solid var(--border);
+    background: var(--surface); cursor: pointer; font-family: 'Inter', sans-serif; font-weight: 600; font-size: 0.85rem;
+  }
+  .toggle-btn.active { background: var(--primary); color: #fff; border-color: var(--primary); }
+
+  .worldclock-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 12px; margin-top: 16px; }
+  .worldclock-card {
+    background: var(--bg); border-radius: var(--radius); padding: 16px; position: relative;
+  }
+  .worldclock-card .city { font-size: 0.85rem; color: var(--ink-soft); margin-bottom: 6px; }
+  .worldclock-card .wc-time { font-family: 'Space Grotesk', sans-serif; font-size: 1.4rem; font-weight: 700; color: var(--primary-dark); }
+  .worldclock-card .remove-btn {
+    position: absolute; top: 8px; right: 8px; background: none; border: none; cursor: pointer;
+    color: var(--ink-soft); font-size: 1rem;
+  }
+
+  .add-city-row { display: flex; gap: 10px; margin-top: 16px; flex-wrap: wrap; }
+  .add-city-row select { flex: 1; min-width: 200px; }
+
+  /* Fullscreen desk-clock mode */
+  body.fullscreen-mode {
+    background: #0b0e11;
+  }
+  body.fullscreen-mode .site-header,
+  body.fullscreen-mode .explainer,
+  body.fullscreen-mode .site-footer,
+  body.fullscreen-mode .breadcrumb,
+  body.fullscreen-mode h1,
+  body.fullscreen-mode .tool-page > .container > p:not(.breadcrumb),
+  body.fullscreen-mode .tool-panel > *:not(.clock-display) {
+    display: none !important;
+  }
+  body.fullscreen-mode .tool-panel {
+    background: transparent; border: none; box-shadow: none; padding: 0;
+  }
+  body.fullscreen-mode .clock-display { background: transparent; padding: 0; }
+  body.fullscreen-mode #mainTime { color: #fff; font-size: clamp(4rem, 16vw, 9rem); }
+  body.fullscreen-mode #mainDate { color: #999; font-size: 1.3rem; }
+  body.fullscreen-mode .tool-page { display: flex; align-items: center; justify-content: center; min-height: 100vh; }
+  body.fullscreen-mode #exitFullscreenBtn {
+    display: block !important; position: fixed; bottom: 24px; right: 24px;
+  }
+  #exitFullscreenBtn { display: none; }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container">
+    <a href="/" class="logo-link">
+      <img src="/assets/images/logo-full.png" alt="Toolyfix">
+    </a>
+    <span class="header-tagline">Kostenlose Tools, direkt im Browser</span>
+  </div>
+</header>
+
+<main class="tool-page">
+  <div class="container">
+    <p class="breadcrumb"><a href="/">Toolyfix</a> / Digitaluhr</p>
+    <h1>Digitaluhr</h1>
+    <p>Deine aktuelle Uhrzeit groß und übersichtlich, mit 12/24-Stunden-Format, optionaler Sekundenanzeige, mehreren Zeitzonen gleichzeitig und einem Vollbildmodus als Tischuhr.</p>
+
+    <div class="tool-panel">
+      <div class="clock-display">
+        <div id="mainTime">--:--</div>
+        <div id="mainDate"></div>
+      </div>
+
+      <div class="toggle-row">
+        <button class="toggle-btn active" id="format24Btn">24-Stunden-Format</button>
+        <button class="toggle-btn" id="format12Btn">12-Stunden-Format</button>
+        <button class="toggle-btn active" id="secondsBtn">Sekunden anzeigen</button>
+        <button class="btn btn-primary" id="fullscreenBtn">Als Tischuhr (Vollbild)</button>
+        <button class="btn btn-ghost" id="exitFullscreenBtn">Vollbild beenden</button>
+      </div>
+
+      <h2 style="font-size:1.05rem;">Weltzeit – weitere Zeitzonen anzeigen</h2>
+      <div class="add-city-row">
+        <select id="citySelect">
+          <option value="Europe/London">London</option>
+          <option value="Europe/Paris">Paris</option>
+          <option value="Europe/Moscow">Moskau</option>
+          <option value="America/New_York">New York</option>
+          <option value="America/Los_Angeles">Los Angeles</option>
+          <option value="America/Sao_Paulo">São Paulo</option>
+          <option value="Asia/Dubai">Dubai</option>
+          <option value="Asia/Karachi">Karachi</option>
+          <option value="Asia/Kolkata">Neu-Delhi</option>
+          <option value="Asia/Shanghai">Shanghai</option>
+          <option value="Asia/Tokyo">Tokio</option>
+          <option value="Australia/Sydney">Sydney</option>
+        </select>
+        <button class="btn btn-ghost" id="addCityBtn">Zeitzone hinzufügen</button>
+      </div>
+
+      <div class="worldclock-grid" id="worldclockGrid"></div>
+    </div>
+
+    <article class="explainer">
+      <h2>Digitaluhr online: mehr als nur die Uhrzeit anzeigen</h2>
+      <p>Diese Digitaluhr zeigt nicht nur die aktuelle Zeit deines Geräts groß und gut lesbar an, sondern bietet zusätzliche Funktionen, die eine einfache Systemuhr nicht hat: ein umschaltbares 12- oder 24-Stunden-Format, eine optionale Sekundenanzeige, gleichzeitige Anzeige mehrerer Zeitzonen weltweit, und einen Vollbildmodus, der die Seite in eine große, gut ablesbare Tischuhr verwandelt – praktisch für einen zweiten Bildschirm, ein Tablet am Nachttisch oder eine Präsentation.</p>
+
+      <h2>24-Stunden-Format vs. 12-Stunden-Format</h2>
+      <p>In Deutschland, Österreich und der Schweiz ist das 24-Stunden-Format (auch "Militärzeit" genannt, obwohl das ein irreführender Begriff ist) der übliche Standard – die Uhrzeit läuft von 00:00 bis 23:59 durch, ohne die Zusätze "vormittags" oder "nachmittags". Im englischsprachigen Raum, etwa in den USA, wird dagegen meist das 12-Stunden-Format mit AM/PM verwendet. Mit dem Umschalter oben kannst du zwischen beiden Formaten wechseln, je nachdem, was für dich gewohnter ist oder für wen du die Uhr anzeigst.</p>
+
+      <h2>Warum eine Sekundenanzeige nützlich sein kann</h2>
+      <p>Für die meisten alltäglichen Zwecke reicht die Anzeige von Stunden und Minuten aus. Es gibt jedoch Situationen, in denen die Sekundenanzeige hilfreich ist – etwa beim Timing von Präsentationen, beim Synchronisieren mehrerer Geräte oder Uhren, oder einfach aus Neugier, wie genau die aktuelle Uhrzeit gerade ist. Du kannst die Sekundenanzeige über den entsprechenden Button ein- und ausblenden, je nachdem, was du gerade brauchst.</p>
+
+      <h2>Weltzeituhr: mehrere Zeitzonen auf einen Blick</h2>
+      <p>Wenn du regelmäßig mit Menschen in anderen Zeitzonen kommunizierst – sei es für die Arbeit mit internationalen Kollegen, für Videocalls mit Familie im Ausland, oder für die Planung von Reisen – ist es hilfreich, mehrere Uhrzeiten gleichzeitig im Blick zu haben, ohne jedes Mal eine Zeitzonenumrechnung im Kopf machen zu müssen. Wähle einfach eine Stadt aus der Liste und füge sie als zusätzliche Uhr hinzu. Die Zeitzone wird automatisch korrekt berechnet, inklusive Sommerzeit-Umstellungen, da die Berechnung auf den offiziellen Zeitzonendaten deines Browsers basiert.</p>
+
+      <h2>Vollbildmodus als Tischuhr oder Desktop-Uhr</h2>
+      <p>Der Vollbildmodus blendet alle überflüssigen Elemente aus und zeigt nur noch die große Uhrzeit auf dunklem Hintergrund an – ideal, um ein altes Tablet als Nachttischuhr zu verwenden, die Uhr während eines Videocalls im Hintergrund laufen zu lassen, oder sie auf einem zweiten Monitor im Büro anzuzeigen. Mit einem Klick auf "Vollbild beenden" kehrst du jederzeit zur normalen Ansicht zurück.</p>
+
+      <h2>Warum die Uhrzeit auf dem Computer manchmal falsch angezeigt wird</h2>
+      <p>Diese Digitaluhr liest die Uhrzeit direkt von deinem Gerät (Computer, Tablet oder Smartphone) aus. Wenn die angezeigte Uhrzeit nicht stimmt, liegt das in der Regel nicht an diesem Tool, sondern an einer falschen Zeitzonen- oder Uhrzeiteinstellung in deinem Betriebssystem. Die meisten Geräte synchronisieren ihre Uhrzeit automatisch über das Internet (NTP), was in den Systemeinstellungen unter "Datum und Uhrzeit automatisch einstellen" aktiviert sein sollte.</p>
+
+      <h2>Datenschutz</h2>
+      <p>Diese Uhr läuft vollständig lokal in deinem Browser, basierend auf der Systemzeit deines Geräts. Es werden keine Zeitdaten an einen Server übertragen oder gespeichert.</p>
+    </article>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <img src="/assets/images/logo-full.png" alt="Toolyfix">
+    <nav class="footer-links">
+      <a href="/ueber-uns.html">Über uns</a>
+      <a href="/datenschutz.html">Datenschutz</a>
+      <a href="/nutzungsbedingungen.html">Nutzungsbedingungen</a>
+      <a href="/kontakt.html">Kontakt</a>
+    </nav>
+    <p class="footer-note">© 2026 Toolyfix – Alle Tools laufen lokal in deinem Browser.</p>
+  </div>
+</footer>
+
+<script>
+const mainTime = document.getElementById('mainTime');
+const mainDate = document.getElementById('mainDate');
+const worldclockGrid = document.getElementById('worldclockGrid');
+
+let use24h = true;
+let showSeconds = true;
+let cities = [];
+
+const cityLabels = {
+  'Europe/London': 'London', 'Europe/Paris': 'Paris', 'Europe/Moscow': 'Moskau',
+  'America/New_York': 'New York', 'America/Los_Angeles': 'Los Angeles', 'America/Sao_Paulo': 'São Paulo',
+  'Asia/Dubai': 'Dubai', 'Asia/Karachi': 'Karachi', 'Asia/Kolkata': 'Neu-Delhi',
+  'Asia/Shanghai': 'Shanghai', 'Asia/Tokyo': 'Tokio', 'Australia/Sydney': 'Sydney'
+};
+
+function formatTime(date, timeZone) {
+  const opts = {
+    hour: '2-digit', minute: '2-digit',
+    hour12: !use24h,
+    timeZone: timeZone || undefined
+  };
+  if (showSeconds) opts.second = '2-digit';
+  return date.toLocaleTimeString('de-DE', opts);
+}
+
+function tick() {
+  const now = new Date();
+  mainTime.textContent = formatTime(now);
+  mainDate.textContent = now.toLocaleDateString('de-DE', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+
+  document.querySelectorAll('.wc-time').forEach(el => {
+    el.textContent = formatTime(now, el.dataset.tz);
+  });
+}
+
+function renderWorldclocks() {
+  worldclockGrid.innerHTML = '';
+  cities.forEach(tz => {
+    const card = document.createElement('div');
+    card.className = 'worldclock-card';
+    card.innerHTML = `
+      <button class="remove-btn" data-tz="${tz}">✕</button>
+      <div class="city">${cityLabels[tz]}</div>
+      <div class="wc-time" data-tz="${tz}"></div>
+    `;
+    worldclockGrid.appendChild(card);
+  });
+  document.querySelectorAll('.remove-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      cities = cities.filter(c => c !== btn.dataset.tz);
+      renderWorldclocks();
+      tick();
+    });
+  });
+  tick();
+}
+
+document.getElementById('format24Btn').addEventListener('click', () => {
+  use24h = true;
+  document.getElementById('format24Btn').classList.add('active');
+  document.getElementById('format12Btn').classList.remove('active');
+});
+document.getElementById('format12Btn').addEventListener('click', () => {
+  use24h = false;
+  document.getElementById('format12Btn').classList.add('active');
+  document.getElementById('format24Btn').classList.remove('active');
+});
+document.getElementById('secondsBtn').addEventListener('click', function () {
+  showSeconds = !showSeconds;
+  this.classList.toggle('active', showSeconds);
+});
+
+document.getElementById('addCityBtn').addEventListener('click', () => {
+  const tz = document.getElementById('citySelect').value;
+  if (!cities.includes(tz)) {
+    cities.push(tz);
+    renderWorldclocks();
+  }
+});
+
+document.getElementById('fullscreenBtn').addEventListener('click', () => {
+  document.body.classList.add('fullscreen-mode');
+  const el = document.documentElement;
+  if (el.requestFullscreen) el.requestFullscreen().catch(() => {});
+});
+document.getElementById('exitFullscreenBtn').addEventListener('click', () => {
+  document.body.classList.remove('fullscreen-mode');
+  if (document.fullscreenElement && document.exitFullscreen) document.exitFullscreen().catch(() => {});
+});
+document.addEventListener('fullscreenchange', () => {
+  if (!document.fullscreenElement) document.body.classList.remove('fullscreen-mode');
+});
+
+setInterval(tick, 1000);
+tick();
+</script>
+
+</body>
+</html>

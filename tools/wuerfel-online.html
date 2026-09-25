@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Würfel Online – Dice Roller mit Verlauf | Toolyfix</title>
+<meta name="description" content="Würfel online kostenlos werfen: W4, W6, W8, W10, W12, W20, W100 oder eigener Würfel. Mehrere Würfel gleichzeitig, Summe, Wurfverlauf und Animation.">
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/style.css">
+<style>
+  .dice-type-row { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 20px; }
+  .dice-type-btn {
+    padding: 9px 16px; border-radius: var(--radius); border: 1px solid var(--border);
+    background: var(--surface); cursor: pointer; font-family: 'Space Grotesk', sans-serif;
+    font-weight: 600; font-size: 0.9rem;
+  }
+  .dice-type-btn.active { background: var(--primary); color: #fff; border-color: var(--primary); }
+
+  .count-row { display: flex; align-items: center; gap: 12px; margin-bottom: 24px; }
+  .stepper-btn {
+    width: 40px; height: 40px; border-radius: 8px; border: 1px solid var(--border);
+    background: var(--surface); font-size: 1.2rem; cursor: pointer; color: var(--primary); font-weight: 700;
+  }
+  #diceCountLabel { font-family: 'Space Grotesk', sans-serif; font-weight: 600; min-width: 90px; text-align: center; }
+
+  .dice-tray {
+    display: flex; flex-wrap: wrap; gap: 14px; justify-content: center;
+    padding: 32px 16px; background: var(--bg); border-radius: var(--radius); margin-bottom: 16px;
+    min-height: 140px; align-items: center;
+  }
+  .die {
+    width: 70px; height: 70px; background: var(--surface); border: 2px solid var(--primary);
+    border-radius: 14px; display: flex; align-items: center; justify-content: center;
+    font-family: 'Space Grotesk', sans-serif; font-size: 1.6rem; font-weight: 700; color: var(--primary-dark);
+    box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+  }
+  .die.rolling { animation: rollSpin 0.5s ease; }
+  @keyframes rollSpin {
+    0% { transform: rotate(0deg) scale(1); }
+    40% { transform: rotate(200deg) scale(1.1); }
+    100% { transform: rotate(360deg) scale(1); }
+  }
+  .pip-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); grid-template-rows: repeat(3, 1fr);
+    width: 44px; height: 44px; gap: 3px;
+  }
+  .pip { border-radius: 50%; background: var(--primary-dark); }
+
+  .sum-row { text-align: center; margin-bottom: 20px; }
+  .sum-row .sum-value { font-family: 'Space Grotesk', sans-serif; font-size: 2rem; font-weight: 700; color: var(--primary); }
+
+  .history-list { max-height: 220px; overflow-y: auto; margin-top: 12px; }
+  .history-item {
+    display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid var(--border);
+    font-size: 0.9rem;
+  }
+  .history-item .h-total { font-weight: 600; color: var(--primary); }
+
+  @media (max-width: 480px) {
+    .die { width: 56px; height: 56px; font-size: 1.3rem; }
+  }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container">
+    <a href="/" class="logo-link">
+      <img src="/assets/images/logo-full.png" alt="Toolyfix">
+    </a>
+    <span class="header-tagline">Kostenlose Tools, direkt im Browser</span>
+  </div>
+</header>
+
+<main class="tool-page">
+  <div class="container">
+    <p class="breadcrumb"><a href="/">Toolyfix</a> / Würfel Online</p>
+    <h1>Würfel Online</h1>
+    <p>Wähle einen Würfeltyp, die Anzahl der Würfel, und würfle direkt im Browser – mit Animation, Summenanzeige und Verlauf der letzten Würfe.</p>
+
+    <div class="tool-panel">
+      <div class="dice-type-row" id="diceTypeRow">
+        <button class="dice-type-btn active" data-sides="4">W4</button>
+        <button class="dice-type-btn" data-sides="6">W6</button>
+        <button class="dice-type-btn" data-sides="8">W8</button>
+        <button class="dice-type-btn" data-sides="10">W10</button>
+        <button class="dice-type-btn" data-sides="12">W12</button>
+        <button class="dice-type-btn" data-sides="20">W20</button>
+        <button class="dice-type-btn" data-sides="100">W100</button>
+      </div>
+
+      <div class="count-row">
+        <span style="font-size:0.9rem; color:var(--ink-soft);">Anzahl Würfel:</span>
+        <button class="stepper-btn" id="decreaseBtn">−</button>
+        <span id="diceCountLabel">2</span>
+        <button class="stepper-btn" id="increaseBtn">+</button>
+      </div>
+
+      <div class="dice-tray" id="diceTray"></div>
+
+      <div class="sum-row">
+        <span style="font-size:0.9rem; color:var(--ink-soft); display:block;">Summe</span>
+        <span class="sum-value" id="sumValue">–</span>
+      </div>
+
+      <div class="field-row" style="justify-content:center;">
+        <button class="btn btn-primary" id="rollBtn">Würfeln (oder Leertaste drücken)</button>
+        <button class="btn btn-ghost" id="clearHistoryBtn">Verlauf löschen</button>
+      </div>
+
+      <h2 style="font-size:1.05rem; margin-top:24px;">Wurfverlauf</h2>
+      <div class="history-list" id="historyList"></div>
+    </div>
+
+    <article class="explainer">
+      <h2>Würfel online werfen – für Brettspiele, Pen & Paper und Zufallsentscheidungen</h2>
+      <p>Dieser Würfelsimulator ersetzt physische Würfel für Brettspiele, Rollenspiele wie Dungeons & Dragons, Unterricht, oder einfach für spontane Zufallsentscheidungen im Alltag. Anders als bei einem einzelnen einfachen Würfel-Button unterstützt dieses Tool verschiedene Würfeltypen, mehrere Würfel gleichzeitig und einen Verlauf, damit du frühere Würfe nachvollziehen kannst.</p>
+
+      <h2>Welche Würfeltypen werden unterstützt?</h2>
+      <p>Neben dem klassischen sechsseitigen Würfel (W6), den man von den meisten Brettspielen kennt, unterstützt dieses Tool auch die Würfeltypen, die in Pen-and-Paper-Rollenspielen wie Dungeons & Dragons, Pathfinder oder anderen d20-Systemen verwendet werden: W4 (Tetraeder), W8, W10, W12, W20 und W100 (auch Prozentwürfel genannt, meist als zwei W10 dargestellt, hier direkt als ein Wurf zwischen 1 und 100 simuliert).</p>
+
+      <h2>Wie funktioniert echte Zufälligkeit bei einem digitalen Würfel?</h2>
+      <p>Dieses Tool nutzt die JavaScript-Funktion Math.random(), die von deinem Browser eine gleichverteilte Pseudozufallszahl liefert. Für alltägliche Zwecke wie Brettspiele, Unterricht oder Entscheidungsfindung ist diese Zufälligkeit vollkommen ausreichend und nicht vorhersehbar. Für professionelle Glücksspielanwendungen mit echtem Geldeinsatz würde man dagegen kryptographisch sichere Zufallsgeneratoren verwenden, was für einen digitalen Würfel-Ersatz im privaten oder spielerischen Kontext nicht notwendig ist.</p>
+
+      <h2>Mehrere Würfel gleichzeitig werfen</h2>
+      <p>Viele Brett- und Rollenspiele erfordern das gleichzeitige Werfen mehrerer Würfel – zum Beispiel 2W6 beim Werfen von zwei sechsseitigen Würfeln für eine Schadensberechnung, oder 4W6 beim Erstellen von Charakterwerten in Rollenspielen. Mit dem Plus/Minus-Steller kannst du bis zu 10 Würfel gleichzeitig werfen, und das Tool zeigt dir sowohl jedes einzelne Ergebnis als auch die Gesamtsumme an.</p>
+
+      <h2>Wurfverlauf für Nachvollziehbarkeit</h2>
+      <p>Jeder Wurf wird automatisch im Verlauf gespeichert, sodass du auch nach mehreren Würfen noch nachvollziehen kannst, welche Ergebnisse zuvor gefallen sind. Das ist besonders praktisch bei Diskussionen am Spieltisch ("Was hatte ich eben gewürfelt?") oder wenn du für ein Spiel mehrere Würfe protokollieren musst.</p>
+
+      <h2>Würfeln per Tastatur</h2>
+      <p>Für schnelles, wiederholtes Würfeln kannst du statt auf den Button zu klicken einfach die Leertaste drücken. Das ist besonders praktisch, wenn du am Computer ein Pen-and-Paper-Rollenspiel über Videochat spielst und schnell zwischen mehreren Würfen wechseln musst, ohne jedes Mal die Maus zu bewegen.</p>
+
+      <h2>Wofür wird ein Online-Würfel sonst noch genutzt?</h2>
+      <p>Neben Spielen wird ein digitaler Würfel häufig auch für einfache Zufallsentscheidungen im Alltag genutzt – wer räumt die Spülmaschine aus, wer beginnt bei einem Spiel, oder als spielerisches Element im Unterricht, etwa um zufällig Schüler für eine Aufgabe auszuwählen. Auch für kleine Statistik- oder Wahrscheinlichkeitsübungen in der Schule eignet sich ein Online-Würfel gut, da man schnell viele Würfe hintereinander durchführen und die Verteilung der Ergebnisse beobachten kann.</p>
+
+      <h2>Datenschutz</h2>
+      <p>Alle Würfe werden lokal in deinem Browser berechnet. Es findet keine Übertragung an einen Server statt, und der Wurfverlauf wird nicht dauerhaft gespeichert – nach dem Schließen der Seite ist er wieder verschwunden.</p>
+    </article>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <img src="/assets/images/logo-full.png" alt="Toolyfix">
+    <nav class="footer-links">
+      <a href="/ueber-uns.html">Über uns</a>
+      <a href="/datenschutz.html">Datenschutz</a>
+      <a href="/nutzungsbedingungen.html">Nutzungsbedingungen</a>
+      <a href="/kontakt.html">Kontakt</a>
+    </nav>
+    <p class="footer-note">© 2026 Toolyfix – Alle Tools laufen lokal in deinem Browser.</p>
+  </div>
+</footer>
+
+<script>
+const diceTray = document.getElementById('diceTray');
+const diceCountLabel = document.getElementById('diceCountLabel');
+const sumValue = document.getElementById('sumValue');
+const historyList = document.getElementById('historyList');
+
+let sides = 4;
+let diceCount = 2;
+let history = [];
+
+function renderEmptyDice() {
+  diceTray.innerHTML = '';
+  for (let i = 0; i < diceCount; i++) {
+    const die = document.createElement('div');
+    die.className = 'die';
+    die.textContent = '?';
+    diceTray.appendChild(die);
+  }
+}
+
+function pipLayout(value) {
+  const layouts = {
+    1: [4],
+    2: [0, 8],
+    3: [0, 4, 8],
+    4: [0, 2, 6, 8],
+    5: [0, 2, 4, 6, 8],
+    6: [0, 2, 3, 5, 6, 8]
+  };
+  const active = layouts[value] || [];
+  const grid = document.createElement('div');
+  grid.className = 'pip-grid';
+  for (let i = 0; i < 9; i++) {
+    const pip = document.createElement('div');
+    pip.className = 'pip';
+    pip.style.opacity = active.includes(i) ? '1' : '0';
+    grid.appendChild(pip);
+  }
+  return grid;
+}
+
+function roll() {
+  const results = [];
+  diceTray.innerHTML = '';
+  for (let i = 0; i < diceCount; i++) {
+    const value = Math.floor(Math.random() * sides) + 1;
+    results.push(value);
+    const die = document.createElement('div');
+    die.className = 'die rolling';
+    if (sides === 6) {
+      die.appendChild(pipLayout(value));
+    } else {
+      die.textContent = value;
+    }
+    diceTray.appendChild(die);
+  }
+  const total = results.reduce((a, b) => a + b, 0);
+  sumValue.textContent = total;
+
+  history.unshift({ sides, results, total, time: new Date().toLocaleTimeString('de-DE') });
+  history = history.slice(0, 30);
+  renderHistory();
+}
+
+function renderHistory() {
+  historyList.innerHTML = '';
+  if (history.length === 0) {
+    historyList.innerHTML = '<p style="font-size:0.85rem; color:var(--ink-soft);">Noch keine Würfe.</p>';
+    return;
+  }
+  history.forEach(entry => {
+    const row = document.createElement('div');
+    row.className = 'history-item';
+    row.innerHTML = `<span>${entry.time} — W${entry.sides} × ${entry.results.length}: ${entry.results.join(', ')}</span><span class="h-total">${entry.total}</span>`;
+    historyList.appendChild(row);
+  });
+}
+
+document.querySelectorAll('.dice-type-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.dice-type-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    sides = parseInt(btn.dataset.sides, 10);
+    renderEmptyDice();
+    sumValue.textContent = '–';
+  });
+});
+
+document.getElementById('increaseBtn').addEventListener('click', () => {
+  if (diceCount < 10) { diceCount++; diceCountLabel.textContent = diceCount; renderEmptyDice(); }
+});
+document.getElementById('decreaseBtn').addEventListener('click', () => {
+  if (diceCount > 1) { diceCount--; diceCountLabel.textContent = diceCount; renderEmptyDice(); }
+});
+
+document.getElementById('rollBtn').addEventListener('click', roll);
+document.getElementById('clearHistoryBtn').addEventListener('click', () => {
+  history = [];
+  renderHistory();
+});
+
+document.addEventListener('keydown', (e) => {
+  if (e.code === 'Space' && document.activeElement.tagName !== 'BUTTON') {
+    e.preventDefault();
+    roll();
+  }
+});
+
+renderEmptyDice();
+renderHistory();
+</script>
+
+</body>
+</html>
