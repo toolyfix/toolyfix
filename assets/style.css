@@ -257,7 +257,23 @@ textarea:focus, input:focus, button:focus-visible, a:focus-visible {
 
 .site-footer img { height: 24px; opacity: 0.85; }
 
+.footer-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 18px;
+  font-size: 0.85rem;
+}
+
+.footer-links a {
+  color: var(--ink-soft);
+  text-decoration: none;
+}
+
+.footer-links a:hover { color: var(--primary); }
+
 .site-footer .footer-note {
+  width: 100%;
+  order: 3;
   font-size: 0.85rem;
   color: var(--ink-soft);
   margin: 0;
@@ -266,3 +282,31 @@ textarea:focus, input:focus, button:focus-visible, a:focus-visible {
 @media (prefers-reduced-motion: reduce) {
   * { transition: none !important; scroll-behavior: auto !important; }
 }
+
+/* ---- Legal / info pages ---- */
+.legal-content h2 { margin-top: 32px; font-size: 1.2rem; }
+.legal-content p, .legal-content li { color: var(--ink-soft); }
+.legal-content ul { padding-left: 20px; }
+
+.notice-box {
+  background: var(--accent-soft);
+  border-radius: var(--radius);
+  padding: 16px 20px;
+  margin: 24px 0;
+  font-size: 0.9rem;
+  color: var(--primary-dark);
+}
+
+select {
+  width: 100%;
+  padding: 14px 16px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  font-family: 'Inter', sans-serif;
+  font-size: 1rem;
+  background: var(--surface);
+  color: var(--ink);
+}
+
+.form-stack { display: flex; flex-direction: column; gap: 16px; max-width: 560px; }
+.form-stack label { font-size: 0.85rem; color: var(--ink-soft); display: block; margin-bottom: 6px; }
