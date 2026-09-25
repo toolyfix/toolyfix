@@ -65,7 +65,7 @@
 
     <article class="legal-content">
       <h2>Was passiert mit meiner Nachricht?</h2>
-      <p>Diese Seite hat kein eigenes Server-Backend – deshalb öffnet der "Nachricht senden"-Button direkt dein E-Mail-Programm mit einer vorausgefüllten Nachricht an <a href="mailto:kontakt@toolyfix.de">kontakt@toolyfix.de</a>. Du musst die E-Mail dort nur noch abschicken. Alternativ kannst du uns auch jederzeit direkt eine E-Mail schreiben.</p>
+      <p>Diese Seite hat kein eigenes Server-Backend – deshalb öffnet der "Nachricht senden"-Button direkt dein E-Mail-Programm mit einer vorausgefüllten Nachricht an <a href="mailto:toolyfix@gmail.com">toolyfix@gmail.com</a>. Du musst die E-Mail dort nur noch abschicken. Alternativ kannst du uns auch jederzeit direkt eine E-Mail schreiben.</p>
     </article>
   </div>
 </main>
@@ -101,7 +101,7 @@ document.getElementById('contactForm').addEventListener('submit', (e) => {
   const body = encodeURIComponent(
     `Anliegen: ${reason}\nName: ${name}\nE-Mail: ${email}\n\nNachricht:\n${message}`
   );
-  window.location.href = `mailto:kontakt@toolyfix.de?subject=${subject}&body=${body}`;
+  window.location.href = `mailto:toolyfix@gmail.com?subject=${subject}&body=${body}`;
   note.textContent = 'Dein E-Mail-Programm sollte sich jetzt öffnen.';
 });
 </script>
