@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kontakt | Toolyfix</title>
+<meta name="description" content="Kontaktiere Toolyfix – für allgemeine Fragen, Tool-Vorschläge oder Beschwerden. Wir freuen uns über dein Feedback.">
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container">
+    <a href="/" class="logo-link">
+      <img src="/assets/images/logo-full.png" alt="Toolyfix">
+    </a>
+    <span class="header-tagline">Kostenlose Tools, direkt im Browser</span>
+  </div>
+</header>
+
+<main class="tool-page">
+  <div class="container">
+    <p class="breadcrumb"><a href="/">Toolyfix</a> / Kontakt</p>
+    <h1>Kontakt</h1>
+    <p>Egal ob allgemeine Frage, Vorschlag für ein neues Tool, oder eine Beschwerde – schreib uns direkt über das Formular. Wir öffnen dein E-Mail-Programm mit einer bereits vorausgefüllten Nachricht an uns.</p>
+
+    <div class="tool-panel">
+      <form class="form-stack" id="contactForm">
+        <div>
+          <label for="reason">Worum geht es?</label>
+          <select id="reason">
+            <option value="Allgemeine Anfrage">Allgemeine Anfrage</option>
+            <option value="Vorschlag / Empfehlung">Vorschlag / Empfehlung (z. B. neues Tool)</option>
+            <option value="Beschwerde">Beschwerde</option>
+          </select>
+        </div>
+
+        <div>
+          <label for="name">Name</label>
+          <input type="text" id="name" placeholder="z. B. Vorname Nachname">
+        </div>
+
+        <div>
+          <label for="email">Deine E-Mail-Adresse</label>
+          <input type="text" id="email" placeholder="z. B. name@beispiel.de">
+        </div>
+
+        <div>
+          <label for="message">Nachricht</label>
+          <textarea id="message" rows="7" placeholder="Schreib uns, worum es geht …"></textarea>
+        </div>
+
+        <div class="field-row">
+          <button type="submit" class="btn btn-primary">Nachricht senden</button>
+        </div>
+        <p style="font-size:0.82rem; color:var(--ink-soft); margin-top:-8px;" id="formNote"></p>
+      </form>
+    </div>
+
+    <article class="legal-content">
+      <h2>Was passiert mit meiner Nachricht?</h2>
+      <p>Diese Seite hat kein eigenes Server-Backend – deshalb öffnet der "Nachricht senden"-Button direkt dein E-Mail-Programm mit einer vorausgefüllten Nachricht an <a href="mailto:kontakt@toolyfix.de">kontakt@toolyfix.de</a>. Du musst die E-Mail dort nur noch abschicken. Alternativ kannst du uns auch jederzeit direkt eine E-Mail schreiben.</p>
+    </article>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <img src="/assets/images/logo-full.png" alt="Toolyfix">
+    <nav class="footer-links">
+      <a href="/ueber-uns.html">Über uns</a>
+      <a href="/datenschutz.html">Datenschutz</a>
+      <a href="/nutzungsbedingungen.html">Nutzungsbedingungen</a>
+      <a href="/kontakt.html">Kontakt</a>
+    </nav>
+    <p class="footer-note">© 2026 Toolyfix – Alle Tools laufen lokal in deinem Browser.</p>
+  </div>
+</footer>
+
+<script>
+document.getElementById('contactForm').addEventListener('submit', (e) => {
+  e.preventDefault();
+  const reason = document.getElementById('reason').value;
+  const name = document.getElementById('name').value.trim();
+  const email = document.getElementById('email').value.trim();
+  const message = document.getElementById('message').value.trim();
+  const note = document.getElementById('formNote');
+
+  if (!message) {
+    note.textContent = 'Bitte eine Nachricht eingeben.';
+    return;
+  }
+
+  const subject = encodeURIComponent(`[${reason}] Nachricht von ${name || 'Webseite'}`);
+  const body = encodeURIComponent(
+    `Anliegen: ${reason}\nName: ${name}\nE-Mail: ${email}\n\nNachricht:\n${message}`
+  );
+  window.location.href = `mailto:kontakt@toolyfix.de?subject=${subject}&body=${body}`;
+  note.textContent = 'Dein E-Mail-Programm sollte sich jetzt öffnen.';
+});
+</script>
+
+</body>
+</html>
