@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Farbwähler – HEX, RGB, HSL & Kontrast Prüfen | Toolyfix</title>
+<meta name="description" content="Kostenloser Farbwähler: Farbe auswählen und HEX, RGB, HSL, HSB und CMYK sofort sehen. Mit Kontrast-Check, Farbverläufen (Shades) und Farbe vom Bildschirm oder Bild auswählen.">
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/style.css">
+<style>
+  .picker-row { display: flex; gap: 20px; flex-wrap: wrap; align-items: center; margin-bottom: 20px; }
+  #colorSwatch {
+    width: 100px; height: 100px; border-radius: var(--radius); border: 1px solid var(--border);
+    cursor: pointer; flex-shrink: 0;
+  }
+  #colorInput { width: 100px; height: 44px; padding: 0; border: 1px solid var(--border); border-radius: 8px; cursor: pointer; }
+  .hex-input-group { display: flex; gap: 8px; flex: 1; min-width: 200px; }
+
+  .format-grid {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin: 20px 0;
+  }
+  @media (max-width: 720px) { .format-grid { grid-template-columns: repeat(2, 1fr); } }
+  .format-box {
+    background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius);
+    padding: 12px; cursor: pointer;
+  }
+  .format-box .fmt-label { font-size: 0.75rem; color: var(--ink-soft); }
+  .format-box .fmt-value { font-family: 'Menlo', monospace; font-size: 0.95rem; word-break: break-all; margin-top: 4px; }
+
+  .shades-strip { display: flex; border-radius: var(--radius); overflow: hidden; margin: 16px 0; }
+  .shade-cell { flex: 1; height: 44px; cursor: pointer; border: none; }
+
+  .contrast-row { display: flex; gap: 16px; flex-wrap: wrap; margin: 16px 0; }
+  .contrast-card { flex: 1; min-width: 180px; border-radius: var(--radius); padding: 16px; text-align: center; border: 1px solid var(--border); }
+  .contrast-card .ratio { font-family: 'Space Grotesk', sans-serif; font-size: 1.3rem; font-weight: 700; }
+  .contrast-card .verdict { font-size: 0.85rem; margin-top: 4px; }
+  .pass { color: var(--success); }
+  .fail { color: #B23A3A; }
+
+  .eyedrop-row { display: flex; gap: 10px; flex-wrap: wrap; margin: 16px 0; }
+  #imageCanvas { max-width: 100%; border-radius: var(--radius); border: 1px solid var(--border); cursor: crosshair; display: none; }
+  #imgFileInput { display: none; }
+
+  .recent-row { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 8px; }
+  .recent-swatch { width: 32px; height: 32px; border-radius: 6px; border: 1px solid var(--border); cursor: pointer; }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container">
+    <a href="/" class="logo-link">
+      <img src="/assets/images/logo-full.png" alt="Toolyfix">
+    </a>
+    <span class="header-tagline">Kostenlose Tools, direkt im Browser</span>
+  </div>
+</header>
+
+<main class="tool-page">
+  <div class="container">
+    <p class="breadcrumb"><a href="/">Toolyfix</a> / Farbwähler</p>
+    <h1>Farbwähler</h1>
+    <p>Wähle eine Farbe aus, tippe einen HEX-Code ein, oder nimm eine Farbe direkt vom Bildschirm oder aus einem Bild. Alle Formate, Farbtöne und ein Kontrast-Check auf einen Blick.</p>
+
+    <div class="tool-panel">
+      <div class="picker-row">
+        <div id="colorSwatch"></div>
+        <input type="color" id="colorInput" value="#1D3557">
+        <div class="hex-input-group">
+          <input type="text" id="hexInput" placeholder="z. B. #1D3557">
+        </div>
+      </div>
+
+      <div class="eyedrop-row">
+        <button class="btn btn-primary" id="eyedropBtn">Vom Bildschirm auswählen</button>
+        <button class="btn btn-ghost" id="imageBtn">Farbe aus Bild wählen</button>
+        <input type="file" id="imgFileInput" accept="image/*">
+      </div>
+      <canvas id="imageCanvas"></canvas>
+      <p class="status-note" id="eyedropNote" style="font-size:0.85rem; color:var(--ink-soft);"></p>
+
+      <div class="format-grid">
+        <div class="format-box" data-copy="hex"><div class="fmt-label">HEX</div><div class="fmt-value" id="fmtHex">#1D3557</div></div>
+        <div class="format-box" data-copy="rgb"><div class="fmt-label">RGB</div><div class="fmt-value" id="fmtRgb"></div></div>
+        <div class="format-box" data-copy="hsl"><div class="fmt-label">HSL</div><div class="fmt-value" id="fmtHsl"></div></div>
+        <div class="format-box" data-copy="hsb"><div class="fmt-label">HSB / HSV</div><div class="fmt-value" id="fmtHsb"></div></div>
+        <div class="format-box" data-copy="cmyk"><div class="fmt-label">CMYK</div><div class="fmt-value" id="fmtCmyk"></div></div>
+        <div class="format-box" data-copy="css"><div class="fmt-label">CSS rgba()</div><div class="fmt-value" id="fmtRgba"></div></div>
+      </div>
+      <p style="font-size:0.8rem; color:var(--ink-soft);">Klicke auf ein Feld, um den Wert zu kopieren.</p>
+
+      <h2 style="font-size:1.1rem; margin-top:24px;">Farbtöne (Shades)</h2>
+      <div class="shades-strip" id="shadesStrip"></div>
+
+      <h2 style="font-size:1.1rem; margin-top:24px;">Kontrast-Check (WCAG)</h2>
+      <div class="contrast-row">
+        <div class="contrast-card" style="background:#fff;">
+          <div style="font-size:0.85rem; color:#333;">Text auf Weiß</div>
+          <div class="ratio" id="ratioWhite" style="color:#333;"></div>
+          <div class="verdict" id="verdictWhite"></div>
+        </div>
+        <div class="contrast-card" style="background:#000;">
+          <div style="font-size:0.85rem; color:#ccc;">Text auf Schwarz</div>
+          <div class="ratio" id="ratioBlack" style="color:#fff;"></div>
+          <div class="verdict" id="verdictBlack"></div>
+        </div>
+      </div>
+
+      <h2 style="font-size:1.1rem; margin-top:24px;">Zuletzt verwendet</h2>
+      <div class="recent-row" id="recentRow"></div>
+    </div>
+
+    <article class="explainer">
+      <h2>Farbwähler online: Farben auswählen, umwandeln und prüfen</h2>
+      <p>Dieser Farbwähler hilft dir, eine Farbe auf verschiedene Arten auszuwählen – über das native Farbauswahlfeld, durch direktes Eingeben eines HEX-Codes, per Eyedropper direkt vom Bildschirm, oder durch Klicken auf ein hochgeladenes Bild. Egal ob du Webdesigner, Entwickler, Grafiker oder einfach nur neugierig bist, welchen Farbcode ein bestimmter Ton hat – dieses Tool liefert sofort alle gängigen Farbformate gleichzeitig.</p>
+
+      <h2>HEX, RGB, HSL, HSB und CMYK – was ist der Unterschied?</h2>
+      <p><strong>HEX</strong> ist das in der Webentwicklung am häufigsten verwendete Format, ein sechsstelliger Code wie #1D3557, der Rot-, Grün- und Blauanteil in Hexadezimalschreibweise kodiert. <strong>RGB</strong> beschreibt die gleiche Farbe als drei Zahlen zwischen 0 und 255 für Rot, Grün und Blau. <strong>HSL</strong> (Farbton, Sättigung, Helligkeit) ist oft intuitiver für Menschen, weil man den Farbton als Winkel auf einem Farbkreis versteht und Sättigung sowie Helligkeit getrennt anpassen kann. <strong>HSB/HSV</strong> ist HSL sehr ähnlich, wird aber vor allem in Bildbearbeitungsprogrammen wie Photoshop verwendet. <strong>CMYK</strong> (Cyan, Magenta, Gelb, Schwarz) ist das Farbmodell für den Druck und wird benötigt, wenn eine Farbe nicht nur auf einem Bildschirm, sondern gedruckt dargestellt werden soll.</p>
+
+      <h2>Was bedeutet der Kontrast-Check?</h2>
+      <p>Die Web Content Accessibility Guidelines (WCAG) legen fest, wie stark sich Textfarbe und Hintergrundfarbe unterscheiden müssen, damit ein Text auch für Menschen mit Sehschwäche gut lesbar ist. Ein Kontrastverhältnis von mindestens 4,5:1 gilt für normalen Fließtext als Mindeststandard (WCAG AA), 7:1 für die höhere Stufe AAA. Für große Überschriften reichen niedrigere Werte von 3:1 (AA) beziehungsweise 4,5:1 (AAA). Dieser Farbwähler berechnet automatisch das Kontrastverhältnis deiner gewählten Farbe gegen Weiß und gegen Schwarz und zeigt an, welche WCAG-Stufe erreicht wird.</p>
+
+      <h2>Warum ist Farbkontrast für Webseiten wichtig?</h2>
+      <p>Ausreichender Farbkontrast ist nicht nur eine Frage der Barrierefreiheit, sondern beeinflusst auch die allgemeine Lesbarkeit und Nutzererfahrung einer Webseite. In Deutschland verpflichtet das Barrierefreiheitsstärkungsgesetz (BFSG) ab 2025 viele digitale Angebote dazu, Mindeststandards für Barrierefreiheit einzuhalten, wozu auch ausreichender Farbkontrast zählt. Selbst wenn keine rechtliche Pflicht besteht, sorgt ein guter Kontrast dafür, dass mehr Besucher deine Inhalte tatsächlich lesen können, was sich direkt auf Verweildauer und Absprungrate auswirkt.</p>
+
+      <h2>Farbe direkt vom Bildschirm auswählen (Eyedropper)</h2>
+      <p>Moderne Browser wie Chrome und Edge unterstützen die sogenannte EyeDropper-API, mit der du eine Farbe direkt von einer beliebigen Stelle deines Bildschirms auswählen kannst – nicht nur innerhalb dieser Webseite, sondern auch aus anderen geöffneten Programmen oder Bildern. Klicke dazu auf "Vom Bildschirm auswählen" und anschließend auf die gewünschte Stelle. Falls dein Browser diese Funktion nicht unterstützt (zum Beispiel Safari oder Firefox in älteren Versionen), kannst du stattdessen ein Bild hochladen und direkt hineinklicken, um die Farbe an dieser Stelle zu ermitteln.</p>
+
+      <h2>Farbtöne (Shades) verstehen und nutzen</h2>
+      <p>Die Shades-Leiste zeigt automatisch hellere und dunklere Varianten deiner gewählten Farbe. Das ist besonders nützlich beim Erstellen eines Farbschemas für eine Webseite oder App, da du für Hover-Zustände, Schatten, Ränder oder Hintergrundabstufungen häufig eine dunklere oder hellere Version derselben Grundfarbe brauchst, statt eine völlig neue Farbe auszuwählen. Klicke einfach auf einen der Farbtöne, um ihn als neue aktive Farbe zu übernehmen.</p>
+
+      <h2>Anwendungsbereiche eines Farbwählers</h2>
+      <p>Ein Farbwähler wird typischerweise beim Webdesign und der Entwicklung von Nutzeroberflächen eingesetzt, um Markenfarben zu bestimmen oder ein bestehendes Farbschema zu erweitern. Auch bei der Gestaltung von Präsentationen, Logos, Social-Media-Grafiken oder Druckerzeugnissen ist es hilfreich, eine Farbe exakt zu bestimmen und in das benötigte Format zu übertragen – etwa CMYK für den Druck oder HEX für eine Webseite.</p>
+
+      <h2>Datenschutz</h2>
+      <p>Alle Berechnungen finden lokal in deinem Browser statt. Ein hochgeladenes Bild wird nicht an einen Server übertragen, und die Liste der zuletzt verwendeten Farben wird nur lokal in deinem Browser gespeichert.</p>
+    </article>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <img src="/assets/images/logo-full.png" alt="Toolyfix">
+    <p class="footer-note">© 2026 Toolyfix – Alle Tools laufen lokal in deinem Browser.</p>
+  </div>
+</footer>
+
+<script>
+const colorSwatch = document.getElementById('colorSwatch');
+const colorInput = document.getElementById('colorInput');
+const hexInput = document.getElementById('hexInput');
+const eyedropBtn = document.getElementById('eyedropBtn');
+const imageBtn = document.getElementById('imageBtn');
+const imgFileInput = document.getElementById('imgFileInput');
+const imageCanvas = document.getElementById('imageCanvas');
+const eyedropNote = document.getElementById('eyedropNote');
+const shadesStrip = document.getElementById('shadesStrip');
+const recentRow = document.getElementById('recentRow');
+
+let current = '#1D3557';
+let recentColors = [];
+
+try {
+  const stored = localStorage.getItem('toolyfix_recent_colors');
+  if (stored) recentColors = JSON.parse(stored);
+} catch (e) {}
+
+function hexToRgb(hex) {
+  hex = hex.replace('#', '');
+  if (hex.length === 3) hex = hex.split('').map(c => c + c).join('');
+  const num = parseInt(hex, 16);
+  return { r: (num >> 16) & 255, g: (num >> 8) & 255, b: num & 255 };
+}
+
+function rgbToHex(r, g, b) {
+  return '#' + [r, g, b].map(x => x.toString(16).padStart(2, '0')).join('');
+}
+
+function rgbToHsl(r, g, b) {
+  r /= 255; g /= 255; b /= 255;
+  const max = Math.max(r, g, b), min = Math.min(r, g, b);
+  let h, s, l = (max + min) / 2;
+  if (max === min) { h = s = 0; }
+  else {
+    const d = max - min;
+    s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
+    switch (max) {
+      case r: h = (g - b) / d + (g < b ? 6 : 0); break;
+      case g: h = (b - r) / d + 2; break;
+      case b: h = (r - g) / d + 4; break;
+    }
+    h /= 6;
+  }
+  return { h: Math.round(h * 360), s: Math.round(s * 100), l: Math.round(l * 100) };
+}
+
+function rgbToHsb(r, g, b) {
+  r /= 255; g /= 255; b /= 255;
+  const max = Math.max(r, g, b), min = Math.min(r, g, b);
+  const d = max - min;
+  let h;
+  if (d === 0) h = 0;
+  else if (max === r) h = ((g - b) / d) % 6;
+  else if (max === g) h = (b - r) / d + 2;
+  else h = (r - g) / d + 4;
+  h = Math.round(h * 60);
+  if (h < 0) h += 360;
+  const s = max === 0 ? 0 : d / max;
+  return { h, s: Math.round(s * 100), b: Math.round(max * 100) };
+}
+
+function rgbToCmyk(r, g, b) {
+  if (r === 0 && g === 0 && b === 0) return { c: 0, m: 0, y: 0, k: 100 };
+  const rr = r / 255, gg = g / 255, bb = b / 255;
+  const k = 1 - Math.max(rr, gg, bb);
+  const c = (1 - rr - k) / (1 - k);
+  const m = (1 - gg - k) / (1 - k);
+  const y = (1 - bb - k) / (1 - k);
+  return { c: Math.round(c * 100), m: Math.round(m * 100), y: Math.round(y * 100), k: Math.round(k * 100) };
+}
+
+function relLuminance(r, g, b) {
+  const [rs, gs, bs] = [r, g, b].map(v => {
+    v /= 255;
+    return v <= 0.03928 ? v / 12.92 : Math.pow((v + 0.055) / 1.055, 2.4);
+  });
+  return 0.2126 * rs + 0.7152 * gs + 0.0722 * bs;
+}
+
+function contrastRatio(rgb, bgLum) {
+  const lum = relLuminance(rgb.r, rgb.g, rgb.b);
+  const lighter = Math.max(lum, bgLum);
+  const darker = Math.min(lum, bgLum);
+  return (lighter + 0.05) / (darker + 0.05);
+}
+
+function verdict(ratio) {
+  if (ratio >= 7) return { text: 'AAA – sehr gut', cls: 'pass' };
+  if (ratio >= 4.5) return { text: 'AA – gut', cls: 'pass' };
+  if (ratio >= 3) return { text: 'nur für große Texte', cls: 'fail' };
+  return { text: 'nicht ausreichend', cls: 'fail' };
+}
+
+function shadeColor(hex, percent) {
+  const { r, g, b } = hexToRgb(hex);
+  const adjust = (c) => {
+    if (percent > 0) return Math.round(c + (255 - c) * percent);
+    return Math.round(c * (1 + percent));
+  };
+  return rgbToHex(
+    Math.max(0, Math.min(255, adjust(r))),
+    Math.max(0, Math.min(255, adjust(g))),
+    Math.max(0, Math.min(255, adjust(b)))
+  );
+}
+
+function renderShades() {
+  shadesStrip.innerHTML = '';
+  const steps = [-0.6, -0.4, -0.2, 0, 0.2, 0.4, 0.6, 0.8];
+  steps.forEach(step => {
+    const c = step === 0 ? current : shadeColor(current, step);
+    const cell = document.createElement('button');
+    cell.className = 'shade-cell';
+    cell.style.background = c;
+    cell.addEventListener('click', () => setColor(c));
+    shadesStrip.appendChild(cell);
+  });
+}
+
+function addRecent(hex) {
+  recentColors = [hex, ...recentColors.filter(c => c !== hex)].slice(0, 10);
+  try { localStorage.setItem('toolyfix_recent_colors', JSON.stringify(recentColors)); } catch (e) {}
+  renderRecent();
+}
+
+function renderRecent() {
+  recentRow.innerHTML = '';
+  recentColors.forEach(hex => {
+    const sw = document.createElement('button');
+    sw.className = 'recent-swatch';
+    sw.style.background = hex;
+    sw.title = hex;
+    sw.addEventListener('click', () => setColor(hex));
+    recentRow.appendChild(sw);
+  });
+}
+
+function setColor(hex, skipRecent) {
+  if (!/^#[0-9a-fA-F]{6}$/.test(hex)) return;
+  current = hex;
+  colorSwatch.style.background = hex;
+  colorInput.value = hex;
+  hexInput.value = hex;
+
+  const { r, g, b } = hexToRgb(hex);
+  const hsl = rgbToHsl(r, g, b);
+  const hsb = rgbToHsb(r, g, b);
+  const cmyk = rgbToCmyk(r, g, b);
+
+  document.getElementById('fmtHex').textContent = hex.toUpperCase();
+  document.getElementById('fmtRgb').textContent = `rgb(${r}, ${g}, ${b})`;
+  document.getElementById('fmtHsl').textContent = `hsl(${hsl.h}, ${hsl.s}%, ${hsl.l}%)`;
+  document.getElementById('fmtHsb').textContent = `${hsb.h}°, ${hsb.s}%, ${hsb.b}%`;
+  document.getElementById('fmtCmyk').textContent = `${cmyk.c}, ${cmyk.m}, ${cmyk.y}, ${cmyk.k}`;
+  document.getElementById('fmtRgba').textContent = `rgba(${r}, ${g}, ${b}, 1)`;
+
+  const whiteRatio = contrastRatio({ r, g, b }, 1);
+  const blackRatio = contrastRatio({ r, g, b }, 0);
+  document.getElementById('ratioWhite').textContent = whiteRatio.toFixed(2) + ':1';
+  document.getElementById('ratioBlack').textContent = blackRatio.toFixed(2) + ':1';
+  const vw = verdict(whiteRatio), vb = verdict(blackRatio);
+  document.getElementById('verdictWhite').textContent = vw.text;
+  document.getElementById('verdictWhite').className = 'verdict ' + vw.cls;
+  document.getElementById('verdictBlack').textContent = vb.text;
+  document.getElementById('verdictBlack').className = 'verdict ' + vb.cls;
+
+  renderShades();
+  if (!skipRecent) addRecent(hex.toUpperCase());
+}
+
+colorInput.addEventListener('input', () => setColor(colorInput.value));
+hexInput.addEventListener('input', () => {
+  let v = hexInput.value.trim();
+  if (v && !v.startsWith('#')) v = '#' + v;
+  if (/^#[0-9a-fA-F]{6}$/.test(v)) setColor(v);
+});
+
+document.querySelectorAll('.format-box').forEach(box => {
+  box.addEventListener('click', () => {
+    const valueEl = box.querySelector('.fmt-value');
+    if (valueEl.textContent) navigator.clipboard.writeText(valueEl.textContent);
+  });
+});
+
+if ('EyeDropper' in window) {
+  eyedropBtn.addEventListener('click', async () => {
+    try {
+      const eyeDropper = new EyeDropper();
+      const result = await eyeDropper.open();
+      setColor(result.sRGBHex);
+    } catch (e) {}
+  });
+} else {
+  eyedropBtn.disabled = true;
+  eyedropNote.textContent = 'Dein Browser unterstützt die Bildschirm-Farbauswahl nicht (funktioniert in Chrome und Edge). Nutze stattdessen "Farbe aus Bild wählen".';
+}
+
+imageBtn.addEventListener('click', () => imgFileInput.click());
+imgFileInput.addEventListener('change', (e) => {
+  const file = e.target.files[0];
+  if (!file) return;
+  const img = new Image();
+  img.onload = () => {
+    const ctx = imageCanvas.getContext('2d');
+    const maxW = 600;
+    const scale = Math.min(1, maxW / img.width);
+    imageCanvas.width = img.width * scale;
+    imageCanvas.height = img.height * scale;
+    ctx.drawImage(img, 0, 0, imageCanvas.width, imageCanvas.height);
+    imageCanvas.style.display = 'block';
+    eyedropNote.textContent = 'Klicke auf eine Stelle im Bild, um die Farbe zu übernehmen.';
+  };
+  img.src = URL.createObjectURL(file);
+});
+
+imageCanvas.addEventListener('click', (e) => {
+  const ctx = imageCanvas.getContext('2d');
+  const rect = imageCanvas.getBoundingClientRect();
+  const x = Math.round((e.clientX - rect.left) * (imageCanvas.width / rect.width));
+  const y = Math.round((e.clientY - rect.top) * (imageCanvas.height / rect.height));
+  const pixel = ctx.getImageData(x, y, 1, 1).data;
+  setColor(rgbToHex(pixel[0], pixel[1], pixel[2]));
+});
+
+setColor(current, true);
+renderRecent();
+</script>
+
+</body>
+</html>

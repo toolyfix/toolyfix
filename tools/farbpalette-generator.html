@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Farbpalette Generator – Farbschemata Erstellen | Toolyfix</title>
+<meta name="description" content="Kostenloser Farbpalette Generator: Erstelle komplementäre, analoge, triadische oder monochromatische Farbschemata aus einer Basisfarbe. Farben sperren, neu generieren, als CSS oder HEX-Liste exportieren.">
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/style.css">
+<style>
+  .controls-row { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; margin-bottom: 20px; }
+  .controls-row select { padding: 10px 14px; border-radius: var(--radius); border: 1px solid var(--border); background: var(--surface); font-family: 'Inter', sans-serif; font-size: 0.9rem; }
+  #baseColorInput { width: 60px; height: 44px; padding: 0; border: 1px solid var(--border); border-radius: 8px; cursor: pointer; }
+
+  .palette-strip { display: flex; flex-wrap: wrap; gap: 0; border-radius: var(--radius); overflow: hidden; margin-bottom: 16px; min-height: 160px; }
+  .palette-cell {
+    flex: 1; min-width: 100px; display: flex; flex-direction: column; justify-content: flex-end;
+    align-items: center; padding: 12px 6px; position: relative; cursor: pointer;
+  }
+  .palette-cell .hex-label {
+    background: rgba(255,255,255,0.85); color: #1a1a1a; font-family: 'Menlo', monospace;
+    font-size: 0.78rem; padding: 4px 8px; border-radius: 6px; margin-bottom: 4px;
+  }
+  .lock-btn {
+    position: absolute; top: 8px; right: 8px; width: 28px; height: 28px; border-radius: 6px;
+    border: none; background: rgba(255,255,255,0.85); cursor: pointer; font-size: 0.9rem;
+  }
+  @media (max-width: 640px) {
+    .palette-strip { flex-direction: column; }
+    .palette-cell { min-height: 70px; flex-direction: row; justify-content: space-between; padding: 10px 16px; }
+    .lock-btn { position: static; }
+  }
+
+  .export-box { margin-top: 16px; }
+  #exportOutput { font-family: 'Menlo', monospace; font-size: 0.85rem; min-height: 100px; }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container">
+    <a href="/" class="logo-link">
+      <img src="/assets/images/logo-full.png" alt="Toolyfix">
+    </a>
+    <span class="header-tagline">Kostenlose Tools, direkt im Browser</span>
+  </div>
+</header>
+
+<main class="tool-page">
+  <div class="container">
+    <p class="breadcrumb"><a href="/">Toolyfix</a> / Farbpalette Generator</p>
+    <h1>Farbpalette Generator</h1>
+    <p>Erstelle ein Farbschema aus einer Basisfarbe, sperre einzelne Farben und generiere den Rest neu, und exportiere die Palette als CSS-Variablen oder HEX-Liste.</p>
+
+    <div class="tool-panel">
+      <div class="controls-row">
+        <input type="color" id="baseColorInput" value="#1D3557">
+        <select id="harmonyType">
+          <option value="analog">Analog (benachbarte Farbtöne)</option>
+          <option value="complementary">Komplementär (Gegenfarbe)</option>
+          <option value="triadic">Triade (3 gleich verteilte Töne)</option>
+          <option value="monochromatic">Monochromatisch (ein Farbton)</option>
+          <option value="random">Zufällig</option>
+        </select>
+        <select id="colorCount">
+          <option value="4">4 Farben</option>
+          <option value="5" selected>5 Farben</option>
+          <option value="6">6 Farben</option>
+          <option value="8">8 Farben</option>
+        </select>
+        <button class="btn btn-primary" id="generateBtn">Palette generieren</button>
+      </div>
+
+      <div class="palette-strip" id="paletteStrip"></div>
+      <p style="font-size:0.82rem; color:var(--ink-soft);">Klicke auf eine Farbe zum Kopieren des HEX-Codes. Mit dem Schloss-Symbol sperrst du eine Farbe, bevor du neu generierst.</p>
+
+      <div class="export-box">
+        <div class="field-row">
+          <button class="btn btn-ghost" id="exportHexBtn">Als HEX-Liste exportieren</button>
+          <button class="btn btn-ghost" id="exportCssBtn">Als CSS-Variablen exportieren</button>
+          <button class="btn btn-ghost" id="copyExportBtn">Kopieren</button>
+        </div>
+        <textarea id="exportOutput" rows="5" readonly style="margin-top:12px;"></textarea>
+      </div>
+    </div>
+
+    <article class="explainer">
+      <h2>Farbpaletten erstellen: die Grundlage jedes guten Designs</h2>
+      <p>Eine durchdachte Farbpalette ist eines der wichtigsten Werkzeuge im Webdesign, in der Markenentwicklung und bei der Gestaltung von Präsentationen oder Social-Media-Inhalten. Statt Farben zufällig auszuwählen, nutzt dieser Farbpalette Generator etablierte Farbtheorie-Prinzipien, um aus einer einzigen Basisfarbe automatisch ein stimmiges Farbschema zu erzeugen, das harmonisch wirkt und professionell aussieht.</p>
+
+      <h2>Die verschiedenen Harmonie-Typen erklärt</h2>
+      <p><strong>Analog</strong> wählt Farbtöne, die auf dem Farbkreis nah beieinanderliegen (zum Beispiel Blau, Blaugrün und Grün) – das erzeugt ein ruhiges, harmonisches Bild ohne starke Kontraste, ideal für Hintergründe oder dezente Markenauftritte. <strong>Komplementär</strong> nutzt die gegenüberliegende Farbe auf dem Farbkreis (zum Beispiel Blau und Orange) und erzeugt dadurch maximalen visuellen Kontrast, was sich gut für Call-to-Action-Buttons oder Akzente eignet. <strong>Triadisch</strong> verteilt drei Farbtöne gleichmäßig über den Farbkreis (im Abstand von jeweils 120°) und wirkt lebendig und ausgewogen zugleich. <strong>Monochromatisch</strong> verwendet nur einen einzigen Farbton in unterschiedlichen Helligkeits- und Sättigungsstufen – das wirkt besonders elegant und zurückhaltend, weil alle Elemente farblich zusammengehören.</p>
+
+      <h2>Wie wählt man die richtige Basisfarbe?</h2>
+      <p>Die Basisfarbe sollte im Idealfall bereits mit deiner Marke, deinem Thema oder deiner Zielgruppe zusammenpassen. Blautöne wirken vertrauenswürdig und werden häufig in der Finanz- und Tech-Branche eingesetzt, Grüntöne stehen für Natur, Gesundheit und Nachhaltigkeit, Rot- und Orangetöne wirken energiegeladen und werden oft im Einzelhandel oder in der Gastronomie verwendet. Wenn du bereits ein Logo oder eine Markenfarbe hast, gib genau diesen HEX-Code als Basisfarbe ein, damit die restliche Palette optimal dazu passt.</p>
+
+      <h2>Farben sperren und gezielt weiterentwickeln</h2>
+      <p>Manchmal gefallen dir bereits zwei oder drei Farben aus einer generierten Palette sehr gut, aber der Rest passt noch nicht. Mit der Sperr-Funktion (Schloss-Symbol) kannst du genau diese Farben fixieren, sodass sie bei einer erneuten Generierung erhalten bleiben, während die restlichen Farben neu berechnet werden. Das beschleunigt den Designprozess erheblich, weil du nicht bei null anfangen musst, sobald ein Teil der Palette bereits passt.</p>
+
+      <h2>CSS-Variablen direkt in dein Projekt einbinden</h2>
+      <p>Wenn du deine Palette für eine Webseite verwenden möchtest, exportiere sie direkt als CSS-Variablen (zum Beispiel --color-1: #1D3557;). Diese kannst du in den :root-Bereich deines Stylesheets einfügen und danach überall im Projekt über var(--color-1) referenzieren, statt den HEX-Code an jeder Stelle einzeln einzutragen. Das erleichtert spätere Anpassungen erheblich, weil eine Änderung an einer zentralen Stelle die Farbe überall im Projekt aktualisiert.</p>
+
+      <h2>Barrierefreiheit bei der Farbauswahl beachten</h2>
+      <p>Auch bei der Erstellung einer Farbpalette lohnt sich ein Blick auf die Barrierefreiheit: Wenn zwei Farben aus deiner Palette als Text- und Hintergrundfarbe kombiniert werden sollen, prüfe zusätzlich mit einem Kontrast-Tool, ob das Kontrastverhältnis den WCAG-Richtlinien entspricht (mindestens 4,5:1 für normalen Text). Eine ästhetisch ansprechende Palette nützt wenig, wenn die Kombination aus Text- und Hintergrundfarbe für einen Teil der Besucher schwer lesbar ist.</p>
+
+      <h2>Anwendungsbeispiele für Farbpaletten</h2>
+      <p>Farbpaletten werden nicht nur für Webseiten gebraucht, sondern auch für Präsentationsfolien, Social-Media-Grafiken, Illustrationen, Infografiken, Verpackungsdesign und sogar für die Farbgestaltung von Innenräumen oder Veranstaltungen. Wer regelmäßig Inhalte für mehrere Kanäle erstellt, profitiert davon, eine einmal erstellte Palette konsequent überall wiederzuverwenden, um einen wiedererkennbaren, einheitlichen visuellen Auftritt zu schaffen.</p>
+
+      <h2>Datenschutz</h2>
+      <p>Die gesamte Farbberechnung findet lokal in deinem Browser statt. Es werden keine Farbwerte oder Paletten an einen Server übertragen oder gespeichert.</p>
+    </article>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <img src="/assets/images/logo-full.png" alt="Toolyfix">
+    <p class="footer-note">© 2026 Toolyfix – Alle Tools laufen lokal in deinem Browser.</p>
+  </div>
+</footer>
+
+<script>
+const baseColorInput = document.getElementById('baseColorInput');
+const harmonyType = document.getElementById('harmonyType');
+const colorCount = document.getElementById('colorCount');
+const generateBtn = document.getElementById('generateBtn');
+const paletteStrip = document.getElementById('paletteStrip');
+const exportOutput = document.getElementById('exportOutput');
+
+let palette = [];
+let locked = [];
+
+function hexToHsl(hex) {
+  hex = hex.replace('#', '');
+  const num = parseInt(hex, 16);
+  let r = (num >> 16) & 255, g = (num >> 8) & 255, b = num & 255;
+  r /= 255; g /= 255; b /= 255;
+  const max = Math.max(r, g, b), min = Math.min(r, g, b);
+  let h, s, l = (max + min) / 2;
+  if (max === min) { h = s = 0; }
+  else {
+    const d = max - min;
+    s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
+    switch (max) {
+      case r: h = (g - b) / d + (g < b ? 6 : 0); break;
+      case g: h = (b - r) / d + 2; break;
+      case b: h = (r - g) / d + 4; break;
+    }
+    h /= 6;
+  }
+  return { h: h * 360, s: s * 100, l: l * 100 };
+}
+
+function hslToHex(h, s, l) {
+  h = ((h % 360) + 360) % 360;
+  s = Math.max(0, Math.min(100, s)) / 100;
+  l = Math.max(0, Math.min(100, l)) / 100;
+  const c = (1 - Math.abs(2 * l - 1)) * s;
+  const x = c * (1 - Math.abs((h / 60) % 2 - 1));
+  const m = l - c / 2;
+  let r, g, b;
+  if (h < 60) [r, g, b] = [c, x, 0];
+  else if (h < 120) [r, g, b] = [x, c, 0];
+  else if (h < 180) [r, g, b] = [0, c, x];
+  else if (h < 240) [r, g, b] = [0, x, c];
+  else if (h < 300) [r, g, b] = [x, 0, c];
+  else [r, g, b] = [c, 0, x];
+  const toHex = v => Math.round((v + m) * 255).toString(16).padStart(2, '0');
+  return '#' + toHex(r) + toHex(g) + toHex(b);
+}
+
+function generatePalette() {
+  const base = hexToHsl(baseColorInput.value);
+  const count = parseInt(colorCount.value, 10);
+  const type = harmonyType.value;
+  const newPalette = [];
+
+  for (let i = 0; i < count; i++) {
+    if (locked[i] && palette[i]) {
+      newPalette.push(palette[i]);
+      continue;
+    }
+    let h = base.h, s = base.s, l = base.l;
+
+    if (type === 'analog') {
+      h = base.h + (i - Math.floor(count / 2)) * 20;
+      l = base.l + (i - Math.floor(count / 2)) * 4;
+    } else if (type === 'complementary') {
+      h = i % 2 === 0 ? base.h : base.h + 180;
+      l = base.l + (Math.floor(i / 2) * 12 - 12);
+    } else if (type === 'triadic') {
+      h = base.h + (i % 3) * 120;
+      l = base.l + Math.floor(i / 3) * 10 - 5;
+    } else if (type === 'monochromatic') {
+      h = base.h;
+      s = base.s;
+      l = 15 + (i * (75 / Math.max(1, count - 1)));
+    } else if (type === 'random') {
+      h = Math.random() * 360;
+      s = 40 + Math.random() * 50;
+      l = 35 + Math.random() * 40;
+    }
+
+    l = Math.max(10, Math.min(92, l));
+    s = Math.max(15, Math.min(95, s));
+    newPalette.push(hslToHex(h, s, l));
+  }
+
+  palette = newPalette;
+  renderPalette();
+}
+
+function textColorFor(hex) {
+  const num = parseInt(hex.replace('#', ''), 16);
+  const r = (num >> 16) & 255, g = (num >> 8) & 255, b = num & 255;
+  const brightness = (r * 299 + g * 587 + b * 114) / 1000;
+  return brightness > 150 ? '#1a1a1a' : '#ffffff';
+}
+
+function renderPalette() {
+  paletteStrip.innerHTML = '';
+  palette.forEach((hex, i) => {
+    const cell = document.createElement('div');
+    cell.className = 'palette-cell';
+    cell.style.background = hex;
+
+    const lockBtn = document.createElement('button');
+    lockBtn.className = 'lock-btn';
+    lockBtn.textContent = locked[i] ? '🔒' : '🔓';
+    lockBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      locked[i] = !locked[i];
+      renderPalette();
+    });
+
+    const label = document.createElement('span');
+    label.className = 'hex-label';
+    label.textContent = hex.toUpperCase();
+    label.style.color = '#1a1a1a';
+
+    cell.appendChild(lockBtn);
+    cell.appendChild(label);
+    cell.addEventListener('click', () => navigator.clipboard.writeText(hex.toUpperCase()));
+    paletteStrip.appendChild(cell);
+  });
+}
+
+generateBtn.addEventListener('click', generatePalette);
+baseColorInput.addEventListener('input', generatePalette);
+harmonyType.addEventListener('change', generatePalette);
+colorCount.addEventListener('change', () => { locked = []; generatePalette(); });
+
+document.getElementById('exportHexBtn').addEventListener('click', () => {
+  exportOutput.value = palette.map(h => h.toUpperCase()).join('\n');
+});
+
+document.getElementById('exportCssBtn').addEventListener('click', () => {
+  exportOutput.value = ':root {\n' + palette.map((h, i) => `  --color-${i + 1}: ${h.toUpperCase()};`).join('\n') + '\n}';
+});
+
+document.getElementById('copyExportBtn').addEventListener('click', () => {
+  if (exportOutput.value) navigator.clipboard.writeText(exportOutput.value);
+});
+
+generatePalette();
+</script>
+
+</body>
+</html>
