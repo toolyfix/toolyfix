@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Wecker Online – Mehrere Alarme & Wiederholung | Toolyfix</title>
+<meta name="description" content="Kostenloser Wecker online: Mehrere Alarme gleichzeitig, Wiederholung an bestimmten Wochentagen, Schlummerfunktion und Browser-Benachrichtigung. Direkt im Browser, ohne App.">
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/style.css">
+<style>
+  .current-time-display { text-align: center; padding: 24px 16px; background: var(--bg); border-radius: var(--radius); margin-bottom: 24px; }
+  #liveClock { font-family: 'Space Grotesk', sans-serif; font-size: clamp(1.8rem, 6vw, 2.6rem); font-weight: 700; color: var(--primary-dark); }
+
+  .add-alarm-row { display: flex; gap: 12px; flex-wrap: wrap; align-items: flex-end; margin-bottom: 12px; }
+  .add-alarm-field { display: flex; flex-direction: column; gap: 6px; }
+  .add-alarm-field label { font-size: 0.8rem; color: var(--ink-soft); }
+  #alarmTimeInput { font-size: 1.3rem; padding: 10px 14px; }
+  #alarmLabelInput { min-width: 180px; }
+
+  .days-row { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 16px; }
+  .day-toggle {
+    width: 40px; height: 36px; border-radius: 8px; border: 1px solid var(--border);
+    background: var(--surface); cursor: pointer; font-size: 0.8rem; font-weight: 600;
+  }
+  .day-toggle.active { background: var(--primary); color: #fff; border-color: var(--primary); }
+
+  .alarm-list { margin-top: 24px; }
+  .alarm-card {
+    display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap;
+    background: var(--bg); border-radius: var(--radius); padding: 16px; margin-bottom: 10px;
+  }
+  .alarm-card.disabled { opacity: 0.5; }
+  .alarm-main { display: flex; flex-direction: column; }
+  .alarm-time { font-family: 'Space Grotesk', sans-serif; font-size: 1.5rem; font-weight: 700; color: var(--primary-dark); }
+  .alarm-meta { font-size: 0.82rem; color: var(--ink-soft); }
+  .alarm-actions { display: flex; gap: 8px; align-items: center; }
+
+  .toggle-switch { position: relative; width: 46px; height: 26px; display: inline-block; }
+  .toggle-switch input { opacity: 0; width: 0; height: 0; }
+  .toggle-slider { position: absolute; inset: 0; background: var(--border); border-radius: 26px; cursor: pointer; transition: 0.15s; }
+  .toggle-slider::before { content: ""; position: absolute; height: 20px; width: 20px; left: 3px; top: 3px; background: white; border-radius: 50%; transition: 0.15s; }
+  input:checked + .toggle-slider { background: var(--primary); }
+  input:checked + .toggle-slider::before { transform: translateX(20px); }
+
+  .delete-btn { background: none; border: none; cursor: pointer; font-size: 1.1rem; color: var(--ink-soft); }
+
+  /* Ringing overlay */
+  #ringingOverlay {
+    display: none; position: fixed; inset: 0; background: var(--primary-dark);
+    color: #fff; z-index: 999; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 24px;
+  }
+  #ringingOverlay.active { display: flex; }
+  #ringingTime { font-family: 'Space Grotesk', sans-serif; font-size: clamp(3rem, 12vw, 6rem); font-weight: 700; }
+  #ringingLabel { font-size: 1.3rem; margin: 12px 0 32px; }
+  .ring-actions { display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; }
+  .ring-btn { padding: 16px 32px; border-radius: 12px; border: none; font-size: 1.1rem; font-weight: 700; cursor: pointer; font-family: 'Inter', sans-serif; }
+  .ring-btn.snooze { background: var(--accent); color: var(--primary-dark); }
+  .ring-btn.stop { background: #fff; color: var(--primary-dark); }
+
+  .volume-row { display: flex; align-items: center; gap: 10px; margin: 20px 0; }
+  .volume-row input[type="range"] { flex: 1; accent-color: var(--primary); }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container">
+    <a href="/" class="logo-link">
+      <img src="/assets/images/logo-full.png" alt="Toolyfix">
+    </a>
+    <span class="header-tagline">Kostenlose Tools, direkt im Browser</span>
+  </div>
+</header>
+
+<main class="tool-page">
+  <div class="container">
+    <p class="breadcrumb"><a href="/">Toolyfix</a> / Wecker Online</p>
+    <h1>Wecker Online</h1>
+    <p>Stelle einen oder mehrere Wecker direkt im Browser – mit Wiederholung an bestimmten Wochentagen, Schlummerfunktion und Benachrichtigung, auch wenn der Tab im Hintergrund läuft.</p>
+
+    <div class="tool-panel">
+      <div class="current-time-display">
+        <div id="liveClock">--:--:--</div>
+      </div>
+
+      <div class="add-alarm-row">
+        <div class="add-alarm-field">
+          <label for="alarmTimeInput">Uhrzeit</label>
+          <input type="time" id="alarmTimeInput" value="07:00">
+        </div>
+        <div class="add-alarm-field">
+          <label for="alarmLabelInput">Bezeichnung (optional)</label>
+          <input type="text" id="alarmLabelInput" placeholder="z. B. Aufstehen">
+        </div>
+      </div>
+
+      <label style="font-size:0.8rem; color:var(--ink-soft); display:block; margin-bottom:6px;">Wiederholen an (leer lassen für einmaligen Alarm)</label>
+      <div class="days-row" id="daysRow">
+        <button class="day-toggle" data-day="1">Mo</button>
+        <button class="day-toggle" data-day="2">Di</button>
+        <button class="day-toggle" data-day="3">Mi</button>
+        <button class="day-toggle" data-day="4">Do</button>
+        <button class="day-toggle" data-day="5">Fr</button>
+        <button class="day-toggle" data-day="6">Sa</button>
+        <button class="day-toggle" data-day="0">So</button>
+      </div>
+
+      <div class="field-row">
+        <button class="btn btn-primary" id="addAlarmBtn">Wecker hinzufügen</button>
+        <button class="btn btn-ghost" id="notifyBtn">Benachrichtigungen erlauben</button>
+      </div>
+
+      <div class="volume-row">
+        <span style="font-size:0.85rem; color:var(--ink-soft);">Lautstärke</span>
+        <input type="range" id="volumeSlider" min="0" max="100" value="70">
+      </div>
+
+      <div class="alarm-list" id="alarmList">
+        <p style="font-size:0.9rem; color:var(--ink-soft);">Noch keine Wecker eingestellt.</p>
+      </div>
+    </div>
+
+    <article class="explainer">
+      <h2>Wecker online: dein Handy oder Computer als Weckuhr nutzen</h2>
+      <p>Dieser Online-Wecker läuft direkt im Browser und eignet sich als Ersatz für eine klassische Weckuhr oder als zusätzlicher Wecker neben dem Smartphone – zum Beispiel während der Arbeit am Laptop, für eine Erinnerung während einer Pause, oder als Tischwecker auf einem alten Tablet. Anders als die meisten einfachen Online-Wecker unterstützt dieses Tool mehrere gleichzeitige Alarme, Wiederholung an bestimmten Wochentagen und eine Schlummerfunktion.</p>
+
+      <h2>Wichtiger Hinweis: Der Tab muss geöffnet bleiben</h2>
+      <p>Damit ein Alarm zuverlässig klingelt, muss dieser Browser-Tab geöffnet und dein Gerät eingeschaltet bleiben – ein geschlossener Tab oder ein in den Ruhezustand versetztes Gerät kann den Alarm nicht auslösen. Das liegt daran, dass eine normale Webseite aus Sicherheitsgründen nicht im Hintergrund weiterlaufen kann, wenn der Browser komplett geschlossen ist. Für einen wichtigen Termin am Morgen empfehlen wir daher zusätzlich einen physischen Wecker oder die Wecker-App deines Smartphones als Rückversicherung.</p>
+
+      <h2>Mehrere Wecker gleichzeitig verwalten</h2>
+      <p>Du kannst beliebig viele Alarme gleichzeitig anlegen – zum Beispiel einen Wecker für jeden Werktag, einen separaten für das Wochenende, und einen einmaligen für einen bestimmten Termin. Jeder Alarm lässt sich einzeln über den Schalter aktivieren oder deaktivieren, ohne ihn löschen zu müssen, falls du ihn später wieder brauchst.</p>
+
+      <h2>Wiederholung an bestimmten Wochentagen</h2>
+      <p>Wenn du beim Anlegen eines Alarms keinen Wochentag auswählst, klingelt er einmalig beim nächsten Erreichen der eingestellten Uhrzeit und deaktiviert sich danach automatisch. Wählst du dagegen bestimmte Wochentage aus (zum Beispiel Montag bis Freitag für einen Arbeitswecker), klingelt der Alarm an diesen Tagen jede Woche erneut, bis du ihn manuell deaktivierst oder löschst.</p>
+
+      <h2>Schlummerfunktion (Snooze)</h2>
+      <p>Wenn ein Alarm klingelt, erscheint eine große Vollbild-Anzeige mit zwei Optionen: "Schlummern", was den Alarm für 5 Minuten stummschaltet und danach erneut auslöst, oder "Stopp", was den Alarm vollständig beendet. Diese Funktion kennst du wahrscheinlich bereits von der Wecker-App auf deinem Smartphone.</p>
+
+      <h2>Browser-Benachrichtigungen für Alarme im Hintergrund-Tab</h2>
+      <p>Wenn du die Benachrichtigungen für diese Seite erlaubst, erhältst du zusätzlich zum Alarmton eine System-Benachrichtigung, selbst wenn du gerade in einem anderen Tab oder einem anderen Programm arbeitest. So verpasst du den Alarm nicht, nur weil dieser Tab gerade nicht im Vordergrund ist – solange der Browser insgesamt noch geöffnet ist.</p>
+
+      <h2>Warum kein Alarmton, obwohl der Alarm losgegangen ist?</h2>
+      <p>Moderne Browser blockieren aus Datenschutz- und Nutzerfreundlichkeitsgründen automatisch abspielende Töne, bevor du mit der Seite interagiert hast. Klicke daher nach dem Öffnen dieser Seite einmal irgendwo auf die Seite (zum Beispiel auf den "Wecker hinzufügen"-Button), damit dein Browser den Ton beim späteren Auslösen des Alarms zulässt.</p>
+
+      <h2>Alarme bleiben auch nach dem Neuladen erhalten</h2>
+      <p>Deine eingestellten Wecker werden lokal in deinem Browser gespeichert (Local Storage), so dass sie auch nach dem Schließen und erneuten Öffnen dieser Seite erhalten bleiben – solange du denselben Browser auf demselben Gerät verwendest und den Speicher nicht manuell löschst.</p>
+
+      <h2>Datenschutz</h2>
+      <p>Alle Wecker und Einstellungen werden ausschließlich lokal in deinem Browser gespeichert. Es findet keine Übertragung an einen Server statt.</p>
+    </article>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <img src="/assets/images/logo-full.png" alt="Toolyfix">
+    <nav class="footer-links">
+      <a href="/ueber-uns.html">Über uns</a>
+      <a href="/datenschutz.html">Datenschutz</a>
+      <a href="/nutzungsbedingungen.html">Nutzungsbedingungen</a>
+      <a href="/kontakt.html">Kontakt</a>
+    </nav>
+    <p class="footer-note">© 2026 Toolyfix – Alle Tools laufen lokal in deinem Browser.</p>
+  </div>
+</footer>
+
+<div id="ringingOverlay">
+  <div id="ringingTime"></div>
+  <div id="ringingLabel"></div>
+  <div class="ring-actions">
+    <button class="ring-btn snooze" id="snoozeBtn">Schlummern (5 Min)</button>
+    <button class="ring-btn stop" id="stopBtn">Stopp</button>
+  </div>
+</div>
+
+<script>
+const liveClock = document.getElementById('liveClock');
+const alarmList = document.getElementById('alarmList');
+const alarmTimeInput = document.getElementById('alarmTimeInput');
+const alarmLabelInput = document.getElementById('alarmLabelInput');
+const volumeSlider = document.getElementById('volumeSlider');
+const ringingOverlay = document.getElementById('ringingOverlay');
+const ringingTime = document.getElementById('ringingTime');
+const ringingLabel = document.getElementById('ringingLabel');
+
+const dayNames = { 0: 'So', 1: 'Mo', 2: 'Di', 3: 'Mi', 4: 'Do', 5: 'Fr', 6: 'Sa' };
+let selectedDays = [];
+let alarms = [];
+let ringingAlarmId = null;
+let lastCheckedMinute = '';
+let audioCtx = null;
+let beepInterval = null;
+
+try {
+  const stored = localStorage.getItem('toolyfix_alarms');
+  if (stored) alarms = JSON.parse(stored);
+} catch (e) {}
+
+function saveAlarms() {
+  try { localStorage.setItem('toolyfix_alarms', JSON.stringify(alarms)); } catch (e) {}
+}
+
+function tickClock() {
+  const now = new Date();
+  liveClock.textContent = now.toLocaleTimeString('de-DE');
+
+  const hhmm = now.toTimeString().slice(0, 5);
+  const minuteKey = now.toISOString().slice(0, 16);
+  if (minuteKey !== lastCheckedMinute) {
+    lastCheckedMinute = minuteKey;
+    checkAlarms(hhmm, now.getDay());
+  }
+}
+
+function checkAlarms(hhmm, weekday) {
+  if (ringingAlarmId) return;
+  alarms.forEach(alarm => {
+    if (!alarm.enabled) return;
+    if (alarm.time !== hhmm) return;
+    if (alarm.days.length > 0 && !alarm.days.includes(weekday)) return;
+    triggerAlarm(alarm);
+  });
+}
+
+function triggerAlarm(alarm) {
+  ringingAlarmId = alarm.id;
+  ringingTime.textContent = alarm.time;
+  ringingLabel.textContent = alarm.label || 'Wecker';
+  ringingOverlay.classList.add('active');
+  startBeeping();
+
+  if (alarm.days.length === 0) {
+    alarm.enabled = false;
+    saveAlarms();
+    renderAlarms();
+  }
+
+  if (Notification && Notification.permission === 'granted') {
+    new Notification('⏰ ' + (alarm.label || 'Wecker'), { body: 'Es ist ' + alarm.time + ' Uhr.' });
+  }
+}
+
+function startBeeping() {
+  try {
+    audioCtx = audioCtx || new (window.AudioContext || window.webkitAudioContext)();
+    const beep = () => {
+      const osc = audioCtx.createOscillator();
+      const gain = audioCtx.createGain();
+      osc.frequency.value = 880;
+      gain.gain.value = volumeSlider.value / 100 * 0.3;
+      osc.connect(gain);
+      gain.connect(audioCtx.destination);
+      osc.start();
+      osc.stop(audioCtx.currentTime + 0.35);
+    };
+    beep();
+    beepInterval = setInterval(beep, 700);
+  } catch (e) {}
+}
+
+function stopBeeping() {
+  if (beepInterval) clearInterval(beepInterval);
+  beepInterval = null;
+}
+
+function stopAlarm() {
+  stopBeeping();
+  ringingOverlay.classList.remove('active');
+  ringingAlarmId = null;
+}
+
+document.getElementById('stopBtn').addEventListener('click', stopAlarm);
+document.getElementById('snoozeBtn').addEventListener('click', () => {
+  const alarm = alarms.find(a => a.id === ringingAlarmId);
+  stopAlarm();
+  if (!alarm) return;
+  const snoozeTime = new Date(Date.now() + 5 * 60 * 1000);
+  const hhmm = snoozeTime.toTimeString().slice(0, 5);
+  alarms.push({
+    id: Date.now(), time: hhmm, label: (alarm.label || 'Wecker') + ' (Schlummern)',
+    days: [], enabled: true
+  });
+  saveAlarms();
+  renderAlarms();
+});
+
+document.querySelectorAll('.day-toggle').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const day = parseInt(btn.dataset.day, 10);
+    btn.classList.toggle('active');
+    if (selectedDays.includes(day)) {
+      selectedDays = selectedDays.filter(d => d !== day);
+    } else {
+      selectedDays.push(day);
+    }
+  });
+});
+
+document.getElementById('addAlarmBtn').addEventListener('click', () => {
+  const time = alarmTimeInput.value;
+  if (!time) return;
+  alarms.push({
+    id: Date.now(),
+    time,
+    label: alarmLabelInput.value.trim(),
+    days: [...selectedDays],
+    enabled: true
+  });
+  saveAlarms();
+  renderAlarms();
+  alarmLabelInput.value = '';
+
+  // unlock audio context on user interaction
+  try { audioCtx = audioCtx || new (window.AudioContext || window.webkitAudioContext)(); } catch (e) {}
+});
+
+document.getElementById('notifyBtn').addEventListener('click', () => {
+  if ('Notification' in window) Notification.requestPermission();
+});
+
+function renderAlarms() {
+  if (alarms.length === 0) {
+    alarmList.innerHTML = '<p style="font-size:0.9rem; color:var(--ink-soft);">Noch keine Wecker eingestellt.</p>';
+    return;
+  }
+  alarms.sort((a, b) => a.time.localeCompare(b.time));
+  alarmList.innerHTML = '';
+  alarms.forEach(alarm => {
+    const card = document.createElement('div');
+    card.className = 'alarm-card' + (alarm.enabled ? '' : ' disabled');
+    const daysText = alarm.days.length > 0
+      ? alarm.days.slice().sort().map(d => dayNames[d]).join(', ')
+      : 'Einmalig';
+    card.innerHTML = `
+      <div class="alarm-main">
+        <span class="alarm-time">${alarm.time}</span>
+        <span class="alarm-meta">${alarm.label ? alarm.label + ' — ' : ''}${daysText}</span>
+      </div>
+      <div class="alarm-actions">
+        <label class="toggle-switch">
+          <input type="checkbox" ${alarm.enabled ? 'checked' : ''} data-id="${alarm.id}" class="alarm-toggle">
+          <span class="toggle-slider"></span>
+        </label>
+        <button class="delete-btn" data-id="${alarm.id}">✕</button>
+      </div>
+    `;
+    alarmList.appendChild(card);
+  });
+
+  document.querySelectorAll('.alarm-toggle').forEach(el => {
+    el.addEventListener('change', () => {
+      const alarm = alarms.find(a => a.id == el.dataset.id);
+      if (alarm) { alarm.enabled = el.checked; saveAlarms(); renderAlarms(); }
+    });
+  });
+  document.querySelectorAll('.delete-btn').forEach(el => {
+    el.addEventListener('click', () => {
+      alarms = alarms.filter(a => a.id != el.dataset.id);
+      saveAlarms();
+      renderAlarms();
+    });
+  });
+}
+
+setInterval(tickClock, 1000);
+tickClock();
+renderAlarms();
+</script>
+
+</body>
+</html>
