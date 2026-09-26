@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Altersrechner – Exaktes Alter in Jahren, Monaten & Tagen | Toolyfix</title>
+<meta name="description" content="Kostenloser Altersrechner: Berechne dein exaktes Alter in Jahren, Monaten und Tagen, plus gelebte Tage, Stunden, nächster Geburtstag und Sternzeichen.">
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/style.css">
+<style>
+  .date-row { display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 20px; }
+  .date-field { flex: 1; min-width: 200px; }
+  .date-field label { font-size: 0.85rem; color: var(--ink-soft); display: block; margin-bottom: 6px; }
+
+  .as-of-toggle { display: flex; gap: 8px; margin-bottom: 12px; }
+  .aot-btn {
+    padding: 8px 14px; border-radius: var(--radius); border: 1px solid var(--border);
+    background: var(--surface); cursor: pointer; font-size: 0.85rem; font-weight: 600;
+  }
+  .aot-btn.active { background: var(--primary); color: #fff; border-color: var(--primary); }
+
+  .headline-result {
+    text-align: center; padding: 28px 16px; background: var(--bg); border-radius: var(--radius); margin: 20px 0;
+  }
+  .headline-result .big { font-family: 'Space Grotesk', sans-serif; font-size: clamp(1.6rem, 5vw, 2.4rem); font-weight: 700; color: var(--primary-dark); }
+
+  .stats-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin: 16px 0; }
+  @media (max-width: 640px) { .stats-grid { grid-template-columns: repeat(2, 1fr); } }
+  .stat-box { background: var(--bg); border-radius: var(--radius); padding: 16px; text-align: center; }
+  .stat-box .value { font-family: 'Space Grotesk', sans-serif; font-size: 1.3rem; font-weight: 700; color: var(--primary); display: block; }
+  .stat-box .label { font-size: 0.78rem; color: var(--ink-soft); }
+
+  .extra-row { display: flex; gap: 16px; flex-wrap: wrap; margin-top: 16px; }
+  .extra-card { flex: 1; min-width: 200px; background: var(--accent-soft); border-radius: var(--radius); padding: 16px; }
+  .extra-card .ex-label { font-size: 0.8rem; color: var(--primary-dark); }
+  .extra-card .ex-value { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 1.15rem; color: var(--primary-dark); }
+
+  .related-tools { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 40px; }
+  .related-tools a {
+    padding: 10px 16px; border-radius: var(--radius); border: 1px solid var(--border);
+    background: var(--surface); text-decoration: none; color: var(--ink); font-size: 0.88rem; font-weight: 600;
+  }
+  .related-tools a:hover { border-color: var(--primary); color: var(--primary); }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container">
+    <a href="/" class="logo-link">
+      <img src="/assets/images/logo-full.png" alt="Toolyfix">
+    </a>
+    <span class="header-tagline">Kostenlose Tools, direkt im Browser</span>
+  </div>
+</header>
+
+<main class="tool-page">
+  <div class="container">
+    <p class="breadcrumb"><a href="/">Toolyfix</a> / Altersrechner</p>
+    <h1>Altersrechner</h1>
+    <p>Berechne dein exaktes Alter in Jahren, Monaten und Tagen – inklusive gelebter Tage, Stunden, nächstem Geburtstag und Sternzeichen.</p>
+
+    <div class="tool-panel">
+      <div class="date-row">
+        <div class="date-field">
+          <label for="birthDate">Geburtsdatum</label>
+          <input type="date" id="birthDate">
+        </div>
+        <div class="date-field">
+          <label>Berechnen bis</label>
+          <div class="as-of-toggle">
+            <button class="aot-btn active" id="todayBtn">Heute</button>
+            <button class="aot-btn" id="customDateBtn">Bestimmtes Datum</button>
+          </div>
+          <input type="date" id="asOfDate" style="display:none; margin-top:8px;">
+        </div>
+      </div>
+
+      <div class="field-row">
+        <button class="btn btn-primary" id="calcBtn">Alter berechnen</button>
+      </div>
+
+      <div id="resultsArea" style="display:none;">
+        <div class="headline-result">
+          <span class="big" id="headlineAge"></span>
+        </div>
+
+        <div class="stats-grid">
+          <div class="stat-box"><span class="value" id="totalYears"></span><span class="label">Jahre (gesamt)</span></div>
+          <div class="stat-box"><span class="value" id="totalMonths"></span><span class="label">Monate (gesamt)</span></div>
+          <div class="stat-box"><span class="value" id="totalWeeks"></span><span class="label">Wochen</span></div>
+          <div class="stat-box"><span class="value" id="totalDays"></span><span class="label">Tage</span></div>
+          <div class="stat-box"><span class="value" id="totalHours"></span><span class="label">Stunden</span></div>
+          <div class="stat-box"><span class="value" id="totalMinutes"></span><span class="label">Minuten</span></div>
+        </div>
+
+        <div class="extra-row">
+          <div class="extra-card">
+            <div class="ex-label">Nächster Geburtstag</div>
+            <div class="ex-value" id="nextBirthday"></div>
+          </div>
+          <div class="extra-card">
+            <div class="ex-label">Sternzeichen</div>
+            <div class="ex-value" id="zodiacSign"></div>
+          </div>
+          <div class="extra-card">
+            <div class="ex-label">Wochentag der Geburt</div>
+            <div class="ex-value" id="birthWeekday"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <article class="explainer">
+      <h2>Alter online berechnen: exakt in Jahren, Monaten und Tagen</h2>
+      <p>Dieser Altersrechner ermittelt dein exaktes Alter zwischen zwei Daten – standardmäßig zwischen deinem Geburtsdatum und dem heutigen Tag, alternativ auch bis zu einem beliebigen anderen Datum in der Zukunft oder Vergangenheit. Das ist praktisch für Bewerbungsformulare, Behördenanträge, das Ausfüllen von Verträgen, oder einfach, um genau zu wissen, wie viele Tage du bereits auf der Welt bist.</p>
+
+      <h2>Wie wird das genaue Alter berechnet?</h2>
+      <p>Anders als eine einfache Differenz der Jahreszahlen berücksichtigt dieser Rechner den kompletten Kalender, inklusive Schaltjahren und der unterschiedlichen Anzahl an Tagen pro Monat. Das Ergebnis "X Jahre, Y Monate, Z Tage" gibt genau an, wie viel Zeit seit deinem Geburtsdatum vergangen ist, exakt bis zum Tag. Zusätzlich zeigt das Tool dieselbe Zeitspanne in anderen Einheiten an: als Gesamtzahl der Monate, Wochen, Tage, Stunden und Minuten, was oft überraschend ist, wenn man zum ersten Mal sieht, wie viele Tage man tatsächlich schon gelebt hat.</p>
+
+      <h2>Wofür braucht man einen Altersrechner?</h2>
+      <p>Ein exakter Altersrechner wird häufig für formale Zwecke gebraucht, etwa um bei einer Bewerbung, einem Visumsantrag oder einem Vertrag das genaue Alter zum Stichtag anzugeben, statt es im Kopf zu berechnen und sich dabei möglicherweise zu vertun. Auch für Altersgrenzen – zum Beispiel Mindestalter für bestimmte Tätigkeiten, Versicherungen oder Fahrschulen – ist die exakte Berechnung bis zum Tag manchmal relevant, nicht nur die Jahreszahl.</p>
+
+      <h2>Alter zu einem bestimmten Datum berechnen</h2>
+      <p>Mit der Option "Bestimmtes Datum" kannst du berechnen, wie alt du (oder jemand anderes) an einem bestimmten Tag in der Vergangenheit oder Zukunft warst oder sein wirst – zum Beispiel, wie alt du am ersten Schultag deines Kindes sein wirst, oder wie alt eine historische Person an einem bestimmten Ereignisdatum war. Trage dazu einfach das gewünschte Zieldatum anstelle des heutigen Tages ein.</p>
+
+      <h2>Nächster Geburtstag: Countdown und Wochentag</h2>
+      <p>Zusätzlich zum aktuellen Alter zeigt dieser Rechner an, wie viele Tage es noch bis zum nächsten Geburtstag sind, und an welchem Wochentag dieser Geburtstag fällt. Das ist praktisch für die Planung einer Feier oder um sich rechtzeitig an anstehende Geburtstage von Familie und Freunden zu erinnern.</p>
+
+      <h2>Was passiert bei einem Geburtstag am 29. Februar?</h2>
+      <p>Wer an einem Schalttag (29. Februar) geboren wurde, hat in den meisten Jahren streng genommen kein exaktes Geburtsdatum, da der 29. Februar nur alle vier Jahre vorkommt. Dieser Rechner behandelt den 28. Februar in Nicht-Schaltjahren als den nächstgelegenen gültigen Geburtstag für die Countdown-Berechnung, was der in Deutschland üblichen Praxis entspricht.</p>
+
+      <h2>Sternzeichen automatisch bestimmt</h2>
+      <p>Als kleines Extra zeigt dieser Rechner auch das westliche Sternzeichen an, das zu deinem Geburtsdatum gehört, basierend auf den klassischen Datumsgrenzen der zwölf Tierkreiszeichen. Das ist rein unterhaltungsbasiert und hat keinen wissenschaftlichen Hintergrund, wird aber von vielen Nutzern gerne mit angeschaut.</p>
+
+      <h2>Datenschutz</h2>
+      <p>Alle Berechnungen finden ausschließlich lokal in deinem Browser statt. Dein Geburtsdatum wird nicht gespeichert und nicht an einen Server übertragen.</p>
+    </article>
+
+    <div class="related-tools">
+      <a href="/tools/digitaluhr.html">🕐 Digitaluhr</a>
+      <a href="/tools/wecker-online.html">⏰ Wecker Online</a>
+    </div>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <img src="/assets/images/logo-full.png" alt="Toolyfix">
+    <nav class="footer-links">
+      <a href="/ueber-uns.html">Über uns</a>
+      <a href="/datenschutz.html">Datenschutz</a>
+      <a href="/nutzungsbedingungen.html">Nutzungsbedingungen</a>
+      <a href="/kontakt.html">Kontakt</a>
+    </nav>
+    <p class="footer-note">© 2026 Toolyfix – Alle Tools laufen lokal in deinem Browser.</p>
+  </div>
+</footer>
+
+<script>
+const birthDateInput = document.getElementById('birthDate');
+const asOfDateInput = document.getElementById('asOfDate');
+const todayBtn = document.getElementById('todayBtn');
+const customDateBtn = document.getElementById('customDateBtn');
+const resultsArea = document.getElementById('resultsArea');
+
+let useToday = true;
+
+todayBtn.addEventListener('click', () => {
+  useToday = true;
+  todayBtn.classList.add('active');
+  customDateBtn.classList.remove('active');
+  asOfDateInput.style.display = 'none';
+});
+customDateBtn.addEventListener('click', () => {
+  useToday = false;
+  customDateBtn.classList.add('active');
+  todayBtn.classList.remove('active');
+  asOfDateInput.style.display = 'block';
+});
+
+const zodiacSigns = [
+  { name: 'Steinbock', end: [1, 19] }, { name: 'Wassermann', end: [2, 18] },
+  { name: 'Fische', end: [3, 20] }, { name: 'Widder', end: [4, 19] },
+  { name: 'Stier', end: [5, 20] }, { name: 'Zwillinge', end: [6, 20] },
+  { name: 'Krebs', end: [7, 22] }, { name: 'Löwe', end: [8, 22] },
+  { name: 'Jungfrau', end: [9, 22] }, { name: 'Waage', end: [10, 22] },
+  { name: 'Skorpion', end: [11, 21] }, { name: 'Schütze', end: [12, 21] },
+  { name: 'Steinbock', end: [12, 31] }
+];
+
+function getZodiac(month, day) {
+  for (const z of zodiacSigns) {
+    if (month < z.end[0] || (month === z.end[0] && day <= z.end[1])) return z.name;
+  }
+  return 'Steinbock';
+}
+
+function calc() {
+  if (!birthDateInput.value) return;
+  const birth = new Date(birthDateInput.value + 'T00:00:00');
+  const ref = useToday ? new Date() : new Date((asOfDateInput.value || birthDateInput.value) + 'T00:00:00');
+  ref.setHours(0, 0, 0, 0);
+
+  if (ref < birth) {
+    document.getElementById('headlineAge').textContent = 'Das Bezugsdatum liegt vor dem Geburtsdatum.';
+    resultsArea.style.display = 'block';
+    return;
+  }
+
+  let years = ref.getFullYear() - birth.getFullYear();
+  let months = ref.getMonth() - birth.getMonth();
+  let days = ref.getDate() - birth.getDate();
+
+  if (days < 0) {
+    months--;
+    const prevMonth = new Date(ref.getFullYear(), ref.getMonth(), 0);
+    days += prevMonth.getDate();
+  }
+  if (months < 0) {
+    years--;
+    months += 12;
+  }
+
+  document.getElementById('headlineAge').textContent = `${years} Jahre, ${months} Monate, ${days} Tage`;
+
+  const msDiff = ref - birth;
+  const totalDays = Math.floor(msDiff / 86400000);
+  document.getElementById('totalYears').textContent = (totalDays / 365.25).toFixed(1);
+  document.getElementById('totalMonths').textContent = (years * 12 + months);
+  document.getElementById('totalWeeks').textContent = Math.floor(totalDays / 7).toLocaleString('de-DE');
+  document.getElementById('totalDays').textContent = totalDays.toLocaleString('de-DE');
+  document.getElementById('totalHours').textContent = (totalDays * 24).toLocaleString('de-DE');
+  document.getElementById('totalMinutes').textContent = (totalDays * 24 * 60).toLocaleString('de-DE');
+
+  // Next birthday from today (always relative to real today, regardless of as-of toggle)
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+  let nextBday = new Date(today.getFullYear(), birth.getMonth(), birth.getDate());
+  if (nextBday < today) nextBday = new Date(today.getFullYear() + 1, birth.getMonth(), birth.getDate());
+  const daysUntil = Math.round((nextBday - today) / 86400000);
+  const weekday = nextBday.toLocaleDateString('de-DE', { weekday: 'long' });
+  document.getElementById('nextBirthday').textContent = daysUntil === 0 ? 'Heute! 🎉' : `in ${daysUntil} Tagen (${weekday})`;
+
+  document.getElementById('zodiacSign').textContent = getZodiac(birth.getMonth() + 1, birth.getDate());
+  document.getElementById('birthWeekday').textContent = birth.toLocaleDateString('de-DE', { weekday: 'long' });
+
+  resultsArea.style.display = 'block';
+}
+
+document.getElementById('calcBtn').addEventListener('click', calc);
+</script>
+
+</body>
+</html>
