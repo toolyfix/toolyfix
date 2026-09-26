@@ -31,6 +31,7 @@
 
   .media-wrap { position: relative; max-width: 520px; margin: 0 auto 16px; }
   #video, #webcamCanvas, #uploadCanvas { width: 100%; border-radius: var(--radius); background: #000; display: block; }
+  #video { transform: scaleX(-1); }
   #webcamCanvas, #uploadCanvas { display: none; }
 
   .dropzone {
@@ -242,7 +243,12 @@ async function captureFromWebcam() {
   webcamCanvas.width = video.videoWidth;
   webcamCanvas.height = video.videoHeight;
   const ctx = webcamCanvas.getContext('2d');
+  // Mirror the captured frame to match the mirrored live preview
+  ctx.save();
+  ctx.translate(webcamCanvas.width, 0);
+  ctx.scale(-1, 1);
   ctx.drawImage(video, 0, 0, webcamCanvas.width, webcamCanvas.height);
+  ctx.restore();
 
   video.style.display = 'none';
   webcamCanvas.style.display = 'block';
