@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Geburtstags Countdown – Live Countdown Erstellen | Toolyfix</title>
+<meta name="description" content="Kostenloser Geburtstags-Countdown: Live-Countdown in Tagen, Stunden, Minuten und Sekunden bis zum nächsten Geburtstag. Mit Teilen-Link und Vollbildmodus.">
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/style.css">
+<style>
+  .related-tools-top { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 20px; }
+  .related-tools-top a {
+    padding: 8px 14px; border-radius: var(--radius); border: 1px solid var(--border);
+    background: var(--surface); text-decoration: none; color: var(--ink); font-size: 0.85rem; font-weight: 600;
+  }
+  .related-tools-top a:hover { border-color: var(--primary); color: var(--primary); }
+
+  .setup-row { display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 20px; }
+  .setup-field { flex: 1; min-width: 180px; }
+  .setup-field label { font-size: 0.85rem; color: var(--ink-soft); display: block; margin-bottom: 6px; }
+
+  .countdown-display {
+    text-align: center; padding: 40px 16px; background: var(--bg); border-radius: var(--radius); margin: 20px 0;
+  }
+  .countdown-name { font-size: 1.2rem; color: var(--ink-soft); margin-bottom: 12px; }
+  .countdown-units { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+  .unit-box { min-width: 80px; }
+  .unit-box .u-value { font-family: 'Space Grotesk', sans-serif; font-size: clamp(1.8rem, 6vw, 3rem); font-weight: 700; color: var(--primary-dark); display: block; }
+  .unit-box .u-label { font-size: 0.78rem; color: var(--ink-soft); }
+
+  .celebration { display: none; text-align: center; padding: 40px 16px; background: var(--accent-soft); border-radius: var(--radius); margin: 20px 0; }
+  .celebration.active { display: block; }
+  .celebration .emoji { font-size: 3rem; }
+  .celebration .msg { font-family: 'Space Grotesk', sans-serif; font-size: 1.4rem; font-weight: 700; color: var(--primary-dark); margin-top: 10px; }
+
+  .share-row { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 16px; }
+
+  body.fs-mode { background: #0b0e11; }
+  body.fs-mode .site-header, body.fs-mode .explainer, body.fs-mode .site-footer,
+  body.fs-mode .breadcrumb, body.fs-mode h1, body.fs-mode .related-tools-top,
+  body.fs-mode .tool-page > .container > p:not(.breadcrumb), body.fs-mode .setup-row,
+  body.fs-mode .share-row { display: none !important; }
+  body.fs-mode .tool-panel { background: transparent; border: none; padding: 0; }
+  body.fs-mode .countdown-display { background: transparent; }
+  body.fs-mode .countdown-name { color: #ccc; font-size: 1.6rem; }
+  body.fs-mode .unit-box .u-value { color: #fff; font-size: clamp(3rem, 10vw, 6rem); }
+  body.fs-mode .unit-box .u-label { color: #999; }
+  body.fs-mode .tool-page { display: flex; align-items: center; justify-content: center; min-height: 100vh; }
+  body.fs-mode #exitFsBtn { display: inline-flex !important; position: fixed; bottom: 24px; right: 24px; }
+  #exitFsBtn { display: none; }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container">
+    <a href="/" class="logo-link">
+      <img src="/assets/images/logo-full.png" alt="Toolyfix">
+    </a>
+    <span class="header-tagline">Kostenlose Tools, direkt im Browser</span>
+  </div>
+</header>
+
+<main class="tool-page">
+  <div class="container">
+    <p class="breadcrumb"><a href="/">Toolyfix</a> / Geburtstags Countdown</p>
+    <h1>Geburtstags Countdown</h1>
+
+    <div class="related-tools-top">
+      <a href="/tools/altersrechner.html">🎂 Altersrechner</a>
+      <a href="/tools/wecker-online.html">⏰ Wecker Online</a>
+      <a href="/tools/digitaluhr.html">🕐 Digitaluhr</a>
+    </div>
+
+    <p>Live-Countdown bis zum nächsten Geburtstag – für dich selbst oder für jemand anderen. Mit Teilen-Link und Vollbildmodus für die große Anzeige.</p>
+
+    <div class="tool-panel">
+      <div class="setup-row">
+        <div class="setup-field">
+          <label for="nameInput">Name (optional)</label>
+          <input type="text" id="nameInput" placeholder="z. B. Annas Geburtstag">
+        </div>
+        <div class="setup-field">
+          <label for="birthDateInput">Geburtsdatum</label>
+          <input type="date" id="birthDateInput">
+        </div>
+      </div>
+
+      <div class="field-row">
+        <button class="btn btn-primary" id="startBtn">Countdown starten</button>
+        <button class="btn btn-ghost" id="fsBtn">Vollbild</button>
+        <button class="btn btn-ghost" id="exitFsBtn">Vollbild beenden</button>
+      </div>
+
+      <div class="countdown-display" id="countdownDisplay" style="display:none;">
+        <div class="countdown-name" id="countdownName"></div>
+        <div class="countdown-units">
+          <div class="unit-box"><span class="u-value" id="uDays">0</span><span class="u-label">Tage</span></div>
+          <div class="unit-box"><span class="u-value" id="uHours">0</span><span class="u-label">Stunden</span></div>
+          <div class="unit-box"><span class="u-value" id="uMinutes">0</span><span class="u-label">Minuten</span></div>
+          <div class="unit-box"><span class="u-value" id="uSeconds">0</span><span class="u-label">Sekunden</span></div>
+        </div>
+      </div>
+
+      <div class="celebration" id="celebration">
+        <div class="emoji">🎉🎂🎈</div>
+        <div class="msg" id="celebrationMsg">Alles Gute zum Geburtstag!</div>
+      </div>
+
+      <div class="share-row" id="shareRow" style="display:none;">
+        <button class="btn btn-ghost" id="shareBtn">Link zum Teilen kopieren</button>
+        <span class="status-note" id="shareStatus" style="font-size:0.85rem; color:var(--ink-soft); align-self:center;"></span>
+      </div>
+    </div>
+
+    <article class="explainer">
+      <h2>Geburtstags-Countdown online: live bis zur Sekunde</h2>
+      <p>Dieser Geburtstags-Countdown zeigt dir in Echtzeit an, wie viele Tage, Stunden, Minuten und Sekunden noch bis zum nächsten Geburtstag verbleiben – egal ob für dich selbst, deinen Partner, ein Kind oder einen Freund. Anders als eine einfache Tagesanzeige läuft die Uhr live weiter, sodass du auch am Tag selbst noch genau siehst, wie viele Stunden es bis Mitternacht sind.</p>
+
+      <h2>Wie wird der nächste Geburtstag berechnet?</h2>
+      <p>Du gibst einmalig das Geburtsdatum ein. Das Tool berechnet automatisch, ob der Geburtstag in diesem Kalenderjahr noch bevorsteht oder bereits vorbei ist – falls er bereits vorbei ist, wird automatisch der Geburtstag im nächsten Jahr als Ziel verwendet. Du musst also nicht selbst überlegen, welches Jahr das richtige Zielsatum ist.</p>
+
+      <h2>Für wen eignet sich dieser Countdown?</h2>
+      <p>Der Countdown eignet sich für den eigenen Geburtstag genauso wie für den einer anderen Person – trage einfach einen Namen ein (zum Beispiel "Annas Geburtstag") und das Geburtsdatum dieser Person. Das ist praktisch, um die Vorfreude auf den eigenen Geburtstag sichtbar zu machen, oder um Kindern spielerisch zu zeigen, wie viele Tage es noch bis zu ihrem großen Tag sind.</p>
+
+      <h2>Countdown teilen</h2>
+      <p>Über "Link zum Teilen kopieren" erstellt das Tool einen Link, der Name und Geburtsdatum direkt in der Webadresse enthält. Schickst du diesen Link an jemand anderen, öffnet sich bei ihm automatisch derselbe Countdown, ohne dass die Person selbst etwas eingeben muss – praktisch, um zum Beispiel eine Familien-Chatgruppe auf den bevorstehenden Geburtstag einzustimmen.</p>
+
+      <h2>Was passiert, wenn der Geburtstag erreicht ist?</h2>
+      <p>Sobald der Countdown null erreicht, zeigt die Seite automatisch eine Glückwunsch-Anzeige anstelle des Countdowns. Lädst du die Seite an diesem Tag erneut, springt der Countdown automatisch zum nächsten Jahr weiter, sodass du den Link auch für kommende Jahre wiederverwenden kannst.</p>
+
+      <h2>Vollbildmodus für Feiern und Präsentationen</h2>
+      <p>Der Vollbildmodus zeigt nur noch die große Countdown-Anzeige auf dunklem Hintergrund – ideal, um ihn auf einem Fernseher, Tablet oder Beamer während einer Feier laufen zu lassen, oder als Überraschung auf dem Bildschirm einer Person zu platzieren, deren Geburtstag naht.</p>
+
+      <h2>Datenschutz</h2>
+      <p>Alle Berechnungen laufen lokal in deinem Browser. Wenn du einen Teilen-Link erstellst, werden Name und Datum lediglich in die Webadresse selbst codiert – es gibt keine Speicherung auf einem Server, und wir sehen nicht, wie oft oder mit wem ein Link geteilt wird.</p>
+    </article>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <img src="/assets/images/logo-full.png" alt="Toolyfix">
+    <nav class="footer-links">
+      <a href="/ueber-uns.html">Über uns</a>
+      <a href="/datenschutz.html">Datenschutz</a>
+      <a href="/nutzungsbedingungen.html">Nutzungsbedingungen</a>
+      <a href="/kontakt.html">Kontakt</a>
+    </nav>
+    <p class="footer-note">© 2026 Toolyfix – Alle Tools laufen lokal in deinem Browser.</p>
+  </div>
+</footer>
+
+<script>
+const nameInput = document.getElementById('nameInput');
+const birthDateInput = document.getElementById('birthDateInput');
+const countdownDisplay = document.getElementById('countdownDisplay');
+const countdownName = document.getElementById('countdownName');
+const celebration = document.getElementById('celebration');
+const celebrationMsg = document.getElementById('celebrationMsg');
+const shareRow = document.getElementById('shareRow');
+const shareStatus = document.getElementById('shareStatus');
+
+let birthMonth, birthDay;
+let countdownInterval = null;
+
+function getNextBirthday(month, day) {
+  const now = new Date();
+  let next = new Date(now.getFullYear(), month, day, 0, 0, 0);
+  if (next < now) next = new Date(now.getFullYear() + 1, month, day, 0, 0, 0);
+  return next;
+}
+
+function tick() {
+  const next = getNextBirthday(birthMonth, birthDay);
+  const now = new Date();
+  const diff = next - now;
+
+  if (diff <= 0 || (next - now) < 1000 && next.toDateString() === now.toDateString()) {
+    // handled below via day check
+  }
+
+  if (now.toDateString() === new Date(now.getFullYear(), birthMonth, birthDay).toDateString()) {
+    countdownDisplay.style.display = 'none';
+    celebration.classList.add('active');
+    const label = nameInput.value.trim();
+    celebrationMsg.textContent = label ? `Alles Gute, ${label.replace(/geburtstag/i, '').trim() || label}!` : 'Alles Gute zum Geburtstag!';
+    return;
+  }
+
+  celebration.classList.remove('active');
+  countdownDisplay.style.display = 'block';
+
+  const days = Math.floor(diff / 86400000);
+  const hours = Math.floor((diff % 86400000) / 3600000);
+  const minutes = Math.floor((diff % 3600000) / 60000);
+  const seconds = Math.floor((diff % 60000) / 1000);
+
+  document.getElementById('uDays').textContent = days;
+  document.getElementById('uHours').textContent = String(hours).padStart(2, '0');
+  document.getElementById('uMinutes').textContent = String(minutes).padStart(2, '0');
+  document.getElementById('uSeconds').textContent = String(seconds).padStart(2, '0');
+}
+
+function startCountdown(fromUrl) {
+  if (!birthDateInput.value) return;
+  const parts = birthDateInput.value.split('-');
+  birthMonth = parseInt(parts[1], 10) - 1;
+  birthDay = parseInt(parts[2], 10);
+
+  const label = nameInput.value.trim();
+  countdownName.textContent = label || 'Countdown bis zum Geburtstag';
+
+  clearInterval(countdownInterval);
+  tick();
+  countdownInterval = setInterval(tick, 1000);
+  shareRow.style.display = 'flex';
+
+  if (!fromUrl) {
+    const params = new URLSearchParams();
+    if (label) params.set('name', label);
+    params.set('month', parts[1]);
+    params.set('day', parts[2]);
+    const newUrl = window.location.pathname + '?' + params.toString();
+    window.history.replaceState({}, '', newUrl);
+  }
+}
+
+document.getElementById('startBtn').addEventListener('click', () => startCountdown(false));
+
+document.getElementById('shareBtn').addEventListener('click', () => {
+  navigator.clipboard.writeText(window.location.href);
+  shareStatus.textContent = 'Link kopiert!';
+  setTimeout(() => shareStatus.textContent = '', 2500);
+});
+
+document.getElementById('fsBtn').addEventListener('click', () => {
+  document.body.classList.add('fs-mode');
+  if (document.documentElement.requestFullscreen) document.documentElement.requestFullscreen().catch(() => {});
+});
+document.getElementById('exitFsBtn').addEventListener('click', () => {
+  document.body.classList.remove('fs-mode');
+  if (document.fullscreenElement && document.exitFullscreen) document.exitFullscreen().catch(() => {});
+});
+document.addEventListener('fullscreenchange', () => {
+  if (!document.fullscreenElement) document.body.classList.remove('fs-mode');
+});
+
+// Load from shareable link if present
+(function loadFromUrl() {
+  const params = new URLSearchParams(window.location.search);
+  const month = params.get('month');
+  const day = params.get('day');
+  const name = params.get('name');
+  if (month && day) {
+    const yearGuess = new Date().getFullYear();
+    birthDateInput.value = `${yearGuess}-${month.padStart(2, '0')}-${day.padStart(2, '0')}`;
+    if (name) nameInput.value = name;
+    startCountdown(true);
+  }
+})();
+</script>
+
+</body>
+</html>

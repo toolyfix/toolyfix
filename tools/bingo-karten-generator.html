@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bingo Karten Generator – Zahlen & Wörter Bingo | Toolyfix</title>
+<meta name="description" content="Kostenlose Bingo-Karten erstellen und drucken: klassisches Zahlen-Bingo oder eigenes Wörter-Bingo (z. B. für Party, Büro oder Unterricht). Mehrere Karten auf einmal, druckfertig.">
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/style.css">
+<style>
+  .related-tools-top { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 20px; }
+  .related-tools-top a {
+    padding: 8px 14px; border-radius: var(--radius); border: 1px solid var(--border);
+    background: var(--surface); text-decoration: none; color: var(--ink); font-size: 0.85rem; font-weight: 600;
+  }
+  .related-tools-top a:hover { border-color: var(--primary); color: var(--primary); }
+
+  .mode-toggle { display: flex; gap: 8px; margin-bottom: 20px; }
+  .mode-btn {
+    padding: 10px 16px; border-radius: var(--radius); border: 1px solid var(--border);
+    background: var(--surface); cursor: pointer; font-family: 'Inter', sans-serif; font-weight: 600; font-size: 0.88rem;
+  }
+  .mode-btn.active { background: var(--primary); color: #fff; border-color: var(--primary); }
+  .mode-panel { display: none; }
+  .mode-panel.active { display: block; }
+
+  .options-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-bottom: 16px; }
+  @media (max-width: 720px) { .options-grid { grid-template-columns: repeat(2, 1fr); } }
+  .options-grid label { font-size: 0.82rem; color: var(--ink-soft); display: block; margin-bottom: 6px; }
+
+  .cards-output { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 24px; margin-top: 24px; }
+  .bingo-card {
+    background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 16px;
+  }
+  .bingo-card .card-title { text-align: center; font-family: 'Space Grotesk', sans-serif; font-weight: 700; margin-bottom: 10px; }
+  .bingo-grid { display: grid; gap: 4px; }
+  .bingo-cell {
+    aspect-ratio: 1; display: flex; align-items: center; justify-content: center; text-align: center;
+    background: var(--bg); border-radius: 6px; font-size: 0.85rem; font-weight: 600; padding: 4px; word-break: break-word;
+  }
+  .bingo-cell.free { background: var(--accent-soft); color: var(--primary-dark); font-weight: 700; }
+
+  @media print {
+    .site-header, .related-tools-top, .tool-page > .container > p:not(.print-only),
+    .mode-toggle, .options-grid, .field-row, .explainer, .site-footer, h1, .breadcrumb { display: none !important; }
+    .cards-output { gap: 0; }
+    .bingo-card { break-inside: avoid; page-break-inside: avoid; border: 2px solid #000; margin-bottom: 20px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container">
+    <a href="/" class="logo-link">
+      <img src="/assets/images/logo-full.png" alt="Toolyfix">
+    </a>
+    <span class="header-tagline">Kostenlose Tools, direkt im Browser</span>
+  </div>
+</header>
+
+<main class="tool-page">
+  <div class="container">
+    <p class="breadcrumb"><a href="/">Toolyfix</a> / Bingo Karten Generator</p>
+    <h1>Bingo Karten Generator</h1>
+
+    <div class="related-tools-top">
+      <a href="/tools/wuerfel-online.html">🎲 Würfel Online</a>
+    </div>
+
+    <p>Erstelle klassische Zahlen-Bingokarten oder eigene Wörter-Bingokarten für Party, Büro oder Unterricht – mehrere Karten gleichzeitig, direkt druckfertig.</p>
+
+    <div class="tool-panel">
+      <div class="mode-toggle">
+        <button class="mode-btn active" data-mode="numbers">Zahlen-Bingo</button>
+        <button class="mode-btn" data-mode="words">Wörter-Bingo (eigene Begriffe)</button>
+      </div>
+
+      <div class="options-grid">
+        <div>
+          <label for="gridSize">Rastergröße</label>
+          <select id="gridSize">
+            <option value="3">3 × 3</option>
+            <option value="4">4 × 4</option>
+            <option value="5" selected>5 × 5</option>
+          </select>
+        </div>
+        <div id="freeSpaceOption">
+          <label for="freeSpaceToggle">Freies Mittelfeld</label>
+          <select id="freeSpaceToggle">
+            <option value="yes">Ja (nur bei ungerader Größe)</option>
+            <option value="no">Nein</option>
+          </select>
+        </div>
+        <div>
+          <label for="cardCount">Anzahl Karten</label>
+          <input type="number" id="cardCount" min="1" max="50" value="1">
+        </div>
+        <div id="numberRangeOption">
+          <label for="maxNumber">Zahlen bis</label>
+          <input type="number" id="maxNumber" min="10" value="75">
+        </div>
+      </div>
+
+      <div class="mode-panel" id="wordsPanel">
+        <label style="font-size:0.85rem; color:var(--ink-soft); display:block; margin-bottom:6px;">Eigene Begriffe (eine Zeile = ein Feld, mindestens so viele wie Felder im Raster)</label>
+        <textarea id="wordsInput" rows="8" placeholder="z. B.&#10;Kaffee&#10;Homeoffice&#10;Meeting verschoben&#10;Synergien&#10;Elternzeit&#10;..."></textarea>
+      </div>
+
+      <div class="field-row" style="margin-top:16px;">
+        <input type="text" id="cardTitle" placeholder="Titel der Karte (optional), z. B. Büro-Bingo" style="flex:1; min-width:200px;">
+      </div>
+
+      <div class="field-row">
+        <button class="btn btn-primary" id="generateBtn">Karten generieren</button>
+        <button class="btn btn-ghost" id="printBtn">Drucken / Als PDF speichern</button>
+      </div>
+
+      <div class="cards-output" id="cardsOutput"></div>
+    </div>
+
+    <article class="explainer">
+      <h2>Bingo-Karten online erstellen: für Zahlen oder eigene Begriffe</h2>
+      <p>Dieser Bingo Karten Generator erstellt in Sekunden fertige, druckbare Bingokarten – entweder als klassisches Zahlen-Bingo mit zufällig verteilten Nummern, oder als individuelles Wörter-Bingo mit deinen eigenen Begriffen. Letzteres eignet sich hervorragend für Büro-Bingo (Buzzword-Bingo bei Meetings), Baby-Shower-Bingo, Klassenzimmer-Bingo im Unterricht, oder als Eisbrecher-Spiel bei Feiern und Teamevents.</p>
+
+      <h2>Klassisches Zahlen-Bingo</h2>
+      <p>Beim klassischen Zahlen-Bingo (wie es zum Beispiel bei Tombolas oder Vereinsfeiern gespielt wird) enthält jede Karte eine zufällige Auswahl an Zahlen aus einem festgelegten Bereich, üblicherweise 1 bis 75 für ein 5×5-Raster. Du kannst den Zahlenbereich anpassen, etwa auf 1 bis 90 für europäisches Bingo, oder einen kleineren Bereich für ein einfacheres Spiel mit Kindern.</p>
+
+      <h2>Wörter-Bingo für Büro, Feiern und Unterricht</h2>
+      <p>Beim Wörter-Bingo trägst du eigene Begriffe oder Phrasen ein – zum Beispiel typische Buzzwords für ein Büro-Bingo während eines Meetings ("Synergien nutzen", "Das nehmen wir offline mit", "Können wir das parken?"), Fragen und Fakten für ein Kennenlern-Bingo bei einer Feier, oder Vokabeln und Begriffe für ein Lernspiel im Unterricht. Jede generierte Karte verteilt deine Begriffe in zufälliger Reihenfolge auf das Raster, sodass jede Karte innerhalb einer Gruppe unterschiedlich aussieht.</p>
+
+      <h2>Mehrere unterschiedliche Karten für eine Gruppe</h2>
+      <p>Für ein Bingo-Spiel mit mehreren Mitspielern braucht jede Person im Idealfall eine eigene, unterschiedliche Karte, damit nicht mehrere Personen gleichzeitig gewinnen. Mit der Einstellung "Anzahl Karten" kannst du bis zu 50 unterschiedlich gemischte Karten auf einmal generieren und direkt gemeinsam ausdrucken.</p>
+
+      <h2>Freies Mittelfeld</h2>
+      <p>Bei einer ungeraden Rastergröße (3×3 oder 5×5) kannst du ein freies Mittelfeld aktivieren, das automatisch als "Frei" markiert wird und beim Spiel als bereits abgehakt gilt – eine Tradition aus dem klassischen amerikanischen Bingo. Bei geraden Rastergrößen (4×4) gibt es kein exaktes Mittelfeld, weshalb diese Option dort deaktiviert ist.</p>
+
+      <h2>Karten direkt drucken oder als PDF speichern</h2>
+      <p>Über den Button "Drucken / Als PDF speichern" öffnet sich der Druckdialog deines Browsers mit einer aufgeräumten Ansicht, die nur die Bingokarten selbst zeigt, ohne Menü oder Seitenleiste. Wählst du dort als Drucker "Als PDF speichern" (in den meisten Browsern verfügbar), erhältst du eine PDF-Datei mit allen generierten Karten, bereit zum Ausdrucken oder digitalen Versenden.</p>
+
+      <h2>Tipps für ein gelungenes Büro- oder Party-Bingo</h2>
+      <p>Für Büro-Bingo funktionieren Formulierungen am besten, die während eines typischen Meetings tatsächlich häufig fallen – das sorgt für Wiedererkennungswert und Lacher, wenn jemand ein Feld markieren kann. Für Kennenlern-Bingo bei Feiern eignen sich Aussagen wie "Hat schon einmal im Ausland gelebt" oder "Spielt ein Musikinstrument", bei denen die Mitspieler untereinander die passende Person suchen müssen. Für den Unterricht kannst du Vokabeln, Formeln oder historische Ereignisse als Begriffe verwenden.</p>
+
+      <h2>Datenschutz</h2>
+      <p>Alle Karten werden lokal in deinem Browser generiert. Es findet keine Übertragung deiner eingegebenen Begriffe an einen Server statt.</p>
+    </article>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <img src="/assets/images/logo-full.png" alt="Toolyfix">
+    <nav class="footer-links">
+      <a href="/ueber-uns.html">Über uns</a>
+      <a href="/datenschutz.html">Datenschutz</a>
+      <a href="/nutzungsbedingungen.html">Nutzungsbedingungen</a>
+      <a href="/kontakt.html">Kontakt</a>
+    </nav>
+    <p class="footer-note">© 2026 Toolyfix – Alle Tools laufen lokal in deinem Browser.</p>
+  </div>
+</footer>
+
+<script>
+const gridSizeSelect = document.getElementById('gridSize');
+const freeSpaceToggle = document.getElementById('freeSpaceToggle');
+const cardCountInput = document.getElementById('cardCount');
+const maxNumberInput = document.getElementById('maxNumber');
+const wordsInput = document.getElementById('wordsInput');
+const wordsPanel = document.getElementById('wordsPanel');
+const numberRangeOption = document.getElementById('numberRangeOption');
+const cardTitleInput = document.getElementById('cardTitle');
+const cardsOutput = document.getElementById('cardsOutput');
+
+let mode = 'numbers';
+
+document.querySelectorAll('.mode-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.mode-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    mode = btn.dataset.mode;
+    wordsPanel.classList.toggle('active', mode === 'words');
+    numberRangeOption.style.display = mode === 'words' ? 'none' : 'block';
+  });
+});
+
+function shuffle(arr) {
+  const a = [...arr];
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+
+function generateCards() {
+  const size = parseInt(gridSizeSelect.value, 10);
+  const totalCells = size * size;
+  const hasFree = size % 2 === 1 && freeSpaceToggle.value === 'yes';
+  const centerIndex = hasFree ? Math.floor(totalCells / 2) : -1;
+  const count = Math.min(50, Math.max(1, parseInt(cardCountInput.value, 10) || 1));
+  const title = cardTitleInput.value.trim();
+
+  let pool = [];
+  if (mode === 'numbers') {
+    const maxNum = Math.max(totalCells, parseInt(maxNumberInput.value, 10) || 75);
+    pool = Array.from({ length: maxNum }, (_, i) => i + 1);
+  } else {
+    pool = wordsInput.value.split('\n').map(w => w.trim()).filter(Boolean);
+    const needed = hasFree ? totalCells - 1 : totalCells;
+    if (pool.length < needed) {
+      cardsOutput.innerHTML = `<p style="color:#B23A3A;">Bitte mindestens ${needed} Begriffe eingeben (aktuell: ${pool.length}).</p>`;
+      return;
+    }
+  }
+
+  cardsOutput.innerHTML = '';
+  for (let c = 0; c < count; c++) {
+    const needed = hasFree ? totalCells - 1 : totalCells;
+    const chosen = shuffle(pool).slice(0, needed);
+    let idx = 0;
+    const cells = [];
+    for (let i = 0; i < totalCells; i++) {
+      if (i === centerIndex) {
+        cells.push({ text: 'FREI', free: true });
+      } else {
+        cells.push({ text: chosen[idx], free: false });
+        idx++;
+      }
+    }
+
+    const cardEl = document.createElement('div');
+    cardEl.className = 'bingo-card';
+    const titleEl = document.createElement('div');
+    titleEl.className = 'card-title';
+    titleEl.textContent = title || 'BINGO';
+    cardEl.appendChild(titleEl);
+
+    const gridEl = document.createElement('div');
+    gridEl.className = 'bingo-grid';
+    gridEl.style.gridTemplateColumns = `repeat(${size}, 1fr)`;
+    cells.forEach(cell => {
+      const cellEl = document.createElement('div');
+      cellEl.className = 'bingo-cell' + (cell.free ? ' free' : '');
+      cellEl.textContent = cell.text;
+      gridEl.appendChild(cellEl);
+    });
+    cardEl.appendChild(gridEl);
+    cardsOutput.appendChild(cardEl);
+  }
+}
+
+gridSizeSelect.addEventListener('change', () => {
+  const size = parseInt(gridSizeSelect.value, 10);
+  document.getElementById('freeSpaceOption').style.display = size % 2 === 1 ? 'block' : 'none';
+});
+
+document.getElementById('generateBtn').addEventListener('click', generateCards);
+document.getElementById('printBtn').addEventListener('click', () => {
+  if (cardsOutput.children.length === 0) generateCards();
+  window.print();
+});
+
+generateCards();
+</script>
+
+</body>
+</html>
