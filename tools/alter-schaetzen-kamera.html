@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Alter Schätzen per Kamera – KI Altersschätzung | Toolyfix</title>
+<meta name="description" content="Schätze dein Alter per Webcam oder Foto mit KI, direkt im Browser. Unterhaltsame Altersschätzung – keine Bilder werden hochgeladen oder gespeichert.">
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/style.css">
+<style>
+  .related-tools-top { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 20px; }
+  .related-tools-top a {
+    padding: 8px 14px; border-radius: var(--radius); border: 1px solid var(--border);
+    background: var(--surface); text-decoration: none; color: var(--ink); font-size: 0.85rem; font-weight: 600;
+  }
+  .related-tools-top a:hover { border-color: var(--primary); color: var(--primary); }
+
+  .mode-toggle { display: flex; gap: 8px; margin-bottom: 20px; }
+  .mode-btn {
+    padding: 10px 16px; border-radius: var(--radius); border: 1px solid var(--border);
+    background: var(--surface); cursor: pointer; font-family: 'Inter', sans-serif; font-weight: 600; font-size: 0.88rem;
+  }
+  .mode-btn.active { background: var(--primary); color: #fff; border-color: var(--primary); }
+  .mode-panel { display: none; }
+  .mode-panel.active { display: block; }
+
+  #videoWrap, #imgWrap { position: relative; max-width: 480px; margin: 0 auto 16px; }
+  #video, #uploadedImg { width: 100%; border-radius: var(--radius); background: #000; display: block; }
+  #uploadedImg { display: none; }
+
+  .dropzone {
+    border: 2px dashed var(--border); border-radius: var(--radius); padding: 32px 20px;
+    text-align: center; cursor: pointer; max-width: 480px; margin: 0 auto 16px;
+  }
+  .dropzone.dragover { border-color: var(--primary); background: var(--accent-soft); }
+  #imgFileInput { display: none; }
+
+  .result-display { text-align: center; padding: 24px; background: var(--bg); border-radius: var(--radius); margin-top: 16px; }
+  .result-display .age-value { font-family: 'Space Grotesk', sans-serif; font-size: 2.4rem; font-weight: 700; color: var(--primary-dark); }
+  .result-display .sub-value { font-size: 0.95rem; color: var(--ink-soft); margin-top: 6px; }
+
+  .status-line { text-align: center; font-size: 0.88rem; color: var(--ink-soft); margin-top: 12px; }
+
+  .disclaimer-box {
+    background: var(--accent-soft); border-radius: var(--radius); padding: 14px 18px;
+    font-size: 0.85rem; color: var(--primary-dark); margin: 20px 0;
+  }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container">
+    <a href="/" class="logo-link">
+      <img src="/assets/images/logo-full.png" alt="Toolyfix">
+    </a>
+    <span class="header-tagline">Kostenlose Tools, direkt im Browser</span>
+  </div>
+</header>
+
+<main class="tool-page">
+  <div class="container">
+    <p class="breadcrumb"><a href="/">Toolyfix</a> / Alter Schätzen per Kamera</p>
+    <h1>Alter Schätzen per Kamera</h1>
+
+    <div class="related-tools-top">
+      <a href="/tools/altersrechner.html">🎂 Altersrechner</a>
+      <a href="/tools/farbwaehler.html">🎨 Farbwähler</a>
+    </div>
+
+    <p>Eine KI schätzt dein ungefähres Alter über deine Webcam oder ein hochgeladenes Foto. Die gesamte Analyse läuft direkt in deinem Browser – dein Bild wird niemals hochgeladen oder gespeichert.</p>
+
+    <div class="disclaimer-box">
+      <strong>Nur zur Unterhaltung:</strong> Diese Schätzung basiert auf einem KI-Modell und kann deutlich vom tatsächlichen Alter abweichen. Sie ist keine offizielle Altersverifikation und sollte nicht für rechtliche, medizinische oder sicherheitsrelevante Zwecke verwendet werden.
+    </div>
+
+    <div class="tool-panel">
+      <div class="mode-toggle">
+        <button class="mode-btn active" data-mode="webcam">Webcam</button>
+        <button class="mode-btn" data-mode="upload">Foto hochladen</button>
+      </div>
+
+      <div class="mode-panel active" id="webcamPanel">
+        <div id="videoWrap">
+          <video id="video" autoplay muted playsinline></video>
+        </div>
+        <div class="field-row" style="justify-content:center;">
+          <button class="btn btn-primary" id="startCamBtn">Kamera starten</button>
+          <button class="btn btn-ghost" id="stopCamBtn" style="display:none;">Kamera stoppen</button>
+        </div>
+      </div>
+
+      <div class="mode-panel" id="uploadPanel">
+        <div class="dropzone" id="dropzone">
+          <p><strong>Foto hierher ziehen</strong> oder klicken zum Auswählen</p>
+        </div>
+        <input type="file" id="imgFileInput" accept="image/*">
+        <div id="imgWrap">
+          <img id="uploadedImg" alt="Hochgeladenes Foto">
+        </div>
+      </div>
+
+      <p class="status-line" id="statusLine">Lade KI-Modell …</p>
+
+      <div class="result-display" id="resultDisplay" style="display:none;">
+        <div class="age-value" id="ageValue"></div>
+        <div class="sub-value" id="genderValue"></div>
+      </div>
+    </div>
+
+    <article class="explainer">
+      <h2>Alter per KI schätzen: wie funktioniert das?</h2>
+      <p>Dieses Tool nutzt ein neuronales Netz, das darauf trainiert wurde, aus Gesichtsmerkmalen ein ungefähres Alter und Geschlecht zu schätzen. Das Modell (face-api.js, basierend auf TensorFlow.js) läuft vollständig in deinem Browser – es findet keine Übertragung deines Bildes an einen Server statt. Die Berechnung geschieht direkt auf deinem Gerät, ähnlich wie bei den Gesichtserkennungsfunktionen mancher Smartphone-Kameras.</p>
+
+      <h2>Wie genau ist die Altersschätzung?</h2>
+      <p>KI-basierte Altersschätzung aus einem einzelnen Foto ist von Natur aus ungenau und kann je nach Beleuchtung, Kamerawinkel, Gesichtsausdruck, Bildqualität und individuellen Merkmalen um mehrere Jahre danebenliegen. Diese Modelle werden mit großen Datensätzen von Gesichtsbildern trainiert und lernen dabei statistische Muster, die im Durchschnitt über viele Gesichter hinweg einigermaßen zutreffen, bei einer einzelnen Person aber deutlich abweichen können. Betrachte das Ergebnis daher als unterhaltsame Schätzung, nicht als präzise Messung.</p>
+
+      <h2>Warum ist das keine echte Altersverifikation?</h2>
+      <p>Anwendungen, die ein Mindestalter überprüfen müssen (zum Beispiel für Alkohol, Glücksspiel oder altersbeschränkte Inhalte), verwenden in der Regel amtliche Ausweisdokumente oder zertifizierte Verifikationsdienste, keine KI-Altersschätzung aus einem Foto. Die Fehlerspanne von mehreren Jahren macht dieses Tool für solche Zwecke ungeeignet – es dient ausschließlich der Unterhaltung.</p>
+
+      <h2>Webcam oder Foto hochladen – was ist besser?</h2>
+      <p>Über die Webcam bekommst du eine live aktualisierte Schätzung, die sich anpasst, sobald sich Beleuchtung oder Kopfhaltung ändern – das macht sichtbar, wie stark die Schätzung von äußeren Faktoren abhängt. Der Foto-Upload eignet sich dagegen gut, wenn du ein bestimmtes, bereits vorhandenes Bild testen möchtest, zum Beispiel ein älteres Foto von dir.</p>
+
+      <h2>Datenschutz und Privatsphäre</h2>
+      <p>Weder das Kamerabild noch ein hochgeladenes Foto verlassen jemals dein Gerät. Die gesamte Gesichtserkennung und Altersschätzung läuft lokal im Browser über JavaScript und WebGL. Es werden keine Bilder gespeichert, protokolliert oder an uns oder Dritte übertragen. Nach dem Schließen der Seite ist alles wieder verschwunden. Den Kamerazugriff erlaubt dein Browser zudem nur, nachdem du ihn explizit über den Button und die Browser-Berechtigungsabfrage bestätigt hast.</p>
+
+      <h2>Wofür wird eine KI-Altersschätzung sonst genutzt?</h2>
+      <p>Ähnliche Technologie wird kommerziell zum Beispiel in der Marktforschung eingesetzt (anonyme demografische Schätzung an digitalen Werbebildschirmen), in Foto-Apps für Spaßfilter, oder in der akademischen Forschung zur Verbesserung von Gesichtserkennungsmodellen. Für den privaten Gebrauch bleibt es vor allem ein unterhaltsames Spielzeug, um zu sehen, wie eine KI dein Gesicht "liest".</p>
+    </article>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <img src="/assets/images/logo-full.png" alt="Toolyfix">
+    <nav class="footer-links">
+      <a href="/ueber-uns.html">Über uns</a>
+      <a href="/datenschutz.html">Datenschutz</a>
+      <a href="/nutzungsbedingungen.html">Nutzungsbedingungen</a>
+      <a href="/kontakt.html">Kontakt</a>
+    </nav>
+    <p class="footer-note">© 2026 Toolyfix – Alle Tools laufen lokal in deinem Browser.</p>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/face-api.js@0.22.2/dist/face-api.min.js"></script>
+<script>
+const MODEL_URL = 'https://cdn.jsdelivr.net/gh/justadudewhohacks/face-api.js@master/weights';
+const video = document.getElementById('video');
+const startCamBtn = document.getElementById('startCamBtn');
+const stopCamBtn = document.getElementById('stopCamBtn');
+const statusLine = document.getElementById('statusLine');
+const resultDisplay = document.getElementById('resultDisplay');
+const ageValue = document.getElementById('ageValue');
+const genderValue = document.getElementById('genderValue');
+const dropzone = document.getElementById('dropzone');
+const imgFileInput = document.getElementById('imgFileInput');
+const uploadedImg = document.getElementById('uploadedImg');
+
+let modelsReady = false;
+let stream = null;
+let webcamLoopId = null;
+let recentAges = [];
+
+async function loadModels() {
+  try {
+    await faceapi.nets.tinyFaceDetector.loadFromUri(MODEL_URL);
+    await faceapi.nets.ageGenderNet.loadFromUri(MODEL_URL);
+    modelsReady = true;
+    statusLine.textContent = 'Bereit. Starte die Kamera oder lade ein Foto hoch.';
+  } catch (e) {
+    statusLine.textContent = 'Das KI-Modell konnte nicht geladen werden. Prüfe deine Internetverbindung und lade die Seite neu.';
+  }
+}
+loadModels();
+
+document.querySelectorAll('.mode-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.mode-btn').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.mode-panel').forEach(p => p.classList.remove('active'));
+    btn.classList.add('active');
+    const mode = btn.dataset.mode;
+    document.getElementById(mode === 'webcam' ? 'webcamPanel' : 'uploadPanel').classList.add('active');
+    if (mode !== 'webcam') stopCamera();
+    resultDisplay.style.display = 'none';
+  });
+});
+
+async function startCamera() {
+  if (!modelsReady) { statusLine.textContent = 'KI-Modell wird noch geladen, bitte kurz warten …'; return; }
+  try {
+    stream = await navigator.mediaDevices.getUserMedia({ video: { width: 480, height: 360 } });
+    video.srcObject = stream;
+    startCamBtn.style.display = 'none';
+    stopCamBtn.style.display = 'inline-flex';
+    recentAges = [];
+    webcamLoop();
+  } catch (e) {
+    statusLine.textContent = 'Kamerazugriff wurde nicht erlaubt oder ist nicht verfügbar.';
+  }
+}
+
+function stopCamera() {
+  if (stream) stream.getTracks().forEach(t => t.stop());
+  stream = null;
+  if (webcamLoopId) clearTimeout(webcamLoopId);
+  startCamBtn.style.display = 'inline-flex';
+  stopCamBtn.style.display = 'none';
+}
+
+async function webcamLoop() {
+  if (!stream) return;
+  try {
+    const detection = await faceapi.detectSingleFace(video, new faceapi.TinyFaceDetectorOptions()).withAgeAndGender();
+    if (detection) {
+      recentAges.push(detection.age);
+      if (recentAges.length > 6) recentAges.shift();
+      const avgAge = recentAges.reduce((a, b) => a + b, 0) / recentAges.length;
+      showResult(avgAge, detection.gender, detection.genderProbability);
+      statusLine.textContent = 'Gesicht erkannt — Schätzung wird laufend aktualisiert.';
+    } else {
+      statusLine.textContent = 'Kein Gesicht erkannt. Schau direkt in die Kamera, mit guter Beleuchtung.';
+    }
+  } catch (e) {}
+  webcamLoopId = setTimeout(webcamLoop, 900);
+}
+
+function showResult(age, gender, prob) {
+  resultDisplay.style.display = 'block';
+  ageValue.textContent = '≈ ' + Math.round(age) + ' Jahre';
+  const genderLabel = gender === 'male' ? 'männlich' : 'weiblich';
+  genderValue.textContent = `Geschätztes Geschlecht: ${genderLabel} (${Math.round(prob * 100)}% Konfidenz)`;
+}
+
+startCamBtn.addEventListener('click', startCamera);
+stopCamBtn.addEventListener('click', stopCamera);
+
+dropzone.addEventListener('click', () => imgFileInput.click());
+['dragenter', 'dragover'].forEach(evt =>
+  dropzone.addEventListener(evt, e => { e.preventDefault(); dropzone.classList.add('dragover'); })
+);
+['dragleave', 'drop'].forEach(evt =>
+  dropzone.addEventListener(evt, e => { e.preventDefault(); dropzone.classList.remove('dragover'); })
+);
+dropzone.addEventListener('drop', e => handleImageFile(e.dataTransfer.files[0]));
+imgFileInput.addEventListener('change', e => handleImageFile(e.target.files[0]));
+
+function handleImageFile(file) {
+  if (!file || !file.type.startsWith('image/')) return;
+  if (!modelsReady) { statusLine.textContent = 'KI-Modell wird noch geladen, bitte kurz warten …'; return; }
+  uploadedImg.src = URL.createObjectURL(file);
+  uploadedImg.style.display = 'block';
+  dropzone.style.display = 'none';
+  uploadedImg.onload = async () => {
+    statusLine.textContent = 'Analysiere Foto …';
+    try {
+      const detection = await faceapi.detectSingleFace(uploadedImg, new faceapi.TinyFaceDetectorOptions()).withAgeAndGender();
+      if (detection) {
+        showResult(detection.age, detection.gender, detection.genderProbability);
+        statusLine.textContent = 'Analyse abgeschlossen.';
+      } else {
+        statusLine.textContent = 'Kein Gesicht im Foto erkannt. Versuche ein anderes Bild mit gut sichtbarem Gesicht.';
+      }
+    } catch (e) {
+      statusLine.textContent = 'Analyse fehlgeschlagen. Versuche es erneut.';
+    }
+  };
+}
+</script>
+
+</body>
+</html>

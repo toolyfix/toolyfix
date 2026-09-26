@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Timer & Stoppuhr Online – Mit Runden & Vollbild | Toolyfix</title>
+<meta name="description" content="Kostenloser Timer und Stoppuhr online. Countdown mit Alarmton, Stoppuhr mit Rundenzeiten, Vollbildmodus. Direkt im Browser, ohne Anmeldung.">
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/style.css">
+<style>
+  .related-tools-top { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 20px; }
+  .related-tools-top a {
+    padding: 8px 14px; border-radius: var(--radius); border: 1px solid var(--border);
+    background: var(--surface); text-decoration: none; color: var(--ink); font-size: 0.85rem; font-weight: 600;
+  }
+  .related-tools-top a:hover { border-color: var(--primary); color: var(--primary); }
+
+  .mode-toggle { display: flex; gap: 8px; margin-bottom: 20px; }
+  .mode-btn {
+    padding: 10px 18px; border-radius: var(--radius); border: 1px solid var(--border);
+    background: var(--surface); cursor: pointer; font-family: 'Inter', sans-serif; font-weight: 600; font-size: 0.9rem;
+  }
+  .mode-btn.active { background: var(--primary); color: #fff; border-color: var(--primary); }
+  .mode-panel { display: none; }
+  .mode-panel.active { display: block; }
+
+  .big-display {
+    text-align: center; padding: 48px 16px; background: var(--bg); border-radius: var(--radius); margin-bottom: 20px;
+  }
+  #timerDisplay, #stopwatchDisplay {
+    font-family: 'Space Grotesk', sans-serif; font-size: clamp(2.6rem, 10vw, 4.5rem); font-weight: 700; color: var(--primary-dark);
+  }
+
+  .timer-set-row { display: flex; gap: 12px; justify-content: center; margin-bottom: 20px; flex-wrap: wrap; }
+  .timer-set-field { display: flex; flex-direction: column; align-items: center; gap: 6px; }
+  .timer-set-field input { width: 80px; text-align: center; font-size: 1.3rem; }
+  .timer-set-field label { font-size: 0.78rem; color: var(--ink-soft); }
+
+  .preset-row { display: flex; gap: 8px; flex-wrap: wrap; justify-content: center; margin-bottom: 20px; }
+  .preset-btn {
+    padding: 7px 14px; border-radius: var(--radius); border: 1px solid var(--border);
+    background: var(--surface); cursor: pointer; font-size: 0.82rem; font-weight: 600;
+  }
+
+  .control-row { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-bottom: 20px; }
+  .control-row .btn { min-width: 110px; }
+
+  .lap-list { max-height: 220px; overflow-y: auto; }
+  .lap-item {
+    display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid var(--border);
+    font-family: 'Space Grotesk', sans-serif; font-size: 0.95rem;
+  }
+  .lap-item .lap-num { color: var(--ink-soft); font-family: 'Inter', sans-serif; font-size: 0.85rem; }
+
+  /* Fullscreen mode */
+  body.fs-mode { background: #0b0e11; }
+  body.fs-mode .site-header, body.fs-mode .explainer, body.fs-mode .site-footer,
+  body.fs-mode .breadcrumb, body.fs-mode h1, body.fs-mode .related-tools-top,
+  body.fs-mode .tool-page > .container > p:not(.breadcrumb),
+  body.fs-mode .mode-toggle, body.fs-mode .lap-list, body.fs-mode h2 {
+    display: none !important;
+  }
+  body.fs-mode .tool-panel { background: transparent; border: none; padding: 0; }
+  body.fs-mode .big-display { background: transparent; }
+  body.fs-mode #timerDisplay, body.fs-mode #stopwatchDisplay { color: #fff; font-size: clamp(4rem, 18vw, 10rem); }
+  body.fs-mode .tool-page { display: flex; align-items: center; justify-content: center; min-height: 100vh; flex-direction: column; }
+  body.fs-mode #exitFsBtn { display: inline-flex !important; position: fixed; bottom: 24px; right: 24px; }
+  #exitFsBtn { display: none; }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container">
+    <a href="/" class="logo-link">
+      <img src="/assets/images/logo-full.png" alt="Toolyfix">
+    </a>
+    <span class="header-tagline">Kostenlose Tools, direkt im Browser</span>
+  </div>
+</header>
+
+<main class="tool-page">
+  <div class="container">
+    <p class="breadcrumb"><a href="/">Toolyfix</a> / Timer & Stoppuhr</p>
+    <h1>Timer & Stoppuhr</h1>
+
+    <div class="related-tools-top">
+      <a href="/tools/wecker-online.html">⏰ Wecker Online</a>
+      <a href="/tools/digitaluhr.html">🕐 Digitaluhr</a>
+    </div>
+
+    <p>Countdown-Timer mit Alarmton für Kochen, Sport oder Pausen, plus eine Stoppuhr mit Rundenzeiten – beides mit Vollbildmodus für gute Ablesbarkeit aus der Distanz.</p>
+
+    <div class="tool-panel">
+      <div class="mode-toggle">
+        <button class="mode-btn active" data-mode="timer">Timer</button>
+        <button class="mode-btn" data-mode="stopwatch">Stoppuhr</button>
+        <button class="btn btn-ghost" id="fsBtn" style="margin-left:auto;">Vollbild</button>
+        <button class="btn btn-ghost" id="exitFsBtn">Vollbild beenden</button>
+      </div>
+
+      <div class="mode-panel active" id="timerPanel">
+        <div class="big-display"><div id="timerDisplay">00:00:00</div></div>
+
+        <div class="timer-set-row" id="timerSetRow">
+          <div class="timer-set-field"><input type="number" id="hoursInput" min="0" max="23" value="0"><label>Std</label></div>
+          <div class="timer-set-field"><input type="number" id="minutesInput" min="0" max="59" value="5"><label>Min</label></div>
+          <div class="timer-set-field"><input type="number" id="secondsInput" min="0" max="59" value="0"><label>Sek</label></div>
+        </div>
+
+        <div class="preset-row">
+          <button class="preset-btn" data-secs="60">1 Min</button>
+          <button class="preset-btn" data-secs="300">5 Min</button>
+          <button class="preset-btn" data-secs="600">10 Min</button>
+          <button class="preset-btn" data-secs="900">15 Min</button>
+          <button class="preset-btn" data-secs="1800">30 Min</button>
+        </div>
+
+        <div class="control-row">
+          <button class="btn btn-primary" id="timerStartBtn">Start</button>
+          <button class="btn btn-ghost" id="timerPauseBtn" style="display:none;">Pause</button>
+          <button class="btn btn-ghost" id="timerResetBtn">Zurücksetzen</button>
+        </div>
+      </div>
+
+      <div class="mode-panel" id="stopwatchPanel">
+        <div class="big-display"><div id="stopwatchDisplay">00:00.00</div></div>
+        <div class="control-row">
+          <button class="btn btn-primary" id="swStartBtn">Start</button>
+          <button class="btn btn-ghost" id="swLapBtn" style="display:none;">Runde</button>
+          <button class="btn btn-ghost" id="swResetBtn">Zurücksetzen</button>
+        </div>
+        <h2 style="font-size:1rem;">Rundenzeiten</h2>
+        <div class="lap-list" id="lapList"></div>
+      </div>
+    </div>
+
+    <article class="explainer">
+      <h2>Timer und Stoppuhr online: zwei Werkzeuge, ein Tool</h2>
+      <p>Ein Timer zählt von einer eingestellten Zeit rückwärts bis null und meldet sich dann mit einem Alarmton – ideal zum Kochen, für Trainingsintervalle, Pausen oder Präsentationen. Eine Stoppuhr macht das Gegenteil: Sie zählt ab dem Start aufwärts und misst, wie viel Zeit vergangen ist – klassisch für Sport, Experimente oder die Zeitmessung bei Wettbewerben. Dieses Tool vereint beides in einer Oberfläche, sodass du nicht zwischen zwei verschiedenen Webseiten wechseln musst.</p>
+
+      <h2>Timer mit Voreinstellungen für häufige Zeiten</h2>
+      <p>Für häufig genutzte Zeitspannen wie 1, 5, 10, 15 oder 30 Minuten stehen Schnellauswahl-Buttons bereit, sodass du nicht jedes Mal manuell Stunden, Minuten und Sekunden eintippen musst. Für alle anderen Zeiten kannst du die Felder frei einstellen, zum Beispiel für einen 7-minütigen Eier-Timer oder eine 90-minütige Arbeitsphase nach der Pomodoro-Methode.</p>
+
+      <h2>Warum ertönt kein Alarm, wenn der Timer abläuft?</h2>
+      <p>Browser blockieren automatisch abspielende Töne, solange du noch nicht mit der Seite interagiert hast. Da du den Timer aber selbst über den Start-Button auslöst, ist diese Interaktion in der Regel bereits erfolgt, und der Alarmton sollte zuverlässig funktionieren. Wichtig ist außerdem, dass dieser Browser-Tab geöffnet bleibt, während der Timer läuft – ein geschlossener Tab kann den Alarm nicht mehr auslösen.</p>
+
+      <h2>Stoppuhr mit Rundenzeiten (Lap-Funktion)</h2>
+      <p>Während die Stoppuhr läuft, kannst du per Klick auf "Runde" Zwischenzeiten festhalten, ohne die Gesamtmessung zu unterbrechen. Das ist besonders nützlich beim Laufen oder Schwimmen, um die Zeit für jede einzelne Runde zu protokollieren, oder bei Experimenten, bei denen mehrere Teilschritte zeitlich erfasst werden müssen.</p>
+
+      <h2>Vollbildmodus für bessere Ablesbarkeit</h2>
+      <p>Der Vollbildmodus zeigt die Zeit besonders groß auf dunklem Hintergrund an und blendet alle anderen Elemente aus. Das ist praktisch, wenn du den Timer oder die Stoppuhr von weiter weg ablesen musst – etwa beim Sport im Raum, während einer Präsentation, oder wenn das Gerät auf der Arbeitsplatte in der Küche steht, während du kochst.</p>
+
+      <h2>Genauigkeit der Zeitmessung</h2>
+      <p>Die Stoppuhr misst auf Hundertstelsekunden genau, basierend auf der internen Systemzeit deines Geräts. Für alltägliche Zwecke wie Sport, Kochen oder Spiele ist diese Genauigkeit mehr als ausreichend. Für professionelle Wettkampfzeitmessung mit Anforderungen an zertifizierte Präzision werden dagegen spezialisierte Hardware-Zeitmessgeräte eingesetzt.</p>
+
+      <h2>Datenschutz</h2>
+      <p>Timer und Stoppuhr laufen vollständig lokal in deinem Browser. Es werden keine Zeiten oder Daten an einen Server übertragen oder gespeichert.</p>
+    </article>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <img src="/assets/images/logo-full.png" alt="Toolyfix">
+    <nav class="footer-links">
+      <a href="/ueber-uns.html">Über uns</a>
+      <a href="/datenschutz.html">Datenschutz</a>
+      <a href="/nutzungsbedingungen.html">Nutzungsbedingungen</a>
+      <a href="/kontakt.html">Kontakt</a>
+    </nav>
+    <p class="footer-note">© 2026 Toolyfix – Alle Tools laufen lokal in deinem Browser.</p>
+  </div>
+</footer>
+
+<script>
+/* ---- Shared beep sound ---- */
+let audioCtx = null;
+function beep() {
+  try {
+    audioCtx = audioCtx || new (window.AudioContext || window.webkitAudioContext)();
+    const osc = audioCtx.createOscillator();
+    const gain = audioCtx.createGain();
+    osc.frequency.value = 880;
+    gain.gain.value = 0.25;
+    osc.connect(gain);
+    gain.connect(audioCtx.destination);
+    osc.start();
+    osc.stop(audioCtx.currentTime + 0.3);
+  } catch (e) {}
+}
+
+/* ---- Mode switching ---- */
+document.querySelectorAll('.mode-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.mode-btn').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.mode-panel').forEach(p => p.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById(btn.dataset.mode === 'timer' ? 'timerPanel' : 'stopwatchPanel').classList.add('active');
+  });
+});
+
+/* ---- Fullscreen ---- */
+document.getElementById('fsBtn').addEventListener('click', () => {
+  document.body.classList.add('fs-mode');
+  if (document.documentElement.requestFullscreen) document.documentElement.requestFullscreen().catch(() => {});
+});
+document.getElementById('exitFsBtn').addEventListener('click', () => {
+  document.body.classList.remove('fs-mode');
+  if (document.fullscreenElement && document.exitFullscreen) document.exitFullscreen().catch(() => {});
+});
+document.addEventListener('fullscreenchange', () => {
+  if (!document.fullscreenElement) document.body.classList.remove('fs-mode');
+});
+
+/* ---- Timer ---- */
+const timerDisplay = document.getElementById('timerDisplay');
+const hoursInput = document.getElementById('hoursInput');
+const minutesInput = document.getElementById('minutesInput');
+const secondsInput = document.getElementById('secondsInput');
+const timerStartBtn = document.getElementById('timerStartBtn');
+const timerPauseBtn = document.getElementById('timerPauseBtn');
+const timerResetBtn = document.getElementById('timerResetBtn');
+const timerSetRow = document.getElementById('timerSetRow');
+
+let timerTotalSeconds = 300;
+let timerRemaining = 300;
+let timerInterval = null;
+let timerRunning = false;
+
+function formatHMS(totalSeconds) {
+  const h = Math.floor(totalSeconds / 3600);
+  const m = Math.floor((totalSeconds % 3600) / 60);
+  const s = totalSeconds % 60;
+  return [h, m, s].map(v => String(v).padStart(2, '0')).join(':');
+}
+
+function updateTimerDisplay() {
+  timerDisplay.textContent = formatHMS(timerRemaining);
+}
+
+function readTimerInputs() {
+  const h = parseInt(hoursInput.value, 10) || 0;
+  const m = parseInt(minutesInput.value, 10) || 0;
+  const s = parseInt(secondsInput.value, 10) || 0;
+  return h * 3600 + m * 60 + s;
+}
+
+[hoursInput, minutesInput, secondsInput].forEach(el => el.addEventListener('input', () => {
+  if (!timerRunning) { timerTotalSeconds = readTimerInputs(); timerRemaining = timerTotalSeconds; updateTimerDisplay(); }
+}));
+
+document.querySelectorAll('.preset-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const secs = parseInt(btn.dataset.secs, 10);
+    hoursInput.value = Math.floor(secs / 3600);
+    minutesInput.value = Math.floor((secs % 3600) / 60);
+    secondsInput.value = secs % 60;
+    timerTotalSeconds = secs;
+    timerRemaining = secs;
+    updateTimerDisplay();
+  });
+});
+
+function startTimer() {
+  if (timerRemaining <= 0) timerRemaining = readTimerInputs();
+  if (timerRemaining <= 0) return;
+  timerRunning = true;
+  timerSetRow.style.opacity = '0.5';
+  timerStartBtn.style.display = 'none';
+  timerPauseBtn.style.display = 'inline-flex';
+  timerInterval = setInterval(() => {
+    timerRemaining--;
+    updateTimerDisplay();
+    if (timerRemaining <= 0) {
+      clearInterval(timerInterval);
+      timerRunning = false;
+      timerStartBtn.style.display = 'inline-flex';
+      timerPauseBtn.style.display = 'none';
+      let beepCount = 0;
+      const alarmLoop = setInterval(() => {
+        beep();
+        beepCount++;
+        if (beepCount >= 5) clearInterval(alarmLoop);
+      }, 500);
+    }
+  }, 1000);
+}
+
+function pauseTimer() {
+  clearInterval(timerInterval);
+  timerRunning = false;
+  timerStartBtn.style.display = 'inline-flex';
+  timerPauseBtn.style.display = 'none';
+}
+
+function resetTimer() {
+  clearInterval(timerInterval);
+  timerRunning = false;
+  timerSetRow.style.opacity = '1';
+  timerRemaining = readTimerInputs();
+  updateTimerDisplay();
+  timerStartBtn.style.display = 'inline-flex';
+  timerPauseBtn.style.display = 'none';
+}
+
+timerStartBtn.addEventListener('click', startTimer);
+timerPauseBtn.addEventListener('click', pauseTimer);
+timerResetBtn.addEventListener('click', resetTimer);
+timerRemaining = readTimerInputs();
+updateTimerDisplay();
+
+/* ---- Stopwatch ---- */
+const stopwatchDisplay = document.getElementById('stopwatchDisplay');
+const swStartBtn = document.getElementById('swStartBtn');
+const swLapBtn = document.getElementById('swLapBtn');
+const swResetBtn = document.getElementById('swResetBtn');
+const lapList = document.getElementById('lapList');
+
+let swStartTime = 0;
+let swElapsed = 0;
+let swInterval = null;
+let swRunning = false;
+let laps = [];
+
+function formatStopwatch(ms) {
+  const centis = Math.floor((ms % 1000) / 10);
+  const totalSeconds = Math.floor(ms / 1000);
+  const m = Math.floor(totalSeconds / 60);
+  const s = totalSeconds % 60;
+  return `${String(m).padStart(2, '0')}:${String(s).padStart(2, '0')}.${String(centis).padStart(2, '0')}`;
+}
+
+function updateStopwatch() {
+  const now = Date.now();
+  const ms = swElapsed + (swRunning ? now - swStartTime : 0);
+  stopwatchDisplay.textContent = formatStopwatch(ms);
+}
+
+function startStopwatch() {
+  swRunning = true;
+  swStartTime = Date.now();
+  swInterval = setInterval(updateStopwatch, 30);
+  swStartBtn.textContent = 'Pause';
+  swLapBtn.style.display = 'inline-flex';
+}
+
+function pauseStopwatch() {
+  swRunning = false;
+  swElapsed += Date.now() - swStartTime;
+  clearInterval(swInterval);
+  swStartBtn.textContent = 'Weiter';
+}
+
+swStartBtn.addEventListener('click', () => {
+  if (swRunning) pauseStopwatch(); else startStopwatch();
+});
+
+swLapBtn.addEventListener('click', () => {
+  const now = Date.now();
+  const ms = swElapsed + (swRunning ? now - swStartTime : 0);
+  laps.unshift(ms);
+  renderLaps();
+});
+
+swResetBtn.addEventListener('click', () => {
+  clearInterval(swInterval);
+  swRunning = false;
+  swElapsed = 0;
+  laps = [];
+  stopwatchDisplay.textContent = '00:00.00';
+  swStartBtn.textContent = 'Start';
+  swLapBtn.style.display = 'none';
+  renderLaps();
+});
+
+function renderLaps() {
+  lapList.innerHTML = '';
+  laps.forEach((ms, i) => {
+    const row = document.createElement('div');
+    row.className = 'lap-item';
+    row.innerHTML = `<span class="lap-num">Runde ${laps.length - i}</span><span>${formatStopwatch(ms)}</span>`;
+    lapList.appendChild(row);
+  });
+}
+</script>
+
+</body>
+</html>
