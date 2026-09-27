@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fetter Text Generator – Für Instagram, WhatsApp & Co. | Toolyfix</title>
+<meta name="description" content="Text in fetten Unicode-Text umwandeln, der überall funktioniert – Instagram-Bio, WhatsApp, Twitter/X. Mit 8 Stilen: fett, kursiv, serifenlos, Schreibschrift und mehr.">
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/style.css">
+<style>
+  .related-tools-top { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 20px; }
+  .related-tools-top a {
+    padding: 8px 14px; border-radius: var(--radius); border: 1px solid var(--border);
+    background: var(--surface); text-decoration: none; color: var(--ink); font-size: 0.85rem; font-weight: 600;
+  }
+  .related-tools-top a:hover { border-color: var(--primary); color: var(--primary); }
+
+  .style-list { display: flex; flex-direction: column; gap: 10px; margin-top: 16px; }
+  .style-row {
+    display: flex; justify-content: space-between; align-items: center; gap: 12px;
+    background: var(--bg); border-radius: var(--radius); padding: 14px 18px; flex-wrap: wrap;
+  }
+  .style-row .s-label { font-size: 0.78rem; color: var(--ink-soft); display: block; margin-bottom: 2px; }
+  .style-row .s-output { font-size: 1.15rem; word-break: break-word; }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container">
+    <a href="/" class="logo-link">
+      <img src="/assets/images/logo-full.png" alt="Toolyfix">
+    </a>
+    <span class="header-tagline">Kostenlose Tools, direkt im Browser</span>
+  </div>
+</header>
+
+<main class="tool-page">
+  <div class="container">
+    <p class="breadcrumb"><a href="/">Toolyfix</a> / Fetter Text Generator</p>
+    <h1>Fetter Text Generator</h1>
+
+    <div class="related-tools-top">
+      <a href="/tools/fallkonverter.html">Aa Fallkonverter</a>
+      <a href="/tools/ascii-art-generator.html">▓▒░ ASCII Art Generator</a>
+    </div>
+
+    <p>Wandle deinen Text in fetten oder kursiven Unicode-Text um, der überall funktioniert – auch dort, wo normale Formatierung nicht möglich ist, wie in einer Instagram-Bio oder einem WhatsApp-Status.</p>
+
+    <div class="tool-panel">
+      <textarea id="input" rows="3" placeholder="Text hier eingeben …"></textarea>
+
+      <div class="style-list" id="styleList"></div>
+    </div>
+
+    <article class="explainer">
+      <h2>Fetter Text für Instagram, WhatsApp und Co. – wie funktioniert das technisch?</h2>
+      <p>Instagram, WhatsApp, Twitter/X und die meisten anderen Plattformen erlauben in Bio-Feldern, Statusmeldungen oder Nachrichten keine echte Textformatierung wie Fett oder Kursiv – ein Bio-Text ist technisch gesehen einfach nur reiner Text. Dieser Generator nutzt einen cleveren Trick: Er ersetzt die normalen Buchstaben deines Textes durch optisch fett oder kursiv aussehende Zeichen aus einem speziellen Unicode-Bereich namens "Mathematical Alphanumeric Symbols". Diese Zeichen sehen aus wie fette oder kursive Buchstaben, sind für den Computer aber eigenständige Zeichen – kein Formatierungsbefehl, sondern echte, andere Buchstaben-Symbole.</p>
+
+      <h2>Warum funktioniert das überall, wo normale Formatierung nicht geht?</h2>
+      <p>Weil diese fett aussehenden Zeichen technisch gesehen ganz normale Textzeichen sind (genau wie ein normales "A" oder ein Emoji 😊), können sie in jedes Textfeld eingefügt werden, das überhaupt Unicode-Text akzeptiert – und das tun heute praktisch alle Apps und Webseiten. Es handelt sich nicht um eine HTML- oder Formatierungs-Funktion, die eine Plattform unterstützen müsste, sondern um ganz normalen Text, der zufällig fett aussieht.</p>
+
+      <h2>Die 8 verfügbaren Stile im Überblick</h2>
+      <p>Dieser Generator bietet gleichzeitig acht verschiedene Stile: <strong>Fett</strong> (klassische Serifenschrift, fett), <strong>Kursiv</strong>, <strong>Fett Kursiv</strong>, <strong>Serifenlos Fett</strong> (wie eine fette Arial/Helvetica), <strong>Serifenlos Fett Kursiv</strong>, <strong>Monospace</strong> (wie in einem Code-Editor), <strong>Fraktur Fett</strong> (gotisch anmutende Schrift) und <strong>Schreibschrift Fett</strong> (verschnörkelte Handschrift-Optik). Jeder Stil wird automatisch aus deiner Eingabe erzeugt, du musst nur noch die passende Variante mit einem Klick kopieren.</p>
+
+      <h2>Einschränkungen: nicht jedes Zeichen hat eine fette Unicode-Variante</h2>
+      <p>Der Unicode-Standard definiert diese besonderen Zeichen nur für die Buchstaben A bis Z, a bis z, und teilweise für Ziffern – nicht für Satzzeichen, Emojis, oder Buchstaben mit Umlauten wie ä, ö, ü. Enthält dein Text solche Zeichen, bleiben sie unverändert im Ergebnis stehen, während die restlichen Buchstaben umgewandelt werden. Das ist eine technische Grenze des Unicode-Standards selbst, nicht eine Einschränkung dieses Tools.</p>
+
+      <h2>Warum sehen manche Stile auf manchen Geräten anders aus?</h2>
+      <p>Da diese Zeichen von der jeweiligen Schriftart des Empfängergeräts dargestellt werden, kann das genaue Erscheinungsbild leicht variieren – auf einem iPhone sieht "Fett Kursiv" eventuell minimal anders aus als auf einem Android-Gerät oder einem Windows-PC, da jedes Betriebssystem seine eigene Schriftart für diese Sonderzeichen verwendet. Die Zeichen selbst bleiben aber immer dieselben, nur die visuelle Darstellung kann sich leicht unterscheiden.</p>
+
+      <h2>Warum lässt sich dieser Text nicht durchsuchen oder vorlesen wie normaler Text?</h2>
+      <p>Da es sich technisch um andere Zeichen als die normalen Buchstaben handelt, erkennen manche Suchfunktionen oder Screenreader (Vorlese-Hilfen für sehbehinderte Menschen) diesen Text möglicherweise nicht korrekt als das eigentlich gemeinte Wort. Verwende auffällig formatierten Text daher bewusst und sparsam, zum Beispiel für eine kurze Überschrift oder einen Namen in einer Bio, statt für lange Fließtexte, die barrierefrei bleiben sollen.</p>
+
+      <h2>Datenschutz</h2>
+      <p>Die gesamte Umwandlung findet lokal in deinem Browser statt. Dein eingegebener Text wird nicht gespeichert oder an einen Server übertragen.</p>
+    </article>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <img src="/assets/images/logo-full.png" alt="Toolyfix">
+    <nav class="footer-links">
+      <a href="/ueber-uns.html">Über uns</a>
+      <a href="/datenschutz.html">Datenschutz</a>
+      <a href="/nutzungsbedingungen.html">Nutzungsbedingungen</a>
+      <a href="/kontakt.html">Kontakt</a>
+    </nav>
+    <p class="footer-note">© 2026 Toolyfix – Alle Tools laufen lokal in deinem Browser.</p>
+  </div>
+</footer>
+
+<script>
+const input = document.getElementById('input');
+const styleList = document.getElementById('styleList');
+
+// Base codepoints for start of A-Z, a-z, 0-9 in each Unicode Mathematical Alphanumeric block.
+// null digitBase means digits are left unchanged for that style (no block exists).
+const styles = [
+  { name: 'Fett', upper: 0x1D400, lower: 0x1D41A, digit: 0x1D7CE },
+  { name: 'Kursiv', upper: 0x1D434, lower: 0x1D44E, digit: null, italicH: true },
+  { name: 'Fett Kursiv', upper: 0x1D468, lower: 0x1D482, digit: 0x1D7CE },
+  { name: 'Serifenlos Fett', upper: 0x1D5D4, lower: 0x1D5EE, digit: 0x1D7EC },
+  { name: 'Serifenlos Fett Kursiv', upper: 0x1D63C, lower: 0x1D656, digit: 0x1D7EC },
+  { name: 'Monospace', upper: 0x1D670, lower: 0x1D68A, digit: 0x1D7F6 },
+  { name: 'Fraktur Fett', upper: 0x1D56C, lower: 0x1D586, digit: null },
+  { name: 'Schreibschrift Fett', upper: 0x1D4D0, lower: 0x1D4EA, digit: null }
+];
+
+function convert(text, style) {
+  let result = '';
+  for (const ch of text) {
+    const code = ch.codePointAt(0);
+    if (style.italicH && ch === 'h') { result += '\u210E'; continue; }
+    if (code >= 65 && code <= 90) result += String.fromCodePoint(style.upper + (code - 65));
+    else if (code >= 97 && code <= 122) result += String.fromCodePoint(style.lower + (code - 97));
+    else if (code >= 48 && code <= 57 && style.digit !== null) result += String.fromCodePoint(style.digit + (code - 48));
+    else result += ch;
+  }
+  return result;
+}
+
+function render() {
+  const text = input.value || 'Beispieltext';
+  styleList.innerHTML = '';
+  styles.forEach(style => {
+    const row = document.createElement('div');
+    row.className = 'style-row';
+    const converted = convert(text, style);
+    row.innerHTML = `
+      <div>
+        <span class="s-label">${style.name}</span>
+        <span class="s-output">${converted}</span>
+      </div>
+      <button class="btn btn-ghost copy-style-btn">Kopieren</button>
+    `;
+    row.querySelector('.copy-style-btn').addEventListener('click', () => navigator.clipboard.writeText(converted));
+    styleList.appendChild(row);
+  });
+}
+
+input.addEventListener('input', render);
+render();
+</script>
+
+</body>
+</html>

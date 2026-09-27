@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>ASCII Art Generator – Text & Bild in ASCII Umwandeln | Toolyfix</title>
-<meta name="description" content="Kostenloser ASCII Art Generator: Wandle Text in große ASCII-Banner um, oder konvertiere ein Foto in echte ASCII-Art. Direkt im Browser, mit Kopier- und Download-Funktion.">
+<title>ASCII Art Generator & Code Decoder – Text & Bild Umwandeln | Toolyfix</title>
+<meta name="description" content="Kostenloser ASCII Art Generator: Text oder Bild in ASCII-Art umwandeln, plus ASCII-Code Decoder für Dezimal, Hex und Binär. Direkt im Browser.">
 <link rel="icon" type="image/x-icon" href="/favicon.ico">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
@@ -76,12 +76,13 @@
       <a href="/tools/fallkonverter.html">Aa Fallkonverter</a>
     </div>
 
-    <p>Wandle Text in große ASCII-Banner um, oder konvertiere ein Foto direkt in ASCII-Art aus Zeichen. Alles läuft im Browser.</p>
+    <p>Wandle Text in große ASCII-Banner um, konvertiere ein Foto direkt in ASCII-Art, oder nutze den ASCII-Code Decoder, um Text in Zahlencodes umzuwandeln und zurück. Alles läuft im Browser.</p>
 
     <div class="tool-panel">
       <div class="mode-toggle">
         <button class="mode-btn active" data-mode="text">Text zu ASCII</button>
         <button class="mode-btn" data-mode="image">Bild zu ASCII</button>
+        <button class="mode-btn" data-mode="decoder">ASCII-Code Decoder</button>
       </div>
 
       <div class="mode-panel active" id="textPanel">
@@ -95,6 +96,35 @@
         <input type="file" id="imgFileInput" accept="image/*">
       </div>
 
+      <div class="mode-panel" id="decoderPanel">
+        <div class="options-row">
+          <label for="baseSelect">Zahlensystem</label>
+          <select id="baseSelect" style="min-width:140px;">
+            <option value="10">Dezimal (z. B. 72)</option>
+            <option value="16">Hexadezimal (z. B. 48)</option>
+            <option value="2">Binär (z. B. 01001000)</option>
+          </select>
+        </div>
+
+        <div class="textarea-pair-decoder" style="display:grid; grid-template-columns:1fr 1fr; gap:16px;">
+          <div>
+            <label style="font-size:0.85rem; color:var(--ink-soft); display:block; margin-bottom:6px;">Text</label>
+            <textarea id="decoderText" rows="6" placeholder="z. B. Hallo"></textarea>
+          </div>
+          <div>
+            <label style="font-size:0.85rem; color:var(--ink-soft); display:block; margin-bottom:6px;">ASCII-Codes (durch Leerzeichen getrennt)</label>
+            <textarea id="decoderCodes" rows="6" placeholder="z. B. 72 97 108 108 111"></textarea>
+          </div>
+        </div>
+
+        <div class="field-row" style="margin-top:16px;">
+          <button class="btn btn-primary" id="encodeBtn">Text → ASCII-Codes</button>
+          <button class="btn btn-primary" id="decodeBtn">ASCII-Codes → Text</button>
+        </div>
+        <p style="font-size:0.85rem; color:var(--ink-soft);" id="decoderStatus"></p>
+      </div>
+
+      <div class="mode-panel active" id="asciiArtControls" data-shared="true">
       <div class="options-row">
         <label for="widthSlider">Breite (Zeichen): <strong id="widthValue">100</strong></label>
         <input type="range" id="widthSlider" min="40" max="220" value="100">
@@ -112,6 +142,7 @@
       </div>
 
       <pre id="asciiOutput"></pre>
+      </div>
     </div>
 
     <article class="explainer">
@@ -132,6 +163,15 @@
 
       <h2>Text-Banner in eigene Projekte einbinden</h2>
       <p>Ein per Textmodus erstelltes ASCII-Banner eignet sich gut als Kopfzeile in Code-Dateien, Konfigurationsdateien oder Terminal-Begrüßungsnachrichten (zum Beispiel in einer .bashrc-Datei). Da das Ergebnis reiner Text ist, kannst du es direkt in jede Textdatei einfügen, ohne dass eine Bilddatei oder Schriftart mitgeliefert werden muss.</p>
+
+      <h2>ASCII-Code Decoder: Text in Zahlen umwandeln und zurück</h2>
+      <p>Neben der visuellen ASCII-Art bietet dieses Tool auch einen klassischen ASCII-Code Decoder: Er wandelt Text in die zugehörigen ASCII-Zahlencodes um (zum Beispiel wird aus "A" die Zahl 65) und umgekehrt auch Zahlencodes zurück in lesbaren Text. Das ist ein völlig anderes Konzept als die ASCII-Kunst weiter oben – hier geht es nicht um ein Bild aus Zeichen, sondern um die numerische Darstellung einzelner Buchstaben, wie sie Computer intern verwenden.</p>
+
+      <h2>Dezimal, Hexadezimal oder Binär</h2>
+      <p>Jedes Zeichen lässt sich in drei gängigen Zahlensystemen darstellen: <strong>Dezimal</strong> (das gewohnte Zehnersystem, z. B. 72 für "H"), <strong>Hexadezimal</strong> (Basis 16, häufig in der Programmierung verwendet, z. B. 48 für "H"), und <strong>Binär</strong> (Basis 2, die reine Nullen-und-Einsen-Darstellung, die Computer direkt verarbeiten, z. B. 01001000 für "H"). Wähle das gewünschte System aus, bevor du umwandelst oder decodierst.</p>
+
+      <h2>Wofür wird ein ASCII-Code-Decoder gebraucht?</h2>
+      <p>ASCII-Codes werden in der Informatik-Ausbildung häufig genutzt, um zu verstehen, wie Computer Text intern als Zahlen speichern. Auch beim Debuggen von Programmierproblemen (etwa unerwarteten Zeichen in einer Datei), beim Arbeiten mit Low-Level-Protokollen, oder einfach aus Neugier, welcher Zahlencode hinter einem bestimmten Zeichen steckt, ist ein schneller Decoder praktisch, ohne eine Tabelle nachschlagen zu müssen.</p>
 
       <h2>Datenschutz</h2>
       <p>Text und Bilder werden ausschließlich lokal in deinem Browser verarbeitet. Es findet keine Übertragung an einen Server statt.</p>
@@ -176,6 +216,8 @@ modeButtons.forEach(btn => {
     mode = btn.dataset.mode;
     textPanel.classList.toggle('active', mode === 'text');
     imagePanel.classList.toggle('active', mode === 'image');
+    document.getElementById('decoderPanel').classList.toggle('active', mode === 'decoder');
+    document.getElementById('asciiArtControls').classList.toggle('active', mode === 'text' || mode === 'image');
   });
 });
 
@@ -276,6 +318,46 @@ document.getElementById('downloadBtn').addEventListener('click', () => {
 });
 
 generate();
+
+/* ---- ASCII Code Decoder ---- */
+const decoderText = document.getElementById('decoderText');
+const decoderCodes = document.getElementById('decoderCodes');
+const baseSelect = document.getElementById('baseSelect');
+const decoderStatus = document.getElementById('decoderStatus');
+
+function padBinary(n) { return n.toString(2).padStart(8, '0'); }
+
+document.getElementById('encodeBtn').addEventListener('click', () => {
+  const text = decoderText.value;
+  if (!text) { decoderStatus.textContent = 'Bitte zuerst Text eingeben.'; return; }
+  const base = baseSelect.value;
+  const codes = Array.from(text).map(ch => {
+    const code = ch.codePointAt(0);
+    if (base === '16') return code.toString(16);
+    if (base === '2') return padBinary(code);
+    return String(code);
+  });
+  decoderCodes.value = codes.join(' ');
+  decoderStatus.textContent = `${text.length} Zeichen umgewandelt.`;
+});
+
+document.getElementById('decodeBtn').addEventListener('click', () => {
+  const raw = decoderCodes.value.trim();
+  if (!raw) { decoderStatus.textContent = 'Bitte zuerst ASCII-Codes eingeben.'; return; }
+  const base = parseInt(baseSelect.value, 10);
+  const parts = raw.split(/[\s,]+/).filter(Boolean);
+  try {
+    const chars = parts.map(p => {
+      const num = parseInt(p, base);
+      if (isNaN(num)) throw new Error('invalid');
+      return String.fromCodePoint(num);
+    });
+    decoderText.value = chars.join('');
+    decoderStatus.textContent = `${parts.length} Codes decodiert.`;
+  } catch (e) {
+    decoderStatus.textContent = 'Einige Codes konnten nicht gelesen werden. Prüfe das gewählte Zahlensystem.';
+  }
+});
 </script>
 
 </body>

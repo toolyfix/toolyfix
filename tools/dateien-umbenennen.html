@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Dateien Umbenennen – Massenumbenennung Online | Toolyfix</title>
+<meta name="description" content="Mehrere Dateien gleichzeitig umbenennen: Präfix, Suffix, Suchen & Ersetzen, Nummerierung. Live-Vorschau, Download als ZIP mit den umbenannten Dateien.">
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/style.css">
+<style>
+  .related-tools-top { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 20px; }
+  .related-tools-top a {
+    padding: 8px 14px; border-radius: var(--radius); border: 1px solid var(--border);
+    background: var(--surface); text-decoration: none; color: var(--ink); font-size: 0.85rem; font-weight: 600;
+  }
+  .related-tools-top a:hover { border-color: var(--primary); color: var(--primary); }
+
+  .dropzone {
+    border: 2px dashed var(--border); border-radius: var(--radius); padding: 28px 20px;
+    text-align: center; cursor: pointer; margin-bottom: 20px;
+  }
+  .dropzone.dragover { border-color: var(--primary); background: var(--accent-soft); }
+  #fileInput { display: none; }
+
+  .options-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; margin-bottom: 20px; }
+  @media (max-width: 640px) { .options-grid { grid-template-columns: 1fr; } }
+  .options-grid label { font-size: 0.82rem; color: var(--ink-soft); display: block; margin-bottom: 6px; }
+
+  .switch { position: relative; width: 44px; height: 24px; display: inline-block; }
+  .switch input { opacity: 0; width: 0; height: 0; }
+  .slider-switch { position: absolute; inset: 0; background: var(--border); border-radius: 24px; cursor: pointer; transition: 0.15s; }
+  .slider-switch::before { content: ""; position: absolute; height: 18px; width: 18px; left: 3px; top: 3px; background: white; border-radius: 50%; transition: 0.15s; }
+  input:checked + .slider-switch { background: var(--primary); }
+  input:checked + .slider-switch::before { transform: translateX(20px); }
+  .switch-row { display: flex; align-items: center; gap: 10px; height: 38px; font-size: 0.88rem; }
+
+  table.preview-table { width: 100%; border-collapse: collapse; margin-top: 16px; font-size: 0.9rem; }
+  table.preview-table th, table.preview-table td { text-align: left; padding: 8px 10px; border-bottom: 1px solid var(--border); }
+  table.preview-table th { color: var(--ink-soft); font-weight: 600; font-size: 0.8rem; }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container">
+    <a href="/" class="logo-link">
+      <img src="/assets/images/logo-full.png" alt="Toolyfix">
+    </a>
+    <span class="header-tagline">Kostenlose Tools, direkt im Browser</span>
+  </div>
+</header>
+
+<main class="tool-page">
+  <div class="container">
+    <p class="breadcrumb"><a href="/">Toolyfix</a> / Dateien Umbenennen</p>
+    <h1>Dateien Umbenennen</h1>
+
+    <div class="related-tools-top">
+      <a href="/tools/slug-generator.html">/# Slug Generator</a>
+    </div>
+
+    <p>Wähle mehrere Dateien aus, lege ein Umbenennungsmuster fest, und lade die umbenannten Dateien gesammelt als ZIP herunter.</p>
+
+    <div class="tool-panel">
+      <div class="dropzone" id="dropzone">
+        <p><strong>Dateien hierher ziehen</strong> oder klicken zum Auswählen</p>
+        <p style="font-size:0.85rem; margin-top:6px;">Beliebig viele Dateien, jeder Typ</p>
+      </div>
+      <input type="file" id="fileInput" multiple>
+
+      <div class="options-grid">
+        <div><label for="prefixInput">Präfix (vorne anhängen)</label><input type="text" id="prefixInput" placeholder="z. B. Urlaub_"></div>
+        <div><label for="suffixInput">Suffix (vor der Dateiendung)</label><input type="text" id="suffixInput" placeholder="z. B. _bearbeitet"></div>
+        <div><label for="findInput">Suchen</label><input type="text" id="findInput" placeholder="z. B. IMG"></div>
+        <div><label for="replaceInput">Ersetzen durch</label><input type="text" id="replaceInput" placeholder="z. B. Foto"></div>
+      </div>
+
+      <div class="options-grid">
+        <div class="switch-row">
+          <label class="switch"><input type="checkbox" id="numberingToggle"><span class="slider-switch"></span></label>
+          <span>Fortlaufend nummerieren</span>
+        </div>
+        <div style="display:flex; gap:10px;">
+          <div style="flex:1;"><label for="startNumber">Start bei</label><input type="number" id="startNumber" value="1" min="0"></div>
+          <div style="flex:1;"><label for="paddingDigits">Stellen (z. B. 3 = 001)</label><input type="number" id="paddingDigits" value="2" min="1" max="6"></div>
+        </div>
+      </div>
+
+      <div class="options-grid">
+        <div>
+          <label for="caseSelect">Groß-/Kleinschreibung</label>
+          <select id="caseSelect">
+            <option value="keep">Unverändert lassen</option>
+            <option value="lower">alles klein</option>
+            <option value="upper">ALLES GROSS</option>
+          </select>
+        </div>
+      </div>
+
+      <table class="preview-table" id="previewTable" style="display:none;">
+        <thead><tr><th>Original</th><th>Neuer Name</th></tr></thead>
+        <tbody id="previewBody"></tbody>
+      </table>
+
+      <div class="field-row" style="margin-top:16px;">
+        <button class="btn btn-primary" id="downloadZipBtn" disabled>Umbenannte Dateien als ZIP herunterladen</button>
+      </div>
+      <p style="font-size:0.85rem; color:var(--ink-soft);" id="statusLine"></p>
+    </div>
+
+    <article class="explainer">
+      <h2>Mehrere Dateien gleichzeitig umbenennen – ohne Datei für Datei von Hand</h2>
+      <p>Wer schon einmal versucht hat, 50 Urlaubsfotos oder eine ganze Ordnerstruktur mit Dokumenten manuell umzubenennen, kennt das Problem: Datei für Datei einzeln umzubenennen kostet enorm viel Zeit und ist fehleranfällig. Dieses Tool erlaubt es, ein einheitliches Umbenennungsmuster auf beliebig viele Dateien gleichzeitig anzuwenden und das Ergebnis direkt als fertiges ZIP-Archiv herunterzuladen.</p>
+
+      <h2>Warum ein ZIP-Download statt direkter Umbenennung auf der Festplatte?</h2>
+      <p>Aus Sicherheitsgründen dürfen Webseiten grundsätzlich nicht direkt auf deine Festplatte zugreifen und dort Dateien umbenennen oder verändern – das würde ein erhebliches Sicherheitsrisiko darstellen, wenn jede beliebige Webseite das könnte. Stattdessen erstellt dieses Tool Kopien deiner Dateien mit den neuen Namen und verpackt sie in eine ZIP-Datei, die du herunterlädst und bei Bedarf über die ursprünglichen Dateien in deinem Dateimanager kopierst.</p>
+
+      <h2>Die verfügbaren Umbenennungsmuster</h2>
+      <p><strong>Präfix:</strong> fügt einen festgelegten Text an den Anfang jedes Dateinamens an, zum Beispiel wird aus "foto1.jpg" mit dem Präfix "Urlaub_" die Datei "Urlaub_foto1.jpg". <strong>Suffix:</strong> fügt Text direkt vor der Dateiendung ein, sodass "foto1.jpg" mit dem Suffix "_bearbeitet" zu "foto1_bearbeitet.jpg" wird. <strong>Suchen & Ersetzen:</strong> ersetzt einen bestimmten Textbaustein durch einen anderen in allen Dateinamen gleichzeitig, praktisch um zum Beispiel "IMG" durchgängig durch "Foto" zu ersetzen. <strong>Fortlaufende Nummerierung:</strong> hängt an jede Datei eine laufende Nummer an, mit einstellbarer Startzahl und Anzahl der Stellen (z. B. 001, 002, 003 bei 3 Stellen).</p>
+
+      <h2>Alle Muster gleichzeitig kombinieren</h2>
+      <p>Die verschiedenen Umbenennungsregeln werden nacheinander angewendet und lassen sich beliebig kombinieren – du kannst zum Beispiel gleichzeitig ein Präfix hinzufügen, einen Textbaustein ersetzen und eine fortlaufende Nummerierung aktivieren. Die Live-Vorschau zeigt dir sofort, wie der finale Dateiname aussehen wird, bevor du etwas herunterlädst.</p>
+
+      <h2>Groß- und Kleinschreibung vereinheitlichen</h2>
+      <p>Wenn eine Sammlung von Dateien aus unterschiedlichen Quellen stammt, ist die Groß- und Kleinschreibung der Dateinamen oft uneinheitlich. Mit der Option "alles klein" oder "ALLES GROSS" lässt sich das mit einem Klick für alle Dateien gleichzeitig vereinheitlichen, unabhängig davon, wie die Dateien ursprünglich benannt waren. Die Dateiendung selbst bleibt davon unberührt.</p>
+
+      <h2>Für welche Dateitypen funktioniert das?</h2>
+      <p>Das Tool funktioniert unabhängig vom Dateityp – Fotos, PDFs, Word-Dokumente, Musikdateien oder beliebige andere Dateien lassen sich gleichzeitig umbenennen. Da nur der Dateiname geändert wird, bleibt der eigentliche Dateiinhalt exakt unverändert erhalten.</p>
+
+      <h2>Datenschutz</h2>
+      <p>Alle Dateien werden ausschließlich lokal in deinem Browser verarbeitet und in das ZIP-Archiv gepackt. Es findet kein Upload auf einen Server statt.</p>
+    </article>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <img src="/assets/images/logo-full.png" alt="Toolyfix">
+    <nav class="footer-links">
+      <a href="/ueber-uns.html">Über uns</a>
+      <a href="/datenschutz.html">Datenschutz</a>
+      <a href="/nutzungsbedingungen.html">Nutzungsbedingungen</a>
+      <a href="/kontakt.html">Kontakt</a>
+    </nav>
+    <p class="footer-note">© 2026 Toolyfix – Alle Tools laufen lokal in deinem Browser.</p>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+<script>
+const dropzone = document.getElementById('dropzone');
+const fileInput = document.getElementById('fileInput');
+const previewTable = document.getElementById('previewTable');
+const previewBody = document.getElementById('previewBody');
+const downloadZipBtn = document.getElementById('downloadZipBtn');
+const statusLine = document.getElementById('statusLine');
+
+const prefixInput = document.getElementById('prefixInput');
+const suffixInput = document.getElementById('suffixInput');
+const findInput = document.getElementById('findInput');
+const replaceInput = document.getElementById('replaceInput');
+const numberingToggle = document.getElementById('numberingToggle');
+const startNumber = document.getElementById('startNumber');
+const paddingDigits = document.getElementById('paddingDigits');
+const caseSelect = document.getElementById('caseSelect');
+
+let files = [];
+
+dropzone.addEventListener('click', () => fileInput.click());
+['dragenter', 'dragover'].forEach(evt =>
+  dropzone.addEventListener(evt, e => { e.preventDefault(); dropzone.classList.add('dragover'); })
+);
+['dragleave', 'drop'].forEach(evt =>
+  dropzone.addEventListener(evt, e => { e.preventDefault(); dropzone.classList.remove('dragover'); })
+);
+dropzone.addEventListener('drop', e => handleFiles(e.dataTransfer.files));
+fileInput.addEventListener('change', e => handleFiles(e.target.files));
+
+function handleFiles(fileList) {
+  files = Array.from(fileList);
+  statusLine.textContent = `${files.length} Datei${files.length === 1 ? '' : 'en'} ausgewählt.`;
+  downloadZipBtn.disabled = files.length === 0;
+  renderPreview();
+}
+
+function splitExt(name) {
+  const idx = name.lastIndexOf('.');
+  if (idx <= 0) return { base: name, ext: '' };
+  return { base: name.slice(0, idx), ext: name.slice(idx) };
+}
+
+function computeNewName(originalName, index) {
+  const { base, ext } = splitExt(originalName);
+  let newBase = base;
+
+  if (findInput.value) {
+    newBase = newBase.split(findInput.value).join(replaceInput.value);
+  }
+  newBase = (prefixInput.value || '') + newBase + (suffixInput.value || '');
+
+  if (numberingToggle.checked) {
+    const num = parseInt(startNumber.value, 10) + index;
+    const padded = String(num).padStart(parseInt(paddingDigits.value, 10) || 1, '0');
+    newBase = newBase + '_' + padded;
+  }
+
+  if (caseSelect.value === 'lower') newBase = newBase.toLowerCase();
+  if (caseSelect.value === 'upper') newBase = newBase.toUpperCase();
+
+  return newBase + ext;
+}
+
+function renderPreview() {
+  if (files.length === 0) { previewTable.style.display = 'none'; return; }
+  previewBody.innerHTML = '';
+  files.forEach((file, i) => {
+    const newName = computeNewName(file.name, i);
+    const tr = document.createElement('tr');
+    tr.innerHTML = `<td>${file.name}</td><td>${newName}</td>`;
+    previewBody.appendChild(tr);
+  });
+  previewTable.style.display = 'table';
+}
+
+[prefixInput, suffixInput, findInput, replaceInput, numberingToggle, startNumber, paddingDigits, caseSelect].forEach(el =>
+  el.addEventListener('input', renderPreview)
+);
+
+downloadZipBtn.addEventListener('click', async () => {
+  if (files.length === 0) return;
+  statusLine.textContent = 'Erstelle ZIP-Datei …';
+  const zip = new JSZip();
+
+  for (let i = 0; i < files.length; i++) {
+    const newName = computeNewName(files[i].name, i);
+    zip.file(newName, files[i]);
+  }
+
+  const blob = await zip.generateAsync({ type: 'blob' });
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'umbenannte-dateien.zip';
+  a.click();
+  statusLine.textContent = 'ZIP-Datei heruntergeladen.';
+});
+</script>
+
+</body>
+</html>

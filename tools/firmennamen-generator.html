@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Firmennamen Generator – Ideen Für Deinen Unternehmensnamen | Toolyfix</title>
+<meta name="description" content="Kostenloser Firmennamen Generator: Erhalte kreative Namensvorschläge basierend auf deiner Branche oder deinem Wunschwort, inklusive direktem Domain-Check-Link.">
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/style.css">
+<style>
+  .related-tools-top { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 20px; }
+  .related-tools-top a {
+    padding: 8px 14px; border-radius: var(--radius); border: 1px solid var(--border);
+    background: var(--surface); text-decoration: none; color: var(--ink); font-size: 0.85rem; font-weight: 600;
+  }
+  .related-tools-top a:hover { border-color: var(--primary); color: var(--primary); }
+
+  .options-row { display: flex; gap: 16px; flex-wrap: wrap; align-items: center; margin: 16px 0; }
+  .switch { position: relative; width: 44px; height: 24px; display: inline-block; }
+  .switch input { opacity: 0; width: 0; height: 0; }
+  .slider-switch { position: absolute; inset: 0; background: var(--border); border-radius: 24px; cursor: pointer; transition: 0.15s; }
+  .slider-switch::before { content: ""; position: absolute; height: 18px; width: 18px; left: 3px; top: 3px; background: white; border-radius: 50%; transition: 0.15s; }
+  input:checked + .slider-switch { background: var(--primary); }
+  input:checked + .slider-switch::before { transform: translateX(20px); }
+  .switch-row { display: flex; align-items: center; gap: 8px; font-size: 0.88rem; }
+
+  .names-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 12px; margin-top: 20px; }
+  .name-card { background: var(--bg); border-radius: var(--radius); padding: 16px; }
+  .name-card .n-name { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 1.15rem; color: var(--primary-dark); margin-bottom: 8px; }
+  .name-card .n-actions { display: flex; gap: 8px; }
+  .name-card .n-actions a, .name-card .n-actions button {
+    font-size: 0.78rem; padding: 5px 10px; border-radius: 6px; border: 1px solid var(--border);
+    background: var(--surface); cursor: pointer; text-decoration: none; color: var(--ink);
+  }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container">
+    <a href="/" class="logo-link">
+      <img src="/assets/images/logo-full.png" alt="Toolyfix">
+    </a>
+    <span class="header-tagline">Kostenlose Tools, direkt im Browser</span>
+  </div>
+</header>
+
+<main class="tool-page">
+  <div class="container">
+    <p class="breadcrumb"><a href="/">Toolyfix</a> / Firmennamen Generator</p>
+    <h1>Firmennamen Generator</h1>
+
+    <div class="related-tools-top">
+      <a href="/tools/slug-generator.html">/# Slug Generator</a>
+    </div>
+
+    <p>Gib ein Wort, eine Branche oder ein Thema ein und erhalte kreative Namensvorschläge für dein Unternehmen – inklusive direktem Link, um die passende Domain zu prüfen.</p>
+
+    <div class="tool-panel">
+      <input type="text" id="keywordInput" placeholder="z. B. Kaffee, Fitness, Beratung, Bau">
+
+      <div class="options-row">
+        <div class="switch-row">
+          <label class="switch"><input type="checkbox" id="shortToggle" checked><span class="slider-switch"></span></label>
+          <span>Kurze, .de-freundliche Namen bevorzugen</span>
+        </div>
+      </div>
+
+      <div class="field-row">
+        <button class="btn btn-primary" id="generateBtn">Namen generieren</button>
+      </div>
+
+      <div class="names-grid" id="namesGrid"></div>
+    </div>
+
+    <article class="explainer">
+      <h2>Firmennamen finden: kreative Ideen statt Blockade vor dem leeren Blatt</h2>
+      <p>Die Suche nach einem passenden Firmennamen ist für viele Gründerinnen und Gründer einer der frustrierendsten Schritte bei der Unternehmensgründung – der Name soll einprägsam, verfügbar und zur Branche passend sein, gleichzeitig aber auch nicht zu generisch klingen. Dieser Generator hilft dir über die anfängliche Blockade hinweg, indem er aus deinem Stichwort automatisch mehrere unterschiedliche Namensmuster kombiniert, die du als Ausgangspunkt für die eigene Namensfindung nutzen kannst.</p>
+
+      <h2>Welche Namensmuster werden verwendet?</h2>
+      <p>Der Generator kombiniert dein Stichwort nach mehreren bewährten Mustern, die auch bei bekannten Unternehmensnamen häufig vorkommen: Präfixe wie "Neo", "Pro" oder "Smart" vor dem Stichwort, Suffixe wie "Hub", "Werk", "Labs" oder "Studio" danach, Wortverschmelzungen mit passenden deutschen Begriffen, sowie leicht abgewandelte, kürzere Varianten des Stichworts selbst. Diese Vielfalt sorgt dafür, dass für unterschiedliche Branchen und Geschmäcker passende Vorschläge dabei sind – von seriös-klassisch bis verspielt-modern.</p>
+
+      <h2>Warum kurze, .de-freundliche Namen?</h2>
+      <p>Ein kurzer Name ohne Umlaute, Bindestriche oder Sonderzeichen lässt sich leichter als Domain registrieren, ist einfacher zu merken und zu tippen, und funktioniert international besser, falls du später auch außerhalb Deutschlands tätig werden möchtest. Die Option "Kurze, .de-freundliche Namen bevorzugen" filtert bevorzugt Vorschläge heraus, die diesen praktischen Kriterien entsprechen.</p>
+
+      <h2>Domain-Verfügbarkeit direkt prüfen</h2>
+      <p>Zu jedem generierten Namen kannst du über den Link "Domain prüfen" direkt nachsehen, ob die passende .de-Domain noch verfügbar ist. Das spart dir den Umweg, jeden Namen einzeln manuell bei einem Registrar einzugeben, und hilft dir, schneller zu einer realistischen Auswahl an tatsächlich nutzbaren Namen zu kommen.</p>
+
+      <h2>Rechtliche Prüfung nicht vergessen</h2>
+      <p>Ein von diesem Tool vorgeschlagener und als Domain verfügbarer Name ist nicht automatisch auch markenrechtlich frei nutzbar. Bevor du dich endgültig für einen Namen entscheidest, lohnt sich zusätzlich eine Recherche im Markenregister (beim Deutschen Patent- und Markenamt, DPMA) und eine Prüfung, ob der Name nicht bereits von einem anderen Unternehmen in einer ähnlichen Branche verwendet wird, um spätere rechtliche Konflikte zu vermeiden.</p>
+
+      <h2>Was einen guten Firmennamen ausmacht</h2>
+      <p>Ein starker Firmenname ist idealerweise leicht auszusprechen und zu merken, gibt einen Hinweis auf die Branche oder das Angebot (muss aber nicht wörtlich beschreibend sein), unterscheidet sich klar von bestehenden Wettbewerbern, und funktioniert sowohl gesprochen (am Telefon) als auch geschrieben (auf einer Visitenkarte oder in einer Suchmaschine) gut. Die hier generierten Vorschläge sind ein Startpunkt – oft lohnt es sich, mehrere Varianten laut auszusprechen oder Freunden vorzulesen, um ein Gefühl dafür zu bekommen, welcher Name wirklich hängen bleibt.</p>
+
+      <h2>Datenschutz</h2>
+      <p>Alle Namen werden lokal in deinem Browser generiert. Dein eingegebenes Stichwort wird nicht gespeichert oder an einen Server übertragen.</p>
+    </article>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <img src="/assets/images/logo-full.png" alt="Toolyfix">
+    <nav class="footer-links">
+      <a href="/ueber-uns.html">Über uns</a>
+      <a href="/datenschutz.html">Datenschutz</a>
+      <a href="/nutzungsbedingungen.html">Nutzungsbedingungen</a>
+      <a href="/kontakt.html">Kontakt</a>
+    </nav>
+    <p class="footer-note">© 2026 Toolyfix – Alle Tools laufen lokal in deinem Browser.</p>
+  </div>
+</footer>
+
+<script>
+const keywordInput = document.getElementById('keywordInput');
+const shortToggle = document.getElementById('shortToggle');
+const namesGrid = document.getElementById('namesGrid');
+
+const prefixes = ['Neo', 'Pro', 'Smart', 'Bright', 'Nord', 'Kern', 'Prime', 'Meta', 'Urban', 'Klar'];
+const suffixes = ['Hub', 'Werk', 'Labs', 'Studio', 'Solutions', 'Gruppe', 'Systeme', 'Punkt', 'Zone', 'Werkstatt'];
+const connectors = ['-', ''];
+
+function capitalize(s) { return s.charAt(0).toUpperCase() + s.slice(1); }
+
+function generateNames(keyword) {
+  const kw = capitalize(keyword.trim());
+  if (!kw) return [];
+
+  let candidates = [];
+
+  prefixes.forEach(p => {
+    candidates.push(p + kw);
+  });
+  suffixes.forEach(s => {
+    candidates.push(kw + s);
+  });
+  // A few blended/shortened variants
+  candidates.push(kw + 'io');
+  candidates.push(kw.slice(0, Math.max(3, kw.length - 1)) + 'ify');
+  candidates.push('Die ' + kw + 'macher');
+  candidates.push(kw + ' & Co');
+  candidates.push('Meister' + kw);
+
+  // Dedup
+  candidates = [...new Set(candidates)];
+
+  if (shortToggle.checked) {
+    candidates = candidates
+      .map(c => c.replace(/[äÄ]/g, 'ae').replace(/[öÖ]/g, 'oe').replace(/[üÜ]/g, 'ue').replace(/ß/g, 'ss'))
+      .filter(c => c.replace(/[^a-zA-Z]/g, '').length <= 16);
+  }
+
+  return candidates.slice(0, 16);
+}
+
+function render() {
+  const keyword = keywordInput.value.trim();
+  namesGrid.innerHTML = '';
+  if (!keyword) return;
+
+  const names = generateNames(keyword);
+  names.forEach(name => {
+    const domain = name.toLowerCase().replace(/[^a-z0-9]/g, '') + '.de';
+    const card = document.createElement('div');
+    card.className = 'name-card';
+    card.innerHTML = `
+      <div class="n-name">${name}</div>
+      <div class="n-actions">
+        <button class="copy-name-btn">Kopieren</button>
+        <a href="https://who.is/whois/${domain}" target="_blank" rel="noopener">Domain prüfen</a>
+      </div>
+    `;
+    card.querySelector('.copy-name-btn').addEventListener('click', () => navigator.clipboard.writeText(name));
+    namesGrid.appendChild(card);
+  });
+}
+
+document.getElementById('generateBtn').addEventListener('click', render);
+shortToggle.addEventListener('change', render);
+keywordInput.addEventListener('keydown', e => { if (e.key === 'Enter') render(); });
+</script>
+
+</body>
+</html>

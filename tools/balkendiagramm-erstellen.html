@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Balkendiagramm Erstellen – Online & Kostenlos | Toolyfix</title>
+<meta name="description" content="Kostenlos Balkendiagramme erstellen: eigene Daten eingeben, Farbe und Ausrichtung anpassen, als PNG oder SVG herunterladen. Direkt im Browser, ohne Excel.">
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/style.css">
+<style>
+  .related-tools-top { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 20px; }
+  .related-tools-top a {
+    padding: 8px 14px; border-radius: var(--radius); border: 1px solid var(--border);
+    background: var(--surface); text-decoration: none; color: var(--ink); font-size: 0.85rem; font-weight: 600;
+  }
+  .related-tools-top a:hover { border-color: var(--primary); color: var(--primary); }
+
+  .data-row { display: flex; gap: 8px; margin-bottom: 8px; align-items: center; }
+  .data-row input[type="text"] { flex: 2; }
+  .data-row input[type="number"] { flex: 1; }
+  .remove-row-btn { background: none; border: none; cursor: pointer; color: var(--ink-soft); font-size: 1.1rem; padding: 4px 8px; }
+
+  .options-row { display: flex; gap: 16px; flex-wrap: wrap; align-items: center; margin: 16px 0; }
+  .options-row label { font-size: 0.85rem; color: var(--ink-soft); }
+  .switch { position: relative; width: 44px; height: 24px; display: inline-block; }
+  .switch input { opacity: 0; width: 0; height: 0; }
+  .slider-switch { position: absolute; inset: 0; background: var(--border); border-radius: 24px; cursor: pointer; transition: 0.15s; }
+  .slider-switch::before { content: ""; position: absolute; height: 18px; width: 18px; left: 3px; top: 3px; background: white; border-radius: 50%; transition: 0.15s; }
+  input:checked + .slider-switch { background: var(--primary); }
+  input:checked + .slider-switch::before { transform: translateX(20px); }
+
+  #chartWrap { background: #fff; border-radius: var(--radius); padding: 16px; margin-top: 16px; overflow-x: auto; }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container">
+    <a href="/" class="logo-link">
+      <img src="/assets/images/logo-full.png" alt="Toolyfix">
+    </a>
+    <span class="header-tagline">Kostenlose Tools, direkt im Browser</span>
+  </div>
+</header>
+
+<main class="tool-page">
+  <div class="container">
+    <p class="breadcrumb"><a href="/">Toolyfix</a> / Balkendiagramm Erstellen</p>
+    <h1>Balkendiagramm Erstellen</h1>
+
+    <div class="related-tools-top">
+      <a href="/tools/flaechenrechner.html">📐 Flächenrechner</a>
+    </div>
+
+    <p>Trage deine Daten ein und erhalte sofort ein fertiges Balkendiagramm – anpassbar in Farbe und Ausrichtung, herunterladbar als PNG oder SVG.</p>
+
+    <div class="tool-panel">
+      <input type="text" id="chartTitle" placeholder="Diagrammtitel (optional)" style="margin-bottom:16px;">
+
+      <div id="dataRows"></div>
+      <button class="btn btn-ghost" id="addRowBtn">+ Zeile hinzufügen</button>
+
+      <div class="options-row">
+        <label>Farbe: <input type="color" id="barColor" value="#1D3557"></label>
+        <label class="switch"><input type="checkbox" id="horizontalToggle"><span class="slider-switch"></span></label>
+        <span style="font-size:0.85rem;">Horizontal</span>
+        <label class="switch"><input type="checkbox" id="showValuesToggle" checked><span class="slider-switch"></span></label>
+        <span style="font-size:0.85rem;">Werte anzeigen</span>
+      </div>
+
+      <div class="field-row">
+        <button class="btn btn-primary" id="downloadPngBtn">Als PNG herunterladen</button>
+        <button class="btn btn-ghost" id="downloadSvgBtn">Als SVG herunterladen</button>
+      </div>
+
+      <div id="chartWrap"></div>
+    </div>
+
+    <article class="explainer">
+      <h2>Balkendiagramme online erstellen – ohne Excel oder Design-Software</h2>
+      <p>Ein Balkendiagramm gehört zu den am häufigsten genutzten Diagrammtypen, um Zahlen anschaulich zu vergleichen – etwa Umsatzzahlen verschiedener Monate, Umfrageergebnisse, oder die Verteilung von Werten über verschiedene Kategorien hinweg. Statt dafür eine Tabellenkalkulation zu öffnen und Diagrammoptionen zu durchsuchen, kannst du mit diesem Tool direkt im Browser ein Diagramm erstellen und als Bilddatei exportieren.</p>
+
+      <h2>Eigene Daten eintragen</h2>
+      <p>Trage für jede Kategorie einen Namen (zum Beispiel einen Monat oder eine Produktbezeichnung) und den zugehörigen Zahlenwert ein. Über "+ Zeile hinzufügen" kannst du beliebig viele Datenpunkte hinzufügen, und über das Kreuz-Symbol neben einer Zeile entfernst du sie wieder. Das Diagramm aktualisiert sich automatisch, sobald du eine Änderung vornimmst.</p>
+
+      <h2>Vertikale oder horizontale Balken?</h2>
+      <p>Vertikale Balken (die Standardansicht) eignen sich gut für zeitliche Verläufe, etwa Monat für Monat von links nach rechts. Horizontale Balken sind oft die bessere Wahl, wenn die Kategorienamen lang sind (zum Beispiel vollständige Produktnamen oder Ländernamen), da der Text dann waagerecht neben dem Balken lesbar bleibt, statt gedreht oder abgeschnitten zu werden.</p>
+
+      <h2>PNG oder SVG – welches Format wählen?</h2>
+      <p>Ein <strong>PNG</strong> ist eine fertige Bilddatei, die sich in jedes Dokument, jede Präsentation oder E-Mail einfügen lässt, ohne dass die Empfängerseite etwas Besonderes können muss. Ein <strong>SVG</strong> ist dagegen eine Vektordatei, die sich verlustfrei auf jede Größe skalieren lässt und sich gut eignet, wenn du das Diagramm später noch in einem Grafikprogramm wie Illustrator, Inkscape oder Figma weiterbearbeiten möchtest.</p>
+
+      <h2>Wann eignet sich ein Balkendiagramm – und wann nicht?</h2>
+      <p>Balkendiagramme eignen sich besonders gut, um einzelne, klar abgegrenzte Kategorien miteinander zu vergleichen. Für die Darstellung eines kontinuierlichen Verlaufs über die Zeit (zum Beispiel eine tägliche Temperaturkurve) ist ein Liniendiagramm meist die anschaulichere Wahl, und für Anteile an einem Ganzen (zum Beispiel Marktanteile in Prozent) eignet sich oft ein Kreisdiagramm besser. Die Wahl des richtigen Diagrammtyps hat einen großen Einfluss darauf, wie leicht verständlich deine Daten für andere sind.</p>
+
+      <h2>Tipps für ein gut lesbares Diagramm</h2>
+      <p>Verwende möglichst kurze, eindeutige Kategorienamen, halte die Anzahl der Balken überschaubar (mehr als etwa 10 bis 12 Balken werden schnell unübersichtlich), und aktiviere die Werteanzeige, wenn die genauen Zahlen für deine Zuschauer wichtig sind, nicht nur der visuelle Vergleich.</p>
+
+      <h2>Datenschutz</h2>
+      <p>Alle Daten und die Diagrammerstellung laufen lokal in deinem Browser. Es findet keine Übertragung an einen Server statt.</p>
+    </article>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <img src="/assets/images/logo-full.png" alt="Toolyfix">
+    <nav class="footer-links">
+      <a href="/ueber-uns.html">Über uns</a>
+      <a href="/datenschutz.html">Datenschutz</a>
+      <a href="/nutzungsbedingungen.html">Nutzungsbedingungen</a>
+      <a href="/kontakt.html">Kontakt</a>
+    </nav>
+    <p class="footer-note">© 2026 Toolyfix – Alle Tools laufen lokal in deinem Browser.</p>
+  </div>
+</footer>
+
+<script>
+const dataRows = document.getElementById('dataRows');
+const chartWrap = document.getElementById('chartWrap');
+const chartTitle = document.getElementById('chartTitle');
+const barColor = document.getElementById('barColor');
+const horizontalToggle = document.getElementById('horizontalToggle');
+const showValuesToggle = document.getElementById('showValuesToggle');
+
+let rows = [
+  { label: '', value: '' },
+  { label: '', value: '' },
+  { label: '', value: '' }
+];
+
+function renderRows() {
+  dataRows.innerHTML = '';
+  rows.forEach((row, i) => {
+    const div = document.createElement('div');
+    div.className = 'data-row';
+    div.innerHTML = `
+      <input type="text" placeholder="Kategorie ${i + 1}" value="${row.label}" data-i="${i}" data-f="label">
+      <input type="number" placeholder="Wert" value="${row.value}" data-i="${i}" data-f="value">
+      <button class="remove-row-btn" data-i="${i}">✕</button>
+    `;
+    dataRows.appendChild(div);
+  });
+
+  dataRows.querySelectorAll('input').forEach(inp => {
+    inp.addEventListener('input', () => {
+      rows[inp.dataset.i][inp.dataset.f] = inp.value;
+      renderChart();
+    });
+  });
+  dataRows.querySelectorAll('.remove-row-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      rows.splice(parseInt(btn.dataset.i, 10), 1);
+      renderRows();
+      renderChart();
+    });
+  });
+}
+
+document.getElementById('addRowBtn').addEventListener('click', () => {
+  rows.push({ label: '', value: '' });
+  renderRows();
+});
+
+function buildSvg() {
+  const data = rows.filter(r => r.label.trim() !== '' && r.value !== '');
+  const width = 640, height = 400, margin = { top: 40, right: 20, bottom: 60, left: 50 };
+  const innerW = width - margin.left - margin.right;
+  const innerH = height - margin.top - margin.bottom;
+  const color = barColor.value;
+  const horizontal = horizontalToggle.checked;
+  const showValues = showValuesToggle.checked;
+  const title = chartTitle.value.trim();
+
+  if (data.length === 0) {
+    return `<svg width="${width}" height="200" xmlns="http://www.w3.org/2000/svg"><text x="20" y="100" font-family="Inter, sans-serif" fill="#888">Trage Daten ein, um ein Diagramm zu sehen.</text></svg>`;
+  }
+
+  const maxVal = Math.max(...data.map(d => parseFloat(d.value) || 0), 1);
+  let bars = '';
+  let labels = '';
+
+  if (!horizontal) {
+    const barW = innerW / data.length * 0.65;
+    const gap = innerW / data.length;
+    data.forEach((d, i) => {
+      const val = parseFloat(d.value) || 0;
+      const barH = (val / maxVal) * innerH;
+      const x = margin.left + i * gap + (gap - barW) / 2;
+      const y = margin.top + innerH - barH;
+      bars += `<rect x="${x}" y="${y}" width="${barW}" height="${barH}" fill="${color}" rx="3"/>`;
+      if (showValues) bars += `<text x="${x + barW / 2}" y="${y - 6}" text-anchor="middle" font-size="12" font-family="Inter, sans-serif" fill="#1a1a1a">${val}</text>`;
+      labels += `<text x="${x + barW / 2}" y="${margin.top + innerH + 18}" text-anchor="middle" font-size="11" font-family="Inter, sans-serif" fill="#555">${escapeXml(d.label)}</text>`;
+    });
+  } else {
+    const barH = innerH / data.length * 0.65;
+    const gap = innerH / data.length;
+    data.forEach((d, i) => {
+      const val = parseFloat(d.value) || 0;
+      const barW = (val / maxVal) * innerW;
+      const y = margin.top + i * gap + (gap - barH) / 2;
+      const x = margin.left;
+      bars += `<rect x="${x}" y="${y}" width="${barW}" height="${barH}" fill="${color}" rx="3"/>`;
+      if (showValues) bars += `<text x="${x + barW + 6}" y="${y + barH / 2 + 4}" font-size="12" font-family="Inter, sans-serif" fill="#1a1a1a">${val}</text>`;
+      labels += `<text x="${margin.left - 8}" y="${y + barH / 2 + 4}" text-anchor="end" font-size="11" font-family="Inter, sans-serif" fill="#555">${escapeXml(d.label)}</text>`;
+    });
+  }
+
+  const titleSvg = title ? `<text x="${width / 2}" y="22" text-anchor="middle" font-size="16" font-weight="700" font-family="Space Grotesk, Inter, sans-serif" fill="#1a1a1a">${escapeXml(title)}</text>` : '';
+
+  return `<svg width="100%" viewBox="0 0 ${width} ${height}" xmlns="http://www.w3.org/2000/svg" style="max-width:640px;">
+    <rect width="${width}" height="${height}" fill="#ffffff"/>
+    ${titleSvg}
+    <line x1="${margin.left}" y1="${margin.top}" x2="${margin.left}" y2="${margin.top + innerH}" stroke="#ccc"/>
+    <line x1="${margin.left}" y1="${margin.top + innerH}" x2="${margin.left + innerW}" y2="${margin.top + innerH}" stroke="#ccc"/>
+    ${bars}
+    ${labels}
+  </svg>`;
+}
+
+function escapeXml(s) {
+  return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+}
+
+function renderChart() {
+  chartWrap.innerHTML = buildSvg();
+}
+
+[chartTitle, barColor, horizontalToggle, showValuesToggle].forEach(el => el.addEventListener('input', renderChart));
+
+document.getElementById('downloadSvgBtn').addEventListener('click', () => {
+  const svgStr = buildSvg();
+  const blob = new Blob([svgStr], { type: 'image/svg+xml' });
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'balkendiagramm.svg';
+  a.click();
+});
+
+document.getElementById('downloadPngBtn').addEventListener('click', () => {
+  const svgStr = buildSvg();
+  const svgBlob = new Blob([svgStr], { type: 'image/svg+xml' });
+  const url = URL.createObjectURL(svgBlob);
+  const img = new Image();
+  img.onload = () => {
+    const canvas = document.createElement('canvas');
+    canvas.width = 1280;
+    canvas.height = 800;
+    const ctx = canvas.getContext('2d');
+    ctx.fillStyle = '#fff';
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+    canvas.toBlob(blob => {
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = 'balkendiagramm.png';
+      a.click();
+    });
+    URL.revokeObjectURL(url);
+  };
+  img.src = url;
+});
+
+renderRows();
+renderChart();
+</script>
+
+</body>
+</html>
