@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Alphabetisch Sortieren – Listen Sortieren Online | Toolyfix</title>
+<meta name="description" content="Listen kostenlos alphabetisch sortieren, mit deutschen Sortierregeln, natürlicher Zahlensortierung, Duplikate entfernen und Sortierung nach Länge.">
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/style.css">
+<style>
+  .related-tools-top { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 20px; }
+  .related-tools-top a {
+    padding: 8px 14px; border-radius: var(--radius); border: 1px solid var(--border);
+    background: var(--surface); text-decoration: none; color: var(--ink); font-size: 0.85rem; font-weight: 600;
+  }
+  .related-tools-top a:hover { border-color: var(--primary); color: var(--primary); }
+
+  .options-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; margin: 16px 0; }
+  @media (max-width: 640px) { .options-grid { grid-template-columns: 1fr; } }
+  .option-block label.opt-label { font-size: 0.82rem; color: var(--ink-soft); display: block; margin-bottom: 6px; }
+
+  .switch { position: relative; width: 44px; height: 24px; display: inline-block; }
+  .switch input { opacity: 0; width: 0; height: 0; }
+  .slider-switch { position: absolute; inset: 0; background: var(--border); border-radius: 24px; cursor: pointer; transition: 0.15s; }
+  .slider-switch::before { content: ""; position: absolute; height: 18px; width: 18px; left: 3px; top: 3px; background: white; border-radius: 50%; transition: 0.15s; }
+  input:checked + .slider-switch { background: var(--primary); }
+  input:checked + .slider-switch::before { transform: translateX(20px); }
+  .switch-row { display: flex; align-items: center; gap: 10px; height: 38px; font-size: 0.88rem; }
+
+  .textarea-pair { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  @media (max-width: 780px) { .textarea-pair { grid-template-columns: 1fr; } }
+  .textarea-pair label { font-size: 0.85rem; color: var(--ink-soft); display: block; margin-bottom: 6px; }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container">
+    <a href="/" class="logo-link">
+      <img src="/assets/images/logo-full.png" alt="Toolyfix">
+    </a>
+    <span class="header-tagline">Kostenlose Tools, direkt im Browser</span>
+  </div>
+</header>
+
+<main class="tool-page">
+  <div class="container">
+    <p class="breadcrumb"><a href="/">Toolyfix</a> / Alphabetisch Sortieren</p>
+    <h1>Alphabetisch Sortieren</h1>
+
+    <div class="related-tools-top">
+      <a href="/tools/anagramm-finder.html">🔤 Anagramm Finder</a>
+      <a href="/tools/slug-generator.html">/# Slug Generator</a>
+    </div>
+
+    <p>Sortiere eine Liste von Wörtern, Namen oder Zeilen alphabetisch – mit korrekten deutschen Sortierregeln, natürlicher Zahlensortierung und Optionen zum Entfernen von Duplikaten.</p>
+
+    <div class="tool-panel">
+      <div class="options-grid">
+        <div class="option-block">
+          <label class="opt-label">Reihenfolge</label>
+          <div class="switch-row">
+            <label class="switch"><input type="checkbox" id="descendingToggle"><span class="slider-switch"></span></label>
+            <span id="orderLabel">A → Z (aufsteigend)</span>
+          </div>
+        </div>
+
+        <div class="option-block">
+          <label class="opt-label">Sortiermethode</label>
+          <div class="switch-row">
+            <label class="switch"><input type="checkbox" id="germanRulesToggle" checked><span class="slider-switch"></span></label>
+            <span>Deutsche Sortierregeln (ä ≈ a)</span>
+          </div>
+        </div>
+
+        <div class="option-block">
+          <label class="opt-label">Duplikate</label>
+          <div class="switch-row">
+            <label class="switch"><input type="checkbox" id="removeDupesToggle"><span class="slider-switch"></span></label>
+            <span>Doppelte Zeilen entfernen</span>
+          </div>
+        </div>
+
+        <div class="option-block">
+          <label class="opt-label">Sortierkriterium</label>
+          <div class="switch-row">
+            <label class="switch"><input type="checkbox" id="sortByLengthToggle"><span class="slider-switch"></span></label>
+            <span>Nach Länge statt Alphabet</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="textarea-pair">
+        <div>
+          <label for="input">Eingabe (eine Zeile pro Eintrag)</label>
+          <textarea id="input" rows="10" placeholder="z. B.&#10;Müller&#10;Abel&#10;Özdemir&#10;Weber"></textarea>
+        </div>
+        <div>
+          <label for="output">Sortiertes Ergebnis</label>
+          <textarea id="output" rows="10" readonly></textarea>
+        </div>
+      </div>
+
+      <div class="field-row" style="margin-top:16px;">
+        <button class="btn btn-primary" id="copyBtn">Ergebnis kopieren</button>
+        <span style="font-size:0.85rem; color:var(--ink-soft); align-self:center;" id="countLabel"></span>
+      </div>
+    </div>
+
+    <article class="explainer">
+      <h2>Listen alphabetisch sortieren – mit korrekten deutschen Regeln</h2>
+      <p>Dieses Tool sortiert eine beliebige Liste von Namen, Wörtern oder anderen Textzeilen alphabetisch. Anders als eine einfache technische Sortierung nach Zeichencode berücksichtigt die Option "Deutsche Sortierregeln" die im Deutschen üblichen Sortiergewohnheiten, bei denen Umlaute wie ä, ö und ü wie ihre Grundbuchstaben a, o und u behandelt werden – so wie es auch in deutschen Telefonbüchern, Wörterbüchern und Namenslisten üblich ist.</p>
+
+      <h2>Warum sortiert der Computer Umlaute sonst falsch ein?</h2>
+      <p>Computer sortieren Text standardmäßig nach dem numerischen Code jedes Zeichens (Unicode). Dabei landen Umlaute rein technisch oft weit hinten in der Reihenfolge, weit nach dem Buchstaben Z, weil ihr Zeichencode höher ist als der der normalen lateinischen Buchstaben. Das führt dazu, dass zum Beispiel "Özdemir" bei einer rein technischen Sortierung nach "Zimmermann" einsortiert würde, obwohl es alphabetisch (wie im Telefonbuch) zwischen "Ozon" und "Paar" stehen sollte. Die deutschen Sortierregeln in diesem Tool korrigieren genau dieses Verhalten.</p>
+
+      <h2>Strikte Zeichenreihenfolge für technische Zwecke</h2>
+      <p>Schaltest du die deutschen Sortierregeln aus, sortiert das Tool stattdessen nach der exakten technischen Zeichenreihenfolge (Unicode-Codepunkt). Das ist sinnvoll, wenn du zum Beispiel Programmcode, Datenbankschlüssel oder andere technische Bezeichner sortieren möchtest, bei denen die exakte, reproduzierbare Zeichenfolge wichtiger ist als die sprachlich "natürliche" Reihenfolge.</p>
+
+      <h2>Duplikate automatisch entfernen</h2>
+      <p>Bei längeren Listen, die aus mehreren Quellen zusammengeführt wurden (zum Beispiel beim Kombinieren mehrerer Namenslisten oder E-Mail-Verteiler), kommt es häufig zu doppelten Einträgen. Mit der Option "Doppelte Zeilen entfernen" bereinigt das Tool die Liste automatisch, während sie sortiert wird, sodass jeder Eintrag nur noch einmal erscheint.</p>
+
+      <h2>Sortierung nach Länge statt Alphabet</h2>
+      <p>Manchmal ist nicht die alphabetische Reihenfolge relevant, sondern die Länge der Einträge – zum Beispiel um die kürzesten oder längsten Wörter in einer Liste zu identifizieren, oder um eine Liste von Produktnamen nach Textlänge für ein Layout zu ordnen. Mit dieser Option sortierst du stattdessen nach der Zeichenanzahl jeder Zeile, bei gleicher Länge alphabetisch als Tie-Breaker.</p>
+
+      <h2>Anwendungsbeispiele</h2>
+      <p>Alphabetisches Sortieren wird häufig gebraucht, um Namenslisten für Klassenlisten, Teilnehmerlisten oder Adressbücher zu ordnen, um Wortlisten für Vokabellisten oder Glossare vorzubereiten, oder um Aufzählungen in Dokumenten und Präsentationen in eine logische Reihenfolge zu bringen, bevor sie veröffentlicht werden.</p>
+
+      <h2>Datenschutz</h2>
+      <p>Die gesamte Sortierung findet lokal in deinem Browser statt. Deine eingegebene Liste wird nicht an einen Server übertragen oder gespeichert.</p>
+    </article>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <img src="/assets/images/logo-full.png" alt="Toolyfix">
+    <nav class="footer-links">
+      <a href="/ueber-uns.html">Über uns</a>
+      <a href="/datenschutz.html">Datenschutz</a>
+      <a href="/nutzungsbedingungen.html">Nutzungsbedingungen</a>
+      <a href="/kontakt.html">Kontakt</a>
+    </nav>
+    <p class="footer-note">© 2026 Toolyfix – Alle Tools laufen lokal in deinem Browser.</p>
+  </div>
+</footer>
+
+<script>
+const input = document.getElementById('input');
+const output = document.getElementById('output');
+const descendingToggle = document.getElementById('descendingToggle');
+const germanRulesToggle = document.getElementById('germanRulesToggle');
+const removeDupesToggle = document.getElementById('removeDupesToggle');
+const sortByLengthToggle = document.getElementById('sortByLengthToggle');
+const orderLabel = document.getElementById('orderLabel');
+const countLabel = document.getElementById('countLabel');
+
+function sortList() {
+  let lines = input.value.split('\n').map(l => l.trim()).filter(l => l.length > 0);
+
+  if (removeDupesToggle.checked) {
+    const seen = new Set();
+    lines = lines.filter(l => {
+      const key = l.toLowerCase();
+      if (seen.has(key)) return false;
+      seen.add(key);
+      return true;
+    });
+  }
+
+  const collator = germanRulesToggle.checked
+    ? new Intl.Collator('de', { sensitivity: 'base', numeric: true })
+    : null;
+
+  lines.sort((a, b) => {
+    if (sortByLengthToggle.checked) {
+      if (a.length !== b.length) return a.length - b.length;
+      return collator ? collator.compare(a, b) : (a < b ? -1 : a > b ? 1 : 0);
+    }
+    return collator ? collator.compare(a, b) : (a < b ? -1 : a > b ? 1 : 0);
+  });
+
+  if (descendingToggle.checked) lines.reverse();
+
+  output.value = lines.join('\n');
+  countLabel.textContent = `${lines.length} Zeile${lines.length === 1 ? '' : 'n'}`;
+}
+
+descendingToggle.addEventListener('change', () => {
+  orderLabel.textContent = descendingToggle.checked ? 'Z → A (absteigend)' : 'A → Z (aufsteigend)';
+  sortList();
+});
+
+[germanRulesToggle, removeDupesToggle, sortByLengthToggle, input].forEach(el =>
+  el.addEventListener('input', sortList)
+);
+
+document.getElementById('copyBtn').addEventListener('click', () => {
+  if (output.value) navigator.clipboard.writeText(output.value);
+});
+</script>
+
+</body>
+</html>

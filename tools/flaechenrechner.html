@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Flächenrechner – Fläche & Umfang Aller Formen | Toolyfix</title>
+<meta name="description" content="Kostenloser Flächenrechner für Quadrat, Rechteck, Kreis, Dreieck, Trapez und mehr. Fläche und Umfang berechnen, mit Einheitenumrechnung.">
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/style.css">
+<style>
+  .related-tools-top { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 20px; }
+  .related-tools-top a {
+    padding: 8px 14px; border-radius: var(--radius); border: 1px solid var(--border);
+    background: var(--surface); text-decoration: none; color: var(--ink); font-size: 0.85rem; font-weight: 600;
+  }
+  .related-tools-top a:hover { border-color: var(--primary); color: var(--primary); }
+
+  .shape-row { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 20px; }
+  .shape-btn {
+    padding: 9px 14px; border-radius: var(--radius); border: 1px solid var(--border);
+    background: var(--surface); cursor: pointer; font-size: 0.85rem; font-weight: 600;
+  }
+  .shape-btn.active { background: var(--primary); color: #fff; border-color: var(--primary); }
+
+  .inputs-row { display: flex; gap: 14px; flex-wrap: wrap; margin-bottom: 16px; }
+  .input-field { display: flex; flex-direction: column; gap: 6px; min-width: 140px; }
+  .input-field label { font-size: 0.82rem; color: var(--ink-soft); }
+
+  .unit-select { min-width: 100px; }
+
+  .formula-note { font-size: 0.85rem; color: var(--ink-soft); font-style: italic; margin-bottom: 16px; }
+
+  .result-row { display: flex; gap: 16px; flex-wrap: wrap; margin-top: 16px; }
+  .result-card { flex: 1; min-width: 200px; background: var(--bg); border-radius: var(--radius); padding: 16px; text-align: center; }
+  .result-card .r-label { font-size: 0.82rem; color: var(--ink-soft); }
+  .result-card .r-value { font-family: 'Space Grotesk', sans-serif; font-size: 1.4rem; font-weight: 700; color: var(--primary); }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container">
+    <a href="/" class="logo-link">
+      <img src="/assets/images/logo-full.png" alt="Toolyfix">
+    </a>
+    <span class="header-tagline">Kostenlose Tools, direkt im Browser</span>
+  </div>
+</header>
+
+<main class="tool-page">
+  <div class="container">
+    <p class="breadcrumb"><a href="/">Toolyfix</a> / Flächenrechner</p>
+    <h1>Flächenrechner</h1>
+
+    <div class="related-tools-top">
+      <a href="/tools/gleichungen-loesen.html">√x Gleichungen Lösen</a>
+    </div>
+
+    <p>Berechne Fläche und Umfang für Quadrat, Rechteck, Kreis, Dreieck, Trapez, Parallelogramm und regelmäßiges Sechseck – mit freier Einheitenwahl.</p>
+
+    <div class="tool-panel">
+      <div class="shape-row" id="shapeRow">
+        <button class="shape-btn active" data-shape="square">Quadrat</button>
+        <button class="shape-btn" data-shape="rectangle">Rechteck</button>
+        <button class="shape-btn" data-shape="circle">Kreis</button>
+        <button class="shape-btn" data-shape="triangle">Dreieck</button>
+        <button class="shape-btn" data-shape="trapezoid">Trapez</button>
+        <button class="shape-btn" data-shape="parallelogram">Parallelogramm</button>
+        <button class="shape-btn" data-shape="ellipse">Ellipse</button>
+        <button class="shape-btn" data-shape="hexagon">Sechseck</button>
+      </div>
+
+      <div class="inputs-row" id="inputsRow"></div>
+      <p class="formula-note" id="formulaNote"></p>
+
+      <div class="field-row">
+        <button class="btn btn-primary" id="calcBtn">Berechnen</button>
+      </div>
+
+      <div class="result-row" id="resultRow" style="display:none;">
+        <div class="result-card">
+          <div class="r-label">Fläche</div>
+          <div class="r-value" id="areaResult"></div>
+        </div>
+        <div class="result-card" id="perimeterCard">
+          <div class="r-label">Umfang</div>
+          <div class="r-value" id="perimeterResult"></div>
+        </div>
+      </div>
+    </div>
+
+    <article class="explainer">
+      <h2>Flächen und Umfang online berechnen – für jede gängige Form</h2>
+      <p>Dieser Flächenrechner deckt die gängigsten geometrischen Formen ab, die in Schule, Studium, Handwerk und Alltag gebraucht werden: Quadrat, Rechteck, Kreis, Dreieck, Trapez, Parallelogramm, Ellipse und das regelmäßige Sechseck. Zu jeder Form berechnet das Tool sowohl die Fläche als auch – wo mathematisch sinnvoll berechenbar – den Umfang, basierend auf den eingegebenen Maßen.</p>
+
+      <h2>Wofür braucht man einen Flächenrechner?</h2>
+      <p>Im Alltag wird die Flächenberechnung häufig gebraucht, um Materialmengen abzuschätzen – etwa wie viel Farbe für eine Wand, wie viel Rasen für einen Garten, oder wie viele Fliesen für einen Raum benötigt werden. Auch in der Schule und im Studium ist die Flächenberechnung ein Grundbaustein der Geometrie, der in vielen weiterführenden Aufgaben vorausgesetzt wird.</p>
+
+      <h2>Die Formeln im Überblick</h2>
+      <p><strong>Quadrat:</strong> Fläche = Seite², Umfang = 4 × Seite. <strong>Rechteck:</strong> Fläche = Länge × Breite, Umfang = 2 × (Länge + Breite). <strong>Kreis:</strong> Fläche = π × Radius², Umfang = 2 × π × Radius. <strong>Dreieck:</strong> Fläche = (Grundseite × Höhe) ÷ 2. <strong>Trapez:</strong> Fläche = ((Seite a + Seite b) ÷ 2) × Höhe. <strong>Parallelogramm:</strong> Fläche = Grundseite × Höhe. <strong>Ellipse:</strong> Fläche = π × Halbachse a × Halbachse b. <strong>Regelmäßiges Sechseck:</strong> Fläche = (3√3 ÷ 2) × Seitenlänge².</p>
+
+      <h2>Warum wird beim Dreieck und Trapez kein Umfang angezeigt?</h2>
+      <p>Der Umfang eines Dreiecks oder Trapezes hängt von allen drei beziehungsweise vier Seitenlängen ab, nicht nur von Grundseite und Höhe. Da für die Flächenberechnung dieser Formen nur Grundseite und Höhe benötigt werden, fehlen für eine korrekte Umfangsberechnung die restlichen Seitenlängen. Für ein allgemeines Dreieck oder Trapez müsstest du zusätzlich die fehlenden Seiten kennen und den Umfang separat per Hand addieren.</p>
+
+      <h2>Einheiten richtig wählen</h2>
+      <p>Wähle die Einheit passend zur Größenordnung deiner Messung: Millimeter oder Zentimeter für kleine Gegenstände, Meter für Räume und Gärten, Kilometer für sehr große Flächen wie Grundstücke oder geografische Angaben. Achte darauf, dass alle eingegebenen Maße in derselben Einheit angegeben werden, da das Tool keine automatische Umrechnung zwischen unterschiedlichen Einheiten innerhalb derselben Berechnung vornimmt.</p>
+
+      <h2>Genauigkeit bei Kreis und Ellipse</h2>
+      <p>Für Kreis- und Ellipsenberechnungen wird die mathematische Konstante π (Pi) mit hoher Genauigkeit verwendet (der volle von JavaScript bereitgestellte Wert), sodass das Ergebnis so präzise ist, wie es die Eingabewerte zulassen.</p>
+
+      <h2>Datenschutz</h2>
+      <p>Alle Berechnungen laufen lokal in deinem Browser. Es werden keine Eingaben an einen Server übertragen oder gespeichert.</p>
+    </article>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <img src="/assets/images/logo-full.png" alt="Toolyfix">
+    <nav class="footer-links">
+      <a href="/ueber-uns.html">Über uns</a>
+      <a href="/datenschutz.html">Datenschutz</a>
+      <a href="/nutzungsbedingungen.html">Nutzungsbedingungen</a>
+      <a href="/kontakt.html">Kontakt</a>
+    </nav>
+    <p class="footer-note">© 2026 Toolyfix – Alle Tools laufen lokal in deinem Browser.</p>
+  </div>
+</footer>
+
+<script>
+const inputsRow = document.getElementById('inputsRow');
+const formulaNote = document.getElementById('formulaNote');
+const resultRow = document.getElementById('resultRow');
+const perimeterCard = document.getElementById('perimeterCard');
+const areaResult = document.getElementById('areaResult');
+const perimeterResult = document.getElementById('perimeterResult');
+
+const units = ['mm', 'cm', 'm', 'km'];
+let currentShape = 'square';
+
+const shapeConfigs = {
+  square: { fields: [{ id: 'side', label: 'Seitenlänge' }], formula: 'Fläche = Seite², Umfang = 4 × Seite', hasPerimeter: true },
+  rectangle: { fields: [{ id: 'length', label: 'Länge' }, { id: 'width', label: 'Breite' }], formula: 'Fläche = Länge × Breite, Umfang = 2 × (Länge + Breite)', hasPerimeter: true },
+  circle: { fields: [{ id: 'radius', label: 'Radius' }], formula: 'Fläche = π × Radius², Umfang = 2 × π × Radius', hasPerimeter: true },
+  triangle: { fields: [{ id: 'base', label: 'Grundseite' }, { id: 'height', label: 'Höhe' }], formula: 'Fläche = (Grundseite × Höhe) ÷ 2', hasPerimeter: false },
+  trapezoid: { fields: [{ id: 'a', label: 'Seite a' }, { id: 'b', label: 'Seite b' }, { id: 'height', label: 'Höhe' }], formula: 'Fläche = ((a + b) ÷ 2) × Höhe', hasPerimeter: false },
+  parallelogram: { fields: [{ id: 'base', label: 'Grundseite' }, { id: 'height', label: 'Höhe' }], formula: 'Fläche = Grundseite × Höhe', hasPerimeter: false },
+  ellipse: { fields: [{ id: 'a', label: 'Halbachse a' }, { id: 'b', label: 'Halbachse b' }], formula: 'Fläche = π × a × b', hasPerimeter: false },
+  hexagon: { fields: [{ id: 'side', label: 'Seitenlänge' }], formula: 'Fläche = (3√3 ÷ 2) × Seite², Umfang = 6 × Seite', hasPerimeter: true }
+};
+
+function unitSelectHtml(id) {
+  return `<select id="${id}_unit" class="unit-select">` + units.map(u => `<option value="${u}" ${u === 'm' ? 'selected' : ''}>${u}</option>`).join('') + `</select>`;
+}
+
+function renderInputs() {
+  const config = shapeConfigs[currentShape];
+  inputsRow.innerHTML = '';
+  config.fields.forEach(f => {
+    const div = document.createElement('div');
+    div.className = 'input-field';
+    div.innerHTML = `<label>${f.label}</label><div style="display:flex; gap:6px;"><input type="number" id="${f.id}" min="0" step="any">${unitSelectHtml(f.id)}</div>`;
+    inputsRow.appendChild(div);
+  });
+  formulaNote.textContent = config.formula;
+  resultRow.style.display = 'none';
+}
+
+document.querySelectorAll('.shape-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.shape-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    currentShape = btn.dataset.shape;
+    renderInputs();
+  });
+});
+
+const unitToMeters = { mm: 0.001, cm: 0.01, m: 1, km: 1000 };
+
+function getValInMeters(id) {
+  const val = parseFloat(document.getElementById(id).value);
+  const unit = document.getElementById(id + '_unit').value;
+  if (isNaN(val)) return null;
+  return val * unitToMeters[unit];
+}
+
+function bestUnitFormat(valueM2) {
+  // choose a sensible display unit for area
+  if (valueM2 < 0.0001) return (valueM2 * 1e6).toFixed(2) + ' mm²';
+  if (valueM2 < 1) return (valueM2 * 1e4).toFixed(2) + ' cm²';
+  if (valueM2 < 1e6) return valueM2.toFixed(2) + ' m²';
+  return (valueM2 / 1e6).toFixed(4) + ' km²';
+}
+
+function bestUnitLength(valueM) {
+  if (valueM < 0.01) return (valueM * 1000).toFixed(2) + ' mm';
+  if (valueM < 1) return (valueM * 100).toFixed(2) + ' cm';
+  if (valueM < 1000) return valueM.toFixed(2) + ' m';
+  return (valueM / 1000).toFixed(4) + ' km';
+}
+
+function calculate() {
+  const config = shapeConfigs[currentShape];
+  const vals = {};
+  for (const f of config.fields) {
+    const v = getValInMeters(f.id);
+    if (v === null || v < 0) { areaResult.textContent = 'Bitte alle Felder ausfüllen.'; resultRow.style.display = 'flex'; perimeterCard.style.display = 'none'; return; }
+    vals[f.id] = v;
+  }
+
+  let area = 0, perimeter = null;
+  switch (currentShape) {
+    case 'square': area = vals.side ** 2; perimeter = 4 * vals.side; break;
+    case 'rectangle': area = vals.length * vals.width; perimeter = 2 * (vals.length + vals.width); break;
+    case 'circle': area = Math.PI * vals.radius ** 2; perimeter = 2 * Math.PI * vals.radius; break;
+    case 'triangle': area = (vals.base * vals.height) / 2; break;
+    case 'trapezoid': area = ((vals.a + vals.b) / 2) * vals.height; break;
+    case 'parallelogram': area = vals.base * vals.height; break;
+    case 'ellipse': area = Math.PI * vals.a * vals.b; break;
+    case 'hexagon': area = (3 * Math.sqrt(3) / 2) * vals.side ** 2; perimeter = 6 * vals.side; break;
+  }
+
+  areaResult.textContent = bestUnitFormat(area);
+  perimeterCard.style.display = config.hasPerimeter ? 'block' : 'none';
+  if (config.hasPerimeter) perimeterResult.textContent = bestUnitLength(perimeter);
+  resultRow.style.display = 'flex';
+}
+
+document.getElementById('calcBtn').addEventListener('click', calculate);
+renderInputs();
+</script>
+
+</body>
+</html>

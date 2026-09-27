@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ASCII Art Generator – Text & Bild in ASCII Umwandeln | Toolyfix</title>
+<meta name="description" content="Kostenloser ASCII Art Generator: Wandle Text in große ASCII-Banner um, oder konvertiere ein Foto in echte ASCII-Art. Direkt im Browser, mit Kopier- und Download-Funktion.">
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/style.css">
+<style>
+  .related-tools-top { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 20px; }
+  .related-tools-top a {
+    padding: 8px 14px; border-radius: var(--radius); border: 1px solid var(--border);
+    background: var(--surface); text-decoration: none; color: var(--ink); font-size: 0.85rem; font-weight: 600;
+  }
+  .related-tools-top a:hover { border-color: var(--primary); color: var(--primary); }
+
+  .mode-toggle { display: flex; gap: 8px; margin-bottom: 20px; }
+  .mode-btn {
+    padding: 10px 16px; border-radius: var(--radius); border: 1px solid var(--border);
+    background: var(--surface); cursor: pointer; font-family: 'Inter', sans-serif; font-weight: 600; font-size: 0.88rem;
+  }
+  .mode-btn.active { background: var(--primary); color: #fff; border-color: var(--primary); }
+  .mode-panel { display: none; }
+  .mode-panel.active { display: block; }
+
+  .options-row { display: flex; gap: 16px; flex-wrap: wrap; align-items: center; margin: 16px 0; }
+  .options-row label { font-size: 0.85rem; color: var(--ink-soft); }
+  .options-row input[type="range"] { width: 160px; accent-color: var(--primary); vertical-align: middle; }
+
+  .switch { position: relative; width: 44px; height: 24px; display: inline-block; vertical-align: middle; }
+  .switch input { opacity: 0; width: 0; height: 0; }
+  .slider-switch { position: absolute; inset: 0; background: var(--border); border-radius: 24px; cursor: pointer; transition: 0.15s; }
+  .slider-switch::before { content: ""; position: absolute; height: 18px; width: 18px; left: 3px; top: 3px; background: white; border-radius: 50%; transition: 0.15s; }
+  input:checked + .slider-switch { background: var(--primary); }
+  input:checked + .slider-switch::before { transform: translateX(20px); }
+
+  .dropzone {
+    border: 2px dashed var(--border); border-radius: var(--radius); padding: 28px 20px;
+    text-align: center; cursor: pointer; margin-bottom: 16px;
+  }
+  .dropzone.dragover { border-color: var(--primary); background: var(--accent-soft); }
+  #imgFileInput { display: none; }
+
+  #asciiOutput {
+    background: #0b0e11; color: #e6e6e6; border-radius: var(--radius); padding: 16px;
+    font-family: 'JetBrains Mono', 'Menlo', monospace; font-size: 6px; line-height: 6px;
+    overflow-x: auto; white-space: pre; max-height: 480px; overflow-y: auto;
+  }
+  @media (min-width: 720px) { #asciiOutput { font-size: 7px; line-height: 7px; } }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container">
+    <a href="/" class="logo-link">
+      <img src="/assets/images/logo-full.png" alt="Toolyfix">
+    </a>
+    <span class="header-tagline">Kostenlose Tools, direkt im Browser</span>
+  </div>
+</header>
+
+<main class="tool-page">
+  <div class="container">
+    <p class="breadcrumb"><a href="/">Toolyfix</a> / ASCII Art Generator</p>
+    <h1>ASCII Art Generator</h1>
+
+    <div class="related-tools-top">
+      <a href="/tools/bild-komprimieren.html">🖼️ Bilder Komprimieren</a>
+      <a href="/tools/fallkonverter.html">Aa Fallkonverter</a>
+    </div>
+
+    <p>Wandle Text in große ASCII-Banner um, oder konvertiere ein Foto direkt in ASCII-Art aus Zeichen. Alles läuft im Browser.</p>
+
+    <div class="tool-panel">
+      <div class="mode-toggle">
+        <button class="mode-btn active" data-mode="text">Text zu ASCII</button>
+        <button class="mode-btn" data-mode="image">Bild zu ASCII</button>
+      </div>
+
+      <div class="mode-panel active" id="textPanel">
+        <input type="text" id="textInput" placeholder="z. B. TOOLYFIX" maxlength="24">
+      </div>
+
+      <div class="mode-panel" id="imagePanel">
+        <div class="dropzone" id="dropzone">
+          <p><strong>Bild hierher ziehen</strong> oder klicken zum Auswählen</p>
+        </div>
+        <input type="file" id="imgFileInput" accept="image/*">
+      </div>
+
+      <div class="options-row">
+        <label for="widthSlider">Breite (Zeichen): <strong id="widthValue">100</strong></label>
+        <input type="range" id="widthSlider" min="40" max="220" value="100">
+
+        <label style="display:flex; align-items:center; gap:8px;">
+          <label class="switch"><input type="checkbox" id="invertToggle"><span class="slider-switch"></span></label>
+          Invertieren
+        </label>
+      </div>
+
+      <div class="field-row">
+        <button class="btn btn-primary" id="generateBtn">ASCII-Art erstellen</button>
+        <button class="btn btn-ghost" id="copyBtn">Kopieren</button>
+        <button class="btn btn-ghost" id="downloadBtn">Als .txt herunterladen</button>
+      </div>
+
+      <pre id="asciiOutput"></pre>
+    </div>
+
+    <article class="explainer">
+      <h2>ASCII Art online erstellen: aus Text oder aus einem Foto</h2>
+      <p>ASCII-Art ist Bildkunst, die ausschließlich aus Text-Zeichen besteht – ursprünglich entstanden in den Anfangszeiten der Computertechnik, als Bildschirme und Drucker nur Text darstellen konnten. Dieser Generator bietet zwei Modi: Im Textmodus wandelst du ein Wort oder einen kurzen Satz in ein großes, aus Zeichen aufgebautes Banner um, das sich gut für Textdateien, Terminal-Ausgaben, Code-Kommentare oder Retro-Design eignet. Im Bildmodus konvertierst du ein echtes Foto in ein ASCII-Kunstwerk, bei dem jedes Zeichen die Helligkeit eines Bildbereichs repräsentiert.</p>
+
+      <h2>Wie funktioniert die Umwandlung technisch?</h2>
+      <p>Bei beiden Modi funktioniert die Umwandlung nach demselben Prinzip: Das Bild (oder der gerenderte Text) wird auf ein Raster aus Zellen heruntergerechnet, und für jede Zelle wird die durchschnittliche Helligkeit ermittelt. Anschließend wird jeder Helligkeitsstufe ein passendes Zeichen aus einer Skala zugeordnet – von dichten, dunklen Zeichen wie "@" und "#" für dunkle Bereiche bis zu Leerzeichen für sehr helle Bereiche. Je feiner das Raster (mehr Zeichen Breite), desto detailreicher wird das Ergebnis, allerdings auch länger und schwerer lesbar bei kleiner Darstellung.</p>
+
+      <h2>Die passende Breite wählen</h2>
+      <p>Eine geringere Zeichenbreite (40 bis 80 Zeichen) eignet sich gut für einfache Formen, Logos oder Textbanner, die auch in einer normalen Konsole oder E-Mail noch lesbar bleiben sollen. Eine höhere Breite (150 bis 220 Zeichen) liefert deutlich mehr Bilddetails, benötigt aber eine breite Textanzeige oder eine kleine Schriftgröße, um das Gesamtbild zu erkennen – am besten betrachtest du sehr breite ASCII-Kunstwerke in einem Text-Editor mit deaktiviertem Zeilenumbruch.</p>
+
+      <h2>Wann ist "Invertieren" sinnvoll?</h2>
+      <p>Standardmäßig werden dunkle Bildbereiche mit dichten Zeichen dargestellt, passend für eine helle Anzeige mit dunklem Text. Wenn du das Ergebnis dagegen auf einem dunklen Hintergrund verwenden möchtest (zum Beispiel in einem Terminal mit dunklem Farbschema), kehrt die Invertieren-Option die Zuordnung um, sodass helle Bildbereiche zu dichten Zeichen werden und das Bild auf dunklem Grund korrekt "positiv" statt wie ein Fotonegativ wirkt.</p>
+
+      <h2>Wofür wird ASCII-Art heute noch genutzt?</h2>
+      <p>Auch wenn moderne Bildschirme längst hochauflösende Grafik darstellen können, hat ASCII-Art bis heute ihren Platz: als Signatur oder Banner in Textdateien und READMEs auf GitHub, als nostalgisches Gestaltungselement in Retro-Designs, als kreative Spielerei in Terminalprogrammen, oder einfach zum Spaß, um zu sehen, wie ein eigenes Foto als reine Zeichenkunst aussieht.</p>
+
+      <h2>Text-Banner in eigene Projekte einbinden</h2>
+      <p>Ein per Textmodus erstelltes ASCII-Banner eignet sich gut als Kopfzeile in Code-Dateien, Konfigurationsdateien oder Terminal-Begrüßungsnachrichten (zum Beispiel in einer .bashrc-Datei). Da das Ergebnis reiner Text ist, kannst du es direkt in jede Textdatei einfügen, ohne dass eine Bilddatei oder Schriftart mitgeliefert werden muss.</p>
+
+      <h2>Datenschutz</h2>
+      <p>Text und Bilder werden ausschließlich lokal in deinem Browser verarbeitet. Es findet keine Übertragung an einen Server statt.</p>
+    </article>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <img src="/assets/images/logo-full.png" alt="Toolyfix">
+    <nav class="footer-links">
+      <a href="/ueber-uns.html">Über uns</a>
+      <a href="/datenschutz.html">Datenschutz</a>
+      <a href="/nutzungsbedingungen.html">Nutzungsbedingungen</a>
+      <a href="/kontakt.html">Kontakt</a>
+    </nav>
+    <p class="footer-note">© 2026 Toolyfix – Alle Tools laufen lokal in deinem Browser.</p>
+  </div>
+</footer>
+
+<script>
+const modeButtons = document.querySelectorAll('.mode-btn');
+const textPanel = document.getElementById('textPanel');
+const imagePanel = document.getElementById('imagePanel');
+const textInput = document.getElementById('textInput');
+const dropzone = document.getElementById('dropzone');
+const imgFileInput = document.getElementById('imgFileInput');
+const widthSlider = document.getElementById('widthSlider');
+const widthValue = document.getElementById('widthValue');
+const invertToggle = document.getElementById('invertToggle');
+const asciiOutput = document.getElementById('asciiOutput');
+
+let mode = 'text';
+let uploadedImg = null;
+
+const RAMP = '@%#*+=-:. ';
+
+modeButtons.forEach(btn => {
+  btn.addEventListener('click', () => {
+    modeButtons.forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    mode = btn.dataset.mode;
+    textPanel.classList.toggle('active', mode === 'text');
+    imagePanel.classList.toggle('active', mode === 'image');
+  });
+});
+
+widthSlider.addEventListener('input', () => widthValue.textContent = widthSlider.value);
+
+dropzone.addEventListener('click', () => imgFileInput.click());
+['dragenter', 'dragover'].forEach(evt =>
+  dropzone.addEventListener(evt, e => { e.preventDefault(); dropzone.classList.add('dragover'); })
+);
+['dragleave', 'drop'].forEach(evt =>
+  dropzone.addEventListener(evt, e => { e.preventDefault(); dropzone.classList.remove('dragover'); })
+);
+dropzone.addEventListener('drop', e => loadImageFile(e.dataTransfer.files[0]));
+imgFileInput.addEventListener('change', e => loadImageFile(e.target.files[0]));
+
+function loadImageFile(file) {
+  if (!file || !file.type.startsWith('image/')) return;
+  const img = new Image();
+  img.onload = () => { uploadedImg = img; dropzone.querySelector('p').textContent = 'Bild geladen: ' + file.name; };
+  img.src = URL.createObjectURL(file);
+}
+
+function renderTextToCanvas(text) {
+  const canvas = document.createElement('canvas');
+  const ctx = canvas.getContext('2d');
+  const fontSize = 180;
+  ctx.font = `bold ${fontSize}px Arial, sans-serif`;
+  const metrics = ctx.measureText(text || ' ');
+  const padding = fontSize * 0.3;
+  canvas.width = Math.max(10, metrics.width + padding * 2);
+  canvas.height = fontSize * 1.4;
+
+  ctx.fillStyle = '#ffffff';
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+  ctx.font = `bold ${fontSize}px Arial, sans-serif`;
+  ctx.fillStyle = '#000000';
+  ctx.textBaseline = 'middle';
+  ctx.fillText(text || ' ', padding, canvas.height / 2);
+
+  return canvas;
+}
+
+function canvasToAscii(canvas, cols) {
+  const ctx = canvas.getContext('2d');
+  const charAspect = 0.55; // monospace chars are taller than wide
+  const rows = Math.max(1, Math.round((canvas.height / canvas.width) * cols * charAspect));
+
+  const sampleCanvas = document.createElement('canvas');
+  sampleCanvas.width = cols;
+  sampleCanvas.height = rows;
+  const sctx = sampleCanvas.getContext('2d');
+  sctx.drawImage(canvas, 0, 0, cols, rows);
+  const data = sctx.getImageData(0, 0, cols, rows).data;
+
+  const invert = invertToggle.checked;
+  let lines = [];
+  for (let y = 0; y < rows; y++) {
+    let line = '';
+    for (let x = 0; x < cols; x++) {
+      const i = (y * cols + x) * 4;
+      const r = data[i], g = data[i + 1], b = data[i + 2], a = data[i + 3];
+      let brightness = a === 0 ? 255 : (0.299 * r + 0.587 * g + 0.114 * b);
+      if (invert) brightness = 255 - brightness;
+      const rampIndex = Math.floor((brightness / 255) * (RAMP.length - 1));
+      line += RAMP[rampIndex];
+    }
+    lines.push(line);
+  }
+  return lines.join('\n');
+}
+
+function generate() {
+  const cols = parseInt(widthSlider.value, 10);
+  let canvas;
+  if (mode === 'text') {
+    canvas = renderTextToCanvas(textInput.value.trim() || 'TOOLYFIX');
+  } else {
+    if (!uploadedImg) { asciiOutput.textContent = 'Bitte zuerst ein Bild hochladen.'; return; }
+    canvas = document.createElement('canvas');
+    canvas.width = uploadedImg.width;
+    canvas.height = uploadedImg.height;
+    canvas.getContext('2d').drawImage(uploadedImg, 0, 0);
+  }
+  asciiOutput.textContent = canvasToAscii(canvas, cols);
+}
+
+document.getElementById('generateBtn').addEventListener('click', generate);
+document.getElementById('copyBtn').addEventListener('click', () => {
+  if (asciiOutput.textContent) navigator.clipboard.writeText(asciiOutput.textContent);
+});
+document.getElementById('downloadBtn').addEventListener('click', () => {
+  if (!asciiOutput.textContent) return;
+  const blob = new Blob([asciiOutput.textContent], { type: 'text/plain' });
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'ascii-art.txt';
+  a.click();
+});
+
+generate();
+</script>
+
+</body>
+</html>

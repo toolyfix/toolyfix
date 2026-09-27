@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Seitenverhältnis Rechner – Aspect Ratio Berechnen | Toolyfix</title>
+<meta name="description" content="Kostenloser Seitenverhältnis-Rechner: Berechne das Verhältnis aus Breite und Höhe, oder finde die passende Breite/Höhe zu einem Seitenverhältnis wie 16:9. Mit visueller Vorschau.">
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/style.css">
+<style>
+  .related-tools-top { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 20px; }
+  .related-tools-top a {
+    padding: 8px 14px; border-radius: var(--radius); border: 1px solid var(--border);
+    background: var(--surface); text-decoration: none; color: var(--ink); font-size: 0.85rem; font-weight: 600;
+  }
+  .related-tools-top a:hover { border-color: var(--primary); color: var(--primary); }
+
+  .mode-toggle { display: flex; gap: 8px; margin-bottom: 20px; flex-wrap: wrap; }
+  .mode-btn {
+    padding: 10px 16px; border-radius: var(--radius); border: 1px solid var(--border);
+    background: var(--surface); cursor: pointer; font-family: 'Inter', sans-serif; font-weight: 600; font-size: 0.88rem;
+  }
+  .mode-btn.active { background: var(--primary); color: #fff; border-color: var(--primary); }
+
+  .preset-row { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 20px; }
+  .preset-btn {
+    padding: 7px 14px; border-radius: var(--radius); border: 1px solid var(--border);
+    background: var(--surface); cursor: pointer; font-size: 0.82rem; font-weight: 600;
+  }
+  .preset-btn.active { background: var(--accent-soft); border-color: var(--accent); }
+
+  .field-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; margin-bottom: 16px; }
+  @media (max-width: 500px) { .field-grid { grid-template-columns: 1fr; } }
+  .field-grid label { font-size: 0.85rem; color: var(--ink-soft); display: block; margin-bottom: 6px; }
+
+  .preview-box {
+    display: flex; align-items: center; justify-content: center; background: var(--bg); border-radius: var(--radius);
+    padding: 24px; margin: 20px 0; min-height: 160px;
+  }
+  #ratioRect { background: var(--primary); border-radius: 6px; transition: 0.2s; }
+
+  .result-display { text-align: center; padding: 16px; }
+  .result-display .r-value { font-family: 'Space Grotesk', sans-serif; font-size: 2rem; font-weight: 700; color: var(--primary-dark); }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container">
+    <a href="/" class="logo-link">
+      <img src="/assets/images/logo-full.png" alt="Toolyfix">
+    </a>
+    <span class="header-tagline">Kostenlose Tools, direkt im Browser</span>
+  </div>
+</header>
+
+<main class="tool-page">
+  <div class="container">
+    <p class="breadcrumb"><a href="/">Toolyfix</a> / Seitenverhältnis Rechner</p>
+    <h1>Seitenverhältnis Rechner</h1>
+
+    <div class="related-tools-top">
+      <a href="/tools/flaechenrechner.html">📐 Flächenrechner</a>
+      <a href="/tools/bild-komprimieren.html">🖼️ Bilder Komprimieren</a>
+    </div>
+
+    <p>Berechne das Seitenverhältnis aus Breite und Höhe, oder finde die passende Höhe bzw. Breite zu einem bestimmten Seitenverhältnis wie 16:9.</p>
+
+    <div class="tool-panel">
+      <div class="mode-toggle">
+        <button class="mode-btn active" data-mode="fromDims">Verhältnis aus Maßen berechnen</button>
+        <button class="mode-btn" data-mode="fromRatio">Maß aus Verhältnis berechnen</button>
+      </div>
+
+      <div class="preset-row" id="presetRow">
+        <button class="preset-btn" data-w="16" data-h="9">16:9</button>
+        <button class="preset-btn" data-w="4" data-h="3">4:3</button>
+        <button class="preset-btn" data-w="21" data-h="9">21:9</button>
+        <button class="preset-btn" data-w="1" data-h="1">1:1</button>
+        <button class="preset-btn" data-w="3" data-h="2">3:2</button>
+        <button class="preset-btn" data-w="9" data-h="16">9:16 (Hochformat)</button>
+        <button class="preset-btn" data-w="4" data-h="5">4:5 (Instagram)</button>
+        <button class="preset-btn" data-w="2" data-h="1">2:1</button>
+      </div>
+
+      <div class="mode-panel" id="fromDimsPanel">
+        <div class="field-grid">
+          <div><label for="dimWidth">Breite</label><input type="number" id="dimWidth" min="1" placeholder="z. B. 1920"></div>
+          <div><label for="dimHeight">Höhe</label><input type="number" id="dimHeight" min="1" placeholder="z. B. 1080"></div>
+        </div>
+      </div>
+
+      <div class="mode-panel" id="fromRatioPanel" style="display:none;">
+        <div class="field-grid">
+          <div><label for="ratioW">Verhältnis Breite</label><input type="number" id="ratioW" min="1" value="16"></div>
+          <div><label for="ratioH">Verhältnis Höhe</label><input type="number" id="ratioH" min="1" value="9"></div>
+        </div>
+        <div class="field-grid">
+          <div><label for="knownWidth">Bekannte Breite</label><input type="number" id="knownWidth" min="1" placeholder="z. B. 1280"></div>
+          <div><label for="knownHeight">Bekannte Höhe (alternativ)</label><input type="number" id="knownHeight" min="1" placeholder="z. B. 720"></div>
+        </div>
+      </div>
+
+      <div class="field-row">
+        <button class="btn btn-primary" id="calcBtn">Berechnen</button>
+      </div>
+
+      <div class="result-display" id="resultDisplay" style="display:none;">
+        <div class="r-value" id="resultValue"></div>
+      </div>
+
+      <div class="preview-box">
+        <div id="ratioRect"></div>
+      </div>
+    </div>
+
+    <article class="explainer">
+      <h2>Seitenverhältnis berechnen: für Video, Bilder und Druck</h2>
+      <p>Das Seitenverhältnis (englisch Aspect Ratio) beschreibt das Verhältnis von Breite zu Höhe eines Bildes, Videos oder Bildschirms, angegeben als zwei durch einen Doppelpunkt getrennte Zahlen wie 16:9 oder 4:3. Dieser Rechner hilft dir in zwei Richtungen: entweder berechnest du aus bekannten Maßen (z. B. einer Bildschirmauflösung) das zugehörige Seitenverhältnis, oder du gehst von einem gewünschten Seitenverhältnis aus und berechnest die passende Breite oder Höhe für ein bestimmtes Maß.</p>
+
+      <h2>Wie wird das Seitenverhältnis berechnet?</h2>
+      <p>Um aus Breite und Höhe das vereinfachte Seitenverhältnis zu berechnen, wird der größte gemeinsame Teiler (ggT) beider Zahlen ermittelt, und beide Werte werden durch diesen Teiler geteilt. Aus 1920 × 1080 Pixel wird so beispielsweise 16:9, weil der größte gemeinsame Teiler von 1920 und 1080 gleich 120 ist (1920 ÷ 120 = 16, 1080 ÷ 120 = 9).</p>
+
+      <h2>Gängige Seitenverhältnisse und ihre Verwendung</h2>
+      <p><strong>16:9</strong> ist der Standard für moderne Fernseher, Monitore und die meisten YouTube-Videos. <strong>4:3</strong> war der Standard für ältere Fernseher und Computerbildschirme. <strong>21:9</strong> wird für Ultrawide-Monitore und Kino-Breitbildformate verwendet. <strong>1:1</strong> (quadratisch) wird häufig für Social-Media-Beiträge genutzt. <strong>9:16</strong> ist das Hochformat für Stories und Reels auf Instagram, TikTok und YouTube Shorts. <strong>4:5</strong> ist das empfohlene Hochformat für Instagram-Feed-Beiträge.</p>
+
+      <h2>Fehlende Breite oder Höhe berechnen</h2>
+      <p>Willst du zum Beispiel ein Bild auf eine bestimmte Breite skalieren, ohne es zu verzerren, musst du wissen, welche Höhe bei einem bestimmten Seitenverhältnis dazu passt. Trage dazu das gewünschte Seitenverhältnis und die bekannte Breite (oder Höhe) ein – das Tool berechnet automatisch den fehlenden Wert, sodass das Verhältnis exakt erhalten bleibt.</p>
+
+      <h2>Warum ist das richtige Seitenverhältnis wichtig?</h2>
+      <p>Wird ein Bild oder Video mit einem falschen Seitenverhältnis skaliert, wirkt es gestaucht oder gestreckt – Kreise werden zu Ellipsen, Gesichter wirken verzerrt. Bei der Veröffentlichung auf Social-Media-Plattformen führt ein falsches Seitenverhältnis zudem oft dazu, dass die Plattform das Bild automatisch beschneidet oder mit schwarzen Balken versieht, was unprofessionell wirkt.</p>
+
+      <h2>Visuelle Vorschau</h2>
+      <p>Die Vorschau-Box zeigt das berechnete Seitenverhältnis als maßstabsgetreues Rechteck an, damit du dir direkt ein Bild davon machen kannst, wie breit oder hochformatig ein Bild oder Video mit diesem Verhältnis wirkt, bevor du es tatsächlich erstellst oder zuschneidest.</p>
+
+      <h2>Datenschutz</h2>
+      <p>Alle Berechnungen laufen lokal in deinem Browser. Es werden keine Daten an einen Server übertragen oder gespeichert.</p>
+    </article>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <img src="/assets/images/logo-full.png" alt="Toolyfix">
+    <nav class="footer-links">
+      <a href="/ueber-uns.html">Über uns</a>
+      <a href="/datenschutz.html">Datenschutz</a>
+      <a href="/nutzungsbedingungen.html">Nutzungsbedingungen</a>
+      <a href="/kontakt.html">Kontakt</a>
+    </nav>
+    <p class="footer-note">© 2026 Toolyfix – Alle Tools laufen lokal in deinem Browser.</p>
+  </div>
+</footer>
+
+<script>
+const modeButtons = document.querySelectorAll('.mode-btn');
+const fromDimsPanel = document.getElementById('fromDimsPanel');
+const fromRatioPanel = document.getElementById('fromRatioPanel');
+const dimWidth = document.getElementById('dimWidth');
+const dimHeight = document.getElementById('dimHeight');
+const ratioW = document.getElementById('ratioW');
+const ratioH = document.getElementById('ratioH');
+const knownWidth = document.getElementById('knownWidth');
+const knownHeight = document.getElementById('knownHeight');
+const resultDisplay = document.getElementById('resultDisplay');
+const resultValue = document.getElementById('resultValue');
+const ratioRect = document.getElementById('ratioRect');
+
+let mode = 'fromDims';
+
+modeButtons.forEach(btn => {
+  btn.addEventListener('click', () => {
+    modeButtons.forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    mode = btn.dataset.mode;
+    fromDimsPanel.style.display = mode === 'fromDims' ? 'block' : 'none';
+    fromRatioPanel.style.display = mode === 'fromRatio' ? 'block' : 'none';
+    resultDisplay.style.display = 'none';
+  });
+});
+
+function gcd(a, b) { return b === 0 ? a : gcd(b, a % b); }
+
+function updatePreview(w, h) {
+  const maxDim = 160;
+  let rectW, rectH;
+  if (w >= h) { rectW = maxDim; rectH = maxDim * (h / w); }
+  else { rectH = maxDim; rectW = maxDim * (w / h); }
+  ratioRect.style.width = rectW + 'px';
+  ratioRect.style.height = rectH + 'px';
+}
+
+document.querySelectorAll('.preset-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.preset-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    const w = parseInt(btn.dataset.w, 10);
+    const h = parseInt(btn.dataset.h, 10);
+    if (mode === 'fromRatio') {
+      ratioW.value = w;
+      ratioH.value = h;
+    } else {
+      // Suggest example dimensions matching this ratio for convenience
+      dimWidth.value = w * 100;
+      dimHeight.value = h * 100;
+    }
+    calculate();
+  });
+});
+
+function calculateFromDims() {
+  const w = parseFloat(dimWidth.value);
+  const h = parseFloat(dimHeight.value);
+  if (!w || !h) { resultDisplay.style.display = 'none'; return; }
+  const divisor = gcd(Math.round(w), Math.round(h));
+  const simpW = Math.round(w / divisor);
+  const simpH = Math.round(h / divisor);
+  resultValue.textContent = `${simpW}:${simpH}`;
+  resultDisplay.style.display = 'block';
+  updatePreview(w, h);
+}
+
+function calculateFromRatio() {
+  const rw = parseFloat(ratioW.value);
+  const rh = parseFloat(ratioH.value);
+  if (!rw || !rh) { resultDisplay.style.display = 'none'; return; }
+
+  if (knownWidth.value) {
+    const w = parseFloat(knownWidth.value);
+    const h = w * (rh / rw);
+    resultValue.textContent = `Breite ${w} → Höhe ${Math.round(h * 100) / 100}`;
+    updatePreview(rw, rh);
+    resultDisplay.style.display = 'block';
+  } else if (knownHeight.value) {
+    const h = parseFloat(knownHeight.value);
+    const w = h * (rw / rh);
+    resultValue.textContent = `Höhe ${h} → Breite ${Math.round(w * 100) / 100}`;
+    updatePreview(rw, rh);
+    resultDisplay.style.display = 'block';
+  } else {
+    updatePreview(rw, rh);
+    resultDisplay.style.display = 'none';
+  }
+}
+
+function calculate() {
+  if (mode === 'fromDims') calculateFromDims();
+  else calculateFromRatio();
+}
+
+[dimWidth, dimHeight, ratioW, ratioH, knownWidth, knownHeight].forEach(el =>
+  el.addEventListener('input', calculate)
+);
+document.getElementById('calcBtn').addEventListener('click', calculate);
+
+updatePreview(16, 9);
+</script>
+
+</body>
+</html>

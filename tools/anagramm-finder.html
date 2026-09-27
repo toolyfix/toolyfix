@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Anagramm Finder – Echte Deutsche Wörter Finden | Toolyfix</title>
+<meta name="description" content="Kostenloser Anagramm Finder: Finde echte deutsche Wörter, die aus denselben Buchstaben gebildet werden können. Geprüft gegen ein echtes deutsches Wörterbuch.">
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/style.css">
+<style>
+  .related-tools-top { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 20px; }
+  .related-tools-top a {
+    padding: 8px 14px; border-radius: var(--radius); border: 1px solid var(--border);
+    background: var(--surface); text-decoration: none; color: var(--ink); font-size: 0.85rem; font-weight: 600;
+  }
+  .related-tools-top a:hover { border-color: var(--primary); color: var(--primary); }
+
+  .options-row { display: flex; gap: 20px; flex-wrap: wrap; margin: 12px 0 16px; align-items: center; }
+  .switch { position: relative; width: 44px; height: 24px; display: inline-block; }
+  .switch input { opacity: 0; width: 0; height: 0; }
+  .slider-switch { position: absolute; inset: 0; background: var(--border); border-radius: 24px; cursor: pointer; transition: 0.15s; }
+  .slider-switch::before { content: ""; position: absolute; height: 18px; width: 18px; left: 3px; top: 3px; background: white; border-radius: 50%; transition: 0.15s; }
+  input:checked + .slider-switch { background: var(--primary); }
+  input:checked + .slider-switch::before { transform: translateX(20px); }
+  .switch-row { display: flex; align-items: center; gap: 8px; font-size: 0.88rem; }
+
+  .results-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 8px; margin-top: 16px; }
+  .result-chip { background: var(--bg); border-radius: 8px; padding: 10px 14px; text-align: center; font-weight: 600; color: var(--primary-dark); }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container">
+    <a href="/" class="logo-link">
+      <img src="/assets/images/logo-full.png" alt="Toolyfix">
+    </a>
+    <span class="header-tagline">Kostenlose Tools, direkt im Browser</span>
+  </div>
+</header>
+
+<main class="tool-page">
+  <div class="container">
+    <p class="breadcrumb"><a href="/">Toolyfix</a> / Anagramm Finder</p>
+    <h1>Anagramm Finder</h1>
+
+    <div class="related-tools-top">
+      <a href="/tools/alphabetisch-sortieren.html">🔤 Alphabetisch Sortieren</a>
+      <a href="/tools/fallkonverter.html">Aa Fallkonverter</a>
+    </div>
+
+    <p>Gib ein Wort ein und finde echte deutsche Wörter, die sich aus genau denselben Buchstaben bilden lassen – geprüft gegen ein echtes deutsches Wörterbuch, nicht nur zufällig gemischte Buchstaben.</p>
+
+    <div class="tool-panel">
+      <input type="text" id="wordInput" placeholder="z. B. Ohren">
+
+      <div class="options-row">
+        <div class="switch-row">
+          <label class="switch"><input type="checkbox" id="excludeSelf" checked><span class="slider-switch"></span></label>
+          <span>Eingegebenes Wort selbst ausblenden</span>
+        </div>
+      </div>
+
+      <div class="field-row">
+        <button class="btn btn-primary" id="findBtn">Anagramme finden</button>
+      </div>
+
+      <p class="status-line" id="statusLine" style="font-size:0.88rem; color:var(--ink-soft);">Lade Wörterbuch …</p>
+      <div class="results-grid" id="resultsGrid"></div>
+    </div>
+
+    <article class="explainer">
+      <h2>Anagramme finden: echte Wörter, nicht nur Buchstabensalat</h2>
+      <p>Ein Anagramm ist ein Wort, das entsteht, wenn man alle Buchstaben eines anderen Wortes neu anordnet – zum Beispiel wird aus "Ohren" das Wort "Horen" oder aus "Leim" das Wort "Meil" (kein gültiges Wort) beziehungsweise "Mile" (ebenfalls ungültig im Deutschen). Viele einfache Online-Tools zeigen bei einer Anagramm-Suche einfach alle mathematisch möglichen Buchstabenkombinationen an, ohne zu prüfen, ob dabei überhaupt echte Wörter herauskommen. Dieser Anagramm Finder geht einen Schritt weiter: Er prüft jede mögliche Kombination gegen ein echtes deutsches Wörterbuch und zeigt dir nur tatsächlich existierende Wörter an.</p>
+
+      <h2>Wie funktioniert die Prüfung gegen ein echtes Wörterbuch?</h2>
+      <p>Beim Laden dieser Seite wird eine deutsche Wortliste mit mehreren hunderttausend Einträgen heruntergeladen (das dauert beim ersten Aufruf ein paar Sekunden, dein Browser speichert sie danach zwischen). Für dein eingegebenes Wort berechnet das Tool die "Buchstabensignatur" – die Buchstaben deines Wortes, alphabetisch sortiert. Anschließend werden alle Wörter aus dem Wörterbuch mit exakt derselben Länge und derselben sortierten Buchstabensignatur herausgefiltert. Das ist mathematisch identisch mit "alle Wörter, die genau dieselben Buchstaben in beliebiger Reihenfolge enthalten", aber deutlich schneller berechenbar als das Ausprobieren aller Buchstaben-Permutationen einzeln.</p>
+
+      <h2>Warum werden nicht immer Ergebnisse gefunden?</h2>
+      <p>Nicht jede Buchstabenkombination ergibt automatisch ein zweites gültiges Wort – viele Wörter haben schlicht kein Anagramm in der deutschen Sprache. Je länger das eingegebene Wort ist, desto unwahrscheinlicher wird es statistisch, ein passendes zweites Wort mit exakt denselben Buchstaben zu finden. Kurze, buchstabenreiche Wörter (4 bis 7 Buchstaben) liefern erfahrungsgemäß die meisten Treffer.</p>
+
+      <h2>Unterschied zu einem reinen "Wörter aus Buchstaben"-Finder</h2>
+      <p>Ein klassisches Anagramm verwendet immer alle Buchstaben des Ausgangswortes, nicht mehr und nicht weniger. Das unterscheidet sich von einem Tool, das alle möglichen Wörter aus einer Teilmenge von Buchstaben sucht (wie es zum Beispiel bei Scrabble oder Buchstabensalat-Rätseln hilfreich wäre) – ein solches Tool würde auch kürzere Wörter aus einer Auswahl der Buchstaben zulassen. Dieser Anagramm Finder hält sich an die klassische, strengere Definition.</p>
+
+      <h2>Wofür werden Anagramme genutzt?</h2>
+      <p>Anagramme werden häufig für Wortspiele, Rätsel und Kreuzworträtsel-Hinweise verwendet, aber auch als kreatives Stilmittel in der Literatur, bei Pseudonymen (viele Künstlernamen sind Anagramme des echten Namens) oder einfach zum Spaß, um zu sehen, was sich aus dem eigenen Namen oder einem beliebigen Wort noch alles bilden lässt.</p>
+
+      <h2>Umlaute und Sonderzeichen</h2>
+      <p>Umlaute (ä, ö, ü) und das ß werden als eigene Zeichen behandelt, genau wie im deutschen Alphabet üblich. Ein Wort mit Umlaut findet daher nur Anagramme, die denselben Umlaut an irgendeiner Stelle enthalten – ein ä kann vom Tool nicht automatisch durch ein normales a ersetzt werden, da das die Bedeutung und Aussprache verändern würde.</p>
+
+      <h2>Grenzen der verwendeten Wortliste</h2>
+      <p>Die verwendete Wortliste ist eine für Wortspiele zusammengestellte, umfangreiche deutsche Sammlung, aber wie jede Wortliste nicht zu hundert Prozent vollständig. Seltene Fachbegriffe, sehr neue Wörter oder ungewöhnliche Fremdwörter fehlen möglicherweise. Für die allermeisten alltäglichen Wörter liefert die Liste jedoch zuverlässige Ergebnisse.</p>
+
+      <h2>Datenschutz</h2>
+      <p>Die Wortliste wird einmalig von einem öffentlichen Anbieter geladen; deine Eingabe selbst wird nirgendwo gespeichert oder übertragen – der gesamte Abgleich läuft lokal in deinem Browser.</p>
+    </article>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <img src="/assets/images/logo-full.png" alt="Toolyfix">
+    <nav class="footer-links">
+      <a href="/ueber-uns.html">Über uns</a>
+      <a href="/datenschutz.html">Datenschutz</a>
+      <a href="/nutzungsbedingungen.html">Nutzungsbedingungen</a>
+      <a href="/kontakt.html">Kontakt</a>
+    </nav>
+    <p class="footer-note">© 2026 Toolyfix – Alle Tools laufen lokal in deinem Browser.</p>
+  </div>
+</footer>
+
+<script>
+const WORDLIST_URL = 'https://cdn.jsdelivr.net/gh/enz/german-wordlist@main/words';
+const wordInput = document.getElementById('wordInput');
+const findBtn = document.getElementById('findBtn');
+const statusLine = document.getElementById('statusLine');
+const resultsGrid = document.getElementById('resultsGrid');
+const excludeSelf = document.getElementById('excludeSelf');
+
+let wordsByLengthAndSignature = null;
+
+function signature(word) {
+  return word.toLowerCase().split('').sort().join('');
+}
+
+async function loadDictionary() {
+  try {
+    let text;
+    const cached = sessionStorage.getItem('toolyfix_wordlist_cache');
+    if (cached) {
+      text = cached;
+    } else {
+      const res = await fetch(WORDLIST_URL);
+      text = await res.text();
+      try { sessionStorage.setItem('toolyfix_wordlist_cache', text); } catch (e) {}
+    }
+
+    const lines = text.split('\n').map(w => w.trim()).filter(w => w.length >= 2 && w.length <= 20 && !/[^a-zäöüßA-ZÄÖÜ]/.test(w));
+
+    wordsByLengthAndSignature = {};
+    for (const w of lines) {
+      const len = w.length;
+      const sig = signature(w);
+      if (!wordsByLengthAndSignature[len]) wordsByLengthAndSignature[len] = {};
+      if (!wordsByLengthAndSignature[len][sig]) wordsByLengthAndSignature[len][sig] = [];
+      wordsByLengthAndSignature[len][sig].push(w);
+    }
+
+    statusLine.textContent = `Wörterbuch geladen (${lines.length.toLocaleString('de-DE')} Wörter). Gib ein Wort ein.`;
+  } catch (e) {
+    statusLine.textContent = 'Das Wörterbuch konnte nicht geladen werden. Prüfe deine Internetverbindung und lade die Seite neu.';
+  }
+}
+loadDictionary();
+
+function findAnagrams() {
+  const input = wordInput.value.trim();
+  resultsGrid.innerHTML = '';
+  if (!input) return;
+  if (!wordsByLengthAndSignature) { statusLine.textContent = 'Wörterbuch wird noch geladen, bitte kurz warten …'; return; }
+
+  const len = input.length;
+  const sig = signature(input);
+  const matches = (wordsByLengthAndSignature[len] && wordsByLengthAndSignature[len][sig]) || [];
+
+  const filtered = matches.filter(w => !excludeSelf.checked || w.toLowerCase() !== input.toLowerCase());
+
+  if (filtered.length === 0) {
+    statusLine.textContent = `Keine Anagramme für "${input}" gefunden.`;
+    return;
+  }
+
+  statusLine.textContent = `${filtered.length} Anagramm${filtered.length === 1 ? '' : 'e'} gefunden:`;
+  filtered.forEach(w => {
+    const chip = document.createElement('div');
+    chip.className = 'result-chip';
+    chip.textContent = w;
+    resultsGrid.appendChild(chip);
+  });
+}
+
+findBtn.addEventListener('click', findAnagrams);
+wordInput.addEventListener('keydown', e => { if (e.key === 'Enter') findAnagrams(); });
+</script>
+
+</body>
+</html>
