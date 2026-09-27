@@ -344,18 +344,26 @@ document.getElementById('encodeBtn').addEventListener('click', () => {
 document.getElementById('decodeBtn').addEventListener('click', () => {
   const raw = decoderCodes.value.trim();
   if (!raw) { decoderStatus.textContent = 'Bitte zuerst ASCII-Codes eingeben.'; return; }
-  const base = parseInt(baseSelect.value, 10);
   const parts = raw.split(/[\s,]+/).filter(Boolean);
+
+  // Auto-detect the number base from the actual codes entered, so decoding
+  // is exact even if it doesn't match whatever the dropdown happens to say.
+  const isBinary = parts.every(p => /^[01]+$/.test(p) && p.length >= 5);
+  const isHex = !isBinary && parts.every(p => /^[0-9a-fA-F]+$/.test(p)) && parts.some(p => /[a-fA-F]/.test(p));
+  const detectedBase = isBinary ? 2 : (isHex ? 16 : 10);
+
   try {
     const chars = parts.map(p => {
-      const num = parseInt(p, base);
+      const num = parseInt(p, detectedBase);
       if (isNaN(num)) throw new Error('invalid');
       return String.fromCodePoint(num);
     });
     decoderText.value = chars.join('');
-    decoderStatus.textContent = `${parts.length} Codes decodiert.`;
+    baseSelect.value = String(detectedBase);
+    const baseLabel = detectedBase === 2 ? 'Binär' : detectedBase === 16 ? 'Hexadezimal' : 'Dezimal';
+    decoderStatus.textContent = `${parts.length} Codes decodiert (erkanntes Format: ${baseLabel}).`;
   } catch (e) {
-    decoderStatus.textContent = 'Einige Codes konnten nicht gelesen werden. Prüfe das gewählte Zahlensystem.';
+    decoderStatus.textContent = 'Einige Codes konnten nicht gelesen werden. Prüfe die Eingabe.';
   }
 });
 </script>

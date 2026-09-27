@@ -94,6 +94,9 @@
       <h2>PNG oder SVG – welches Format wählen?</h2>
       <p>Ein <strong>PNG</strong> ist eine fertige Bilddatei, die sich in jedes Dokument, jede Präsentation oder E-Mail einfügen lässt, ohne dass die Empfängerseite etwas Besonderes können muss. Ein <strong>SVG</strong> ist dagegen eine Vektordatei, die sich verlustfrei auf jede Größe skalieren lässt und sich gut eignet, wenn du das Diagramm später noch in einem Grafikprogramm wie Illustrator, Inkscape oder Figma weiterbearbeiten möchtest.</p>
 
+      <h2>Negative Werte werden korrekt dargestellt</h2>
+      <p>Trägst du negative Zahlen ein (zum Beispiel einen Verlust in einer Gewinn-und-Verlust-Übersicht), erkennt das Tool automatisch eine Nulllinie und zeichnet negative Balken in die entgegengesetzte Richtung – bei vertikalen Balken nach unten, bei horizontalen Balken nach links. Eine gestrichelte Nulllinie markiert dabei zusätzlich, wo genau der Nullpunkt liegt, damit positive und negative Werte auf einen Blick unterscheidbar bleiben.</p>
+
       <h2>Wann eignet sich ein Balkendiagramm – und wann nicht?</h2>
       <p>Balkendiagramme eignen sich besonders gut, um einzelne, klar abgegrenzte Kategorien miteinander zu vergleichen. Für die Darstellung eines kontinuierlichen Verlaufs über die Zeit (zum Beispiel eine tägliche Temperaturkurve) ist ein Liniendiagramm meist die anschaulichere Wahl, und für Anteile an einem Ganzen (zum Beispiel Marktanteile in Prozent) eignet sich oft ein Kreisdiagramm besser. Die Wahl des richtigen Diagrammtyps hat einen großen Einfluss darauf, wie leicht verständlich deine Daten für andere sind.</p>
 
@@ -180,34 +183,64 @@ function buildSvg() {
     return `<svg width="${width}" height="200" xmlns="http://www.w3.org/2000/svg"><text x="20" y="100" font-family="Inter, sans-serif" fill="#888">Trage Daten ein, um ein Diagramm zu sehen.</text></svg>`;
   }
 
-  const maxVal = Math.max(...data.map(d => parseFloat(d.value) || 0), 1);
+  const maxVal = Math.max(...data.map(d => parseFloat(d.value) || 0), 0);
+  const minVal = Math.min(...data.map(d => parseFloat(d.value) || 0), 0);
+  const range = (maxVal - minVal) || 1;
   let bars = '';
   let labels = '';
 
   if (!horizontal) {
+    // y(value): maps maxVal -> top of drawing area, minVal -> bottom
+    const yOf = v => margin.top + innerH * ((maxVal - v) / range);
+    const zeroY = yOf(0);
     const barW = innerW / data.length * 0.65;
     const gap = innerW / data.length;
+
     data.forEach((d, i) => {
       const val = parseFloat(d.value) || 0;
-      const barH = (val / maxVal) * innerH;
+      const barY = yOf(val);
+      const top = Math.min(barY, zeroY);
+      const barH = Math.abs(barY - zeroY);
       const x = margin.left + i * gap + (gap - barW) / 2;
-      const y = margin.top + innerH - barH;
-      bars += `<rect x="${x}" y="${y}" width="${barW}" height="${barH}" fill="${color}" rx="3"/>`;
-      if (showValues) bars += `<text x="${x + barW / 2}" y="${y - 6}" text-anchor="middle" font-size="12" font-family="Inter, sans-serif" fill="#1a1a1a">${val}</text>`;
+      bars += `<rect x="${x}" y="${top}" width="${barW}" height="${barH}" fill="${color}" rx="3"/>`;
+      if (showValues) {
+        const labelY = val >= 0 ? top - 6 : top + barH + 14;
+        bars += `<text x="${x + barW / 2}" y="${labelY}" text-anchor="middle" font-size="12" font-family="Inter, sans-serif" fill="#1a1a1a">${val}</text>`;
+      }
       labels += `<text x="${x + barW / 2}" y="${margin.top + innerH + 18}" text-anchor="middle" font-size="11" font-family="Inter, sans-serif" fill="#555">${escapeXml(d.label)}</text>`;
     });
+    // zero baseline (only drawn separately from axis if negatives exist and zero isn't already at the bottom)
+    if (minVal < 0) {
+      bars += `<line x1="${margin.left}" y1="${zeroY}" x2="${margin.left + innerW}" y2="${zeroY}" stroke="#999" stroke-dasharray="3,3"/>`;
+    }
   } else {
+    // x(value): maps minVal -> left of drawing area, maxVal -> right
+    const xOf = v => margin.left + innerW * ((v - minVal) / range);
+    const zeroX = xOf(0);
     const barH = innerH / data.length * 0.65;
     const gap = innerH / data.length;
+
     data.forEach((d, i) => {
       const val = parseFloat(d.value) || 0;
-      const barW = (val / maxVal) * innerW;
+      const barX = xOf(val);
+      const left = Math.min(barX, zeroX);
+      const barW = Math.abs(barX - zeroX);
       const y = margin.top + i * gap + (gap - barH) / 2;
-      const x = margin.left;
-      bars += `<rect x="${x}" y="${y}" width="${barW}" height="${barH}" fill="${color}" rx="3"/>`;
-      if (showValues) bars += `<text x="${x + barW + 6}" y="${y + barH / 2 + 4}" font-size="12" font-family="Inter, sans-serif" fill="#1a1a1a">${val}</text>`;
+      bars += `<rect x="${left}" y="${y}" width="${barW}" height="${barH}" fill="${color}" rx="3"/>`;
+      if (showValues) {
+        const labelX = val >= 0 ? left + barW + 6 : left - 6;
+        const anchor = val >= 0 ? 'start' : 'end';
+        bars += `<text x="${labelX}" y="${y + barH / 2 + 4}" text-anchor="${anchor}" font-size="12" font-family="Inter, sans-serif" fill="#1a1a1a">${val}</text>`;
+      }
+    });
+    // Category labels sit to the left of the zero line's leftmost extent for readability
+    data.forEach((d, i) => {
+      const y = margin.top + i * gap + (gap - barH) / 2;
       labels += `<text x="${margin.left - 8}" y="${y + barH / 2 + 4}" text-anchor="end" font-size="11" font-family="Inter, sans-serif" fill="#555">${escapeXml(d.label)}</text>`;
     });
+    if (minVal < 0) {
+      bars += `<line x1="${zeroX}" y1="${margin.top}" x2="${zeroX}" y2="${margin.top + innerH}" stroke="#999" stroke-dasharray="3,3"/>`;
+    }
   }
 
   const titleSvg = title ? `<text x="${width / 2}" y="22" text-anchor="middle" font-size="16" font-weight="700" font-family="Space Grotesk, Inter, sans-serif" fill="#1a1a1a">${escapeXml(title)}</text>` : '';
