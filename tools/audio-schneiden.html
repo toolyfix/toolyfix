@@ -27,9 +27,22 @@
   .dropzone.dragover { border-color: var(--primary); background: var(--accent-soft); }
   #fileInput { display: none; }
 
-  #waveformWrap { position: relative; display: none; margin-bottom: 16px; }
-  #waveformCanvas { width: 100%; height: 140px; display: block; border-radius: var(--radius); background: var(--bg); }
-  #selectionOverlay { position: absolute; top: 0; height: 100%; background: rgba(233, 169, 59, 0.35); border-left: 2px solid var(--accent); border-right: 2px solid var(--accent); pointer-events: none; }
+  #waveformWrap { position: relative; display: none; margin-bottom: 16px; user-select: none; }
+  #waveformCanvas { width: 100%; height: 140px; display: block; border-radius: var(--radius); background: var(--bg); cursor: crosshair; }
+  #selectionOverlay {
+    position: absolute; top: 0; height: 100%; background: rgba(233, 169, 59, 0.35);
+    border-left: 2px solid var(--accent); border-right: 2px solid var(--accent);
+    cursor: move;
+  }
+  .handle {
+    position: absolute; top: 0; bottom: 0; width: 14px; cursor: ew-resize;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .handle::after {
+    content: ""; width: 4px; height: 36px; background: var(--primary); border-radius: 2px;
+  }
+  .handle-left { left: -7px; }
+  .handle-right { right: -7px; }
 
   .time-row { display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 16px; }
   .time-field { display: flex; flex-direction: column; gap: 6px; }
@@ -77,8 +90,12 @@
 
       <div id="waveformWrap">
         <canvas id="waveformCanvas"></canvas>
-        <div id="selectionOverlay"></div>
+        <div id="selectionOverlay">
+          <div class="handle handle-left" id="handleLeft"></div>
+          <div class="handle handle-right" id="handleRight"></div>
+        </div>
       </div>
+      <p style="font-size:0.82rem; color:var(--ink-soft); margin-top:-8px;">Tipp: Ziehe die orangenen Griffe an den Rändern, um Anfang und Ende anzupassen, oder ziehe die markierte Fläche, um die Auswahl zu verschieben. Klicke und ziehe auf der Wellenform, um eine neue Auswahl zu erstellen.</p>
 
       <div class="time-row">
         <div class="time-field"><label for="startInput">Start (Sek.)</label><input type="number" id="startInput" min="0" step="0.1" value="0"></div>
@@ -109,7 +126,7 @@
       <p>Nach dem Hochladen zeigt das Tool die Wellenform deiner Audiodatei an – eine visuelle Darstellung der Lautstärke über die Zeit. Das hilft dir, Sprechpausen, laute Passagen oder den Beginn und das Ende eines bestimmten Abschnitts schnell zu erkennen, ohne die gesamte Datei mehrfach anhören zu müssen. Die markierte Fläche zeigt deinen aktuell ausgewählten Bereich.</p>
 
       <h2>Start- und Endpunkt präzise festlegen</h2>
-      <p>Trage Start- und Endzeit in Sekunden ein (auch mit Nachkommastellen für zehntelgenaue Schnitte möglich), oder orientiere dich an der Wellenform. Über "Auswahl anhören" kannst du jederzeit genau den Bereich vorab abspielen, der beim Zuschneiden tatsächlich verwendet wird, um sicherzugehen, dass der Ausschnitt genau passt.</p>
+      <p>Trage Start- und Endzeit direkt als Zahl in Sekunden ein, oder passe die Auswahl bequem per Maus oder Finger an: Ziehe die beiden orangenen Griffe am Rand der markierten Fläche, um Anfang und Ende einzeln zu verschieben, oder ziehe die gesamte markierte Fläche, um die Auswahl bei gleicher Länge zu verschieben. Ein Klick und Ziehen auf einer noch nicht markierten Stelle der Wellenform erstellt eine komplett neue Auswahl. Über "Auswahl anhören" kannst du jederzeit genau den Bereich vorab abspielen, der beim Zuschneiden tatsächlich verwendet wird.</p>
 
       <h2>Fade-In und Fade-Out gegen abrupte Schnitte</h2>
       <p>Ein hart geschnittener Audioausschnitt beginnt und endet oft mit einem hörbaren "Klick" oder einem abrupten Lautstärkesprung, besonders wenn der Schnitt mitten in einem Ton liegt. Mit aktiviertem Fade-In/Fade-Out blendet das Tool die ersten und letzten 0,3 Sekunden sanft ein beziehungsweise aus, was besonders bei Klingeltönen oder Musik-Ausschnitten deutlich professioneller klingt.</p>
@@ -234,6 +251,90 @@ function updateOverlay() {
 }
 
 [startInput, endInput].forEach(el => el.addEventListener('input', updateOverlay));
+
+/* ---- Draggable selection on the waveform ---- */
+const handleLeft = document.getElementById('handleLeft');
+const handleRight = document.getElementById('handleRight');
+
+let dragMode = null;
+let dragStartTime = 0, dragOrigStart = 0, dragOrigEnd = 0;
+
+function timeAtClientX(clientX) {
+  const rect = waveformCanvas.getBoundingClientRect();
+  const x = Math.min(rect.width, Math.max(0, clientX - rect.left));
+  return (x / rect.width) * audioBuffer.duration;
+}
+
+function clientXOf(e) { return e.touches ? e.touches[0].clientX : e.clientX; }
+
+function beginDrag(mode, e) {
+  if (!audioBuffer) return;
+  dragMode = mode;
+  dragStartTime = timeAtClientX(clientXOf(e));
+  dragOrigStart = parseFloat(startInput.value) || 0;
+  dragOrigEnd = parseFloat(endInput.value) || audioBuffer.duration;
+  e.preventDefault();
+  e.stopPropagation();
+}
+
+waveformCanvas.addEventListener('mousedown', e => {
+  if (!audioBuffer) return;
+  const t = timeAtClientX(e.clientX);
+  startInput.value = t.toFixed(2);
+  endInput.value = t.toFixed(2);
+  dragMode = 'create';
+  updateOverlay();
+});
+waveformCanvas.addEventListener('touchstart', e => {
+  if (!audioBuffer) return;
+  const t = timeAtClientX(e.touches[0].clientX);
+  startInput.value = t.toFixed(2);
+  endInput.value = t.toFixed(2);
+  dragMode = 'create';
+  updateOverlay();
+});
+
+selectionOverlay.addEventListener('mousedown', e => beginDrag('move', e));
+selectionOverlay.addEventListener('touchstart', e => beginDrag('move', e));
+handleLeft.addEventListener('mousedown', e => beginDrag('resize-left', e));
+handleLeft.addEventListener('touchstart', e => beginDrag('resize-left', e));
+handleRight.addEventListener('mousedown', e => beginDrag('resize-right', e));
+handleRight.addEventListener('touchstart', e => beginDrag('resize-right', e));
+
+function handleDragMove(e) {
+  if (!dragMode || !audioBuffer) return;
+  const t = timeAtClientX(clientXOf(e));
+  const minGap = 0.05;
+
+  if (dragMode === 'create') {
+    const s = parseFloat(startInput.value) || 0;
+    startInput.value = Math.min(s, t).toFixed(2);
+    endInput.value = Math.max(s, t).toFixed(2);
+  } else if (dragMode === 'resize-left') {
+    const maxAllowed = (parseFloat(endInput.value) || audioBuffer.duration) - minGap;
+    startInput.value = Math.max(0, Math.min(t, maxAllowed)).toFixed(2);
+  } else if (dragMode === 'resize-right') {
+    const minAllowed = (parseFloat(startInput.value) || 0) + minGap;
+    endInput.value = Math.min(audioBuffer.duration, Math.max(t, minAllowed)).toFixed(2);
+  } else if (dragMode === 'move') {
+    const delta = t - dragStartTime;
+    let ns = dragOrigStart + delta;
+    let ne = dragOrigEnd + delta;
+    if (ns < 0) { ne -= ns; ns = 0; }
+    if (ne > audioBuffer.duration) { ns -= (ne - audioBuffer.duration); ne = audioBuffer.duration; }
+    startInput.value = ns.toFixed(2);
+    endInput.value = ne.toFixed(2);
+  }
+  updateOverlay();
+  if (e.cancelable) e.preventDefault();
+}
+
+function handleDragEnd() { dragMode = null; }
+
+document.addEventListener('mousemove', handleDragMove);
+document.addEventListener('touchmove', handleDragMove, { passive: false });
+document.addEventListener('mouseup', handleDragEnd);
+document.addEventListener('touchend', handleDragEnd);
 
 function getSelection() {
   let start = Math.max(0, parseFloat(startInput.value) || 0);

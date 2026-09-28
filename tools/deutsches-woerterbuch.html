@@ -164,11 +164,56 @@ function stripHtml(html) {
 function capitalizeFirst(s) { return s.charAt(0).toUpperCase() + s.slice(1); }
 function lowerFirst(s) { return s.charAt(0).toLowerCase() + s.slice(1); }
 
-async function fetchDefinition(word) {
-  const url = `https://de.wiktionary.org/api/rest_v1/page/definition/${encodeURIComponent(word)}`;
+async function fetchExtract(word) {
+  const url = `https://de.wiktionary.org/w/api.php?action=query&titles=${encodeURIComponent(word)}&prop=extracts&format=json&origin=*&explaintext=1&redirects=1`;
   const res = await fetch(url);
-  if (!res.ok) throw new Error('not found');
-  return res.json();
+  if (!res.ok) throw new Error('network');
+  const json = await res.json();
+  const pages = json.query && json.query.pages;
+  if (!pages) throw new Error('bad response');
+  const pageId = Object.keys(pages)[0];
+  if (pageId === '-1' || !pages[pageId].extract) throw new Error('not found');
+  return { title: pages[pageId].title, extract: pages[pageId].extract };
+}
+
+function parseGermanEntry(extract) {
+  const lines = extract.split('\n').map(l => l.trim());
+  // Find where the German-language section starts (heading contains "(Deutsch)")
+  let startIdx = lines.findIndex(l => /\(Deutsch\)\s*$/.test(l));
+  if (startIdx === -1) startIdx = 0;
+
+  // Find where it ends: next line containing another language heading e.g. "(Englisch)"
+  let endIdx = lines.length;
+  for (let i = startIdx + 1; i < lines.length; i++) {
+    if (/\([A-ZÄÖÜ][a-zäöüß]+\)\s*$/.test(lines[i])) { endIdx = i; break; }
+  }
+  const section = lines.slice(startIdx, endIdx);
+
+  function collectAfter(marker) {
+    const idx = section.findIndex(l => l.replace(/:$/, '') === marker);
+    if (idx === -1) return [];
+    const out = [];
+    for (let i = idx + 1; i < section.length; i++) {
+      if (/^\[\d+[a-z]?\]/.test(section[i])) out.push(section[i]);
+      else if (section[i] === '') continue;
+      else break;
+    }
+    return out;
+  }
+
+  const bedeutungen = collectAfter('Bedeutungen');
+  const beispiele = collectAfter('Beispiele');
+
+  // Wortart heuristic: short line right after the title heading
+  let wortart = '';
+  if (startIdx + 1 < section.length) {
+    const candidate = section[startIdx + 1];
+    if (candidate && candidate.length < 50 && !/^\[|Bedeutungen|Silbentrennung/.test(candidate)) {
+      wortart = candidate;
+    }
+  }
+
+  return { wortart, bedeutungen, beispiele, rawSection: section.join('\n').trim() };
 }
 
 async function lookup(rawWord) {
@@ -179,33 +224,29 @@ async function lookup(rawWord) {
 
   const candidates = [word, capitalizeFirst(word), lowerFirst(word)];
   const tried = new Set();
-  let data = null, usedWord = null;
+  let result = null, usedWord = null;
 
   for (const candidate of candidates) {
     if (tried.has(candidate)) continue;
     tried.add(candidate);
     try {
-      data = await fetchDefinition(candidate);
-      usedWord = candidate;
+      result = await fetchExtract(candidate);
+      usedWord = result.title;
       break;
     } catch (e) { /* try next candidate */ }
   }
 
-  if (!data) {
+  if (!result) {
     statusLine.textContent = `Kein Eintrag für "${word}" gefunden. Prüfe die Schreibweise oder versuche ein anderes Wort.`;
     return;
   }
 
   statusLine.textContent = '';
   saveRecent(usedWord);
-  renderResult(usedWord, data);
+  renderResult(usedWord, result.extract);
 }
 
-function renderResult(word, data) {
-  const deEntries = data.de || [];
-  const otherLangKeys = Object.keys(data).filter(k => k !== 'de');
-  const entries = deEntries.length > 0 ? deEntries : (otherLangKeys.length > 0 ? data[otherLangKeys[0]] : []);
-
+function renderResult(word, extract) {
   resultsArea.innerHTML = '';
 
   const header = document.createElement('div');
@@ -213,26 +254,29 @@ function renderResult(word, data) {
   header.innerHTML = `<h2>${word}</h2><a href="https://de.wiktionary.org/wiki/${encodeURIComponent(word)}" target="_blank" rel="noopener">Vollständigen Artikel auf Wiktionary ansehen →</a>`;
   resultsArea.appendChild(header);
 
-  if (entries.length === 0) {
-    resultsArea.innerHTML += '<p style="color:var(--ink-soft);">Für dieses Wort liegt keine strukturierte Definition vor. Schau im vollständigen Artikel nach.</p>';
-    return;
-  }
+  const parsed = parseGermanEntry(extract);
+  const block = document.createElement('div');
+  block.className = 'pos-block';
 
-  entries.forEach(entry => {
-    const block = document.createElement('div');
-    block.className = 'pos-block';
-    let html = `<span class="pos-tag">${entry.partOfSpeech || 'Wort'}</span><ol>`;
-    (entry.definitions || []).forEach(def => {
-      html += `<li>${stripHtml(def.definition || '')}`;
-      if (def.examples && def.examples.length) {
-        html += `<div class="example">„${stripHtml(def.examples[0])}“</div>`;
-      }
-      html += `</li>`;
-    });
-    html += '</ol>';
+  if (parsed.bedeutungen.length === 0 && parsed.beispiele.length === 0) {
+    // Fallback: structured parsing didn't find clean sections, show a trimmed raw excerpt instead
+    const excerpt = parsed.rawSection.slice(0, 900);
+    block.innerHTML = `<p>${excerpt.replace(/\n/g, '<br>')}${parsed.rawSection.length > 900 ? ' …' : ''}</p>`;
+  } else {
+    let html = '';
+    if (parsed.wortart) html += `<span class="pos-tag">${parsed.wortart}</span>`;
+    if (parsed.bedeutungen.length) {
+      html += '<ol>';
+      parsed.bedeutungen.forEach(b => { html += `<li>${b.replace(/^\[\d+[a-z]?\]\s*/, '')}</li>`; });
+      html += '</ol>';
+    }
+    if (parsed.beispiele.length) {
+      html += '<p style="font-size:0.85rem; color:var(--ink-soft); margin-top:12px;"><strong>Beispiele:</strong></p>';
+      parsed.beispiele.forEach(b => { html += `<div class="example">„${b.replace(/^\[\d+[a-z]?\]\s*/, '')}“</div>`; });
+    }
     block.innerHTML = html;
-    resultsArea.appendChild(block);
-  });
+  }
+  resultsArea.appendChild(block);
 
   resultsArea.innerHTML += `<p class="attribution-note">Quelle: <a href="https://de.wiktionary.org/wiki/${encodeURIComponent(word)}" target="_blank" rel="noopener">de.wiktionary.org</a>, lizenziert unter CC BY-SA.</p>`;
 }
