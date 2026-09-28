@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Eigene Handschrift Erstellen – Text in Deiner Schrift | Toolyfix</title>
+<meta name="description" content="Erstelle deine eigene digitale Handschrift: Zeichne jeden Buchstaben einmal per Maus oder Finger, und wandle danach beliebigen Text in deine eigene Handschrift um.">
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=Caveat&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/style.css">
+<style>
+  .related-tools-top { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 20px; }
+  .related-tools-top a {
+    padding: 8px 14px; border-radius: var(--radius); border: 1px solid var(--border);
+    background: var(--surface); text-decoration: none; color: var(--ink); font-size: 0.85rem; font-weight: 600;
+  }
+  .related-tools-top a:hover { border-color: var(--primary); color: var(--primary); }
+
+  .step-toggle { display: flex; gap: 8px; margin-bottom: 20px; }
+  .step-btn {
+    padding: 10px 16px; border-radius: var(--radius); border: 1px solid var(--border);
+    background: var(--surface); cursor: pointer; font-family: 'Inter', sans-serif; font-weight: 600; font-size: 0.88rem;
+  }
+  .step-btn.active { background: var(--primary); color: #fff; border-color: var(--primary); }
+  .step-panel { display: none; }
+  .step-panel.active { display: block; }
+
+  .capture-area { display: flex; gap: 24px; flex-wrap: wrap; align-items: flex-start; }
+  .capture-canvas-wrap { text-align: center; }
+  #captureCanvas {
+    background: #fff; border: 2px solid var(--border); border-radius: var(--radius);
+    touch-action: none; cursor: crosshair; width: 220px; height: 260px;
+  }
+  .current-char-label { font-family: 'Space Grotesk', sans-serif; font-size: 2rem; font-weight: 700; color: var(--primary-dark); margin-bottom: 8px; }
+  .progress-note { font-size: 0.85rem; color: var(--ink-soft); margin-top: 8px; }
+
+  .glyph-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(44px, 1fr)); gap: 6px; max-width: 480px; }
+  .glyph-cell {
+    aspect-ratio: 1; border-radius: 6px; border: 1px solid var(--border); background: var(--bg);
+    display: flex; align-items: center; justify-content: center; cursor: pointer; position: relative; overflow: hidden;
+  }
+  .glyph-cell img { max-width: 90%; max-height: 90%; }
+  .glyph-cell .placeholder { color: var(--ink-soft); font-size: 0.85rem; }
+  .glyph-cell.done { border-color: var(--accent); }
+
+  #handwritingOutput { background: #fdfdfb; border-radius: var(--radius); padding: 20px; margin-top: 16px; min-height: 120px; overflow-x: auto; }
+  #handwritingOutput canvas { display: block; margin: 0 auto; }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container">
+    <a href="/" class="logo-link">
+      <img src="/assets/images/logo-full.png" alt="Toolyfix">
+    </a>
+    <span class="header-tagline">Kostenlose Tools, direkt im Browser</span>
+  </div>
+</header>
+
+<main class="tool-page">
+  <div class="container">
+    <p class="breadcrumb"><a href="/">Toolyfix</a> / Eigene Handschrift Erstellen</p>
+    <h1>Eigene Handschrift Erstellen</h1>
+
+    <div class="related-tools-top">
+      <a href="/tools/fetter-text-generator.html"><strong>B</strong> Fetter Text Generator</a>
+    </div>
+
+    <p>Zeichne jeden Buchstaben und jede Zahl einmal von Hand, und wandle danach beliebigen Text in Bilder um, die wie deine eigene Handschrift aussehen.</p>
+
+    <div class="notice-box">
+      <strong>Wie das genau funktioniert:</strong> Dies ist keine KI, die deine Handschrift "lernt" oder nachahmt. Stattdessen zeichnest du jeden Buchstaben einmal selbst, das Tool speichert diese Zeichnungen als kleine Bilder lokal in deinem Browser, und beim Erstellen von Text werden die passenden Buchstaben-Bilder einfach aneinandergereiht – mit leichter zufälliger Neigung und Höhenversatz, damit es natürlicher wirkt. Für Zeichen, die du nicht gezeichnet hast, wird ersatzweise eine handschriftähnliche Schriftart verwendet.
+    </div>
+
+    <div class="tool-panel">
+      <div class="step-toggle">
+        <button class="step-btn active" data-step="capture">1. Buchstaben zeichnen</button>
+        <button class="step-btn" data-step="compose">2. Text erstellen</button>
+      </div>
+
+      <div class="step-panel active" id="capturePanel">
+        <div class="capture-area">
+          <div class="capture-canvas-wrap">
+            <div class="current-char-label" id="currentCharLabel">a</div>
+            <canvas id="captureCanvas" width="220" height="260"></canvas>
+            <div class="field-row" style="justify-content:center; margin-top:12px;">
+              <button class="btn btn-ghost" id="clearCanvasBtn">Löschen</button>
+              <button class="btn btn-primary" id="saveGlyphBtn">Speichern & Weiter</button>
+              <button class="btn btn-ghost" id="skipGlyphBtn">Überspringen</button>
+            </div>
+            <p class="progress-note" id="progressNote"></p>
+          </div>
+
+          <div>
+            <p style="font-size:0.85rem; color:var(--ink-soft); margin-bottom:8px;">Bereits gezeichnete Zeichen (zum Neuzeichnen anklicken):</p>
+            <div class="glyph-grid" id="glyphGrid"></div>
+            <div class="field-row" style="margin-top:16px;">
+              <button class="btn btn-ghost" id="clearAllBtn">Gespeicherte Handschrift löschen</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="step-panel" id="composePanel">
+        <textarea id="textToRender" rows="5" placeholder="Schreibe hier den Text, den du in deiner Handschrift sehen möchtest …"></textarea>
+        <div class="field-row" style="margin-top:12px;">
+          <button class="btn btn-primary" id="renderBtn">In Handschrift umwandeln</button>
+          <button class="btn btn-ghost" id="downloadHandwritingBtn">Als Bild herunterladen</button>
+        </div>
+        <div id="handwritingOutput"></div>
+      </div>
+    </div>
+
+    <article class="explainer">
+      <h2>Deine eigene Handschrift digital erstellen – wie funktioniert das wirklich?</h2>
+      <p>Echte digitale Handschrift-Nachahmung, bei der eine KI aus einer einzigen Schriftprobe deinen kompletten Schreibstil lernt, ist eine hochkomplexe Aufgabe, die spezialisierte, rechenintensive Modelle erfordert und in einem einfachen Browser-Tool praktisch nicht seriös umsetzbar ist. Dieses Tool geht daher einen ehrlichen, direkten Weg: Du zeichnest jeden einzelnen Buchstaben und jede Zahl einmal selbst auf einer Zeichenfläche, und diese Zeichnungen werden anschließend wie Bausteine zu neuem Text zusammengesetzt. Das Ergebnis sieht überraschend authentisch aus, weil es tatsächlich aus deiner eigenen Handschrift besteht – nur eben zusammengesetzt statt neu geschrieben.</p>
+
+      <h2>Warum diese Methode ehrlicher ist als ein "KI-Versprechen"</h2>
+      <p>Viele Anbieter werben mit "KI erstellt deine Handschrift", liefern dann aber ein ähnliches Baukasten-Verfahren, ohne das offen zu sagen. Diese direkte Zeichen-für-Zeichen-Methode hat einen echten Vorteil: Jeder einzelne Buchstabe im Ergebnis stammt tatsächlich von dir, es gibt keine Näherung oder Verzerrung durch ein Modell, das etwas "erraten" musste.</p>
+
+      <h2>Warum jeder Buchstabe einzeln gezeichnet werden muss</h2>
+      <p>Damit das Tool ein beliebiges Wort oder einen beliebigen Satz zusammensetzen kann, braucht es für jeden vorkommenden Buchstaben ein eigenes Bild. Du zeichnest daher einmal Kleinbuchstaben, Großbuchstaben und Ziffern – das dauert beim ersten Mal ein paar Minuten, danach ist deine Handschrift dauerhaft (lokal in deinem Browser) gespeichert und sofort einsatzbereit.</p>
+
+      <h2>Was passiert, wenn ein Zeichen fehlt?</h2>
+      <p>Überspringst du einen Buchstaben oder hast einige Zeichen noch nicht gezeichnet, ersetzt das Tool sie beim Erstellen von Text automatisch durch eine handschriftähnliche Ersatzschrift, damit der Text trotzdem lesbar bleibt. Diese Ersatzzeichen fallen im direkten Vergleich etwas gleichmäßiger aus als deine echten, handgezeichneten Buchstaben.</p>
+
+      <h2>Natürlichere Wirkung durch zufällige Variation</h2>
+      <p>Damit der zusammengesetzte Text nicht wie eine maschinell wiederholte Buchstabenkette wirkt, fügt das Tool beim Zusammensetzen jedem Zeichen eine kleine zufällige Neigung und einen leichten Höhenversatz hinzu – genau wie beim echten Schreiben von Hand kein Buchstabe exakt gleich hoch oder gerade sitzt.</p>
+
+      <h2>Wo wird meine Handschrift gespeichert?</h2>
+      <p>Jeder gezeichnete Buchstabe wird als kleines Bild lokal in deinem Browser gespeichert (Local Storage) – nicht auf einem Server. Das bedeutet auch: Deine Handschrift ist nur auf diesem Gerät und in diesem Browser verfügbar, und ein Wechsel zu einem anderen Gerät oder Browser erfordert, dass du die Buchstaben dort erneut zeichnest. Über "Gespeicherte Handschrift löschen" kannst du jederzeit alle gespeicherten Zeichen wieder entfernen.</p>
+
+      <h2>Wofür kann man das nutzen?</h2>
+      <p>Eine digitale Version der eigenen Handschrift eignet sich für persönliche Grußkarten, handschriftlich wirkende Notizen in digitalen Dokumenten, kreative Social-Media-Beiträge, oder einfach zum Ausprobieren, wie die eigene Schrift als "Schriftart" aussehen würde.</p>
+
+      <h2>Datenschutz</h2>
+      <p>Alle Zeichnungen und der zusammengesetzte Text werden ausschließlich lokal in deinem Browser verarbeitet und gespeichert. Es findet keine Übertragung an einen Server statt.</p>
+    </article>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <img src="/assets/images/logo-full.png" alt="Toolyfix">
+    <nav class="footer-links">
+      <a href="/ueber-uns.html">Über uns</a>
+      <a href="/datenschutz.html">Datenschutz</a>
+      <a href="/nutzungsbedingungen.html">Nutzungsbedingungen</a>
+      <a href="/kontakt.html">Kontakt</a>
+    </nav>
+    <p class="footer-note">© 2026 Toolyfix – Alle Tools laufen lokal in deinem Browser.</p>
+  </div>
+</footer>
+
+<script>
+const CHARSET = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789.,!?'.split('');
+
+const stepButtons = document.querySelectorAll('.step-btn');
+const capturePanel = document.getElementById('capturePanel');
+const composePanel = document.getElementById('composePanel');
+const captureCanvas = document.getElementById('captureCanvas');
+const currentCharLabel = document.getElementById('currentCharLabel');
+const progressNote = document.getElementById('progressNote');
+const glyphGrid = document.getElementById('glyphGrid');
+const ctx = captureCanvas.getContext('2d');
+
+let glyphs = {};
+let currentIndex = 0;
+let drawing = false;
+let lastX = 0, lastY = 0;
+
+try {
+  const stored = localStorage.getItem('toolyfix_handwriting');
+  if (stored) glyphs = JSON.parse(stored);
+} catch (e) {}
+
+function saveGlyphsToStorage() {
+  try { localStorage.setItem('toolyfix_handwriting', JSON.stringify(glyphs)); } catch (e) {}
+}
+
+stepButtons.forEach(btn => {
+  btn.addEventListener('click', () => {
+    stepButtons.forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    capturePanel.classList.toggle('active', btn.dataset.step === 'capture');
+    composePanel.classList.toggle('active', btn.dataset.step === 'compose');
+  });
+});
+
+function clearCanvas() {
+  ctx.fillStyle = '#ffffff';
+  ctx.fillRect(0, 0, captureCanvas.width, captureCanvas.height);
+}
+clearCanvas();
+ctx.lineWidth = 6;
+ctx.lineCap = 'round';
+ctx.strokeStyle = '#1a1a1a';
+
+function pos(e) {
+  const rect = captureCanvas.getBoundingClientRect();
+  const scaleX = captureCanvas.width / rect.width;
+  const scaleY = captureCanvas.height / rect.height;
+  const point = e.touches ? e.touches[0] : e;
+  return { x: (point.clientX - rect.left) * scaleX, y: (point.clientY - rect.top) * scaleY };
+}
+
+function startDraw(e) { drawing = true; const p = pos(e); lastX = p.x; lastY = p.y; e.preventDefault(); }
+function moveDraw(e) {
+  if (!drawing) return;
+  const p = pos(e);
+  ctx.beginPath();
+  ctx.moveTo(lastX, lastY);
+  ctx.lineTo(p.x, p.y);
+  ctx.stroke();
+  lastX = p.x; lastY = p.y;
+  e.preventDefault();
+}
+function endDraw() { drawing = false; }
+
+captureCanvas.addEventListener('mousedown', startDraw);
+captureCanvas.addEventListener('mousemove', moveDraw);
+window.addEventListener('mouseup', endDraw);
+captureCanvas.addEventListener('touchstart', startDraw);
+captureCanvas.addEventListener('touchmove', moveDraw);
+captureCanvas.addEventListener('touchend', endDraw);
+
+function trimCanvasToDataUrl() {
+  const w = captureCanvas.width, h = captureCanvas.height;
+  const imgData = ctx.getImageData(0, 0, w, h).data;
+  let minX = w, minY = h, maxX = 0, maxY = 0, found = false;
+  for (let y = 0; y < h; y++) {
+    for (let x = 0; x < w; x++) {
+      const i = (y * w + x) * 4;
+      // non-white pixel
+      if (imgData[i] < 240 || imgData[i + 1] < 240 || imgData[i + 2] < 240) {
+        found = true;
+        if (x < minX) minX = x;
+        if (x > maxX) maxX = x;
+        if (y < minY) minY = y;
+        if (y > maxY) maxY = y;
+      }
+    }
+  }
+  if (!found) return null;
+  const pad = 4;
+  minX = Math.max(0, minX - pad); minY = Math.max(0, minY - pad);
+  maxX = Math.min(w, maxX + pad); maxY = Math.min(h, maxY + pad);
+  const cropW = maxX - minX, cropH = maxY - minY;
+
+  const trimmed = document.createElement('canvas');
+  trimmed.width = cropW; trimmed.height = cropH;
+  const tctx = trimmed.getContext('2d');
+  tctx.drawImage(captureCanvas, minX, minY, cropW, cropH, 0, 0, cropW, cropH);
+  return trimmed.toDataURL('image/png');
+}
+
+function updateCaptureUI() {
+  currentCharLabel.textContent = CHARSET[currentIndex] === ' ' ? '␣' : CHARSET[currentIndex];
+  const done = Object.keys(glyphs).length;
+  progressNote.textContent = `${done} von ${CHARSET.length} Zeichen gespeichert.`;
+  clearCanvas();
+  renderGlyphGrid();
+}
+
+function goToChar(index) {
+  currentIndex = ((index % CHARSET.length) + CHARSET.length) % CHARSET.length;
+  updateCaptureUI();
+}
+
+document.getElementById('clearCanvasBtn').addEventListener('click', clearCanvas);
+
+document.getElementById('saveGlyphBtn').addEventListener('click', () => {
+  const dataUrl = trimCanvasToDataUrl();
+  if (dataUrl) {
+    glyphs[CHARSET[currentIndex]] = dataUrl;
+    saveGlyphsToStorage();
+  }
+  goToChar(currentIndex + 1);
+});
+
+document.getElementById('skipGlyphBtn').addEventListener('click', () => goToChar(currentIndex + 1));
+
+document.getElementById('clearAllBtn').addEventListener('click', () => {
+  glyphs = {};
+  saveGlyphsToStorage();
+  updateCaptureUI();
+});
+
+function renderGlyphGrid() {
+  glyphGrid.innerHTML = '';
+  CHARSET.forEach((ch, i) => {
+    const cell = document.createElement('div');
+    cell.className = 'glyph-cell' + (glyphs[ch] ? ' done' : '');
+    if (glyphs[ch]) {
+      cell.innerHTML = `<img src="${glyphs[ch]}" alt="${ch}">`;
+    } else {
+      cell.innerHTML = `<span class="placeholder">${ch}</span>`;
+    }
+    cell.addEventListener('click', () => goToChar(i));
+    glyphGrid.appendChild(cell);
+  });
+}
+
+updateCaptureUI();
+
+/* ---- Compose step ---- */
+const textToRender = document.getElementById('textToRender');
+const handwritingOutput = document.getElementById('handwritingOutput');
+
+function renderHandwriting() {
+  const text = textToRender.value;
+  if (!text.trim()) { handwritingOutput.innerHTML = '<p style="color:var(--ink-soft);">Bitte Text eingeben.</p>'; return; }
+
+  const targetHeight = 44;
+  const lineHeight = 60;
+  const maxWidth = 640;
+  const canvas = document.createElement('canvas');
+  const cctx = canvas.getContext('2d');
+  canvas.width = maxWidth;
+
+  // Preload images for glyphs used
+  const uniqueChars = [...new Set(text.replace(/\n/g, '').split(''))];
+  const imgCache = {};
+  let loaded = 0;
+  const toLoad = uniqueChars.filter(ch => glyphs[ch]).length;
+
+  function draw() {
+    const lines = text.split('\n');
+    canvas.height = Math.max(80, lines.length * lineHeight + 40);
+    cctx.fillStyle = '#fdfdfb';
+    cctx.fillRect(0, 0, canvas.width, canvas.height);
+
+    lines.forEach((line, lineIdx) => {
+      let x = 20;
+      const baseY = 40 + lineIdx * lineHeight;
+      for (const ch of line) {
+        if (ch === ' ') { x += 16; continue; }
+        const rot = (Math.random() - 0.5) * 0.12;
+        const yJitter = (Math.random() - 0.5) * 6;
+
+        if (glyphs[ch] && imgCache[ch]) {
+          const img = imgCache[ch];
+          const scale = targetHeight / img.height;
+          const w = img.width * scale;
+          cctx.save();
+          cctx.translate(x + w / 2, baseY + yJitter);
+          cctx.rotate(rot);
+          cctx.drawImage(img, -w / 2, -targetHeight / 2, w, targetHeight);
+          cctx.restore();
+          x += w + 4;
+        } else {
+          cctx.save();
+          cctx.font = '32px Caveat, cursive';
+          cctx.fillStyle = '#1a1a1a';
+          cctx.translate(x, baseY + yJitter + targetHeight / 2);
+          cctx.rotate(rot);
+          cctx.fillText(ch, 0, 0);
+          cctx.restore();
+          x += cctx.measureText(ch).width + 4;
+        }
+      }
+    });
+
+    handwritingOutput.innerHTML = '';
+    handwritingOutput.appendChild(canvas);
+  }
+
+  if (toLoad === 0) { draw(); return; }
+  uniqueChars.forEach(ch => {
+    if (!glyphs[ch]) return;
+    const img = new Image();
+    img.onload = () => { imgCache[ch] = img; loaded++; if (loaded === toLoad) draw(); };
+    img.src = glyphs[ch];
+  });
+}
+
+document.getElementById('renderBtn').addEventListener('click', renderHandwriting);
+document.getElementById('downloadHandwritingBtn').addEventListener('click', () => {
+  const canvas = handwritingOutput.querySelector('canvas');
+  if (!canvas) return;
+  const a = document.createElement('a');
+  a.href = canvas.toDataURL('image/png');
+  a.download = 'meine-handschrift.png';
+  a.click();
+});
+</script>
+
+</body>
+</html>

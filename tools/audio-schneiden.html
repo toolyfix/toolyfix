@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Audio Schneiden Online – Kostenloser Audio Cutter | Toolyfix</title>
+<meta name="description" content="Audio kostenlos online zuschneiden: Anfang und Ende festlegen, Wellenform ansehen, mit Fade-In/Fade-Out. Als WAV herunterladen, direkt im Browser ohne Upload.">
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/style.css">
+<style>
+  .related-tools-top { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 20px; }
+  .related-tools-top a {
+    padding: 8px 14px; border-radius: var(--radius); border: 1px solid var(--border);
+    background: var(--surface); text-decoration: none; color: var(--ink); font-size: 0.85rem; font-weight: 600;
+  }
+  .related-tools-top a:hover { border-color: var(--primary); color: var(--primary); }
+
+  .dropzone {
+    border: 2px dashed var(--border); border-radius: var(--radius); padding: 32px 20px;
+    text-align: center; cursor: pointer; margin-bottom: 16px;
+  }
+  .dropzone.dragover { border-color: var(--primary); background: var(--accent-soft); }
+  #fileInput { display: none; }
+
+  #waveformWrap { position: relative; display: none; margin-bottom: 16px; }
+  #waveformCanvas { width: 100%; height: 140px; display: block; border-radius: var(--radius); background: var(--bg); }
+  #selectionOverlay { position: absolute; top: 0; height: 100%; background: rgba(233, 169, 59, 0.35); border-left: 2px solid var(--accent); border-right: 2px solid var(--accent); pointer-events: none; }
+
+  .time-row { display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 16px; }
+  .time-field { display: flex; flex-direction: column; gap: 6px; }
+  .time-field label { font-size: 0.82rem; color: var(--ink-soft); }
+  .time-field input { width: 110px; }
+
+  .options-row { display: flex; gap: 20px; flex-wrap: wrap; align-items: center; margin-bottom: 16px; }
+  .switch { position: relative; width: 44px; height: 24px; display: inline-block; }
+  .switch input { opacity: 0; width: 0; height: 0; }
+  .slider-switch { position: absolute; inset: 0; background: var(--border); border-radius: 24px; cursor: pointer; transition: 0.15s; }
+  .slider-switch::before { content: ""; position: absolute; height: 18px; width: 18px; left: 3px; top: 3px; background: white; border-radius: 50%; transition: 0.15s; }
+  input:checked + .slider-switch { background: var(--primary); }
+  input:checked + .slider-switch::before { transform: translateX(20px); }
+  .switch-row { display: flex; align-items: center; gap: 8px; font-size: 0.88rem; }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container">
+    <a href="/" class="logo-link">
+      <img src="/assets/images/logo-full.png" alt="Toolyfix">
+    </a>
+    <span class="header-tagline">Kostenlose Tools, direkt im Browser</span>
+  </div>
+</header>
+
+<main class="tool-page">
+  <div class="container">
+    <p class="breadcrumb"><a href="/">Toolyfix</a> / Audio Schneiden</p>
+    <h1>Audio Schneiden</h1>
+
+    <div class="related-tools-top">
+      <a href="/tools/timer-stoppuhr.html">⏱️ Timer & Stoppuhr</a>
+    </div>
+
+    <p>Lade eine Audiodatei hoch, wähle Anfang und Ende anhand der Wellenform aus, und lade den zugeschnittenen Abschnitt als WAV-Datei herunter – alles direkt im Browser, ohne Upload auf einen Server.</p>
+
+    <div class="tool-panel">
+      <div class="dropzone" id="dropzone">
+        <p><strong>Audiodatei hierher ziehen</strong> oder klicken zum Auswählen</p>
+        <p style="font-size:0.85rem; margin-top:6px;">MP3, WAV, M4A, OGG und mehr</p>
+      </div>
+      <input type="file" id="fileInput" accept="audio/*">
+
+      <div id="waveformWrap">
+        <canvas id="waveformCanvas"></canvas>
+        <div id="selectionOverlay"></div>
+      </div>
+
+      <div class="time-row">
+        <div class="time-field"><label for="startInput">Start (Sek.)</label><input type="number" id="startInput" min="0" step="0.1" value="0"></div>
+        <div class="time-field"><label for="endInput">Ende (Sek.)</label><input type="number" id="endInput" min="0" step="0.1"></div>
+        <div class="time-field"><label>Ausgewählte Dauer</label><div id="durationLabel" style="padding-top:10px; font-weight:600;">–</div></div>
+      </div>
+
+      <div class="options-row">
+        <div class="switch-row">
+          <label class="switch"><input type="checkbox" id="fadeToggle"><span class="slider-switch"></span></label>
+          <span>Fade-In / Fade-Out (0,3 Sek.)</span>
+        </div>
+      </div>
+
+      <div class="field-row">
+        <button class="btn btn-primary" id="playSelectionBtn" disabled>▶ Auswahl anhören</button>
+        <button class="btn btn-primary" id="cutBtn" disabled>Zuschneiden & Herunterladen (WAV)</button>
+        <button class="btn btn-ghost" id="resetBtn" style="display:none;">Andere Datei laden</button>
+      </div>
+      <p style="font-size:0.85rem; color:var(--ink-soft);" id="statusLine"></p>
+    </div>
+
+    <article class="explainer">
+      <h2>Audio online zuschneiden – ohne Software-Installation</h2>
+      <p>Dieser Audio Cutter erlaubt es dir, aus einer beliebigen Audiodatei einen bestimmten Abschnitt herauszuschneiden – etwa um einen Klingelton zu erstellen, einen bestimmten Song-Ausschnitt für Social Media vorzubereiten, oder eine Sprachaufnahme auf den relevanten Teil zu kürzen. Die gesamte Verarbeitung läuft direkt im Browser über die Web Audio API, ohne dass eine Software installiert oder eine Datei irgendwohin hochgeladen werden muss.</p>
+
+      <h2>Die Wellenform zur Orientierung nutzen</h2>
+      <p>Nach dem Hochladen zeigt das Tool die Wellenform deiner Audiodatei an – eine visuelle Darstellung der Lautstärke über die Zeit. Das hilft dir, Sprechpausen, laute Passagen oder den Beginn und das Ende eines bestimmten Abschnitts schnell zu erkennen, ohne die gesamte Datei mehrfach anhören zu müssen. Die markierte Fläche zeigt deinen aktuell ausgewählten Bereich.</p>
+
+      <h2>Start- und Endpunkt präzise festlegen</h2>
+      <p>Trage Start- und Endzeit in Sekunden ein (auch mit Nachkommastellen für zehntelgenaue Schnitte möglich), oder orientiere dich an der Wellenform. Über "Auswahl anhören" kannst du jederzeit genau den Bereich vorab abspielen, der beim Zuschneiden tatsächlich verwendet wird, um sicherzugehen, dass der Ausschnitt genau passt.</p>
+
+      <h2>Fade-In und Fade-Out gegen abrupte Schnitte</h2>
+      <p>Ein hart geschnittener Audioausschnitt beginnt und endet oft mit einem hörbaren "Klick" oder einem abrupten Lautstärkesprung, besonders wenn der Schnitt mitten in einem Ton liegt. Mit aktiviertem Fade-In/Fade-Out blendet das Tool die ersten und letzten 0,3 Sekunden sanft ein beziehungsweise aus, was besonders bei Klingeltönen oder Musik-Ausschnitten deutlich professioneller klingt.</p>
+
+      <h2>Warum wird als WAV statt MP3 exportiert?</h2>
+      <p>Die Umwandlung in das MP3-Format erfordert einen komplexen Kompressions-Algorithmus (Encoder), der im Browser nicht ohne zusätzliche, oft sehr große Zusatzbibliotheken verfügbar ist. Das WAV-Format speichert Audio dagegen unkomprimiert und lässt sich direkt und zuverlässig im Browser erzeugen. WAV-Dateien sind zwar größer als MP3s, werden aber von praktisch jedem Programm, Smartphone und Betriebssystem anstandslos abgespielt und lassen sich bei Bedarf mit einem separaten Tool in MP3 umwandeln.</p>
+
+      <h2>Welche Dateiformate werden unterstützt?</h2>
+      <p>Als Eingabeformat werden die gängigen Audioformate wie MP3, WAV, M4A und OGG unterstützt, abhängig davon, welche Formate dein Browser grundsätzlich dekodieren kann – moderne Versionen von Chrome, Edge, Firefox und Safari decken die üblichen Formate zuverlässig ab.</p>
+
+      <h2>Datenschutz</h2>
+      <p>Deine Audiodatei wird ausschließlich lokal in deinem Browser verarbeitet. Es findet kein Upload auf einen Server statt, und die Datei wird nirgendwo gespeichert.</p>
+    </article>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <img src="/assets/images/logo-full.png" alt="Toolyfix">
+    <nav class="footer-links">
+      <a href="/ueber-uns.html">Über uns</a>
+      <a href="/datenschutz.html">Datenschutz</a>
+      <a href="/nutzungsbedingungen.html">Nutzungsbedingungen</a>
+      <a href="/kontakt.html">Kontakt</a>
+    </nav>
+    <p class="footer-note">© 2026 Toolyfix – Alle Tools laufen lokal in deinem Browser.</p>
+  </div>
+</footer>
+
+<script>
+const dropzone = document.getElementById('dropzone');
+const fileInput = document.getElementById('fileInput');
+const waveformWrap = document.getElementById('waveformWrap');
+const waveformCanvas = document.getElementById('waveformCanvas');
+const selectionOverlay = document.getElementById('selectionOverlay');
+const startInput = document.getElementById('startInput');
+const endInput = document.getElementById('endInput');
+const durationLabel = document.getElementById('durationLabel');
+const fadeToggle = document.getElementById('fadeToggle');
+const playSelectionBtn = document.getElementById('playSelectionBtn');
+const cutBtn = document.getElementById('cutBtn');
+const resetBtn = document.getElementById('resetBtn');
+const statusLine = document.getElementById('statusLine');
+
+let audioCtx = null;
+let audioBuffer = null;
+let currentSource = null;
+
+dropzone.addEventListener('click', () => fileInput.click());
+['dragenter', 'dragover'].forEach(evt =>
+  dropzone.addEventListener(evt, e => { e.preventDefault(); dropzone.classList.add('dragover'); })
+);
+['dragleave', 'drop'].forEach(evt =>
+  dropzone.addEventListener(evt, e => { e.preventDefault(); dropzone.classList.remove('dragover'); })
+);
+dropzone.addEventListener('drop', e => loadFile(e.dataTransfer.files[0]));
+fileInput.addEventListener('change', e => loadFile(e.target.files[0]));
+
+async function loadFile(file) {
+  if (!file || !file.type.startsWith('audio/')) { statusLine.textContent = 'Bitte eine gültige Audiodatei auswählen.'; return; }
+  statusLine.textContent = 'Lade und dekodiere Audio …';
+  try {
+    audioCtx = audioCtx || new (window.AudioContext || window.webkitAudioContext)();
+    const arrayBuffer = await file.arrayBuffer();
+    audioBuffer = await audioCtx.decodeAudioData(arrayBuffer);
+
+    startInput.value = 0;
+    endInput.value = audioBuffer.duration.toFixed(1);
+    endInput.max = audioBuffer.duration.toFixed(2);
+    startInput.max = audioBuffer.duration.toFixed(2);
+
+    drawWaveform();
+    updateOverlay();
+    waveformWrap.style.display = 'block';
+    playSelectionBtn.disabled = false;
+    cutBtn.disabled = false;
+    resetBtn.style.display = 'inline-flex';
+    dropzone.style.display = 'none';
+    statusLine.textContent = `Geladen: ${file.name} (${audioBuffer.duration.toFixed(1)} Sek.)`;
+  } catch (e) {
+    statusLine.textContent = 'Die Datei konnte nicht als Audio gelesen werden.';
+  }
+}
+
+function drawWaveform() {
+  const canvas = waveformCanvas;
+  const dpr = window.devicePixelRatio || 1;
+  const displayWidth = canvas.clientWidth || 600;
+  canvas.width = displayWidth * dpr;
+  canvas.height = 140 * dpr;
+  const ctx = canvas.getContext('2d');
+  ctx.scale(dpr, dpr);
+  ctx.clearRect(0, 0, displayWidth, 140);
+
+  const data = audioBuffer.getChannelData(0);
+  const step = Math.ceil(data.length / displayWidth);
+  const amp = 70;
+
+  ctx.fillStyle = '#1D3557';
+  for (let i = 0; i < displayWidth; i++) {
+    let min = 1, max = -1;
+    for (let j = 0; j < step; j++) {
+      const idx = i * step + j;
+      if (idx >= data.length) break;
+      const val = data[idx];
+      if (val < min) min = val;
+      if (val > max) max = val;
+    }
+    ctx.fillRect(i, amp + min * amp, 1, Math.max(1, (max - min) * amp));
+  }
+}
+
+function updateOverlay() {
+  const wrapWidth = waveformCanvas.clientWidth;
+  const start = parseFloat(startInput.value) || 0;
+  const end = parseFloat(endInput.value) || audioBuffer.duration;
+  const leftPct = (start / audioBuffer.duration) * 100;
+  const widthPct = ((end - start) / audioBuffer.duration) * 100;
+  selectionOverlay.style.left = leftPct + '%';
+  selectionOverlay.style.width = Math.max(0, widthPct) + '%';
+  durationLabel.textContent = Math.max(0, end - start).toFixed(1) + ' Sek.';
+}
+
+[startInput, endInput].forEach(el => el.addEventListener('input', updateOverlay));
+
+function getSelection() {
+  let start = Math.max(0, parseFloat(startInput.value) || 0);
+  let end = Math.min(audioBuffer.duration, parseFloat(endInput.value) || audioBuffer.duration);
+  if (end <= start) end = Math.min(audioBuffer.duration, start + 0.1);
+  return { start, end };
+}
+
+function extractBuffer(start, end) {
+  const sampleRate = audioBuffer.sampleRate;
+  const startSample = Math.floor(start * sampleRate);
+  const endSample = Math.floor(end * sampleRate);
+  const frameCount = endSample - startSample;
+  const numChannels = audioBuffer.numberOfChannels;
+
+  const newBuffer = audioCtx.createBuffer(numChannels, frameCount, sampleRate);
+  for (let ch = 0; ch < numChannels; ch++) {
+    const sourceData = audioBuffer.getChannelData(ch).subarray(startSample, endSample);
+    const target = newBuffer.getChannelData(ch);
+    target.set(sourceData);
+
+    if (fadeToggle.checked) {
+      const fadeSamples = Math.min(frameCount / 2, Math.floor(0.3 * sampleRate));
+      for (let i = 0; i < fadeSamples; i++) {
+        const g = i / fadeSamples;
+        target[i] *= g;
+        target[frameCount - 1 - i] *= g;
+      }
+    }
+  }
+  return newBuffer;
+}
+
+playSelectionBtn.addEventListener('click', () => {
+  if (!audioBuffer) return;
+  if (currentSource) { try { currentSource.stop(); } catch (e) {} }
+  const { start, end } = getSelection();
+  const trimmed = extractBuffer(start, end);
+  currentSource = audioCtx.createBufferSource();
+  currentSource.buffer = trimmed;
+  currentSource.connect(audioCtx.destination);
+  currentSource.start();
+});
+
+function bufferToWav(buffer) {
+  const numChannels = buffer.numberOfChannels;
+  const sampleRate = buffer.sampleRate;
+  const format = 1; // PCM
+  const bitDepth = 16;
+
+  const interleaved = interleave(buffer);
+  const dataLength = interleaved.length * (bitDepth / 8);
+  const bufferLength = 44 + dataLength;
+  const arrayBuffer = new ArrayBuffer(bufferLength);
+  const view = new DataView(arrayBuffer);
+
+  function writeString(offset, str) {
+    for (let i = 0; i < str.length; i++) view.setUint8(offset + i, str.charCodeAt(i));
+  }
+
+  writeString(0, 'RIFF');
+  view.setUint32(4, 36 + dataLength, true);
+  writeString(8, 'WAVE');
+  writeString(12, 'fmt ');
+  view.setUint32(16, 16, true);
+  view.setUint16(20, format, true);
+  view.setUint16(22, numChannels, true);
+  view.setUint32(24, sampleRate, true);
+  view.setUint32(28, sampleRate * numChannels * (bitDepth / 8), true);
+  view.setUint16(32, numChannels * (bitDepth / 8), true);
+  view.setUint16(34, bitDepth, true);
+  writeString(36, 'data');
+  view.setUint32(40, dataLength, true);
+
+  let offset = 44;
+  for (let i = 0; i < interleaved.length; i++) {
+    const s = Math.max(-1, Math.min(1, interleaved[i]));
+    view.setInt16(offset, s < 0 ? s * 0x8000 : s * 0x7FFF, true);
+    offset += 2;
+  }
+
+  return new Blob([arrayBuffer], { type: 'audio/wav' });
+}
+
+function interleave(buffer) {
+  const numChannels = buffer.numberOfChannels;
+  const length = buffer.length * numChannels;
+  const result = new Float32Array(length);
+  const channels = [];
+  for (let ch = 0; ch < numChannels; ch++) channels.push(buffer.getChannelData(ch));
+  let idx = 0;
+  for (let i = 0; i < buffer.length; i++) {
+    for (let ch = 0; ch < numChannels; ch++) {
+      result[idx++] = channels[ch][i];
+    }
+  }
+  return result;
+}
+
+cutBtn.addEventListener('click', () => {
+  if (!audioBuffer) return;
+  const { start, end } = getSelection();
+  const trimmed = extractBuffer(start, end);
+  const blob = bufferToWav(trimmed);
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'geschnitten.wav';
+  a.click();
+  statusLine.textContent = 'WAV-Datei heruntergeladen.';
+});
+
+resetBtn.addEventListener('click', () => {
+  audioBuffer = null;
+  waveformWrap.style.display = 'none';
+  dropzone.style.display = 'block';
+  playSelectionBtn.disabled = true;
+  cutBtn.disabled = true;
+  resetBtn.style.display = 'none';
+  fileInput.value = '';
+  statusLine.textContent = '';
+});
+
+window.addEventListener('resize', () => { if (audioBuffer) { drawWaveform(); updateOverlay(); } });
+</script>
+
+</body>
+</html>

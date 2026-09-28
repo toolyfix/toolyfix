@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Durchschnitt Rechner – Mittelwert, Median & Modus | Toolyfix</title>
+<meta name="description" content="Kostenloser Durchschnittsrechner: Arithmetisches Mittel, Median, Modus, Standardabweichung und mehr berechnen. Auch als gewichteter Durchschnitt.">
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/style.css">
+<style>
+  .related-tools-top { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 20px; }
+  .related-tools-top a {
+    padding: 8px 14px; border-radius: var(--radius); border: 1px solid var(--border);
+    background: var(--surface); text-decoration: none; color: var(--ink); font-size: 0.85rem; font-weight: 600;
+  }
+  .related-tools-top a:hover { border-color: var(--primary); color: var(--primary); }
+
+  .mode-toggle { display: flex; gap: 8px; margin-bottom: 20px; }
+  .mode-btn {
+    padding: 10px 16px; border-radius: var(--radius); border: 1px solid var(--border);
+    background: var(--surface); cursor: pointer; font-family: 'Inter', sans-serif; font-weight: 600; font-size: 0.88rem;
+  }
+  .mode-btn.active { background: var(--primary); color: #fff; border-color: var(--primary); }
+  .mode-panel { display: none; }
+  .mode-panel.active { display: block; }
+
+  .weighted-row { display: flex; gap: 8px; margin-bottom: 8px; }
+  .weighted-row input { flex: 1; }
+  .remove-row-btn { background: none; border: none; cursor: pointer; color: var(--ink-soft); font-size: 1.1rem; padding: 4px 8px; }
+
+  .stats-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 20px; }
+  @media (max-width: 640px) { .stats-grid { grid-template-columns: repeat(2, 1fr); } }
+  .stat-box { background: var(--bg); border-radius: var(--radius); padding: 16px; text-align: center; }
+  .stat-box .value { font-family: 'Space Grotesk', sans-serif; font-size: 1.3rem; font-weight: 700; color: var(--primary); display: block; }
+  .stat-box .label { font-size: 0.78rem; color: var(--ink-soft); }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container">
+    <a href="/" class="logo-link">
+      <img src="/assets/images/logo-full.png" alt="Toolyfix">
+    </a>
+    <span class="header-tagline">Kostenlose Tools, direkt im Browser</span>
+  </div>
+</header>
+
+<main class="tool-page">
+  <div class="container">
+    <p class="breadcrumb"><a href="/">Toolyfix</a> / Durchschnitt Rechner</p>
+    <h1>Durchschnitt Rechner</h1>
+
+    <div class="related-tools-top">
+      <a href="/tools/gleichungen-loesen.html">√x Gleichungen Lösen</a>
+      <a href="/tools/balkendiagramm-erstellen.html">📊 Balkendiagramm Erstellen</a>
+    </div>
+
+    <p>Berechne den Durchschnitt einer Zahlenliste inklusive Median, Modus und Standardabweichung – oder einen gewichteten Durchschnitt, wenn nicht alle Werte gleich zählen.</p>
+
+    <div class="tool-panel">
+      <div class="mode-toggle">
+        <button class="mode-btn active" data-mode="simple">Einfacher Durchschnitt</button>
+        <button class="mode-btn" data-mode="weighted">Gewichteter Durchschnitt</button>
+      </div>
+
+      <div class="mode-panel active" id="simplePanel">
+        <textarea id="numbersInput" rows="6" placeholder="Zahlen eingeben, getrennt durch Komma, Leerzeichen oder Zeilenumbruch&#10;z. B. 4, 8, 15, 16, 23, 42"></textarea>
+      </div>
+
+      <div class="mode-panel" id="weightedPanel">
+        <div id="weightedRows"></div>
+        <button class="btn btn-ghost" id="addWeightedRowBtn">+ Zeile hinzufügen</button>
+      </div>
+
+      <div class="field-row" style="margin-top:16px;">
+        <button class="btn btn-primary" id="calcBtn">Berechnen</button>
+      </div>
+
+      <div class="stats-grid" id="statsGrid" style="display:none;"></div>
+    </div>
+
+    <article class="explainer">
+      <h2>Durchschnitt berechnen: mehr als nur das arithmetische Mittel</h2>
+      <p>Der Begriff "Durchschnitt" wird im Alltag meist synonym mit dem arithmetischen Mittel verwendet – der Summe aller Werte geteilt durch ihre Anzahl. Dieser Rechner geht einen Schritt weiter und berechnet gleichzeitig weitere wichtige statistische Kennzahlen: Median, Modus, Minimum, Maximum, Summe und Standardabweichung, die zusammen ein deutlich vollständigeres Bild einer Zahlenreihe liefern als der Durchschnitt allein.</p>
+
+      <h2>Arithmetisches Mittel, Median und Modus im Vergleich</h2>
+      <p>Das <strong>arithmetische Mittel</strong> (der klassische Durchschnitt) kann durch einzelne extreme Ausreißerwerte stark verzerrt werden – zum Beispiel zieht ein einzelnes sehr hohes Gehalt in einer Liste von Gehältern den Durchschnitt deutlich nach oben. Der <strong>Median</strong> (der mittlere Wert einer sortierten Liste) ist gegen solche Ausreißer robuster und wird deshalb oft für Einkommensverteilungen oder Immobilienpreise verwendet. Der <strong>Modus</strong> ist der am häufigsten vorkommende Wert in der Liste und zeigt, welcher Wert am typischsten ist, unabhängig von Größe oder Reihenfolge.</p>
+
+      <h2>Was zeigt die Standardabweichung?</h2>
+      <p>Die Standardabweichung beschreibt, wie stark die einzelnen Werte im Durchschnitt vom Mittelwert abweichen. Eine niedrige Standardabweichung bedeutet, dass die Werte eng um den Durchschnitt gruppiert sind, während eine hohe Standardabweichung auf eine breite Streuung hinweist – zwei Zahlenreihen können denselben Durchschnitt haben, sich in ihrer Standardabweichung aber deutlich unterscheiden.</p>
+
+      <h2>Gewichteter Durchschnitt: wenn nicht jeder Wert gleich zählt</h2>
+      <p>Ein gewichteter Durchschnitt wird gebraucht, wenn einzelne Werte unterschiedlich stark in die Berechnung einfließen sollen – zum Beispiel bei einer Semesternote, bei der eine Klausur doppelt so stark zählt wie ein Referat, oder bei einer Bewertung, bei der neuere Daten stärker gewichtet werden als ältere. Trage dazu für jeden Wert zusätzlich sein Gewicht ein; das Tool berechnet dann die Summe aus (Wert × Gewicht) geteilt durch die Summe aller Gewichte.</p>
+
+      <h2>Typische Anwendungsfälle</h2>
+      <p>Ein Durchschnittsrechner wird häufig für Notendurchschnitte in der Schule oder im Studium verwendet, für die Auswertung von Umfrageergebnissen, für sportliche Statistiken (durchschnittliche Punktzahl, Zeit oder Distanz), oder im geschäftlichen Kontext für durchschnittliche Verkaufszahlen, Bewertungen oder Kennzahlen über einen Zeitraum.</p>
+
+      <h2>Datenschutz</h2>
+      <p>Alle Berechnungen laufen lokal in deinem Browser. Es werden keine Zahlen an einen Server übertragen oder gespeichert.</p>
+    </article>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <img src="/assets/images/logo-full.png" alt="Toolyfix">
+    <nav class="footer-links">
+      <a href="/ueber-uns.html">Über uns</a>
+      <a href="/datenschutz.html">Datenschutz</a>
+      <a href="/nutzungsbedingungen.html">Nutzungsbedingungen</a>
+      <a href="/kontakt.html">Kontakt</a>
+    </nav>
+    <p class="footer-note">© 2026 Toolyfix – Alle Tools laufen lokal in deinem Browser.</p>
+  </div>
+</footer>
+
+<script>
+const modeButtons = document.querySelectorAll('.mode-btn');
+const simplePanel = document.getElementById('simplePanel');
+const weightedPanel = document.getElementById('weightedPanel');
+const numbersInput = document.getElementById('numbersInput');
+const weightedRows = document.getElementById('weightedRows');
+const statsGrid = document.getElementById('statsGrid');
+
+let mode = 'simple';
+let wRows = [{ v: '', w: '' }, { v: '', w: '' }, { v: '', w: '' }];
+
+modeButtons.forEach(btn => {
+  btn.addEventListener('click', () => {
+    modeButtons.forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    mode = btn.dataset.mode;
+    simplePanel.classList.toggle('active', mode === 'simple');
+    weightedPanel.classList.toggle('active', mode === 'weighted');
+    statsGrid.style.display = 'none';
+  });
+});
+
+function renderWeightedRows() {
+  weightedRows.innerHTML = '';
+  wRows.forEach((row, i) => {
+    const div = document.createElement('div');
+    div.className = 'weighted-row';
+    div.innerHTML = `
+      <input type="number" placeholder="Wert" value="${row.v}" data-i="${i}" data-f="v">
+      <input type="number" placeholder="Gewicht" value="${row.w}" data-i="${i}" data-f="w">
+      <button class="remove-row-btn" data-i="${i}">✕</button>
+    `;
+    weightedRows.appendChild(div);
+  });
+  weightedRows.querySelectorAll('input').forEach(inp => {
+    inp.addEventListener('input', () => { wRows[inp.dataset.i][inp.dataset.f] = inp.value; });
+  });
+  weightedRows.querySelectorAll('.remove-row-btn').forEach(btn => {
+    btn.addEventListener('click', () => { wRows.splice(parseInt(btn.dataset.i, 10), 1); renderWeightedRows(); });
+  });
+}
+document.getElementById('addWeightedRowBtn').addEventListener('click', () => { wRows.push({ v: '', w: '' }); renderWeightedRows(); });
+renderWeightedRows();
+
+function showStats(entries) {
+  statsGrid.innerHTML = '';
+  entries.forEach(([label, value]) => {
+    const box = document.createElement('div');
+    box.className = 'stat-box';
+    box.innerHTML = `<span class="value">${value}</span><span class="label">${label}</span>`;
+    statsGrid.appendChild(box);
+  });
+  statsGrid.style.display = 'grid';
+}
+
+function fmt(n) { return Number.isFinite(n) ? (Math.round(n * 1000) / 1000).toString() : '–'; }
+
+function calcSimple() {
+  const nums = numbersInput.value.split(/[\s,;]+/).map(s => parseFloat(s)).filter(n => !isNaN(n));
+  if (nums.length === 0) { statsGrid.style.display = 'none'; return; }
+
+  const sum = nums.reduce((a, b) => a + b, 0);
+  const mean = sum / nums.length;
+  const sorted = [...nums].sort((a, b) => a - b);
+  const mid = Math.floor(sorted.length / 2);
+  const median = sorted.length % 2 === 0 ? (sorted[mid - 1] + sorted[mid]) / 2 : sorted[mid];
+
+  const freq = {};
+  nums.forEach(n => freq[n] = (freq[n] || 0) + 1);
+  const maxFreq = Math.max(...Object.values(freq));
+  const modes = Object.keys(freq).filter(k => freq[k] === maxFreq);
+  const modeStr = maxFreq === 1 ? 'kein Modus' : modes.join(', ');
+
+  const variance = nums.reduce((a, b) => a + Math.pow(b - mean, 2), 0) / nums.length;
+  const stdDev = Math.sqrt(variance);
+
+  showStats([
+    ['Anzahl', nums.length],
+    ['Summe', fmt(sum)],
+    ['Arithmetisches Mittel', fmt(mean)],
+    ['Median', fmt(median)],
+    ['Modus', modeStr],
+    ['Minimum', fmt(Math.min(...nums))],
+    ['Maximum', fmt(Math.max(...nums))],
+    ['Standardabweichung', fmt(stdDev)],
+    ['Varianz', fmt(variance)]
+  ]);
+}
+
+function calcWeighted() {
+  const pairs = wRows
+    .map(r => ({ v: parseFloat(r.v), w: parseFloat(r.w) }))
+    .filter(p => !isNaN(p.v) && !isNaN(p.w));
+  if (pairs.length === 0) { statsGrid.style.display = 'none'; return; }
+
+  const weightSum = pairs.reduce((a, p) => a + p.w, 0);
+  const weightedSum = pairs.reduce((a, p) => a + p.v * p.w, 0);
+  const weightedAvg = weightSum !== 0 ? weightedSum / weightSum : NaN;
+
+  showStats([
+    ['Gewichteter Durchschnitt', fmt(weightedAvg)],
+    ['Summe der Gewichte', fmt(weightSum)],
+    ['Anzahl Werte', pairs.length]
+  ]);
+}
+
+document.getElementById('calcBtn').addEventListener('click', () => {
+  if (mode === 'simple') calcSimple(); else calcWeighted();
+});
+</script>
+
+</body>
+</html>

@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Deutsches Wörterbuch Online – Bedeutung, Wortart & Beispiele | Toolyfix</title>
+<meta name="description" content="Kostenloses deutsches Wörterbuch: Bedeutung, Wortart und Beispielsätze zu jedem deutschen Wort nachschlagen. Mit Suchverlauf und Zufallswort-Funktion.">
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/style.css">
+<style>
+  .related-tools-top { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 20px; }
+  .related-tools-top a {
+    padding: 8px 14px; border-radius: var(--radius); border: 1px solid var(--border);
+    background: var(--surface); text-decoration: none; color: var(--ink); font-size: 0.85rem; font-weight: 600;
+  }
+  .related-tools-top a:hover { border-color: var(--primary); color: var(--primary); }
+
+  .search-row { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 12px; }
+  .search-row input { flex: 1; min-width: 200px; font-size: 1.1rem; }
+
+  .recent-chips { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 16px; }
+  .recent-chip {
+    padding: 5px 12px; border-radius: 20px; background: var(--bg); border: 1px solid var(--border);
+    font-size: 0.8rem; cursor: pointer; color: var(--ink-soft);
+  }
+  .recent-chip:hover { border-color: var(--primary); color: var(--primary); }
+
+  .word-header { display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; margin: 20px 0 12px; }
+  .word-header h2 { margin: 0; font-size: 1.8rem; }
+  .word-header a { font-size: 0.82rem; }
+
+  .pos-block { background: var(--bg); border-radius: var(--radius); padding: 18px 20px; margin-bottom: 14px; }
+  .pos-block .pos-tag {
+    display: inline-block; background: var(--accent-soft); color: var(--primary-dark);
+    font-size: 0.78rem; font-weight: 700; padding: 3px 10px; border-radius: 6px; margin-bottom: 10px; text-transform: uppercase;
+  }
+  .pos-block ol { padding-left: 20px; margin: 0; }
+  .pos-block li { margin-bottom: 10px; }
+  .pos-block .example { color: var(--ink-soft); font-size: 0.9rem; font-style: italic; margin-top: 2px; }
+
+  .attribution-note { font-size: 0.78rem; color: var(--ink-soft); margin-top: 16px; }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container">
+    <a href="/" class="logo-link">
+      <img src="/assets/images/logo-full.png" alt="Toolyfix">
+    </a>
+    <span class="header-tagline">Kostenlose Tools, direkt im Browser</span>
+  </div>
+</header>
+
+<main class="tool-page">
+  <div class="container">
+    <p class="breadcrumb"><a href="/">Toolyfix</a> / Deutsches Wörterbuch</p>
+    <h1>Deutsches Wörterbuch</h1>
+
+    <div class="related-tools-top">
+      <a href="/tools/anagramm-finder.html">🔤 Anagramm Finder</a>
+      <a href="/tools/alphabetisch-sortieren.html">🔠 Alphabetisch Sortieren</a>
+    </div>
+
+    <p>Bedeutung, Wortart und Beispielsätze zu jedem deutschen Wort nachschlagen – mit Suchverlauf und einer Zufallswort-Funktion zum Entdecken.</p>
+
+    <div class="tool-panel">
+      <div class="search-row">
+        <input type="text" id="searchInput" placeholder="Wort eingeben, z. B. Freiheit">
+        <button class="btn btn-primary" id="searchBtn">Nachschlagen</button>
+        <button class="btn btn-ghost" id="randomBtn">🎲 Zufälliges Wort</button>
+      </div>
+
+      <div class="recent-chips" id="recentChips"></div>
+
+      <p style="font-size:0.88rem; color:var(--ink-soft);" id="statusLine"></p>
+      <div id="resultsArea"></div>
+    </div>
+
+    <article class="explainer">
+      <h2>Deutsches Wörterbuch online: Bedeutung, Wortart und Beispiele</h2>
+      <p>Dieses Wörterbuch-Tool liefert dir zu einem eingegebenen deutschen Wort die Bedeutung, die passende Wortart (Substantiv, Verb, Adjektiv und so weiter) und, wo verfügbar, Beispielsätze zur Verwendung. Die Daten stammen aus dem deutschen Wiktionary, einem offenen, gemeinschaftlich gepflegten Wörterbuchprojekt der Wikimedia-Stiftung – demselben Projekt, das auch hinter Wikipedia steht.</p>
+
+      <h2>Woher stammen die Wörterbuch-Daten?</h2>
+      <p>Die Definitionen werden live über die öffentliche Programmierschnittstelle (API) des deutschen Wiktionary abgerufen, nicht aus einer eigenen, begrenzten Wortliste. Das bedeutet, dass die Abdeckung sehr breit ist – von alltäglichen Wörtern bis zu Fachbegriffen, Fremdwörtern und regionalen Ausdrücken, sofern sie im Wiktionary bereits dokumentiert sind. Da es sich um ein von Freiwilligen gepflegtes Projekt handelt, kann die Qualität und Ausführlichkeit einzelner Einträge unterschiedlich sein – sehr gebräuchliche Wörter sind in der Regel besonders gut dokumentiert.</p>
+
+      <h2>Groß- und Kleinschreibung wird automatisch korrigiert</h2>
+      <p>Deutsche Substantive werden großgeschrieben, aber es passiert leicht, dass man beim Tippen die Großschreibung vergisst. Findet das Tool keinen Eintrag zur exakt eingegebenen Schreibweise, probiert es automatisch eine großgeschriebene und eine kleingeschriebene Variante, bevor es eine Fehlermeldung anzeigt – so wird ein einfacher Tippfehler bei der Schreibweise nicht sofort zum Suchabbruch.</p>
+
+      <h2>Suchverlauf für schnellen Zugriff</h2>
+      <p>Die zuletzt gesuchten Wörter werden als kleine Schaltflächen unterhalb der Suche angezeigt, sodass du mit einem Klick erneut nachschlagen kannst, ohne das Wort erneut einzutippen. Dieser Verlauf wird nur lokal in deinem Browser gespeichert.</p>
+
+      <h2>Zufälliges Wort entdecken</h2>
+      <p>Über den Button "Zufälliges Wort" lässt sich ein beliebiger, zufällig ausgewählter Wiktionary-Eintrag anzeigen – eine unterhaltsame Art, den eigenen Wortschatz zu erweitern oder einfach zu sehen, was für ungewöhnliche Wörter die deutsche Sprache zu bieten hat.</p>
+
+      <h2>Wann eignet sich dieses Tool – und wann nicht?</h2>
+      <p>Dieses Wörterbuch eignet sich gut für ein schnelles Nachschlagen der Grundbedeutung eines Wortes, für Wortarten-Bestimmung oder um Beispielsätze für die eigene Verwendung zu finden. Für tiefgehende linguistische Recherche, exakte Herkunftsangaben (Etymologie) oder eine vollständige Konjugations- beziehungsweise Deklinationstabelle empfiehlt sich zusätzlich ein Blick in den vollständigen Wiktionary-Artikel, zu dem jedes Suchergebnis direkt verlinkt.</p>
+
+      <h2>Lizenz und Quellenangabe</h2>
+      <p>Die angezeigten Inhalte stammen aus dem deutschen Wiktionary und stehen unter der Lizenz Creative Commons Namensnennung-Weitergabe unter gleichen Bedingungen (CC BY-SA). Jeder Treffer verlinkt direkt auf den vollständigen Originalartikel, in dem auch die jeweilige Bearbeitungshistorie einsehbar ist.</p>
+
+      <h2>Datenschutz</h2>
+      <p>Deine Sucheingabe wird an die öffentliche Wiktionary-API übermittelt, um die Definition abzurufen – das ist technisch notwendig, damit überhaupt ein Ergebnis geliefert werden kann. Der Suchverlauf selbst wird ausschließlich lokal in deinem Browser gespeichert, nicht auf unseren Servern.</p>
+    </article>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <img src="/assets/images/logo-full.png" alt="Toolyfix">
+    <nav class="footer-links">
+      <a href="/ueber-uns.html">Über uns</a>
+      <a href="/datenschutz.html">Datenschutz</a>
+      <a href="/nutzungsbedingungen.html">Nutzungsbedingungen</a>
+      <a href="/kontakt.html">Kontakt</a>
+    </nav>
+    <p class="footer-note">© 2026 Toolyfix – Alle Tools laufen lokal in deinem Browser.</p>
+  </div>
+</footer>
+
+<script>
+const searchInput = document.getElementById('searchInput');
+const searchBtn = document.getElementById('searchBtn');
+const randomBtn = document.getElementById('randomBtn');
+const statusLine = document.getElementById('statusLine');
+const resultsArea = document.getElementById('resultsArea');
+const recentChips = document.getElementById('recentChips');
+
+let recent = [];
+try {
+  const stored = localStorage.getItem('toolyfix_dict_recent');
+  if (stored) recent = JSON.parse(stored);
+} catch (e) {}
+
+function saveRecent(word) {
+  recent = [word, ...recent.filter(w => w.toLowerCase() !== word.toLowerCase())].slice(0, 10);
+  try { localStorage.setItem('toolyfix_dict_recent', JSON.stringify(recent)); } catch (e) {}
+  renderRecent();
+}
+
+function renderRecent() {
+  recentChips.innerHTML = '';
+  recent.forEach(w => {
+    const chip = document.createElement('button');
+    chip.className = 'recent-chip';
+    chip.textContent = w;
+    chip.addEventListener('click', () => { searchInput.value = w; lookup(w); });
+    recentChips.appendChild(chip);
+  });
+}
+renderRecent();
+
+function stripHtml(html) {
+  const div = document.createElement('div');
+  div.innerHTML = html;
+  return div.textContent || div.innerText || '';
+}
+
+function capitalizeFirst(s) { return s.charAt(0).toUpperCase() + s.slice(1); }
+function lowerFirst(s) { return s.charAt(0).toLowerCase() + s.slice(1); }
+
+async function fetchDefinition(word) {
+  const url = `https://de.wiktionary.org/api/rest_v1/page/definition/${encodeURIComponent(word)}`;
+  const res = await fetch(url);
+  if (!res.ok) throw new Error('not found');
+  return res.json();
+}
+
+async function lookup(rawWord) {
+  const word = rawWord.trim();
+  if (!word) return;
+  statusLine.textContent = 'Suche …';
+  resultsArea.innerHTML = '';
+
+  const candidates = [word, capitalizeFirst(word), lowerFirst(word)];
+  const tried = new Set();
+  let data = null, usedWord = null;
+
+  for (const candidate of candidates) {
+    if (tried.has(candidate)) continue;
+    tried.add(candidate);
+    try {
+      data = await fetchDefinition(candidate);
+      usedWord = candidate;
+      break;
+    } catch (e) { /* try next candidate */ }
+  }
+
+  if (!data) {
+    statusLine.textContent = `Kein Eintrag für "${word}" gefunden. Prüfe die Schreibweise oder versuche ein anderes Wort.`;
+    return;
+  }
+
+  statusLine.textContent = '';
+  saveRecent(usedWord);
+  renderResult(usedWord, data);
+}
+
+function renderResult(word, data) {
+  const deEntries = data.de || [];
+  const otherLangKeys = Object.keys(data).filter(k => k !== 'de');
+  const entries = deEntries.length > 0 ? deEntries : (otherLangKeys.length > 0 ? data[otherLangKeys[0]] : []);
+
+  resultsArea.innerHTML = '';
+
+  const header = document.createElement('div');
+  header.className = 'word-header';
+  header.innerHTML = `<h2>${word}</h2><a href="https://de.wiktionary.org/wiki/${encodeURIComponent(word)}" target="_blank" rel="noopener">Vollständigen Artikel auf Wiktionary ansehen →</a>`;
+  resultsArea.appendChild(header);
+
+  if (entries.length === 0) {
+    resultsArea.innerHTML += '<p style="color:var(--ink-soft);">Für dieses Wort liegt keine strukturierte Definition vor. Schau im vollständigen Artikel nach.</p>';
+    return;
+  }
+
+  entries.forEach(entry => {
+    const block = document.createElement('div');
+    block.className = 'pos-block';
+    let html = `<span class="pos-tag">${entry.partOfSpeech || 'Wort'}</span><ol>`;
+    (entry.definitions || []).forEach(def => {
+      html += `<li>${stripHtml(def.definition || '')}`;
+      if (def.examples && def.examples.length) {
+        html += `<div class="example">„${stripHtml(def.examples[0])}“</div>`;
+      }
+      html += `</li>`;
+    });
+    html += '</ol>';
+    block.innerHTML = html;
+    resultsArea.appendChild(block);
+  });
+
+  resultsArea.innerHTML += `<p class="attribution-note">Quelle: <a href="https://de.wiktionary.org/wiki/${encodeURIComponent(word)}" target="_blank" rel="noopener">de.wiktionary.org</a>, lizenziert unter CC BY-SA.</p>`;
+}
+
+async function randomWord() {
+  statusLine.textContent = 'Suche zufälliges Wort …';
+  resultsArea.innerHTML = '';
+  try {
+    const url = 'https://de.wiktionary.org/w/api.php?action=query&list=random&rnnamespace=0&rnlimit=1&format=json&origin=*';
+    const res = await fetch(url);
+    const json = await res.json();
+    const title = json.query.random[0].title;
+    searchInput.value = title;
+    lookup(title);
+  } catch (e) {
+    statusLine.textContent = 'Zufälliges Wort konnte nicht geladen werden. Versuche es erneut.';
+  }
+}
+
+searchBtn.addEventListener('click', () => lookup(searchInput.value));
+searchInput.addEventListener('keydown', e => { if (e.key === 'Enter') lookup(searchInput.value); });
+randomBtn.addEventListener('click', randomWord);
+</script>
+
+</body>
+</html>
