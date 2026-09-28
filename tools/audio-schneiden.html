@@ -44,6 +44,11 @@
   .handle-left { left: -7px; }
   .handle-right { right: -7px; }
 
+  #playhead {
+    position: absolute; top: 0; bottom: 0; width: 2px; background: #fff;
+    box-shadow: 0 0 4px rgba(0,0,0,0.6); pointer-events: none; display: none; z-index: 5;
+  }
+
   .time-row { display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 16px; }
   .time-field { display: flex; flex-direction: column; gap: 6px; }
   .time-field label { font-size: 0.82rem; color: var(--ink-soft); }
@@ -94,6 +99,7 @@
           <div class="handle handle-left" id="handleLeft"></div>
           <div class="handle handle-right" id="handleRight"></div>
         </div>
+        <div id="playhead"></div>
       </div>
       <p style="font-size:0.82rem; color:var(--ink-soft); margin-top:-8px;">Tipp: Ziehe die orangenen Griffe an den Rändern, um Anfang und Ende anzupassen, oder ziehe die markierte Fläche, um die Auswahl zu verschieben. Klicke und ziehe auf der Wellenform, um eine neue Auswahl zu erstellen.</p>
 
@@ -368,15 +374,60 @@ function extractBuffer(start, end) {
   return newBuffer;
 }
 
+const playhead = document.getElementById('playhead');
+let isPlaying = false;
+let playbackAnimId = null;
+let playbackStartCtxTime = 0;
+let playbackStartOffset = 0;
+let playbackEndOffset = 0;
+
+function animatePlayhead() {
+  if (!isPlaying) return;
+  const elapsed = audioCtx.currentTime - playbackStartCtxTime;
+  const currentPos = playbackStartOffset + elapsed;
+
+  if (currentPos >= playbackEndOffset) {
+    stopPlayback();
+    return;
+  }
+
+  const pct = (currentPos / audioBuffer.duration) * 100;
+  playhead.style.left = pct + '%';
+  playbackAnimId = requestAnimationFrame(animatePlayhead);
+}
+
+function stopPlayback() {
+  isPlaying = false;
+  if (playbackAnimId) cancelAnimationFrame(playbackAnimId);
+  playhead.style.display = 'none';
+  playSelectionBtn.textContent = '▶ Auswahl anhören';
+  if (currentSource) { try { currentSource.stop(); } catch (e) {} }
+}
+
 playSelectionBtn.addEventListener('click', () => {
   if (!audioBuffer) return;
-  if (currentSource) { try { currentSource.stop(); } catch (e) {} }
+
+  if (isPlaying) {
+    stopPlayback();
+    return;
+  }
+
   const { start, end } = getSelection();
   const trimmed = extractBuffer(start, end);
   currentSource = audioCtx.createBufferSource();
   currentSource.buffer = trimmed;
   currentSource.connect(audioCtx.destination);
+  currentSource.onended = () => { if (isPlaying) stopPlayback(); };
   currentSource.start();
+
+  isPlaying = true;
+  playbackStartCtxTime = audioCtx.currentTime;
+  playbackStartOffset = start;
+  playbackEndOffset = end;
+  playhead.style.display = 'block';
+  playhead.style.left = ((start / audioBuffer.duration) * 100) + '%';
+  playSelectionBtn.textContent = '■ Stopp';
+  animatePlayhead();
 });
 
 function bufferToWav(buffer) {

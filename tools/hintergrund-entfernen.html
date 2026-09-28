@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hintergrund Entfernen – KI Freisteller Online | Toolyfix</title>
+<meta name="description" content="Bildhintergrund kostenlos entfernen mit KI, direkt im Browser. Kein Upload auf einen Server – die Freistellung läuft komplett auf deinem Gerät.">
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/style.css">
+<style>
+  .related-tools-top { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 20px; }
+  .related-tools-top a {
+    padding: 8px 14px; border-radius: var(--radius); border: 1px solid var(--border);
+    background: var(--surface); text-decoration: none; color: var(--ink); font-size: 0.85rem; font-weight: 600;
+  }
+  .related-tools-top a:hover { border-color: var(--primary); color: var(--primary); }
+
+  .dropzone {
+    border: 2px dashed var(--border); border-radius: var(--radius); padding: 32px 20px;
+    text-align: center; cursor: pointer; margin-bottom: 16px;
+  }
+  .dropzone.dragover { border-color: var(--primary); background: var(--accent-soft); }
+  #fileInput { display: none; }
+
+  .checker-bg {
+    background-image: linear-gradient(45deg, #ccc 25%, transparent 25%), linear-gradient(-45deg, #ccc 25%, transparent 25%),
+      linear-gradient(45deg, transparent 75%, #ccc 75%), linear-gradient(-45deg, transparent 75%, #ccc 75%);
+    background-size: 20px 20px;
+    background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
+    border-radius: var(--radius);
+  }
+
+  .result-row { display: flex; gap: 20px; flex-wrap: wrap; margin-top: 20px; }
+  .result-box { flex: 1; min-width: 240px; }
+  .result-box img { max-width: 100%; border-radius: var(--radius); display: block; border: 1px solid var(--border); }
+  .result-box .r-label { font-size: 0.85rem; color: var(--ink-soft); margin-bottom: 8px; font-weight: 600; }
+
+  .progress-bar-wrap { background: var(--bg); border-radius: 20px; height: 10px; overflow: hidden; margin: 16px 0; display: none; }
+  .progress-bar-fill { height: 100%; background: var(--primary); width: 0%; transition: width 0.3s ease; }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container">
+    <a href="/" class="logo-link">
+      <img src="/assets/images/logo-full.png" alt="Toolyfix">
+    </a>
+    <span class="header-tagline">Kostenlose Tools, direkt im Browser</span>
+  </div>
+</header>
+
+<main class="tool-page">
+  <div class="container">
+    <p class="breadcrumb"><a href="/">Toolyfix</a> / Hintergrund Entfernen</p>
+    <h1>Hintergrund Entfernen</h1>
+
+    <div class="related-tools-top">
+      <a href="/tools/bild-komprimieren.html">🖼️ Bilder Komprimieren</a>
+      <a href="/tools/alter-schaetzen-kamera.html">📷 Alter Schätzen per Kamera</a>
+    </div>
+
+    <p>Lade ein Foto hoch und entferne den Hintergrund automatisch per KI – die komplette Verarbeitung läuft in deinem Browser, dein Bild wird nirgendwo hochgeladen.</p>
+
+    <div class="notice-box">
+      Beim ersten Gebrauch lädt dein Browser einmalig ein KI-Modell (ca. 40–80 MB) von einem öffentlichen CDN herunter, damit die Freistellung funktioniert. Das betrifft nur das KI-Modell selbst – dein Foto verlässt dabei nie dein Gerät. Nach dem ersten Mal ist das Modell im Browser zwischengespeichert und lädt schneller.
+    </div>
+
+    <div class="tool-panel">
+      <div class="dropzone" id="dropzone">
+        <p><strong>Bild hierher ziehen</strong> oder klicken zum Auswählen</p>
+        <p style="font-size:0.85rem; margin-top:6px;">JPG, PNG oder WebP</p>
+      </div>
+      <input type="file" id="fileInput" accept="image/*">
+
+      <div class="progress-bar-wrap" id="progressBarWrap"><div class="progress-bar-fill" id="progressBarFill"></div></div>
+      <p style="font-size:0.88rem; color:var(--ink-soft);" id="statusLine"></p>
+
+      <div class="result-row" id="resultRow" style="display:none;">
+        <div class="result-box">
+          <div class="r-label">Original</div>
+          <img id="originalImg" alt="Original">
+        </div>
+        <div class="result-box">
+          <div class="r-label">Freigestellt</div>
+          <div class="checker-bg"><img id="resultImg" alt="Freigestellt" class="checker-bg"></div>
+        </div>
+      </div>
+
+      <div class="field-row" style="margin-top:16px;">
+        <button class="btn btn-primary" id="downloadBtn" style="display:none;">PNG herunterladen</button>
+        <button class="btn btn-ghost" id="resetBtn" style="display:none;">Anderes Bild verwenden</button>
+      </div>
+    </div>
+
+    <article class="explainer">
+      <h2>Hintergrund per KI entfernen – direkt im Browser</h2>
+      <p>Dieses Tool entfernt den Hintergrund aus einem Foto automatisch mithilfe eines KI-Modells zur Bildsegmentierung, das direkt in deinem Browser ausgeführt wird. Das Ergebnis ist ein Bild mit transparentem Hintergrund im PNG-Format, das du zum Beispiel für Produktfotos, Profilbilder, Präsentationen oder Grafikdesign weiterverwenden kannst, ohne ein separates Bildbearbeitungsprogramm zu benötigen.</p>
+
+      <h2>Wie funktioniert die KI-Freistellung technisch?</h2>
+      <p>Das Tool nutzt ein neuronales Netz (ein sogenanntes Segmentierungsmodell), das darauf trainiert wurde, den Hauptmotiv-Bereich eines Bildes vom Hintergrund zu unterscheiden. Für jedes Pixel berechnet das Modell, wie wahrscheinlich es zum Vordergrund oder zum Hintergrund gehört, und erzeugt daraus eine Transparenzmaske. Diese Berechnung läuft komplett lokal auf deinem Gerät ab (über WebAssembly), nicht auf einem Server.</p>
+
+      <h2>Warum wird beim ersten Mal ein Download gestartet?</h2>
+      <p>Das KI-Modell selbst ist mehrere Dutzend Megabyte groß und wird nicht fest in diese Webseite eingebaut, sondern beim ersten Gebrauch von einem öffentlichen Software-Verzeichnis (CDN) heruntergeladen. Das betrifft ausschließlich das Modell – zu keinem Zeitpunkt wird dabei dein Foto irgendwohin übertragen. Dein Browser speichert das Modell danach zwischen, sodass jede weitere Nutzung auf derselben Webseite deutlich schneller startet.</p>
+
+      <h2>Für welche Bilder funktioniert die Freistellung am besten?</h2>
+      <p>Die besten Ergebnisse liefert das Tool bei Bildern mit einem klar erkennbaren Hauptmotiv und einem sich farblich oder strukturell deutlich abhebenden Hintergrund – etwa Personen, Produkte, Tiere oder einzelne Objekte. Bei sehr unscharfen Motivrändern, transparenten oder stark durchscheinenden Objekten (Glas, feine Haare in schwierigem Kontrast) kann die automatische Erkennung an einzelnen Stellen ungenau werden.</p>
+
+      <h2>Ergebnis weiterverwenden</h2>
+      <p>Das heruntergeladene PNG hat einen echten transparenten Hintergrund (keine weiße Fläche), sodass du es direkt auf eine andere Hintergrundfarbe, ein anderes Foto, oder eine Präsentationsfolie legen kannst, ohne selbst nachträglich freistellen zu müssen.</p>
+
+      <h2>Datenschutz</h2>
+      <p>Dein Bild wird ausschließlich lokal in deinem Browser verarbeitet und niemals auf einen Server hochgeladen. Lediglich das allgemeine, für alle Nutzer identische KI-Modell wird beim ersten Gebrauch von einem öffentlichen CDN geladen.</p>
+    </article>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <img src="/assets/images/logo-full.png" alt="Toolyfix">
+    <nav class="footer-links">
+      <a href="/ueber-uns.html">Über uns</a>
+      <a href="/datenschutz.html">Datenschutz</a>
+      <a href="/nutzungsbedingungen.html">Nutzungsbedingungen</a>
+      <a href="/kontakt.html">Kontakt</a>
+    </nav>
+    <p class="footer-note">© 2026 Toolyfix – Alle Tools laufen lokal in deinem Browser.</p>
+  </div>
+</footer>
+
+<script type="module">
+import { removeBackground } from "https://cdn.jsdelivr.net/npm/@imgly/background-removal@1.0.0/dist/index.mjs";
+
+const dropzone = document.getElementById('dropzone');
+const fileInput = document.getElementById('fileInput');
+const statusLine = document.getElementById('statusLine');
+const resultRow = document.getElementById('resultRow');
+const originalImg = document.getElementById('originalImg');
+const resultImg = document.getElementById('resultImg');
+const downloadBtn = document.getElementById('downloadBtn');
+const resetBtn = document.getElementById('resetBtn');
+const progressBarWrap = document.getElementById('progressBarWrap');
+const progressBarFill = document.getElementById('progressBarFill');
+
+let resultBlobUrl = null;
+
+dropzone.addEventListener('click', () => fileInput.click());
+['dragenter', 'dragover'].forEach(evt =>
+  dropzone.addEventListener(evt, e => { e.preventDefault(); dropzone.classList.add('dragover'); })
+);
+['dragleave', 'drop'].forEach(evt =>
+  dropzone.addEventListener(evt, e => { e.preventDefault(); dropzone.classList.remove('dragover'); })
+);
+dropzone.addEventListener('drop', e => handleFile(e.dataTransfer.files[0]));
+fileInput.addEventListener('change', e => handleFile(e.target.files[0]));
+
+async function handleFile(file) {
+  if (!file || !file.type.startsWith('image/')) return;
+
+  originalImg.src = URL.createObjectURL(file);
+  dropzone.style.display = 'none';
+  statusLine.textContent = 'Lade KI-Modell und entferne Hintergrund … (beim ersten Mal kann das etwas dauern)';
+  progressBarWrap.style.display = 'block';
+  progressBarFill.style.width = '15%';
+
+  try {
+    const config = {
+      publicPath: 'https://cdn.jsdelivr.net/npm/@imgly/background-removal@1.0.0/dist/',
+      progress: (key, current, total) => {
+        if (total > 0) {
+          const pct = Math.round((current / total) * 100);
+          progressBarFill.style.width = Math.max(15, pct) + '%';
+        }
+      }
+    };
+
+    const result = await removeBackground(file, config);
+    const blob = typeof result.convertToBlob === 'function' ? await result.convertToBlob('image/png') : result;
+    resultBlobUrl = URL.createObjectURL(blob);
+
+    progressBarFill.style.width = '100%';
+    resultImg.src = resultBlobUrl;
+    resultRow.style.display = 'flex';
+    downloadBtn.style.display = 'inline-flex';
+    resetBtn.style.display = 'inline-flex';
+    statusLine.textContent = 'Fertig.';
+    setTimeout(() => { progressBarWrap.style.display = 'none'; }, 600);
+  } catch (e) {
+    statusLine.textContent = 'Die Verarbeitung ist fehlgeschlagen. Bitte versuche es erneut oder mit einem anderen Bild.';
+    progressBarWrap.style.display = 'none';
+    dropzone.style.display = 'block';
+  }
+}
+
+downloadBtn.addEventListener('click', () => {
+  if (!resultBlobUrl) return;
+  const a = document.createElement('a');
+  a.href = resultBlobUrl;
+  a.download = 'freigestellt.png';
+  a.click();
+});
+
+resetBtn.addEventListener('click', () => {
+  resultRow.style.display = 'none';
+  downloadBtn.style.display = 'none';
+  resetBtn.style.display = 'none';
+  dropzone.style.display = 'block';
+  statusLine.textContent = '';
+  fileInput.value = '';
+});
+</script>
+
+</body>
+</html>

@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Barcode Generator – Code128, EAN-13 & Mehr | Toolyfix</title>
+<meta name="description" content="Kostenloser Barcode Generator: Code128, EAN-13, EAN-8, UPC und Code39 erstellen. Anpassbare Größe und Farbe, Download als PNG oder SVG.">
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/style.css">
+<style>
+  .related-tools-top { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 20px; }
+  .related-tools-top a {
+    padding: 8px 14px; border-radius: var(--radius); border: 1px solid var(--border);
+    background: var(--surface); text-decoration: none; color: var(--ink); font-size: 0.85rem; font-weight: 600;
+  }
+  .related-tools-top a:hover { border-color: var(--primary); color: var(--primary); }
+
+  .options-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin: 16px 0; }
+  @media (max-width: 720px) { .options-grid { grid-template-columns: repeat(2, 1fr); } }
+  .options-grid label { font-size: 0.82rem; color: var(--ink-soft); display: block; margin-bottom: 6px; }
+
+  .switch { position: relative; width: 44px; height: 24px; display: inline-block; }
+  .switch input { opacity: 0; width: 0; height: 0; }
+  .slider-switch { position: absolute; inset: 0; background: var(--border); border-radius: 24px; cursor: pointer; transition: 0.15s; }
+  .slider-switch::before { content: ""; position: absolute; height: 18px; width: 18px; left: 3px; top: 3px; background: white; border-radius: 50%; transition: 0.15s; }
+  input:checked + .slider-switch { background: var(--primary); }
+  input:checked + .slider-switch::before { transform: translateX(20px); }
+  .switch-row { display: flex; align-items: center; gap: 10px; height: 38px; }
+
+  #barcodeWrap { background: #fff; border-radius: var(--radius); padding: 20px; margin-top: 16px; overflow-x: auto; text-align: center; }
+  .error-note { color: #B23A3A; font-size: 0.88rem; margin-top: 8px; }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container">
+    <a href="/" class="logo-link">
+      <img src="/assets/images/logo-full.png" alt="Toolyfix">
+    </a>
+    <span class="header-tagline">Kostenlose Tools, direkt im Browser</span>
+  </div>
+</header>
+
+<main class="tool-page">
+  <div class="container">
+    <p class="breadcrumb"><a href="/">Toolyfix</a> / Barcode Generator</p>
+    <h1>Barcode Generator</h1>
+
+    <div class="related-tools-top">
+      <a href="/tools/hintergrund-entfernen.html">✂️ Hintergrund Entfernen</a>
+    </div>
+
+    <p>Erstelle einen Barcode in verschiedenen gängigen Formaten – Code128, EAN-13, EAN-8, UPC oder Code39 – mit anpassbarer Größe und Download als PNG oder SVG.</p>
+
+    <div class="tool-panel">
+      <input type="text" id="valueInput" placeholder="z. B. 123456789012" value="">
+
+      <div class="options-grid">
+        <div>
+          <label for="formatSelect">Format</label>
+          <select id="formatSelect">
+            <option value="CODE128">Code128 (beliebiger Text)</option>
+            <option value="EAN13">EAN-13 (12–13 Ziffern)</option>
+            <option value="EAN8">EAN-8 (7–8 Ziffern)</option>
+            <option value="UPC">UPC-A (11–12 Ziffern)</option>
+            <option value="CODE39">Code39 (Großbuchstaben & Zahlen)</option>
+          </select>
+        </div>
+        <div>
+          <label for="widthInput">Linienbreite</label>
+          <input type="range" id="widthInput" min="1" max="4" step="0.5" value="2">
+        </div>
+        <div>
+          <label for="heightInput">Höhe (px)</label>
+          <input type="range" id="heightInput" min="40" max="200" value="100">
+        </div>
+        <div>
+          <label for="colorInput">Farbe</label>
+          <input type="color" id="colorInput" value="#000000">
+        </div>
+      </div>
+
+      <div class="switch-row">
+        <label class="switch"><input type="checkbox" id="showTextToggle" checked><span class="slider-switch"></span></label>
+        <span style="font-size:0.88rem;">Text unter dem Barcode anzeigen</span>
+      </div>
+
+      <div id="barcodeWrap"><svg id="barcodeSvg"></svg></div>
+      <p class="error-note" id="errorNote"></p>
+
+      <div class="field-row" style="margin-top:16px;">
+        <button class="btn btn-primary" id="downloadPngBtn">Als PNG herunterladen</button>
+        <button class="btn btn-ghost" id="downloadSvgBtn">Als SVG herunterladen</button>
+      </div>
+    </div>
+
+    <article class="explainer">
+      <h2>Barcode online erstellen – für Produkte, Inventar und mehr</h2>
+      <p>Dieser Barcode Generator erstellt gängige eindimensionale (1D) Barcodes direkt im Browser. Barcodes werden verwendet, um Informationen wie Produktnummern, Seriennummern oder Inventarcodes maschinenlesbar darzustellen, sodass sie mit einem Scanner oder einer Smartphone-Kamera schnell und fehlerfrei erfasst werden können, statt sie manuell einzutippen.</p>
+
+      <h2>Welches Format solltest du wählen?</h2>
+      <p><strong>Code128</strong> ist das flexibelste Format und kann nahezu beliebigen Text und Zahlen codieren – die richtige Wahl, wenn du keinen speziellen Standard einhalten musst, etwa für interne Inventarnummern oder Lagerverwaltung. <strong>EAN-13</strong> ist der internationale Standard für Handelsprodukte im Einzelhandel (die Barcodes, die du auf praktisch jeder Supermarktware findest) und erfordert eine 12- oder 13-stellige Nummer. <strong>EAN-8</strong> ist eine verkürzte Variante für kleine Verpackungen. <strong>UPC-A</strong> ist der in Nordamerika verbreitete Handelsstandard, ähnlich zu EAN-13. <strong>Code39</strong> ist ein älteres, aber weit verbreitetes Format, das Großbuchstaben, Zahlen und einige Sonderzeichen unterstützt und häufig in Industrie und Logistik verwendet wird.</p>
+
+      <h2>Prüfziffer wird automatisch berechnet</h2>
+      <p>Bei Formaten wie EAN-13, EAN-8 und UPC-A enthält die letzte Ziffer eine automatisch berechnete Prüfziffer, die Scannfehler erkennbar macht. Du musst diese Prüfziffer nicht selbst berechnen – trägst du eine Nummer ohne oder mit falscher Prüfziffer ein, ergänzt oder korrigiert das Tool sie automatisch beim Erstellen des Barcodes.</p>
+
+      <h2>Eigene Barcodes vs. offizielle Produktnummern</h2>
+      <p>Wichtig zu wissen: Eine selbst erstellte EAN-13-Nummer ist nur dann eine echte, weltweit eindeutige Produktkennung, wenn sie über eine offizielle Stelle (in Deutschland die GS1 Germany) registriert wurde. Erstellst du hier einfach eine beliebige 13-stellige Zahl, funktioniert der Barcode zwar technisch korrekt und lässt sich scannen, ist aber nicht offiziell als eindeutige Produktkennung registriert. Für interne Zwecke (eigenes Lager, private Inventarisierung) spielt das keine Rolle, für den Verkauf über große Handelsketten oder Online-Marktplätze mit EAN-Pflicht ist eine offiziell registrierte Nummer erforderlich.</p>
+
+      <h2>Barcode-Größe und Lesbarkeit</h2>
+      <p>Ein zu klein gedruckter oder zu dünn dargestellter Barcode kann von manchen Scannern schwerer erfasst werden. Als Faustregel gilt: je größer der Abstand zwischen Scanner und Barcode sein soll, desto größer und mit desto dickeren Linien sollte der Barcode gedruckt werden. Für die meisten Nahbereichs-Anwendungen (Handscanner, Smartphone) reicht die Standardgröße dieses Generators aus.</p>
+
+      <h2>PNG oder SVG – welches Format zum Herunterladen?</h2>
+      <p>Ein <strong>PNG</strong> eignet sich zum direkten Einfügen in Dokumente, Etiketten-Vorlagen oder zum schnellen Ausdrucken. Ein <strong>SVG</strong> ist eine Vektordatei und bleibt beim Skalieren auf jede Größe gestochen scharf – die bessere Wahl, wenn der Barcode später noch in ein Grafik- oder Layoutprogramm eingebunden und dort in der Größe angepasst wird.</p>
+
+      <h2>Datenschutz</h2>
+      <p>Der Barcode wird vollständig lokal in deinem Browser erzeugt. Es findet keine Übertragung der eingegebenen Nummer oder des Textes an einen Server statt.</p>
+    </article>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <img src="/assets/images/logo-full.png" alt="Toolyfix">
+    <nav class="footer-links">
+      <a href="/ueber-uns.html">Über uns</a>
+      <a href="/datenschutz.html">Datenschutz</a>
+      <a href="/nutzungsbedingungen.html">Nutzungsbedingungen</a>
+      <a href="/kontakt.html">Kontakt</a>
+    </nav>
+    <p class="footer-note">© 2026 Toolyfix – Alle Tools laufen lokal in deinem Browser.</p>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jsbarcode/3.12.3/JsBarcode.all.min.js"></script>
+<script>
+const valueInput = document.getElementById('valueInput');
+const formatSelect = document.getElementById('formatSelect');
+const widthInput = document.getElementById('widthInput');
+const heightInput = document.getElementById('heightInput');
+const colorInput = document.getElementById('colorInput');
+const showTextToggle = document.getElementById('showTextToggle');
+const barcodeSvg = document.getElementById('barcodeSvg');
+const errorNote = document.getElementById('errorNote');
+
+const placeholders = {
+  CODE128: 'z. B. LAGER-2024-001',
+  EAN13: 'z. B. 123456789012',
+  EAN8: 'z. B. 1234567',
+  UPC: 'z. B. 12345678901',
+  CODE39: 'z. B. HALLO123'
+};
+
+formatSelect.addEventListener('change', () => {
+  valueInput.placeholder = placeholders[formatSelect.value];
+  render();
+});
+
+function render() {
+  errorNote.textContent = '';
+  try {
+    JsBarcode(barcodeSvg, valueInput.value || ' ', {
+      format: formatSelect.value,
+      width: parseFloat(widthInput.value),
+      height: parseInt(heightInput.value, 10),
+      lineColor: colorInput.value,
+      displayValue: showTextToggle.checked,
+      margin: 10,
+      valid: (isValid) => {
+        if (!isValid) errorNote.textContent = 'Die Eingabe ist für dieses Format ungültig (falsche Länge oder unerlaubte Zeichen).';
+      }
+    });
+  } catch (e) {
+    errorNote.textContent = 'Die Eingabe konnte nicht als Barcode erstellt werden.';
+  }
+}
+
+[valueInput, formatSelect, widthInput, heightInput, colorInput, showTextToggle].forEach(el =>
+  el.addEventListener('input', render)
+);
+
+document.getElementById('downloadSvgBtn').addEventListener('click', () => {
+  const svgData = new XMLSerializer().serializeToString(barcodeSvg);
+  const blob = new Blob([svgData], { type: 'image/svg+xml' });
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'barcode.svg';
+  a.click();
+});
+
+document.getElementById('downloadPngBtn').addEventListener('click', () => {
+  const svgData = new XMLSerializer().serializeToString(barcodeSvg);
+  const svgBlob = new Blob([svgData], { type: 'image/svg+xml' });
+  const url = URL.createObjectURL(svgBlob);
+  const img = new Image();
+  img.onload = () => {
+    const scale = 3;
+    const canvas = document.createElement('canvas');
+    canvas.width = barcodeSvg.width.baseVal.value * scale;
+    canvas.height = barcodeSvg.height.baseVal.value * scale;
+    const ctx = canvas.getContext('2d');
+    ctx.fillStyle = '#fff';
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+    canvas.toBlob(blob => {
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = 'barcode.png';
+      a.click();
+    });
+    URL.revokeObjectURL(url);
+  };
+  img.src = url;
+});
+
+valueInput.value = '123456789012';
+formatSelect.value = 'EAN13';
+render();
+</script>
+
+</body>
+</html>

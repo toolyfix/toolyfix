@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Abkürzungen Generator – Akronyme Erstellen | Toolyfix</title>
+<meta name="description" content="Kostenloser Abkürzungen Generator: Erstelle ein Akronym aus einer Phrase, oder finde kreative Wortvorschläge zu einer bestehenden Buchstabenfolge (Backronym).">
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/style.css">
+<style>
+  .related-tools-top { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 20px; }
+  .related-tools-top a {
+    padding: 8px 14px; border-radius: var(--radius); border: 1px solid var(--border);
+    background: var(--surface); text-decoration: none; color: var(--ink); font-size: 0.85rem; font-weight: 600;
+  }
+  .related-tools-top a:hover { border-color: var(--primary); color: var(--primary); }
+
+  .mode-toggle { display: flex; gap: 8px; margin-bottom: 20px; }
+  .mode-btn {
+    padding: 10px 16px; border-radius: var(--radius); border: 1px solid var(--border);
+    background: var(--surface); cursor: pointer; font-family: 'Inter', sans-serif; font-weight: 600; font-size: 0.88rem;
+  }
+  .mode-btn.active { background: var(--primary); color: #fff; border-color: var(--primary); }
+  .mode-panel { display: none; }
+  .mode-panel.active { display: block; }
+
+  .switch { position: relative; width: 44px; height: 24px; display: inline-block; }
+  .switch input { opacity: 0; width: 0; height: 0; }
+  .slider-switch { position: absolute; inset: 0; background: var(--border); border-radius: 24px; cursor: pointer; transition: 0.15s; }
+  .slider-switch::before { content: ""; position: absolute; height: 18px; width: 18px; left: 3px; top: 3px; background: white; border-radius: 50%; transition: 0.15s; }
+  input:checked + .slider-switch { background: var(--primary); }
+  input:checked + .slider-switch::before { transform: translateX(20px); }
+  .switch-row { display: flex; align-items: center; gap: 10px; font-size: 0.88rem; margin: 12px 0; }
+
+  .acronym-result { font-family: 'Space Grotesk', sans-serif; font-size: 2rem; font-weight: 700; color: var(--primary-dark); text-align: center; padding: 16px; background: var(--bg); border-radius: var(--radius); margin: 16px 0; }
+
+  .backronym-card { background: var(--bg); border-radius: var(--radius); padding: 16px; margin-bottom: 12px; }
+  .backronym-card .b-letter-row { display: flex; flex-wrap: wrap; gap: 6px; font-size: 1rem; }
+  .backronym-card .b-letter { font-weight: 700; color: var(--primary); }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container">
+    <a href="/" class="logo-link">
+      <img src="/assets/images/logo-full.png" alt="Toolyfix">
+    </a>
+    <span class="header-tagline">Kostenlose Tools, direkt im Browser</span>
+  </div>
+</header>
+
+<main class="tool-page">
+  <div class="container">
+    <p class="breadcrumb"><a href="/">Toolyfix</a> / Abkürzungen Generator</p>
+    <h1>Abkürzungen Generator</h1>
+
+    <div class="related-tools-top">
+      <a href="/tools/firmennamen-generator.html">🏢 Firmennamen Generator</a>
+    </div>
+
+    <p>Erstelle ein Akronym aus einer Phrase, oder gib umgekehrt eine Buchstabenfolge ein und lass dir kreative Wortvorschläge dafür generieren.</p>
+
+    <div class="tool-panel">
+      <div class="mode-toggle">
+        <button class="mode-btn active" data-mode="toAcronym">Phrase → Akronym</button>
+        <button class="mode-btn" data-mode="backronym">Buchstaben → Wortideen</button>
+      </div>
+
+      <div class="mode-panel active" id="toAcronymPanel">
+        <textarea id="phraseInput" rows="4" placeholder="z. B. Allgemeine Geschäftsbedingungen&#10;Eine Phrase pro Zeile für mehrere Akronyme auf einmal"></textarea>
+
+        <div class="switch-row">
+          <label class="switch"><input type="checkbox" id="skipStopwords" checked><span class="slider-switch"></span></label>
+          <span>Kurze Füllwörter ignorieren (und, der, für, von …)</span>
+        </div>
+
+        <div class="field-row">
+          <button class="btn btn-primary" id="toAcronymBtn">Akronym erstellen</button>
+        </div>
+
+        <div id="acronymResults"></div>
+      </div>
+
+      <div class="mode-panel" id="backronymPanel">
+        <input type="text" id="lettersInput" placeholder="z. B. TEAM" maxlength="12">
+
+        <div class="field-row" style="margin-top:16px;">
+          <button class="btn btn-primary" id="backronymBtn">Wortideen generieren</button>
+        </div>
+
+        <div id="backronymResults"></div>
+      </div>
+    </div>
+
+    <article class="explainer">
+      <h2>Akronyme und Abkürzungen erstellen – zwei Richtungen</h2>
+      <p>Dieser Generator arbeitet in zwei Richtungen: Im Modus "Phrase → Akronym" wandelst du einen längeren Namen oder Begriff in seine Abkürzung um, indem die Anfangsbuchstaben der einzelnen Wörter zusammengesetzt werden. Im Modus "Buchstaben → Wortideen" gehst du den umgekehrten Weg: Du gibst eine bestehende Buchstabenfolge ein (zum Beispiel den Namen eines Projekts oder Teams) und erhältst kreative Wortvorschläge, mit denen sich diese Buchstaben zu einem sogenannten Backronym mit Bedeutung füllen lassen.</p>
+
+      <h2>Wie wird ein Akronym aus einer Phrase gebildet?</h2>
+      <p>Für jedes Wort einer eingegebenen Phrase wird der erste Buchstabe genommen und großgeschrieben – aus "Allgemeine Geschäftsbedingungen" wird so "AG" (wobei "Allgemeine" und "Geschäftsbedingungen" jeweils ihren Anfangsbuchstaben beisteuern). Mit der Option "Kurze Füllwörter ignorieren" werden dabei Wörter wie "und", "der", "für" oder "von" übersprungen, da sie in vielen etablierten Abkürzungen ebenfalls nicht mitgezählt werden (aus "Gesellschaft mit beschränkter Haftung" wird zum Beispiel "GmbH", nicht "GmbH" mit einem zusätzlichen Buchstaben für "mit").</p>
+
+      <h2>Was ist ein Backronym?</h2>
+      <p>Ein Backronym ist der umgekehrte Weg zu einer normalen Abkürzung: Statt aus einer bestehenden Phrase ein Akronym zu bilden, wird zu einer bereits feststehenden Buchstabenfolge nachträglich eine passende, meist möglichst sinnvolle oder einprägsame Bedeutung konstruiert. Ein bekanntes Beispiel ist "PHP: Hypertext Preprocessor", wo das P selbstreferenziell nochmal für PHP steht. Backronyme werden oft für Projektnamen, Teamnamen oder Produktnamen verwendet, um der Abkürzung nachträglich eine positive, thematisch passende Bedeutung zu geben.</p>
+
+      <h2>Wie werden die Wortideen für ein Backronym generiert?</h2>
+      <p>Für jeden Buchstaben deiner eingegebenen Buchstabenfolge schlägt das Tool ein passendes deutsches Wort aus einer kuratierten Sammlung vor, die diesen Buchstaben als Anfangsbuchstaben hat. Da mehrere passende Wörter pro Buchstabe hinterlegt sind, kannst du über "Wortideen generieren" mehrfach neue Kombinationen erzeugen, bis eine stimmige, zum jeweiligen Kontext passende Bedeutung dabei ist.</p>
+
+      <h2>Wofür werden Akronyme und Backronyme verwendet?</h2>
+      <p>Akronyme sparen Platz und Sprechzeit bei häufig verwendeten, längeren Begriffen – von Firmennamen über Fachbegriffe bis zu Projektbezeichnungen. Backronyme werden dagegen oft bewusst als Marketing- oder Merkhilfe eingesetzt, etwa um einem Teamnamen, einer Kampagne oder einem internen Projekt eine zusätzliche, motivierende Bedeutungsebene zu geben, die sich Mitarbeitende oder Kunden leichter merken können.</p>
+
+      <h2>Mehrere Akronyme auf einmal erstellen</h2>
+      <p>Im Modus "Phrase → Akronym" kannst du mehrere Phrasen gleichzeitig verarbeiten, indem du jede Phrase in eine eigene Zeile schreibst. Das ist praktisch, wenn du zum Beispiel eine ganze Liste von Abteilungsnamen, Projektnamen oder Fachbegriffen auf einmal abkürzen möchtest, statt jede Phrase einzeln einzugeben.</p>
+
+      <h2>Datenschutz</h2>
+      <p>Alle Umwandlungen und Vorschläge werden lokal in deinem Browser erzeugt. Es werden keine Eingaben an einen Server übertragen oder gespeichert.</p>
+    </article>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <img src="/assets/images/logo-full.png" alt="Toolyfix">
+    <nav class="footer-links">
+      <a href="/ueber-uns.html">Über uns</a>
+      <a href="/datenschutz.html">Datenschutz</a>
+      <a href="/nutzungsbedingungen.html">Nutzungsbedingungen</a>
+      <a href="/kontakt.html">Kontakt</a>
+    </nav>
+    <p class="footer-note">© 2026 Toolyfix – Alle Tools laufen lokal in deinem Browser.</p>
+  </div>
+</footer>
+
+<script>
+const modeButtons = document.querySelectorAll('.mode-btn');
+const toAcronymPanel = document.getElementById('toAcronymPanel');
+const backronymPanel = document.getElementById('backronymPanel');
+
+modeButtons.forEach(btn => {
+  btn.addEventListener('click', () => {
+    modeButtons.forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    toAcronymPanel.classList.toggle('active', btn.dataset.mode === 'toAcronym');
+    backronymPanel.classList.toggle('active', btn.dataset.mode === 'backronym');
+  });
+});
+
+const STOPWORDS = ['und', 'oder', 'der', 'die', 'das', 'den', 'dem', 'des', 'ein', 'eine', 'einen', 'einem', 'für', 'mit', 'von', 'zu', 'im', 'in', 'auf', 'an', 'am'];
+
+function phraseToAcronym(phrase, skipStop) {
+  const words = phrase.trim().split(/\s+/).filter(Boolean);
+  const filtered = skipStop ? words.filter(w => !STOPWORDS.includes(w.toLowerCase())) : words;
+  return filtered.map(w => w.charAt(0).toUpperCase()).join('');
+}
+
+document.getElementById('toAcronymBtn').addEventListener('click', () => {
+  const lines = document.getElementById('phraseInput').value.split('\n').map(l => l.trim()).filter(Boolean);
+  const skipStop = document.getElementById('skipStopwords').checked;
+  const container = document.getElementById('acronymResults');
+  container.innerHTML = '';
+  lines.forEach(line => {
+    const acronym = phraseToAcronym(line, skipStop);
+    const div = document.createElement('div');
+    div.className = 'acronym-result';
+    div.innerHTML = `${acronym || '–'} <div style="font-size:0.9rem; font-weight:400; color:var(--ink-soft); margin-top:6px;">${line}</div>`;
+    container.appendChild(div);
+  });
+});
+
+const WORD_BANK = {
+  A: ['Aktiv', 'Agil', 'Ambition', 'Ausdauer', 'Anspruch'],
+  B: ['Besonders', 'Begeisterung', 'Bewusst', 'Beständig', 'Brillant'],
+  C: ['Clever', 'Charakter', 'Chance', 'Charisma'],
+  D: ['Dynamik', 'Durchhaltevermögen', 'Direkt', 'Detailliert'],
+  E: ['Erfolg', 'Engagement', 'Effizient', 'Ehrlich', 'Einzigartig'],
+  F: ['Fokus', 'Flexibel', 'Freude', 'Fortschritt', 'Fair'],
+  G: ['Ganzheitlich', 'Gemeinschaft', 'Genau', 'Großartig'],
+  H: ['Herausragend', 'Harmonie', 'Hilfsbereit', 'Hingabe'],
+  I: ['Innovation', 'Initiative', 'Inspiration', 'Integrität'],
+  J: ['Jung', 'Jovial'],
+  K: ['Kreativ', 'Kompetent', 'Klar', 'Konsequent'],
+  L: ['Leidenschaft', 'Leistung', 'Lösungsorientiert'],
+  M: ['Motiviert', 'Mut', 'Miteinander', 'Modern'],
+  N: ['Nachhaltig', 'Neugier', 'Natürlich'],
+  O: ['Offen', 'Optimismus', 'Original'],
+  P: ['Professionell', 'Präzise', 'Partnerschaft', 'Positiv'],
+  Q: ['Qualität', 'Quirlig'],
+  R: ['Respekt', 'Resilienz', 'Robust', 'Relevant'],
+  S: ['Struktur', 'Sorgfalt', 'Stark', 'Sympathisch'],
+  T: ['Teamgeist', 'Transparenz', 'Talent', 'Tatkraft'],
+  U: ['Unabhängig', 'Umsichtig', 'Unterstützend'],
+  V: ['Vertrauen', 'Vision', 'Verantwortung', 'Vielfalt'],
+  W: ['Wachstum', 'Wertschätzung', 'Wissbegierig'],
+  X: ['Xenophil'],
+  Y: ['Ypsilon-Faktor'],
+  Z: ['Zielstrebig', 'Zusammenhalt', 'Zuverlässig']
+};
+
+document.getElementById('backronymBtn').addEventListener('click', () => {
+  const letters = document.getElementById('lettersInput').value.trim().toUpperCase().replace(/[^A-ZÄÖÜ]/g, '');
+  const container = document.getElementById('backronymResults');
+  container.innerHTML = '';
+  if (!letters) return;
+
+  for (let variant = 0; variant < 3; variant++) {
+    const card = document.createElement('div');
+    card.className = 'backronym-card';
+    let html = `<div class="b-letter-row">`;
+    for (const ch of letters) {
+      const options = WORD_BANK[ch] || [ch];
+      const word = options[Math.floor(Math.random() * options.length)];
+      html += `<span><span class="b-letter">${ch}</span> – ${word}</span>`;
+    }
+    html += '</div>';
+    card.innerHTML = html;
+    container.appendChild(card);
+  }
+});
+</script>
+
+</body>
+</html>
