@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Binär Übersetzer – Text & Zahlen in Binär Umwandeln | Toolyfix</title>
+<meta name="description" content="Kostenloser Binär Übersetzer: Text in Binärcode umwandeln und zurück, plus Dezimal-zu-Binär-Umrechner für Zahlen. Direkt im Browser.">
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/style.css">
+<style>
+  .related-tools-top { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 20px; }
+  .related-tools-top a {
+    padding: 8px 14px; border-radius: var(--radius); border: 1px solid var(--border);
+    background: var(--surface); text-decoration: none; color: var(--ink); font-size: 0.85rem; font-weight: 600;
+  }
+  .related-tools-top a:hover { border-color: var(--primary); color: var(--primary); }
+
+  .mode-toggle { display: flex; gap: 8px; margin-bottom: 20px; }
+  .mode-btn {
+    padding: 10px 16px; border-radius: var(--radius); border: 1px solid var(--border);
+    background: var(--surface); cursor: pointer; font-family: 'Inter', sans-serif; font-weight: 600; font-size: 0.88rem;
+  }
+  .mode-btn.active { background: var(--primary); color: #fff; border-color: var(--primary); }
+  .mode-panel { display: none; }
+  .mode-panel.active { display: block; }
+
+  .textarea-pair { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  @media (max-width: 780px) { .textarea-pair { grid-template-columns: 1fr; } }
+  .textarea-pair label { font-size: 0.85rem; color: var(--ink-soft); display: block; margin-bottom: 6px; }
+  #binaryOutput, #textOutput { font-family: 'Menlo', 'Consolas', monospace; }
+
+  .number-row { display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 16px; }
+  .number-field { flex: 1; min-width: 180px; }
+  .number-field label { font-size: 0.85rem; color: var(--ink-soft); display: block; margin-bottom: 6px; }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container">
+    <a href="/" class="logo-link">
+      <img src="/assets/images/logo-full.png" alt="Toolyfix">
+    </a>
+    <span class="header-tagline">Kostenlose Tools, direkt im Browser</span>
+  </div>
+</header>
+
+<main class="tool-page">
+  <div class="container">
+    <p class="breadcrumb"><a href="/">Toolyfix</a> / Binär Übersetzer</p>
+    <h1>Binär Übersetzer</h1>
+
+    <div class="related-tools-top">
+      <a href="/tools/ascii-art-generator.html">▓▒░ ASCII Art Generator</a>
+    </div>
+
+    <p>Wandle Text in Binärcode um und zurück, oder rechne Dezimalzahlen in Binärzahlen um.</p>
+
+    <div class="tool-panel">
+      <div class="mode-toggle">
+        <button class="mode-btn active" data-mode="text">Text ↔ Binär</button>
+        <button class="mode-btn" data-mode="number">Zahl ↔ Binär</button>
+      </div>
+
+      <div class="mode-panel active" id="textPanel">
+        <div class="textarea-pair">
+          <div>
+            <label for="textInput">Text</label>
+            <textarea id="textInput" rows="8" placeholder="z. B. Hallo Welt"></textarea>
+          </div>
+          <div>
+            <label for="binaryOutput">Binär</label>
+            <textarea id="binaryOutput" rows="8" placeholder="z. B. 01001000 01100001 01101100 01101100 01101111"></textarea>
+          </div>
+        </div>
+        <div class="field-row" style="margin-top:16px;">
+          <button class="btn btn-primary" id="toBinaryBtn">Text → Binär</button>
+          <button class="btn btn-primary" id="toTextBtn">Binär → Text</button>
+          <button class="btn btn-ghost" id="copyBinaryBtn">Binär kopieren</button>
+        </div>
+        <p style="font-size:0.85rem; color:var(--ink-soft);" id="textStatus"></p>
+      </div>
+
+      <div class="mode-panel" id="numberPanel">
+        <div class="number-row">
+          <div class="number-field">
+            <label for="decimalInput">Dezimalzahl</label>
+            <input type="number" id="decimalInput" placeholder="z. B. 42">
+          </div>
+          <div class="number-field">
+            <label for="binaryNumberInput">Binärzahl</label>
+            <input type="text" id="binaryNumberInput" placeholder="z. B. 101010">
+          </div>
+        </div>
+        <div class="field-row">
+          <button class="btn btn-primary" id="decToBinBtn">Dezimal → Binär</button>
+          <button class="btn btn-primary" id="binToDecBtn">Binär → Dezimal</button>
+        </div>
+        <p style="font-size:0.85rem; color:var(--ink-soft);" id="numberStatus"></p>
+      </div>
+    </div>
+
+    <article class="explainer">
+      <h2>Binärcode: die Sprache der Computer verstehen</h2>
+      <p>Binärcode ist die grundlegendste Art, wie Computer Informationen intern speichern und verarbeiten – jede Information wird letztlich auf eine Folge von Nullen und Einsen (Bits) heruntergebrochen, die den beiden physikalischen Zuständen "Strom an" und "Strom aus" in der Hardware entsprechen. Dieser Binär Übersetzer zeigt dir, wie Text und Zahlen in diese binäre Darstellung umgewandelt werden, und macht damit sichtbar, was normalerweise unsichtbar im Hintergrund passiert.</p>
+
+      <h2>Wie wird Text in Binärcode umgewandelt?</h2>
+      <p>Jedes Zeichen in einem Text hat einen zugehörigen Zahlenwert nach dem ASCII- beziehungsweise Unicode-Standard (zum Beispiel steht der Großbuchstabe "H" für die Zahl 72). Dieser Zahlenwert wird anschließend in seine binäre Darstellung umgerechnet und auf 8 Bit (ein Byte) aufgefüllt. Ein Leerzeichen zwischen den einzelnen 8-Bit-Blöcken trennt die Zeichen optisch voneinander, ist aber technisch nicht Teil des eigentlichen Binärcodes.</p>
+
+      <h2>Dezimalzahlen in Binärzahlen umrechnen</h2>
+      <p>Neben der Textumwandlung bietet dieses Tool auch einen klassischen Zahlensystem-Umrechner: Eine Dezimalzahl (unser gewohntes Zehnersystem) wird in ihre Binärdarstellung (Zweiersystem, nur die Ziffern 0 und 1) umgewandelt, und umgekehrt. Das Binärsystem funktioniert nach demselben Stellenwert-Prinzip wie das Dezimalsystem, nur dass jede Stelle eine Zweierpotenz statt einer Zehnerpotenz repräsentiert (1, 2, 4, 8, 16, 32 und so weiter statt 1, 10, 100, 1000).</p>
+
+      <h2>Warum verwenden Computer das Binärsystem?</h2>
+      <p>Elektronische Schaltkreise lassen sich zuverlässig und kostengünstig in zwei klar unterscheidbaren Zuständen betreiben (Spannung vorhanden oder nicht vorhanden), was dem Binärsystem mit nur zwei möglichen Ziffern perfekt entspricht. Ein System mit mehr als zwei Zuständen (zum Beispiel das Dezimalsystem direkt in Hardware abzubilden) wäre technisch deutlich aufwendiger und fehleranfälliger umzusetzen.</p>
+
+      <h2>Praktischer Nutzen für Schule, Studium und Programmierung</h2>
+      <p>Das Verständnis von Binärcode ist ein Grundpfeiler der Informatik-Ausbildung und hilft beim Verständnis, wie Computer intern arbeiten, wie Netzwerkprotokolle Daten übertragen, oder warum bestimmte Zahlenbereiche in der Programmierung (zum Beispiel 8-Bit-, 16-Bit- oder 32-Bit-Integer) genau die Grenzen haben, die sie haben. Auch bei der Fehlersuche in Low-Level-Programmierung oder beim Arbeiten mit Bitoperationen ist ein schnelles mentales Umrechnen zwischen Dezimal- und Binärzahlen hilfreich.</p>
+
+      <h2>Datenschutz</h2>
+      <p>Alle Umwandlungen laufen lokal in deinem Browser. Es werden keine Eingaben an einen Server übertragen oder gespeichert.</p>
+    </article>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <img src="/assets/images/logo-full.png" alt="Toolyfix">
+    <nav class="footer-links">
+      <a href="/ueber-uns.html">Über uns</a>
+      <a href="/datenschutz.html">Datenschutz</a>
+      <a href="/nutzungsbedingungen.html">Nutzungsbedingungen</a>
+      <a href="/kontakt.html">Kontakt</a>
+    </nav>
+    <p class="footer-note">© 2026 Toolyfix – Alle Tools laufen lokal in deinem Browser.</p>
+  </div>
+</footer>
+
+<script>
+const modeButtons = document.querySelectorAll('.mode-btn');
+document.querySelectorAll('.mode-panel').forEach(p => {});
+modeButtons.forEach(btn => {
+  btn.addEventListener('click', () => {
+    modeButtons.forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById('textPanel').classList.toggle('active', btn.dataset.mode === 'text');
+    document.getElementById('numberPanel').classList.toggle('active', btn.dataset.mode === 'number');
+  });
+});
+
+const textInput = document.getElementById('textInput');
+const binaryOutput = document.getElementById('binaryOutput');
+const textStatus = document.getElementById('textStatus');
+
+document.getElementById('toBinaryBtn').addEventListener('click', () => {
+  const text = textInput.value;
+  if (!text) { textStatus.textContent = 'Bitte zuerst Text eingeben.'; return; }
+  const bin = Array.from(text).map(ch => ch.codePointAt(0).toString(2).padStart(8, '0')).join(' ');
+  binaryOutput.value = bin;
+  textStatus.textContent = `${text.length} Zeichen umgewandelt.`;
+});
+
+document.getElementById('toTextBtn').addEventListener('click', () => {
+  const raw = binaryOutput.value.trim();
+  if (!raw) { textStatus.textContent = 'Bitte zuerst Binärcode eingeben.'; return; }
+  const parts = raw.split(/\s+/).filter(Boolean);
+  try {
+    const chars = parts.map(p => {
+      if (!/^[01]+$/.test(p)) throw new Error('invalid');
+      return String.fromCodePoint(parseInt(p, 2));
+    });
+    textInput.value = chars.join('');
+    textStatus.textContent = `${parts.length} Blöcke decodiert.`;
+  } catch (e) {
+    textStatus.textContent = 'Ungültiger Binärcode. Nur 0 und 1, durch Leerzeichen getrennt.';
+  }
+});
+
+document.getElementById('copyBinaryBtn').addEventListener('click', () => {
+  if (binaryOutput.value) navigator.clipboard.writeText(binaryOutput.value);
+});
+
+const decimalInput = document.getElementById('decimalInput');
+const binaryNumberInput = document.getElementById('binaryNumberInput');
+const numberStatus = document.getElementById('numberStatus');
+
+document.getElementById('decToBinBtn').addEventListener('click', () => {
+  const n = parseInt(decimalInput.value, 10);
+  if (isNaN(n) || n < 0) { numberStatus.textContent = 'Bitte eine gültige, nicht-negative Zahl eingeben.'; return; }
+  binaryNumberInput.value = n.toString(2);
+  numberStatus.textContent = '';
+});
+
+document.getElementById('binToDecBtn').addEventListener('click', () => {
+  const val = binaryNumberInput.value.trim();
+  if (!/^[01]+$/.test(val)) { numberStatus.textContent = 'Bitte eine gültige Binärzahl eingeben (nur 0 und 1).'; return; }
+  decimalInput.value = parseInt(val, 2);
+  numberStatus.textContent = '';
+});
+</script>
+
+</body>
+</html>

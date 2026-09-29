@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Base64 Kodieren & Dekodieren – Text & Dateien | Toolyfix</title>
+<meta name="description" content="Kostenloser Base64-Encoder/Decoder: Text oder ganze Dateien in Base64 umwandeln und zurück. Direkt im Browser, ohne Upload auf einen Server.">
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/style.css">
+<style>
+  .related-tools-top { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 20px; }
+  .related-tools-top a {
+    padding: 8px 14px; border-radius: var(--radius); border: 1px solid var(--border);
+    background: var(--surface); text-decoration: none; color: var(--ink); font-size: 0.85rem; font-weight: 600;
+  }
+  .related-tools-top a:hover { border-color: var(--primary); color: var(--primary); }
+
+  .mode-toggle { display: flex; gap: 8px; margin-bottom: 20px; }
+  .mode-btn {
+    padding: 10px 16px; border-radius: var(--radius); border: 1px solid var(--border);
+    background: var(--surface); cursor: pointer; font-family: 'Inter', sans-serif; font-weight: 600; font-size: 0.88rem;
+  }
+  .mode-btn.active { background: var(--primary); color: #fff; border-color: var(--primary); }
+  .mode-panel { display: none; }
+  .mode-panel.active { display: block; }
+
+  .textarea-pair { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  @media (max-width: 780px) { .textarea-pair { grid-template-columns: 1fr; } }
+  .textarea-pair label { font-size: 0.85rem; color: var(--ink-soft); display: block; margin-bottom: 6px; }
+  #base64Output { font-family: 'Menlo', 'Consolas', monospace; font-size: 0.85rem; }
+
+  .switch { position: relative; width: 44px; height: 24px; display: inline-block; }
+  .switch input { opacity: 0; width: 0; height: 0; }
+  .slider-switch { position: absolute; inset: 0; background: var(--border); border-radius: 24px; cursor: pointer; transition: 0.15s; }
+  .slider-switch::before { content: ""; position: absolute; height: 18px; width: 18px; left: 3px; top: 3px; background: white; border-radius: 50%; transition: 0.15s; }
+  input:checked + .slider-switch { background: var(--primary); }
+  input:checked + .slider-switch::before { transform: translateX(20px); }
+  .switch-row { display: flex; align-items: center; gap: 10px; font-size: 0.88rem; margin: 12px 0; }
+
+  .dropzone {
+    border: 2px dashed var(--border); border-radius: var(--radius); padding: 28px 20px;
+    text-align: center; cursor: pointer; margin-bottom: 16px;
+  }
+  .dropzone.dragover { border-color: var(--primary); background: var(--accent-soft); }
+  #fileInput { display: none; }
+  .file-preview img { max-width: 200px; border-radius: var(--radius); margin-top: 12px; }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container">
+    <a href="/" class="logo-link">
+      <img src="/assets/images/logo-full.png" alt="Toolyfix">
+    </a>
+    <span class="header-tagline">Kostenlose Tools, direkt im Browser</span>
+  </div>
+</header>
+
+<main class="tool-page">
+  <div class="container">
+    <p class="breadcrumb"><a href="/">Toolyfix</a> / Base64 Kodieren & Dekodieren</p>
+    <h1>Base64 Kodieren & Dekodieren</h1>
+
+    <div class="related-tools-top">
+      <a href="/tools/binaer-uebersetzer.html">01 Binär Übersetzer</a>
+    </div>
+
+    <p>Wandle Text oder ganze Dateien in Base64 um, oder dekodiere Base64 zurück in Text oder eine herunterladbare Datei.</p>
+
+    <div class="tool-panel">
+      <div class="mode-toggle">
+        <button class="mode-btn active" data-mode="text">Text</button>
+        <button class="mode-btn" data-mode="file">Datei</button>
+      </div>
+
+      <div class="mode-panel active" id="textModePanel">
+        <div class="switch-row">
+          <label class="switch"><input type="checkbox" id="urlSafeToggle"><span class="slider-switch"></span></label>
+          <span>URL-sichere Variante (- und _ statt + und /)</span>
+        </div>
+
+        <div class="textarea-pair">
+          <div>
+            <label for="plainText">Text</label>
+            <textarea id="plainText" rows="8" placeholder="z. B. Hallo Welt"></textarea>
+          </div>
+          <div>
+            <label for="base64Output">Base64</label>
+            <textarea id="base64Output" rows="8" placeholder="z. B. SGFsbG8gV2VsdA=="></textarea>
+          </div>
+        </div>
+
+        <div class="field-row" style="margin-top:16px;">
+          <button class="btn btn-primary" id="encodeBtn">Text → Base64</button>
+          <button class="btn btn-primary" id="decodeBtn">Base64 → Text</button>
+          <button class="btn btn-ghost" id="copyBase64Btn">Base64 kopieren</button>
+        </div>
+        <p style="font-size:0.85rem; color:var(--ink-soft);" id="textModeStatus"></p>
+      </div>
+
+      <div class="mode-panel" id="fileModePanel">
+        <div class="dropzone" id="dropzone">
+          <p><strong>Datei hierher ziehen</strong> oder klicken zum Auswählen</p>
+        </div>
+        <input type="file" id="fileInput">
+        <div class="file-preview" id="filePreview"></div>
+
+        <textarea id="fileBase64Output" rows="8" readonly placeholder="Base64-Ausgabe erscheint hier …" style="margin-top:12px; font-family:'Menlo',monospace; font-size:0.8rem;"></textarea>
+
+        <div class="field-row" style="margin-top:16px;">
+          <button class="btn btn-ghost" id="copyFileBase64Btn">Base64 kopieren</button>
+        </div>
+
+        <h2 style="font-size:1rem; margin-top:28px;">Base64 zurück in eine Datei umwandeln</h2>
+        <textarea id="base64ToFileInput" rows="6" placeholder="Base64-String (mit oder ohne data:... Prefix) hier einfügen"></textarea>
+        <div class="field-row" style="margin-top:12px;">
+          <input type="text" id="outputFilename" placeholder="Dateiname, z. B. bild.png" style="flex:1; min-width:160px;">
+          <button class="btn btn-primary" id="base64ToFileBtn">Als Datei herunterladen</button>
+        </div>
+        <p style="font-size:0.85rem; color:var(--ink-soft);" id="fileModeStatus"></p>
+      </div>
+    </div>
+
+    <article class="explainer">
+      <h2>Was ist Base64 und wofür wird es gebraucht?</h2>
+      <p>Base64 ist ein Verfahren, um beliebige binäre Daten (zum Beispiel ein Bild oder eine PDF-Datei) in eine Zeichenkette aus reinen Text-Zeichen umzuwandeln, die sicher in Systemen übertragen oder gespeichert werden kann, die eigentlich nur reinen Text verarbeiten können – etwa in E-Mails, JSON-Dateien, URLs oder CSS-Dateien. Der Name kommt daher, dass nur 64 verschiedene Zeichen verwendet werden (Buchstaben A–Z und a–z, Ziffern 0–9, sowie zwei Sonderzeichen).</p>
+
+      <h2>Text in Base64 umwandeln</h2>
+      <p>Im Textmodus wird jedes Zeichen deines eingegebenen Textes zunächst in seine Byte-Darstellung übersetzt und anschließend nach dem Base64-Verfahren kodiert. Das Ergebnis sieht auf den ersten Blick wie eine zufällige Zeichenkette aus, enthält aber exakt die Information, um den ursprünglichen Text wieder herzustellen – und genau das passiert beim Klick auf "Base64 → Text".</p>
+
+      <h2>Dateien in Base64 umwandeln – wofür ist das nützlich?</h2>
+      <p>Eine ganze Datei (zum Beispiel ein kleines Bild oder eine Schriftart) lässt sich ebenfalls in Base64 umwandeln und dann direkt in HTML, CSS oder JSON einbetten, ohne eine separate Datei referenzieren zu müssen – praktisch bei kleinen Icons, Favicons oder Inline-Bildern in E-Mail-Vorlagen, wo externe Bildverknüpfungen manchmal blockiert werden. Der Nachteil: Die Base64-Darstellung ist etwa ein Drittel größer als die Originaldatei, weshalb sich das Verfahren vor allem für kleine Dateien lohnt.</p>
+
+      <h2>Base64 zurück in eine herunterladbare Datei umwandeln</h2>
+      <p>Hast du bereits einen Base64-String (zum Beispiel aus einer API-Antwort, einer Konfigurationsdatei oder einem Code-Snippet) und möchtest daraus wieder eine echte Datei machen, kannst du den String im unteren Bereich einfügen, einen Dateinamen mit passender Dateiendung vergeben, und die Datei direkt herunterladen. Das Tool erkennt dabei automatisch, ob der String noch ein "data:...;base64," Präfix enthält, und entfernt dieses bei Bedarf automatisch.</p>
+
+      <h2>Standard-Base64 vs. URL-sichere Variante</h2>
+      <p>Die Standard-Base64-Kodierung verwendet die Zeichen + und /, die in einer URL eine spezielle Bedeutung haben und dort zu Problemen führen können. Die URL-sichere Variante ersetzt diese beiden Zeichen durch - und _, sodass der kodierte String direkt und unverändert als Teil einer URL (zum Beispiel als Parameter) verwendet werden kann, etwa bei JSON Web Tokens (JWT), die genau dieses URL-sichere Format nutzen.</p>
+
+      <h2>Datenschutz</h2>
+      <p>Alle Umwandlungen laufen lokal in deinem Browser. Weder dein Text noch eine hochgeladene Datei werden an einen Server übertragen.</p>
+    </article>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <img src="/assets/images/logo-full.png" alt="Toolyfix">
+    <nav class="footer-links">
+      <a href="/ueber-uns.html">Über uns</a>
+      <a href="/datenschutz.html">Datenschutz</a>
+      <a href="/nutzungsbedingungen.html">Nutzungsbedingungen</a>
+      <a href="/kontakt.html">Kontakt</a>
+    </nav>
+    <p class="footer-note">© 2026 Toolyfix – Alle Tools laufen lokal in deinem Browser.</p>
+  </div>
+</footer>
+
+<script>
+document.querySelectorAll('.mode-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.mode-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById('textModePanel').classList.toggle('active', btn.dataset.mode === 'text');
+    document.getElementById('fileModePanel').classList.toggle('active', btn.dataset.mode === 'file');
+  });
+});
+
+const plainText = document.getElementById('plainText');
+const base64Output = document.getElementById('base64Output');
+const urlSafeToggle = document.getElementById('urlSafeToggle');
+const textModeStatus = document.getElementById('textModeStatus');
+
+function toUrlSafe(str) { return str.replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, ''); }
+function fromUrlSafe(str) {
+  let s = str.replace(/-/g, '+').replace(/_/g, '/');
+  while (s.length % 4) s += '=';
+  return s;
+}
+
+document.getElementById('encodeBtn').addEventListener('click', () => {
+  try {
+    const bytes = new TextEncoder().encode(plainText.value);
+    let binary = '';
+    bytes.forEach(b => binary += String.fromCharCode(b));
+    let encoded = btoa(binary);
+    if (urlSafeToggle.checked) encoded = toUrlSafe(encoded);
+    base64Output.value = encoded;
+    textModeStatus.textContent = '';
+  } catch (e) {
+    textModeStatus.textContent = 'Kodierung fehlgeschlagen.';
+  }
+});
+
+document.getElementById('decodeBtn').addEventListener('click', () => {
+  try {
+    let input = base64Output.value.trim();
+    if (urlSafeToggle.checked) input = fromUrlSafe(input);
+    const binary = atob(input);
+    const bytes = new Uint8Array(binary.length);
+    for (let i = 0; i < binary.length; i++) bytes[i] = binary.charCodeAt(i);
+    plainText.value = new TextDecoder().decode(bytes);
+    textModeStatus.textContent = '';
+  } catch (e) {
+    textModeStatus.textContent = 'Ungültiger Base64-String.';
+  }
+});
+
+document.getElementById('copyBase64Btn').addEventListener('click', () => {
+  if (base64Output.value) navigator.clipboard.writeText(base64Output.value);
+});
+
+/* ---- File mode ---- */
+const dropzone = document.getElementById('dropzone');
+const fileInput = document.getElementById('fileInput');
+const filePreview = document.getElementById('filePreview');
+const fileBase64Output = document.getElementById('fileBase64Output');
+
+dropzone.addEventListener('click', () => fileInput.click());
+['dragenter', 'dragover'].forEach(evt =>
+  dropzone.addEventListener(evt, e => { e.preventDefault(); dropzone.classList.add('dragover'); })
+);
+['dragleave', 'drop'].forEach(evt =>
+  dropzone.addEventListener(evt, e => { e.preventDefault(); dropzone.classList.remove('dragover'); })
+);
+dropzone.addEventListener('drop', e => handleFile(e.dataTransfer.files[0]));
+fileInput.addEventListener('change', e => handleFile(e.target.files[0]));
+
+function handleFile(file) {
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = () => {
+    fileBase64Output.value = reader.result;
+    filePreview.innerHTML = file.type.startsWith('image/') ? `<img src="${reader.result}" alt="Vorschau">` : `<p style="font-size:0.85rem; color:var(--ink-soft);">${file.name} (${file.type || 'unbekannter Typ'})</p>`;
+  };
+  reader.readAsDataURL(file);
+}
+
+document.getElementById('copyFileBase64Btn').addEventListener('click', () => {
+  if (fileBase64Output.value) navigator.clipboard.writeText(fileBase64Output.value);
+});
+
+document.getElementById('base64ToFileBtn').addEventListener('click', () => {
+  const status = document.getElementById('fileModeStatus');
+  let input = document.getElementById('base64ToFileInput').value.trim();
+  const filename = document.getElementById('outputFilename').value.trim() || 'datei.bin';
+
+  let mime = 'application/octet-stream';
+  const dataUrlMatch = input.match(/^data:([^;]+);base64,(.*)$/s);
+  if (dataUrlMatch) { mime = dataUrlMatch[1]; input = dataUrlMatch[2]; }
+
+  try {
+    const binary = atob(input.replace(/\s/g, ''));
+    const bytes = new Uint8Array(binary.length);
+    for (let i = 0; i < binary.length; i++) bytes[i] = binary.charCodeAt(i);
+    const blob = new Blob([bytes], { type: mime });
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = filename;
+    a.click();
+    status.textContent = 'Datei heruntergeladen.';
+  } catch (e) {
+    status.textContent = 'Ungültiger Base64-String.';
+  }
+});
+</script>
+
+</body>
+</html>
