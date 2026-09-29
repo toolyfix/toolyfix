@@ -134,8 +134,6 @@
 </footer>
 
 <script type="module">
-import { removeBackground } from "https://cdn.jsdelivr.net/npm/@imgly/background-removal@1.0.0/dist/index.mjs";
-
 const dropzone = document.getElementById('dropzone');
 const fileInput = document.getElementById('fileInput');
 const statusLine = document.getElementById('statusLine');
@@ -148,7 +146,23 @@ const progressBarWrap = document.getElementById('progressBarWrap');
 const progressBarFill = document.getElementById('progressBarFill');
 
 let resultBlobUrl = null;
+let removeBackgroundFn = null;
 
+// Dynamic import wrapped in try/catch: if this failed as a static top-level
+// import instead, the whole module (and every button below) would silently
+// stop working with no error shown. This keeps the rest of the page alive
+// even if the AI library fails to load, and reports why.
+async function loadLibrary() {
+  if (removeBackgroundFn) return removeBackgroundFn;
+  const mod = await import('https://cdn.jsdelivr.net/npm/@imgly/background-removal@1.0.0/dist/index.mjs');
+  const fn = mod.removeBackground || mod.default;
+  if (typeof fn !== 'function') throw new Error('Unerwartetes Format der KI-Bibliothek.');
+  removeBackgroundFn = fn;
+  return fn;
+}
+
+// Attach UI listeners immediately, independent of whether the library loads,
+// so drag/drop and file selection always work even if step below fails.
 dropzone.addEventListener('click', () => fileInput.click());
 ['dragenter', 'dragover'].forEach(evt =>
   dropzone.addEventListener(evt, e => { e.preventDefault(); dropzone.classList.add('dragover'); })
@@ -166,23 +180,22 @@ async function handleFile(file) {
   dropzone.style.display = 'none';
   statusLine.textContent = 'Lade KI-Modell und entferne Hintergrund … (beim ersten Mal kann das etwas dauern)';
   progressBarWrap.style.display = 'block';
-  progressBarFill.style.width = '15%';
+  progressBarFill.style.width = '20%';
 
   try {
+    const removeBackground = await loadLibrary();
+    progressBarFill.style.width = '40%';
+
     const config = {
-      publicPath: 'https://cdn.jsdelivr.net/npm/@imgly/background-removal@1.0.0/dist/',
-      progress: (key, current, total) => {
-        if (total > 0) {
-          const pct = Math.round((current / total) * 100);
-          progressBarFill.style.width = Math.max(15, pct) + '%';
-        }
-      }
+      publicPath: 'https://cdn.jsdelivr.net/npm/@imgly/background-removal@1.0.0/dist/'
     };
 
     const result = await removeBackground(file, config);
-    const blob = typeof result.convertToBlob === 'function' ? await result.convertToBlob('image/png') : result;
-    resultBlobUrl = URL.createObjectURL(blob);
+    const blob = (result && typeof result.convertToBlob === 'function')
+      ? await result.convertToBlob('image/png')
+      : result;
 
+    resultBlobUrl = URL.createObjectURL(blob);
     progressBarFill.style.width = '100%';
     resultImg.src = resultBlobUrl;
     resultRow.style.display = 'flex';
@@ -191,7 +204,9 @@ async function handleFile(file) {
     statusLine.textContent = 'Fertig.';
     setTimeout(() => { progressBarWrap.style.display = 'none'; }, 600);
   } catch (e) {
-    statusLine.textContent = 'Die Verarbeitung ist fehlgeschlagen. Bitte versuche es erneut oder mit einem anderen Bild.';
+    console.error('Hintergrund entfernen fehlgeschlagen:', e);
+    const detail = (e && (e.message || e.errorMessage)) || 'Unbekannter Fehler';
+    statusLine.textContent = `Die Verarbeitung ist fehlgeschlagen (${detail}). Bitte lade die Seite neu und versuche es erneut, oder probiere ein anderes Bild.`;
     progressBarWrap.style.display = 'none';
     dropzone.style.display = 'block';
   }
