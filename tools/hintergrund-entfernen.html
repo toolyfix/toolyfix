@@ -68,7 +68,7 @@
     <p>Lade ein Foto hoch und entferne den Hintergrund automatisch per KI – die komplette Verarbeitung läuft in deinem Browser, dein Bild wird nirgendwo hochgeladen.</p>
 
     <div class="notice-box">
-      Beim ersten Gebrauch lädt dein Browser einmalig ein KI-Modell (ca. 40–80 MB) von einem öffentlichen CDN herunter, damit die Freistellung funktioniert. Das betrifft nur das KI-Modell selbst – dein Foto verlässt dabei nie dein Gerät. Nach dem ersten Mal ist das Modell im Browser zwischengespeichert und lädt schneller.
+      Beim ersten Gebrauch lädt dein Browser einmalig ein KI-Modell (ca. 40–80 MB) von den Servern des Bibliotheksanbieters IMG.LY herunter, damit die Freistellung funktioniert. Das betrifft nur das KI-Modell selbst – dein Foto verlässt dabei nie dein Gerät. Nach dem ersten Mal ist das Modell im Browser zwischengespeichert und lädt schneller.
     </div>
 
     <div class="tool-panel">
@@ -189,9 +189,11 @@ async function handleFile(file) {
     const removeBackground = await loadLibrary();
     progressBarFill.style.width = '40%';
 
-    const config = {
-      publicPath: 'https://cdn.jsdelivr.net/npm/@imgly/background-removal@1.6.0/dist/'
-    };
+    // No publicPath override: the library's own built-in default already
+    // points to IMG.LY's correct asset CDN (staticimgly.com) for this
+    // version's model files. Overriding it with the npm package's own
+    // jsDelivr folder was wrong — that folder doesn't contain the models.
+    const config = {};
 
     const result = await removeBackground(file, config);
     const blob = (result && typeof result.convertToBlob === 'function')
