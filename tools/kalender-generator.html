@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kalender Generator 2026, 2027 & mehr – kostenlos erstellen & drucken | Toolyfix</title>
+<meta name="description" content="Kalender erstellen und drucken: Monats- und Jahreskalender mit Feiertagen je Bundesland, Kalenderwochen, eigenen Terminen, PNG- und ICS-Export. Kostenlos, ohne Anmeldung.">
+<link rel="canonical" href="https://toolyfix.de/tools/kalender-generator">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Kalender Generator 2026, 2027 & mehr – kostenlos erstellen & drucken | Toolyfix">
+<meta property="og:description" content="Kalender erstellen und drucken: Monats- und Jahreskalender mit Feiertagen je Bundesland, Kalenderwochen, eigenen Terminen, PNG- und ICS-Export. Kostenlos, ohne Anmeldung.">
+<meta property="og:url" content="https://toolyfix.de/tools/kalender-generator">
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="stylesheet" href="/assets/style.css">
+<style>
+:root{--bg:#F7F7F4;--ink:#1A1A1A;--blue:#1D3557;--amber:#E9A93B;--line:#dcdcd2;--card:#fff;--mut:#5b6470;--bad:#b3261e;--ok:#1f7a45}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{background:var(--bg);color:var(--ink);margin:0;font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;line-height:1.6}
+.tf-wrap{max-width:1000px;margin:0 auto;padding:22px 16px 56px}
+.tf-wrap h1{font-size:clamp(1.6rem,4.4vw,2.3rem);line-height:1.15;margin:.2em 0 .3em;color:var(--blue)}
+.tf-intro{color:var(--mut);margin:0 0 14px;max-width:70ch}
+.tf-related{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:0 0 18px;padding:10px 12px;background:#fff;border:1px solid var(--line);border-radius:10px;font-size:.92rem}
+.tf-related b{color:var(--blue);margin-right:4px}
+.tf-related a{color:var(--blue);background:#eef1f6;border-radius:999px;padding:4px 12px;text-decoration:none;font-weight:500}
+.tf-related a:hover,.tf-related a:focus-visible{background:var(--blue);color:#fff;outline:none}
+.tf-card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px;margin-bottom:16px}
+.tf-card h2{font-size:1.05rem;margin:0 0 10px;color:var(--blue)}
+.tf-grid{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(170px,1fr))}
+.tf-wrap label{display:block;font-size:.82rem;font-weight:600;margin:0 0 4px;color:#333}
+.tf-wrap input[type=text],.tf-wrap input[type=number],.tf-wrap input[type=date],.tf-wrap select,.tf-wrap textarea{width:100%;padding:9px 10px;border:1px solid #c9c9bf;border-radius:8px;font:inherit;background:#fff;color:var(--ink)}
+.tf-wrap input[type=color]{width:100%;height:40px;border:1px solid #c9c9bf;border-radius:8px;padding:2px;background:#fff}
+.tf-wrap textarea{min-height:130px;resize:vertical}
+.tf-wrap input:focus-visible,.tf-wrap select:focus-visible,.tf-wrap textarea:focus-visible,.btn:focus-visible{outline:3px solid var(--amber);outline-offset:1px}
+.btn{font:inherit;font-weight:600;padding:9px 16px;border-radius:8px;border:1px solid var(--blue);background:#fff;color:var(--blue);cursor:pointer}
+.btn:hover{background:#eef1f6}
+.btn.pri{background:var(--blue);color:#fff}
+.btn.pri:hover{background:#16294a}
+.btn.amb{background:var(--amber);border-color:var(--amber);color:#1A1A1A}
+.btn[disabled]{opacity:.5;cursor:not-allowed}
+.tf-btns{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.chk{display:flex;gap:8px;align-items:center;font-weight:500;font-size:.92rem;margin:6px 0}
+.chk input{width:18px;height:18px}
+.tf-article{margin-top:34px;background:#fff;border:1px solid var(--line);border-radius:12px;padding:22px 20px}
+.tf-article h2{color:var(--blue);font-size:1.4rem;margin:1.4em 0 .4em;line-height:1.25}
+.tf-article h2:first-child{margin-top:0}
+.tf-article h3{font-size:1.1rem;margin:1.1em 0 .3em}
+.tf-article p,.tf-article li{max-width:75ch}
+.tf-article table{border-collapse:collapse;width:100%;font-size:.92rem;display:block;overflow-x:auto}
+.tf-article th,.tf-article td{border:1px solid var(--line);padding:6px 10px;text-align:left}
+.tf-article th{background:#eef1f6}
+.toast{position:fixed;left:50%;bottom:22px;transform:translateX(-50%);background:var(--blue);color:#fff;padding:9px 18px;border-radius:999px;font-size:.9rem;opacity:0;pointer-events:none;transition:opacity .2s;z-index:50}
+.toast.on{opacity:1}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+@media print{.site-header,.site-footer,.tf-related,.tf-intro,.tf-wrap>h1,.tf-article,.tf-noprint,.toast{display:none!important}body{background:#fff}.tf-wrap{padding:0;max-width:none}}
+
+#out{--cal:#1D3557}
+.ttl{font-size:1.1rem;font-weight:600;text-align:center;color:#444;margin-bottom:6px}
+.mh{background:var(--cal);color:#fff;text-align:center;font-weight:700;font-size:1.4rem;padding:10px;border-radius:8px 8px 0 0}
+table.cal{width:100%;border-collapse:collapse;table-layout:fixed}
+.cal th{background:#f0f0ea;font-size:.8rem;padding:6px 2px;border:1px solid var(--line)}
+.cal td{border:1px solid var(--line);height:84px;vertical-align:top;padding:3px 4px;overflow:hidden;font-size:.9rem}
+.cal td .n{font-weight:700}
+.cal td.we{background:#f5f5f0}
+.cal td.hol{background:#fff1d6}.cal td.hol .n{color:#b3261e}
+.cal td.today{outline:3px solid var(--amber);outline-offset:-3px}
+.cal .kw{width:34px;text-align:center;color:var(--mut);font-size:.75rem;background:#fafaf6}
+.cal small{display:block;font-size:.66rem;line-height:1.15;word-break:break-word}
+.cal small.hn{color:#b3261e}
+.cal small.en{background:var(--cal);color:#fff;border-radius:3px;padding:0 3px;margin-top:2px}
+.cal.mini td{height:30px;font-size:.78rem;padding:1px 3px}
+.cal.mini th{font-size:.68rem;padding:3px 0}
+.ygrid{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
+.mn{font-weight:700;color:var(--cal);margin:0 0 4px}
+.dot{display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--cal);margin-left:2px;vertical-align:middle}
+.lg{columns:2 220px;font-size:.88rem;padding-left:18px;margin:12px 0 0}
+.evl{list-style:none;padding:0;margin:12px 0 0}
+.evl li{display:flex;justify-content:space-between;gap:8px;padding:6px 0;border-bottom:1px solid var(--line);font-size:.92rem}
+.evl button{border:0;background:none;color:var(--bad);font-weight:600;cursor:pointer}
+@media(max-width:640px){.cal td{height:62px;padding:2px}.cal small{font-size:.58rem}.mh{font-size:1.15rem}}
+@media print{.cal td{height:auto;min-height:70px}#out{border:0;padding:0}}
+</style>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-F9VY193ZMP"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-F9VY193ZMP');</script>
+</head>
+<body>
+<header class="site-header">
+  <div class="container">
+    <a href="/" class="logo-link"><img src="/assets/images/logo-full.png" alt="Toolyfix"></a>
+    <span class="header-tagline">Kostenlose Tools, direkt im Browser</span>
+  </div>
+</header>
+<main>
+<div class="tf-wrap">
+<h1>Kalender Generator</h1>
+<p class="tf-intro">Monats- oder Jahreskalender mit Feiertagen für dein Bundesland, Kalenderwochen und eigenen Terminen – zum Drucken, als PNG oder als ICS-Datei.</p>
+<nav class="tf-related" aria-label="Passende Tools"><b>Passende Tools:</b><a href="/tools/altersrechner">Altersrechner</a><a href="/tools/geburtstags-countdown">Geburtstags Countdown</a><a href="/tools/digitaluhr">Digitaluhr</a><a href="/tools/wecker-online">Wecker Online</a><a href="/tools/timer-stoppuhr">Timer &amp; Stoppuhr</a></nav>
+
+<section class="tf-card tf-noprint">
+<h2>Einstellungen</h2>
+<div class="tf-grid">
+<div><label for="view">Ansicht</label><select id="view"><option value="month">Monatskalender</option><option value="year">Jahreskalender</option></select></div>
+<div><label for="month">Monat</label><select id="month"></select></div>
+<div><label for="year">Jahr</label><input type="number" id="year" min="1900" max="2100" inputmode="numeric"></div>
+<div><label for="state">Bundesland (Feiertage)</label><select id="state"><option value="">Nur bundesweite Feiertage</option></select></div>
+<div><label for="ws">Wochenstart</label><select id="ws"><option value="mo">Montag</option><option value="so">Sonntag</option></select></div>
+<div><label for="color">Farbe</label><input type="color" id="color" value="#1D3557"></div>
+<div><label for="title">Eigener Titel (optional)</label><input type="text" id="title" maxlength="60" placeholder="z. B. Familienplaner"></div>
+</div>
+<div style="margin-top:8px">
+<label class="chk"><input type="checkbox" id="kw" checked> Kalenderwochen anzeigen</label>
+<label class="chk"><input type="checkbox" id="hol" checked> Feiertage anzeigen</label>
+<label class="chk"><input type="checkbox" id="we" checked> Wochenenden hervorheben</label>
+</div>
+<div class="tf-btns">
+<button class="btn" id="prev" type="button">‹ Zurück</button>
+<button class="btn" id="today" type="button">Heute</button>
+<button class="btn" id="next" type="button">Weiter ›</button>
+<button class="btn pri" id="print" type="button">Drucken / als PDF speichern</button>
+<button class="btn amb" id="png" type="button">Als PNG</button>
+<button class="btn" id="ics" type="button">Als ICS (Feiertage + Termine)</button>
+</div>
+</section>
+<section class="tf-card" id="out" aria-live="polite"></section>
+<section class="tf-card tf-noprint">
+<h2>Eigene Termine</h2>
+<div class="tf-grid">
+<div><label for="evd">Datum</label><input type="date" id="evd"></div>
+<div><label for="evt">Bezeichnung</label><input type="text" id="evt" maxlength="40" placeholder="z. B. Zahnarzt 10 Uhr"></div>
+</div>
+<div class="tf-btns"><button class="btn pri" id="evadd" type="button">Termin hinzufügen</button><button class="btn" id="evclr" type="button">Alle Termine löschen</button></div>
+<ul class="evl" id="evl"></ul>
+<p style="font-size:.85rem;color:var(--mut);margin:10px 0 0">Termine bleiben nur in diesem Browser gespeichert und werden nicht an einen Server gesendet.</p>
+</section>
+<style id="pg"></style>
+
+<article class="tf-article">
+
+<h2>Kalender erstellen und drucken – der kostenlose Kalender Generator</h2>
+<p>Ein eigener Kalender ist praktischer, als viele denken: Familienplaner an der Kühlschranktür, Jahresübersicht fürs Büro, Wandkalender für die Werkstatt oder ein Monatsblatt für die Schulplanung. Fertige Kalender aus dem Handel sind oft zu teuer, in der falschen Größe oder enthalten Feiertage, die in deinem Bundesland gar nicht gelten. Mit dem Kalender Generator von Toolyfix erstellst du in wenigen Sekunden einen Kalender, der genau zu deinem Alltag passt – als Monatskalender oder als kompletter Jahreskalender, mit Feiertagen für dein Bundesland, Kalenderwochen und eigenen Terminen. Alles läuft direkt in deinem Browser, du brauchst weder ein Konto noch eine Installation.</p>
+<p>Wähle einfach Jahr, Monat und Ansicht, stelle dein Bundesland ein und drucke den Kalender aus oder speichere ihn als PDF. Wer den Kalender lieber digital weiterverwenden möchte, lädt ihn als PNG-Bild herunter oder exportiert Feiertage und Termine als ICS-Datei, die sich in Google Kalender, Apple Kalender, Outlook und andere Programme importieren lässt.</p>
+
+<h2>So funktioniert der Kalender Generator Schritt für Schritt</h2>
+<p>Die Bedienung ist bewusst einfach gehalten. Trotzdem steckt in den Einstellungen mehr, als man auf den ersten Blick sieht:</p>
+<ul>
+<li><b>Ansicht wählen:</b> Der Monatskalender zeigt jeden Tag mit viel Platz für Notizen und ist ideal als Wandkalender im Querformat. Der Jahreskalender zeigt alle zwölf Monate auf einer Seite und eignet sich als Jahresübersicht für Urlaubsplanung, Projekte oder Schuljahre.</li>
+<li><b>Jahr und Monat festlegen:</b> Du kannst jedes Jahr von 1900 bis 2100 anzeigen. Gesucht wird häufig der Kalender 2026, der Kalender 2027 oder der Kalender 2028 – alle sind mit einem Klick erstellt.</li>
+<li><b>Bundesland auswählen:</b> Feiertage unterscheiden sich in Deutschland erheblich. Der Generator berücksichtigt die bundesweiten Feiertage und zusätzlich die gesetzlichen Feiertage des gewählten Landes.</li>
+<li><b>Wochenstart bestimmen:</b> In Deutschland beginnt die Woche normalerweise am Montag. Wer Kalender im internationalen Stil bevorzugt, stellt den Sonntag als ersten Tag ein.</li>
+<li><b>Farbe und Titel anpassen:</b> Mit der Farbauswahl färbst du Kopfzeile und Terminmarkierungen passend zu deinem Büro, Verein oder Kinderzimmer. Ein eigener Titel wie „Familienplaner“ oder „Projektkalender“ erscheint über dem Kalender.</li>
+<li><b>Termine eintragen:</b> Geburtstage, Arzttermine, Abgabefristen: Eigene Einträge erscheinen direkt im passenden Kalenderfeld und im Export.</li>
+</ul>
+
+<h2>Kalender mit Feiertagen: Warum das Bundesland entscheidend ist</h2>
+<p>Wer nach „Kalender mit Feiertagen“ sucht, stößt oft auf Vorlagen, die nur die bundesweiten Feiertage enthalten. In der Praxis reicht das nicht, denn Feiertage sind in Deutschland Ländersache. Bundesweit gelten Neujahr, Karfreitag, Ostermontag, der Tag der Arbeit, Christi Himmelfahrt, Pfingstmontag, der Tag der Deutschen Einheit sowie der erste und zweite Weihnachtstag. Darüber hinaus gibt es regionale Besonderheiten:</p>
+<table>
+<tr><th>Feiertag</th><th>Gilt in</th></tr>
+<tr><td>Heilige Drei Könige (6. Januar)</td><td>Baden-Württemberg, Bayern, Sachsen-Anhalt</td></tr>
+<tr><td>Internationaler Frauentag (8. März)</td><td>Berlin (seit 2019), Mecklenburg-Vorpommern (seit 2023)</td></tr>
+<tr><td>Fronleichnam</td><td>Baden-Württemberg, Bayern, Hessen, Nordrhein-Westfalen, Rheinland-Pfalz, Saarland</td></tr>
+<tr><td>Mariä Himmelfahrt (15. August)</td><td>Saarland</td></tr>
+<tr><td>Weltkindertag (20. September)</td><td>Thüringen (seit 2019)</td></tr>
+<tr><td>Reformationstag (31. Oktober)</td><td>Brandenburg, Mecklenburg-Vorpommern, Sachsen, Sachsen-Anhalt, Thüringen sowie seit 2018 Bremen, Hamburg, Niedersachsen, Schleswig-Holstein</td></tr>
+<tr><td>Allerheiligen (1. November)</td><td>Baden-Württemberg, Bayern, Nordrhein-Westfalen, Rheinland-Pfalz, Saarland</td></tr>
+<tr><td>Buß- und Bettag</td><td>Sachsen</td></tr>
+</table>
+<p>Für Arbeitnehmer, Selbstständige und Eltern bedeutet das: Ein Kalender für Bayern sieht anders aus als einer für Hamburg. Wer Brückentage plant, Urlaub beantragt oder Lieferfristen kalkuliert, sollte die richtigen Feiertage im Blick haben. Der Kalender Generator markiert Feiertage deshalb farbig und listet sie zusätzlich unter dem Kalender mit Datum und Wochentag auf.</p>
+
+<h2>Bewegliche Feiertage: Wie der Ostertermin berechnet wird</h2>
+<p>Viele Feiertage hängen vom Ostersonntag ab, und dieser ändert sich jedes Jahr. Der Ostersonntag ist der erste Sonntag nach dem ersten Frühlingsvollmond und kann zwischen dem 22. März und dem 25. April liegen. Der Kalender Generator berechnet ihn mit einem mathematischen Verfahren, das auf Carl Friedrich Gauß zurückgeht. Von diesem Datum aus ergeben sich die weiteren Termine: Karfreitag liegt zwei Tage davor, Ostermontag einen Tag danach, Christi Himmelfahrt 39 Tage danach, Pfingstmontag 50 Tage danach und Fronleichnam 60 Tage danach. Dadurch stimmen die Feiertage in jedem Jahr, ohne dass du etwas nachschlagen musst – egal, ob du den Kalender 2026, 2027 oder ein weit entferntes Jahr erstellst.</p>
+
+<h2>Kalenderwochen im Kalender: Was KW bedeutet</h2>
+<p>Im Berufsleben wird ständig mit Kalenderwochen gearbeitet: „Lieferung in KW 14“, „Meeting in KW 32“. Die Zählung folgt der internationalen Norm ISO 8601. Danach beginnt jede Woche am Montag, und die erste Kalenderwoche des Jahres ist diejenige, die den ersten Donnerstag des Jahres enthält. Das führt dazu, dass die ersten Januartage manchmal noch zur Kalenderwoche 52 oder 53 des Vorjahres gehören und die letzten Dezembertage bereits zur Woche 1 des Folgejahres. Wer das von Hand abzählt, vertut sich schnell. Der Generator zeigt die Kalenderwochen in einer eigenen Spalte an und berechnet sie nach der ISO-Regel – du kannst die Spalte jederzeit ein- oder ausblenden.</p>
+
+<h2>Kalender drucken, als PDF speichern oder als Bild herunterladen</h2>
+<p>Für den Ausdruck nutzt du die Funktion „Drucken / als PDF speichern“. Der Monatskalender wird automatisch im Querformat, der Jahreskalender im Hochformat vorbereitet. Im Druckdialog deines Browsers kannst du statt eines Druckers auch „Als PDF speichern“ wählen und erhältst so eine Datei zum Weitergeben oder zum Drucken im Copyshop. Wenn der Ausdruck zu blass aussieht, aktiviere im Druckdialog die Option „Hintergrundgrafiken“, damit die Farben der Kopfzeile erscheinen.</p>
+<p>Wer ein Bild braucht – etwa als Handyhintergrund, für eine Präsentation oder für den Newsletter – klickt auf „Als PNG“. Die Datei wird in hoher Auflösung erzeugt, sodass sie auch auf größeren Formaten scharf bleibt. Die ICS-Datei wiederum ist für alle gedacht, die Feiertage und eigene Termine dauerhaft in ihrem digitalen Kalender haben möchten: Einmal importieren, und alles erscheint in Google Kalender, Outlook oder auf dem iPhone.</p>
+
+<h2>Typische Probleme beim Kalender erstellen – und die Lösung</h2>
+<h3>„Mein Ausdruck ist abgeschnitten“</h3>
+<p>Meist ist im Druckdialog eine falsche Skalierung eingestellt. Wähle „Tatsächliche Größe“ oder „An Seite anpassen“ und prüfe, ob das Papierformat A4 gewählt ist. Beim Jahreskalender sorgt das Hochformat dafür, dass alle zwölf Monate auf eine Seite passen.</p>
+<h3>„Die Feiertage stimmen nicht mit meiner Stadt überein“</h3>
+<p>Einige Feiertage gelten nur in bestimmten Gemeinden, zum Beispiel das Augsburger Friedensfest oder Fronleichnam in Teilen von Sachsen und Thüringen. Solche lokalen Sonderregelungen sind nicht im Generator hinterlegt. Trage sie bei Bedarf als eigenen Termin ein.</p>
+<h3>„Ich möchte Schulferien im Kalender haben“</h3>
+<p>Schulferien werden von den Kultusministerien der Länder festgelegt und ändern sich von Jahr zu Jahr. Du kannst Ferienzeiträume als eigene Termine eintragen und sie so in deinen persönlichen Familienplaner übernehmen.</p>
+<h3>„Meine Termine sind nach dem Schließen weg“</h3>
+<p>Termine werden im lokalen Speicher deines Browsers abgelegt. Sie bleiben erhalten, solange du die Browserdaten nicht löschst und im selben Browser auf demselben Gerät arbeitest. Für eine dauerhafte Sicherung exportierst du sie als ICS-Datei oder als PNG.</p>
+
+<h2>Ideen: Wofür sich der selbst erstellte Kalender eignet</h2>
+<ul>
+<li><b>Familienplaner:</b> Ein Monatskalender mit farbigem Kopf und Platz für Arzt-, Sport- und Schultermine.</li>
+<li><b>Urlaubs- und Schichtplanung:</b> Der Jahreskalender mit Kalenderwochen zeigt auf einen Blick, wo Brückentage liegen.</li>
+<li><b>Vereine und Gruppen:</b> Trainingstage und Veranstaltungen lassen sich eintragen, ausdrucken und im Vereinsheim aufhängen.</li>
+<li><b>Schule und Lernen:</b> Prüfungstermine, Abgaben und Lernphasen behältst du im Blick – am besten zusammen mit einem Timer.</li>
+<li><b>Geschenkidee:</b> Ein Kalender mit eingetragenen Geburtstagen und Jahrestagen ist ein persönliches Mitbringsel.</li>
+<li><b>Content-Planung:</b> Wer Social Media oder einen Blog betreibt, plant Beiträge im Monatskalender und exportiert ihn als PNG fürs Team.</li>
+</ul>
+
+<h2>Datenschutz: Dein Kalender bleibt bei dir</h2>
+<p>Alle Berechnungen finden in deinem Browser statt. Deine Termine und Titel werden nicht auf einen Server hochgeladen, sondern höchstens lokal in deinem Browser gespeichert. Das ist besonders bei privaten Terminen wie Arztbesuchen oder Familienfeiern wichtig. Möchtest du Spuren vermeiden, löschst du die Termine mit einem Klick auf „Alle Termine löschen“.</p>
+
+<h2>Häufige Fragen zum Kalender Generator</h2>
+<h3>Ist der Kalender Generator kostenlos?</h3>
+<p>Ja. Du kannst beliebig viele Kalender erstellen, drucken und exportieren, ohne Anmeldung und ohne Wasserzeichen.</p>
+<h3>Für welche Jahre kann ich einen Kalender erstellen?</h3>
+<p>Für alle Jahre von 1900 bis 2100. Beliebt sind aktuelle Jahre wie 2026 und 2027, aber auch historische Kalender, etwa für Ahnenforschung oder Geburtstagsrecherchen, lassen sich erzeugen.</p>
+<h3>Kann ich den Kalender auf dem Handy erstellen?</h3>
+<p>Ja, die Seite ist für Smartphones und Tablets optimiert. Auf kleinen Bildschirmen werden Beschriftungen kompakter dargestellt, der Export als PNG funktioniert ebenfalls.</p>
+<h3>Sind die Feiertage rechtlich verbindlich?</h3>
+<p>Die Angaben werden sorgfältig berechnet, erfolgen aber ohne Gewähr. Für verbindliche Auskünfte, etwa bei Arbeitsverträgen, prüfe die aktuellen Feiertagsgesetze deines Bundeslandes.</p>
+<h3>Wie bekomme ich die Feiertage in meinen Handykalender?</h3>
+<p>Klicke auf „Als ICS“, öffne die heruntergeladene Datei auf deinem Gerät oder importiere sie in Google Kalender oder Outlook. Anschließend erscheinen alle Feiertage und deine Termine des gewählten Jahres.</p>
+<p>Weitere Helfer für Zeit und Planung findest du oben unter „Passende Tools“ – zum Beispiel den Altersrechner, den Geburtstags Countdown oder den Wecker Online.</p>
+
+</article>
+</div>
+</main>
+<footer class="site-footer">
+  <div class="container">
+    <img src="/assets/images/logo-full.png" alt="Toolyfix">
+    <nav class="footer-links">
+      <a href="/ueber-uns.html">Über uns</a>
+      <a href="/datenschutz.html">Datenschutz</a>
+      <a href="/nutzungsbedingungen.html">Nutzungsbedingungen</a>
+      <a href="/kontakt.html">Kontakt</a>
+    </nav>
+    <p class="footer-note">© 2026 Toolyfix – Alle Tools laufen lokal in deinem Browser.</p>
+  </div>
+</footer>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script>
+function toast(m){var t=document.getElementById('toast');t.textContent=m;t.classList.add('on');clearTimeout(window._tt);window._tt=setTimeout(function(){t.classList.remove('on')},1800)}
+function copyText(s){if(navigator.clipboard&&window.isSecureContext){return navigator.clipboard.writeText(s).then(function(){toast('Kopiert')},function(){fb(s)})}fb(s)}
+function fb(s){var a=document.createElement('textarea');a.value=s;a.style.position='fixed';a.style.opacity='0';document.body.appendChild(a);a.select();try{document.execCommand('copy');toast('Kopiert')}catch(e){toast('Kopieren nicht möglich')}document.body.removeChild(a)}
+function dl(name,blob){var u=URL.createObjectURL(blob),a=document.createElement('a');a.href=u;a.download=name;document.body.appendChild(a);a.click();document.body.removeChild(a);setTimeout(function(){URL.revokeObjectURL(u)},4000)}
+
+var MN=['Januar','Februar','März','April','Mai','Juni','Juli','August','September','Oktober','November','Dezember'];
+var WD=['Mo','Di','Mi','Do','Fr','Sa','So'],DWL=['So','Mo','Di','Mi','Do','Fr','Sa'];
+var ST={BW:'Baden-Württemberg',BY:'Bayern',BE:'Berlin',BB:'Brandenburg',HB:'Bremen',HH:'Hamburg',HE:'Hessen',MV:'Mecklenburg-Vorpommern',NI:'Niedersachsen',NW:'Nordrhein-Westfalen',RP:'Rheinland-Pfalz',SL:'Saarland',SN:'Sachsen',ST:'Sachsen-Anhalt',SH:'Schleswig-Holstein',TH:'Thüringen'};
+function $(i){return document.getElementById(i)}
+function pad(n){return n<10?'0'+n:''+n}
+function key(y,m,d){return y+'-'+pad(m+1)+'-'+pad(d)}
+function esc(s){return String(s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+var now=new Date();
+var S={view:'month',y:now.getFullYear(),m:now.getMonth(),state:'',ws:'mo',color:'#1D3557',title:'',kw:true,hol:true,we:true};
+var EV=[];try{EV=JSON.parse(localStorage.getItem('tf_cal_ev')||'[]')}catch(e){EV=[]}
+function saveEV(){try{localStorage.setItem('tf_cal_ev',JSON.stringify(EV))}catch(e){}}
+MN.forEach(function(n,i){var o=document.createElement('option');o.value=i;o.textContent=n;$('month').appendChild(o)});
+Object.keys(ST).forEach(function(k){var o=document.createElement('option');o.value=k;o.textContent=ST[k];$('state').appendChild(o)});
+function easter(y){var a=y%19,b=Math.floor(y/100),c=y%100,d=Math.floor(b/4),e=b%4,f=Math.floor((b+8)/25),g=Math.floor((b-f+1)/3),h=(19*a+b-d-g+15)%30,i=Math.floor(c/4),k=c%4,l=(32+2*e+2*i-h-k)%7,m=Math.floor((a+11*h+22*l)/451),mo=Math.floor((h+l-7*m+114)/31),da=((h+l-7*m+114)%31)+1;return new Date(y,mo-1,da)}
+function isoWeek(d){var t=new Date(Date.UTC(d.getFullYear(),d.getMonth(),d.getDate()));var n=t.getUTCDay()||7;t.setUTCDate(t.getUTCDate()+4-n);var y0=new Date(Date.UTC(t.getUTCFullYear(),0,1));return Math.ceil(((t-y0)/864e5+1)/7)}
+var hc={};
+function holidays(y,st){
+ var ck=y+'|'+st;if(hc[ck])return hc[ck];
+ var e=easter(y),h={};
+ function add(d,n){h[key(d.getFullYear(),d.getMonth(),d.getDate())]=n}
+ function off(o){return new Date(e.getFullYear(),e.getMonth(),e.getDate()+o)}
+ function fx(m,d){return new Date(y,m-1,d)}
+ function is(l){return l.indexOf(st)>-1}
+ add(fx(1,1),'Neujahr');
+ if(is(['BW','BY','ST']))add(fx(1,6),'Heilige Drei Könige');
+ if((y>=2019&&is(['BE']))||(y>=2023&&is(['MV'])))add(fx(3,8),'Internationaler Frauentag');
+ add(off(-2),'Karfreitag');
+ if(is(['BB']))add(off(0),'Ostersonntag');
+ add(off(1),'Ostermontag');
+ add(fx(5,1),'Tag der Arbeit');
+ add(off(39),'Christi Himmelfahrt');
+ if(is(['BB']))add(off(49),'Pfingstsonntag');
+ add(off(50),'Pfingstmontag');
+ if(is(['BW','BY','HE','NW','RP','SL']))add(off(60),'Fronleichnam');
+ if(is(['SL']))add(fx(8,15),'Mariä Himmelfahrt');
+ if(y>=2019&&is(['TH']))add(fx(9,20),'Weltkindertag');
+ add(fx(10,3),'Tag der Deutschen Einheit');
+ var ref=['BB','MV','SN','ST','TH'];if(y>=2018)ref=ref.concat(['HB','HH','NI','SH']);
+ if(is(ref))add(fx(10,31),'Reformationstag');
+ if(is(['BW','BY','NW','RP','SL']))add(fx(11,1),'Allerheiligen');
+ if(is(['SN'])){var b=new Date(y,10,22);while(b.getDay()!==3)b.setDate(b.getDate()-1);add(b,'Buß- und Bettag')}
+ add(fx(12,25),'1. Weihnachtstag');add(fx(12,26),'2. Weihnachtstag');
+ hc[ck]=h;return h;
+}
+function names(){return S.ws==='mo'?WD:['So'].concat(WD.slice(0,6))}
+function monthHTML(y,m,mini){
+ var hol=S.hol?holidays(y,S.state):{};
+ var first=new Date(y,m,1),dim=new Date(y,m+1,0).getDate();
+ var off=S.ws==='mo'?(first.getDay()+6)%7:first.getDay();
+ var td=new Date(),tk=key(td.getFullYear(),td.getMonth(),td.getDate());
+ var h='<table class="cal'+(mini?' mini':'')+'"><thead><tr>'+(S.kw?'<th class="kw">KW</th>':'')+names().map(function(n){return'<th>'+n+'</th>'}).join('')+'</tr></thead><tbody>';
+ var rows=Math.ceil((off+dim)/7);
+ for(var r=0;r<rows;r++){
+  var mon=new Date(y,m,1-off+r*7+(S.ws==='mo'?0:1));
+  h+='<tr>'+(S.kw?'<td class="kw">'+isoWeek(mon)+'</td>':'');
+  for(var c=0;c<7;c++){
+   var d=r*7+c-off+1;
+   if(d<1||d>dim){h+='<td class="x"></td>';continue}
+   var k=key(y,m,d),wd=new Date(y,m,d).getDay(),cl=[];
+   if(S.we&&(wd===0||wd===6))cl.push('we');
+   if(hol[k])cl.push('hol');
+   if(k===tk)cl.push('today');
+   var ev=EV.filter(function(e){return e.d===k});
+   var inner='<span class="n">'+d+'</span>';
+   if(!mini){if(hol[k])inner+='<small class="hn">'+esc(hol[k])+'</small>';ev.forEach(function(e){inner+='<small class="en">'+esc(e.t)+'</small>'})}
+   else if(ev.length)inner+='<i class="dot"></i>';
+   h+='<td class="'+cl.join(' ')+'"'+(hol[k]?' title="'+esc(hol[k])+'"':'')+'>'+inner+'</td>';
+  }
+  h+='</tr>';
+ }
+ return h+'</tbody></table>';
+}
+function legend(y,m){
+ if(!S.hol)return'';
+ var hol=holidays(y,S.state),ks=Object.keys(hol).sort();
+ if(m!==null)ks=ks.filter(function(k){return+k.split('-')[1]===m+1});
+ if(!ks.length)return'<p class="lg" style="columns:1">Keine Feiertage in diesem Monat.</p>';
+ return'<ul class="lg">'+ks.map(function(k){var p=k.split('-'),dt=new Date(+p[0],+p[1]-1,+p[2]);return'<li><b>'+DWL[dt.getDay()]+', '+p[2]+'.'+p[1]+'.</b> '+esc(hol[k])+'</li>'}).join('')+'</ul>';
+}
+function render(){
+ var t=S.title?'<div class="ttl">'+esc(S.title)+'</div>':'',o;
+ if(S.view==='month')o=t+'<div class="mh">'+MN[S.m]+' '+S.y+'</div>'+monthHTML(S.y,S.m,false)+legend(S.y,S.m);
+ else o=t+'<div class="mh">Jahreskalender '+S.y+'</div><div class="ygrid">'+MN.map(function(n,i){return'<div><div class="mn">'+n+'</div>'+monthHTML(S.y,i,true)+'</div>'}).join('')+'</div>'+legend(S.y,null);
+ $('out').innerHTML=o;$('out').style.setProperty('--cal',S.color);
+ $('month').disabled=S.view==='year';
+ $('pg').textContent='@page{size:A4 '+(S.view==='month'?'landscape':'portrait')+';margin:10mm}';
+ var l=$('evl');l.innerHTML='';
+ EV.slice().sort(function(a,b){return a.d<b.d?-1:1}).forEach(function(e){
+  var li=document.createElement('li'),p=e.d.split('-');
+  li.innerHTML='<span><b>'+p[2]+'.'+p[1]+'.'+p[0]+'</b> – '+esc(e.t)+'</span>';
+  var b=document.createElement('button');b.type='button';b.textContent='Löschen';
+  b.onclick=function(){EV=EV.filter(function(x){return x!==e});saveEV();render()};
+  li.appendChild(b);l.appendChild(li);
+ });
+}
+function sync(){$('year').value=S.y;$('month').value=S.m;$('view').value=S.view}
+function step(n){if(S.view==='month'){S.m+=n;if(S.m<0){S.m=11;S.y--}if(S.m>11){S.m=0;S.y++}}else S.y+=n;sync();render()}
+$('prev').onclick=function(){step(-1)};$('next').onclick=function(){step(1)};
+$('today').onclick=function(){var n=new Date();S.y=n.getFullYear();S.m=n.getMonth();sync();render()};
+$('view').onchange=function(){S.view=this.value;render()};
+$('month').onchange=function(){S.m=+this.value;render()};
+$('year').oninput=function(){var v=parseInt(this.value,10);if(v>=1900&&v<=2100){S.y=v;render()}};
+$('state').onchange=function(){S.state=this.value;render()};
+$('ws').onchange=function(){S.ws=this.value;render()};
+$('color').oninput=function(){S.color=this.value;render()};
+$('title').oninput=function(){S.title=this.value.trim();render()};
+$('kw').onchange=function(){S.kw=this.checked;render()};
+$('hol').onchange=function(){S.hol=this.checked;render()};
+$('we').onchange=function(){S.we=this.checked;render()};
+$('evadd').onclick=function(){var d=$('evd').value,t=$('evt').value.trim();if(!d||!t){toast('Bitte Datum und Bezeichnung eintragen');return}EV.push({d:d,t:t});saveEV();$('evt').value='';render();toast('Termin gespeichert')};
+$('evclr').onclick=function(){if(EV.length&&confirm('Alle Termine löschen?')){EV=[];saveEV();render()}};
+$('print').onclick=function(){window.print()};
+function drawMonth(ctx,x,y,w,h,Y,M,big){
+ var hol=S.hol?holidays(Y,S.state):{},first=new Date(Y,M,1),dim=new Date(Y,M+1,0).getDate();
+ var off=S.ws==='mo'?(first.getDay()+6)%7:first.getDay(),ko=S.kw?1:0,cols=7+ko,cw=w/cols;
+ var hh=h*(big?0.09:0.13),wr=h*(big?0.05:0.08),rh=(h-hh-wr)/6;
+ ctx.fillStyle=S.color;ctx.fillRect(x,y,w,hh);
+ ctx.fillStyle='#fff';ctx.textAlign='center';ctx.textBaseline='middle';ctx.font='bold '+(hh*0.55)+'px Arial,sans-serif';
+ ctx.fillText(MN[M]+(big?' '+Y:''),x+w/2,y+hh/2);
+ ctx.font='bold '+(wr*0.5)+'px Arial,sans-serif';ctx.fillStyle='#555';
+ if(S.kw)ctx.fillText('KW',x+cw/2,y+hh+wr/2);
+ names().forEach(function(n,i){ctx.fillText(n,x+(i+ko+0.5)*cw,y+hh+wr/2)});
+ for(var r=0;r<6;r++){
+  if(S.kw&&r*7-off+1<=dim){var mon=new Date(Y,M,1-off+r*7+(S.ws==='mo'?0:1));ctx.fillStyle='#888';ctx.font=(rh*0.26)+'px Arial,sans-serif';ctx.textAlign='center';ctx.fillText(isoWeek(mon),x+cw/2,y+hh+wr+r*rh+rh/2)}
+ }
+ for(var d=1;d<=dim;d++){
+  var idx=off+d-1,r=Math.floor(idx/7),c=idx%7,cx=x+(c+ko)*cw,cy=y+hh+wr+r*rh,k=key(Y,M,d),wd=new Date(Y,M,d).getDay();
+  if(hol[k]){ctx.fillStyle='#fff1d6';ctx.fillRect(cx,cy,cw,rh)}else if(S.we&&(wd===0||wd===6)){ctx.fillStyle='#f3f3ee';ctx.fillRect(cx,cy,cw,rh)}
+  ctx.textAlign='left';ctx.textBaseline='top';ctx.fillStyle=hol[k]?'#b3261e':'#1A1A1A';ctx.font='bold '+(rh*(big?0.24:0.4))+'px Arial,sans-serif';
+  ctx.fillText(d,cx+cw*0.07,cy+rh*0.06);
+  if(big){
+   ctx.save();ctx.beginPath();ctx.rect(cx,cy,cw,rh);ctx.clip();ctx.font=(rh*0.12)+'px Arial,sans-serif';var ty=cy+rh*0.36;
+   if(hol[k]){ctx.fillStyle='#b3261e';ctx.fillText(hol[k],cx+cw*0.07,ty);ty+=rh*0.15}
+   ctx.fillStyle=S.color;EV.filter(function(e){return e.d===k}).forEach(function(e){ctx.fillText(e.t,cx+cw*0.07,ty);ty+=rh*0.15});
+   ctx.restore();
+  }
+ }
+ ctx.strokeStyle='#cfcfc6';ctx.lineWidth=Math.max(1,w/900);
+ for(var r2=0;r2<=6;r2++){ctx.beginPath();ctx.moveTo(x,y+hh+wr+r2*rh);ctx.lineTo(x+w,y+hh+wr+r2*rh);ctx.stroke()}
+ for(var c2=0;c2<=cols;c2++){ctx.beginPath();ctx.moveTo(x+c2*cw,y+hh+wr);ctx.lineTo(x+c2*cw,y+h);ctx.stroke()}
+}
+$('png').onclick=function(){
+ var cv=document.createElement('canvas'),ctx,tH=S.title?110:0;
+ if(S.view==='month'){cv.width=1800;cv.height=1300+tH;ctx=cv.getContext('2d');ctx.fillStyle='#fff';ctx.fillRect(0,0,cv.width,cv.height);drawMonth(ctx,40,40+tH,1720,1220,S.y,S.m,true)}
+ else{cv.width=2400;cv.height=2000+tH;ctx=cv.getContext('2d');ctx.fillStyle='#fff';ctx.fillRect(0,0,cv.width,cv.height);
+  ctx.fillStyle=S.color;ctx.font='bold 80px Arial,sans-serif';ctx.textAlign='center';ctx.textBaseline='middle';ctx.fillText('Kalender '+S.y,1200,80+tH/2);
+  var mw=(2400-40*5)/4,mh=(1900-140-40*2)/3;
+  for(var i=0;i<12;i++)drawMonth(ctx,40+(i%4)*(mw+40),tH+140+Math.floor(i/4)*(mh+40),mw,mh,S.y,i,false)}
+ if(S.title){ctx.fillStyle='#333';ctx.font='bold 56px Arial,sans-serif';ctx.textAlign='center';ctx.textBaseline='middle';ctx.fillText(S.title,cv.width/2,55)}
+ cv.toBlob(function(b){dl('kalender-'+S.y+(S.view==='month'?'-'+pad(S.m+1):'')+'-toolyfix.png',b);toast('PNG wird heruntergeladen')},'image/png');
+};
+$('ics').onclick=function(){
+ var L=['BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//Toolyfix//Kalender//DE','CALSCALE:GREGORIAN'],n=0;
+ function ev(k,t){var p=k.split('-'),nx=new Date(+p[0],+p[1]-1,+p[2]+1);var e=nx.getFullYear()+pad(nx.getMonth()+1)+pad(nx.getDate());
+  L.push('BEGIN:VEVENT','UID:'+k+'-'+(n++)+'@toolyfix.de','DTSTAMP:'+new Date().toISOString().replace(/[-:]/g,'').replace(/\.\d+/,''),'DTSTART;VALUE=DATE:'+p.join(''),'DTEND;VALUE=DATE:'+e,'SUMMARY:'+t.replace(/([,;\\])/g,'\\$1'),'END:VEVENT')}
+ if(S.hol){var h=holidays(S.y,S.state);Object.keys(h).sort().forEach(function(k){ev(k,h[k])})}
+ EV.filter(function(e){return e.d.indexOf(S.y+'-')===0}).forEach(function(e){ev(e.d,e.t)});
+ L.push('END:VCALENDAR');
+ dl('kalender-'+S.y+'-toolyfix.ics',new Blob([L.join('\r\n')],{type:'text/calendar'}));toast('ICS-Datei erstellt');
+};
+sync();render();
+
+</script>
+</body>
+</html>

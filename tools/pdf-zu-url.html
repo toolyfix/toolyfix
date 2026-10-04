@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PDF zu URL – PDF in Link, Data-URI & Einbettungs-Code umwandeln | Toolyfix</title>
+<meta name="description" content="PDF zu URL: PDF in Blob-Link, Base64-Data-URI, iframe-Code oder eigenständige HTML-Seite umwandeln. Mit Dateiname-Bereinigung und Google-Drive-Link-Konverter. Kostenlos, ohne Upload.">
+<link rel="canonical" href="https://toolyfix.de/tools/pdf-zu-url">
+<meta property="og:type" content="website">
+<meta property="og:title" content="PDF zu URL – PDF in Link, Data-URI & Einbettungs-Code umwandeln | Toolyfix">
+<meta property="og:description" content="PDF zu URL: PDF in Blob-Link, Base64-Data-URI, iframe-Code oder eigenständige HTML-Seite umwandeln. Mit Dateiname-Bereinigung und Google-Drive-Link-Konverter. Kostenlos, ohne Upload.">
+<meta property="og:url" content="https://toolyfix.de/tools/pdf-zu-url">
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="stylesheet" href="/assets/style.css">
+<style>
+:root{--bg:#F7F7F4;--ink:#1A1A1A;--blue:#1D3557;--amber:#E9A93B;--line:#dcdcd2;--card:#fff;--mut:#5b6470;--bad:#b3261e;--ok:#1f7a45}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{background:var(--bg);color:var(--ink);margin:0;font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;line-height:1.6}
+.tf-wrap{max-width:1000px;margin:0 auto;padding:22px 16px 56px}
+.tf-wrap h1{font-size:clamp(1.6rem,4.4vw,2.3rem);line-height:1.15;margin:.2em 0 .3em;color:var(--blue)}
+.tf-intro{color:var(--mut);margin:0 0 14px;max-width:70ch}
+.tf-related{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:0 0 18px;padding:10px 12px;background:#fff;border:1px solid var(--line);border-radius:10px;font-size:.92rem}
+.tf-related b{color:var(--blue);margin-right:4px}
+.tf-related a{color:var(--blue);background:#eef1f6;border-radius:999px;padding:4px 12px;text-decoration:none;font-weight:500}
+.tf-related a:hover,.tf-related a:focus-visible{background:var(--blue);color:#fff;outline:none}
+.tf-card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px;margin-bottom:16px}
+.tf-card h2{font-size:1.05rem;margin:0 0 10px;color:var(--blue)}
+.tf-grid{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(170px,1fr))}
+.tf-wrap label{display:block;font-size:.82rem;font-weight:600;margin:0 0 4px;color:#333}
+.tf-wrap input[type=text],.tf-wrap input[type=number],.tf-wrap input[type=date],.tf-wrap select,.tf-wrap textarea{width:100%;padding:9px 10px;border:1px solid #c9c9bf;border-radius:8px;font:inherit;background:#fff;color:var(--ink)}
+.tf-wrap input[type=color]{width:100%;height:40px;border:1px solid #c9c9bf;border-radius:8px;padding:2px;background:#fff}
+.tf-wrap textarea{min-height:130px;resize:vertical}
+.tf-wrap input:focus-visible,.tf-wrap select:focus-visible,.tf-wrap textarea:focus-visible,.btn:focus-visible{outline:3px solid var(--amber);outline-offset:1px}
+.btn{font:inherit;font-weight:600;padding:9px 16px;border-radius:8px;border:1px solid var(--blue);background:#fff;color:var(--blue);cursor:pointer}
+.btn:hover{background:#eef1f6}
+.btn.pri{background:var(--blue);color:#fff}
+.btn.pri:hover{background:#16294a}
+.btn.amb{background:var(--amber);border-color:var(--amber);color:#1A1A1A}
+.btn[disabled]{opacity:.5;cursor:not-allowed}
+.tf-btns{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.chk{display:flex;gap:8px;align-items:center;font-weight:500;font-size:.92rem;margin:6px 0}
+.chk input{width:18px;height:18px}
+.tf-article{margin-top:34px;background:#fff;border:1px solid var(--line);border-radius:12px;padding:22px 20px}
+.tf-article h2{color:var(--blue);font-size:1.4rem;margin:1.4em 0 .4em;line-height:1.25}
+.tf-article h2:first-child{margin-top:0}
+.tf-article h3{font-size:1.1rem;margin:1.1em 0 .3em}
+.tf-article p,.tf-article li{max-width:75ch}
+.tf-article table{border-collapse:collapse;width:100%;font-size:.92rem;display:block;overflow-x:auto}
+.tf-article th,.tf-article td{border:1px solid var(--line);padding:6px 10px;text-align:left}
+.tf-article th{background:#eef1f6}
+.toast{position:fixed;left:50%;bottom:22px;transform:translateX(-50%);background:var(--blue);color:#fff;padding:9px 18px;border-radius:999px;font-size:.9rem;opacity:0;pointer-events:none;transition:opacity .2s;z-index:50}
+.toast.on{opacity:1}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+@media print{.site-header,.site-footer,.tf-related,.tf-intro,.tf-wrap>h1,.tf-article,.tf-noprint,.toast{display:none!important}body{background:#fff}.tf-wrap{padding:0;max-width:none}}
+
+.drop{border:2px dashed #9fb0c8;border-radius:12px;padding:30px 16px;text-align:center;background:#f9fafc;cursor:pointer}
+.drop.on{border-color:var(--amber);background:#fff8e8}
+.drop b{color:var(--blue)}
+.info{display:grid;gap:10px;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));margin-top:14px}
+.info div{background:#f4f6fa;border-radius:10px;padding:10px 12px}
+.info b{display:block;color:var(--blue);word-break:break-all}
+.info span{font-size:.78rem;color:var(--mut)}
+.out{width:100%;min-height:90px;font-family:ui-monospace,Menlo,Consolas,monospace;font-size:.82rem;word-break:break-all}
+.warn{background:#fff6dd;border:1px solid #f0d58a;border-radius:8px;padding:9px 12px;font-size:.88rem;margin:8px 0}
+.note{font-size:.86rem;color:var(--mut);margin:6px 0 0}
+#prev{width:100%;height:480px;border:1px solid var(--line);border-radius:8px;background:#fff}
+.hid{display:none}
+@media(max-width:640px){#prev{height:360px}}
+</style>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-F9VY193ZMP"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-F9VY193ZMP');</script>
+</head>
+<body>
+<header class="site-header">
+  <div class="container">
+    <a href="/" class="logo-link"><img src="/assets/images/logo-full.png" alt="Toolyfix"></a>
+    <span class="header-tagline">Kostenlose Tools, direkt im Browser</span>
+  </div>
+</header>
+<main>
+<div class="tf-wrap">
+<h1>PDF zu URL</h1>
+<p class="tf-intro">Wandle eine PDF-Datei direkt im Browser in einen Vorschau-Link, eine Base64-Data-URI, Einbettungs-Code oder eine eigenständige HTML-Seite um – ohne dass deine Datei auf einen Server hochgeladen wird.</p>
+<nav class="tf-related" aria-label="Passende Tools"><b>Passende Tools:</b><a href="/tools/base64-kodieren-dekodieren">Base64 Kodieren &amp; Dekodieren</a><a href="/tools/dateien-umbenennen">Dateien Umbenennen</a><a href="/tools/slug-generator">Slug Generator</a><a href="/tools/bild-komprimieren">Bilder Komprimieren</a></nav>
+
+<section class="tf-card">
+<h2>1. PDF auswählen</h2>
+<div class="drop" id="drop" tabindex="0" role="button" aria-label="PDF-Datei auswählen"><b>PDF hierher ziehen</b> oder klicken zum Auswählen<br><small>Die Datei bleibt auf deinem Gerät und wird nicht hochgeladen.</small></div>
+<input type="file" id="file" accept="application/pdf,.pdf" class="hid">
+<div id="msg"></div>
+<div class="info hid" id="info"></div>
+</section>
+<div id="work" class="hid">
+<section class="tf-card">
+<h2>2. Vorschau</h2>
+<iframe id="prev" title="PDF-Vorschau"></iframe>
+<div class="tf-btns"><button class="btn pri" id="open" type="button">In neuem Tab öffnen</button><button class="btn" id="clr" type="button">Andere PDF wählen</button></div>
+</section>
+<section class="tf-card">
+<h2>3. Dateiname bereinigen (empfohlen für Links)</h2>
+<div class="tf-grid"><div><label for="fn">Dateiname ohne Endung</label><input type="text" id="fn"></div></div>
+<p class="note">Umlaute werden zu ae, oe, ue, Leerzeichen zu Bindestrichen. Das ergibt saubere Links ohne %20 und Sonderzeichen.</p>
+<div class="tf-btns"><button class="btn amb" id="dlr" type="button">PDF mit neuem Namen speichern</button></div>
+</section>
+<section class="tf-card">
+<h2>4. Link und Code erzeugen</h2>
+<label for="blob">Lokaler Blob-Link (nur in diesem Browser-Tab gültig)</label>
+<textarea class="out" id="blob" readonly></textarea>
+<div class="tf-btns"><button class="btn" data-c="blob" type="button">Blob-Link kopieren</button></div>
+<hr style="border:0;border-top:1px solid var(--line);margin:16px 0">
+<label for="duri">Base64-Data-URI (steckt die ganze PDF im Link)</label>
+<div id="dwarn"></div>
+<textarea class="out" id="duri" readonly></textarea>
+<div class="tf-btns"><button class="btn" data-c="duri" type="button">Data-URI kopieren</button><button class="btn" id="b64" type="button">Nur Base64 kopieren</button></div>
+<hr style="border:0;border-top:1px solid var(--line);margin:16px 0">
+<label for="url">Ziel-URL nach dem Hochladen (optional)</label>
+<input type="text" id="url" placeholder="https://deine-domain.de/pdf/dateiname.pdf">
+<div class="tf-grid" style="margin-top:10px"><div><label for="h">Höhe der Einbettung (px)</label><input type="number" id="h" value="600" min="200" max="2000"></div></div>
+<label for="snip" style="margin-top:12px">Code zum Einbetten</label>
+<select id="kind" style="margin-bottom:8px"><option value="iframe">iframe</option><option value="object">object</option><option value="a">Download-Link (HTML)</option><option value="md">Markdown-Link</option></select>
+<textarea class="out" id="snip" readonly></textarea>
+<div class="tf-btns"><button class="btn" data-c="snip" type="button">Code kopieren</button></div>
+<p class="note">Ohne Ziel-URL verwendet der Code die Data-URI und funktioniert eingebettet auch ohne eigenen Webspace, solange die PDF klein ist.</p>
+</section>
+<section class="tf-card">
+<h2>5. Eigenständige HTML-Seite</h2>
+<p class="note" style="margin:0 0 8px">Erzeugt eine einzelne HTML-Datei, in der die PDF bereits steckt. Lade sie auf deinen Webspace, zum Beispiel in dein GitHub-Repository, und du erhältst einen echten öffentlichen Link.</p>
+<div class="tf-grid"><div><label for="pt">Seitentitel</label><input type="text" id="pt" maxlength="80"></div></div>
+<div class="tf-btns"><button class="btn pri" id="html" type="button">HTML-Seite herunterladen</button></div>
+</section>
+</div>
+<section class="tf-card">
+<h2>Link von Google Drive oder Dropbox umwandeln</h2>
+<label for="share">Freigabelink einfügen</label>
+<input type="text" id="share" placeholder="https://drive.google.com/file/d/…/view oder Dropbox-Link">
+<div class="tf-btns"><button class="btn" id="conv" type="button">Umwandeln</button></div>
+<div id="convout"></div>
+</section>
+
+<article class="tf-article">
+
+<h2>PDF zu URL: So machst du aus einer PDF-Datei einen Link</h2>
+<p>Du hast eine PDF-Datei – eine Speisekarte, eine Preisliste, ein Handbuch, eine Bewerbung oder einen Flyer – und möchtest sie als Link teilen, auf einer Webseite einbetten oder in einer Nachricht verschicken. Genau dafür suchen viele nach „PDF zu URL“ oder „PDF in Link umwandeln“. Die Wahrheit ist: Ein öffentlich erreichbarer Link entsteht erst, wenn die Datei irgendwo im Internet liegt. Ein reines Browser-Tool kann keine Dateien auf einem fremden Server veröffentlichen, ohne dass du sie hochlädst. Dafür bietet dir das Toolyfix-Tool PDF zu URL alles, was du vorher und danach brauchst: eine sofortige Vorschau-URL, eine Base64-Data-URI, fertigen Einbettungs-Code, eine eigenständige HTML-Seite, saubere Dateinamen und einen Konverter für Google-Drive- und Dropbox-Links.</p>
+<p>Wichtig für den Datenschutz: Deine PDF wird dabei nicht auf Toolyfix-Server geladen. Alles passiert im Arbeitsspeicher deines Browsers. Gerade bei Verträgen, Rechnungen oder Zeugnissen ist das ein echter Vorteil.</p>
+
+<h2>Was ist eine URL und welche Arten von PDF-Links gibt es?</h2>
+<p>Eine URL ist die Adresse einer Ressource im Netz. Für PDF-Dateien begegnen dir vier Varianten, und es lohnt sich, sie zu unterscheiden:</p>
+<ul>
+<li><b>Öffentliche URL:</b> Die PDF liegt auf einem Webserver, zum Beispiel unter https://deine-seite.de/pdf/preisliste.pdf. Jeder mit dem Link kann sie öffnen. Das ist das, was die meisten meinen.</li>
+<li><b>Blob-URL:</b> Ein temporärer Link, den der Browser für eine lokal geladene Datei erzeugt. Er beginnt mit „blob:“ und funktioniert nur in dem Tab, in dem du ihn erzeugt hast. Ideal zum Testen und zur Vorschau, aber nicht zum Teilen.</li>
+<li><b>Data-URI:</b> Die komplette PDF wird als Base64-Text in die Adresse geschrieben („data:application/pdf;base64,…“). Sie funktioniert überall, wo sie eingefügt wird, und braucht keinen Server. Dafür wird sie sehr lang.</li>
+<li><b>Freigabelink eines Cloud-Dienstes:</b> Google Drive, Dropbox oder OneDrive liefern einen Link, der aber oft auf eine Webseite statt direkt auf die PDF führt.</li>
+</ul>
+
+<h2>Die Funktionen von PDF zu URL im Detail</h2>
+<h3>1. Sofortige Vorschau und Datei-Check</h3>
+<p>Nach dem Laden prüft das Tool, ob die Datei wirklich eine PDF ist, und zeigt Name, Größe, Version, die ungefähre Seitenzahl und ob sie verschlüsselt ist. Die Seitenzahl wird aus der Dateistruktur geschätzt. Bei manchen Dateien mit komprimierten Strukturen kann sie abweichen oder nicht ermittelbar sein. Darunter siehst du die PDF in einer eingebetteten Vorschau und kannst sie in einem neuen Tab öffnen.</p>
+<h3>2. Dateiname bereinigen</h3>
+<p>Dateinamen mit Leerzeichen, Umlauten oder Sonderzeichen führen in URLs zu unschönen Ergebnissen wie „Preisliste%20M%C3%A4rz.pdf“. Das Tool wandelt den Namen in eine saubere, kleingeschriebene Form um: Umlaute werden zu ae, oe und ue, das ß zu ss, und Leerzeichen werden zu Bindestrichen. Aus „Preisliste März 2026.pdf“ wird „preisliste-maerz-2026.pdf“. Solche Namen sind besser lesbar, funktionieren auf jedem Server und gelten auch aus SEO-Sicht als vorteilhaft.</p>
+<h3>3. Blob-Link und Base64-Data-URI</h3>
+<p>Der Blob-Link eignet sich zum schnellen Test. Die Data-URI kannst du kopieren und in HTML-Code einsetzen, zum Beispiel für kleine PDFs in Newslettern, Tests oder Prototypen. Beachte dabei: Viele Browser blockieren seit einigen Jahren das direkte Öffnen von Data-URIs in der Adressleiste, um Phishing zu erschweren. Als Quelle für einen iframe oder ein Objekt-Element auf einer Seite funktionieren sie dagegen zuverlässig. Das Tool warnt dich, wenn die Data-URI sehr lang wird.</p>
+<h3>4. Einbettungs-Code für iframe, object, Link und Markdown</h3>
+<p>Trage optional die Ziel-URL ein, unter der du die PDF später veröffentlichen willst, und das Tool erzeugt den passenden Code: einen iframe mit einstellbarer Höhe, ein object-Element mit Download-Fallback, einen einfachen HTML-Link oder einen Markdown-Link. Ohne Ziel-URL verwendet der Code die Data-URI, sodass du sofort testen kannst.</p>
+<h3>5. Eigenständige HTML-Seite</h3>
+<p>Mit einem Klick erzeugst du eine einzelne HTML-Datei, in der die PDF bereits steckt. Du lädst sie einfach auf deinen Webspace oder in dein GitHub-Repository hoch und erhältst eine öffentliche Seite, die die PDF direkt anzeigt. Das ist besonders praktisch, wenn du noch keine eigene Dateiablage hast, aber trotzdem schnell einen Link brauchst.</p>
+<h3>6. Konverter für Google Drive und Dropbox</h3>
+<p>Freigabelinks führen oft auf eine Vorschauseite statt auf die Datei. Das Tool wandelt Google-Drive-Links in eine Einbettungs-URL und in einen direkten Download-Link um. Bei Dropbox ersetzt es die Parameter so, dass der Link entweder direkt herunterlädt oder die Datei im Browser anzeigt. Voraussetzung ist, dass die Datei in deinem Konto für alle mit dem Link freigegeben ist.</p>
+
+<h2>PDF online stellen: Der Weg zum echten öffentlichen Link</h2>
+<p>Für einen dauerhaften, öffentlichen Link brauchst du einen Ort, der Dateien ausliefert. Typische Möglichkeiten:</p>
+<ul>
+<li><b>Eigener Webspace oder eigene Domain:</b> Lege einen Ordner „pdf“ an, lade die bereinigte Datei hoch, und die URL lautet zum Beispiel https://deine-domain.de/pdf/preisliste.pdf. Das ist die sauberste Lösung, weil Adresse und Marke zusammenpassen.</li>
+<li><b>GitHub mit Cloudflare Pages oder GitHub Pages:</b> Wer seine Webseite bereits darüber betreibt, legt die PDF in einen Ordner des Repositorys. Nach dem automatischen Neuaufbau ist sie unter der eigenen Domain erreichbar.</li>
+<li><b>Cloud-Speicher mit Freigabelink:</b> Google Drive, Dropbox oder OneDrive sind schnell eingerichtet. Mit dem Konverter in diesem Tool erhältst du daraus Einbettungs- und Download-Links.</li>
+<li><b>Website-Baukasten:</b> Viele Baukästen bieten einen Medienbereich, in dem du PDFs hochladen und verlinken kannst.</li>
+</ul>
+<p>Achte bei allen Varianten darauf, wer die Datei sehen darf. Vertrauliche Dokumente gehören nicht auf öffentliche Server.</p>
+
+<h2>Typische Probleme und Lösungen</h2>
+<h3>Der Link öffnet sich bei anderen nicht</h3>
+<p>Das ist bei Blob-Links normal, denn sie existieren nur in deinem Browser-Tab. Für andere brauchst du eine öffentliche URL auf einem Server oder einen Cloud-Freigabelink.</p>
+<h3>Die Data-URI lässt sich in der Adressleiste nicht öffnen</h3>
+<p>Browser blockieren die Navigation zu Data-URIs oft. Nutze die Adresse als Quelle für einen iframe, lade die eigenständige HTML-Seite hoch oder veröffentliche die PDF auf deinem Webspace.</p>
+<h3>Die PDF wird im iframe nicht angezeigt</h3>
+<p>Einige mobile Browser, besonders unter iOS, zeigen eingebettete PDFs nur als erste Seite oder gar nicht an. Ergänze deshalb immer einen sichtbaren Download-Link. Das object-Element im Tool enthält bereits einen solchen Fallback.</p>
+<h3>Mein Dateiname enthält Sonderzeichen</h3>
+<p>Nutze die Namensbereinigung. Leerzeichen und Umlaute können je nach Server und Mailprogramm zu kaputten Links führen.</p>
+<h3>Die Datei ist sehr groß</h3>
+<p>Große PDFs machen Data-URIs und eigenständige HTML-Seiten unhandlich, weil Base64 die Datenmenge um etwa ein Drittel erhöht. Verkleinere die Datei zuvor oder lade sie direkt auf den Server. Bilder in der PDF lassen sich vorab mit dem Bilder-Komprimieren-Tool verkleinern.</p>
+<h3>Meine PDF ist passwortgeschützt</h3>
+<p>Das Tool zeigt an, dass die Datei verschlüsselt ist. Die Vorschau kann dann nach dem Passwort fragen. Beachte, dass ein Link auf eine geschützte PDF das Passwort nicht ersetzt, sondern der Empfänger es trotzdem benötigt.</p>
+
+<h2>Tipps für PDFs im Web</h2>
+<ul>
+<li><b>Gute Dateinamen:</b> Kurz, beschreibend, klein geschrieben, mit Bindestrichen. Das hilft Menschen und Suchmaschinen.</li>
+<li><b>Dateigröße:</b> Halte PDFs möglichst unter wenigen Megabyte, damit sie mobil schnell laden.</li>
+<li><b>Linktext:</b> Schreibe „Preisliste als PDF herunterladen (1,2 MB)“ statt „Hier klicken“. Das ist verständlich und barrierearm.</li>
+<li><b>Aktualität:</b> Wenn du die PDF ersetzt, behalte den Dateinamen bei, damit bestehende Links weiter funktionieren.</li>
+<li><b>Datenschutz:</b> Entferne vor der Veröffentlichung Metadaten und personenbezogene Daten, die nicht öffentlich sein sollen.</li>
+</ul>
+
+<h2>Datenschutz bei der Nutzung</h2>
+<p>Die Verarbeitung erfolgt vollständig lokal: Die Datei wird im Browser gelesen, in Base64 umgewandelt und als temporärer Link bereitgestellt. Es findet kein Upload zu Toolyfix statt. Sobald du die Seite schließt oder eine andere Datei wählst, verschwinden die temporären Daten. Für die Weiterverwendung der erzeugten Codes und Seiten bist du selbst verantwortlich, besonders wenn du Dokumente mit personenbezogenen Daten veröffentlichst.</p>
+
+<h2>Häufige Fragen zu PDF zu URL</h2>
+<h3>Wird meine PDF auf einen Server hochgeladen?</h3>
+<p>Nein. Alle Schritte laufen im Browser. Für einen öffentlichen Link musst du die Datei selbst auf einen Server oder in einen Cloud-Speicher legen.</p>
+<h3>Kann ich damit einen kostenlosen Link zum Teilen erhalten?</h3>
+<p>Für einen Link, den andere öffnen können, brauchst du einen Ort im Netz. Mit der eigenständigen HTML-Seite oder dem Drive- und Dropbox-Konverter kommst du schnell dorthin.</p>
+<h3>Wie groß darf die PDF sein?</h3>
+<p>Das Tool begrenzt die Größe nicht künstlich. Praktisch hängt es von deinem Gerät ab. Für Data-URIs und HTML-Seiten empfehlen sich kleine Dateien unter wenigen Megabyte.</p>
+<h3>Was ist der Unterschied zwischen Data-URI und Base64?</h3>
+<p>Base64 ist die Textdarstellung der Datei. Die Data-URI ergänzt diesen Text um die Angabe des Dateityps, damit der Browser ihn als PDF erkennt. Beides kannst du im Tool getrennt kopieren, und mit dem Base64-Tool von Toolyfix lässt sich der Text wieder in eine Datei zurückverwandeln.</p>
+<h3>Funktioniert das auf dem Smartphone?</h3>
+<p>Ja. Die Dateiauswahl funktioniert mobil, die Vorschau hängt vom Browser ab. Kopieren und Herunterladen sind auch auf Smartphones möglich.</p>
+<p>Weitere Helfer für Dateien und Links findest du oben unter „Passende Tools“, etwa den Base64 Kodierer, den Slug Generator oder das Tool zum Dateien Umbenennen.</p>
+
+</article>
+</div>
+</main>
+<footer class="site-footer">
+  <div class="container">
+    <img src="/assets/images/logo-full.png" alt="Toolyfix">
+    <nav class="footer-links">
+      <a href="/ueber-uns.html">Über uns</a>
+      <a href="/datenschutz.html">Datenschutz</a>
+      <a href="/nutzungsbedingungen.html">Nutzungsbedingungen</a>
+      <a href="/kontakt.html">Kontakt</a>
+    </nav>
+    <p class="footer-note">© 2026 Toolyfix – Alle Tools laufen lokal in deinem Browser.</p>
+  </div>
+</footer>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script>
+function toast(m){var t=document.getElementById('toast');t.textContent=m;t.classList.add('on');clearTimeout(window._tt);window._tt=setTimeout(function(){t.classList.remove('on')},1800)}
+function copyText(s){if(navigator.clipboard&&window.isSecureContext){return navigator.clipboard.writeText(s).then(function(){toast('Kopiert')},function(){fb(s)})}fb(s)}
+function fb(s){var a=document.createElement('textarea');a.value=s;a.style.position='fixed';a.style.opacity='0';document.body.appendChild(a);a.select();try{document.execCommand('copy');toast('Kopiert')}catch(e){toast('Kopieren nicht möglich')}document.body.removeChild(a)}
+function dl(name,blob){var u=URL.createObjectURL(blob),a=document.createElement('a');a.href=u;a.download=name;document.body.appendChild(a);a.click();document.body.removeChild(a);setTimeout(function(){URL.revokeObjectURL(u)},4000)}
+
+function $(i){return document.getElementById(i)}
+function esc(s){return String(s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+var F=null,BU='',DU='',B64='';
+function slug(s){return s.toLowerCase().replace(/ä/g,'ae').replace(/ö/g,'oe').replace(/ü/g,'ue').replace(/ß/g,'ss').replace(/[^a-z0-9]+/g,'-').replace(/^-+|-+$/g,'')||'dokument'}
+function sz(n){return n<1024?n+' Byte':n<1048576?(n/1024).toFixed(1)+' KB':(n/1048576).toFixed(2)+' MB'}
+function show(m){$('msg').innerHTML=m?'<div class="warn">'+m+'</div>':''}
+function reset(){if(BU)URL.revokeObjectURL(BU);F=null;BU=DU=B64='';$('work').classList.add('hid');$('info').classList.add('hid');$('prev').removeAttribute('src');$('file').value='';show('')}
+function load(f){
+ if(!f)return;
+ if(f.type!=='application/pdf'&&!/\.pdf$/i.test(f.name)){show('Das ist keine PDF-Datei. Bitte wähle eine Datei mit der Endung .pdf.');return}
+ reset();F=f;
+ var fr=new FileReader();
+ fr.onload=function(){
+  var buf=fr.result,head=new Uint8Array(buf.slice(0,5)),hs=String.fromCharCode.apply(null,head);
+  if(hs.indexOf('%PDF')!==0){show('Die Datei beginnt nicht mit einem PDF-Kopf und ist möglicherweise beschädigt oder falsch benannt.');F=null;return}
+  var txt=new TextDecoder('latin1').decode(buf),pages=(txt.match(/\/Type\s*\/Page[^s]/g)||[]).length,ver=(txt.match(/^%PDF-(\d\.\d)/)||[])[1]||'?',enc=/\/Encrypt\b/.test(txt);
+  BU=URL.createObjectURL(new Blob([buf],{type:'application/pdf'}));
+  var bytes=new Uint8Array(buf),bin='',ch=0x8000;
+  for(var i=0;i<bytes.length;i+=ch)bin+=String.fromCharCode.apply(null,bytes.subarray(i,i+ch));
+  B64=btoa(bin);DU='data:application/pdf;base64,'+B64;
+  $('info').innerHTML=[[esc(f.name),'Dateiname'],[sz(f.size),'Dateigröße'],[pages?'ca. '+pages:'nicht ermittelbar','Seiten'],['PDF '+ver,'Version'],[enc?'Ja':'Nein','Verschlüsselt'],[sz(DU.length),'Größe als Data-URI']].map(function(x){return'<div><b>'+x[0]+'</b><span>'+x[1]+'</span></div>'}).join('');
+  $('info').classList.remove('hid');$('work').classList.remove('hid');
+  var base=f.name.replace(/\.pdf$/i,'');$('fn').value=slug(base);$('pt').value=base;
+  $('prev').src=BU;$('blob').value=BU;$('duri').value=DU.length>200000?DU.slice(0,200000)+'… (Anzeige gekürzt, Kopieren liefert den vollständigen Wert)':DU;
+  $('dwarn').innerHTML=DU.length>2000000?'<div class="warn">Diese Data-URI ist sehr lang ('+sz(DU.length)+'). Browser blockieren das Öffnen so langer Adressen oft. Nutze besser die HTML-Seite oder lade die PDF auf deinen Webspace.</div>':(DU.length>200000?'<div class="warn">Lange Data-URI: Zum Einbetten geeignet, aber nicht zum Eintippen in die Adressleiste.</div>':'');
+  snip();
+ };
+ fr.onerror=function(){show('Die Datei konnte nicht gelesen werden.')};
+ fr.readAsArrayBuffer(f);
+}
+function snip(){
+ if(!F)return;
+ var u=$('url').value.trim(),src=u||DU,h=parseInt($('h').value,10)||600,k=$('kind').value,n=esc($('pt').value||'PDF');
+ var s={iframe:'<iframe src="'+src+'" width="100%" height="'+h+'" style="border:0" title="'+n+'"></iframe>',
+ object:'<object data="'+src+'" type="application/pdf" width="100%" height="'+h+'"><a href="'+src+'">PDF herunterladen</a></object>',
+ a:'<a href="'+src+'"'+(u?'':' download="'+slug(F.name.replace(/\.pdf$/i,''))+'.pdf"')+'>'+n+' (PDF)</a>',
+ md:'['+($('pt').value||'PDF')+']('+(u||'DATEI-URL-EINTRAGEN')+')'};
+ $('snip').value=s[k];
+}
+['url','h','kind','pt'].forEach(function(i){$(i).addEventListener('input',snip)});
+var dz=$('drop');
+dz.onclick=function(){$('file').click()};
+dz.onkeydown=function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();$('file').click()}};
+$('file').onchange=function(){load(this.files[0])};
+['dragenter','dragover'].forEach(function(ev){dz.addEventListener(ev,function(e){e.preventDefault();dz.classList.add('on')})});
+['dragleave','drop'].forEach(function(ev){dz.addEventListener(ev,function(e){e.preventDefault();dz.classList.remove('on')})});
+dz.addEventListener('drop',function(e){load(e.dataTransfer.files[0])});
+$('clr').onclick=reset;
+$('open').onclick=function(){if(BU)window.open(BU,'_blank')};
+$('dlr').onclick=function(){if(F)dl((slug($('fn').value)||'dokument')+'.pdf',F);toast('PDF wird gespeichert')};
+document.querySelectorAll('[data-c]').forEach(function(b){b.onclick=function(){var id=b.dataset.c;copyText(id==='duri'?DU:$(id).value)}});
+$('b64').onclick=function(){if(B64)copyText(B64)};
+$('html').onclick=function(){
+ if(!F)return;
+ var t=esc($('pt').value||'PDF'),h='<!DOCTYPE html>\n<html lang="de">\n<head>\n<meta charset="UTF-8">\n<meta name="viewport" content="width=device-width, initial-scale=1">\n<title>'+t+'</title>\n<style>html,body{height:100%;margin:0}iframe{border:0;width:100%;height:100%}</style>\n</head>\n<body>\n<iframe src="'+DU+'" title="'+t+'"></iframe>\n</body>\n</html>\n';
+ dl((slug($('fn').value)||'dokument')+'.html',new Blob([h],{type:'text/html'}));toast('HTML-Seite erstellt');
+};
+$('conv').onclick=function(){
+ var u=$('share').value.trim(),o='',m;
+ if((m=u.match(/drive\.google\.com\/file\/d\/([\w-]+)/))||(m=u.match(/[?&]id=([\w-]+)/))&&/google\.com/.test(u)){
+  var id=m[1];
+  o=[['Vorschau / Einbettung','https://drive.google.com/file/d/'+id+'/preview'],['Direkter Download','https://drive.google.com/uc?export=download&id='+id]].map(function(x){return'<label style="margin-top:10px">'+x[0]+'</label><input type="text" readonly value="'+esc(x[1])+'" onclick="this.select()">'}).join('')+'<p class="note">Die Datei muss in Google Drive für „Jeder mit dem Link“ freigegeben sein.</p>';
+ }else if(/dropbox\.com/.test(u)){
+  var base=u.replace(/[?&]dl=\d/,'').replace(/[?&]raw=1/,''),sep=base.indexOf('?')>-1?'&':'?';
+  o=[['Direkter Download','https://'+base.replace(/^https?:\/\//,'')+sep+'dl=1'],['Direkt im Browser anzeigen','https://'+base.replace(/^https?:\/\//,'')+sep+'raw=1']].map(function(x){return'<label style="margin-top:10px">'+x[0]+'</label><input type="text" readonly value="'+esc(x[1])+'" onclick="this.select()">'}).join('');
+ }else o='<div class="warn">Der Link wurde nicht erkannt. Unterstützt werden Freigabelinks von Google Drive und Dropbox.</div>';
+ $('convout').innerHTML=o;
+};
+
+</script>
+</body>
+</html>
