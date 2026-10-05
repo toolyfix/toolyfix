@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Countdown Timer online – Countdown bis zum Datum, Weihnachten, Urlaub | Toolyfix</title>
+<meta name="description" content="Countdown Timer: Tage, Stunden, Minuten und Sekunden bis zu deinem Wunschtermin. Mehrere Countdowns, Vorlagen, Werktage, Vollbild, teilbarer Link und Alarmton. Kostenlos im Browser.">
+<link rel="canonical" href="https://toolyfix.de/tools/countdown-timer">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Countdown Timer online – Countdown bis zum Datum, Weihnachten, Urlaub | Toolyfix">
+<meta property="og:description" content="Countdown Timer: Tage, Stunden, Minuten und Sekunden bis zu deinem Wunschtermin. Mehrere Countdowns, Vorlagen, Werktage, Vollbild, teilbarer Link und Alarmton. Kostenlos im Browser.">
+<meta property="og:url" content="https://toolyfix.de/tools/countdown-timer">
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="stylesheet" href="/assets/style.css">
+<style>
+:root{--bg:#F7F7F4;--ink:#1A1A1A;--blue:#1D3557;--amber:#E9A93B;--line:#dcdcd2;--card:#fff;--mut:#5b6470;--bad:#b3261e;--ok:#1f7a45}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{background:var(--bg);color:var(--ink);margin:0;font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;line-height:1.6}
+.tf-wrap{max-width:1000px;margin:0 auto;padding:22px 16px 56px}
+.tf-wrap h1{font-size:clamp(1.6rem,4.4vw,2.3rem);line-height:1.15;margin:.2em 0 .3em;color:var(--blue)}
+.tf-intro{color:var(--mut);margin:0 0 14px;max-width:70ch}
+.tf-related{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:0 0 18px;padding:10px 12px;background:#fff;border:1px solid var(--line);border-radius:10px;font-size:.92rem}
+.tf-related b{color:var(--blue);margin-right:4px}
+.tf-related a{color:var(--blue);background:#eef1f6;border-radius:999px;padding:4px 12px;text-decoration:none;font-weight:500}
+.tf-related a:hover,.tf-related a:focus-visible{background:var(--blue);color:#fff;outline:none}
+.tf-card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px;margin-bottom:16px}
+.tf-card h2{font-size:1.05rem;margin:0 0 10px;color:var(--blue)}
+.tf-grid{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(170px,1fr))}
+.tf-wrap label{display:block;font-size:.82rem;font-weight:600;margin:0 0 4px;color:#333}
+.tf-wrap input[type=text],.tf-wrap input[type=number],.tf-wrap input[type=date],.tf-wrap select,.tf-wrap textarea{width:100%;padding:9px 10px;border:1px solid #c9c9bf;border-radius:8px;font:inherit;background:#fff;color:var(--ink)}
+.tf-wrap input[type=color]{width:100%;height:40px;border:1px solid #c9c9bf;border-radius:8px;padding:2px;background:#fff}
+.tf-wrap textarea{min-height:130px;resize:vertical}
+.tf-wrap input:focus-visible,.tf-wrap select:focus-visible,.tf-wrap textarea:focus-visible,.btn:focus-visible{outline:3px solid var(--amber);outline-offset:1px}
+.btn{font:inherit;font-weight:600;padding:9px 16px;border-radius:8px;border:1px solid var(--blue);background:#fff;color:var(--blue);cursor:pointer}
+.btn:hover{background:#eef1f6}
+.btn.pri{background:var(--blue);color:#fff}
+.btn.pri:hover{background:#16294a}
+.btn.amb{background:var(--amber);border-color:var(--amber);color:#1A1A1A}
+.btn[disabled]{opacity:.5;cursor:not-allowed}
+.tf-btns{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.chk{display:flex;gap:8px;align-items:center;font-weight:500;font-size:.92rem;margin:6px 0}
+.chk input{width:18px;height:18px}
+.tf-article{margin-top:34px;background:#fff;border:1px solid var(--line);border-radius:12px;padding:22px 20px}
+.tf-article h2{color:var(--blue);font-size:1.4rem;margin:1.4em 0 .4em;line-height:1.25}
+.tf-article h2:first-child{margin-top:0}
+.tf-article h3{font-size:1.1rem;margin:1.1em 0 .3em}
+.tf-article p,.tf-article li{max-width:75ch}
+.tf-article table{border-collapse:collapse;width:100%;font-size:.92rem;display:block;overflow-x:auto}
+.tf-article th,.tf-article td{border:1px solid var(--line);padding:6px 10px;text-align:left}
+.tf-article th{background:#eef1f6}
+.toast{position:fixed;left:50%;bottom:22px;transform:translateX(-50%);background:var(--blue);color:#fff;padding:9px 18px;border-radius:999px;font-size:.9rem;opacity:0;pointer-events:none;transition:opacity .2s;z-index:50}
+.toast.on{opacity:1}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+@media print{.site-header,.site-footer,.tf-related,.tf-intro,.tf-wrap>h1,.tf-article,.tf-noprint,.toast{display:none!important}body{background:#fff}.tf-wrap{padding:0;max-width:none}}
+
+.disp{--cd:#1D3557;background:#fff;border:1px solid var(--line);border-radius:12px;padding:20px 14px;text-align:center}
+.disp .tt{font-size:clamp(1.2rem,4.5vw,1.8rem);font-weight:700;color:var(--cd);margin:0 0 14px;overflow-wrap:anywhere}
+.dg{display:flex;justify-content:center;gap:clamp(6px,2vw,16px);flex-wrap:wrap}
+.dg div{min-width:clamp(62px,19vw,120px);background:var(--cd);color:#fff;border-radius:12px;padding:12px 6px}
+.dg b{display:block;font-size:clamp(1.8rem,8vw,3.6rem);line-height:1.05;font-variant-numeric:tabular-nums}
+.dg span{font-size:.8rem;opacity:.85}
+.bar{height:10px;background:#e8e8df;border-radius:10px;overflow:hidden;margin:18px auto 6px;max-width:640px}
+.bar i{display:block;height:100%;background:var(--amber);border-radius:10px}
+.di{color:var(--mut);font-size:.92rem;margin:4px 0}
+.di b{color:#222}
+.empty{color:var(--mut);padding:30px 10px}
+.dbt{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:14px}
+.disp:fullscreen{background:#10223a;display:flex;flex-direction:column;justify-content:center;align-items:center;color:#fff}
+.disp:fullscreen .tt{color:#fff;font-size:clamp(1.6rem,5vw,3rem)}
+.disp:fullscreen .dg div{background:#fff;color:#10223a;min-width:clamp(80px,18vw,200px)}
+.disp:fullscreen .dg b{font-size:clamp(2.6rem,11vw,8rem)}
+.disp:fullscreen .di{color:#c8d3e3}.disp:fullscreen .di b{color:#fff}
+.pc{display:flex;flex-wrap:wrap;gap:8px}
+.pc button{border:1px solid var(--line);background:#fff;border-radius:999px;padding:6px 14px;font:inherit;font-size:.88rem;cursor:pointer;color:var(--blue);font-weight:600}
+.pc button:hover{background:#eef1f6}
+.cl{list-style:none;margin:0;padding:0}
+.cl li{display:flex;gap:10px;align-items:center;justify-content:space-between;padding:10px 0;border-bottom:1px solid var(--line);flex-wrap:wrap}
+.cl .n{font-weight:600;overflow-wrap:anywhere}
+.cl .s{color:var(--mut);font-size:.88rem;font-variant-numeric:tabular-nums}
+.cl .a{display:flex;gap:6px}
+.cl button{border:1px solid var(--line);background:#fff;border-radius:8px;padding:6px 12px;font:inherit;font-size:.85rem;cursor:pointer}
+.cl button.rm{color:var(--bad)}
+</style>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-F9VY193ZMP"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-F9VY193ZMP');</script>
+</head>
+<body>
+<header class="site-header">
+  <div class="container">
+    <a href="/" class="logo-link"><img src="/assets/images/logo-full.png" alt="Toolyfix"></a>
+    <span class="header-tagline">Kostenlose Tools, direkt im Browser</span>
+  </div>
+</header>
+<main>
+<div class="tf-wrap">
+<h1>Countdown Timer</h1>
+<p class="tf-intro">Zähle live herunter bis zu deinem Termin: Urlaub, Prüfung, Weihnachten oder Hochzeit. Speichere mehrere Countdowns, teile sie per Link und zeige sie im Vollbild.</p>
+<nav class="tf-related" aria-label="Passende Tools"><b>Passende Tools:</b><a href="/tools/geburtstags-countdown">Geburtstags Countdown</a><a href="/tools/timer-stoppuhr">Timer &amp; Stoppuhr</a><a href="/tools/wecker-online">Wecker Online</a><a href="/tools/digitaluhr">Digitaluhr</a><a href="/tools/kalender-generator">Kalender Generator</a></nav>
+
+<section class="disp" id="disp" aria-live="off">
+<div id="dc"></div>
+</section>
+<section class="tf-card" style="margin-top:16px">
+<h2>Neuen Countdown anlegen</h2>
+<div class="tf-grid">
+<div><label for="t">Bezeichnung</label><input type="text" id="t" maxlength="60" placeholder="z. B. Urlaub"></div>
+<div><label for="d">Datum</label><input type="date" id="d"></div>
+<div><label for="tm">Uhrzeit (optional)</label><input type="time" id="tm"></div>
+<div><label for="c">Farbe</label><input type="color" id="c" value="#1D3557"></div>
+</div>
+<div class="tf-btns"><button class="btn pri" id="go" type="button">Countdown starten</button></div>
+<h2 style="margin-top:18px">Vorlagen</h2>
+<div class="pc" id="pc"></div>
+</section>
+<section class="tf-card">
+<h2>Anzeige und Alarm</h2>
+<label class="chk"><input type="checkbox" id="wk"> Wochen zusätzlich anzeigen</label>
+<label class="chk"><input type="checkbox" id="snd"> Ton abspielen, wenn der Zeitpunkt erreicht wird</label>
+<label class="chk"><input type="checkbox" id="tb"> Restzeit im Browser-Tab anzeigen</label>
+<p style="font-size:.85rem;color:var(--mut);margin:6px 0 0">Der Ton wird nur abgespielt, solange diese Seite geöffnet ist.</p>
+</section>
+<section class="tf-card">
+<h2>Meine Countdowns</h2>
+<ul class="cl" id="cl"></ul>
+<p id="cle" style="color:var(--mut);margin:0">Noch keine Countdowns gespeichert. Sie bleiben nur in diesem Browser.</p>
+</section>
+
+<article class="tf-article">
+
+<h2>Countdown Timer online: Zähle die Zeit bis zu deinem Termin</h2>
+<p>Die Vorfreude gehört zu den schönsten Teilen eines Ereignisses. Ein Countdown macht sie sichtbar: Wie viele Tage sind es noch bis zum Urlaub? Wie lange dauert es bis zur Prüfung, zur Hochzeit, zum Release oder zu Weihnachten? Der Countdown Timer von Toolyfix beantwortet das live und auf die Sekunde genau. Du gibst Datum und Uhrzeit ein, und das Tool zeigt, wie viele Wochen, Tage, Stunden, Minuten und Sekunden noch verbleiben. Alles läuft direkt im Browser. Du musst dich nirgends anmelden, und deine Termine werden nicht auf einen Server hochgeladen.</p>
+<p>Anders als ein einfacher Timer, der eine Zeitdauer herunterzählt, zählt ein Countdown auf einen festen Zeitpunkt in der Zukunft zu. Das ist ein wichtiger Unterschied: Du brauchst nicht zu rechnen, wie viele Minuten es noch sind, sondern wählst einfach das Zieldatum aus.</p>
+
+<h2>Funktionen des Countdown Timers im Überblick</h2>
+<ul>
+<li><b>Live-Anzeige:</b> Wochen (optional), Tage, Stunden, Minuten und Sekunden werden sekündlich aktualisiert.</li>
+<li><b>Mehrere Countdowns:</b> Du kannst beliebig viele Termine speichern, zwischen ihnen wechseln und jedem eine eigene Farbe geben.</li>
+<li><b>Vorlagen:</b> Mit einem Klick startest du Countdowns für Neujahr, Valentinstag, Ostersonntag, den Tag der Deutschen Einheit, Halloween, Nikolaus und Heiligabend. Das Tool wählt automatisch das nächste Datum aus.</li>
+<li><b>Fortschrittsbalken:</b> Er zeigt, wie viel Prozent der Zeit seit dem Start des Countdowns schon vergangen sind.</li>
+<li><b>Zusatzinformationen:</b> Das Zieldatum mit Wochentag, die Restzeit in Stunden, Minuten und Sekunden sowie die Anzahl der Werktage von Montag bis Freitag.</li>
+<li><b>Teilbarer Link:</b> Du kannst einen Countdown als Link verschicken. Der Empfänger sieht sofort denselben Termin, ohne etwas einzugeben.</li>
+<li><b>Vollbildmodus:</b> Perfekt für Beamer, Veranstaltungen, Klassenzimmer oder einen zweiten Bildschirm.</li>
+<li><b>Alarmton:</b> Wenn das Ziel erreicht wird, ertönt optional ein Signal.</li>
+<li><b>Restzeit im Tab:</b> Auf Wunsch erscheint der Countdown im Titel des Browser-Tabs, sodass du ihn auch bei anderen Tätigkeiten im Blick behältst.</li>
+</ul>
+
+<h2>So legst du einen Countdown an</h2>
+<ol>
+<li>Gib eine Bezeichnung ein, zum Beispiel „Sommerurlaub“.</li>
+<li>Wähle Datum und, wenn es auf die Uhrzeit ankommt, die Uhrzeit. Ohne Angabe gilt Mitternacht, also der Beginn des Tages.</li>
+<li>Wähle eine Farbe und klicke auf „Countdown starten“.</li>
+<li>Der Countdown erscheint sofort im oberen Bereich. Mit „Link teilen“ kopierst du eine Adresse, die du an Familie, Freunde oder Kollegen schickst.</li>
+</ol>
+<p>Wenn du den Countdown schnell brauchst, nutzt du eine Vorlage. Ein Klick auf „Heiligabend“ startet den Countdown bis zum 24. Dezember, ohne dass du ein Datum eingeben musst.</p>
+
+<h2>Countdown bis Weihnachten, Silvester und Co.</h2>
+<p>Die meistgesuchten Countdowns in Deutschland drehen sich um Feste und Feiertage: „Countdown bis Weihnachten“, „Countdown Silvester“, „Countdown Ostern“. Der Reiz liegt in der Gemeinschaft: Kinder zählen die Tage bis Heiligabend, Familien die Stunden bis zum Jahreswechsel. Wenn du den Vollbildmodus auf einem Fernseher oder Beamer zeigst, wird der Countdown zum Mittelpunkt der Silvesterparty. Für bewegliche Feiertage wie Ostern berechnet das Tool das Datum automatisch, damit du es nicht nachschlagen musst. Wenn du den Jahreskalender mit Feiertagen brauchst, hilft dir der Kalender Generator.</p>
+
+<h2>Weitere Einsatzmöglichkeiten</h2>
+<h3>Urlaub und Reisen</h3>
+<p>Der Countdown bis zum Abflug steigert die Vorfreude und erinnert dich daran, rechtzeitig zu packen, Dokumente zu prüfen und Buchungen zu bestätigen. Die Werktage bis zur Abreise zeigen dir, wie viele Arbeitstage du noch hast, um Aufgaben abzuschließen.</p>
+<h3>Prüfungen, Abgaben und Fristen</h3>
+<p>Studierende und Schüler nutzen einen Countdown, um Lernzeiten zu planen. Der Fortschrittsbalken macht sichtbar, wie viel Zeit schon verstrichen ist. Auch Bewerbungsfristen, Steuererklärungen oder Projektabgaben lassen sich so im Blick behalten.</p>
+<h3>Hochzeit, Geburt und Feiern</h3>
+<p>Für einmalige Ereignisse ist ein Countdown eine nette Geste. Mit dem teilbaren Link können Gäste die Tage bis zur Feier mitverfolgen. Für Geburtstage gibt es zusätzlich den Geburtstags Countdown, der sich automatisch jedes Jahr fortsetzt.</p>
+<h3>Veranstaltungen und Livestreams</h3>
+<p>Wer eine Veranstaltung, ein Webinar oder einen Stream startet, zeigt den Countdown im Vollbild, bis es losgeht. Das schafft Erwartung und sorgt dafür, dass alle pünktlich sind.</p>
+<h3>Produktstarts und Sonderaktionen</h3>
+<p>Teams nutzen Countdowns intern, um auf Releases hinzuarbeiten. Auch zeitlich begrenzte Angebote lassen sich damit anschaulich machen. Für die öffentliche Einbindung in Webseiten brauchst du allerdings eine eigene Lösung auf deiner Seite, denn dieses Tool dient der persönlichen Nutzung.</p>
+
+<h2>Wie genau ist der Countdown?</h2>
+<p>Der Countdown berechnet die Restzeit bei jeder Aktualisierung neu aus der Systemzeit deines Geräts. Das hat einen wichtigen Vorteil: Auch wenn der Tab im Hintergrund läuft und der Browser Aktualisierungen verlangsamt, stimmt die Anzeige sofort wieder, sobald du zurückkehrst. Ein einfacher Zähler, der jede Sekunde eins abzieht, würde dagegen ungenau werden. Die Genauigkeit hängt allerdings von der Uhr deines Geräts ab. Geht sie falsch, zeigt auch der Countdown eine falsche Zeit an. Moderne Betriebssysteme gleichen die Uhrzeit automatisch mit Zeitservern ab, sodass Abweichungen selten sind.</p>
+
+<h2>Zeitzonen und Sommerzeit</h2>
+<p>Der Zielzeitpunkt wird in der lokalen Zeitzone deines Geräts verstanden. Wenn du einen Countdown für 20 Uhr einstellst, ist damit 20 Uhr deiner Ortszeit gemeint. Wer einen Termin für Menschen in anderen Zeitzonen teilt, sollte das beachten: Beim Öffnen des Links wird der Termin als genauer Zeitpunkt gespeichert, sodass er in jeder Zeitzone derselbe Moment bleibt. Die Anzeige des Zielzeitpunkts erfolgt dann in der Ortszeit des jeweiligen Betrachters. Die Zeitumstellung zwischen Sommer- und Winterzeit wird bei der Datumsangabe berücksichtigt, die Restzeit selbst beruht auf echten Zeitspannen. Dadurch kann sich an Tagen der Umstellung die Anzahl der Stunden bis zu einem festen Uhrzeitpunkt um eine Stunde verschieben.</p>
+
+<h2>Typische Probleme und Lösungen</h2>
+<h3>Der Alarmton ertönt nicht</h3>
+<p>Browser erlauben Töne meist erst nach einer Aktion der Nutzerin oder des Nutzers. Aktiviere die Option „Ton abspielen“ per Klick und lasse den Tab geöffnet. Prüfe außerdem die Lautstärke und ob der Tab stummgeschaltet ist.</p>
+<h3>Meine Countdowns sind verschwunden</h3>
+<p>Countdowns werden im lokalen Speicher des Browsers abgelegt. Wenn du Browserdaten löschst, den privaten Modus nutzt oder das Gerät wechselst, sind sie nicht mehr vorhanden. Der Link zum Teilen hilft, einen Countdown auf einem anderen Gerät wiederherzustellen.</p>
+<h3>Der Link zeigt einen anderen Termin an</h3>
+<p>Der Link enthält die Zielzeit als genaue Zahl. Er zeigt exakt den Moment an, den du geteilt hast. Wurde die Uhrzeit nicht gesetzt, gilt 00:00 Uhr deiner Zeitzone.</p>
+<h3>Ich möchte den Countdown ändern</h3>
+<p>Lege einen neuen Countdown mit dem gewünschten Datum an und lösche den alten in der Liste „Meine Countdowns“.</p>
+<h3>Der Countdown läuft nicht weiter, wenn der Browser geschlossen ist</h3>
+<p>Das ist normal, denn die Anzeige läuft im Browser. Beim erneuten Öffnen rechnet das Tool sofort die korrekte Restzeit aus, sofern der Countdown gespeichert wurde.</p>
+
+<h2>Tipps für den Einsatz im Alltag</h2>
+<ul>
+<li>Nutze den Fortschrittsbalken als Motivation: Wenn schon die Hälfte der Zeit vergangen ist, kannst du prüfen, ob deine Vorbereitung auf Kurs ist.</li>
+<li>Schalte die Anzeige der Restzeit im Tab ein, wenn du den Countdown im Hintergrund laufen lassen möchtest.</li>
+<li>Für Gruppenaktionen teile den Link in einem Chat, damit alle denselben Stand sehen.</li>
+<li>Kombiniere den Countdown mit einem Wecker, wenn du zusätzlich zu einer festen Uhrzeit erinnert werden möchtest.</li>
+<li>Für kurze Zeitspannen, etwa fünf Minuten Kochzeit, ist der Timer besser geeignet.</li>
+</ul>
+
+<h2>Datenschutz</h2>
+<p>Alle Berechnungen finden lokal statt. Bezeichnungen und Zeitpunkte werden nur in deinem Browser gespeichert. Wenn du einen Link teilst, steckt die Information im Link selbst, nicht auf einem Server. Die Person, der du den Link schickst, sieht die Bezeichnung, die du gewählt hast. Verwende deshalb für geteilte Countdowns keine vertraulichen Angaben.</p>
+
+<h2>Häufige Fragen zum Countdown Timer</h2>
+<h3>Ist der Countdown Timer kostenlos?</h3>
+<p>Ja, ohne Anmeldung und ohne Einschränkung der Anzahl.</p>
+<h3>Wie viele Countdowns kann ich speichern?</h3>
+<p>Beliebig viele. Praktisch ist die Menge nur durch den Speicherplatz deines Browsers begrenzt.</p>
+<h3>Funktioniert der Countdown auch auf dem Smartphone?</h3>
+<p>Ja, die Anzeige skaliert mit dem Bildschirm. Für den Alarmton muss die Seite geöffnet bleiben.</p>
+<h3>Kann ich den Countdown in meine Webseite einbetten?</h3>
+<p>Dieses Tool ist für die persönliche Nutzung gedacht. Für Webseiten brauchst du ein eigenes Skript.</p>
+<h3>Was ist der Unterschied zwischen Countdown und Timer?</h3>
+<p>Ein Countdown zählt bis zu einem festen Datum, ein Timer zählt eine festgelegte Dauer herunter. Für Dauern nutzt du den Timer und die Stoppuhr.</p>
+<p>Weitere Zeit-Tools findest du oben unter „Passende Tools“, zum Beispiel den Geburtstags Countdown, den Wecker Online und die Digitaluhr.</p>
+
+</article>
+</div>
+</main>
+<footer class="site-footer">
+  <div class="container">
+    <img src="/assets/images/logo-full.png" alt="Toolyfix">
+    <nav class="footer-links">
+      <a href="/ueber-uns.html">Über uns</a>
+      <a href="/datenschutz.html">Datenschutz</a>
+      <a href="/nutzungsbedingungen.html">Nutzungsbedingungen</a>
+      <a href="/kontakt.html">Kontakt</a>
+    </nav>
+    <p class="footer-note">© 2026 Toolyfix – Alle Tools laufen lokal in deinem Browser.</p>
+  </div>
+</footer>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script>
+function toast(m){var t=document.getElementById('toast');t.textContent=m;t.classList.add('on');clearTimeout(window._tt);window._tt=setTimeout(function(){t.classList.remove('on')},1800)}
+function copyText(s){if(navigator.clipboard&&window.isSecureContext){return navigator.clipboard.writeText(s).then(function(){toast('Kopiert')},function(){fb(s)})}fb(s)}
+function fb(s){var a=document.createElement('textarea');a.value=s;a.style.position='fixed';a.style.opacity='0';document.body.appendChild(a);a.select();try{document.execCommand('copy');toast('Kopiert')}catch(e){toast('Kopieren nicht möglich')}document.body.removeChild(a)}
+function dl(name,blob){var u=URL.createObjectURL(blob),a=document.createElement('a');a.href=u;a.download=name;document.body.appendChild(a);a.click();document.body.removeChild(a);setTimeout(function(){URL.revokeObjectURL(u)},4000)}
+
+function $(i){return document.getElementById(i)}
+function esc(s){return String(s==null?'':s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+var C=[],A='',shared=null,AC=null,prev={},T0=document.title;
+try{C=JSON.parse(localStorage.getItem('tf_cd')||'[]');if(!Array.isArray(C))C=[];A=localStorage.getItem('tf_cd_a')||''}catch(e){C=[]}
+try{var ST=JSON.parse(localStorage.getItem('tf_cd_s')||'{}');$('wk').checked=!!ST.wk;$('snd').checked=!!ST.snd;$('tb').checked=!!ST.tb}catch(e){}
+function store(){try{localStorage.setItem('tf_cd',JSON.stringify(C));localStorage.setItem('tf_cd_a',A)}catch(e){}}
+function stS(){try{localStorage.setItem('tf_cd_s',JSON.stringify({wk:$('wk').checked,snd:$('snd').checked,tb:$('tb').checked}))}catch(e){}}
+function cur(){return A==='shared'?shared:C.filter(function(x){return x.id===A})[0]}
+function parts(ms){ms=Math.abs(ms);var s=Math.floor(ms/1000),d=Math.floor(s/86400);s-=d*86400;var h=Math.floor(s/3600);s-=h*3600;var m=Math.floor(s/60);s-=m*60;return{d:d,h:h,m:m,s:s}}
+function p2(n){return n<10?'0'+n:''+n}
+function short(ms){if(ms<=0)return'erreicht';var p=parts(ms);return p.d+' T '+p2(p.h)+':'+p2(p.m)+':'+p2(p.s)}
+function easter(y){var a=y%19,b=Math.floor(y/100),c=y%100,d=Math.floor(b/4),e=b%4,f=Math.floor((b+8)/25),g=Math.floor((b-f+1)/3),h=(19*a+b-d-g+15)%30,i=Math.floor(c/4),k=c%4,l=(32+2*e+2*i-h-k)%7,m=Math.floor((a+11*h+22*l)/451),mo=Math.floor((h+l-7*m+114)/31),da=((h+l-7*m+114)%31)+1;return new Date(y,mo-1,da)}
+function nextD(fn){var y=new Date().getFullYear(),d=fn(y);if(d.getTime()<=Date.now())d=fn(y+1);return d}
+var PRE=[['Neujahr (Silvester-Mitternacht)',function(y){return new Date(y,0,1)}],['Valentinstag',function(y){return new Date(y,1,14)}],['Ostersonntag',easter],['Tag der Deutschen Einheit',function(y){return new Date(y,9,3)}],['Halloween',function(y){return new Date(y,9,31)}],['Nikolaus',function(y){return new Date(y,11,6)}],['Heiligabend',function(y){return new Date(y,11,24)}]];
+PRE.forEach(function(p){var b=document.createElement('button');b.type='button';b.textContent=p[0];b.onclick=function(){var d=nextD(p[1]);add(p[0],d.getTime(),$('c').value)};$('pc').appendChild(b)});
+function audio(){if(!AC){try{AC=new (window.AudioContext||window.webkitAudioContext)()}catch(e){}}if(AC&&AC.state==='suspended')AC.resume()}
+function beep(n){if(!AC)return;var i=0;(function one(){if(i++>=n)return;var o=AC.createOscillator(),g=AC.createGain();o.type='sine';o.frequency.value=880;g.gain.value=.25;o.connect(g);g.connect(AC.destination);o.start();o.stop(AC.currentTime+.35);setTimeout(one,600)})()}
+function add(t,ts,col){
+ audio();
+ if(!(ts>Date.now())){toast('Der Zeitpunkt liegt in der Vergangenheit');return}
+ var o={id:'c'+Date.now().toString(36)+Math.floor(Math.random()*1e4),t:t||'Mein Countdown',ts:ts,st:Date.now(),c:col||'#1D3557'};
+ C.push(o);A=o.id;store();list();build();tick();toast('Countdown gespeichert');
+}
+$('go').onclick=function(){
+ var d=$('d').value;if(!d){toast('Bitte ein Datum wählen');return}
+ var p=d.split('-'),tm=($('tm').value||'00:00').split(':');
+ add($('t').value.trim(),new Date(+p[0],+p[1]-1,+p[2],+tm[0],+tm[1],0).getTime(),$('c').value);
+};
+function build(){
+ var c=cur(),box=$('dc'),dp=$('disp');
+ if(!c){box.innerHTML='<div class="empty">Lege oben einen Termin fest oder wähle eine Vorlage. Dein Countdown erscheint dann hier.</div>';return}
+ dp.style.setProperty('--cd',c.c||'#1D3557');
+ box.innerHTML='<div class="tt">'+esc(c.t)+'</div><div class="dg" id="dg"></div><div class="bar" id="barw"><i id="bar"></i></div><div class="di" id="pct"></div><div class="di" id="tgt"></div><div class="di" id="tot"></div><div class="dbt"><button class="btn" id="fs" type="button">Vollbild</button><button class="btn" id="sh" type="button">Link teilen</button>'+(A==='shared'?'<button class="btn pri" id="sv" type="button">Zu meinen Countdowns</button>':'')+'</div>';
+ $('fs').onclick=function(){var e=$('disp'),f=e.requestFullscreen||e.webkitRequestFullscreen;if(f)f.call(e);else toast('Vollbild wird von deinem Browser nicht unterstützt')};
+ $('sh').onclick=function(){copyText(location.origin+location.pathname+'#t='+encodeURIComponent(c.t)+'&d='+c.ts+'&c='+encodeURIComponent(c.c||'#1D3557'))};
+ if($('sv'))$('sv').onclick=function(){var o=shared;shared=null;history.replaceState(null,'',location.pathname);add(o.t,o.ts,o.c)};
+ $('tgt').innerHTML='Ziel: <b>'+esc(new Date(c.ts).toLocaleString('de-DE',{weekday:'long',day:'2-digit',month:'long',year:'numeric',hour:'2-digit',minute:'2-digit'}))+' Uhr</b>';
+}
+function workdays(ts){
+ var a=new Date();a.setHours(0,0,0,0);var b=new Date(ts),n=0;b.setHours(0,0,0,0);
+ var d=new Date(a);for(var i=0;i<40000&&d<b;i++){d.setDate(d.getDate()+1);var w=d.getDay();if(w>0&&w<6)n++}
+ return n;
+}
+function tick(){
+ var now=Date.now(),c=cur(),all=C.concat(shared?[shared]:[]);
+ all.forEach(function(x){var ms=x.ts-now;if(prev[x.id]!==undefined&&prev[x.id]>0&&ms<=0){toast(x.t+': Zeitpunkt erreicht!');if($('snd').checked)beep(3)}prev[x.id]=ms});
+ C.forEach(function(x){var el=document.querySelector('[data-s="'+x.id+'"]');if(el)el.textContent=short(x.ts-now)});
+ if(!c){if($('tb').checked)document.title=T0;return}
+ var ms=c.ts-now,p=parts(ms),dg=$('dg');if(!dg)return;
+ var cells=[],wk=$('wk').checked;
+ if(wk)cells.push([Math.floor(p.d/7),'Wochen']);
+ cells.push([wk?p.d%7:p.d,'Tage'],[p2(p.h),'Stunden'],[p2(p.m),'Minuten'],[p2(p.s),'Sekunden']);
+ dg.innerHTML=cells.map(function(x){return'<div><b>'+x[0]+'</b><span>'+x[1]+'</span></div>'}).join('');
+ var pct=ms<=0?100:Math.max(0,Math.min(100,(now-c.st)/(c.ts-c.st)*100));
+ $('bar').style.width=pct+'%';
+ $('pct').innerHTML=ms<=0?'<b>Der Zeitpunkt ist erreicht.</b> Das war vor '+p.d+' Tagen, '+p.h+' Std. '+p.m+' Min.':'<b>'+pct.toFixed(1).replace('.',',')+' %</b> der Zeit seit dem Start sind vergangen';
+ var tot=Math.floor(Math.abs(ms)/1000);
+ $('tot').innerHTML=ms<=0?'':'Das sind <b>'+Math.floor(tot/3600).toLocaleString('de-DE')+'</b> Stunden, <b>'+Math.floor(tot/60).toLocaleString('de-DE')+'</b> Minuten oder <b>'+tot.toLocaleString('de-DE')+'</b> Sekunden. Werktage (Mo bis Fr, ohne Feiertage): <b>'+workdays(c.ts)+'</b>';
+ if($('tb').checked)document.title=ms<=0?'Erreicht – '+c.t:p.d+' T '+p2(p.h)+':'+p2(p.m)+':'+p2(p.s)+' – '+c.t;
+}
+function list(){
+ var ul=$('cl');ul.innerHTML='';$('cle').style.display=C.length?'none':'block';
+ C.forEach(function(x){
+  var li=document.createElement('li');
+  li.innerHTML='<div><div class="n">'+esc(x.t)+(x.id===A?' (angezeigt)':'')+'</div><div class="s" data-s="'+x.id+'"></div></div><div class="a"><button type="button" data-v="'+x.id+'">Anzeigen</button><button type="button" class="rm" data-r="'+x.id+'">Löschen</button></div>';
+  ul.appendChild(li);
+ });
+}
+$('cl').addEventListener('click',function(e){
+ var b=e.target.closest('button');if(!b)return;
+ if(b.dataset.v){A=b.dataset.v;store();list();build();tick()}
+ if(b.dataset.r){C=C.filter(function(x){return x.id!==b.dataset.r});if(A===b.dataset.r)A=C.length?C[0].id:'';store();list();build();tick()}
+});
+['wk','snd','tb'].forEach(function(i){$(i).addEventListener('change',function(){if(i==='snd')audio();if(i==='tb'&&!this.checked)document.title=T0;stS();tick()})});
+(function(){
+ var h=location.hash.slice(1);
+ if(h){var q=new URLSearchParams(h),ts=parseInt(q.get('d'),10);
+  if(ts>0){shared={id:'shared',t:q.get('t')||'Countdown',ts:ts,st:Date.now()-1000,c:/^#[0-9a-fA-F]{6}$/.test(q.get('c')||'')?q.get('c'):'#1D3557'};A='shared'}}
+ if(!A&&C.length)A=C[0].id;
+ list();build();tick();
+})();
+setInterval(tick,500);
+
+</script>
+</body>
+</html>

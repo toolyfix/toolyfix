@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CSV in JSON umwandeln – CSV zu JSON Konverter online | Toolyfix</title>
+<meta name="description" content="CSV in JSON umwandeln und zurück: Trennzeichen automatisch erkennen, Zahlen erkennen, deutsches Dezimalkomma, Windows-1252-Import, 4 JSON-Formate, Vorschau und Download. Kostenlos im Browser.">
+<link rel="canonical" href="https://toolyfix.de/tools/csv-zu-json">
+<meta property="og:type" content="website">
+<meta property="og:title" content="CSV in JSON umwandeln – CSV zu JSON Konverter online | Toolyfix">
+<meta property="og:description" content="CSV in JSON umwandeln und zurück: Trennzeichen automatisch erkennen, Zahlen erkennen, deutsches Dezimalkomma, Windows-1252-Import, 4 JSON-Formate, Vorschau und Download. Kostenlos im Browser.">
+<meta property="og:url" content="https://toolyfix.de/tools/csv-zu-json">
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="stylesheet" href="/assets/style.css">
+<style>
+:root{--bg:#F7F7F4;--ink:#1A1A1A;--blue:#1D3557;--amber:#E9A93B;--line:#dcdcd2;--card:#fff;--mut:#5b6470;--bad:#b3261e;--ok:#1f7a45}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{background:var(--bg);color:var(--ink);margin:0;font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;line-height:1.6}
+.tf-wrap{max-width:1000px;margin:0 auto;padding:22px 16px 56px}
+.tf-wrap h1{font-size:clamp(1.6rem,4.4vw,2.3rem);line-height:1.15;margin:.2em 0 .3em;color:var(--blue)}
+.tf-intro{color:var(--mut);margin:0 0 14px;max-width:70ch}
+.tf-related{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:0 0 18px;padding:10px 12px;background:#fff;border:1px solid var(--line);border-radius:10px;font-size:.92rem}
+.tf-related b{color:var(--blue);margin-right:4px}
+.tf-related a{color:var(--blue);background:#eef1f6;border-radius:999px;padding:4px 12px;text-decoration:none;font-weight:500}
+.tf-related a:hover,.tf-related a:focus-visible{background:var(--blue);color:#fff;outline:none}
+.tf-card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px;margin-bottom:16px}
+.tf-card h2{font-size:1.05rem;margin:0 0 10px;color:var(--blue)}
+.tf-grid{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(170px,1fr))}
+.tf-wrap label{display:block;font-size:.82rem;font-weight:600;margin:0 0 4px;color:#333}
+.tf-wrap input[type=text],.tf-wrap input[type=number],.tf-wrap input[type=date],.tf-wrap select,.tf-wrap textarea{width:100%;padding:9px 10px;border:1px solid #c9c9bf;border-radius:8px;font:inherit;background:#fff;color:var(--ink)}
+.tf-wrap input[type=color]{width:100%;height:40px;border:1px solid #c9c9bf;border-radius:8px;padding:2px;background:#fff}
+.tf-wrap textarea{min-height:130px;resize:vertical}
+.tf-wrap input:focus-visible,.tf-wrap select:focus-visible,.tf-wrap textarea:focus-visible,.btn:focus-visible{outline:3px solid var(--amber);outline-offset:1px}
+.btn{font:inherit;font-weight:600;padding:9px 16px;border-radius:8px;border:1px solid var(--blue);background:#fff;color:var(--blue);cursor:pointer}
+.btn:hover{background:#eef1f6}
+.btn.pri{background:var(--blue);color:#fff}
+.btn.pri:hover{background:#16294a}
+.btn.amb{background:var(--amber);border-color:var(--amber);color:#1A1A1A}
+.btn[disabled]{opacity:.5;cursor:not-allowed}
+.tf-btns{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.chk{display:flex;gap:8px;align-items:center;font-weight:500;font-size:.92rem;margin:6px 0}
+.chk input{width:18px;height:18px}
+.tf-article{margin-top:34px;background:#fff;border:1px solid var(--line);border-radius:12px;padding:22px 20px}
+.tf-article h2{color:var(--blue);font-size:1.4rem;margin:1.4em 0 .4em;line-height:1.25}
+.tf-article h2:first-child{margin-top:0}
+.tf-article h3{font-size:1.1rem;margin:1.1em 0 .3em}
+.tf-article p,.tf-article li{max-width:75ch}
+.tf-article table{border-collapse:collapse;width:100%;font-size:.92rem;display:block;overflow-x:auto}
+.tf-article th,.tf-article td{border:1px solid var(--line);padding:6px 10px;text-align:left}
+.tf-article th{background:#eef1f6}
+.toast{position:fixed;left:50%;bottom:22px;transform:translateX(-50%);background:var(--blue);color:#fff;padding:9px 18px;border-radius:999px;font-size:.9rem;opacity:0;pointer-events:none;transition:opacity .2s;z-index:50}
+.toast.on{opacity:1}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+@media print{.site-header,.site-footer,.tf-related,.tf-intro,.tf-wrap>h1,.tf-article,.tf-noprint,.toast{display:none!important}body{background:#fff}.tf-wrap{padding:0;max-width:none}}
+
+.mt{display:flex;gap:8px;margin-bottom:14px;flex-wrap:wrap}
+.mt button.on{background:var(--blue);color:#fff}
+.hid{display:none}
+.io{width:100%;min-height:200px;font-family:ui-monospace,Menlo,Consolas,monospace;font-size:.85rem;white-space:pre}
+.stt{display:flex;flex-wrap:wrap;gap:6px 16px;font-size:.88rem;color:var(--mut);margin:8px 0}
+.stt b{color:var(--blue)}
+.warn{background:#fff6dd;border:1px solid #f0d58a;border-radius:8px;padding:9px 12px;font-size:.88rem;margin:8px 0}
+.err{background:#fdecea;border:1px solid #f2b8b5;border-radius:8px;padding:9px 12px;font-size:.88rem;margin:8px 0;color:#7a1c16}
+.tw{overflow:auto;max-height:340px;border:1px solid var(--line);border-radius:8px}
+.tw table{border-collapse:collapse;width:100%;font-size:.84rem}
+.tw th,.tw td{border-bottom:1px solid var(--line);border-right:1px solid var(--line);padding:5px 8px;text-align:left;white-space:nowrap}
+.tw th{background:#eef1f6;position:sticky;top:0}
+</style>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-F9VY193ZMP"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-F9VY193ZMP');</script>
+</head>
+<body>
+<header class="site-header">
+  <div class="container">
+    <a href="/" class="logo-link"><img src="/assets/images/logo-full.png" alt="Toolyfix"></a>
+    <span class="header-tagline">Kostenlose Tools, direkt im Browser</span>
+  </div>
+</header>
+<main>
+<div class="tf-wrap">
+<h1>CSV in JSON umwandeln</h1>
+<p class="tf-intro">Konvertiere CSV-Dateien aus Excel oder Datenbanken in JSON und JSON zurück in CSV. Trennzeichen, Zahlenformat und Kodierung stellst du passend für deutsche Dateien ein.</p>
+<nav class="tf-related" aria-label="Passende Tools"><b>Passende Tools:</b><a href="/tools/json-formatter">JSON-Formatter</a><a href="/tools/base64-kodieren-dekodieren">Base64 Kodieren &amp; Dekodieren</a><a href="/tools/alphabetisch-sortieren">Alphabetisch Sortieren</a><a href="/tools/balkendiagramm-erstellen">Balkendiagramm Erstellen</a><a href="/tools/zeichenzaehler">Zeichenzähler</a></nav>
+
+<div class="mt tf-noprint">
+<button class="btn on" id="m1" type="button">CSV → JSON</button>
+<button class="btn" id="m2" type="button">JSON → CSV</button>
+</div>
+<div id="sA">
+<section class="tf-card">
+<h2>1. CSV eingeben</h2>
+<textarea class="io" id="csv" placeholder="CSV hier einfügen oder Datei laden" spellcheck="false"></textarea>
+<div class="tf-grid" style="margin-top:10px;align-items:end">
+<div><label for="file">CSV-Datei laden</label><input type="file" id="file" accept=".csv,.tsv,.txt,text/csv,text/plain"></div>
+<div><label for="enc">Kodierung der Datei</label><select id="enc"><option value="UTF-8">UTF-8</option><option value="windows-1252">Windows-1252 (alte Excel-Dateien)</option></select></div>
+</div>
+</section>
+<section class="tf-card">
+<h2>2. Einstellungen</h2>
+<div class="tf-grid">
+<div><label for="delim">Trennzeichen</label><select id="delim"><option value="auto">Automatisch erkennen</option><option value=";">Semikolon ;</option><option value=",">Komma ,</option><option value="&#9;">Tabulator</option><option value="|">Pipe |</option></select></div>
+<div><label for="fmt">JSON-Format</label><select id="fmt"><option value="objects">Array von Objekten</option><option value="arrays">Array von Arrays</option><option value="keyed">Objekt nach erster Spalte</option><option value="ndjson">JSON Lines (eine Zeile je Datensatz)</option></select></div>
+<div><label for="ind">Einrückung</label><select id="ind"><option value="2">2 Leerzeichen</option><option value="4">4 Leerzeichen</option><option value="tab">Tabulator</option><option value="min">Minimiert</option></select></div>
+<div><label for="dec">Dezimalzeichen</label><select id="dec"><option value="auto">Automatisch</option><option value="dot">Punkt (1234.56)</option><option value="comma">Komma (1.234,56)</option></select></div>
+</div>
+<div style="margin-top:8px">
+<label class="chk"><input type="checkbox" id="hdr" checked> Erste Zeile enthält Spaltennamen</label>
+<label class="chk"><input type="checkbox" id="num" checked> Zahlen und true/false erkennen</label>
+<label class="chk"><input type="checkbox" id="nul"> Leere Felder als null ausgeben</label>
+<label class="chk"><input type="checkbox" id="trim" checked> Leerzeichen am Rand entfernen</label>
+<label class="chk"><input type="checkbox" id="skip" checked> Leere Zeilen überspringen</label>
+</div>
+</section>
+<section class="tf-card">
+<h2>3. JSON-Ergebnis</h2>
+<div id="msg"></div>
+<div class="stt" id="stt"></div>
+<textarea class="io" id="jout" readonly spellcheck="false"></textarea>
+<div class="tf-btns"><button class="btn pri" id="cp" type="button">JSON kopieren</button><button class="btn amb" id="dj" type="button">Als .json herunterladen</button><button class="btn" id="clr" type="button">Leeren</button></div>
+<h2 style="margin-top:18px">Tabellenvorschau (erste 50 Zeilen)</h2>
+<div class="tw" id="tbl"></div>
+</section>
+</div>
+<div id="sB" class="hid">
+<section class="tf-card">
+<h2>1. JSON eingeben</h2>
+<textarea class="io" id="json" placeholder="JSON-Array oder -Objekt hier einfügen" spellcheck="false"></textarea>
+<div class="tf-grid" style="margin-top:10px">
+<div><label for="jd">Trennzeichen</label><select id="jd"><option value=";">Semikolon ; (deutsches Excel)</option><option value=",">Komma ,</option><option value="&#9;">Tabulator</option></select></div>
+<div><label for="jdec">Dezimalzeichen bei Zahlen</label><select id="jdec"><option value=",">Komma (deutsches Excel)</option><option value=".">Punkt</option></select></div>
+</div>
+<label class="chk"><input type="checkbox" id="bom" checked> UTF-8-Markierung (BOM) für korrekte Umlaute in Excel</label>
+<label class="chk"><input type="checkbox" id="qall"> Alle Felder in Anführungszeichen setzen</label>
+</section>
+<section class="tf-card">
+<h2>2. CSV-Ergebnis</h2>
+<div id="msg2"></div>
+<div class="stt" id="stt2"></div>
+<textarea class="io" id="cout" readonly spellcheck="false"></textarea>
+<div class="tf-btns"><button class="btn pri" id="cp2" type="button">CSV kopieren</button><button class="btn amb" id="dc" type="button">Als .csv herunterladen</button><button class="btn" id="clr2" type="button">Leeren</button></div>
+</section>
+</div>
+
+<article class="tf-article">
+
+<h2>CSV in JSON umwandeln: Der Konverter für deutsche Dateien</h2>
+<p>CSV ist das Austauschformat für Tabellen: Excel exportiert es, Shopsysteme, Buchhaltungsprogramme und Datenbanken liefern es, und fast jede Software kann es lesen. JSON dagegen ist das Standardformat moderner Webanwendungen, APIs und JavaScript-Programme. Wer Daten aus einer Tabelle in eine Webanwendung bringen will, muss deshalb häufig CSV in JSON umwandeln. Genau das erledigt der CSV-zu-JSON-Konverter von Toolyfix – direkt im Browser, ohne Upload, ohne Anmeldung und mit besonderem Blick auf typisch deutsche Eigenheiten: Semikolon als Trennzeichen, Komma als Dezimalzeichen und Dateien mit älterer Windows-Kodierung.</p>
+<p>Zusätzlich funktioniert das Tool in die Gegenrichtung. Mit „JSON → CSV“ machst du aus einem JSON-Array wieder eine Tabelle, die du in Excel oder Google Tabellen öffnen kannst. Beide Richtungen laufen lokal, deine Daten verlassen deinen Rechner nicht.</p>
+
+<h2>Funktionen des Konverters</h2>
+<ul>
+<li><b>Automatische Erkennung des Trennzeichens:</b> Semikolon, Komma, Tabulator oder Pipe werden anhand der ersten Zeile erkannt. Du kannst das Trennzeichen aber auch fest vorgeben.</li>
+<li><b>Korrektes Lesen nach RFC 4180:</b> Felder in Anführungszeichen, doppelte Anführungszeichen innerhalb von Feldern und sogar Zeilenumbrüche innerhalb von Feldern werden richtig verarbeitet.</li>
+<li><b>Zahlen erkennen:</b> Aus „42“ wird die Zahl 42, aus „true“ der Wahrheitswert true. Postleitzahlen und andere Werte mit führenden Nullen bleiben dabei Text, damit aus „01067“ nicht 1067 wird.</li>
+<li><b>Deutsches Zahlenformat:</b> Ist das Dezimalkomma aktiv, wird „1.234,56“ zu 1234.56. Standardmäßig geschieht das automatisch bei Semikolon- und Tabulator-Dateien.</li>
+<li><b>Vier JSON-Formate:</b> Array von Objekten, Array von Arrays, ein Objekt mit der ersten Spalte als Schlüssel und JSON Lines für große Datenmengen.</li>
+<li><b>Einrückung nach Wunsch:</b> Zwei oder vier Leerzeichen, Tabulator oder minimiert für kleine Dateien.</li>
+<li><b>Dateikodierung wählen:</b> Alte Excel-Exporte liegen oft in Windows-1252 vor. Mit der passenden Kodierung erscheinen Umlaute korrekt.</li>
+<li><b>Tabellenvorschau:</b> Die ersten 50 Zeilen siehst du als Tabelle, bevor du das Ergebnis kopierst oder herunterlädst.</li>
+<li><b>Hinweise auf Probleme:</b> Zeilen mit abweichender Spaltenzahl und doppelte Schlüssel werden gemeldet.</li>
+</ul>
+
+<h2>So wandelst du CSV in JSON um</h2>
+<ol>
+<li>Füge den CSV-Text in das Eingabefeld ein oder lade eine Datei hoch.</li>
+<li>Prüfe, ob das Trennzeichen richtig erkannt wurde. Die Statistik unter der Überschrift zeigt es an.</li>
+<li>Entscheide, ob die erste Zeile Spaltennamen enthält. Ohne Kopfzeile erzeugt das Tool die Namen „spalte_1“, „spalte_2“ und so weiter.</li>
+<li>Wähle das JSON-Format und die Einrückung.</li>
+<li>Kopiere das Ergebnis oder lade es als .json-Datei herunter.</li>
+</ol>
+
+<h2>Welches JSON-Format passt zu meinem Zweck?</h2>
+<h3>Array von Objekten</h3>
+<p>Das ist die häufigste Form. Jede Zeile wird zu einem Objekt, dessen Schlüssel die Spaltennamen sind. Sie eignet sich für APIs, Frontend-Anwendungen und Datenbank-Importe, weil jeder Wert einen sprechenden Namen hat.</p>
+<h3>Array von Arrays</h3>
+<p>Hier bleibt die Tabellenstruktur erhalten: Die erste Zeile enthält die Spaltennamen, die weiteren die Werte. Das Format ist kompakt und passt zu Diagrammbibliotheken, die Daten als Matrix erwarten.</p>
+<h3>Objekt nach erster Spalte</h3>
+<p>Die erste Spalte wird zum Schlüssel, alle anderen Spalten bilden das zugehörige Objekt. Das ist praktisch für Nachschlagetabellen, etwa Artikelnummern mit Preis und Bezeichnung. Beachte, dass doppelte Schlüssel einander überschreiben. Das Tool weist darauf hin.</p>
+<h3>JSON Lines</h3>
+<p>Bei sehr großen Dateien wird jeder Datensatz in eine eigene Zeile geschrieben. Das lässt sich Zeile für Zeile verarbeiten, ohne die gesamte Datei im Speicher zu halten. Viele Datenwerkzeuge, Log-Systeme und Machine-Learning-Pipelines nutzen dieses Format.</p>
+
+<h2>Typische deutsche Stolpersteine bei CSV-Dateien</h2>
+<h3>Semikolon statt Komma</h3>
+<p>Weil im deutschen Zahlenformat das Komma das Dezimalzeichen ist, trennt deutsches Excel CSV-Felder mit einem Semikolon. Programme aus dem englischsprachigen Raum erwarten dagegen ein Komma. Wenn die Daten in einer einzigen Spalte landen, stimmt das Trennzeichen nicht. Die automatische Erkennung dieses Tools löst das in den meisten Fällen.</p>
+<h3>Umlaute werden falsch angezeigt</h3>
+<p>Erscheinen statt „ä“ oder „ü“ seltsame Zeichen, liegt eine Kodierungsabweichung vor. Ältere Excel-Dateien nutzen Windows-1252, moderne Systeme UTF-8. Wähle im Tool die passende Kodierung für deine Datei. Beim Export aus JSON nach CSV fügt die Option „UTF-8-Markierung“ ein Byte-Order-Mark ein, damit Excel die Datei sofort richtig öffnet.</p>
+<h3>Dezimalkomma und Tausenderpunkt</h3>
+<p>Die Zahl „1.234,56“ ist für Excel in Deutschland völlig normal, für JSON aber ungültig. JSON kennt nur den Punkt als Dezimalzeichen. Der Konverter wandelt deshalb um, wenn das Dezimalkomma aktiv ist. Bei internationalen Dateien wählst du „Punkt“.</p>
+<h3>Führende Nullen gehen verloren</h3>
+<p>Postleitzahlen wie „01067“, Artikelnummern oder Telefonnummern dürfen nicht als Zahl interpretiert werden. Das Tool lässt solche Werte als Text. Möchtest du wirklich alles unverändert als Text haben, deaktiviere „Zahlen und true/false erkennen“.</p>
+<h3>Zeilen haben unterschiedlich viele Spalten</h3>
+<p>Häufig liegt es an einem Trennzeichen innerhalb eines Feldes, das nicht in Anführungszeichen steht. Prüfe die Warnung des Tools und die Tabellenvorschau: Die Zeile, in der die Werte verrutschen, zeigt die Fehlerstelle.</p>
+
+<h2>JSON in CSV umwandeln</h2>
+<p>Umgekehrt ist die Konvertierung ebenso einfach: Füge ein JSON-Array ein, und das Tool erzeugt eine Tabelle. Verschachtelte Objekte werden mit Punkt-Schreibweise flach gemacht, aus {"adresse":{"ort":"Köln"}} wird also die Spalte „adresse.ort“. Listen innerhalb eines Feldes werden als JSON-Text eingetragen. Die Spalten ergeben sich aus allen vorkommenden Schlüsseln, auch wenn nicht jedes Objekt alle besitzt. Fehlende Werte bleiben leer. Für deutsche Excel-Versionen stellst du Semikolon und Dezimalkomma ein, sodass sich die Datei per Doppelklick öffnen lässt und Zahlen korrekt als Zahlen erkannt werden.</p>
+
+<h2>Praxisbeispiele für die Konvertierung</h2>
+<ul>
+<li><b>Webshop:</b> Produktdaten aus Excel werden als JSON für ein Shop-Frontend oder einen Import bereitgestellt.</li>
+<li><b>Webentwicklung:</b> Eine Tabelle mit Übersetzungen oder Öffnungszeiten wird als JSON-Datei in eine statische Webseite eingebunden, ganz ohne Datenbank.</li>
+<li><b>Datenanalyse:</b> Messwerte werden für ein Diagramm aufbereitet. Anschließend lässt sich daraus mit dem Balkendiagramm-Tool eine Grafik erstellen.</li>
+<li><b>Datenmigration:</b> Kundenlisten wandern von einem System ins nächste, das JSON-Importe verlangt.</li>
+<li><b>Tests und Prototypen:</b> Beispieldaten für eine Anwendung werden in einer Tabelle gepflegt und per Knopfdruck in JSON gewandelt.</li>
+</ul>
+
+<h2>Tipps für saubere Ergebnisse</h2>
+<ul>
+<li>Verwende eindeutige, einfache Spaltennamen ohne Sonderzeichen. Sie werden zu den JSON-Schlüsseln.</li>
+<li>Lösche leere Spalten und Zeilen in der Tabelle, bevor du exportierst.</li>
+<li>Prüfe das Ergebnis mit dem JSON-Formatter. Er zeigt Syntaxfehler und strukturiert die Ausgabe.</li>
+<li>Achte bei sensiblen Daten darauf, dass die Datei nur dort gespeichert wird, wo sie hingehört.</li>
+<li>Sichere die Originaldatei, bevor du Daten weiterverarbeitest.</li>
+</ul>
+
+<h2>Datenschutz und Grenzen</h2>
+<p>Die Umwandlung geschieht komplett im Browser. Das macht das Tool auch für interne Listen geeignet, die du nicht auf einen fremden Server laden möchtest. Sehr große Dateien mit mehreren hunderttausend Zeilen können je nach Gerät langsam werden, weil dein Browser alles im Arbeitsspeicher hält. In solchen Fällen empfiehlt sich das Format JSON Lines oder eine Aufteilung der Datei. Die Tabellenvorschau zeigt aus Leistungsgründen nur die ersten 50 Zeilen, das Ergebnis enthält aber alle Datensätze.</p>
+
+<h2>Häufige Fragen zum CSV-zu-JSON-Konverter</h2>
+<h3>Ist der Konverter kostenlos?</h3>
+<p>Ja, ohne Anmeldung und ohne Begrenzung der Nutzung.</p>
+<h3>Wird meine Datei hochgeladen?</h3>
+<p>Nein. Die Datei wird nur in deinem Browser gelesen.</p>
+<h3>Kann ich Excel-Dateien (.xlsx) direkt verwenden?</h3>
+<p>Nein, das Tool liest CSV und Text. Speichere deine Excel-Tabelle zuvor über „Speichern unter“ als CSV, am besten als „CSV UTF-8“.</p>
+<h3>Warum steht in meinem JSON alles in Anführungszeichen?</h3>
+<p>Dann ist „Zahlen und true/false erkennen“ deaktiviert, oder die Werte enthalten Zeichen, die nicht als Zahl lesbar sind, etwa Währungssymbole oder Leerzeichen innerhalb der Zahl.</p>
+<h3>Wie gehe ich mit Datumsangaben um?</h3>
+<p>Datumswerte bleiben Text, weil JSON kein eigenes Datumsformat besitzt. Verwende nach Möglichkeit das internationale Format JJJJ-MM-TT, das sich in vielen Programmen eindeutig lesen lässt.</p>
+<p>Weitere Werkzeuge für Daten und Entwicklung findest du oben unter „Passende Tools“, etwa den JSON-Formatter und den Base64 Kodierer.</p>
+
+</article>
+</div>
+</main>
+<footer class="site-footer">
+  <div class="container">
+    <img src="/assets/images/logo-full.png" alt="Toolyfix">
+    <nav class="footer-links">
+      <a href="/ueber-uns.html">Über uns</a>
+      <a href="/datenschutz.html">Datenschutz</a>
+      <a href="/nutzungsbedingungen.html">Nutzungsbedingungen</a>
+      <a href="/kontakt.html">Kontakt</a>
+    </nav>
+    <p class="footer-note">© 2026 Toolyfix – Alle Tools laufen lokal in deinem Browser.</p>
+  </div>
+</footer>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script>
+function toast(m){var t=document.getElementById('toast');t.textContent=m;t.classList.add('on');clearTimeout(window._tt);window._tt=setTimeout(function(){t.classList.remove('on')},1800)}
+function copyText(s){if(navigator.clipboard&&window.isSecureContext){return navigator.clipboard.writeText(s).then(function(){toast('Kopiert')},function(){fb(s)})}fb(s)}
+function fb(s){var a=document.createElement('textarea');a.value=s;a.style.position='fixed';a.style.opacity='0';document.body.appendChild(a);a.select();try{document.execCommand('copy');toast('Kopiert')}catch(e){toast('Kopieren nicht möglich')}document.body.removeChild(a)}
+function dl(name,blob){var u=URL.createObjectURL(blob),a=document.createElement('a');a.href=u;a.download=name;document.body.appendChild(a);a.click();document.body.removeChild(a);setTimeout(function(){URL.revokeObjectURL(u)},4000)}
+
+function $(i){return document.getElementById(i)}
+function esc(s){return String(s==null?'':s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+function parseCSV(text,d){
+ var rows=[],row=[],f='',q=false,i=0,n=text.length;
+ for(;i<n;i++){var c=text[i];
+  if(q){if(c==='"'){if(text[i+1]==='"'){f+='"';i++}else q=false}else f+=c}
+  else if(c==='"'&&f==='')q=true;
+  else if(c===d){row.push(f);f=''}
+  else if(c==='\n'||c==='\r'){if(c==='\r'&&text[i+1]==='\n')i++;row.push(f);rows.push(row);row=[];f=''}
+  else f+=c;
+ }
+ if(f!==''||row.length){row.push(f);rows.push(row)}
+ return rows;
+}
+function detect(text){
+ var line=text.split(/\r?\n/).filter(function(l){return l.trim()})[0]||'',c={';':0,',':0,'\t':0,'|':0},q=false;
+ for(var i=0;i<line.length;i++){var ch=line[i];if(ch==='"')q=!q;else if(!q&&c.hasOwnProperty(ch))c[ch]++}
+ var best=',',m=0;[';','\t','|',','].forEach(function(d){if(c[d]>m){m=c[d];best=d}});return best;
+}
+function dname(d){return d===';'?'Semikolon':d===','?'Komma':d==='\t'?'Tabulator':'Pipe'}
+function fixHead(h){var seen={};return h.map(function(x,i){var k=String(x||'').trim()||'spalte_'+(i+1);if(seen[k]){seen[k]++;k=k+'_'+seen[k]}else seen[k]=1;return k})}
+var timer;
+function later(f){clearTimeout(timer);timer=setTimeout(f,150)}
+function conv(v,o){
+ var t=o.trim?v.trim():v,s=v.trim();
+ if(s==='')return o.nul?null:t;
+ if(!o.num)return t;
+ if(/^(true|false)$/i.test(s))return s.toLowerCase()==='true';
+ if(/^null$/i.test(s))return null;
+ var n;
+ if(o.comma){if(/^-?\d{1,3}(\.\d{3})+(,\d+)?$|^-?\d+(,\d+)?$/.test(s))n=s.replace(/\./g,'').replace(',','.');else return t}
+ else{if(/^-?\d+(\.\d+)?$/.test(s))n=s;else return t}
+ if(/^-?0\d/.test(s))return t;
+ var x=Number(n);if(!isFinite(x)||Math.abs(x)>9007199254740991)return t;return x;
+}
+function runA(){
+ var raw=$('csv').value.replace(/^\uFEFF/,''),msg=$('msg');msg.innerHTML='';
+ if(!raw.trim()){$('jout').value='';$('stt').innerHTML='';$('tbl').innerHTML='';return}
+ var ds=$('delim').value,d=ds==='auto'?detect(raw):ds,rows=parseCSV(raw,d);
+ if($('skip').checked)rows=rows.filter(function(r){return!(r.length===1&&r[0].trim()==='')});
+ if(!rows.length){$('jout').value='';return}
+ var head=null,hdrOn=$('hdr').checked;
+ if(hdrOn)head=fixHead(rows.shift());
+ var cols=head?head.length:rows.reduce(function(m,r){return Math.max(m,r.length)},0);
+ if(!head){head=[];for(var i=0;i<cols;i++)head.push('spalte_'+(i+1))}
+ var ds2=$('dec').value,o={trim:$('trim').checked,num:$('num').checked,nul:$('nul').checked,comma:ds2==='comma'||(ds2==='auto'&&(d===';'||d==='\t'))};
+ var odd=rows.filter(function(r){return r.length!==cols}).length;
+ var fmt=$('fmt').value,data,ind=$('ind').value,sp=ind==='tab'?'\t':ind==='min'?0:+ind;
+ function cell(r,i){return conv(r[i]===undefined?'':r[i],o)}
+ var recs=rows.map(function(r){var ob={};head.forEach(function(h,i){ob[h]=cell(r,i)});return ob});
+ var out;
+ if(fmt==='objects')out=JSON.stringify(recs,null,sp);
+ else if(fmt==='arrays')out=JSON.stringify((hdrOn?[head]:[]).concat(rows.map(function(r){return head.map(function(h,i){return cell(r,i)})})),null,sp);
+ else if(fmt==='keyed'){var k={},dup=0;recs.forEach(function(rc){var key=String(rc[head[0]]);var rest={};head.slice(1).forEach(function(h){rest[h]=rc[h]});if(k.hasOwnProperty(key))dup++;k[key]=rest});out=JSON.stringify(k,null,sp);if(dup)msg.innerHTML+='<div class="warn">'+dup+' doppelte Schlüssel in der ersten Spalte: spätere Zeilen überschreiben frühere.</div>'}
+ else out=recs.map(function(rc){return JSON.stringify(rc)}).join('\n');
+ if(odd)msg.innerHTML+='<div class="warn">'+odd+' Zeile(n) haben eine andere Spaltenzahl als die Kopfzeile ('+cols+'). Fehlende Felder bleiben leer, überzählige werden ignoriert. Prüfe Trennzeichen und Anführungszeichen.</div>';
+ $('jout').value=out;
+ $('stt').innerHTML='<span><b>'+rows.length+'</b> Datensätze</span><span><b>'+cols+'</b> Spalten</span><span>Trennzeichen: <b>'+dname(d)+'</b></span><span>Dezimalkomma: <b>'+(o.comma?'ja':'nein')+'</b></span><span><b>'+new Blob([out]).size+'</b> Byte</span>';
+ var t='<table><thead><tr>'+head.map(function(h){return'<th>'+esc(h)+'</th>'}).join('')+'</tr></thead><tbody>'+rows.slice(0,50).map(function(r){return'<tr>'+head.map(function(h,i){return'<td>'+esc(r[i]===undefined?'':r[i])+'</td>'}).join('')+'</tr>'}).join('')+'</tbody></table>';
+ $('tbl').innerHTML=t;
+}
+['csv','delim','fmt','ind','dec','hdr','num','nul','trim','skip'].forEach(function(i){$(i).addEventListener('input',function(){later(runA)})});
+$('file').onchange=function(){var f=this.files[0];if(!f)return;var r=new FileReader();r.onload=function(){$('csv').value=r.result;runA()};r.onerror=function(){toast('Datei konnte nicht gelesen werden')};r.readAsText(f,$('enc').value)};
+$('enc').onchange=function(){var f=$('file').files[0];if(f){var r=new FileReader();r.onload=function(){$('csv').value=r.result;runA()};r.readAsText(f,this.value)}};
+$('cp').onclick=function(){if($('jout').value)copyText($('jout').value);else toast('Noch kein Ergebnis')};
+$('dj').onclick=function(){if(!$('jout').value){toast('Noch kein Ergebnis');return}dl($('fmt').value==='ndjson'?'daten-toolyfix.jsonl':'daten-toolyfix.json',new Blob([$('jout').value],{type:'application/json'}))};
+$('clr').onclick=function(){$('csv').value='';$('file').value='';runA()};
+function flat(o,p,out){Object.keys(o).forEach(function(k){var v=o[k],key=p?p+'.'+k:k;if(v&&typeof v==='object'&&!Array.isArray(v))flat(v,key,out);else out[key]=v})}
+function runB(){
+ var raw=$('json').value.trim(),msg=$('msg2');msg.innerHTML='';
+ if(!raw){$('cout').value='';$('stt2').innerHTML='';return}
+ var data;try{data=JSON.parse(raw)}catch(e){msg.innerHTML='<div class="err">Ungültiges JSON: '+esc(e.message)+'</div>';$('cout').value='';$('stt2').innerHTML='';return}
+ var d=$('jd').value,dc=$('jdec').value,all=$('qall').checked;
+ if(!Array.isArray(data))data=[data];
+ var table=[],keys=[];
+ if(data.length&&data.every(Array.isArray)){table=data}
+ else{
+  var recs=data.map(function(x){var ob={};if(x&&typeof x==='object'&&!Array.isArray(x))flat(x,'',ob);else ob.wert=x;return ob});
+  var seen={};recs.forEach(function(r){Object.keys(r).forEach(function(k){if(!seen[k]){seen[k]=1;keys.push(k)}})});
+  table=[keys].concat(recs.map(function(r){return keys.map(function(k){return r[k]})}));
+ }
+ function cell(v){
+  if(v===null||v===undefined)return'';
+  if(typeof v==='number'&&dc===',')v=String(v).replace('.',',');
+  if(typeof v==='object')v=JSON.stringify(v);
+  var s=String(v);
+  if(all||s.indexOf(d)>-1||/["\r\n]/.test(s)||/^\s|\s$/.test(s))return'"'+s.replace(/"/g,'""')+'"';
+  return s;
+ }
+ var out=table.map(function(r){return r.map(cell).join(d)}).join('\r\n');
+ $('cout').value=out;
+ $('stt2').innerHTML='<span><b>'+Math.max(0,table.length-(keys.length?1:0))+'</b> Zeilen</span><span><b>'+(table[0]?table[0].length:0)+'</b> Spalten</span><span><b>'+new Blob([out]).size+'</b> Byte</span>';
+}
+['json','jd','jdec','qall','bom'].forEach(function(i){$(i).addEventListener('input',function(){later(runB)})});
+$('cp2').onclick=function(){if($('cout').value)copyText($('cout').value);else toast('Noch kein Ergebnis')};
+$('dc').onclick=function(){if(!$('cout').value){toast('Noch kein Ergebnis');return}dl('daten-toolyfix.csv',new Blob([($('bom').checked?'\uFEFF':'')+$('cout').value],{type:'text/csv;charset=utf-8'}))};
+$('clr2').onclick=function(){$('json').value='';runB()};
+function mode(a){$('sA').classList.toggle('hid',!a);$('sB').classList.toggle('hid',a);$('m1').classList.toggle('on',a);$('m2').classList.toggle('on',!a)}
+$('m1').onclick=function(){mode(true)};$('m2').onclick=function(){mode(false)};
+
+</script>
+</body>
+</html>
