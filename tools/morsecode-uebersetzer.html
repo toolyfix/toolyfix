@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Morsecode Übersetzer – Text in Morse und Morse in Text, mit Ton & Licht | Toolyfix</title>
+<meta name="description" content="Morsecode Übersetzer: Text in Morsezeichen umwandeln und Morsecode entschlüsseln. Mit Ton, Lichtsignal, WAV-Download, Umlauten, Morse-Tabelle und Hörtraining. Kostenlos im Browser.">
+<link rel="canonical" href="https://toolyfix.de/tools/morsecode-uebersetzer">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Morsecode Übersetzer – Text in Morse und Morse in Text, mit Ton & Licht | Toolyfix">
+<meta property="og:description" content="Morsecode Übersetzer: Text in Morsezeichen umwandeln und Morsecode entschlüsseln. Mit Ton, Lichtsignal, WAV-Download, Umlauten, Morse-Tabelle und Hörtraining. Kostenlos im Browser.">
+<meta property="og:url" content="https://toolyfix.de/tools/morsecode-uebersetzer">
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="stylesheet" href="/assets/style.css">
+<style>
+:root{--bg:#F7F7F4;--ink:#1A1A1A;--blue:#1D3557;--amber:#E9A93B;--line:#dcdcd2;--card:#fff;--mut:#5b6470;--bad:#b3261e;--ok:#1f7a45}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{background:var(--bg);color:var(--ink);margin:0;font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;line-height:1.6}
+.tf-wrap{max-width:1000px;margin:0 auto;padding:22px 16px 56px}
+.tf-wrap h1{font-size:clamp(1.6rem,4.4vw,2.3rem);line-height:1.15;margin:.2em 0 .3em;color:var(--blue)}
+.tf-intro{color:var(--mut);margin:0 0 14px;max-width:70ch}
+.tf-related{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:0 0 18px;padding:10px 12px;background:#fff;border:1px solid var(--line);border-radius:10px;font-size:.92rem}
+.tf-related b{color:var(--blue);margin-right:4px}
+.tf-related a{color:var(--blue);background:#eef1f6;border-radius:999px;padding:4px 12px;text-decoration:none;font-weight:500}
+.tf-related a:hover,.tf-related a:focus-visible{background:var(--blue);color:#fff;outline:none}
+.tf-card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px;margin-bottom:16px}
+.tf-card h2{font-size:1.05rem;margin:0 0 10px;color:var(--blue)}
+.tf-grid{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(170px,1fr))}
+.tf-wrap label{display:block;font-size:.82rem;font-weight:600;margin:0 0 4px;color:#333}
+.tf-wrap input[type=text],.tf-wrap input[type=number],.tf-wrap input[type=date],.tf-wrap select,.tf-wrap textarea{width:100%;padding:9px 10px;border:1px solid #c9c9bf;border-radius:8px;font:inherit;background:#fff;color:var(--ink)}
+.tf-wrap input[type=color]{width:100%;height:40px;border:1px solid #c9c9bf;border-radius:8px;padding:2px;background:#fff}
+.tf-wrap textarea{min-height:130px;resize:vertical}
+.tf-wrap input:focus-visible,.tf-wrap select:focus-visible,.tf-wrap textarea:focus-visible,.btn:focus-visible{outline:3px solid var(--amber);outline-offset:1px}
+.btn{font:inherit;font-weight:600;padding:9px 16px;border-radius:8px;border:1px solid var(--blue);background:#fff;color:var(--blue);cursor:pointer}
+.btn:hover{background:#eef1f6}
+.btn.pri{background:var(--blue);color:#fff}
+.btn.pri:hover{background:#16294a}
+.btn.amb{background:var(--amber);border-color:var(--amber);color:#1A1A1A}
+.btn[disabled]{opacity:.5;cursor:not-allowed}
+.tf-btns{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.chk{display:flex;gap:8px;align-items:center;font-weight:500;font-size:.92rem;margin:6px 0}
+.chk input{width:18px;height:18px}
+.tf-article{margin-top:34px;background:#fff;border:1px solid var(--line);border-radius:12px;padding:22px 20px}
+.tf-article h2{color:var(--blue);font-size:1.4rem;margin:1.4em 0 .4em;line-height:1.25}
+.tf-article h2:first-child{margin-top:0}
+.tf-article h3{font-size:1.1rem;margin:1.1em 0 .3em}
+.tf-article p,.tf-article li{max-width:75ch}
+.tf-article table{border-collapse:collapse;width:100%;font-size:.92rem;display:block;overflow-x:auto}
+.tf-article th,.tf-article td{border:1px solid var(--line);padding:6px 10px;text-align:left}
+.tf-article th{background:#eef1f6}
+.toast{position:fixed;left:50%;bottom:22px;transform:translateX(-50%);background:var(--blue);color:#fff;padding:9px 18px;border-radius:999px;font-size:.9rem;opacity:0;pointer-events:none;transition:opacity .2s;z-index:50}
+.toast.on{opacity:1}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+@media print{.site-header,.site-footer,.tf-related,.tf-intro,.tf-wrap>h1,.tf-article,.tf-noprint,.toast{display:none!important}body{background:#fff}.tf-wrap{padding:0;max-width:none}}
+
+.hid{display:none}
+.io{width:100%;min-height:130px;font-size:1.05rem}
+.mo{font-family:ui-monospace,Menlo,Consolas,monospace;letter-spacing:.08em}
+.lamp{width:100%;height:60px;border-radius:12px;background:#2a2f3a;transition:none;margin:10px 0}
+.lamp.on{background:#ffd54a;box-shadow:0 0 40px #ffd54a}
+.warn{background:#fff6dd;border:1px solid #f0d58a;border-radius:8px;padding:9px 12px;font-size:.88rem;margin:8px 0}
+.stt{font-size:.88rem;color:var(--mut);margin:6px 0}
+.tg{display:grid;gap:8px;grid-template-columns:repeat(auto-fill,minmax(112px,1fr))}
+.tg button{border:1px solid var(--line);background:#fff;border-radius:8px;padding:8px 6px;font:inherit;cursor:pointer;display:flex;justify-content:space-between;gap:6px;align-items:center}
+.tg button:hover{background:#eef1f6}
+.tg b{font-size:1.05rem;color:var(--blue)}
+.tg span{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:.9rem;letter-spacing:.05em}
+.tr{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.tr input{width:110px;font-size:1.3rem;text-align:center}
+.sc{font-weight:700;color:var(--blue)}
+</style>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-F9VY193ZMP"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-F9VY193ZMP');</script>
+</head>
+<body>
+<header class="site-header">
+  <div class="container">
+    <a href="/" class="logo-link"><img src="/assets/images/logo-full.png" alt="Toolyfix"></a>
+    <span class="header-tagline">Kostenlose Tools, direkt im Browser</span>
+  </div>
+</header>
+<main>
+<div class="tf-wrap">
+<h1>Morsecode Übersetzer</h1>
+<p class="tf-intro">Übersetze Text in Morsecode und Morsezeichen zurück in Text. Höre den Code, sieh ihn als Lichtsignal, lade ihn als WAV-Datei herunter und trainiere mit der Morse-Tabelle.</p>
+<nav class="tf-related" aria-label="Passende Tools"><b>Passende Tools:</b><a href="/tools/buchstabiertafel">Buchstabiertafel</a><a href="/tools/binaer-uebersetzer">Binär Übersetzer</a><a href="/tools/ascii-art-generator">ASCII Art Generator</a><a href="/tools/base64-kodieren-dekodieren">Base64 Kodieren &amp; Dekodieren</a></nav>
+
+<section class="tf-card">
+<h2>Übersetzer</h2>
+<div class="tf-grid">
+<div><label for="dir">Richtung</label><select id="dir"><option value="auto">Automatisch erkennen</option><option value="t2m">Text → Morsecode</option><option value="m2t">Morsecode → Text</option></select></div>
+<div><label for="sty">Zeichen im Morsecode</label><select id="sty"><option value="std">Punkt und Strich (. -)</option><option value="uni">Mittelpunkt und Strich (• −)</option></select></div>
+<div><label for="wsep">Worttrenner</label><select id="wsep"><option value=" / ">Schrägstrich ( / )</option><option value="   ">Drei Leerzeichen</option></select></div>
+</div>
+<label for="in" style="margin-top:12px">Eingabe</label>
+<textarea class="io" id="in" placeholder="Text oder Morsecode eingeben" spellcheck="false"></textarea>
+<div id="warn"></div>
+<label for="out" style="margin-top:12px">Ergebnis</label>
+<textarea class="io mo" id="out" readonly></textarea>
+<div class="stt" id="stt"></div>
+<div class="tf-btns">
+<button class="btn pri" id="cp" type="button">Ergebnis kopieren</button>
+<button class="btn" id="swap" type="button">Ergebnis als Eingabe</button>
+<button class="btn" id="clr" type="button">Leeren</button>
+</div>
+</section>
+<section class="tf-card">
+<h2>Abspielen als Ton und Licht</h2>
+<div class="tf-grid">
+<div><label for="wpm">Geschwindigkeit: <b id="wpmv">15</b> WPM</label><input type="range" id="wpm" min="5" max="40" value="15"></div>
+<div><label for="frq">Tonhöhe: <b id="frqv">600</b> Hz</label><input type="range" id="frq" min="300" max="1000" step="10" value="600"></div>
+</div>
+<label class="chk"><input type="checkbox" id="snd" checked> Ton</label>
+<label class="chk"><input type="checkbox" id="lgt" checked> Lichtsignal</label>
+<div class="lamp" id="lamp" aria-hidden="true"></div>
+<div class="tf-btns">
+<button class="btn pri" id="play" type="button">Abspielen</button>
+<button class="btn" id="stop" type="button">Stopp</button>
+<button class="btn amb" id="wav" type="button">Als WAV herunterladen</button>
+</div>
+<p class="stt">Das Tempo wird in WPM (Wörter pro Minute) nach dem Standardwort „PARIS“ angegeben. Beim Licht blinken schnelle Folgen. Bei Lichtempfindlichkeit lieber nur den Ton nutzen.</p>
+</section>
+<section class="tf-card">
+<h2>Hörtraining</h2>
+<div class="tr">
+<select id="tpool" style="width:auto" aria-label="Zeichenvorrat"><option value="L">Buchstaben</option><option value="N">Ziffern</option><option value="A">Buchstaben und Ziffern</option></select>
+<button class="btn pri" id="tnew" type="button">Neues Zeichen hören</button>
+<button class="btn" id="trep" type="button">Nochmal</button>
+</div>
+<div class="tr" style="margin-top:10px"><input type="text" id="tg" maxlength="1" autocomplete="off" aria-label="Dein Tipp"><button class="btn" id="tchk" type="button">Prüfen</button><span class="sc" id="tsc"></span></div>
+<p class="stt" id="tfb"></p>
+</section>
+<section class="tf-card">
+<h2>Morse-Tabelle (Klick spielt das Zeichen ab)</h2>
+<div class="tg" id="tbl"></div>
+</section>
+
+<article class="tf-article">
+
+<h2>Morsecode Übersetzer: Text in Morsezeichen und zurück</h2>
+<p>Der Morsecode ist eines der ältesten Verfahren, Nachrichten zu übermitteln. Zwei Signale, kurz und lang, reichen aus, um jeden Buchstaben, jede Ziffer und viele Satzzeichen darzustellen. Heute begegnet er dir bei Funkamateuren, in der Luft- und Seefahrt, bei Pfadfindern, in Escape Rooms und Rätselspielen oder einfach als faszinierende Geheimschrift. Mit dem Morsecode Übersetzer von Toolyfix wandelst du Text in Morsecode um und entschlüsselst Morsezeichen mit einem Klick zurück in lesbaren Text. Du kannst den Code zusätzlich als Ton hören, als Lichtsignal sehen, als WAV-Datei herunterladen und mit dem Hörtraining üben. Die Verarbeitung findet komplett in deinem Browser statt, deine Texte werden nicht übertragen.</p>
+
+<h2>Funktionen des Morsecode Übersetzers</h2>
+<ul>
+<li><b>Beide Richtungen:</b> Text in Morsecode und Morsecode in Text. Auf Wunsch erkennt das Tool automatisch, was du eingegeben hast.</li>
+<li><b>Deutsche Sonderzeichen:</b> Ä, Ö, Ü, ß und die Buchstabenfolge CH werden unterstützt, ebenso Ziffern und die gängigsten Satzzeichen.</li>
+<li><b>Darstellung wählbar:</b> Klassisch mit Punkt und Strich oder mit Mittelpunkt und langem Strich. Worte trennst du mit Schrägstrich oder drei Leerzeichen.</li>
+<li><b>Ton:</b> Der Code wird als Pfeifton abgespielt. Tempo und Tonhöhe stellst du selbst ein.</li>
+<li><b>Lichtsignal:</b> Zusätzlich blinkt eine Fläche im Rhythmus des Codes, wie bei einer Signallampe.</li>
+<li><b>WAV-Export:</b> Lade den Morsecode als Audiodatei herunter und verwende ihn in Videos, Spielen oder Präsentationen.</li>
+<li><b>Morse-Tabelle:</b> Alle Zeichen im Überblick. Ein Klick spielt das Zeichen ab.</li>
+<li><b>Hörtraining:</b> Das Tool spielt ein zufälliges Zeichen, du tippst, was du gehört hast, und siehst deinen Punktestand.</li>
+</ul>
+
+<h2>So funktioniert der Morsecode</h2>
+<p>Im Morsecode wird jedes Zeichen durch eine Folge aus kurzen und langen Signalen dargestellt. Kurze Signale heißen Punkte oder „dit“, lange Striche oder „dah“. Das „E“, der häufigste Buchstabe im Deutschen, besteht nur aus einem Punkt, das „T“ aus einem Strich. Seltene Buchstaben wie Q oder Y erhalten längere Folgen. Dieses Prinzip stammt von Samuel Morse und Alfred Vail, die ihn im 19. Jahrhundert für die Telegrafie entwickelten, und wurde später international vereinheitlicht.</p>
+<p>Für Rhythmus und Tempo gelten feste Regeln. Die Grundeinheit ist die Länge eines Punktes. Ein Strich ist drei Einheiten lang. Zwischen den Signalen eines Zeichens liegt eine Einheit Pause, zwischen zwei Buchstaben drei Einheiten und zwischen zwei Wörtern sieben Einheiten. Das Tempo wird in WPM angegeben, Wörtern pro Minute, wobei das Wort „PARIS“ als Maßstab dient. Bei 15 WPM dauert ein Punkt 80 Millisekunden. Der Übersetzer richtet seine Wiedergabe nach genau diesen Regeln.</p>
+
+<h2>Text in Morsecode umwandeln</h2>
+<ol>
+<li>Schreibe oder füge deinen Text in das Eingabefeld ein.</li>
+<li>Der Morsecode erscheint sofort im Ergebnisfeld. Buchstaben sind durch ein Leerzeichen getrennt, Wörter durch einen Schrägstrich.</li>
+<li>Kopiere das Ergebnis oder starte die Wiedergabe als Ton und Licht.</li>
+</ol>
+<p>Zeichen, die es im Morsecode nicht gibt, lässt das Tool aus und weist dich darauf hin. Dazu gehören zum Beispiel Emojis, Großschreibung wird einfach ignoriert, da Morsecode keinen Unterschied zwischen Groß- und Kleinbuchstaben macht.</p>
+
+<h2>Morsecode in Text übersetzen</h2>
+<p>Füge den Morsecode in das Eingabefeld ein. Verwende Punkte und Striche, alternativ Mittelpunkte und lange Striche. Trenne die einzelnen Buchstaben mit einem Leerzeichen und die Wörter mit einem Schrägstrich oder mit drei Leerzeichen. Das Tool erkennt die Eingabe automatisch als Morsecode und gibt den Klartext aus. Unbekannte Zeichenfolgen erscheinen als Fragezeichen. Meist liegt das an fehlenden Leerzeichen oder an Tippfehlern. Prüfe die Warnung unter dem Eingabefeld.</p>
+
+<h2>Das Morse-Alphabet im Überblick</h2>
+<table>
+<tr><th>Zeichen</th><th>Code</th><th>Zeichen</th><th>Code</th><th>Zeichen</th><th>Code</th></tr>
+<tr><td>A</td><td>•−</td><td>J</td><td>•−−−</td><td>S</td><td>•••</td></tr>
+<tr><td>B</td><td>−•••</td><td>K</td><td>−•−</td><td>T</td><td>−</td></tr>
+<tr><td>C</td><td>−•−•</td><td>L</td><td>•−••</td><td>U</td><td>••−</td></tr>
+<tr><td>D</td><td>−••</td><td>M</td><td>−−</td><td>V</td><td>•••−</td></tr>
+<tr><td>E</td><td>•</td><td>N</td><td>−•</td><td>W</td><td>•−−</td></tr>
+<tr><td>F</td><td>••−•</td><td>O</td><td>−−−</td><td>X</td><td>−••−</td></tr>
+<tr><td>G</td><td>−−•</td><td>P</td><td>•−−•</td><td>Y</td><td>−•−−</td></tr>
+<tr><td>H</td><td>••••</td><td>Q</td><td>−−•−</td><td>Z</td><td>−−••</td></tr>
+<tr><td>I</td><td>••</td><td>R</td><td>•−•</td><td>Ä</td><td>•−•−</td></tr>
+</table>
+<p>Die Ziffern folgen einem klaren Muster: Die 1 besteht aus einem Punkt und vier Strichen, bei jeder weiteren Ziffer wandert ein Strich zu einem Punkt, bis die 5 aus fünf Punkten besteht. Danach kehrt sich das Muster um, die 6 hat vier Punkte und einen Strich, die 0 besteht aus fünf Strichen. Dieses System hilft beim Lernen.</p>
+
+<h2>SOS und andere bekannte Signale</h2>
+<p>Das berühmteste Morsesignal ist SOS: drei kurze, drei lange, drei kurze Zeichen. Es steht nicht für drei Wörter, sondern ist ein Notsignal, das ohne Pause zwischen den Buchstaben gesendet wird, damit es leicht erkennbar ist. Wenn du „SOS“ in den Übersetzer eingibst, erhältst du die Zeichenfolge mit normalen Buchstabenabständen, die in der Praxis ohne Pausen gesendet werden würde. Für ein echtes Notsignal solltest du natürlich immer die offiziellen Wege nutzen, zum Beispiel den Notruf 112.</p>
+
+<h2>Morsecode lernen: Tipps für Anfänger</h2>
+<ul>
+<li><b>Nach Klang lernen, nicht nach Tabelle:</b> Erfahrene Telegrafisten hören ganze Zeichen als Rhythmus, nicht als Punkte und Striche. Starte deshalb das Hörtraining und gewöhne dich an den Klang.</li>
+<li><b>Mit dem Rhythmus der Buchstaben beginnen:</b> E, T, I, M, A und N sind kurz und prägen sich schnell ein.</li>
+<li><b>Schnelleres Tempo, größere Abstände:</b> Beim sogenannten Farnsworth-Verfahren werden die Zeichen schnell gesendet, die Pausen aber verlängert. Das trainiert das Hören ganzer Zeichen. Stelle dazu das Tempo hoch und lies die Wörter beim Abspielen mit.</li>
+<li><b>Täglich kurz üben:</b> Zehn Minuten am Tag bringen mehr als eine Stunde pro Woche.</li>
+<li><b>Mit Wörtern üben:</b> Gib kurze Wörter ein, höre sie ab und versuche, sie mitzuschreiben, bevor du sie dir anzeigen lässt.</li>
+</ul>
+
+<h2>Typische Probleme und Lösungen</h2>
+<h3>Der Ton ist nicht zu hören</h3>
+<p>Prüfe die Lautstärke und ob der Tab stummgeschaltet ist. Manche Browser starten Ton erst nach einem Klick. Drücke auf „Abspielen“, dann sollte es funktionieren.</p>
+<h3>Beim Entschlüsseln erscheinen Fragezeichen</h3>
+<p>Entweder fehlen Leerzeichen zwischen den Buchstaben, oder ein Zeichen ist falsch. Bei einem Zeichencode ohne Trennung kann das Tool nicht erkennen, wo ein Buchstabe endet. Setze bei jedem Buchstabenende ein Leerzeichen.</p>
+<h3>Umlaute fehlen im Ergebnis</h3>
+<p>Ä, Ö, Ü und ß sind enthalten. Wenn sie fehlen, stammt das Zeichen vielleicht aus einem anderen Zeichensatz. Tippe die Umlaute direkt ein.</p>
+<h3>Das Lichtsignal flackert zu schnell</h3>
+<p>Senke das Tempo oder schalte das Licht ab und verwende nur den Ton. Personen mit Lichtempfindlichkeit sollten schnelle Blinkfolgen vermeiden.</p>
+<h3>Die WAV-Datei ist zu groß oder lässt sich nicht erzeugen</h3>
+<p>Der Export ist auf zehn Minuten Länge begrenzt. Kürze den Text oder erhöhe das Tempo.</p>
+
+<h2>Anwendungen für Morsecode heute</h2>
+<p>Obwohl der Morsecode als Verkehrsmittel der Nachrichtentechnik weitgehend abgelöst ist, lebt er weiter. Funkamateure nutzen ihn, weil er mit sehr geringer Sendeleistung auch unter schlechten Bedingungen noch lesbar bleibt. In der Luftfahrt identifizieren sich Funkfeuer mit Morsekennungen. Pfadfinder und Outdoor-Fans lernen ihn für Signale mit Taschenlampe oder Pfeife. Menschen mit eingeschränkter Motorik nutzen Morsecode als Eingabemethode, weil nur ein oder zwei Tasten nötig sind. Für Escape Rooms, Geocaching-Rätsel, Schnitzeljagden und Geschenke mit Geheimbotschaft eignet sich der Code ebenso. Für andere Verschlüsselungen bieten sich der Binär Übersetzer oder die Buchstabiertafel an.</p>
+
+<h2>Häufige Fragen zum Morsecode Übersetzer</h2>
+<h3>Ist der Morsecode Übersetzer kostenlos?</h3>
+<p>Ja, ohne Anmeldung und ohne Begrenzung.</p>
+<h3>Wie trennt man Wörter im Morsecode?</h3>
+<p>Mit einer längeren Pause beim Senden. Aufgeschrieben verwendet man meist einen Schrägstrich oder drei Leerzeichen.</p>
+<h3>Gibt es Groß- und Kleinschreibung im Morsecode?</h3>
+<p>Nein. Morsecode kennt nur Zeichen, keine Schreibweisen.</p>
+<h3>Kann ich den Ton in einem Video verwenden?</h3>
+<p>Ja, die erzeugte WAV-Datei gehört dir. Du kannst sie in Videos, Spielen oder Präsentationen einbinden.</p>
+<h3>Wie schnell ist normales Morsetempo?</h3>
+<p>Anfänger beginnen oft bei 5 bis 10 WPM. Geübte Funker erreichen 20 bis 30 WPM, Profis deutlich mehr.</p>
+<p>Passende Werkzeuge findest du oben unter „Passende Tools“: die Buchstabiertafel für das Diktieren am Telefon, den Binär Übersetzer und den ASCII Art Generator.</p>
+
+</article>
+</div>
+</main>
+<footer class="site-footer">
+  <div class="container">
+    <img src="/assets/images/logo-full.png" alt="Toolyfix">
+    <nav class="footer-links">
+      <a href="/ueber-uns.html">Über uns</a>
+      <a href="/datenschutz.html">Datenschutz</a>
+      <a href="/nutzungsbedingungen.html">Nutzungsbedingungen</a>
+      <a href="/kontakt.html">Kontakt</a>
+    </nav>
+    <p class="footer-note">© 2026 Toolyfix – Alle Tools laufen lokal in deinem Browser.</p>
+  </div>
+</footer>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script>
+function toast(m){var t=document.getElementById('toast');t.textContent=m;t.classList.add('on');clearTimeout(window._tt);window._tt=setTimeout(function(){t.classList.remove('on')},1800)}
+function copyText(s){if(navigator.clipboard&&window.isSecureContext){return navigator.clipboard.writeText(s).then(function(){toast('Kopiert')},function(){fb(s)})}fb(s)}
+function fb(s){var a=document.createElement('textarea');a.value=s;a.style.position='fixed';a.style.opacity='0';document.body.appendChild(a);a.select();try{document.execCommand('copy');toast('Kopiert')}catch(e){toast('Kopieren nicht möglich')}document.body.removeChild(a)}
+function dl(name,blob){var u=URL.createObjectURL(blob),a=document.createElement('a');a.href=u;a.download=name;document.body.appendChild(a);a.click();document.body.removeChild(a);setTimeout(function(){URL.revokeObjectURL(u)},4000)}
+
+function $(i){return document.getElementById(i)}
+var M={A:'.-',B:'-...',C:'-.-.',D:'-..',E:'.',F:'..-.',G:'--.',H:'....',I:'..',J:'.---',K:'-.-',L:'.-..',M:'--',N:'-.',O:'---',P:'.--.',Q:'--.-',R:'.-.',S:'...',T:'-',U:'..-',V:'...-',W:'.--',X:'-..-',Y:'-.--',Z:'--..',
+'0':'-----','1':'.----','2':'..---','3':'...--','4':'....-','5':'.....','6':'-....','7':'--...','8':'---..','9':'----.',
+'.':'.-.-.-',',':'--..--','?':'..--..',"'":'.----.','!':'-.-.--','/':'-..-.','(':'-.--.',')':'-.--.-','&':'.-...',':':'---...',';':'-.-.-.','=':'-...-','+':'.-.-.','-':'-....-','_':'..--.-','"':'.-..-.','$':'...-..-','@':'.--.-.',
+'Ä':'.-.-','Ö':'---.','Ü':'..--','ß':'...--..'};
+var R={};Object.keys(M).forEach(function(k){R[M[k]]=k});R['----']='CH';
+function up(c){if(c==='ß')return'ß';var u=c.toUpperCase();return u.length===1?u:c}
+function enc(text){
+ var bad={},words=text.split(/\s+/).filter(Boolean).map(function(w){
+  return Array.from(w).map(function(ch){var c=up(ch);if(M[c])return M[c];bad[ch]=1;return''}).filter(Boolean).join(' ')}).filter(Boolean);
+ return{morse:words.join(' / '),bad:Object.keys(bad)};
+}
+function norm(s){return s.replace(/[•·∙.]/g,'.').replace(/[–—−‒_‐]/g,'-')}
+function dec(s){
+ var bad=0,t=norm(s).trim().split(/\s*[\/|]\s*|\s{3,}/).map(function(w){
+  return w.trim().split(/\s+/).filter(Boolean).map(function(c){if(R[c])return R[c];bad++;return'?'}).join('')}).filter(function(w){return w.length}).join(' ');
+ return{text:t,bad:bad};
+}
+function isMorse(s){return /^[\s.\-•·–—−_\/|]+$/.test(s)&&/[.\-•·–—−_]/.test(s)}
+function styl(m){return $('sty').value==='uni'?m.replace(/\./g,'•').replace(/-/g,'−'):m}
+var canon='';
+function run(){
+ var s=$('in').value,d=$('dir').value,w=$('warn');w.innerHTML='';
+ if(!s.trim()){$('out').value='';$('stt').textContent='';canon='';return}
+ if(d==='auto')d=isMorse(s)?'m2t':'t2m';
+ if(d==='t2m'){
+  var r=enc(s);canon=r.morse;$('out').value=styl(r.morse).split(' / ').join($('wsep').value);
+  if(r.bad.length)w.innerHTML='<div class="warn">Nicht im Morsecode vorhanden und ausgelassen: '+r.bad.map(function(c){return c.replace(/</g,'&lt;')}).join(' ')+'</div>';
+ }else{
+  var q=dec(s);$('out').value=q.text;canon=norm(s).trim().replace(/\s*\/\s*|\s{3,}/g,' / ');
+  if(q.bad)w.innerHTML='<div class="warn">'+q.bad+' Zeichenfolge(n) wurden nicht erkannt und als ? ausgegeben. Prüfe die Trennung der Buchstaben durch Leerzeichen.</div>';
+ }
+ var tl=timeline(canon,+$('wpm').value);
+ $('stt').textContent='Richtung: '+(d==='t2m'?'Text → Morsecode':'Morsecode → Text')+' · Dauer beim Abspielen: ca. '+tl.end.toFixed(1).replace('.',',')+' Sekunden bei '+$('wpm').value+' WPM';
+}
+['in','dir','sty','wsep'].forEach(function(i){$(i).addEventListener('input',run)});
+$('cp').onclick=function(){if($('out').value)copyText($('out').value);else toast('Noch kein Ergebnis')};
+$('swap').onclick=function(){if(!$('out').value)return;$('in').value=$('out').value;$('dir').value='auto';run()};
+$('clr').onclick=function(){$('in').value='';run()};
+function timeline(m,wpm){
+ var u=1.2/wpm,t=0,on=[],ws=m.split(' / ').filter(Boolean);
+ ws.forEach(function(w,wi){var ls=w.split(' ').filter(Boolean);
+  ls.forEach(function(l,li){
+   for(var i=0;i<l.length;i++){var d=(l[i]==='-'?3:1)*u;on.push([t,t+d]);t+=d;if(i<l.length-1)t+=u}
+   if(li<ls.length-1)t+=3*u;
+  });
+  if(wi<ws.length-1)t+=7*u;
+ });
+ return{on:on,end:t};
+}
+var ctx=null,tms=[];
+function stop(){tms.forEach(clearTimeout);tms=[];$('lamp').classList.remove('on');if(ctx){try{ctx.close()}catch(e){}ctx=null}}
+function play(m,wpmOverride){
+ stop();
+ if(!m){toast('Bitte zuerst Text oder Morsecode eingeben');return}
+ var tl=timeline(m,wpmOverride||+$('wpm').value);
+ if($('snd').checked){
+  try{ctx=new (window.AudioContext||window.webkitAudioContext)();var o=ctx.createOscillator(),g=ctx.createGain(),t0=ctx.currentTime+.1;o.type='sine';o.frequency.value=+$('frq').value;g.gain.setValueAtTime(0,t0);
+   tl.on.forEach(function(e){g.gain.setValueAtTime(0,t0+e[0]);g.gain.linearRampToValueAtTime(.3,t0+e[0]+.005);g.gain.setValueAtTime(.3,t0+e[1]-.005);g.gain.linearRampToValueAtTime(0,t0+e[1])});
+   o.connect(g);g.connect(ctx.destination);o.start(t0);o.stop(t0+tl.end+.2)}catch(e){toast('Ton wird nicht unterstützt')}
+ }
+ if($('lgt').checked)tl.on.forEach(function(e){tms.push(setTimeout(function(){$('lamp').classList.add('on')},100+e[0]*1000));tms.push(setTimeout(function(){$('lamp').classList.remove('on')},100+e[1]*1000))});
+ tms.push(setTimeout(stop,tl.end*1000+400));
+}
+$('play').onclick=function(){play(canon)};$('stop').onclick=stop;
+$('wpm').oninput=function(){$('wpmv').textContent=this.value;run()};$('frq').oninput=function(){$('frqv').textContent=this.value};
+$('wav').onclick=function(){
+ if(!canon){toast('Bitte zuerst Text oder Morsecode eingeben');return}
+ var tl=timeline(canon,+$('wpm').value);if(tl.end>600){toast('Zu lang für den Export (max. 10 Minuten)');return}
+ var sr=22050,n=Math.ceil((tl.end+.2)*sr),buf=new Int16Array(n),f=+$('frq').value;
+ tl.on.forEach(function(e){var a=Math.floor(e[0]*sr),b=Math.min(n,Math.floor(e[1]*sr)),fd=Math.floor(.005*sr);for(var i=a;i<b;i++){var env=Math.min(1,(i-a)/fd,(b-i)/fd);buf[i]=Math.round(Math.sin(2*Math.PI*f*(i/sr))*env*0.3*32767)}});
+ var h=new DataView(new ArrayBuffer(44));function ws(o,s){for(var i=0;i<s.length;i++)h.setUint8(o+i,s.charCodeAt(i))}
+ ws(0,'RIFF');h.setUint32(4,36+n*2,true);ws(8,'WAVE');ws(12,'fmt ');h.setUint32(16,16,true);h.setUint16(20,1,true);h.setUint16(22,1,true);h.setUint32(24,sr,true);h.setUint32(28,sr*2,true);h.setUint16(32,2,true);h.setUint16(34,16,true);ws(36,'data');h.setUint32(40,n*2,true);
+ dl('morsecode-toolyfix.wav',new Blob([h.buffer,buf.buffer],{type:'audio/wav'}));toast('WAV wird heruntergeladen');
+};
+var tb=$('tbl');
+Object.keys(M).forEach(function(k){var b=document.createElement('button');b.type='button';b.innerHTML='<b>'+k.replace(/</g,'&lt;')+'</b><span>'+M[k].replace(/\./g,'•').replace(/-/g,'−')+'</span>';b.setAttribute('aria-label',k+' abspielen');b.onclick=function(){play(M[k])};tb.appendChild(b)});
+var cur='',ok=0,tot=0;
+function pool(){var p=$('tpool').value,L='ABCDEFGHIJKLMNOPQRSTUVWXYZ',N='0123456789';return p==='L'?L:p==='N'?N:L+N}
+$('tnew').onclick=function(){var p=pool();cur=p.charAt(Math.floor(Math.random()*p.length));$('tg').value='';$('tfb').textContent='Welches Zeichen hörst du?';play(M[cur],12);$('tg').focus()};
+$('trep').onclick=function(){if(cur)play(M[cur],12)};
+function chk(){if(!cur){toast('Starte zuerst mit „Neues Zeichen hören“');return}var g=$('tg').value.trim().toUpperCase();if(!g)return;tot++;if(g===cur){ok++;$('tfb').textContent='Richtig: '+cur+' ('+M[cur].replace(/\./g,'•').replace(/-/g,'−')+')'}else{$('tfb').textContent='Leider falsch. Es war '+cur+' ('+M[cur].replace(/\./g,'•').replace(/-/g,'−')+').'}$('tsc').textContent=ok+' von '+tot+' richtig';cur=''}
+$('tchk').onclick=chk;$('tg').addEventListener('keydown',function(e){if(e.key==='Enter')chk()});
+
+</script>
+</body>
+</html>

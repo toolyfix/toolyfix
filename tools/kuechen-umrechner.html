@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Küchen-Umrechner – Tassen, ml, Gramm, EL, TL & Backofen umrechnen | Toolyfix</title>
+<meta name="description" content="Küchen-Umrechner: Tassen in Gramm, Milliliter in Gramm, EL und TL umrechnen, Backofen-Temperatur (Umluft, Fahrenheit, Gas Mark) und Backform-Faktor berechnen. Kostenlos im Browser.">
+<link rel="canonical" href="https://toolyfix.de/tools/kuechen-umrechner">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Küchen-Umrechner – Tassen, ml, Gramm, EL, TL & Backofen umrechnen | Toolyfix">
+<meta property="og:description" content="Küchen-Umrechner: Tassen in Gramm, Milliliter in Gramm, EL und TL umrechnen, Backofen-Temperatur (Umluft, Fahrenheit, Gas Mark) und Backform-Faktor berechnen. Kostenlos im Browser.">
+<meta property="og:url" content="https://toolyfix.de/tools/kuechen-umrechner">
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="stylesheet" href="/assets/style.css">
+<style>
+:root{--bg:#F7F7F4;--ink:#1A1A1A;--blue:#1D3557;--amber:#E9A93B;--line:#dcdcd2;--card:#fff;--mut:#5b6470;--bad:#b3261e;--ok:#1f7a45}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{background:var(--bg);color:var(--ink);margin:0;font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;line-height:1.6}
+.tf-wrap{max-width:1000px;margin:0 auto;padding:22px 16px 56px}
+.tf-wrap h1{font-size:clamp(1.6rem,4.4vw,2.3rem);line-height:1.15;margin:.2em 0 .3em;color:var(--blue)}
+.tf-intro{color:var(--mut);margin:0 0 14px;max-width:70ch}
+.tf-related{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:0 0 18px;padding:10px 12px;background:#fff;border:1px solid var(--line);border-radius:10px;font-size:.92rem}
+.tf-related b{color:var(--blue);margin-right:4px}
+.tf-related a{color:var(--blue);background:#eef1f6;border-radius:999px;padding:4px 12px;text-decoration:none;font-weight:500}
+.tf-related a:hover,.tf-related a:focus-visible{background:var(--blue);color:#fff;outline:none}
+.tf-card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px;margin-bottom:16px}
+.tf-card h2{font-size:1.05rem;margin:0 0 10px;color:var(--blue)}
+.tf-grid{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(170px,1fr))}
+.tf-wrap label{display:block;font-size:.82rem;font-weight:600;margin:0 0 4px;color:#333}
+.tf-wrap input[type=text],.tf-wrap input[type=number],.tf-wrap input[type=date],.tf-wrap select,.tf-wrap textarea{width:100%;padding:9px 10px;border:1px solid #c9c9bf;border-radius:8px;font:inherit;background:#fff;color:var(--ink)}
+.tf-wrap input[type=color]{width:100%;height:40px;border:1px solid #c9c9bf;border-radius:8px;padding:2px;background:#fff}
+.tf-wrap textarea{min-height:130px;resize:vertical}
+.tf-wrap input:focus-visible,.tf-wrap select:focus-visible,.tf-wrap textarea:focus-visible,.btn:focus-visible{outline:3px solid var(--amber);outline-offset:1px}
+.btn{font:inherit;font-weight:600;padding:9px 16px;border-radius:8px;border:1px solid var(--blue);background:#fff;color:var(--blue);cursor:pointer}
+.btn:hover{background:#eef1f6}
+.btn.pri{background:var(--blue);color:#fff}
+.btn.pri:hover{background:#16294a}
+.btn.amb{background:var(--amber);border-color:var(--amber);color:#1A1A1A}
+.btn[disabled]{opacity:.5;cursor:not-allowed}
+.tf-btns{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.chk{display:flex;gap:8px;align-items:center;font-weight:500;font-size:.92rem;margin:6px 0}
+.chk input{width:18px;height:18px}
+.tf-article{margin-top:34px;background:#fff;border:1px solid var(--line);border-radius:12px;padding:22px 20px}
+.tf-article h2{color:var(--blue);font-size:1.4rem;margin:1.4em 0 .4em;line-height:1.25}
+.tf-article h2:first-child{margin-top:0}
+.tf-article h3{font-size:1.1rem;margin:1.1em 0 .3em}
+.tf-article p,.tf-article li{max-width:75ch}
+.tf-article table{border-collapse:collapse;width:100%;font-size:.92rem;display:block;overflow-x:auto}
+.tf-article th,.tf-article td{border:1px solid var(--line);padding:6px 10px;text-align:left}
+.tf-article th{background:#eef1f6}
+.toast{position:fixed;left:50%;bottom:22px;transform:translateX(-50%);background:var(--blue);color:#fff;padding:9px 18px;border-radius:999px;font-size:.9rem;opacity:0;pointer-events:none;transition:opacity .2s;z-index:50}
+.toast.on{opacity:1}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+@media print{.site-header,.site-footer,.tf-related,.tf-intro,.tf-wrap>h1,.tf-article,.tf-noprint,.toast{display:none!important}body{background:#fff}.tf-wrap{padding:0;max-width:none}}
+
+.mt{display:flex;gap:8px;margin-bottom:14px;flex-wrap:wrap}
+.mt button.on{background:var(--blue);color:#fff}
+.hid{display:none}
+.row3{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(170px,1fr))}
+.big{background:var(--blue);color:#fff;border-radius:12px;padding:16px;margin-top:14px}
+.big b{display:block;font-size:clamp(1.3rem,5vw,2rem);line-height:1.25;overflow-wrap:anywhere}
+.big span{opacity:.85;font-size:.9rem}
+.warn{background:#fff6dd;border:1px solid #f0d58a;border-radius:8px;padding:9px 12px;font-size:.88rem;margin-top:10px}
+.tbw{overflow-x:auto;margin-top:12px}
+table.t{border-collapse:collapse;width:100%;font-size:.92rem}
+table.t th,table.t td{border-bottom:1px solid var(--line);padding:6px 10px;text-align:left;white-space:nowrap}
+table.t th{background:#eef1f6}
+table.t td.v{font-weight:700;color:var(--blue);font-variant-numeric:tabular-nums}
+.sw{display:flex;gap:8px;align-items:end}
+.sw>div{flex:1}
+.note{font-size:.85rem;color:var(--mut);margin:8px 0 0}
+</style>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-F9VY193ZMP"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-F9VY193ZMP');</script>
+</head>
+<body>
+<header class="site-header">
+  <div class="container">
+    <a href="/" class="logo-link"><img src="/assets/images/logo-full.png" alt="Toolyfix"></a>
+    <span class="header-tagline">Kostenlose Tools, direkt im Browser</span>
+  </div>
+</header>
+<main>
+<div class="tf-wrap">
+<h1>Küchen-Umrechner</h1>
+<p class="tf-intro">Rechne Tassen, Milliliter, Gramm, Esslöffel und Unzen um – auch zwischen Volumen und Gewicht für über 20 Zutaten. Dazu Backofen-Temperaturen und ein Rechner für andere Backformen.</p>
+<nav class="tf-related" aria-label="Passende Tools"><b>Passende Tools:</b><a href="/tools/timer-stoppuhr">Timer &amp; Stoppuhr</a><a href="/tools/flaechenrechner">Flächenrechner</a><a href="/tools/wecker-online">Wecker Online</a><a href="/tools/entscheidungsrad">Entscheidungsrad</a></nav>
+
+<div class="mt tf-noprint">
+<button class="btn on" id="m1" type="button">Zutaten umrechnen</button>
+<button class="btn" id="m2" type="button">Backofen-Temperatur</button>
+<button class="btn" id="m3" type="button">Backform umrechnen</button>
+</div>
+<section class="tf-card" id="sA">
+<h2>Tassen, ml, Gramm, EL und TL umrechnen</h2>
+<div class="tf-grid">
+<div><label for="a">Menge</label><input type="text" id="a" inputmode="decimal" placeholder="z. B. 1,5"></div>
+<div><label for="fu">Von</label><select id="fu"></select></div>
+<div><label for="tu">Nach</label><select id="tu"></select></div>
+<div><label for="ing">Zutat (für Volumen ↔ Gewicht)</label><select id="ing"></select></div>
+</div>
+<div class="tf-btns"><button class="btn" id="swap" type="button">Einheiten tauschen</button></div>
+<div id="aout"></div>
+</section>
+<section class="tf-card hid" id="sB">
+<h2>Backofen-Temperatur umrechnen</h2>
+<div class="tf-grid">
+<div><label for="ot">Temperatur</label><input type="text" id="ot" inputmode="decimal" placeholder="z. B. 180"></div>
+<div><label for="os">Angabe in</label><select id="os"><option value="ou">°C Ober-/Unterhitze</option><option value="uml">°C Umluft</option><option value="f">°F</option><option value="gm">Gas Mark (UK)</option></select></div>
+</div>
+<div id="bout"></div>
+<div class="tbw"><table class="t" id="gt"></table></div>
+<p class="note">Umluft: Als Faustregel gilt etwa 20 °C weniger als bei Ober-/Unterhitze. Viele Öfen heizen unterschiedlich, deshalb beim ersten Mal die Garprobe machen. Gas Mark ist die britische Skala für Gasherde.</p>
+</section>
+<section class="tf-card hid" id="sC">
+<h2>Backform wechseln: Faktor für die Zutaten</h2>
+<div class="tf-grid">
+<div><label for="b1s">Form im Rezept</label><select id="b1s"><option value="r">Rund (Ø)</option><option value="e">Eckig (Länge × Breite)</option></select></div>
+<div id="b1w"><label for="b1a">Durchmesser (cm)</label><input type="text" id="b1a" inputmode="decimal"></div>
+<div id="b1x" class="hid"><label for="b1b">Breite (cm)</label><input type="text" id="b1b" inputmode="decimal"></div>
+</div>
+<div class="tf-grid" style="margin-top:12px">
+<div><label for="b2s">Meine Form</label><select id="b2s"><option value="r">Rund (Ø)</option><option value="e">Eckig (Länge × Breite)</option></select></div>
+<div id="b2w"><label for="b2a">Durchmesser (cm)</label><input type="text" id="b2a" inputmode="decimal"></div>
+<div id="b2x" class="hid"><label for="b2b">Breite (cm)</label><input type="text" id="b2b" inputmode="decimal"></div>
+</div>
+<div class="tf-grid" style="margin-top:12px">
+<div><label for="bm">Berechnen nach</label><select id="bm"><option value="a">Fläche (Standard)</option><option value="v">Volumen (mit Höhe)</option></select></div>
+<div id="bh1" class="hid"><label for="h1">Höhe im Rezept (cm)</label><input type="text" id="h1" inputmode="decimal"></div>
+<div id="bh2" class="hid"><label for="h2">Höhe meiner Form (cm)</label><input type="text" id="h2" inputmode="decimal"></div>
+<div><label for="bq">Menge im Rezept (optional)</label><input type="text" id="bq" inputmode="decimal" placeholder="z. B. 250"></div>
+</div>
+<div id="cout"></div>
+</section>
+
+<article class="tf-article">
+
+<h2>Küchen-Umrechner: Tassen, Milliliter, Gramm und Backofen-Temperatur umrechnen</h2>
+<p>Das Rezept aus dem Internet verlangt „2 Cups Mehl“, die Küchenwaage zeigt Gramm, und im Ofen steht die Temperatur in Grad Celsius, nicht in Fahrenheit. Wer international kocht und backt, stößt ständig auf fremde Maße. Dazu kommt ein Problem, das viele unterschätzen: Tassen und Löffel messen Volumen, die Waage misst Gewicht, und die Umrechnung zwischen beiden hängt davon ab, was du abmisst. Ein Milliliter Wasser wiegt ein Gramm, ein Milliliter Mehl aber nur etwa die Hälfte. Der Küchen-Umrechner von Toolyfix löst genau diese Fälle. Er rechnet Tassen, Milliliter, Gramm, Esslöffel, Teelöffel, Unzen und Pfund ineinander um, kennt über 20 Zutaten mit ihrer Dichte, übersetzt Backofen-Temperaturen und berechnet den Faktor, wenn du eine andere Backform benutzt. Alles läuft direkt im Browser, ohne Anmeldung.</p>
+
+<h2>Funktionen des Küchen-Umrechners</h2>
+<ul>
+<li><b>Zutaten umrechnen:</b> Von 17 Einheiten zu 17 Einheiten, darunter Tasse (US und metrisch), EL, TL, ml, dl, Liter, Fluid Ounce, Pint, Quart, Gallone, Gramm, Kilogramm, Unze und beide Arten von Pfund.</li>
+<li><b>Volumen in Gewicht und zurück:</b> Mit der Auswahl einer Zutat wie Mehl, Zucker, Butter, Milch oder Honig rechnet das Tool Tassen in Gramm und Milliliter in Gramm um und umgekehrt.</li>
+<li><b>Überblickstabelle:</b> Zu jeder Eingabe siehst du die Menge in allen Einheiten gleichzeitig.</li>
+<li><b>Backofen-Temperatur:</b> Ober-/Unterhitze, Umluft, Fahrenheit und Gas Mark werden ineinander umgerechnet, dazu kommt eine komplette Gas-Mark-Tabelle.</li>
+<li><b>Backform umrechnen:</b> Du gibst die Form im Rezept und deine eigene Form ein, rund oder eckig, und bekommst den Faktor für alle Zutaten. Auf Wunsch rechnet das Tool mit Höhe und Volumen.</li>
+</ul>
+
+<h2>Wichtige Maße in der Küche</h2>
+<p>Ein paar Werte solltest du auswendig kennen, weil sie ständig vorkommen:</p>
+<table>
+<tr><th>Maß</th><th>Menge</th></tr>
+<tr><td>1 Teelöffel (TL)</td><td>5 ml</td></tr>
+<tr><td>1 Esslöffel (EL)</td><td>15 ml, also 3 TL</td></tr>
+<tr><td>1 Tasse (US Cup)</td><td>ca. 237 ml</td></tr>
+<tr><td>1 Tasse (metrisch)</td><td>250 ml</td></tr>
+<tr><td>1 Fluid Ounce</td><td>ca. 29,6 ml</td></tr>
+<tr><td>1 Unze (oz)</td><td>ca. 28,35 g</td></tr>
+<tr><td>1 Pfund (lb, US)</td><td>ca. 453,6 g</td></tr>
+<tr><td>1 Pfund (deutsch)</td><td>500 g</td></tr>
+<tr><td>1 Pint (US)</td><td>ca. 473 ml</td></tr>
+<tr><td>1 Gallone (US)</td><td>ca. 3,785 Liter</td></tr>
+</table>
+<p>Achtung beim Wort „Tasse“: Es gibt nicht die eine Tasse. Der amerikanische Cup fasst rund 237 Milliliter, in Australien, Kanada und manchen Rezeptsammlungen gilt ein metrischer Cup mit 250 Milliliter, und die Kaffeetasse im Schrank fasst wieder etwas anderes. Der Unterschied von knapp sechs Prozent fällt bei Kuchen oft nicht auf, bei empfindlichen Teigen wie Biskuit oder Macarons aber schon. Bei Rezepten aus den USA verwendest du am besten den US-Cup, bei Rezepten aus Australien und Neuseeland den metrischen.</p>
+
+<h2>Warum ein Cup Mehl nicht so viel wiegt wie ein Cup Zucker</h2>
+<p>Volumen und Gewicht hängen über die Dichte zusammen. Wasser dient als Referenz: Ein Milliliter wiegt ein Gramm. Andere Zutaten sind leichter oder schwerer. Mehl ist luftig und kommt auf etwa 0,5 Gramm pro Milliliter, Zucker liegt bei etwa 0,85, Honig bei rund 1,4. Deshalb gilt ungefähr: Eine US-Tasse Mehl wiegt etwa 120 bis 125 Gramm, eine Tasse Zucker etwa 200 Gramm, eine Tasse Butter etwa 225 Gramm und eine Tasse Honig etwa 335 Gramm. Der Umrechner nimmt diese Dichten als Grundlage. Wähle einfach die Zutat aus, und aus „1 Tasse Mehl“ werden die passenden Gramm.</p>
+<p>Wichtig zu wissen: Es sind Richtwerte. Wer Mehl in die Tasse schaufelt und fest andrückt, erhält deutlich mehr Gewicht als jemand, der es locker einrieselt und glatt streicht. Auch die Sorte spielt eine Rolle: Dinkelmehl, Vollkornmehl und Weizenmehl Type 405 haben unterschiedliche Dichten. Für Brot, Gebäck und alles, was auf Genauigkeit angewiesen ist, ist die Küchenwaage die beste Wahl. Der Umrechner hilft dir, Rezepte mit Tassenangaben in verlässliche Grammwerte zu übersetzen, sodass du sie künftig abwiegen kannst.</p>
+
+<h2>Backofen-Temperatur: Ober-/Unterhitze, Umluft, Fahrenheit und Gas Mark</h2>
+<p>Amerikanische Rezepte geben die Ofentemperatur in Fahrenheit an. 350 °F entsprechen etwa 180 °C, 400 °F etwa 200 °C. Die Formel lautet: Grad Celsius gleich Fahrenheit minus 32, mal fünf, geteilt durch neun. Britische Rezepte für Gasherde nutzen Gas Mark, eine Skala von ¼ bis 9. Gas Mark 4 entspricht 180 °C, Gas Mark 6 etwa 200 °C. Die Tabelle im Tool zeigt alle Stufen auf einen Blick.</p>
+<p>Besonders häufig in deutschen Haushalten ist die Frage nach Umluft. Rezepte nennen meist Ober-/Unterhitze. Wenn dein Ofen mit Umluft backt, kannst du als Faustregel etwa 20 °C abziehen, weil die bewegte Luft die Hitze schneller an das Gebackene bringt. Manche Hersteller empfehlen 10 bis 15 Grad weniger, andere eher 20. Beginne mit dem niedrigeren Wert und beobachte, wie dein Ofen reagiert. Auch Backofen-Thermometer helfen, denn viele Öfen weichen von der eingestellten Temperatur ab.</p>
+
+<h2>Backform wechseln: So passt du das Rezept an</h2>
+<p>Das Rezept ist für eine 26er-Springform geschrieben, du hast aber nur eine 20er? Der Teig würde überlaufen, wenn du die volle Menge hineingibst. Die Lösung ist ein Umrechnungsfaktor. Bei gleich hohen Formen verhält sich die Füllmenge wie die Grundfläche. Eine runde Form mit 26 Zentimeter Durchmesser hat eine Fläche von rund 531 Quadratzentimetern, eine mit 20 Zentimetern etwa 314 Quadratzentimeter. Der Faktor liegt bei etwa 0,59. Alle Zutaten multiplizierst du mit diesem Wert. Der Küchen-Umrechner rechnet das für dich, auch bei eckigen Formen wie dem Backblech, und kennt ebenfalls den umgekehrten Fall.</p>
+<p>Unterscheiden sich die Höhen der Formen deutlich, stellst du auf „Volumen“ um und gibst die Höhen an. Die Backzeit ändert sich ebenfalls: Eine dünnere Schicht backt schneller, eine dickere braucht länger. Kontrolliere deshalb früher und nutze die Stäbchenprobe. Bei Eiern, die sich nicht beliebig teilen lassen, rundest du vernünftig oder verwendest ein verquirltes Ei und wiegst die nötige Menge ab.</p>
+
+<h2>Typische Probleme und Lösungen</h2>
+<h3>Mein Kuchen wird zu trocken oder zu fest</h3>
+<p>Oft liegt es am Mehl. Wird Mehl in der Tasse gepresst, landen schnell 20 Prozent mehr im Teig. Wiege besser ab oder lockere das Mehl vorher mit einer Gabel auf, bevor du es in die Tasse füllst.</p>
+<h3>Der Umrechner zeigt „Zutat wählen“</h3>
+<p>Sobald du zwischen Volumen- und Gewichtseinheiten wechselst, braucht das Tool die Dichte. Wähle in der Liste eine Zutat aus. Für Umrechnungen innerhalb derselben Art, zum Beispiel Tasse in Milliliter, ist keine Zutat nötig.</p>
+<h3>Meine Zutat steht nicht in der Liste</h3>
+<p>Nimm eine ähnliche Zutat. Gemahlene Nüsse verhalten sich ähnlich wie gemahlene Mandeln, Griess ähnlich wie Mehl, feiner Zucker ähnlich wie Kristallzucker. Für genaue Werte wiegst du die Zutat einmal selbst: Fülle einen Messbecher mit einer bekannten Menge und lies das Gewicht ab.</p>
+<h3>Mein Ofen backt anders als im Rezept</h3>
+<p>Backöfen weichen oft um 10 bis 20 Grad ab. Ein Ofenthermometer zeigt dir, wie dein Gerät wirklich heizt. Beachte auch, ob dein Rezept für Umluft, Ober-/Unterhitze oder Heißluft mit Feuchtigkeit geschrieben ist.</p>
+
+<h2>Tipps für sicheres Umrechnen</h2>
+<ul>
+<li>Notiere umgerechnete Werte direkt am Rezept, damit du beim nächsten Mal nicht neu rechnen musst.</li>
+<li>Rechne bei Backrezepten immer alle Zutaten um, nie nur einzelne. Die Verhältnisse entscheiden über das Gelingen.</li>
+<li>Salz, Backpulver und Gewürze skalieren nicht immer linear. Bei großen Faktoren nimmst du lieber etwas weniger und schmeckst ab.</li>
+<li>Flüssigkeiten misst du in Milliliter, nicht in Gramm, wenn das Rezept Volumen angibt. Milch ist etwas schwerer als Wasser.</li>
+<li>Verwende Messlöffel, nicht Esslöffel aus der Besteckschublade. Deren Größe schwankt stark.</li>
+<li>Für längere Garzeiten stellst du einen Timer oder den Wecker ein.</li>
+</ul>
+
+<h2>Häufige Fragen zum Küchen-Umrechner</h2>
+<h3>Wie viel Gramm sind eine Tasse Mehl?</h3>
+<p>Eine US-Tasse Weizenmehl wiegt je nach Einfüllen etwa 120 bis 130 Gramm. Der Umrechner setzt rund 123 Gramm an.</p>
+<h3>Wie viel ml hat ein Esslöffel?</h3>
+<p>Ein Esslöffel hat nach metrischem Standard 15 Milliliter, ein Teelöffel 5 Milliliter. In den USA ist ein Tablespoon mit etwa 14,8 Milliliter minimal kleiner.</p>
+<h3>Wie rechne ich Milliliter in Gramm um?</h3>
+<p>Multipliziere die Milliliter mit der Dichte der Zutat. Bei Wasser gilt 1 zu 1, bei Milch etwa 1,03, bei Honig etwa 1,4. Das Tool erledigt das, wenn du eine Zutat wählst.</p>
+<h3>Wie viel Grad Umluft entsprechen 200 Grad Ober-/Unterhitze?</h3>
+<p>Als Faustregel etwa 180 Grad. Beginne mit der niedrigeren Temperatur und kontrolliere früher.</p>
+<h3>Kann ich Zutaten auch in Unzen rechnen?</h3>
+<p>Ja. Eine Unze entspricht etwa 28,35 Gramm. Auch Pfund in beiden Varianten sind enthalten.</p>
+<p>Weitere Helfer für Küche und Alltag findest du oben unter „Passende Tools“, zum Beispiel Timer und Stoppuhr, Flächenrechner und Entscheidungsrad für die Frage „Was essen wir heute?“.</p>
+
+</article>
+</div>
+</main>
+<footer class="site-footer">
+  <div class="container">
+    <img src="/assets/images/logo-full.png" alt="Toolyfix">
+    <nav class="footer-links">
+      <a href="/ueber-uns.html">Über uns</a>
+      <a href="/datenschutz.html">Datenschutz</a>
+      <a href="/nutzungsbedingungen.html">Nutzungsbedingungen</a>
+      <a href="/kontakt.html">Kontakt</a>
+    </nav>
+    <p class="footer-note">© 2026 Toolyfix – Alle Tools laufen lokal in deinem Browser.</p>
+  </div>
+</footer>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script>
+function toast(m){var t=document.getElementById('toast');t.textContent=m;t.classList.add('on');clearTimeout(window._tt);window._tt=setTimeout(function(){t.classList.remove('on')},1800)}
+function copyText(s){if(navigator.clipboard&&window.isSecureContext){return navigator.clipboard.writeText(s).then(function(){toast('Kopiert')},function(){fb(s)})}fb(s)}
+function fb(s){var a=document.createElement('textarea');a.value=s;a.style.position='fixed';a.style.opacity='0';document.body.appendChild(a);a.select();try{document.execCommand('copy');toast('Kopiert')}catch(e){toast('Kopieren nicht möglich')}document.body.removeChild(a)}
+function dl(name,blob){var u=URL.createObjectURL(blob),a=document.createElement('a');a.href=u;a.download=name;document.body.appendChild(a);a.click();document.body.removeChild(a);setTimeout(function(){URL.revokeObjectURL(u)},4000)}
+
+function $(i){return document.getElementById(i)}
+function num(s){var v=parseFloat(String(s).replace(/\s/g,'').replace(',','.'));return isFinite(v)?v:NaN}
+function fm(n){if(!isFinite(n))return'–';var a=Math.abs(n),d=a>=100?0:a>=10?1:a>=1?2:3;return n.toLocaleString('de-DE',{maximumFractionDigits:d})}
+var U={ml:['Milliliter (ml)','v',1],l:['Liter (l)','v',1000],dl:['Deziliter (dl)','v',100],cl:['Zentiliter (cl)','v',10],tl:['Teelöffel (TL, 5 ml)','v',5],el:['Esslöffel (EL, 15 ml)','v',15],cup:['Tasse (US, 236,6 ml)','v',236.588],cupm:['Tasse (metrisch, 250 ml)','v',250],floz:['Fluid Ounce (US)','v',29.5735],pt:['Pint (US)','v',473.176],qt:['Quart (US)','v',946.353],gal:['Gallone (US)','v',3785.41],g:['Gramm (g)','m',1],kg:['Kilogramm (kg)','m',1000],pf:['Pfund (deutsch, 500 g)','m',500],oz:['Unze (oz)','m',28.3495],lb:['Pfund (US, lb)','m',453.592]};
+var ING=[['Keine Zutat (nur gleiche Art umrechnen)',0],['Wasser',1],['Milch',1.03],['Sahne',0.99],['Joghurt',1.03],['Quark',1.05],['Weizenmehl',0.52],['Zucker (Kristall)',0.85],['Puderzucker',0.5],['Brauner Zucker (gepackt)',0.9],['Butter',0.96],['Speiseöl',0.92],['Honig',1.42],['Reis (roh)',0.78],['Haferflocken',0.37],['Kakaopulver',0.42],['Speisestärke',0.55],['Semmelbrösel',0.47],['Gemahlene Mandeln',0.42],['Rosinen',0.62],['Salz (fein)',1.2],['Backpulver',0.8]];
+var order=['ml','l','dl','cl','tl','el','cup','cupm','floz','pt','qt','gal','g','kg','pf','oz','lb'];
+['fu','tu'].forEach(function(id){order.forEach(function(k){var o=document.createElement('option');o.value=k;o.textContent=U[k][0];$(id).appendChild(o)})});
+$('fu').value='cup';$('tu').value='g';
+ING.forEach(function(x,i){var o=document.createElement('option');o.value=i;o.textContent=x[0]+(x[1]?' (ca. '+x[1].toString().replace('.',',')+' g/ml)':'');$('ing').appendChild(o)});
+$('ing').value=6;
+function runA(){
+ var a=num($('a').value),o=$('aout');
+ if(!isFinite(a)){o.innerHTML='';return}
+ var f=U[$('fu').value],t=U[$('tu').value],d=ING[+$('ing').value][1],ml=NaN,g=NaN;
+ if(f[1]==='v'){ml=a*f[2];if(d)g=ml*d}else{g=a*f[2];if(d)ml=g/d}
+ var res=t[1]==='v'?ml/t[2]:g/t[2],msg='';
+ if(!isFinite(res))msg='<div class="warn">Für die Umrechnung zwischen Volumen und Gewicht bitte eine Zutat wählen.</div>';
+ var rows=order.map(function(k){var u=U[k],v=u[1]==='v'?ml/u[2]:g/u[2];return'<tr><td>'+u[0]+'</td><td class="v">'+fm(v)+'</td></tr>'}).join('');
+ o.innerHTML=(isFinite(res)?'<div class="big"><span>'+fm(a)+' '+f[0]+' entsprechen</span><b>'+fm(res)+' '+t[0]+'</b></div>':msg)+'<h2 style="margin-top:16px">Alle Einheiten im Überblick</h2><div class="tbw"><table class="t"><tr><th>Einheit</th><th>Menge</th></tr>'+rows+'</table></div><p class="note">Gewichte von Zutaten sind Richtwerte aus gängigen Küchentabellen. Sorte, Lagerung und Einfüllen (gesiebt oder gepresst) verändern das Gewicht um mehrere Prozent.</p>';
+}
+['a','fu','tu','ing'].forEach(function(i){$(i).addEventListener('input',runA)});
+$('swap').onclick=function(){var t=$('fu').value;$('fu').value=$('tu').value;$('tu').value=t;runA()};
+var GM=[['¼',110,225],['½',120,250],['1',140,275],['2',150,300],['3',170,325],['4',180,350],['5',190,375],['6',200,400],['7',220,425],['8',230,450],['9',240,475]];
+$('gt').innerHTML='<tr><th>Gas Mark</th><th>°C Ober-/Unterhitze</th><th>°C Umluft (ca.)</th><th>°F</th></tr>'+GM.map(function(r){return'<tr><td>'+r[0]+'</td><td>'+r[1]+'</td><td>'+(r[1]-20)+'</td><td>'+r[2]+'</td></tr>'}).join('');
+function runB(){
+ var v=num($('ot').value.replace('¼','0.25').replace('½','0.5').replace('1/4','0.25').replace('1/2','0.5')),s=$('os').value,o=$('bout');
+ if(!isFinite(v)){o.innerHTML='';return}
+ var c;
+ if(s==='ou')c=v;else if(s==='uml')c=v+20;else if(s==='f')c=(v-32)*5/9;
+ else{var e=GM.filter(function(r){return(r[0]==='¼'?0.25:r[0]==='½'?0.5:+r[0])===v})[0];if(!e){o.innerHTML='<div class="warn">Gas Mark gibt es als ¼, ½ sowie 1 bis 9.</div>';return}c=e[1]}
+ var best=GM.reduce(function(a,r){return Math.abs(r[1]-c)<Math.abs(a[1]-c)?r:a},GM[0]);
+ var gmTxt=c<105||c>245?'außerhalb der Skala':best[0]+(Math.abs(best[1]-c)>6?' (nächstliegende Stufe)':'');
+ o.innerHTML='<div class="big"><span>Ober-/Unterhitze</span><b>'+fm(c)+' °C</b></div><div class="tbw"><table class="t"><tr><th>Art</th><th>Wert</th></tr><tr><td>°C Ober-/Unterhitze</td><td class="v">'+fm(c)+'</td></tr><tr><td>°C Umluft (ca.)</td><td class="v">'+fm(c-20)+'</td></tr><tr><td>°F</td><td class="v">'+fm(c*9/5+32)+'</td></tr><tr><td>Gas Mark</td><td class="v">'+gmTxt+'</td></tr></table></div>';
+}
+['ot','os'].forEach(function(i){$(i).addEventListener('input',runB)});
+function pan(p){
+ var s=$(p+'s').value,a=num($(p+'a').value),b=num($(p+'b').value);
+ if(s==='r')return isFinite(a)&&a>0?Math.PI*a*a/4:NaN;
+ return isFinite(a)&&isFinite(b)&&a>0&&b>0?a*b:NaN;
+}
+function runC(){
+ [['b1','1'],['b2','2']].forEach(function(p){var r=$(p[0]+'s').value==='r';$(p[0]+'x').classList.toggle('hid',r);$(p[0]+'w').firstElementChild.textContent=r?'Durchmesser (cm)':'Länge (cm)'});
+ var vol=$('bm').value==='v';$('bh1').classList.toggle('hid',!vol);$('bh2').classList.toggle('hid',!vol);
+ var o=$('cout'),a1=pan('b1'),a2=pan('b2'),f=a2/a1;
+ if(vol){var h1=num($('h1').value),h2=num($('h2').value);f=f*(h2/h1)}
+ if(!isFinite(f)||f<=0){o.innerHTML='';return}
+ var q=num($('bq').value),pct=(f-1)*100;
+ o.innerHTML='<div class="big"><span>Faktor für alle Zutaten</span><b>× '+f.toLocaleString('de-DE',{maximumFractionDigits:2})+'</b><span>'+(Math.abs(pct)<1?'Beide Formen fassen etwa gleich viel.':(pct>0?'Du brauchst '+fm(pct)+' % mehr Teig.':'Du brauchst '+fm(-pct)+' % weniger Teig.'))+'</span></div>'+(isFinite(q)?'<div class="tbw"><table class="t"><tr><th>Im Rezept</th><th>Für deine Form</th></tr><tr><td>'+fm(q)+'</td><td class="v">'+fm(q*f)+'</td></tr></table></div>':'')+'<div class="warn">Die Backzeit ändert sich: Bei weniger Teig ist sie meist kürzer, bei einer größeren Menge länger. Prüfe mit der Stäbchenprobe. Eier lassen sich schlecht teilen, runde den Wert sinnvoll.</div>';
+}
+['b1s','b1a','b1b','b2s','b2a','b2b','bm','h1','h2','bq'].forEach(function(i){$(i).addEventListener('input',runC)});
+function mode(k){['A','B','C'].forEach(function(x,i){$('s'+x).classList.toggle('hid',i+1!==k);$('m'+(i+1)).classList.toggle('on',i+1===k)})}
+[1,2,3].forEach(function(k){$('m'+k).onclick=function(){mode(k)}});
+runC();
+
+</script>
+</body>
+</html>
