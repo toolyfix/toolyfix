@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cron Generator – Cron Expression erstellen | Toolyfix</title>
+<meta name="description" content="Cron Generator: Cron-Ausdrücke per Klick erstellen, auf Deutsch erklären lassen und nächste Ausführungen sehen. Kostenlos im Browser.">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+<link rel="canonical" href="https://toolyfix.de/tools/cron-generator">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Toolyfix">
+<meta property="og:locale" content="de_DE">
+<meta property="og:title" content="Cron Generator – Cron Expression erstellen | Toolyfix">
+<meta property="og:description" content="Cron Generator: Cron-Ausdrücke per Klick erstellen, auf Deutsch erklären lassen und nächste Ausführungen sehen. Kostenlos im Browser.">
+<meta property="og:url" content="https://toolyfix.de/tools/cron-generator">
+<meta property="og:image" content="https://toolyfix.de/assets/og/cron-generator.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Toolyfix: Cron Generator">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Cron Generator – Cron Expression erstellen | Toolyfix">
+<meta name="twitter:description" content="Cron Generator: Cron-Ausdrücke per Klick erstellen, auf Deutsch erklären lassen und nächste Ausführungen sehen. Kostenlos im Browser.">
+<meta name="twitter:image" content="https://toolyfix.de/assets/og/cron-generator.jpg">
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "WebApplication", "name": "Cron Generator", "url": "https://toolyfix.de/tools/cron-generator", "description": "Cron Generator: Cron-Ausdrücke per Klick erstellen, auf Deutsch erklären lassen und nächste Ausführungen sehen. Kostenlos im Browser.", "applicationCategory": "DeveloperApplication", "operatingSystem": "Any (Webbrowser)", "browserRequirements": "Benötigt JavaScript", "inLanguage": "de", "isAccessibleForFree": true, "image": "https://toolyfix.de/assets/og/cron-generator.jpg", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "EUR"}, "publisher": {"@type": "Organization", "name": "Toolyfix", "url": "https://toolyfix.de/"}}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Startseite", "item": "https://toolyfix.de/"}, {"@type": "ListItem", "position": 2, "name": "Cron Generator", "item": "https://toolyfix.de/tools/cron-generator"}]}]}</script>
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="stylesheet" href="/assets/style.css">
+<style>
+:root{--bg:#F7F7F4;--ink:#1A1A1A;--blue:#1D3557;--amber:#E9A93B;--line:#dcdcd2;--card:#fff;--mut:#5b6470;--bad:#b3261e;--ok:#1f7a45}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{background:var(--bg);color:var(--ink);margin:0;font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;line-height:1.6}
+.tf-wrap{max-width:1000px;margin:0 auto;padding:22px 16px 56px}
+.tf-wrap h1{font-size:clamp(1.6rem,4.4vw,2.3rem);line-height:1.15;margin:.2em 0 .3em;color:var(--blue)}
+.tf-intro{color:var(--mut);margin:0 0 14px;max-width:70ch}
+.tf-related{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:0 0 18px;padding:10px 12px;background:#fff;border:1px solid var(--line);border-radius:10px;font-size:.92rem}
+.tf-related b{color:var(--blue);margin-right:4px}
+.tf-related a{color:var(--blue);background:#eef1f6;border-radius:999px;padding:4px 12px;text-decoration:none;font-weight:500}
+.tf-related a:hover,.tf-related a:focus-visible{background:var(--blue);color:#fff;outline:none}
+.tf-card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px;margin-bottom:16px}
+.tf-card h2{font-size:1.05rem;margin:0 0 10px;color:var(--blue)}
+.tf-grid{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(170px,1fr))}
+.tf-wrap label{display:block;font-size:.82rem;font-weight:600;margin:0 0 4px;color:#333}
+.tf-wrap input[type=text],.tf-wrap input[type=number],.tf-wrap input[type=date],.tf-wrap select,.tf-wrap textarea{width:100%;padding:9px 10px;border:1px solid #c9c9bf;border-radius:8px;font:inherit;background:#fff;color:var(--ink)}
+.tf-wrap input[type=color]{width:100%;height:40px;border:1px solid #c9c9bf;border-radius:8px;padding:2px;background:#fff}
+.tf-wrap textarea{min-height:130px;resize:vertical}
+.tf-wrap input:focus-visible,.tf-wrap select:focus-visible,.tf-wrap textarea:focus-visible,.btn:focus-visible{outline:3px solid var(--amber);outline-offset:1px}
+.btn{font:inherit;font-weight:600;padding:9px 16px;border-radius:8px;border:1px solid var(--blue);background:#fff;color:var(--blue);cursor:pointer}
+.btn:hover{background:#eef1f6}
+.btn.pri{background:var(--blue);color:#fff}
+.btn.pri:hover{background:#16294a}
+.btn.amb{background:var(--amber);border-color:var(--amber);color:#1A1A1A}
+.btn[disabled]{opacity:.5;cursor:not-allowed}
+.tf-btns{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.chk{display:flex;gap:8px;align-items:center;font-weight:500;font-size:.92rem;margin:6px 0}
+.chk input{width:18px;height:18px}
+.tf-article{margin-top:34px;background:#fff;border:1px solid var(--line);border-radius:12px;padding:22px 20px}
+.tf-article h2{color:var(--blue);font-size:1.4rem;margin:1.4em 0 .4em;line-height:1.25}
+.tf-article h2:first-child{margin-top:0}
+.tf-article h3{font-size:1.1rem;margin:1.1em 0 .3em}
+.tf-article p,.tf-article li{max-width:75ch}
+.tf-article table{border-collapse:collapse;width:100%;font-size:.92rem;display:block;overflow-x:auto}
+.tf-article th,.tf-article td{border:1px solid var(--line);padding:6px 10px;text-align:left}
+.tf-article th{background:#eef1f6}
+.toast{position:fixed;left:50%;bottom:22px;transform:translateX(-50%);background:var(--blue);color:#fff;padding:9px 18px;border-radius:999px;font-size:.9rem;opacity:0;pointer-events:none;transition:opacity .2s;z-index:50}
+.toast.on{opacity:1}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+@media print{.site-header,.site-footer,.tf-related,.tf-intro,.tf-wrap>h1,.tf-article,.tf-noprint,.toast{display:none!important}body{background:#fff}.tf-wrap{padding:0;max-width:none}}
+
+.hid{display:none}
+.xp{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:1.3rem;letter-spacing:.06em;text-align:center;font-weight:700}
+.fl{display:grid;grid-template-columns:repeat(5,1fr);gap:4px;margin:6px 0 0;text-align:center;font-size:.76rem;color:var(--mut)}
+.err{background:#fdecea;border:1px solid #f2b8b5;border-radius:8px;padding:9px 12px;font-size:.88rem;margin:8px 0;color:#7a1c16}
+.warn{background:#fff6dd;border:1px solid #f0d58a;border-radius:8px;padding:9px 12px;font-size:.88rem;margin:8px 0}
+.dsc{background:var(--blue);color:#fff;border-radius:10px;padding:14px 16px;font-size:1.1rem;font-weight:600;margin:12px 0}
+.runs{list-style:none;margin:8px 0 0;padding:0}
+.runs li{padding:6px 0;border-bottom:1px solid var(--line);font-variant-numeric:tabular-nums}
+.fb{border:1px solid var(--line);border-radius:10px;padding:12px;margin-bottom:10px;background:#fcfcfa}
+.fh{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
+.fh select{width:auto;min-width:170px}
+.fc{margin-top:10px;display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.fc input[type=number]{width:80px}
+.fc select{width:auto}
+.ch{min-width:38px;padding:5px 7px;border:1px solid #c9c9bf;background:#fff;border-radius:6px;font:inherit;font-size:.85rem;cursor:pointer}
+.ch.on{background:var(--blue);color:#fff;border-color:var(--blue)}
+.pre{display:flex;flex-wrap:wrap;gap:8px}
+.pre button{border:1px solid var(--line);background:#fff;border-radius:999px;padding:6px 14px;font:inherit;font-size:.86rem;cursor:pointer;color:var(--blue);font-weight:600}
+.pre button:hover{background:#eef1f6}
+.cl{width:100%;font-family:ui-monospace,Menlo,Consolas,monospace;font-size:.88rem;min-height:70px}
+</style>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-F9VY193ZMP"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-F9VY193ZMP');</script>
+</head>
+<body>
+<header class="site-header">
+  <div class="container">
+    <a href="/" class="logo-link"><img src="/assets/images/logo-full.png" alt="Toolyfix"></a>
+    <span class="header-tagline">Kostenlose Tools, direkt im Browser</span>
+  </div>
+</header>
+<main>
+<div class="tf-wrap">
+<h1>Cron Generator</h1>
+<p class="tf-intro">Erstelle Cron-Ausdrücke per Klick, lass sie dir auf Deutsch erklären und sieh die nächsten Ausführungszeiten. Du kannst auch einen vorhandenen Ausdruck einfügen und prüfen.</p>
+<nav class="tf-related" aria-label="Passende Tools"><b>Passende Tools:</b><a href="/tools/json-formatter">JSON-Formatter</a><a href="/tools/csv-zu-json">CSV in JSON</a><a href="/tools/base64-kodieren-dekodieren">Base64 Kodieren &amp; Dekodieren</a><a href="/tools/wecker-online">Wecker Online</a><a href="/tools/timer-stoppuhr">Timer &amp; Stoppuhr</a></nav>
+
+<section class="tf-card">
+<h2>Cron-Ausdruck</h2>
+<input type="text" id="expr" class="xp" spellcheck="false" autocomplete="off" aria-label="Cron-Ausdruck" placeholder="* * * * *">
+<div class="fl"><span>Minute</span><span>Stunde</span><span>Tag</span><span>Monat</span><span>Wochentag</span></div>
+<div id="err"></div>
+<div id="res" class="hid">
+<div class="dsc" id="desc"></div>
+<div id="warn"></div>
+<h2>Nächste Ausführungen (deine Ortszeit)</h2>
+<ul class="runs" id="runs"></ul>
+</div>
+<div class="tf-btns"><button class="btn pri" id="cp" type="button">Ausdruck kopieren</button><button class="btn" id="load" type="button">In Baukasten übernehmen</button></div>
+</section>
+<section class="tf-card">
+<h2>Vorlagen</h2>
+<div class="pre" id="pre"></div>
+</section>
+<section class="tf-card">
+<h2>Baukasten</h2>
+<div id="blocks"></div>
+</section>
+<section class="tf-card">
+<h2>Crontab-Zeile</h2>
+<div class="tf-grid"><div><label for="cmd">Befehl oder Skript</label><input type="text" id="cmd" placeholder="/pfad/zum/skript.sh"></div></div>
+<label class="chk"><input type="checkbox" id="lg"> Ausgabe in eine Logdatei umleiten</label>
+<textarea class="cl" id="line" readonly></textarea>
+<div class="tf-btns"><button class="btn" id="cp2" type="button">Zeile kopieren</button></div>
+</section>
+
+<article class="tf-article">
+
+<h2>Cron Generator: Cron-Ausdrücke einfach erstellen und verstehen</h2>
+<p>Wer Aufgaben automatisch zu festen Zeiten ausführen lassen will, landet früher oder später bei Cron. Ob Datenbank-Backup jede Nacht, Newsletter jeden Montagmorgen oder ein Skript alle fünf Minuten: Auf Linux-Servern, in Docker-Containern, bei GitHub Actions und in vielen Cloud-Diensten steuert ein Cron-Ausdruck den Zeitplan. Die Schreibweise ist kompakt, aber für Anfänger schwer lesbar. Steht dort „0 3 * * 1-5“, bedeutet das werktags um drei Uhr nachts. Beim Cron Generator von Toolyfix klickst du dir den Zeitplan zusammen, bekommst ihn auf Deutsch erklärt und siehst sofort, wann der Job das nächste Mal laufen würde. Du kannst außerdem fremde Cron-Ausdrücke einfügen und prüfen lassen. Alles passiert im Browser, es werden keine Daten übertragen.</p>
+
+<h2>Was ist ein Cron-Ausdruck?</h2>
+<p>Cron ist ein Zeitplaner für Unix-ähnliche Systeme. Der Name kommt vom griechischen Wort „chronos“ für Zeit. Die Zeitpläne stehen in einer Tabelle, der Crontab. Jede Zeile besteht aus fünf Zeitfeldern, gefolgt vom Befehl, der ausgeführt werden soll. Die fünf Felder heißen von links nach rechts:</p>
+<table>
+<tr><th>Feld</th><th>Erlaubte Werte</th><th>Bedeutung</th></tr>
+<tr><td>1. Minute</td><td>0 bis 59</td><td>In welcher Minute der Stunde</td></tr>
+<tr><td>2. Stunde</td><td>0 bis 23</td><td>In welcher Stunde des Tages</td></tr>
+<tr><td>3. Tag des Monats</td><td>1 bis 31</td><td>An welchem Kalendertag</td></tr>
+<tr><td>4. Monat</td><td>1 bis 12 oder JAN bis DEC</td><td>In welchem Monat</td></tr>
+<tr><td>5. Wochentag</td><td>0 bis 7 oder SUN bis SAT</td><td>An welchem Wochentag, 0 und 7 stehen für Sonntag</td></tr>
+</table>
+
+<h2>Die Sonderzeichen im Überblick</h2>
+<ul>
+<li><b>Stern (*):</b> steht für „jeder Wert“. Ein Stern in der Minute bedeutet jede Minute.</li>
+<li><b>Komma (,):</b> trennt mehrere Werte, zum Beispiel „0,15,30,45“ für die volle, viertel, halbe und dreiviertel Stunde.</li>
+<li><b>Bindestrich (-):</b> beschreibt einen Bereich, etwa „1-5“ für Montag bis Freitag.</li>
+<li><b>Schrägstrich (/):</b> gibt eine Schrittweite an. „*/10“ bedeutet alle zehn Einheiten, in der Minute also alle zehn Minuten. Auch Bereiche lassen sich staffeln, „0-30/10“ ergibt 0, 10, 20 und 30.</li>
+</ul>
+
+<h2>Beispiele für typische Cron-Ausdrücke</h2>
+<table>
+<tr><th>Ausdruck</th><th>Bedeutung</th></tr>
+<tr><td>* * * * *</td><td>Jede Minute</td></tr>
+<tr><td>*/5 * * * *</td><td>Alle fünf Minuten</td></tr>
+<tr><td>0 * * * *</td><td>Zu jeder vollen Stunde</td></tr>
+<tr><td>30 3 * * *</td><td>Täglich um 03:30 Uhr</td></tr>
+<tr><td>0 8 * * 1-5</td><td>Montags bis freitags um 08:00 Uhr</td></tr>
+<tr><td>0 0 1 * *</td><td>Am ersten Tag jedes Monats um Mitternacht</td></tr>
+<tr><td>0 9 * * 1</td><td>Montags um 09:00 Uhr</td></tr>
+<tr><td>0 0 1 1 *</td><td>Jährlich am 1. Januar um Mitternacht</td></tr>
+</table>
+
+<h2>So nutzt du den Cron Generator</h2>
+<h3>Variante 1: Vorlage wählen</h3>
+<p>Klicke auf eine der Vorlagen, etwa „Werktags um 08:00“. Der Ausdruck erscheint im Eingabefeld, die deutsche Erklärung und die nächsten Ausführungen darunter. Zugleich übernimmt der Baukasten die Einstellungen, sodass du sie weiter anpassen kannst.</p>
+<h3>Variante 2: Mit dem Baukasten zusammenklicken</h3>
+<p>Für jedes der fünf Felder wählst du aus vier Modi: „Jede“ für den Stern, „Alle n“ für Schrittweiten, „Bestimmte Werte“ für einzelne Auswahlpunkte und „Bereich von bis“ für Spannen. Wenn du „Bestimmte Werte“ gewählt hast, tippst du auf die gewünschten Stunden, Tage, Monate oder Wochentage. Der Ausdruck baut sich automatisch auf.</p>
+<h3>Variante 3: Vorhandenen Ausdruck prüfen</h3>
+<p>Füge einen Cron-Ausdruck direkt in das Eingabefeld ein. Du erhältst die Erklärung auf Deutsch. Bei Fehlern nennt das Tool das betroffene Feld und den Grund, zum Beispiel „Feld 2 (Stunde): Wert 25 liegt außerhalb von 0 bis 23“. Mit „In Baukasten übernehmen“ lässt sich der Ausdruck weiter bearbeiten.</p>
+
+<h2>Die Crontab-Zeile erzeugen</h2>
+<p>Am Ende brauchst du die komplette Zeile für deine Crontab. Gib im Feld „Befehl oder Skript“ ein, was ausgeführt werden soll, und das Tool setzt Zeitplan und Befehl zusammen. Optional leitet es die Ausgabe in eine Logdatei um. Das ist hilfreich, weil Cron-Jobs im Hintergrund laufen und Fehlermeldungen sonst unbemerkt verloren gehen. Die Zeile fügst du mit „crontab -e“ in deine Tabelle ein.</p>
+
+<h2>Wichtige Stolpersteine</h2>
+<h3>Tag des Monats und Wochentag zusammen</h3>
+<p>Das ist die häufigste Überraschung: Wenn du sowohl Tag des Monats als auch Wochentag einschränkst, führt Standard-Cron den Job aus, wenn eine der beiden Bedingungen zutrifft, nicht beide. Ein Ausdruck wie „0 9 13 * 5“ läuft deshalb jeden 13. und zusätzlich jeden Freitag. Das Tool weist darauf hin. Soll der Job nur am Freitag, dem 13., laufen, prüfe das Datum in deinem Skript.</p>
+<h3>Zeitzonen</h3>
+<p>Cron arbeitet mit der Zeitzone des Systems, auf dem es läuft. Viele Server nutzen UTC. Ein Job um 03:00 UTC läuft in Deutschland im Winter um 04:00 und im Sommer um 05:00 Uhr. Dienste wie GitHub Actions planen grundsätzlich in UTC. Die Vorschau im Tool zeigt die Zeiten in der Zeitzone deines Geräts. Rechne sie bei Bedarf auf die Serverzeit um.</p>
+<h3>Sommerzeitumstellung</h3>
+<p>Bei der Umstellung auf Sommerzeit fällt eine Stunde aus, bei der Rückstellung gibt es sie doppelt. Ein Job um 02:30 Uhr kann dadurch ausfallen oder zweimal laufen. Plane kritische Jobs daher nicht in diese Stunde, oder nutze UTC.</p>
+<h3>Ungültige Daten</h3>
+<p>Ein Zeitplan für den 31. Februar kommt nie zustande. Das Tool erkennt solche Fälle und meldet, dass keine Ausführung in absehbarer Zeit vorgesehen ist.</p>
+<h3>Umgebung und Pfade</h3>
+<p>Cron-Jobs laufen mit einer minimalen Umgebung. Verwende absolute Pfade zu Skripten und Programmen, und setze benötigte Umgebungsvariablen im Skript oder in der Crontab selbst.</p>
+
+<h2>Cron in verschiedenen Systemen</h2>
+<p>Das klassische Fünf-Felder-Format gilt für Linux und macOS, in vielen Cloud-Diensten, bei GitHub Actions und für Kubernetes CronJobs. Einige Systeme erweitern es. Die Java-Bibliothek Quartz und Spring verwenden sechs oder sieben Felder mit Sekunden und optional einem Jahr, außerdem Sonderzeichen wie das Fragezeichen. Auch Cloud-Planer haben teils eigene Varianten. Dieses Tool erzeugt und prüft das Standardformat mit fünf Feldern. Wenn du ein System mit Sekundenfeld nutzt, setze die Sekunden vor den erzeugten Ausdruck und prüfe die Dokumentation deines Systems.</p>
+<p>Die gängigen Kurzformen werden ebenfalls verstanden: „@hourly“ steht für stündlich, „@daily“ für täglich, „@weekly“ für wöchentlich, „@monthly“ für monatlich und „@yearly“ für jährlich. „@reboot“ gehört nicht dazu, weil es keinen Zeitplan beschreibt, sondern den Systemstart.</p>
+
+<h2>Anwendungsbeispiele aus der Praxis</h2>
+<ul>
+<li><b>Backups:</b> Datenbanken und Dateien nachts um 03:30 sichern, wenn wenig Last herrscht.</li>
+<li><b>Berichte:</b> Wöchentliche Auswertungen montags um 07:00 per E-Mail versenden.</li>
+<li><b>Aufräumarbeiten:</b> Temporäre Dateien täglich löschen, Logdateien rotieren.</li>
+<li><b>Datenimporte:</b> Daten stündlich aus einer Schnittstelle abholen. Die Formate prüfst du mit dem JSON-Formatter oder wandelst CSV mit dem CSV-in-JSON-Konverter.</li>
+<li><b>Monitoring:</b> Alle fünf Minuten prüfen, ob ein Dienst erreichbar ist.</li>
+<li><b>Webseiten und Shops:</b> Sitemaps neu erzeugen, Caches leeren oder Preislisten aktualisieren.</li>
+</ul>
+
+<h2>Tipps für zuverlässige Cron-Jobs</h2>
+<ul>
+<li>Teste den Befehl zuerst manuell in der Konsole, bevor du ihn einplanst.</li>
+<li>Streue Jobs über verschiedene Minuten, damit nicht zehn Aufgaben gleichzeitig um :00 starten.</li>
+<li>Leite Ausgaben und Fehler in eine Logdatei um und kontrolliere sie.</li>
+<li>Sorge dafür, dass ein Job nicht doppelt läuft, falls der vorige noch nicht fertig ist, zum Beispiel mit einer Sperrdatei.</li>
+<li>Dokumentiere in der Crontab per Kommentar, was jeder Job tut.</li>
+<li>Lege Zeitpläne bewusst in UTC oder in Ortszeit fest und notiere es.</li>
+</ul>
+
+<h2>Häufige Fragen zum Cron Generator</h2>
+<h3>Ist der Cron Generator kostenlos?</h3>
+<p>Ja, ohne Anmeldung und ohne Einschränkung.</p>
+<h3>Wie erkenne ich, ob mein Ausdruck stimmt?</h3>
+<p>Lies die deutsche Erklärung und vergleiche die nächsten Ausführungen mit deiner Erwartung. Wenn beides passt, stimmt der Ausdruck.</p>
+<h3>Kann ich Sekunden angeben?</h3>
+<p>Standard-Cron kennt keine Sekunden. Für feinere Zeitpläne nutzt du ein System mit Sekundenfeld oder ein Skript mit einer Schleife.</p>
+<h3>Was bedeutet 0 und 7 beim Wochentag?</h3>
+<p>Beide stehen für Sonntag. Montag ist 1, Samstag ist 6.</p>
+<h3>Was ist der Unterschied zwischen Cron und einem Timer?</h3>
+<p>Cron führt Jobs wiederkehrend zu festen Zeitpunkten aus. Ein Timer zählt eine einmalige Dauer herunter. Für kurze Messungen im Alltag ist der Timer besser geeignet.</p>
+<p>Weitere Werkzeuge für Entwickler findest du oben unter „Passende Tools“, zum Beispiel den JSON-Formatter, den CSV-in-JSON-Konverter und den Base64 Kodierer.</p>
+
+</article>
+</div>
+</main>
+<footer class="site-footer">
+  <div class="container">
+    <img src="/assets/images/logo-full.png" alt="Toolyfix">
+    <nav class="footer-links">
+      <a href="/ueber-uns.html">Über uns</a>
+      <a href="/datenschutz.html">Datenschutz</a>
+      <a href="/nutzungsbedingungen.html">Nutzungsbedingungen</a>
+      <a href="/kontakt.html">Kontakt</a>
+    </nav>
+    <p class="footer-note">© 2026 Toolyfix – Alle Tools laufen lokal in deinem Browser.</p>
+  </div>
+</footer>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script>
+function toast(m){var t=document.getElementById('toast');t.textContent=m;t.classList.add('on');clearTimeout(window._tt);window._tt=setTimeout(function(){t.classList.remove('on')},1800)}
+function copyText(s){if(navigator.clipboard&&window.isSecureContext){return navigator.clipboard.writeText(s).then(function(){toast('Kopiert')},function(){fb(s)})}fb(s)}
+function fb(s){var a=document.createElement('textarea');a.value=s;a.style.position='fixed';a.style.opacity='0';document.body.appendChild(a);a.select();try{document.execCommand('copy');toast('Kopiert')}catch(e){toast('Kopieren nicht möglich')}document.body.removeChild(a)}
+function dl(name,blob){var u=URL.createObjectURL(blob),a=document.createElement('a');a.href=u;a.download=name;document.body.appendChild(a);a.click();document.body.removeChild(a);setTimeout(function(){URL.revokeObjectURL(u)},4000)}
+
+function $(i){return document.getElementById(i)}
+function esc(s){return String(s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+function p2(n){return n<10?'0'+n:''+n}
+var F=[{id:'min',n:'Minute',u:'Minuten',lo:0,hi:59},{id:'hour',n:'Stunde',u:'Stunden',lo:0,hi:23},{id:'dom',n:'Tag des Monats',u:'Tage',lo:1,hi:31},{id:'mon',n:'Monat',u:'Monate',lo:1,hi:12,nm:['Jan','Feb','Mär','Apr','Mai','Jun','Jul','Aug','Sep','Okt','Nov','Dez'],al:['jan','feb','mar','apr','may','jun','jul','aug','sep','oct','nov','dec'],off:1},{id:'dow',n:'Wochentag',u:'Wochentage',lo:0,hi:6,nm:['So','Mo','Di','Mi','Do','Fr','Sa'],al:['sun','mon','tue','wed','thu','fri','sat'],off:0,order:[1,2,3,4,5,6,0]}];
+var B={};F.forEach(function(f){B[f.id]={mode:'any',step:5,set:{},from:f.lo,to:f.hi}});
+var MODES=[['any','Jede (*)'],['step','Alle n (*/n)'],['list','Bestimmte Werte'],['range','Bereich von bis']];
+function order(f){if(f.order)return f.order;var a=[];for(var v=f.lo;v<=f.hi;v++)a.push(v);return a}
+function lab(f,v){return f.nm?f.nm[v-f.off]:String(v)}
+function keys(s){return Object.keys(s).map(Number).sort(function(a,b){return a-b})}
+function build(){
+ var h='';
+ F.forEach(function(f){var b=B[f.id];
+  h+='<div class="fb"><div class="fh"><b>'+f.n+'</b><select data-md="'+f.id+'" aria-label="Modus für '+f.n+'">'+MODES.map(function(m){return'<option value="'+m[0]+'"'+(b.mode===m[0]?' selected':'')+'>'+m[1]+'</option>'}).join('')+'</select></div>';
+  if(b.mode==='step')h+='<div class="fc">Alle <input type="number" min="1" max="'+f.hi+'" value="'+b.step+'" data-st="'+f.id+'" aria-label="Schrittweite"> '+f.u+'</div>';
+  if(b.mode==='list')h+='<div class="fc">'+order(f).map(function(v){return'<button type="button" class="ch'+(b.set[v]?' on':'')+'" data-ch="'+f.id+':'+v+'">'+lab(f,v)+'</button>'}).join('')+'</div>';
+  if(b.mode==='range'){var o=order(f).map(function(v){return[v,lab(f,v)]});
+   h+='<div class="fc">von <select data-rf="'+f.id+'" aria-label="von">'+o.map(function(x){return'<option value="'+x[0]+'"'+(b.from===x[0]?' selected':'')+'>'+x[1]+'</option>'}).join('')+'</select> bis <select data-rt="'+f.id+'" aria-label="bis">'+o.map(function(x){return'<option value="'+x[0]+'"'+(b.to===x[0]?' selected':'')+'>'+x[1]+'</option>'}).join('')+'</select></div>'}
+  h+='</div>';
+ });
+ $('blocks').innerHTML=h;
+}
+function fstr(f){
+ var b=B[f.id];
+ if(b.mode==='any')return'*';
+ if(b.mode==='step')return b.step>1?'*/'+b.step:'*';
+ if(b.mode==='list'){var k=keys(b.set);return k.length?k.join(','):'*'}
+ if(b.from<=b.to)return b.from+'-'+b.to;
+ var a=[],v;for(v=b.from;v<=f.hi;v++)a.push(v);for(v=f.lo;v<=b.to;v++)a.push(v);return a.join(',');
+}
+function emit(){$('expr').value=F.map(fstr).join(' ');analyze()}
+$('blocks').addEventListener('change',function(e){var t=e.target;
+ if(t.dataset.md){B[t.dataset.md].mode=t.value;build();emit()}
+ else if(t.dataset.st){B[t.dataset.st].step=Math.max(1,parseInt(t.value,10)||1);emit()}
+ else if(t.dataset.rf){B[t.dataset.rf].from=+t.value;emit()}
+ else if(t.dataset.rt){B[t.dataset.rt].to=+t.value;emit()}});
+$('blocks').addEventListener('input',function(e){var t=e.target;if(t.dataset.st){B[t.dataset.st].step=Math.max(1,parseInt(t.value,10)||1);emit()}});
+$('blocks').addEventListener('click',function(e){var b=e.target.closest('[data-ch]');if(!b)return;var p=b.dataset.ch.split(':'),s=B[p[0]].set,v=+p[1];if(s[v])delete s[v];else s[v]=1;b.classList.toggle('on',!!s[v]);emit()});
+function parseField(s,f){
+ var set={},star=s.charAt(0)==='*';
+ function val(x){
+  var n,l=x.toLowerCase();
+  if(f.al&&f.al.indexOf(l)>-1)n=f.al.indexOf(l)+f.off;
+  else if(/^\d+$/.test(x))n=+x;
+  else throw new Error('Ungültiger Wert „'+x+'“');
+  var mx=f.id==='dow'?7:f.hi;
+  if(n<f.lo||n>mx)throw new Error('Wert '+n+' liegt außerhalb von '+f.lo+' bis '+mx);
+  return n;
+ }
+ s.split(',').forEach(function(part){
+  if(part==='')throw new Error('Leeres Element in der Liste');
+  var m=part.split('/'),step=1,r=m[0],lo,hi;
+  if(m.length>2)throw new Error('Zu viele Schrägstriche in „'+part+'“');
+  if(m.length===2){if(!/^\d+$/.test(m[1])||+m[1]<1)throw new Error('Ungültige Schrittweite „'+m[1]+'“');step=+m[1]}
+  if(r==='*'||r==='?'){lo=f.lo;hi=f.hi}
+  else if(r.indexOf('-')>0){var ab=r.split('-');if(ab.length!==2)throw new Error('Ungültiger Bereich „'+r+'“');lo=val(ab[0]);hi=val(ab[1]);if(lo>hi)throw new Error('Der Bereich „'+r+'“ läuft rückwärts')}
+  else{lo=val(r);hi=m.length===2?(f.id==='dow'?6:f.hi):lo}
+  for(var v=lo;v<=hi;v+=step)set[f.id==='dow'&&v===7?0:v]=1;
+ });
+ return{set:set,star:star};
+}
+function lst(a){return a.length<2?a.join(''):a.slice(0,-1).join(', ')+' und '+a[a.length-1]}
+function contig(a){for(var i=1;i<a.length;i++)if(a[i]!==a[i-1]+1)return false;return true}
+var WD=['sonntags','montags','dienstags','mittwochs','donnerstags','freitags','samstags'],MO=['Januar','Februar','März','April','Mai','Juni','Juli','August','September','Oktober','November','Dezember'];
+function desc(P,fs){
+ var mi=keys(P.min.set),hi=keys(P.hour.set),mA=fs[0]==='*',hA=fs[1]==='*',mS=/^\*\/(\d+)$/.exec(fs[0]),hS=/^\*\/(\d+)$/.exec(fs[1]),t;
+ if(mi.length===1&&hi.length===1)t='um '+p2(hi[0])+':'+p2(mi[0])+' Uhr';
+ else if(mA&&hA)t='jede Minute';
+ else if(mS&&hA)t='alle '+mS[1]+' Minuten';
+ else if(mi.length===1&&hA)t=mi[0]===0?'zu jeder vollen Stunde':'in Minute '+mi[0]+' jeder Stunde';
+ else if(mi.length===1&&hS)t='alle '+hS[1]+' Stunden (jeweils in Minute '+mi[0]+')';
+ else if(hi.length===1&&(mA||mS))t=(mA?'jede Minute':'alle '+mS[1]+' Minuten')+' zwischen '+p2(hi[0])+':00 und '+p2(hi[0])+':59 Uhr';
+ else if(mi.length===1&&hi.length>2&&contig(hi))t=(mi[0]===0?'zu jeder vollen Stunde':'in Minute '+mi[0]+' jeder Stunde')+' von '+p2(hi[0])+' bis '+p2(hi[hi.length-1])+' Uhr';
+ else if(hA&&mi.length>1)t='in den Minuten '+lst(mi)+' jeder Stunde';
+ else if(mS&&hi.length>1&&contig(hi))t='alle '+mS[1]+' Minuten von '+p2(hi[0])+':00 bis '+p2(hi[hi.length-1])+':59 Uhr';
+ else if(mi.length>1&&hi.length>1&&contig(hi)&&mi.length<=8)t='in den Minuten '+lst(mi)+' von '+p2(hi[0])+' bis '+p2(hi[hi.length-1])+' Uhr';
+ else if(mi.length===1&&hi.length<=8)t='um '+lst(hi.map(function(h){return p2(h)+':'+p2(mi[0])}))+' Uhr';
+ else if(hi.length===1&&mi.length<=8)t='um '+lst(mi.map(function(m){return p2(hi[0])+':'+p2(m)}))+' Uhr';
+ else t='in den Minuten '+lst(mi)+' der Stunden '+lst(hi);
+ var di=keys(P.dom.set),wi=keys(P.dow.set),dA=fs[2]==='*',wA=fs[4]==='*',dt,wt,dayT;
+ var wo=wi.map(function(w){return(w+6)%7}).sort(function(a,b){return a-b});
+ if(wi.length===7)wt='jeden Tag';
+ else if(wo.join()==='0,1,2,3,4')wt='montags bis freitags';
+ else if(wo.join()==='5,6')wt='am Wochenende';
+ else if(wo.length>2&&contig(wo))wt=WD[(wo[0]+1)%7]+' bis '+WD[(wo[wo.length-1]+1)%7];
+ else wt=lst(wo.map(function(o){return WD[(o+1)%7]}));
+ var dS=/^\*\/(\d+)$/.exec(fs[2]);
+ dt=dA?'':dS?'an jedem '+dS[1]+'. Tag des Monats':'am '+lst(di.map(function(d){return d+'.'}))+' des Monats';
+ if(dA&&wA)dayT='jeden Tag';else if(dA)dayT=wt;else if(wA)dayT=dt;else dayT=dt+' oder '+wt;
+ var mo=keys(P.mon.set),mt='';
+ if(fs[3]!=='*'&&mo.length<12)mt=mo.length>2&&contig(mo)?'von '+MO[mo[0]-1]+' bis '+MO[mo[mo.length-1]-1]:'im '+lst(mo.map(function(m){return MO[m-1]}));
+ var s=t+', '+dayT+(mt?', '+mt:'');
+ return s.charAt(0).toUpperCase()+s.slice(1);
+}
+function nextRuns(P,n){
+ var out=[],d=new Date(),g=0;d.setSeconds(0,0);d=new Date(d.getTime()+60000);
+ while(out.length<n&&g++<250000){
+  if(!P.mon.set[d.getMonth()+1]){d=new Date(d.getFullYear(),d.getMonth()+1,1,0,0);continue}
+  var a=!!P.dom.set[d.getDate()],b=!!P.dow.set[d.getDay()],ok=(P.dom.star||P.dow.star)?(a&&b):(a||b);
+  if(!ok){d=new Date(d.getFullYear(),d.getMonth(),d.getDate()+1,0,0);continue}
+  if(!P.hour.set[d.getHours()]){d=new Date(d.getFullYear(),d.getMonth(),d.getDate(),d.getHours()+1,0);continue}
+  if(!P.min.set[d.getMinutes()]){d=new Date(d.getTime()+60000);continue}
+  out.push(new Date(d));d=new Date(d.getTime()+60000);
+ }
+ return out;
+}
+var AL={'@yearly':'0 0 1 1 *','@annually':'0 0 1 1 *','@monthly':'0 0 1 * *','@weekly':'0 0 * * 0','@daily':'0 0 * * *','@midnight':'0 0 * * *','@hourly':'0 * * * *'},cur=null;
+function analyze(){
+ var s=$('expr').value.trim(),res=$('res'),err=$('err'),w=$('warn');err.innerHTML='';w.innerHTML='';cur=null;
+ if(!s){res.classList.add('hid');line();return}
+ if(AL[s.toLowerCase()])s=AL[s.toLowerCase()];
+ if(s.charAt(0)==='@'){err.innerHTML='<div class="err">@reboot und andere Sonderwörter beschreiben keinen Zeitplan, den dieses Tool berechnen kann.</div>';res.classList.add('hid');line();return}
+ var fs=s.split(/\s+/);
+ if(fs.length!==5){err.innerHTML='<div class="err">Ein Standard-Cron-Ausdruck hat 5 Felder (Minute, Stunde, Tag, Monat, Wochentag). Gefunden: '+fs.length+'.</div>';res.classList.add('hid');line();return}
+ var P={};
+ try{F.forEach(function(f,i){try{P[f.id]=parseField(fs[i],f)}catch(e){throw new Error('Feld '+(i+1)+' ('+f.n+'): '+e.message+'.')}})}catch(e){err.innerHTML='<div class="err">'+esc(e.message)+'</div>';res.classList.add('hid');line();return}
+ cur=fs;
+ $('desc').textContent=desc(P,fs);
+ if(!P.dom.star&&!P.dow.star)w.innerHTML='<div class="warn">Tag des Monats und Wochentag sind beide eingeschränkt. Cron führt den Job dann aus, wenn <b>eine</b> der beiden Bedingungen zutrifft (ODER-Verknüpfung).</div>';
+ var r=nextRuns(P,5);
+ $('runs').innerHTML=r.length?r.map(function(d){return'<li>'+esc(d.toLocaleString('de-DE',{weekday:'short',day:'2-digit',month:'2-digit',year:'numeric',hour:'2-digit',minute:'2-digit'}))+' Uhr</li>'}).join(''):'<li>In den nächsten Jahren ist keine Ausführung vorgesehen. Prüfe Tag und Monat, zum Beispiel „31. Februar“.</li>';
+ res.classList.remove('hid');line();
+}
+function line(){var e=cur?cur.join(' '):$('expr').value.trim()||'* * * * *';$('line').value=e+' '+($('cmd').value.trim()||'/pfad/zum/skript.sh')+($('lg').checked?' >> /var/log/cron-job.log 2>&1':'')}
+$('expr').addEventListener('input',analyze);$('cmd').addEventListener('input',line);$('lg').addEventListener('change',line);
+$('cp').onclick=function(){var v=$('expr').value.trim();if(v)copyText(v);else toast('Noch kein Ausdruck')};
+$('cp2').onclick=function(){copyText($('line').value)};
+function loadB(s){
+ if(AL[s.toLowerCase()])s=AL[s.toLowerCase()];
+ var fs=s.trim().split(/\s+/);if(fs.length!==5){toast('Ungültiger Ausdruck');return false}
+ try{F.forEach(function(f,i){var x=fs[i],p=parseField(x,f),b=B[f.id],m;b.set={};b.step=5;b.from=f.lo;b.to=f.hi;
+  if(x==='*'){b.mode='any'}
+  else if((m=/^\*\/(\d+)$/.exec(x))){b.mode='step';b.step=+m[1]}
+  else if((m=/^(\d+)-(\d+)$/.exec(x))&&+m[1]<=+m[2]){b.mode='range';b.from=+m[1];b.to=+m[2];if(f.id==='dow'&&b.to===7)b.to=0}
+  else{b.mode='list';b.set=p.set}})}catch(e){toast('Ungültiger Ausdruck');return false}
+ build();return true;
+}
+$('load').onclick=function(){var s=$('expr').value.trim();if(loadB(s)){emit();toast('In den Baukasten übernommen')}};
+[['Jede Minute','* * * * *'],['Alle 5 Minuten','*/5 * * * *'],['Alle 15 Minuten','*/15 * * * *'],['Jede Stunde','0 * * * *'],['Täglich um 00:00','0 0 * * *'],['Täglich um 03:30','30 3 * * *'],['Werktags um 08:00','0 8 * * 1-5'],['Montags um 09:00','0 9 * * 1'],['Am Wochenende um 10:00','0 10 * * 6,0'],['Am 1. jedes Monats','0 0 1 * *'],['Jährlich am 1. Januar','0 0 1 1 *']].forEach(function(p){
+ var b=document.createElement('button');b.type='button';b.textContent=p[0];b.onclick=function(){$('expr').value=p[1];loadB(p[1]);analyze()};$('pre').appendChild(b)});
+build();emit();
+
+</script>
+</body>
+</html>

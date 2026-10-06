@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CPS Test – Klicktest: Klicks pro Sekunde messen | Toolyfix</title>
+<meta name="description" content="CPS Test online: Klicks pro Sekunde in 1 bis 60 Sekunden messen, mit Maus, Touch oder Leertaste. Mit Rang, Bestwerten und Diagramm. Kostenlos.">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+<link rel="canonical" href="https://toolyfix.de/tools/cps-test">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Toolyfix">
+<meta property="og:locale" content="de_DE">
+<meta property="og:title" content="CPS Test – Klicktest: Klicks pro Sekunde messen | Toolyfix">
+<meta property="og:description" content="CPS Test online: Klicks pro Sekunde in 1 bis 60 Sekunden messen, mit Maus, Touch oder Leertaste. Mit Rang, Bestwerten und Diagramm. Kostenlos.">
+<meta property="og:url" content="https://toolyfix.de/tools/cps-test">
+<meta property="og:image" content="https://toolyfix.de/assets/og/cps-test.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Toolyfix: CPS Test – Klicktest">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="CPS Test – Klicktest: Klicks pro Sekunde messen | Toolyfix">
+<meta name="twitter:description" content="CPS Test online: Klicks pro Sekunde in 1 bis 60 Sekunden messen, mit Maus, Touch oder Leertaste. Mit Rang, Bestwerten und Diagramm. Kostenlos.">
+<meta name="twitter:image" content="https://toolyfix.de/assets/og/cps-test.jpg">
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "WebApplication", "name": "CPS Test – Klicktest", "url": "https://toolyfix.de/tools/cps-test", "description": "CPS Test online: Klicks pro Sekunde in 1 bis 60 Sekunden messen, mit Maus, Touch oder Leertaste. Mit Rang, Bestwerten und Diagramm. Kostenlos.", "applicationCategory": "GameApplication", "operatingSystem": "Any (Webbrowser)", "browserRequirements": "Benötigt JavaScript", "inLanguage": "de", "isAccessibleForFree": true, "image": "https://toolyfix.de/assets/og/cps-test.jpg", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "EUR"}, "publisher": {"@type": "Organization", "name": "Toolyfix", "url": "https://toolyfix.de/"}}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Startseite", "item": "https://toolyfix.de/"}, {"@type": "ListItem", "position": 2, "name": "CPS Test – Klicktest", "item": "https://toolyfix.de/tools/cps-test"}]}]}</script>
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="stylesheet" href="/assets/style.css">
+<style>
+:root{--bg:#F7F7F4;--ink:#1A1A1A;--blue:#1D3557;--amber:#E9A93B;--line:#dcdcd2;--card:#fff;--mut:#5b6470;--bad:#b3261e;--ok:#1f7a45}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{background:var(--bg);color:var(--ink);margin:0;font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;line-height:1.6}
+.tf-wrap{max-width:1000px;margin:0 auto;padding:22px 16px 56px}
+.tf-wrap h1{font-size:clamp(1.6rem,4.4vw,2.3rem);line-height:1.15;margin:.2em 0 .3em;color:var(--blue)}
+.tf-intro{color:var(--mut);margin:0 0 14px;max-width:70ch}
+.tf-related{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:0 0 18px;padding:10px 12px;background:#fff;border:1px solid var(--line);border-radius:10px;font-size:.92rem}
+.tf-related b{color:var(--blue);margin-right:4px}
+.tf-related a{color:var(--blue);background:#eef1f6;border-radius:999px;padding:4px 12px;text-decoration:none;font-weight:500}
+.tf-related a:hover,.tf-related a:focus-visible{background:var(--blue);color:#fff;outline:none}
+.tf-card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px;margin-bottom:16px}
+.tf-card h2{font-size:1.05rem;margin:0 0 10px;color:var(--blue)}
+.tf-grid{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(170px,1fr))}
+.tf-wrap label{display:block;font-size:.82rem;font-weight:600;margin:0 0 4px;color:#333}
+.tf-wrap input[type=text],.tf-wrap input[type=number],.tf-wrap input[type=date],.tf-wrap select,.tf-wrap textarea{width:100%;padding:9px 10px;border:1px solid #c9c9bf;border-radius:8px;font:inherit;background:#fff;color:var(--ink)}
+.tf-wrap input[type=color]{width:100%;height:40px;border:1px solid #c9c9bf;border-radius:8px;padding:2px;background:#fff}
+.tf-wrap textarea{min-height:130px;resize:vertical}
+.tf-wrap input:focus-visible,.tf-wrap select:focus-visible,.tf-wrap textarea:focus-visible,.btn:focus-visible{outline:3px solid var(--amber);outline-offset:1px}
+.btn{font:inherit;font-weight:600;padding:9px 16px;border-radius:8px;border:1px solid var(--blue);background:#fff;color:var(--blue);cursor:pointer}
+.btn:hover{background:#eef1f6}
+.btn.pri{background:var(--blue);color:#fff}
+.btn.pri:hover{background:#16294a}
+.btn.amb{background:var(--amber);border-color:var(--amber);color:#1A1A1A}
+.btn[disabled]{opacity:.5;cursor:not-allowed}
+.tf-btns{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.chk{display:flex;gap:8px;align-items:center;font-weight:500;font-size:.92rem;margin:6px 0}
+.chk input{width:18px;height:18px}
+.tf-article{margin-top:34px;background:#fff;border:1px solid var(--line);border-radius:12px;padding:22px 20px}
+.tf-article h2{color:var(--blue);font-size:1.4rem;margin:1.4em 0 .4em;line-height:1.25}
+.tf-article h2:first-child{margin-top:0}
+.tf-article h3{font-size:1.1rem;margin:1.1em 0 .3em}
+.tf-article p,.tf-article li{max-width:75ch}
+.tf-article table{border-collapse:collapse;width:100%;font-size:.92rem;display:block;overflow-x:auto}
+.tf-article th,.tf-article td{border:1px solid var(--line);padding:6px 10px;text-align:left}
+.tf-article th{background:#eef1f6}
+.toast{position:fixed;left:50%;bottom:22px;transform:translateX(-50%);background:var(--blue);color:#fff;padding:9px 18px;border-radius:999px;font-size:.9rem;opacity:0;pointer-events:none;transition:opacity .2s;z-index:50}
+.toast.on{opacity:1}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+@media print{.site-header,.site-footer,.tf-related,.tf-intro,.tf-wrap>h1,.tf-article,.tf-noprint,.toast{display:none!important}body{background:#fff}.tf-wrap{padding:0;max-width:none}}
+
+.pad{user-select:none;-webkit-user-select:none;touch-action:manipulation;-webkit-tap-highlight-color:transparent;min-height:240px;border-radius:14px;background:var(--blue);color:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:16px;cursor:pointer;transition:background .05s}
+.pad.run{background:#2b4c7e}
+.pad.act{background:#3f6aa8}
+.pad.done{background:#4b5563;cursor:default}
+.pad b{font-size:clamp(1.3rem,5vw,2rem)}
+.pad span{opacity:.85;margin-top:6px}
+.live{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:12px}
+.live div{background:#f4f6fa;border-radius:10px;padding:10px;text-align:center}
+.live b{display:block;font-size:clamp(1.3rem,5vw,1.9rem);color:var(--blue);font-variant-numeric:tabular-nums}
+.live span{font-size:.78rem;color:var(--mut)}
+.rs{display:grid;gap:10px;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));margin:12px 0}
+.rs div{background:#f4f6fa;border-radius:10px;padding:10px 12px}
+.rs b{display:block;font-size:1.25rem;color:var(--blue)}
+.rs span{font-size:.78rem;color:var(--mut)}
+.rk{font-size:1.3rem;font-weight:800;color:var(--blue);margin:6px 0}
+.nb{display:inline-block;background:var(--amber);color:#1A1A1A;border-radius:999px;padding:2px 12px;font-size:.82rem;font-weight:700;margin-left:8px}
+.bars{display:flex;align-items:flex-end;gap:4px;height:110px;margin-top:6px}
+.bars div{flex:1;background:var(--blue);border-radius:4px 4px 0 0;min-height:2px;position:relative}
+.bars div span{position:absolute;top:-18px;left:0;right:0;text-align:center;font-size:.72rem;color:var(--mut)}
+.bl{display:flex;gap:4px;font-size:.72rem;color:var(--mut);text-align:center}.bl span{flex:1}
+.hid{display:none}
+table.h{width:100%;border-collapse:collapse;font-size:.9rem}
+table.h th,table.h td{border-bottom:1px solid var(--line);padding:6px 8px;text-align:left}
+table.h th{background:#eef1f6}
+.tw{overflow-x:auto}
+</style>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-F9VY193ZMP"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-F9VY193ZMP');</script>
+</head>
+<body>
+<header class="site-header">
+  <div class="container">
+    <a href="/" class="logo-link"><img src="/assets/images/logo-full.png" alt="Toolyfix"></a>
+    <span class="header-tagline">Kostenlose Tools, direkt im Browser</span>
+  </div>
+</header>
+<main>
+<div class="tf-wrap">
+<h1>CPS Test – Klicktest</h1>
+<p class="tf-intro">Wie viele Klicks schaffst du pro Sekunde? Wähle Dauer und Modus, klicke auf die Fläche und starte den Test mit dem ersten Klick. Bestwerte und Verlauf werden in deinem Browser gespeichert.</p>
+<nav class="tf-related" aria-label="Passende Tools"><b>Passende Tools:</b><a href="/tools/timer-stoppuhr">Timer &amp; Stoppuhr</a><a href="/tools/wuerfel-online">Würfel Online</a><a href="/tools/muenzwurf">Münzwurf</a><a href="/tools/durchschnitt-rechner">Durchschnitt Rechner</a></nav>
+
+<section class="tf-card">
+<div class="tf-grid">
+<div><label for="dur">Dauer</label><select id="dur"><option value="1">1 Sekunde</option><option value="2">2 Sekunden</option><option value="5">5 Sekunden</option><option value="10" selected>10 Sekunden</option><option value="15">15 Sekunden</option><option value="30">30 Sekunden</option><option value="60">60 Sekunden</option><option value="x">Eigene Dauer</option></select></div>
+<div id="cw" class="hid"><label for="cdur">Sekunden (0,5 bis 600)</label><input type="number" id="cdur" min="0.5" max="600" step="0.5" inputmode="decimal"></div>
+<div><label for="mode">Modus</label><select id="mode"><option value="click">Mausklick oder Touch</option><option value="space">Leertaste</option></select></div>
+</div>
+</section>
+<section class="tf-card">
+<div class="live"><div><b id="tl">10.0</b><span>Sekunden übrig</span></div><div><b id="cc">0</b><span>Klicks</span></div><div><b id="cp">0,0</b><span>CPS aktuell</span></div></div>
+<div class="pad" id="pad" role="button" tabindex="0" aria-label="Klickfläche"><b id="pt">Klicke hier, um zu starten</b><span id="ps">Der Test beginnt mit dem ersten Klick</span></div>
+</section>
+<section class="tf-card hid" id="rc">
+<h2>Ergebnis</h2>
+<div class="rk" id="rk"></div>
+<div class="rs" id="rs"></div>
+<h2 style="margin-top:14px">Klicks pro Sekunde im Verlauf</h2>
+<div class="bars" id="bars"></div><div class="bl" id="bl"></div>
+<div class="tf-btns"><button class="btn pri" id="again" type="button">Nochmal testen</button><button class="btn" id="share" type="button">Ergebnis kopieren</button></div>
+</section>
+<section class="tf-card">
+<h2>Bestwerte</h2>
+<div class="tw"><table class="h" id="bt"></table></div>
+<h2 style="margin-top:16px">Letzte Tests</h2>
+<div class="tw"><table class="h" id="ht"></table></div>
+<div class="tf-btns"><button class="btn" id="wipe" type="button">Bestwerte und Verlauf löschen</button></div>
+</section>
+
+<article class="tf-article">
+
+<h2>CPS Test: Messe deine Klicks pro Sekunde</h2>
+<p>CPS steht für „Clicks Per Second“, auf Deutsch Klicks pro Sekunde. Der CPS Test misst, wie oft du in einer festgelegten Zeit mit der Maus, dem Touchscreen oder der Leertaste klicken kannst. Dein Ergebnis siehst du als Zahl und als Rang, im Vergleich zu deinen früheren Versuchen und im Verlauf über die einzelnen Sekunden. Der Klicktest von Toolyfix funktioniert direkt im Browser, ohne Download und ohne Anmeldung. Du wählst die Dauer, klickst auf die Fläche, und der Test startet beim ersten Klick. Nach Ablauf der Zeit bekommst du dein Ergebnis samt Statistik.</p>
+<p>Beliebt ist der Klicktest vor allem bei Gamern: In Spielen wie Minecraft, bei Shootern oder bei Clicker-Games entscheidet oft die Klickgeschwindigkeit. Aber auch zum Vergleich unter Freunden, zum Testen einer neuen Maus oder einfach zum Spaß macht der Test viel Spaß.</p>
+
+<h2>Funktionen des CPS Tests</h2>
+<ul>
+<li><b>Sieben Standarddauern und eine eigene Dauer:</b> 1, 2, 5, 10, 15, 30 und 60 Sekunden, oder eine eigene Zeit zwischen einer halben Sekunde und zehn Minuten.</li>
+<li><b>Zwei Modi:</b> Klicken mit Maus oder Touch auf die Fläche oder Tippen auf die Leertaste. Der Leertasten-Test ist ein beliebter Vergleichswert für Tastatur-Spieler.</li>
+<li><b>Live-Anzeige:</b> Restzeit, Klickzahl und aktuelle CPS während des Tests.</li>
+<li><b>Ergebnis mit Rang:</b> Von „Gemütlich“ bis „Außergewöhnlich“, damit du dein Tempo einordnen kannst.</li>
+<li><b>Detailwerte:</b> Gesamtzahl der Klicks, beste Sekunde, durchschnittlicher Abstand zwischen zwei Klicks in Millisekunden und dein Bestwert für die gewählte Einstellung.</li>
+<li><b>Diagramm:</b> Ein Balkendiagramm zeigt, wie viele Klicks du in jeder einzelnen Sekunde geschafft hast. So siehst du, ob du am Anfang schnell warst und später nachgelassen hast.</li>
+<li><b>Bestwerte und Verlauf:</b> Deine besten Ergebnisse je Dauer und Modus und die letzten zehn Tests werden in deinem Browser gespeichert.</li>
+<li><b>Ergebnis teilen:</b> Mit einem Klick kopierst du einen fertigen Text für Chats und soziale Netzwerke.</li>
+</ul>
+
+<h2>So funktioniert der Klicktest</h2>
+<ol>
+<li>Wähle die Dauer. Für einen schnellen Wert eignen sich 5 oder 10 Sekunden, für Ausdauer 30 oder 60.</li>
+<li>Wähle den Modus: Klick oder Leertaste.</li>
+<li>Klicke auf die blaue Fläche. Mit dem ersten Klick läuft die Zeit.</li>
+<li>Klicke so schnell wie möglich, bis die Zeit abgelaufen ist.</li>
+<li>Lies das Ergebnis ab und wiederhole den Test, um dich zu verbessern.</li>
+</ol>
+<p>Die Auswertung berechnet CPS als Anzahl der Klicks geteilt durch die Testdauer. Hast du in 10 Sekunden 80 Klicks geschafft, liegt dein Wert bei 8 CPS. Klicks nach Ablauf der Zeit zählen nicht mehr.</p>
+
+<h2>Was sind gute CPS-Werte?</h2>
+<p>Die meisten Menschen erreichen mit normalem Klicken etwa 5 bis 7 Klicks pro Sekunde. Wer regelmäßig übt, kommt auf 8 bis 10. Werte von 10 bis 12 gelten als sehr schnell, und darüber sind spezielle Techniken im Spiel. Die Einordnung im Tool ist eine Orientierung:</p>
+<table>
+<tr><th>CPS</th><th>Einordnung</th></tr>
+<tr><td>unter 3</td><td>Gemütlich</td></tr>
+<tr><td>3 bis 5</td><td>Durchschnittlich</td></tr>
+<tr><td>5 bis 7</td><td>Flott</td></tr>
+<tr><td>7 bis 9</td><td>Schnell</td></tr>
+<tr><td>9 bis 12</td><td>Sehr schnell</td></tr>
+<tr><td>12 bis 16</td><td>Profi-Niveau</td></tr>
+<tr><td>über 16</td><td>Außergewöhnlich</td></tr>
+</table>
+<p>Diese Werte sind keine wissenschaftlichen Normen, sondern Erfahrungswerte aus der Community. Wie schnell du klicken kannst, hängt von Hand, Maus, Technik und Tagesform ab.</p>
+
+<h2>Klicktechniken für höhere CPS</h2>
+<h3>Normales Klicken</h3>
+<p>Der Finger schlägt auf die Maustaste. Das ist die natürlichste Technik, die aber bei langen Tests schnell ermüdet. Ein lockeres Handgelenk und ein leichter Anschlag helfen.</p>
+<h3>Jitter-Klicken</h3>
+<p>Bei dieser Technik wird der Arm angespannt und leicht in Schwingung versetzt, sodass der Finger schnell hintereinander klickt. Damit sind je nach Übung 10 bis 14 Klicks pro Sekunde möglich. Die Technik ist anstrengend und kann bei übertriebener Anwendung Handgelenk und Unterarm belasten. Mach Pausen und achte auf Schmerzsignale.</p>
+<h3>Butterfly-Klicken</h3>
+<p>Hier klickst du mit zwei Fingern abwechselnd auf dieselbe Taste, was die Klickfrequenz stark erhöhen kann. Manche Mäuse und Spiele registrieren diese schnellen Doppelsignale allerdings unterschiedlich.</p>
+<h3>Drag-Klicken</h3>
+<p>Beim Drag-Klicken wird der Finger über die Maustaste gezogen, sodass die Oberfläche viele kleine Impulse erzeugt. Damit lassen sich sehr hohe Werte erreichen, die allerdings stark von der Maus abhängen. Manche Spiele und Server verbieten solche Techniken oder filtern sie.</p>
+<p>Wichtig: Gerade im Spielebereich können Regeln und Bewertungen unterschiedlich ausfallen. Informiere dich über die Bedingungen deines Spiels oder Servers, bevor du bestimmte Techniken im Wettbewerb verwendest.</p>
+
+<h2>Tipps, um deine Klickrate zu verbessern</h2>
+<ul>
+<li><b>Aufwärmen:</b> Lockere Finger, Handgelenk und Unterarm vor dem Test.</li>
+<li><b>Haltung:</b> Lege den Unterarm entspannt auf, halte das Handgelenk möglichst gerade, und vermeide Verkrampfung.</li>
+<li><b>Maus wählen:</b> Eine leichte Maus mit kurzem Klickweg und gutem Druckpunkt ermöglicht schnelleres Klicken. Eine alte, träge Maus bremst.</li>
+<li><b>Kurze Tests üben:</b> Beginne mit 5 Sekunden und steigere dich. Kurze Durchgänge lassen dich Technik feilen, ohne zu ermüden.</li>
+<li><b>Rhythmus finden:</b> Ein gleichmäßiger Takt bringt oft mehr als hektisches Klicken.</li>
+<li><b>Pausen einlegen:</b> Gönn dir zwischen den Versuchen etwas Ruhe. Die Hand braucht Erholung.</li>
+<li><b>Ergebnisse vergleichen:</b> Nutze das Balkendiagramm, um zu sehen, wann dein Tempo abfällt.</li>
+</ul>
+
+<h2>Warum unterscheiden sich meine Ergebnisse?</h2>
+<p>Die gemessene CPS-Zahl hängt nicht nur von dir ab. Entscheidend sind auch Gerät und Software. Eine Maus hat eine Entprellung: Sie ignoriert Signale, die zu schnell hintereinander kommen. Dadurch registrieren manche Mäuse bei sehr schnellen Techniken weniger Klicks. Bildschirme, Browser und Betriebssysteme haben zudem eigene Verzögerungen. Auf Touchscreens zählt jede Berührung als Klick, und die Hardware kann Eingaben je nach Gerät unterschiedlich schnell verarbeiten. Auch ein Laptop-Touchpad liefert andere Werte als eine Gaming-Maus. Vergleiche deshalb Ergebnisse möglichst nur mit derselben Ausrüstung.</p>
+
+<h2>Typische Probleme und Lösungen</h2>
+<h3>Der Test startet nicht</h3>
+<p>Klicke direkt auf die blaue Fläche. Im Modus „Leertaste“ musst du die Leertaste drücken, nicht klicken. Achte darauf, dass kein Eingabefeld ausgewählt ist.</p>
+<h3>Auf dem Handy werden Klicks nicht gezählt</h3>
+<p>Der Test zählt jede Berührung der Fläche. Wenn die Seite zoomt oder scrollt, tippe nur auf die Fläche und vermeide Doppeltipp-Gesten.</p>
+<h3>Mein Ergebnis ist niedriger als erwartet</h3>
+<p>Prüfe, ob du die richtige Dauer gewählt hast. Bei 30 oder 60 Sekunden sinkt die durchschnittliche CPS im Vergleich zu 5 Sekunden spürbar, weil die Ausdauer nachlässt.</p>
+<h3>Das Rechtsklick-Menü erscheint</h3>
+<p>Der Test zählt nur die linke Maustaste und unterdrückt das Kontextmenü auf der Fläche. Klicke ausschließlich mit der linken Taste.</p>
+<h3>Meine Bestwerte sind weg</h3>
+<p>Sie werden im Browser gespeichert. Wenn du Browserdaten löschst, den privaten Modus nutzt oder das Gerät wechselst, sind sie nicht mehr vorhanden.</p>
+
+<h2>Gesundheit und Pausen</h2>
+<p>Wiederholtes schnelles Klicken belastet Sehnen und Gelenke. Wenn du Schmerzen, Kribbeln oder Taubheit in Hand oder Unterarm bemerkst, höre auf und gönne dir Ruhe. Bei anhaltenden Beschwerden sprich mit einer Ärztin oder einem Arzt. Der Test ist ein Spiel und kein Training, das du über deine Grenzen hinaus treiben solltest.</p>
+
+<h2>Datenschutz</h2>
+<p>Die Messung läuft komplett im Browser. Deine Ergebnisse werden lokal gespeichert und nicht an einen Server gesendet. Auf Wunsch löschst du sie mit einem Klick.</p>
+
+<h2>Häufige Fragen zum CPS Test</h2>
+<h3>Ist der CPS Test kostenlos?</h3>
+<p>Ja, ohne Anmeldung und ohne Begrenzung.</p>
+<h3>Wie viele CPS sind normal?</h3>
+<p>Etwa 5 bis 7 Klicks pro Sekunde sind für die meisten Menschen normal. Geübte kommen auf 8 bis 10.</p>
+<h3>Was ist der Unterschied zwischen CPS und APM?</h3>
+<p>CPS misst Klicks pro Sekunde, APM steht für Aktionen pro Minute und wird vor allem in Strategiespielen verwendet. Er umfasst Klicks und Tastendrücke.</p>
+<h3>Zählen beide Maustasten?</h3>
+<p>Nein, nur die linke Maustaste und Berührungen auf dem Touchscreen.</p>
+<h3>Kann ich mit der Tastatur testen?</h3>
+<p>Ja. Wähle den Modus „Leertaste“ und tippe die Leertaste so schnell du kannst.</p>
+<p>Weitere Spiel- und Zeitwerkzeuge findest du oben unter „Passende Tools“, zum Beispiel Timer und Stoppuhr, Würfel Online und Münzwurf.</p>
+
+</article>
+</div>
+</main>
+<footer class="site-footer">
+  <div class="container">
+    <img src="/assets/images/logo-full.png" alt="Toolyfix">
+    <nav class="footer-links">
+      <a href="/ueber-uns.html">Über uns</a>
+      <a href="/datenschutz.html">Datenschutz</a>
+      <a href="/nutzungsbedingungen.html">Nutzungsbedingungen</a>
+      <a href="/kontakt.html">Kontakt</a>
+    </nav>
+    <p class="footer-note">© 2026 Toolyfix – Alle Tools laufen lokal in deinem Browser.</p>
+  </div>
+</footer>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script>
+function toast(m){var t=document.getElementById('toast');t.textContent=m;t.classList.add('on');clearTimeout(window._tt);window._tt=setTimeout(function(){t.classList.remove('on')},1800)}
+function copyText(s){if(navigator.clipboard&&window.isSecureContext){return navigator.clipboard.writeText(s).then(function(){toast('Kopiert')},function(){fb(s)})}fb(s)}
+function fb(s){var a=document.createElement('textarea');a.value=s;a.style.position='fixed';a.style.opacity='0';document.body.appendChild(a);a.select();try{document.execCommand('copy');toast('Kopiert')}catch(e){toast('Kopieren nicht möglich')}document.body.removeChild(a)}
+function dl(name,blob){var u=URL.createObjectURL(blob),a=document.createElement('a');a.href=u;a.download=name;document.body.appendChild(a);a.click();document.body.removeChild(a);setTimeout(function(){URL.revokeObjectURL(u)},4000)}
+
+function $(i){return document.getElementById(i)}
+function f1(n){return n.toFixed(1).replace('.',',')}
+var S={st:'idle',hits:[],t0:0,dur:10,iv:null,last:null};
+var BEST={},HIST=[];
+try{BEST=JSON.parse(localStorage.getItem('tf_cps_b')||'{}');HIST=JSON.parse(localStorage.getItem('tf_cps_h')||'[]')}catch(e){}
+function sv(){try{localStorage.setItem('tf_cps_b',JSON.stringify(BEST));localStorage.setItem('tf_cps_h',JSON.stringify(HIST))}catch(e){}}
+function dur(){var v=$('dur').value;if(v==='x'){var n=parseFloat(($('cdur').value||'').replace(',','.'));return n>0?Math.min(600,Math.max(.5,n)):10}return+v}
+function mode(){return $('mode').value}
+function label(c){return c<3?'Gemütlich':c<5?'Durchschnittlich':c<7?'Flott':c<9?'Schnell':c<12?'Sehr schnell':c<16?'Profi-Niveau':'Außergewöhnlich'}
+function idle(){
+ clearInterval(S.iv);S.st='idle';S.hits=[];S.dur=dur();
+ $('pad').className='pad';$('pt').textContent=mode()==='space'?'Drücke die Leertaste, um zu starten':'Klicke hier, um zu starten';$('ps').textContent='Der Test beginnt mit dem ersten '+(mode()==='space'?'Tastendruck':'Klick');
+ $('tl').textContent=f1(S.dur);$('cc').textContent='0';$('cp').textContent='0,0';$('dur').disabled=false;$('mode').disabled=false;$('cdur').disabled=false;
+}
+function paint(el){
+ var left=Math.max(0,S.dur-el/1000),c=S.hits.length;
+ $('tl').textContent=f1(left);$('cc').textContent=c;$('cp').textContent=f1(el>150?c/(el/1000):0);
+}
+function hit(){
+ if(S.st==='done')return;
+ var now=performance.now();
+ if(S.st==='idle'){S.st='run';S.t0=now;S.dur=dur();S.hits=[];$('pad').className='pad run';$('pt').textContent='Weiter!';$('ps').textContent='';$('dur').disabled=true;$('mode').disabled=true;$('cdur').disabled=true;S.iv=setInterval(tick,40)}
+ var el=now-S.t0;if(el>S.dur*1000)return;
+ S.hits.push(el);paint(el);
+ var p=$('pad');p.classList.add('act');setTimeout(function(){p.classList.remove('act')},40);
+}
+function tick(){var el=performance.now()-S.t0;if(el>=S.dur*1000)finish();else paint(el)}
+function finish(){
+ clearInterval(S.iv);S.st='done';
+ var d=S.dur,c=S.hits.length,cps=c/d,h=S.hits,best=0,j=0;
+ for(var i=0;i<h.length;i++){while(h[i]-h[j]>=1000)j++;best=Math.max(best,i-j+1)}
+ $('tl').textContent='0,0';$('cc').textContent=c;$('cp').textContent=f1(cps);
+ $('pad').className='pad done';$('pt').textContent='Fertig';$('ps').textContent=f1(cps)+' Klicks pro Sekunde';
+ var key=mode()+'|'+d,nb=!BEST[key]||cps>BEST[key];
+ if(nb&&c>0)BEST[key]=cps;
+ HIST.unshift({t:Date.now(),d:d,m:mode(),c:c,cps:cps});HIST=HIST.slice(0,20);sv();
+ var iv=c>1?(h[h.length-1]-h[0])/(c-1):0;
+ S.last={cps:cps,c:c,d:d};
+ $('rk').innerHTML=(c?label(cps):'Kein Klick erkannt')+(nb&&c?'<span class="nb">Neuer Bestwert</span>':'');
+ $('rs').innerHTML=[[f1(cps),'CPS (Klicks pro Sekunde)'],[c,'Klicks gesamt'],[d.toString().replace('.',',')+' s','Testdauer'],[best,'Beste Sekunde (Klicks)'],[iv?Math.round(iv)+' ms':'–','Ø Abstand zwischen Klicks'],[BEST[key]?f1(BEST[key]):'–','Bestwert für diese Einstellung']].map(function(x){return'<div><b>'+x[0]+'</b><span>'+x[1]+'</span></div>'}).join('');
+ var n=Math.max(1,Math.ceil(d)),bk=new Array(n).fill(0);
+ h.forEach(function(t){var k=Math.min(n-1,Math.floor(t/1000));bk[k]++});
+ var mx=Math.max.apply(null,bk.concat([1]));
+ if(d>=2&&n<=60){$('bars').innerHTML=bk.map(function(v){return'<div style="height:'+Math.max(2,v/mx*92)+'px"><span>'+v+'</span></div>'}).join('');$('bl').innerHTML=bk.map(function(v,i){return'<span>'+(i+1)+'</span>'}).join('');$('bars').classList.remove('hid');$('bl').classList.remove('hid')}
+ else{$('bars').classList.add('hid');$('bl').classList.add('hid')}
+ $('rc').classList.remove('hid');
+ tables();
+ $('rc').scrollIntoView({behavior:'smooth',block:'nearest'});
+ $('dur').disabled=false;$('mode').disabled=false;$('cdur').disabled=false;
+}
+function tables(){
+ var k=Object.keys(BEST);
+ $('bt').innerHTML=k.length?'<tr><th>Modus</th><th>Dauer</th><th>Bestwert (CPS)</th></tr>'+k.sort(function(a,b){return parseFloat(a.split('|')[1])-parseFloat(b.split('|')[1])}).map(function(x){var p=x.split('|');return'<tr><td>'+(p[0]==='space'?'Leertaste':'Klick')+'</td><td>'+p[1].replace('.',',')+' s</td><td><b>'+f1(BEST[x])+'</b></td></tr>'}).join(''):'<tr><td>Noch keine Ergebnisse. Mach deinen ersten Test.</td></tr>';
+ $('ht').innerHTML=HIST.length?'<tr><th>Zeit</th><th>Modus</th><th>Dauer</th><th>Klicks</th><th>CPS</th></tr>'+HIST.slice(0,10).map(function(r){return'<tr><td>'+new Date(r.t).toLocaleString('de-DE',{day:'2-digit',month:'2-digit',hour:'2-digit',minute:'2-digit'})+'</td><td>'+(r.m==='space'?'Leertaste':'Klick')+'</td><td>'+String(r.d).replace('.',',')+' s</td><td>'+r.c+'</td><td><b>'+f1(r.cps)+'</b></td></tr>'}).join(''):'<tr><td>Noch keine Tests.</td></tr>';
+}
+var pad=$('pad');
+pad.addEventListener('pointerdown',function(e){if(mode()!=='click')return;if(e.pointerType==='mouse'&&e.button!==0)return;e.preventDefault();hit()});
+pad.addEventListener('contextmenu',function(e){e.preventDefault()});
+pad.addEventListener('keydown',function(e){if(mode()==='click'&&(e.key==='Enter')&&!e.repeat){e.preventDefault();hit()}});
+document.addEventListener('keydown',function(e){
+ if(mode()!=='space'||e.code!=='Space'||e.repeat)return;
+ var t=e.target&&e.target.tagName;if(/INPUT|TEXTAREA|SELECT/.test(t||''))return;
+ e.preventDefault();hit();
+});
+$('again').onclick=function(){$('rc').classList.add('hid');idle()};
+$('dur').onchange=function(){$('cw').classList.toggle('hid',this.value!=='x');idle()};
+$('cdur').oninput=idle;$('mode').onchange=idle;
+$('share').onclick=function(){if(!S.last)return;copyText('Mein Klicktest: '+f1(S.last.cps)+' CPS ('+S.last.c+' Klicks in '+String(S.last.d).replace('.',',')+' Sekunden) – teste dich selbst auf toolyfix.de/tools/cps-test')};
+$('wipe').onclick=function(){if(confirm('Bestwerte und Verlauf löschen?')){BEST={};HIST=[];sv();tables()}};
+idle();tables();
+
+</script>
+</body>
+</html>

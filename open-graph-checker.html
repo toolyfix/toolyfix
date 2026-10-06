@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Open Graph Checker – OG-Tags prüfen &amp; Vorschau | Toolyfix</title>
+<meta name="description" content="Open Graph Checker: OG-Tags und Twitter Cards prüfen, Vorschau für Facebook, X, WhatsApp und Google, plus Tag-Generator. Kostenlos.">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+<link rel="canonical" href="https://toolyfix.de/tools/open-graph-checker">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Toolyfix">
+<meta property="og:locale" content="de_DE">
+<meta property="og:title" content="Open Graph Checker – OG-Tags prüfen &amp; Vorschau | Toolyfix">
+<meta property="og:description" content="Open Graph Checker: OG-Tags und Twitter Cards prüfen, Vorschau für Facebook, X, WhatsApp und Google, plus Tag-Generator. Kostenlos.">
+<meta property="og:url" content="https://toolyfix.de/tools/open-graph-checker">
+<meta property="og:image" content="https://toolyfix.de/assets/og/open-graph-checker.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Toolyfix: Open Graph Checker">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Open Graph Checker – OG-Tags prüfen &amp; Vorschau | Toolyfix">
+<meta name="twitter:description" content="Open Graph Checker: OG-Tags und Twitter Cards prüfen, Vorschau für Facebook, X, WhatsApp und Google, plus Tag-Generator. Kostenlos.">
+<meta name="twitter:image" content="https://toolyfix.de/assets/og/open-graph-checker.jpg">
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "WebApplication", "name": "Open Graph Checker", "url": "https://toolyfix.de/tools/open-graph-checker", "description": "Open Graph Checker: OG-Tags und Twitter Cards prüfen, Vorschau für Facebook, X, WhatsApp und Google, plus Tag-Generator. Kostenlos.", "applicationCategory": "DeveloperApplication", "operatingSystem": "Any (Webbrowser)", "browserRequirements": "Benötigt JavaScript", "inLanguage": "de", "isAccessibleForFree": true, "image": "https://toolyfix.de/assets/og/open-graph-checker.jpg", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "EUR"}, "publisher": {"@type": "Organization", "name": "Toolyfix", "url": "https://toolyfix.de/"}}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Startseite", "item": "https://toolyfix.de/"}, {"@type": "ListItem", "position": 2, "name": "Open Graph Checker", "item": "https://toolyfix.de/tools/open-graph-checker"}]}]}</script>
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="stylesheet" href="/assets/style.css">
+<style>
+:root{--bg:#F7F7F4;--ink:#1A1A1A;--blue:#1D3557;--amber:#E9A93B;--line:#dcdcd2;--card:#fff;--mut:#5b6470;--bad:#b3261e;--ok:#1f7a45}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{background:var(--bg);color:var(--ink);margin:0;font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;line-height:1.6}
+.tf-wrap{max-width:1000px;margin:0 auto;padding:22px 16px 56px}
+.tf-wrap h1{font-size:clamp(1.6rem,4.4vw,2.3rem);line-height:1.15;margin:.2em 0 .3em;color:var(--blue)}
+.tf-intro{color:var(--mut);margin:0 0 14px;max-width:70ch}
+.tf-related{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:0 0 18px;padding:10px 12px;background:#fff;border:1px solid var(--line);border-radius:10px;font-size:.92rem}
+.tf-related b{color:var(--blue);margin-right:4px}
+.tf-related a{color:var(--blue);background:#eef1f6;border-radius:999px;padding:4px 12px;text-decoration:none;font-weight:500}
+.tf-related a:hover,.tf-related a:focus-visible{background:var(--blue);color:#fff;outline:none}
+.tf-card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px;margin-bottom:16px}
+.tf-card h2{font-size:1.05rem;margin:0 0 10px;color:var(--blue)}
+.tf-grid{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(170px,1fr))}
+.tf-wrap label{display:block;font-size:.82rem;font-weight:600;margin:0 0 4px;color:#333}
+.tf-wrap input[type=text],.tf-wrap input[type=number],.tf-wrap input[type=date],.tf-wrap select,.tf-wrap textarea{width:100%;padding:9px 10px;border:1px solid #c9c9bf;border-radius:8px;font:inherit;background:#fff;color:var(--ink)}
+.tf-wrap input[type=color]{width:100%;height:40px;border:1px solid #c9c9bf;border-radius:8px;padding:2px;background:#fff}
+.tf-wrap textarea{min-height:130px;resize:vertical}
+.tf-wrap input:focus-visible,.tf-wrap select:focus-visible,.tf-wrap textarea:focus-visible,.btn:focus-visible{outline:3px solid var(--amber);outline-offset:1px}
+.btn{font:inherit;font-weight:600;padding:9px 16px;border-radius:8px;border:1px solid var(--blue);background:#fff;color:var(--blue);cursor:pointer}
+.btn:hover{background:#eef1f6}
+.btn.pri{background:var(--blue);color:#fff}
+.btn.pri:hover{background:#16294a}
+.btn.amb{background:var(--amber);border-color:var(--amber);color:#1A1A1A}
+.btn[disabled]{opacity:.5;cursor:not-allowed}
+.tf-btns{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.chk{display:flex;gap:8px;align-items:center;font-weight:500;font-size:.92rem;margin:6px 0}
+.chk input{width:18px;height:18px}
+.tf-article{margin-top:34px;background:#fff;border:1px solid var(--line);border-radius:12px;padding:22px 20px}
+.tf-article h2{color:var(--blue);font-size:1.4rem;margin:1.4em 0 .4em;line-height:1.25}
+.tf-article h2:first-child{margin-top:0}
+.tf-article h3{font-size:1.1rem;margin:1.1em 0 .3em}
+.tf-article p,.tf-article li{max-width:75ch}
+.tf-article table{border-collapse:collapse;width:100%;font-size:.92rem;display:block;overflow-x:auto}
+.tf-article th,.tf-article td{border:1px solid var(--line);padding:6px 10px;text-align:left}
+.tf-article th{background:#eef1f6}
+.toast{position:fixed;left:50%;bottom:22px;transform:translateX(-50%);background:var(--blue);color:#fff;padding:9px 18px;border-radius:999px;font-size:.9rem;opacity:0;pointer-events:none;transition:opacity .2s;z-index:50}
+.toast.on{opacity:1}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+@media print{.site-header,.site-footer,.tf-related,.tf-intro,.tf-wrap>h1,.tf-article,.tf-noprint,.toast{display:none!important}body{background:#fff}.tf-wrap{padding:0;max-width:none}}
+
+.mt{display:flex;gap:8px;margin-bottom:14px;flex-wrap:wrap}
+.mt button.on{background:var(--blue);color:#fff}
+.hid{display:none}
+.src{width:100%;min-height:200px;font-family:ui-monospace,Menlo,Consolas,monospace;font-size:.82rem;white-space:pre}
+.warn{background:#fff6dd;border:1px solid #f0d58a;border-radius:8px;padding:9px 12px;font-size:.88rem;margin:8px 0}
+.sc{display:flex;align-items:center;gap:16px;flex-wrap:wrap;margin-bottom:12px}
+.ring{width:84px;height:84px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:1.3rem;color:var(--blue);background:conic-gradient(var(--c,#1f7a45) calc(var(--p)*1%),#e8e8df 0)}
+.ring span{width:64px;height:64px;border-radius:50%;background:#fff;display:flex;align-items:center;justify-content:center}
+.ck{display:grid;grid-template-columns:78px 1fr;gap:4px 12px;padding:8px 0;border-bottom:1px solid var(--line);font-size:.92rem}
+.ck .tg{font-weight:700;overflow-wrap:anywhere}
+.bd{display:inline-block;border-radius:999px;padding:1px 10px;font-size:.78rem;font-weight:700;text-align:center;height:fit-content}
+.bd.ok{background:#dff3e6;color:#12532d}.bd.warn{background:#fff0c9;color:#7a5200;border:0;margin:0}.bd.bad{background:#fbdcd9;color:#7a1c16}
+.ck .ms{color:#444}.ck .vl{color:var(--mut);font-size:.84rem;overflow-wrap:anywhere;grid-column:2}
+.pvs{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(300px,1fr))}
+.pvh{font-size:.8rem;color:var(--mut);margin:0 0 6px;font-weight:600}
+.fb{border:1px solid #dadde1;background:#f2f3f5;max-width:500px;border-radius:2px;overflow:hidden;font-family:Arial,Helvetica,sans-serif}
+.fb .im,.tw .im{background:#dde2ea center/cover no-repeat;aspect-ratio:1.91/1;display:flex;align-items:center;justify-content:center;color:#7b8794;font-size:.8rem}
+.fb .bx{padding:10px 12px}
+.fb .dm{font-size:12px;color:#606770;text-transform:none;margin-bottom:3px}
+.fb .tt{font-size:16px;font-weight:600;color:#1d2129;line-height:1.25;overflow-wrap:anywhere}
+.fb .ds{font-size:14px;color:#606770;margin-top:3px;line-height:1.3;overflow-wrap:anywhere;max-height:3.9em;overflow:hidden}
+.tw{border:1px solid #cfd9de;border-radius:14px;overflow:hidden;max-width:500px;font-family:Arial,Helvetica,sans-serif;background:#fff}
+.tw .im{aspect-ratio:2/1}
+.tw .bx{padding:10px 12px}.tw .tt{font-size:15px;font-weight:700;color:#0f1419;overflow-wrap:anywhere}.tw .ds{font-size:14px;color:#536471;margin-top:2px;overflow-wrap:anywhere;max-height:2.7em;overflow:hidden}.tw .dm{font-size:13px;color:#536471}
+.wa{background:#dcf8c6;border-radius:8px;padding:6px;max-width:420px;font-family:Arial,Helvetica,sans-serif}
+.wa .in{background:#fff;border-radius:6px;overflow:hidden;display:flex;gap:0}
+.wa .im{width:90px;min-height:90px;background:#dde2ea center/cover no-repeat;flex:none}
+.wa .bx{padding:8px 10px;min-width:0}.wa .tt{font-size:14px;font-weight:700;color:#111;overflow-wrap:anywhere}.wa .ds{font-size:12.5px;color:#555;max-height:3.9em;overflow:hidden;overflow-wrap:anywhere}.wa .dm{font-size:12px;color:#888}
+.gg{max-width:600px;font-family:Arial,Helvetica,sans-serif}
+.gg .u{font-size:14px;color:#202124;overflow-wrap:anywhere}.gg .tt{font-size:20px;color:#1a0dab;line-height:1.3;margin:2px 0;overflow-wrap:anywhere}.gg .ds{font-size:14px;color:#4d5156;line-height:1.5;overflow-wrap:anywhere}
+.code{width:100%;min-height:200px;font-family:ui-monospace,Menlo,Consolas,monospace;font-size:.82rem}
+</style>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-F9VY193ZMP"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-F9VY193ZMP');</script>
+</head>
+<body>
+<header class="site-header">
+  <div class="container">
+    <a href="/" class="logo-link"><img src="/assets/images/logo-full.png" alt="Toolyfix"></a>
+    <span class="header-tagline">Kostenlose Tools, direkt im Browser</span>
+  </div>
+</header>
+<main>
+<div class="tf-wrap">
+<h1>Open Graph Checker</h1>
+<p class="tf-intro">Prüfe, wie dein Link auf Facebook, LinkedIn, X, WhatsApp und in Google aussieht. Füge den HTML-Code deiner Seite ein und erhalte Bewertung, Fehlerhinweise und Vorschau. Fehlende Tags erzeugst du mit dem Generator.</p>
+<nav class="tf-related" aria-label="Passende Tools"><b>Passende Tools:</b><a href="/tools/zeichenzaehler">Zeichenzähler</a><a href="/tools/slug-generator">Slug Generator</a><a href="/tools/bild-komprimieren">Bilder Komprimieren</a><a href="/tools/seitenverhaeltnis-rechner">Seitenverhältnis Rechner</a></nav>
+
+<div class="mt tf-noprint">
+<button class="btn on" id="m1" type="button">Prüfen</button>
+<button class="btn" id="m2" type="button">Tags erzeugen</button>
+</div>
+<div id="sA">
+<section class="tf-card">
+<h2>1. HTML deiner Seite eingeben</h2>
+<p style="margin:0 0 8px;font-size:.9rem;color:var(--mut)">Öffne deine Seite, wähle im Browser „Seitenquelltext anzeigen“, kopiere den Code (mindestens den Bereich &lt;head&gt;) und füge ihn hier ein.</p>
+<textarea class="src" id="html" placeholder="&lt;html&gt;&lt;head&gt;… hier einfügen" spellcheck="false"></textarea>
+<div class="tf-grid" style="margin-top:10px;align-items:end">
+<div><label for="file">Oder HTML-Datei laden</label><input type="file" id="file" accept=".html,.htm,text/html"></div>
+<div><label for="base">Seiten-URL (optional)</label><input type="text" id="base" placeholder="https://deine-seite.de/seite"></div>
+</div>
+<div class="tf-btns"><button class="btn pri" id="chk" type="button">Prüfen</button><button class="btn" id="fetchb" type="button">URL direkt abrufen</button><button class="btn" id="clr" type="button">Leeren</button></div>
+<div id="fmsg"></div>
+<p style="font-size:.85rem;color:var(--mut);margin:8px 0 0">Der direkte Abruf funktioniert nur bei Seiten, die Zugriff von anderen Webseiten erlauben. Die meisten blockieren das. Dann nutze den Quelltext.</p>
+</section>
+<div id="res" class="hid">
+<section class="tf-card"><h2>2. Bewertung</h2><div id="score"></div><div id="list"></div></section>
+<section class="tf-card"><h2>3. Vorschau</h2><div class="pvs" id="pvs"></div></section>
+</div>
+</div>
+<div id="sB" class="hid">
+<section class="tf-card">
+<h2>Open-Graph-Tags erzeugen</h2>
+<div class="tf-grid">
+<div><label for="gt">Titel</label><input type="text" id="gt" maxlength="120"></div>
+<div><label for="gu">Seiten-URL</label><input type="text" id="gu" placeholder="https://deine-seite.de/seite"></div>
+<div><label for="gi">Bild-URL (https, 1200 × 630)</label><input type="text" id="gi" placeholder="https://deine-seite.de/bild.jpg"></div>
+<div><label for="gs">Seitenname</label><input type="text" id="gs" maxlength="60"></div>
+<div><label for="gy">Typ</label><select id="gy"><option value="website">website</option><option value="article">article</option><option value="product">product</option></select></div>
+<div><label for="gl">Sprache</label><select id="gl"><option value="de_DE">Deutsch (de_DE)</option><option value="de_AT">Österreich (de_AT)</option><option value="de_CH">Schweiz (de_CH)</option><option value="en_US">Englisch (en_US)</option></select></div>
+<div><label for="gx">X-Konto (optional)</label><input type="text" id="gx" placeholder="@deinkonto" maxlength="30"></div>
+<div><label for="gc">Twitter-Card-Typ</label><select id="gc"><option value="summary_large_image">summary_large_image</option><option value="summary">summary</option></select></div>
+</div>
+<div style="margin-top:12px"><label for="gd">Beschreibung</label><textarea id="gd" maxlength="300" style="min-height:90px"></textarea></div>
+<label for="go" style="margin-top:12px">Fertiger Code für den &lt;head&gt;</label>
+<textarea class="code" id="go" readonly></textarea>
+<div class="tf-btns"><button class="btn pri" id="cp" type="button">Code kopieren</button></div>
+</section>
+</div>
+
+<article class="tf-article">
+
+<h2>Open Graph Checker: So prüfst du die Vorschau deiner Links</h2>
+<p>Du teilst einen Link auf Facebook, LinkedIn, X oder WhatsApp, und plötzlich erscheint ein falsches Bild, ein abgeschnittener Titel oder gar keine Vorschau. Das ist ärgerlich, denn der erste Eindruck entscheidet darüber, ob jemand klickt. Verantwortlich dafür sind sogenannte Open-Graph-Tags im Kopfbereich deiner Seite. Mit dem Open Graph Checker von Toolyfix prüfst du in Sekunden, ob diese Angaben vollständig und sinnvoll sind. Du fügst den HTML-Code deiner Seite ein, erhältst eine Bewertung mit konkreten Verbesserungstipps und siehst, wie dein Link auf mehreren Plattformen aussehen könnte. Fehlende Tags erzeugst du mit dem integrierten Generator und kopierst sie direkt in deine Seite.</p>
+
+<h2>Was ist Open Graph?</h2>
+<p>Open Graph ist ein Protokoll, das Facebook entwickelt hat und das heute von vielen Diensten gelesen wird. Es besteht aus Meta-Tags im &lt;head&gt; einer Webseite, die Plattformen mitteilen, wie ein Link dargestellt werden soll: Welcher Titel, welche Beschreibung, welches Bild, welche Adresse. Ohne diese Angaben raten die Plattformen selbst und treffen oft keine gute Wahl. Neben Open Graph nutzt X eigene Tags mit dem Präfix „twitter:“, sogenannte Twitter Cards. Sie fallen auf Open-Graph-Werte zurück, wenn sie fehlen.</p>
+
+<h2>Die wichtigsten Open-Graph-Tags</h2>
+<table>
+<tr><th>Tag</th><th>Bedeutung</th><th>Empfehlung</th></tr>
+<tr><td>og:title</td><td>Titel in der Vorschau</td><td>30 bis 60 Zeichen, klar und konkret</td></tr>
+<tr><td>og:description</td><td>Kurzbeschreibung</td><td>70 bis 155 Zeichen</td></tr>
+<tr><td>og:image</td><td>Vorschaubild</td><td>Absolute https-Adresse, 1200 × 630 Pixel</td></tr>
+<tr><td>og:url</td><td>Kanonische Adresse</td><td>Gleich wie der canonical-Link</td></tr>
+<tr><td>og:type</td><td>Art des Inhalts</td><td>website oder article</td></tr>
+<tr><td>og:site_name</td><td>Name der Seite</td><td>Deine Marke</td></tr>
+<tr><td>og:locale</td><td>Sprache und Region</td><td>de_DE für Deutschland</td></tr>
+<tr><td>twitter:card</td><td>Kartentyp für X</td><td>summary_large_image</td></tr>
+</table>
+
+<h2>So nutzt du den Open Graph Checker</h2>
+<ol>
+<li>Öffne die Seite, die du prüfen möchtest, in deinem Browser.</li>
+<li>Rufe den Seitenquelltext auf. In den meisten Browsern geht das mit Rechtsklick und „Seitenquelltext anzeigen“ oder mit der Tastenkombination Strg+U.</li>
+<li>Kopiere den Code und füge ihn in das Eingabefeld ein. Es genügt der Bereich im &lt;head&gt;.</li>
+<li>Trage optional die Seiten-URL ein, damit relative Bildadressen richtig aufgelöst werden können.</li>
+<li>Klicke auf „Prüfen“. Du erhältst eine Punktzahl, eine Liste aller Tags mit Status und Empfehlungen sowie die Vorschau.</li>
+</ol>
+<p>Ein direkter Abruf per URL ist technisch nur eingeschränkt möglich. Browser erlauben es Webseiten aus Sicherheitsgründen nicht, beliebige fremde Seiten zu laden, es sei denn, die Zielseite erlaubt das ausdrücklich. Deshalb arbeitet das Tool vorrangig mit dem eingefügten Quelltext. Der Vorteil: Du kannst auch Seiten prüfen, die noch nicht veröffentlicht sind, hinter einem Login liegen oder sich in der Entwicklung befinden.</p>
+
+<h2>Wie liest du die Bewertung?</h2>
+<p>Jeder Tag erhält einen von drei Status. „OK“ bedeutet, dass die Angabe vorhanden und sinnvoll ist. „Hinweis“ steht für Verbesserungspotenzial, zum Beispiel einen sehr kurzen Titel oder fehlende Bildmaße. „Fehler“ markiert Probleme, die Vorschauen verhindern, etwa ein fehlendes Bild oder eine relative Bildadresse. Aus allen Ergebnissen entsteht eine Gesamtpunktzahl. Sie ist eine Orientierung, keine Garantie dafür, wie Plattformen deinen Link darstellen. Wichtig ist, dass keine roten Fehler übrig bleiben und die Hinweise bewusst abgewogen sind.</p>
+
+<h2>Das perfekte Vorschaubild</h2>
+<p>Das Bild ist der auffälligste Teil der Vorschau und hat den größten Einfluss darauf, ob jemand klickt. Diese Regeln haben sich bewährt:</p>
+<ul>
+<li><b>Format:</b> Das gängige Seitenverhältnis liegt bei etwa 1,91 zu 1, die empfohlene Größe bei 1200 × 630 Pixel. Mit dem Seitenverhältnis Rechner findest du schnell passende Maße.</li>
+<li><b>Mindestgröße:</b> Sehr kleine Bilder werden von manchen Plattformen als kleines Quadrat angezeigt oder gar nicht verwendet.</li>
+<li><b>Dateigröße:</b> Halte das Bild möglichst klein. Für eine zuverlässige Anzeige in Messengern wie WhatsApp gelten kleine Dateien als sicherer. Mit dem Bilder-Komprimieren-Tool verkleinerst du es.</li>
+<li><b>Lesbarkeit:</b> Setze Text auf dem Bild groß und nur in der Mitte. Am Rand kann es abgeschnitten werden.</li>
+<li><b>Adresse:</b> Die Bild-URL muss absolut sein, also mit https:// beginnen, und öffentlich erreichbar sein. Bilder hinter einem Login können Plattformen nicht laden.</li>
+<li><b>Dateiformat:</b> JPG und PNG funktionieren zuverlässig. Bei exotischen Formaten ist die Unterstützung uneinheitlich.</li>
+</ul>
+
+<h2>Typische Probleme und Lösungen</h2>
+<h3>Mein altes Bild wird weiterhin angezeigt</h3>
+<p>Plattformen speichern Vorschauen zwischen. Nach einer Änderung dauert es, bis die neue Version erscheint. Die großen Netzwerke bieten eigene Prüfwerkzeuge an, mit denen du den Zwischenspeicher für eine Adresse neu laden kannst, etwa der Sharing Debugger von Facebook oder der Post Inspector von LinkedIn. Dort lässt sich auch erkennen, wie die jeweilige Plattform deine Tags tatsächlich liest.</p>
+<h3>Es erscheint gar kein Bild</h3>
+<p>Prüfe, ob die Bildadresse absolut ist, mit https beginnt und im Browser ohne Login aufrufbar ist. Der Checker meldet solche Fälle und versucht das Bild zu laden, um Maße und Erreichbarkeit zu testen.</p>
+<h3>Der Titel ist abgeschnitten</h3>
+<p>Kürze ihn auf maximal etwa 60 Zeichen und stelle die wichtigsten Wörter an den Anfang. Mit dem Zeichenzähler kontrollierst du die Länge.</p>
+<h3>WhatsApp zeigt ein anderes Bild als Facebook</h3>
+<p>Messenger lesen die Tags teils anders und haben eigene Größenbeschränkungen. Prüfe, ob das Bild klein genug ist und nicht von einer langsamen Seite geladen wird. Manche Dienste brechen das Laden ab, wenn der Server zu lange braucht.</p>
+<h3>Die Seite wird von einem Seitenbaukasten verwaltet</h3>
+<p>Viele Systeme wie WordPress, Shopify oder Wix bieten Felder für Social-Media-Vorschauen oder Plugins, die Open-Graph-Tags erzeugen. Trage dort Titel, Beschreibung und Bild ein. Der Checker zeigt anschließend, ob alles korrekt im Quelltext landet.</p>
+
+<h2>Open Graph und SEO</h2>
+<p>Open-Graph-Tags beeinflussen das Ranking in Google nicht direkt, sie wirken aber indirekt: Eine ansprechende Vorschau erhöht die Klickrate auf geteilte Links, und mehr Besucher und Verlinkungen sind für Webseiten ein positives Signal. Wichtiger für die Suche sind der Title-Tag, die Meta-Description und der canonical-Link, die der Checker ebenfalls prüft. Die Google-Vorschau in diesem Tool ist ein Beispiel, kein exaktes Abbild, denn Google entscheidet selbst, welche Texte angezeigt werden. Saubere Adressen für deine Seiten erzeugst du mit dem Slug Generator.</p>
+
+<h2>Tags erzeugen: der Generator</h2>
+<p>Wenn bei deiner Seite Tags fehlen, wechsle zum Reiter „Tags erzeugen“. Fülle Titel, Beschreibung, Seiten-URL, Bild-URL, Seitenname, Typ und Sprache aus. Wenn du ein X-Konto hast, trage es ein. Der Generator erstellt den fertigen Code inklusive Twitter Cards, Bildmaßen und canonical-Link. Kopiere ihn in den &lt;head&gt; deiner Seite, direkt vor das schließende &lt;/head&gt;-Tag, und prüfe das Ergebnis anschließend erneut mit dem Checker. Sonderzeichen wie Anführungszeichen werden dabei automatisch maskiert, damit der Code gültig bleibt.</p>
+
+<h2>Checkliste für perfekte Link-Vorschauen</h2>
+<ul>
+<li>Titel mit 30 bis 60 Zeichen, Beschreibung mit 70 bis 155 Zeichen.</li>
+<li>Bild 1200 × 630 Pixel, https, öffentlich erreichbar, möglichst klein in der Dateigröße.</li>
+<li>og:url und canonical zeigen auf dieselbe Adresse.</li>
+<li>twitter:card auf summary_large_image gesetzt.</li>
+<li>Sprache mit og:locale und lang-Attribut angegeben.</li>
+<li>Nach Änderungen den Zwischenspeicher der Plattformen aktualisiert.</li>
+<li>Vorschau auf Smartphone und Desktop getestet.</li>
+</ul>
+
+<h2>Datenschutz</h2>
+<p>Die Analyse läuft im Browser. Der HTML-Code, den du einfügst, wird nicht an Toolyfix gesendet. Lediglich das Vorschaubild wird, falls du eines angibst, von deinem Browser direkt vom Server geladen, auf dem es liegt, so als würdest du die Seite selbst besuchen. Das gilt auch für die Prüfung der Bildgröße.</p>
+
+<h2>Häufige Fragen zum Open Graph Checker</h2>
+<h3>Ist der Open Graph Checker kostenlos?</h3>
+<p>Ja, ohne Anmeldung und ohne Begrenzung.</p>
+<h3>Warum kann ich keine URL direkt prüfen?</h3>
+<p>Browser blockieren das Laden fremder Seiten, wenn diese es nicht ausdrücklich erlauben. Dieses Tool nutzt deshalb den eingefügten Quelltext. Das ist auch datenschutzfreundlicher.</p>
+<h3>Brauche ich Open Graph, wenn ich nur bei Google gefunden werden will?</h3>
+<p>Für das Ranking ist es nicht entscheidend. Sobald deine Inhalte aber geteilt werden, etwa in Messengern oder sozialen Netzwerken, macht eine gute Vorschau den Unterschied.</p>
+<h3>Wie lange dauert es, bis Änderungen sichtbar werden?</h3>
+<p>Das hängt vom Zwischenspeicher der Plattform ab. Nutze die Debugger-Werkzeuge der Netzwerke, um die Vorschau zu aktualisieren.</p>
+<h3>Funktioniert die Vorschau genauso wie auf der echten Plattform?</h3>
+<p>Sie ist eine Annäherung. Layouts und Zuschnitte ändern sich gelegentlich, und Plattformen entscheiden selbst, was sie anzeigen.</p>
+<p>Weitere Werkzeuge für Webseiten findest du oben unter „Passende Tools“, zum Beispiel den Zeichenzähler, den Slug Generator und Bilder Komprimieren.</p>
+
+</article>
+</div>
+</main>
+<footer class="site-footer">
+  <div class="container">
+    <img src="/assets/images/logo-full.png" alt="Toolyfix">
+    <nav class="footer-links">
+      <a href="/ueber-uns.html">Über uns</a>
+      <a href="/datenschutz.html">Datenschutz</a>
+      <a href="/nutzungsbedingungen.html">Nutzungsbedingungen</a>
+      <a href="/kontakt.html">Kontakt</a>
+    </nav>
+    <p class="footer-note">© 2026 Toolyfix – Alle Tools laufen lokal in deinem Browser.</p>
+  </div>
+</footer>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script>
+function toast(m){var t=document.getElementById('toast');t.textContent=m;t.classList.add('on');clearTimeout(window._tt);window._tt=setTimeout(function(){t.classList.remove('on')},1800)}
+function copyText(s){if(navigator.clipboard&&window.isSecureContext){return navigator.clipboard.writeText(s).then(function(){toast('Kopiert')},function(){fb(s)})}fb(s)}
+function fb(s){var a=document.createElement('textarea');a.value=s;a.style.position='fixed';a.style.opacity='0';document.body.appendChild(a);a.select();try{document.execCommand('copy');toast('Kopiert')}catch(e){toast('Kopieren nicht möglich')}document.body.removeChild(a)}
+function dl(name,blob){var u=URL.createObjectURL(blob),a=document.createElement('a');a.href=u;a.download=name;document.body.appendChild(a);a.click();document.body.removeChild(a);setTimeout(function(){URL.revokeObjectURL(u)},4000)}
+
+function $(i){return document.getElementById(i)}
+function esc(s){return String(s==null?'':s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+var doc;
+function mv(sels){for(var i=0;i<sels.length;i++){var e=doc.querySelector(sels[i]);if(e){var v=(e.getAttribute('content')||'').trim();if(v)return v}}return''}
+function og(n){return mv(['meta[property="og:'+n+'"]','meta[name="og:'+n+'"]'])}
+function tw(n){return mv(['meta[name="twitter:'+n+'"]','meta[property="twitter:'+n+'"]'])}
+function abs(u,b){try{return new URL(u,b||undefined).href}catch(e){return''}}
+function dom(u){try{return new URL(u).hostname.replace(/^www\./,'')}catch(e){return''}}
+function check(){
+ var src=$('html').value;
+ if(!src.trim()){toast('Bitte zuerst HTML einfügen');return}
+ doc=new DOMParser().parseFromString(src,'text/html');
+ var base=$('base').value.trim(),canon=(doc.querySelector('link[rel="canonical"]')||{getAttribute:function(){return''}}).getAttribute('href')||'';
+ var title=(doc.querySelector('title')||{}).textContent||'',mdesc=mv(['meta[name="description"]']);
+ var d={ot:og('title'),od:og('description'),oi:og('image'),ou:og('url'),oty:og('type'),osn:og('site_name'),ol:og('locale'),oiw:og('image:width'),oih:og('image:height'),oia:og('image:alt'),
+  tc:tw('card'),tt:tw('title'),td:tw('description'),ti:tw('image'),ts:tw('site')};
+ var L=[];
+ function add(tag,st,msg,val){L.push({tag:tag,st:st,msg:msg,val:val||''})}
+ // Titel
+ if(!d.ot)add('og:title','bad','Fehlt. Plattformen greifen sonst auf den Seitentitel zurück oder zeigen nichts Passendes.');
+ else if(d.ot.length>70)add('og:title','warn','Mit '+d.ot.length+' Zeichen sehr lang. Bis etwa 60 Zeichen wird der Titel meist vollständig angezeigt.',d.ot);
+ else if(d.ot.length<15)add('og:title','warn','Mit '+d.ot.length+' Zeichen sehr kurz. Ein aussagekräftiger Titel hat meist 30 bis 60 Zeichen.',d.ot);
+ else add('og:title','ok','Länge passt ('+d.ot.length+' Zeichen).',d.ot);
+ // Beschreibung
+ if(!d.od)add('og:description','warn','Fehlt. Ohne Beschreibung wirkt die Vorschau karg.');
+ else if(d.od.length>200)add('og:description','warn','Mit '+d.od.length+' Zeichen lang. Viele Plattformen kürzen nach etwa 155 bis 200 Zeichen.',d.od);
+ else if(d.od.length<50)add('og:description','warn','Mit '+d.od.length+' Zeichen sehr kurz. Nutze 70 bis 155 Zeichen für mehr Aussagekraft.',d.od);
+ else add('og:description','ok','Länge passt ('+d.od.length+' Zeichen).',d.od);
+ // Bild
+ var img=d.oi||d.ti,imgAbs=img?abs(img,base||canon||undefined):'';
+ if(!d.oi)add('og:image','bad',d.ti?'Fehlt, nur twitter:image vorhanden. Facebook, LinkedIn und WhatsApp nutzen og:image.':'Fehlt. Links erscheinen ohne Vorschaubild und werden seltener angeklickt.');
+ else if(!/^https?:\/\//i.test(d.oi))add('og:image','bad','Die Bild-URL ist relativ. Verwende eine vollständige Adresse mit https://.',d.oi);
+ else if(/^http:\/\//i.test(d.oi))add('og:image','warn','Das Bild wird über http geladen. Nutze https, damit es überall angezeigt wird.',d.oi);
+ else add('og:image','ok','Absolute https-Adresse vorhanden.',d.oi);
+ if(d.oi){if(!d.oiw||!d.oih)add('og:image:width/height','warn','Nicht angegeben. Mit Breite und Höhe (z. B. 1200 × 630) können Plattformen die Vorschau sofort korrekt rendern.');else add('og:image:width/height','ok',d.oiw+' × '+d.oih+' Pixel angegeben.');
+  if(!d.oia)add('og:image:alt','warn','Kein Alternativtext. Er hilft Menschen mit Screenreadern.')}
+ // URL
+ if(!d.ou)add('og:url','warn','Fehlt. Empfohlen ist die kanonische Adresse der Seite.');
+ else if(canon&&abs(canon,d.ou)!==abs(d.ou))add('og:url','warn','Weicht vom canonical-Link ab. Beide sollten dieselbe Adresse nennen.',d.ou);
+ else add('og:url','ok','Vorhanden'+(canon?' und passend zum canonical-Link.':'.'),d.ou);
+ if(!d.oty)add('og:type','warn','Fehlt. Üblich sind website oder article.');else add('og:type','ok','Typ: '+d.oty+'.');
+ if(!d.osn)add('og:site_name','warn','Fehlt. Der Seitenname erscheint in der Vorschau über dem Titel.');else add('og:site_name','ok','Seitenname: '+d.osn+'.');
+ if(!d.ol)add('og:locale','warn','Fehlt. Für deutsche Seiten ist de_DE üblich.');else add('og:locale','ok','Sprache: '+d.ol+'.');
+ // Twitter
+ if(!d.tc)add('twitter:card','warn','Fehlt. X nutzt sonst eine einfache Darstellung. Empfohlen: summary_large_image.');
+ else if(['summary','summary_large_image','app','player'].indexOf(d.tc)<0)add('twitter:card','bad','Unbekannter Wert „'+d.tc+'“.');
+ else add('twitter:card','ok','Kartentyp: '+d.tc+'.');
+ if(d.tc&&!d.tt&&!d.ot)add('twitter:title','warn','Weder twitter:title noch og:title vorhanden.');
+ // Allgemein
+ if(!title.trim())add('title','bad','Das title-Element fehlt oder ist leer.');else if(title.length>65)add('title','warn','Mit '+title.length+' Zeichen wird der Titel in Google voraussichtlich gekürzt.',title);else add('title','ok',title.length+' Zeichen.',title);
+ if(!mdesc)add('meta description','warn','Fehlt. Google erzeugt dann selbst einen Auszug.');else if(mdesc.length>160)add('meta description','warn','Mit '+mdesc.length+' Zeichen wird sie vermutlich gekürzt.',mdesc);else add('meta description','ok',mdesc.length+' Zeichen.',mdesc);
+ if(!canon)add('canonical','warn','Kein canonical-Link. Er hilft gegen doppelte Inhalte.');else add('canonical','ok','Vorhanden.',canon);
+ var cs=doc.querySelector('meta[charset],meta[http-equiv="Content-Type"]');if(!cs)add('charset','warn','Keine Zeichenkodierung angegeben. Setze meta charset="UTF-8" möglichst weit oben.');
+ if(!doc.documentElement.getAttribute('lang'))add('html lang','warn','Das lang-Attribut fehlt, z. B. lang="de".');
+ if(!doc.querySelector('meta[name="viewport"]'))add('viewport','warn','Der viewport-Tag fehlt. Er ist für mobile Darstellung wichtig.');
+ var rb=mv(['meta[name="robots"]']);if(/noindex/i.test(rb))add('robots','warn','Die Seite ist auf noindex gesetzt und wird nicht in Google erscheinen.',rb);
+ // Score
+ var sc=L.reduce(function(a,x){return a+(x.st==='ok'?1:x.st==='warn'?.5:0)},0),pct=Math.round(sc/L.length*100),col=pct>=80?'#1f7a45':pct>=55?'#c98a00':'#b3261e';
+ var nb=L.filter(function(x){return x.st==='bad'}).length,nw=L.filter(function(x){return x.st==='warn'}).length;
+ $('score').innerHTML='<div class="sc"><div class="ring" style="--p:'+pct+';--c:'+col+'"><span>'+pct+'</span></div><div><b>'+pct+' von 100 Punkten</b><br><span style="color:var(--mut)">'+nb+' Fehler, '+nw+' Hinweise, '+(L.length-nb-nw)+' in Ordnung</span></div></div>';
+ var lab={ok:'OK',warn:'Hinweis',bad:'Fehler'};
+ $('list').innerHTML=L.map(function(x){return'<div class="ck"><span class="bd '+x.st+'">'+lab[x.st]+'</span><div><div class="tg">'+esc(x.tag)+'</div><div class="ms">'+esc(x.msg)+'</div></div>'+(x.val?'<div class="vl">'+esc(x.val)+'</div>':'')+'</div>'}).join('');
+ // Previews
+ var pt=d.ot||title||'Titel fehlt',pd=d.od||mdesc||'',pu=d.ou||canon||base,host=dom(abs(pu,base||undefined))||'deine-seite.de',im=imgAbs?' style="background-image:url(\''+esc(imgAbs)+'\')"':'';
+ var ph=imgAbs?'':'Kein Bild';
+ var tImg=abs(d.ti||d.oi||'',base||canon||undefined),tim=tImg?' style="background-image:url(\''+esc(tImg)+'\')"':'';
+ $('pvs').innerHTML=
+ '<div><p class="pvh">Facebook, LinkedIn</p><div class="fb"><div class="im"'+im+'>'+ph+'</div><div class="bx"><div class="dm">'+esc((d.osn||host).toUpperCase())+'</div><div class="tt">'+esc(pt)+'</div><div class="ds">'+esc(pd)+'</div></div></div></div>'
+ +'<div><p class="pvh">X (Twitter)</p><div class="tw"><div class="im"'+(d.tc==='summary'?'':tim)+'>'+(d.tc==='summary'||!tImg?(d.tc==='summary'?'Kleine Karte':'Kein Bild'):'')+'</div><div class="bx"><div class="dm">'+esc(host)+'</div><div class="tt">'+esc(d.tt||pt)+'</div><div class="ds">'+esc(d.td||pd)+'</div></div></div></div>'
+ +'<div><p class="pvh">WhatsApp</p><div class="wa"><div class="in"><div class="im"'+im+'></div><div class="bx"><div class="tt">'+esc(pt)+'</div><div class="ds">'+esc(pd)+'</div><div class="dm">'+esc(host)+'</div></div></div></div></div>'
+ +'<div><p class="pvh">Google-Suchergebnis (Beispiel)</p><div class="gg"><div class="u">'+esc(pu||host)+'</div><div class="tt">'+esc(title||pt)+'</div><div class="ds">'+esc(mdesc||pd)+'</div></div></div>';
+ $('res').classList.remove('hid');
+ $('res').scrollIntoView({behavior:'smooth',block:'start'});
+ // tatsächliche Bildmaße prüfen
+ if(imgAbs){var t=new Image();t.onload=function(){var w=t.naturalWidth,h=t.naturalHeight,r=w/h,m=[];if(w<600||h<315)m.push('Das Bild ist mit '+w+' × '+h+' Pixel klein. Empfohlen sind mindestens 1200 × 630.');if(Math.abs(r-1.91)>.25)m.push('Das Seitenverhältnis von '+w+' × '+h+' weicht von 1,91:1 ab. Das Bild kann zugeschnitten werden.');if(!m.length)m.push('Das Bild hat '+w+' × '+h+' Pixel und passt gut.');$('list').insertAdjacentHTML('afterbegin','<div class="ck"><span class="bd '+(m[0].indexOf('passt')>-1?'ok':'warn')+'">Bild</span><div><div class="tg">Tatsächliche Bildgröße</div><div class="ms">'+esc(m.join(' '))+'</div></div></div>')};t.onerror=function(){$('list').insertAdjacentHTML('afterbegin','<div class="ck"><span class="bd bad">Fehler</span><div><div class="tg">Bild nicht ladbar</div><div class="ms">Das Bild konnte nicht geladen werden. Prüfe die Adresse und ob das Bild öffentlich erreichbar ist.</div></div></div>')};t.src=imgAbs}
+}
+$('chk').onclick=check;
+$('clr').onclick=function(){$('html').value='';$('file').value='';$('res').classList.add('hid');$('fmsg').innerHTML=''};
+$('file').onchange=function(){var f=this.files[0];if(!f)return;var r=new FileReader();r.onload=function(){$('html').value=r.result;check()};r.readAsText(f)};
+$('fetchb').onclick=function(){
+ var u=$('base').value.trim();if(!/^https?:\/\//i.test(u)){toast('Bitte eine vollständige URL mit https:// eintragen');return}
+ $('fmsg').innerHTML='<div class="warn">Rufe Seite ab …</div>';
+ fetch(u,{mode:'cors'}).then(function(r){return r.text()}).then(function(t){$('html').value=t;$('fmsg').innerHTML='';check()}).catch(function(){$('fmsg').innerHTML='<div class="warn">Die Seite erlaubt keinen Abruf aus dem Browser (CORS). Das ist normal. Öffne die Seite, wähle „Seitenquelltext anzeigen“, kopiere den Code und füge ihn oben ein.</div>'});
+};
+function gen(){
+ function a(s){return esc(s)}
+ var t=$('gt').value.trim(),u=$('gu').value.trim(),i=$('gi').value.trim(),s=$('gs').value.trim(),d=$('gd').value.trim(),x=$('gx').value.trim(),L=[];
+ L.push('<meta property="og:type" content="'+a($('gy').value)+'">');
+ if(t)L.push('<meta property="og:title" content="'+a(t)+'">');
+ if(d)L.push('<meta property="og:description" content="'+a(d)+'">');
+ if(u)L.push('<meta property="og:url" content="'+a(u)+'">');
+ if(i){L.push('<meta property="og:image" content="'+a(i)+'">');L.push('<meta property="og:image:width" content="1200">');L.push('<meta property="og:image:height" content="630">')}
+ if(s)L.push('<meta property="og:site_name" content="'+a(s)+'">');
+ L.push('<meta property="og:locale" content="'+a($('gl').value)+'">');
+ L.push('<meta name="twitter:card" content="'+a($('gc').value)+'">');
+ if(t)L.push('<meta name="twitter:title" content="'+a(t)+'">');
+ if(d)L.push('<meta name="twitter:description" content="'+a(d)+'">');
+ if(i)L.push('<meta name="twitter:image" content="'+a(i)+'">');
+ if(x)L.push('<meta name="twitter:site" content="'+a(x.charAt(0)==='@'?x:'@'+x)+'">');
+ if(u)L.push('<link rel="canonical" href="'+a(u)+'">');
+ $('go').value=L.join('\n');
+}
+['gt','gu','gi','gs','gy','gl','gx','gc','gd'].forEach(function(i){$(i).addEventListener('input',gen)});
+$('cp').onclick=function(){copyText($('go').value)};
+function mode(a){$('sA').classList.toggle('hid',!a);$('sB').classList.toggle('hid',a);$('m1').classList.toggle('on',a);$('m2').classList.toggle('on',!a)}
+$('m1').onclick=function(){mode(true)};$('m2').onclick=function(){mode(false)};
+gen();
+
+</script>
+</body>
+</html>

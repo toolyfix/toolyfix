@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Münzwurf online – Kopf oder Zahl werfen | Toolyfix</title>
+<meta name="description" content="Münzwurf online: Kopf oder Zahl mit 3D-Münze, eigenen Optionen, Best-of-Serien und Statistik. Fairer Zufall, kostenlos und ohne Anmeldung.">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+<link rel="canonical" href="https://toolyfix.de/tools/muenzwurf">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Toolyfix">
+<meta property="og:locale" content="de_DE">
+<meta property="og:title" content="Münzwurf online – Kopf oder Zahl werfen | Toolyfix">
+<meta property="og:description" content="Münzwurf online: Kopf oder Zahl mit 3D-Münze, eigenen Optionen, Best-of-Serien und Statistik. Fairer Zufall, kostenlos und ohne Anmeldung.">
+<meta property="og:url" content="https://toolyfix.de/tools/muenzwurf">
+<meta property="og:image" content="https://toolyfix.de/assets/og/muenzwurf.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Toolyfix: Münzwurf online">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Münzwurf online – Kopf oder Zahl werfen | Toolyfix">
+<meta name="twitter:description" content="Münzwurf online: Kopf oder Zahl mit 3D-Münze, eigenen Optionen, Best-of-Serien und Statistik. Fairer Zufall, kostenlos und ohne Anmeldung.">
+<meta name="twitter:image" content="https://toolyfix.de/assets/og/muenzwurf.jpg">
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "WebApplication", "name": "Münzwurf online", "url": "https://toolyfix.de/tools/muenzwurf", "description": "Münzwurf online: Kopf oder Zahl mit 3D-Münze, eigenen Optionen, Best-of-Serien und Statistik. Fairer Zufall, kostenlos und ohne Anmeldung.", "applicationCategory": "EntertainmentApplication", "operatingSystem": "Any (Webbrowser)", "browserRequirements": "Benötigt JavaScript", "inLanguage": "de", "isAccessibleForFree": true, "image": "https://toolyfix.de/assets/og/muenzwurf.jpg", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "EUR"}, "publisher": {"@type": "Organization", "name": "Toolyfix", "url": "https://toolyfix.de/"}}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Startseite", "item": "https://toolyfix.de/"}, {"@type": "ListItem", "position": 2, "name": "Münzwurf online", "item": "https://toolyfix.de/tools/muenzwurf"}]}]}</script>
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="stylesheet" href="/assets/style.css">
+<style>
+:root{--bg:#F7F7F4;--ink:#1A1A1A;--blue:#1D3557;--amber:#E9A93B;--line:#dcdcd2;--card:#fff;--mut:#5b6470;--bad:#b3261e;--ok:#1f7a45}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{background:var(--bg);color:var(--ink);margin:0;font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;line-height:1.6}
+.tf-wrap{max-width:1000px;margin:0 auto;padding:22px 16px 56px}
+.tf-wrap h1{font-size:clamp(1.6rem,4.4vw,2.3rem);line-height:1.15;margin:.2em 0 .3em;color:var(--blue)}
+.tf-intro{color:var(--mut);margin:0 0 14px;max-width:70ch}
+.tf-related{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:0 0 18px;padding:10px 12px;background:#fff;border:1px solid var(--line);border-radius:10px;font-size:.92rem}
+.tf-related b{color:var(--blue);margin-right:4px}
+.tf-related a{color:var(--blue);background:#eef1f6;border-radius:999px;padding:4px 12px;text-decoration:none;font-weight:500}
+.tf-related a:hover,.tf-related a:focus-visible{background:var(--blue);color:#fff;outline:none}
+.tf-card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px;margin-bottom:16px}
+.tf-card h2{font-size:1.05rem;margin:0 0 10px;color:var(--blue)}
+.tf-grid{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(170px,1fr))}
+.tf-wrap label{display:block;font-size:.82rem;font-weight:600;margin:0 0 4px;color:#333}
+.tf-wrap input[type=text],.tf-wrap input[type=number],.tf-wrap input[type=date],.tf-wrap select,.tf-wrap textarea{width:100%;padding:9px 10px;border:1px solid #c9c9bf;border-radius:8px;font:inherit;background:#fff;color:var(--ink)}
+.tf-wrap input[type=color]{width:100%;height:40px;border:1px solid #c9c9bf;border-radius:8px;padding:2px;background:#fff}
+.tf-wrap textarea{min-height:130px;resize:vertical}
+.tf-wrap input:focus-visible,.tf-wrap select:focus-visible,.tf-wrap textarea:focus-visible,.btn:focus-visible{outline:3px solid var(--amber);outline-offset:1px}
+.btn{font:inherit;font-weight:600;padding:9px 16px;border-radius:8px;border:1px solid var(--blue);background:#fff;color:var(--blue);cursor:pointer}
+.btn:hover{background:#eef1f6}
+.btn.pri{background:var(--blue);color:#fff}
+.btn.pri:hover{background:#16294a}
+.btn.amb{background:var(--amber);border-color:var(--amber);color:#1A1A1A}
+.btn[disabled]{opacity:.5;cursor:not-allowed}
+.tf-btns{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.chk{display:flex;gap:8px;align-items:center;font-weight:500;font-size:.92rem;margin:6px 0}
+.chk input{width:18px;height:18px}
+.tf-article{margin-top:34px;background:#fff;border:1px solid var(--line);border-radius:12px;padding:22px 20px}
+.tf-article h2{color:var(--blue);font-size:1.4rem;margin:1.4em 0 .4em;line-height:1.25}
+.tf-article h2:first-child{margin-top:0}
+.tf-article h3{font-size:1.1rem;margin:1.1em 0 .3em}
+.tf-article p,.tf-article li{max-width:75ch}
+.tf-article table{border-collapse:collapse;width:100%;font-size:.92rem;display:block;overflow-x:auto}
+.tf-article th,.tf-article td{border:1px solid var(--line);padding:6px 10px;text-align:left}
+.tf-article th{background:#eef1f6}
+.toast{position:fixed;left:50%;bottom:22px;transform:translateX(-50%);background:var(--blue);color:#fff;padding:9px 18px;border-radius:999px;font-size:.9rem;opacity:0;pointer-events:none;transition:opacity .2s;z-index:50}
+.toast.on{opacity:1}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+@media print{.site-header,.site-footer,.tf-related,.tf-intro,.tf-wrap>h1,.tf-article,.tf-noprint,.toast{display:none!important}body{background:#fff}.tf-wrap{padding:0;max-width:none}}
+
+.stage{perspective:900px;display:flex;justify-content:center;padding:26px 0 14px}
+.coinwrap{width:min(230px,58vw);aspect-ratio:1}
+.coin{width:100%;height:100%;position:relative;transform-style:preserve-3d;transition:transform 1.2s cubic-bezier(.2,.7,.2,1)}
+.face{position:absolute;inset:0;border-radius:50%;backface-visibility:hidden;-webkit-backface-visibility:hidden;display:flex;align-items:center;justify-content:center;text-align:center;font-weight:800;padding:16%;overflow:hidden;overflow-wrap:anywhere;line-height:1.1}
+.face.a{background:radial-gradient(circle at 35% 30%,#fbe6a2,#e0a82e 62%,#b9801a);color:#5a3a00;border:9px solid #c28a1a;box-shadow:inset 0 0 0 4px #f4cf73,0 10px 22px rgba(0,0,0,.22)}
+.face.b{background:radial-gradient(circle at 35% 30%,#eef2f8,#aab6c8 62%,#7d8ba0);color:#1D3557;border:9px solid #6b7b92;box-shadow:inset 0 0 0 4px #d3dbe8,0 10px 22px rgba(0,0,0,.22);transform:rotateY(180deg)}
+.res{text-align:center;min-height:3.2em}
+.res .big{font-size:clamp(1.5rem,6vw,2.2rem);font-weight:800;color:var(--blue);line-height:1.2}
+.res small{display:block;color:var(--mut)}
+.go{display:block;margin:10px auto 0;font-size:1.15rem;padding:13px 34px}
+.rng{display:flex;gap:10px;align-items:center}
+.rng input{flex:1}
+.stk{display:flex;height:22px;border-radius:11px;overflow:hidden;background:#e8e8df}
+.stk i{display:flex;align-items:center;justify-content:center;font-size:.72rem;font-weight:700;font-style:normal;height:100%;min-width:0;overflow:hidden}
+.stk .ia{background:#e0a82e;color:#4a3000}.stk .ib{background:#9aa7b8;color:#10223a}
+.chips{display:flex;flex-wrap:wrap;gap:4px;margin-top:10px}
+.chip{width:24px;height:24px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:.72rem;font-weight:700;font-style:normal}
+.chip.a{background:#e0a82e;color:#4a3000}.chip.b{background:#9aa7b8;color:#10223a}
+.kp{display:grid;gap:10px;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));margin-bottom:12px}
+.kp div{background:#f4f6fa;border-radius:10px;padding:10px 12px}
+.kp b{display:block;font-size:1.3rem;color:var(--blue)}
+.kp span{font-size:.78rem;color:var(--mut)}
+.pre{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+</style>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-F9VY193ZMP"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-F9VY193ZMP');</script>
+</head>
+<body>
+<header class="site-header">
+  <div class="container">
+    <a href="/" class="logo-link"><img src="/assets/images/logo-full.png" alt="Toolyfix"></a>
+    <span class="header-tagline">Kostenlose Tools, direkt im Browser</span>
+  </div>
+</header>
+<main>
+<div class="tf-wrap">
+<h1>Münzwurf online</h1>
+<p class="tf-intro">Wirf eine faire Münze mit Kopf oder Zahl – oder gib eigene Optionen vor. Mit 3D-Animation, Best-of-Serien, Mehrfachwürfen bis 10.000, einstellbarer Wahrscheinlichkeit und Statistik.</p>
+<nav class="tf-related" aria-label="Passende Tools"><b>Passende Tools:</b><a href="/tools/wuerfel-online">Würfel Online</a><a href="/tools/bingo-karten-generator">Bingo Karten Generator</a><a href="/tools/timer-stoppuhr">Timer &amp; Stoppuhr</a><a href="/tools/durchschnitt-rechner">Durchschnitt Rechner</a></nav>
+
+<section class="tf-card">
+<div class="stage"><div class="coinwrap" id="cw"><div class="coin" id="coin"><div class="face a" id="fa">Kopf</div><div class="face b" id="fb">Zahl</div></div></div></div>
+<div class="res" id="res" aria-live="polite"><div class="big">Bereit zum Werfen</div><small>Leertaste oder Button</small></div>
+<button class="btn pri go" id="go" type="button">Münze werfen</button>
+</section>
+<section class="tf-card">
+<h2>Einstellungen</h2>
+<div class="tf-grid">
+<div><label for="la">Seite A (Gold)</label><input type="text" id="la" maxlength="24" placeholder="Kopf"></div>
+<div><label for="lb">Seite B (Silber)</label><input type="text" id="lb" maxlength="24" placeholder="Zahl"></div>
+<div><label for="mode">Modus</label><select id="mode"><option value="single">Einzel- oder Mehrfachwurf</option><option value="3">Best of 3</option><option value="5">Best of 5</option><option value="7">Best of 7</option></select></div>
+<div><label for="cnt">Anzahl Würfe (1 bis 10.000)</label><input type="number" id="cnt" min="1" max="10000" value="1" inputmode="numeric"></div>
+</div>
+<div style="margin-top:12px"><label for="pr">Chance für Seite A: <b id="prv">50</b> %</label><div class="rng"><input type="range" id="pr" min="5" max="95" step="1" value="50"></div><p style="font-size:.85rem;color:var(--mut);margin:6px 0 0">50 % entspricht einer fairen Münze. Andere Werte erzeugen eine gezinkte Münze, etwa für Simulationen.</p></div>
+<div class="pre">
+<button class="btn" data-a="Kopf" data-b="Zahl" type="button">Kopf / Zahl</button>
+<button class="btn" data-a="Ja" data-b="Nein" type="button">Ja / Nein</button>
+<button class="btn" data-a="Wahrheit" data-b="Pflicht" type="button">Wahrheit / Pflicht</button>
+<button class="btn" data-n="1" type="button">1 Wurf</button>
+<button class="btn" data-n="10" type="button">10 Würfe</button>
+<button class="btn" data-n="100" type="button">100 Würfe</button>
+<button class="btn" data-n="1000" type="button">1.000 Würfe</button>
+</div>
+</section>
+<section class="tf-card">
+<h2>Statistik</h2>
+<div class="kp" id="kp"></div>
+<div class="stk" id="stk"></div>
+<div class="chips" id="chips"></div>
+<div class="tf-btns"><button class="btn" id="rst" type="button">Statistik zurücksetzen</button></div>
+</section>
+
+<article class="tf-article">
+
+<h2>Münzwurf online: Kopf oder Zahl – schnell, fair und mit Statistik</h2>
+<p>„Kopf oder Zahl?“ ist die wohl älteste Methode, eine Entscheidung dem Zufall zu überlassen. Wer wählt das Restaurant? Wer fängt das Spiel an? Wer macht den Abwasch? Doch wer hat schon immer eine Münze zur Hand, und wer vertraut darauf, dass sie wirklich fair fällt? Der Münzwurf online von Toolyfix ersetzt die Münze durch ein Werkzeug, das jederzeit funktioniert: Du klickst auf den Button, eine animierte 3D-Münze dreht sich, und das Ergebnis steht sofort fest. Dazu bekommst du viel mehr als nur Kopf oder Zahl – eigene Beschriftungen, Best-of-Serien, Mehrfachwürfe bis 10.000 und eine laufende Statistik.</p>
+
+<h2>Funktionen des Münzwurfs im Überblick</h2>
+<ul>
+<li><b>3D-Animation:</b> Die Münze dreht sich mehrfach und springt dabei in die Höhe, bevor sie landet. Wer Animationen am Gerät reduziert hat, erhält das Ergebnis ohne Bewegung.</li>
+<li><b>Eigene Beschriftungen:</b> Statt „Kopf“ und „Zahl“ kannst du beliebige Optionen vergeben – „Pizza“ und „Pasta“, „Ja“ und „Nein“, „Wahrheit“ und „Pflicht“. So wird die Münze zur Entscheidungshilfe für Alltag, Büro und Spieleabend.</li>
+<li><b>Best-of-Serien:</b> Bei einem Best of 3, 5 oder 7 wirft das Tool so lange, bis eine Seite die nötige Mehrheit hat, und nennt den Gewinner mit Endstand.</li>
+<li><b>Mehrfachwurf:</b> Werfe 10, 100, 1.000 oder bis zu 10.000 Mal auf einmal und erhalte eine Zusammenfassung mit Anteilen und längster Serie.</li>
+<li><b>Einstellbare Wahrscheinlichkeit:</b> Standardmäßig liegt die Chance bei 50 Prozent. Mit dem Regler simulierst du auch unfaire Münzen, was für Unterricht und Experimente interessant ist.</li>
+<li><b>Statistik:</b> Gesamtzahl der Würfe, Verteilung in Prozent, aktuelle Serie, längste Serien beider Seiten und ein Verlauf der letzten Würfe als farbige Punkte.</li>
+<li><b>Bedienung per Tastatur:</b> Die Leertaste startet einen Wurf, wenn kein Eingabefeld aktiv ist.</li>
+</ul>
+
+<h2>Wie fair ist der digitale Münzwurf?</h2>
+<p>Eine berechtigte Frage, denn Fairness ist der Grund, warum man überhaupt eine Münze wirft. Der Münzwurf von Toolyfix nutzt zur Erzeugung des Zufalls die Zufallsfunktion deines Browsers, die auf kryptografisch geeigneten Zufallsquellen des Betriebssystems beruht. Jeder Wurf ist unabhängig vom vorherigen, und es gibt keine versteckte Logik, die Ergebnisse ausgleicht. Das unterscheidet ihn von vielen simplen Programmen, die mit einem einfachen Pseudozufall arbeiten. Eine echte Münze ist übrigens nicht ganz perfekt: Forschende um den Mathematiker Persi Diaconis fanden heraus, dass eine normal geworfene Münze etwas häufiger mit der Seite nach oben landet, mit der sie gestartet ist, etwa in 51 Prozent der Fälle. Für Alltagsentscheidungen spielt das keine Rolle, doch es zeigt, dass der digitale Wurf bei 50 Prozent sogar sauberer ist als sein physisches Vorbild.</p>
+
+<h2>Typische Einsatzbereiche für den Münzwurf</h2>
+<h3>Entscheidungen im Alltag</h3>
+<p>Wenn zwei Optionen gleichwertig erscheinen, kostet das Abwägen oft mehr Energie, als die Entscheidung wert ist. Ein Münzwurf beendet das Grübeln. Und er hat einen psychologischen Nebeneffekt: Während die Münze in der Luft ist, merken viele, welches Ergebnis sie sich eigentlich wünschen. Dann weißt du, wofür du dich entscheiden willst – unabhängig vom tatsächlichen Wurf.</p>
+<h3>Sport und Spiel</h3>
+<p>Beim Fußball entscheidet traditionell ein Münzwurf über die Seitenwahl oder den Anstoß, ebenso in vielen Amateurligen und bei Turnieren. Auch bei Brettspielen, Kartenrunden oder Quizabenden bestimmt der Wurf den Startspieler. Für Serien wie „Best of 5“ im Tischkicker oder beim Tischtennis gibt es den passenden Modus.</p>
+<h3>Schule und Unterricht</h3>
+<p>Der Münzwurf ist ein klassisches Beispiel für Wahrscheinlichkeitsrechnung. Lehrkräfte können mit 100 oder 1.000 Würfen demonstrieren, dass sich die relative Häufigkeit mit steigender Zahl an Versuchen der theoretischen Wahrscheinlichkeit annähert. Die Statistik zeigt Anteile in Prozent, sodass Schülerinnen und Schüler die Entwicklung sofort sehen.</p>
+<h3>Arbeit und Team</h3>
+<p>Wer präsentiert zuerst? Wer übernimmt die lästige Aufgabe? Mit eigenen Beschriftungen, etwa den Namen zweier Kolleginnen, entscheidet der Zufall nachvollziehbar. Weil das Ergebnis auf dem Bildschirm sichtbar ist, lässt es sich auch im Videocall teilen.</p>
+<h3>Spiele und Challenges</h3>
+<p>„Wahrheit oder Pflicht“, Partyspiele und Trinkspiele lassen sich mit zwei eigenen Optionen leicht umsetzen. Auch Rollenspielrunden profitieren davon, wenn schnelle Ja-Nein-Entscheidungen anfallen. Für mehr als zwei Ausgänge empfiehlt sich der Würfel Online.</p>
+
+<h2>Wahrscheinlichkeit verstehen: Was Münzwürfe über Zufall verraten</h2>
+<p>Viele Menschen glauben, nach fünfmal Kopf müsse nun „endlich“ Zahl kommen. Das ist ein bekannter Denkfehler, der als Spielerfehlschluss bezeichnet wird. Jeder Wurf ist unabhängig, die Münze hat kein Gedächtnis. Die Wahrscheinlichkeit für eine bestimmte Seite bleibt immer bei 50 Prozent. Dass fünf gleiche Ergebnisse hintereinander auftreten, ist dagegen gar nicht so selten: Die Chance dafür liegt bei 1 zu 32, also gut drei Prozent. Bei längeren Serien von Würfen kommen solche Ketten regelmäßig vor. Bei 100 Würfen ist eine längste Serie von sechs oder sieben gleichen Ergebnissen sogar normal. Genau das zeigt dir die Statistik, wenn du 100 oder 1.000 Würfe auslöst.</p>
+<p>Das Gesetz der großen Zahlen besagt, dass sich der Anteil von Kopf bei vielen Würfen immer näher an 50 Prozent annähert, auch wenn die absolute Differenz zwischen Kopf und Zahl dabei durchaus größer werden kann. Mit 10.000 Würfen siehst du diesen Effekt eindrucksvoll: Die Prozentwerte liegen sehr nah an der Hälfte, während einzelne Serien trotzdem zufällig wirken.</p>
+
+<h2>Best of 3, 5 oder 7: So funktioniert die Serie</h2>
+<p>Bei einer Best-of-Serie gewinnt, wer zuerst die Mehrheit der möglichen Runden erreicht. Bei „Best of 3“ genügen zwei Siege, bei „Best of 5“ drei und bei „Best of 7“ vier. Das Tool wirft automatisch, bis diese Marke erreicht ist, und zeigt Gewinner, Endstand und Anzahl der benötigten Würfe. Alle Würfe fließen zusätzlich in die Statistik ein. Beschrifte die Seiten mit den Namen der Beteiligten, und der Wettkampf ist fair entschieden.</p>
+
+<h2>Häufige Probleme und Lösungen</h2>
+<h3>Die Münze dreht sich nicht</h3>
+<p>Wenn in deinem Betriebssystem „Bewegung reduzieren“ aktiviert ist, zeigt die Seite das Ergebnis ohne Animation. Das Ergebnis bleibt trotzdem zufällig und korrekt.</p>
+<h3>Die Leertaste funktioniert nicht</h3>
+<p>Die Taste löst nur dann einen Wurf aus, wenn der Fokus nicht in einem Eingabefeld, Dropdown oder Button liegt. Klicke einmal neben die Felder auf die Seite und versuche es erneut.</p>
+<h3>Ich bekomme zu oft dieselbe Seite</h3>
+<p>Das Gefühl täuscht häufig. Prüfe im Regler, ob die Chance auf 50 Prozent steht, und lass das Tool 1.000 Würfe ausführen. Du wirst sehen, dass die Verteilung sehr nah an 50:50 liegt.</p>
+<h3>Ich möchte mehr als zwei Optionen</h3>
+<p>Für drei oder mehr Möglichkeiten eignet sich der Würfel Online. Mit einem W4 oder W6 und einer Zuordnung der Zahlen zu den Optionen entscheidest du ebenso fair.</p>
+<h3>Meine Statistik ist weg</h3>
+<p>Die Statistik gilt nur für die aktuelle Sitzung. Wenn du die Seite neu lädst, beginnt sie von vorn. Notiere dir Ergebnisse, die du behalten möchtest.</p>
+
+<h2>Tipps für gute Münzwurf-Entscheidungen</h2>
+<ul>
+<li>Lege vorher fest, was die Seiten bedeuten, und halte dich an das Ergebnis, sonst ist der Wurf sinnlos.</li>
+<li>Nutze den Münzwurf nur bei Entscheidungen mit ähnlichem Wert, nicht bei Fragen, die Gesundheit, Geld oder Sicherheit betreffen.</li>
+<li>Achte auf die erste Reaktion nach dem Wurf: Sie zeigt oft, was du wirklich möchtest.</li>
+<li>Bei Streitfällen im Team lass beide Seiten die Beschriftungen selbst eingeben, damit alles transparent bleibt.</li>
+<li>Für Unterrichtszwecke starte erst mit zehn, dann mit hundert und zuletzt mit tausend Würfen und vergleiche die Prozentwerte.</li>
+</ul>
+
+<h2>Datenschutz und Technik</h2>
+<p>Der Münzwurf läuft vollständig in deinem Browser. Beschriftungen und Ergebnisse werden nicht an einen Server gesendet und nicht gespeichert. Die Seite ist für Smartphones, Tablets und Desktop optimiert, die Münze skaliert mit der Bildschirmbreite, und alle Schaltflächen sind für die Bedienung mit dem Finger groß genug.</p>
+
+<h2>Häufige Fragen zum Münzwurf</h2>
+<h3>Ist der Münzwurf online wirklich zufällig?</h3>
+<p>Ja. Das Ergebnis wird mit der Zufallsfunktion des Browsers erzeugt, ohne Muster und ohne Beeinflussung durch frühere Würfe.</p>
+<h3>Kann ich den Münzwurf für wichtige Entscheidungen nutzen?</h3>
+<p>Für unverbindliche Alltagsentscheidungen ist er ideal. Bei rechtlichen, finanziellen oder gesundheitlichen Fragen solltest du fundierte Informationen oder Beratung einholen.</p>
+<h3>Wie viele Würfe sind auf einmal möglich?</h3>
+<p>Bis zu 10.000 Würfe pro Durchgang. Die Zusammenfassung zeigt Anteile und die längste Serie.</p>
+<h3>Ist die Nutzung kostenlos?</h3>
+<p>Ja, ohne Anmeldung und ohne Werbung im Tool selbst.</p>
+<p>Weitere Zufalls- und Spieltools findest du oben unter „Passende Tools“, etwa den Würfel Online und den Bingo Karten Generator.</p>
+
+</article>
+</div>
+</main>
+<footer class="site-footer">
+  <div class="container">
+    <img src="/assets/images/logo-full.png" alt="Toolyfix">
+    <nav class="footer-links">
+      <a href="/ueber-uns.html">Über uns</a>
+      <a href="/datenschutz.html">Datenschutz</a>
+      <a href="/nutzungsbedingungen.html">Nutzungsbedingungen</a>
+      <a href="/kontakt.html">Kontakt</a>
+    </nav>
+    <p class="footer-note">© 2026 Toolyfix – Alle Tools laufen lokal in deinem Browser.</p>
+  </div>
+</footer>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script>
+function toast(m){var t=document.getElementById('toast');t.textContent=m;t.classList.add('on');clearTimeout(window._tt);window._tt=setTimeout(function(){t.classList.remove('on')},1800)}
+function copyText(s){if(navigator.clipboard&&window.isSecureContext){return navigator.clipboard.writeText(s).then(function(){toast('Kopiert')},function(){fb(s)})}fb(s)}
+function fb(s){var a=document.createElement('textarea');a.value=s;a.style.position='fixed';a.style.opacity='0';document.body.appendChild(a);a.select();try{document.execCommand('copy');toast('Kopiert')}catch(e){toast('Kopieren nicht möglich')}document.body.removeChild(a)}
+function dl(name,blob){var u=URL.createObjectURL(blob),a=document.createElement('a');a.href=u;a.download=name;document.body.appendChild(a);a.click();document.body.removeChild(a);setTimeout(function(){URL.revokeObjectURL(u)},4000)}
+
+function $(i){return document.getElementById(i)}
+function esc(s){return String(s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+var red=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
+function rnd(){if(window.crypto&&crypto.getRandomValues){var a=new Uint32Array(1);crypto.getRandomValues(a);return a[0]/4294967296}return Math.random()}
+function LA(){return $('la').value.trim()||'Kopf'}
+function LB(){return $('lb').value.trim()||'Zahl'}
+function flip(){return rnd()<(+$('pr').value)/100?'A':'B'}
+var S,busy=false,rot=0;
+function init(){S={a:0,b:0,hist:[],cur:'',curN:0,maxA:0,maxB:0}}
+init();
+function fs(el,t){el.style.fontSize=Math.max(.85,1.7-t.length*.06)+'rem'}
+function faces(){$('fa').textContent=LA();$('fb').textContent=LB();fs($('fa'),LA());fs($('fb'),LB())}
+function rec(side){
+ if(side==='A')S.a++;else S.b++;
+ S.hist.push(side);
+ if(S.cur===side)S.curN++;else{S.cur=side;S.curN=1}
+ if(side==='A'&&S.curN>S.maxA)S.maxA=S.curN;
+ if(side==='B'&&S.curN>S.maxB)S.maxB=S.curN;
+}
+function lbl(s){return s==='A'?LA():LB()}
+function stats(){
+ var t=S.a+S.b,pa=t?S.a/t*100:0,pb=t?S.b/t*100:0;
+ $('kp').innerHTML=[[t,'Würfe gesamt'],[S.a+' ('+pa.toFixed(1)+' %)',esc(LA())],[S.b+' ('+pb.toFixed(1)+' %)',esc(LB())],[S.cur?S.curN+'× '+esc(lbl(S.cur)):'–','Aktuelle Serie'],[S.maxA+' / '+S.maxB,'Längste Serie A / B']].map(function(x){return'<div><b>'+x[0]+'</b><span>'+x[1]+'</span></div>'}).join('');
+ $('stk').innerHTML=t?'<i class="ia" style="width:'+pa+'%">'+(pa>=12?pa.toFixed(0)+' %':'')+'</i><i class="ib" style="width:'+pb+'%">'+(pb>=12?pb.toFixed(0)+' %':'')+'</i>':'';
+ var a=(LA().charAt(0)||'A').toUpperCase(),b=(LB().charAt(0)||'B').toUpperCase();
+ $('chips').innerHTML=S.hist.slice(-60).map(function(s){return'<i class="chip '+(s==='A'?'a':'b')+'" title="'+esc(lbl(s))+'">'+esc(s==='A'?a:b)+'</i>'}).join('');
+}
+function spin(side,cb){
+ var target=side==='A'?0:180;
+ rot=Math.ceil((rot+1)/360)*360+1440+target;
+ $('coin').style.transitionDuration=red?'0s':'1.2s';
+ $('coin').style.transform='rotateY('+rot+'deg)';
+ if(!red&&$('cw').animate)$('cw').animate([{transform:'translateY(0) scale(1)'},{transform:'translateY(-54px) scale(1.14)',offset:.45},{transform:'translateY(0) scale(1)'}],{duration:1200,easing:'ease-in-out'});
+ setTimeout(cb,red?0:1250);
+}
+function longest(arr){var best=0,c=0,p='';arr.forEach(function(s){if(s===p)c++;else{c=1;p=s}if(c>best)best=c});return best}
+function go(){
+ if(busy)return;
+ var mode=$('mode').value,res=$('res'),seq=[];
+ if(mode==='single'){
+  var n=Math.max(1,Math.min(10000,parseInt($('cnt').value,10)||1));$('cnt').value=n;
+  for(var i=0;i<n;i++)seq.push(flip());
+ }else{
+  var need=Math.floor(+mode/2)+1,x=0,y=0;
+  while(x<need&&y<need){var s=flip();seq.push(s);if(s==='A')x++;else y++}
+ }
+ busy=true;$('go').disabled=true;res.innerHTML='<div class="big">…</div><small>Die Münze fliegt</small>';
+ var last=seq[seq.length-1];
+ spin(last,function(){
+  seq.forEach(rec);
+  if(mode==='single'&&seq.length===1){
+   res.innerHTML='<div class="big">'+esc(lbl(last))+'</div><small>Wurf Nr. '+(S.a+S.b)+'</small>';
+  }else if(mode==='single'){
+   var ca=seq.filter(function(s){return s==='A'}).length,cb=seq.length-ca;
+   res.innerHTML='<div class="big">'+esc(LA())+' '+ca+' : '+cb+' '+esc(LB())+'</div><small>'+seq.length+' Würfe, '+(ca/seq.length*100).toFixed(1)+' % zu '+(cb/seq.length*100).toFixed(1)+' %, längste Serie '+longest(seq)+'</small>';
+  }else{
+   var wa=seq.filter(function(s){return s==='A'}).length,wb=seq.length-wa,win=wa>wb?'A':'B';
+   res.innerHTML='<div class="big">Gewinner: '+esc(lbl(win))+'</div><small>Best of '+mode+' endete '+Math.max(wa,wb)+' : '+Math.min(wa,wb)+' nach '+seq.length+' Würfen</small>';
+  }
+  stats();busy=false;$('go').disabled=false;
+ });
+}
+$('go').onclick=go;
+$('rst').onclick=function(){init();stats();$('res').innerHTML='<div class="big">Bereit zum Werfen</div><small>Statistik zurückgesetzt</small>'};
+$('la').oninput=function(){faces();stats()};$('lb').oninput=function(){faces();stats()};
+$('pr').oninput=function(){$('prv').textContent=this.value};
+$('mode').onchange=function(){$('cnt').disabled=this.value!=='single'};
+[].forEach.call(document.querySelectorAll('.pre button'),function(b){b.onclick=function(){
+ if(b.dataset.n){$('mode').value='single';$('cnt').disabled=false;$('cnt').value=b.dataset.n;toast(b.dataset.n+' Wurf/Würfe eingestellt')}
+ else{$('la').value=b.dataset.a;$('lb').value=b.dataset.b;faces();stats()}}});
+document.addEventListener('keydown',function(e){
+ var t=e.target&&e.target.tagName;
+ if(e.code==='Space'&&!/INPUT|TEXTAREA|SELECT|BUTTON/.test(t||'')){e.preventDefault();go()}
+});
+faces();stats();
+
+</script>
+</body>
+</html>

@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pace Rechner – Laufpace, Zielzeit &amp; Splits | Toolyfix</title>
+<meta name="description" content="Pace Rechner: Pace in min/km und km/h, Zielzeit für 5 km, 10 km, Halbmarathon und Marathon, Splits und Rennprognose. Kostenlos.">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+<link rel="canonical" href="https://toolyfix.de/tools/pace-rechner">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Toolyfix">
+<meta property="og:locale" content="de_DE">
+<meta property="og:title" content="Pace Rechner – Laufpace, Zielzeit &amp; Splits | Toolyfix">
+<meta property="og:description" content="Pace Rechner: Pace in min/km und km/h, Zielzeit für 5 km, 10 km, Halbmarathon und Marathon, Splits und Rennprognose. Kostenlos.">
+<meta property="og:url" content="https://toolyfix.de/tools/pace-rechner">
+<meta property="og:image" content="https://toolyfix.de/assets/og/pace-rechner.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Toolyfix: Pace Rechner">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Pace Rechner – Laufpace, Zielzeit &amp; Splits | Toolyfix">
+<meta name="twitter:description" content="Pace Rechner: Pace in min/km und km/h, Zielzeit für 5 km, 10 km, Halbmarathon und Marathon, Splits und Rennprognose. Kostenlos.">
+<meta name="twitter:image" content="https://toolyfix.de/assets/og/pace-rechner.jpg">
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "WebApplication", "name": "Pace Rechner", "url": "https://toolyfix.de/tools/pace-rechner", "description": "Pace Rechner: Pace in min/km und km/h, Zielzeit für 5 km, 10 km, Halbmarathon und Marathon, Splits und Rennprognose. Kostenlos.", "applicationCategory": "SportsApplication", "operatingSystem": "Any (Webbrowser)", "browserRequirements": "Benötigt JavaScript", "inLanguage": "de", "isAccessibleForFree": true, "image": "https://toolyfix.de/assets/og/pace-rechner.jpg", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "EUR"}, "publisher": {"@type": "Organization", "name": "Toolyfix", "url": "https://toolyfix.de/"}}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Startseite", "item": "https://toolyfix.de/"}, {"@type": "ListItem", "position": 2, "name": "Pace Rechner", "item": "https://toolyfix.de/tools/pace-rechner"}]}]}</script>
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="stylesheet" href="/assets/style.css">
+<style>
+:root{--bg:#F7F7F4;--ink:#1A1A1A;--blue:#1D3557;--amber:#E9A93B;--line:#dcdcd2;--card:#fff;--mut:#5b6470;--bad:#b3261e;--ok:#1f7a45}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{background:var(--bg);color:var(--ink);margin:0;font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;line-height:1.6}
+.tf-wrap{max-width:1000px;margin:0 auto;padding:22px 16px 56px}
+.tf-wrap h1{font-size:clamp(1.6rem,4.4vw,2.3rem);line-height:1.15;margin:.2em 0 .3em;color:var(--blue)}
+.tf-intro{color:var(--mut);margin:0 0 14px;max-width:70ch}
+.tf-related{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:0 0 18px;padding:10px 12px;background:#fff;border:1px solid var(--line);border-radius:10px;font-size:.92rem}
+.tf-related b{color:var(--blue);margin-right:4px}
+.tf-related a{color:var(--blue);background:#eef1f6;border-radius:999px;padding:4px 12px;text-decoration:none;font-weight:500}
+.tf-related a:hover,.tf-related a:focus-visible{background:var(--blue);color:#fff;outline:none}
+.tf-card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px;margin-bottom:16px}
+.tf-card h2{font-size:1.05rem;margin:0 0 10px;color:var(--blue)}
+.tf-grid{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(170px,1fr))}
+.tf-wrap label{display:block;font-size:.82rem;font-weight:600;margin:0 0 4px;color:#333}
+.tf-wrap input[type=text],.tf-wrap input[type=number],.tf-wrap input[type=date],.tf-wrap select,.tf-wrap textarea{width:100%;padding:9px 10px;border:1px solid #c9c9bf;border-radius:8px;font:inherit;background:#fff;color:var(--ink)}
+.tf-wrap input[type=color]{width:100%;height:40px;border:1px solid #c9c9bf;border-radius:8px;padding:2px;background:#fff}
+.tf-wrap textarea{min-height:130px;resize:vertical}
+.tf-wrap input:focus-visible,.tf-wrap select:focus-visible,.tf-wrap textarea:focus-visible,.btn:focus-visible{outline:3px solid var(--amber);outline-offset:1px}
+.btn{font:inherit;font-weight:600;padding:9px 16px;border-radius:8px;border:1px solid var(--blue);background:#fff;color:var(--blue);cursor:pointer}
+.btn:hover{background:#eef1f6}
+.btn.pri{background:var(--blue);color:#fff}
+.btn.pri:hover{background:#16294a}
+.btn.amb{background:var(--amber);border-color:var(--amber);color:#1A1A1A}
+.btn[disabled]{opacity:.5;cursor:not-allowed}
+.tf-btns{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.chk{display:flex;gap:8px;align-items:center;font-weight:500;font-size:.92rem;margin:6px 0}
+.chk input{width:18px;height:18px}
+.tf-article{margin-top:34px;background:#fff;border:1px solid var(--line);border-radius:12px;padding:22px 20px}
+.tf-article h2{color:var(--blue);font-size:1.4rem;margin:1.4em 0 .4em;line-height:1.25}
+.tf-article h2:first-child{margin-top:0}
+.tf-article h3{font-size:1.1rem;margin:1.1em 0 .3em}
+.tf-article p,.tf-article li{max-width:75ch}
+.tf-article table{border-collapse:collapse;width:100%;font-size:.92rem;display:block;overflow-x:auto}
+.tf-article th,.tf-article td{border:1px solid var(--line);padding:6px 10px;text-align:left}
+.tf-article th{background:#eef1f6}
+.toast{position:fixed;left:50%;bottom:22px;transform:translateX(-50%);background:var(--blue);color:#fff;padding:9px 18px;border-radius:999px;font-size:.9rem;opacity:0;pointer-events:none;transition:opacity .2s;z-index:50}
+.toast.on{opacity:1}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+@media print{.site-header,.site-footer,.tf-related,.tf-intro,.tf-wrap>h1,.tf-article,.tf-noprint,.toast{display:none!important}body{background:#fff}.tf-wrap{padding:0;max-width:none}}
+
+.mt{display:flex;gap:8px;margin-bottom:14px;flex-wrap:wrap}
+.mt button.on{background:var(--blue);color:#fff}
+.hid{display:none}
+.tm{display:flex;gap:8px;align-items:end}
+.tm>div{flex:1;min-width:0}
+.tm span{padding-bottom:10px;font-weight:700}
+.cd{display:grid;gap:10px;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));margin-top:12px}
+.cd div{background:#f4f6fa;border-radius:10px;padding:10px 12px}
+.cd b{display:block;font-size:1.3rem;color:var(--blue);font-variant-numeric:tabular-nums}
+.cd span{font-size:.78rem;color:var(--mut)}
+.big{background:var(--blue);color:#fff;border-radius:12px;padding:16px;margin-top:14px}
+.big b{display:block;font-size:clamp(1.5rem,6vw,2.4rem);line-height:1.2;font-variant-numeric:tabular-nums}
+.big span{opacity:.85;font-size:.92rem}
+.warn{background:#fff6dd;border:1px solid #f0d58a;border-radius:8px;padding:9px 12px;font-size:.88rem;margin-top:10px}
+.tbw{overflow:auto;max-height:420px;margin-top:10px;border:1px solid var(--line);border-radius:8px}
+table.t{border-collapse:collapse;width:100%;font-size:.92rem}
+table.t th,table.t td{border-bottom:1px solid var(--line);padding:6px 10px;text-align:left;white-space:nowrap;font-variant-numeric:tabular-nums}
+table.t th{background:#eef1f6;position:sticky;top:0}
+table.t tr.hl td{background:#fff3d6;font-weight:700}
+.note{font-size:.85rem;color:var(--mut);margin:8px 0 0}
+</style>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-F9VY193ZMP"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-F9VY193ZMP');</script>
+</head>
+<body>
+<header class="site-header">
+  <div class="container">
+    <a href="/" class="logo-link"><img src="/assets/images/logo-full.png" alt="Toolyfix"></a>
+    <span class="header-tagline">Kostenlose Tools, direkt im Browser</span>
+  </div>
+</header>
+<main>
+<div class="tf-wrap">
+<h1>Pace Rechner</h1>
+<p class="tf-intro">Berechne deine Pace in Minuten pro Kilometer oder Meile, die Zielzeit für deine Strecke oder die Distanz für eine Zeit. Mit Zwischenzeiten (Splits), Negative-Split-Plan, Rennprognose und Tempotabelle.</p>
+<nav class="tf-related" aria-label="Passende Tools"><b>Passende Tools:</b><a href="/tools/timer-stoppuhr">Timer &amp; Stoppuhr</a><a href="/tools/durchschnitt-rechner">Durchschnitt Rechner</a><a href="/tools/digitaluhr">Digitaluhr</a><a href="/tools/wecker-online">Wecker Online</a></nav>
+
+<div class="mt tf-noprint">
+<button class="btn on" data-m="pace" type="button">Pace berechnen</button>
+<button class="btn" data-m="time" type="button">Zielzeit berechnen</button>
+<button class="btn" data-m="dist" type="button">Distanz berechnen</button>
+<button class="btn" data-m="pred" type="button">Rennprognose</button>
+</div>
+<section class="tf-card">
+<h2 id="ht">Eingabe</h2>
+<div id="bD">
+<div class="tf-grid">
+<div><label for="pre" id="lpre">Strecke</label><select id="pre"><option value="x">Eigene Distanz</option><option value="1">1 km</option><option value="3">3 km</option><option value="5">5 km</option><option value="10">10 km</option><option value="15">15 km</option><option value="21.0975">Halbmarathon (21,0975 km)</option><option value="42.195">Marathon (42,195 km)</option><option value="1.609344">1 Meile</option></select></div>
+<div><label for="dist">Distanz</label><input type="text" id="dist" inputmode="decimal"></div>
+<div><label for="un">Einheit</label><select id="un"><option value="km">Kilometer</option><option value="mi">Meilen</option></select></div>
+</div>
+</div>
+<div id="bT" style="margin-top:12px">
+<label>Zeit</label>
+<div class="tm"><div><input type="text" id="th" inputmode="numeric" placeholder="Std." aria-label="Stunden"></div><span>:</span><div><input type="text" id="tm" inputmode="numeric" placeholder="Min." aria-label="Minuten"></div><span>:</span><div><input type="text" id="ts" inputmode="numeric" placeholder="Sek." aria-label="Sekunden"></div></div>
+</div>
+<div id="bP" class="hid" style="margin-top:12px">
+<label>Pace pro <span id="pu">Kilometer</span></label>
+<div class="tm"><div><input type="text" id="pm" inputmode="numeric" placeholder="Min." aria-label="Minuten pro Einheit"></div><span>:</span><div><input type="text" id="ps" inputmode="numeric" placeholder="Sek." aria-label="Sekunden pro Einheit"></div></div>
+</div>
+</section>
+<div id="rs"></div>
+<section class="tf-card hid" id="sp">
+<h2>Zwischenzeiten (Splits)</h2>
+<div class="tf-grid">
+<div><label for="stg">Strategie</label><select id="stg"><option value="even">Gleichmäßig</option><option value="neg">Negative Split (zweite Hälfte schneller)</option><option value="pos">Positive Split (erste Hälfte schneller)</option></select></div>
+<div id="dxw" class="hid"><label for="dx">Abweichung: <b id="dxv">10</b> Sekunden pro Einheit</label><input type="range" id="dx" min="1" max="40" value="10"></div>
+</div>
+<div class="tbw"><table class="t" id="spt"></table></div>
+</section>
+<section class="tf-card">
+<h2>Tempotabelle: Pace und Zielzeiten</h2>
+<div class="tbw"><table class="t" id="tt"></table></div>
+</section>
+
+<article class="tf-article">
+
+<h2>Pace Rechner: Laufpace, Zielzeit und Distanz berechnen</h2>
+<p>Wie schnell musst du laufen, um einen Halbmarathon in unter zwei Stunden zu schaffen? Welche Pace steckt hinter 50 Minuten für zehn Kilometer? Und wie weit kommst du in 45 Minuten, wenn du ein Tempo von sechs Minuten pro Kilometer hältst? Solche Fragen stellen sich alle, die regelmäßig laufen, ob für den Fitnessgrad, die nächste Wettkampfplanung oder die Trainingssteuerung. Der Pace Rechner von Toolyfix beantwortet sie in Sekunden. Du gibst zwei der drei Größen Strecke, Zeit und Pace ein, und das Tool berechnet die dritte. Zusätzlich bekommst du die Geschwindigkeit in Kilometern pro Stunde, die Pace pro Meile, einen Plan für Zwischenzeiten und eine Rennprognose für andere Distanzen. Alles läuft in deinem Browser, deine Daten werden nicht gespeichert.</p>
+
+<h2>Was bedeutet Pace?</h2>
+<p>Pace ist die Zeit, die du für eine festgelegte Strecke brauchst, meist Minuten pro Kilometer oder, in englischsprachigen Ländern, Minuten pro Meile. Je kleiner die Pace, desto schneller bist du. Eine Pace von 5:00 min/km bedeutet, dass du für jeden Kilometer fünf Minuten brauchst. Das ist das Spiegelbild der Geschwindigkeit, die in Kilometern pro Stunde angegeben wird. Die Umrechnung ist einfach: Geschwindigkeit in km/h gleich 60 geteilt durch Pace in Minuten. 5:00 min/km entsprechen 12 km/h, 6:00 min/km sind 10 km/h, und 4:00 min/km sind 15 km/h. Läufer rechnen lieber in Pace, weil sie sich leichter in Zeiten pro Streckenabschnitt übersetzen lässt.</p>
+
+<h2>Die vier Rechner im Überblick</h2>
+<h3>1. Pace berechnen</h3>
+<p>Gib die Strecke und deine Zeit ein, und du erhältst die Pace pro Kilometer und pro Meile sowie die Geschwindigkeit in km/h und mph. Beispiel: Zehn Kilometer in 50 Minuten ergeben eine Pace von 5:00 min/km. Wähle bei Bedarf eine der vorbereiteten Strecken wie 5 km, 10 km, Halbmarathon oder Marathon, oder trage eine eigene Distanz ein.</p>
+<h3>2. Zielzeit berechnen</h3>
+<p>Du weißt, mit welcher Pace du laufen möchtest, und fragst dich, welche Zeit am Ende herauskommt. Beispiel: Ein Marathon mit einer Pace von 5:41 min/km ergibt eine Zielzeit von etwa vier Stunden. Das Tool rechnet für jede Strecke und jede Pace die Zielzeit aus.</p>
+<h3>3. Distanz berechnen</h3>
+<p>Zeit und Pace sind bekannt, die Strecke ist gesucht. Wer in 45 Minuten mit einer Pace von 6:00 min/km läuft, kommt 7,5 Kilometer weit. Das Tool zeigt zusätzlich, welchem Anteil von 5 km, 10 km, Halbmarathon und Marathon das entspricht.</p>
+<h3>4. Rennprognose</h3>
+<p>Mit einer aktuellen Bestzeit auf einer Strecke schätzt das Tool deine Zeiten auf anderen Strecken. Die Grundlage ist die Riegel-Formel, benannt nach dem Ingenieur und Läufer Pete Riegel: Die neue Zeit ergibt sich aus der alten Zeit mal dem Verhältnis der Strecken hoch 1,06. Wer 10 Kilometer in 50 Minuten läuft, darf sich auf einen Halbmarathon in etwa 1:50 Stunden einstellen, wenn er dafür ausreichend trainiert hat.</p>
+
+<h2>Zwischenzeiten und Negative Split</h2>
+<p>Wer ein Rennen oder einen langen Lauf plant, sollte seine Zwischenzeiten kennen. Der Pace Rechner erstellt aus Strecke und Zielzeit eine Tabelle mit Pace, Abschnittszeit und Gesamtzeit für jeden Kilometer oder jede Meile. Dabei hast du drei Strategien zur Auswahl:</p>
+<ul>
+<li><b>Gleichmäßig:</b> Jeder Abschnitt wird gleich schnell gelaufen. Das ist die sicherste Strategie, besonders für Anfänger und bei längeren Strecken.</li>
+<li><b>Negative Split:</b> Die zweite Hälfte wird schneller gelaufen als die erste. Viele Profis bevorzugen diese Taktik, weil sie anfangs Kräfte spart und das Rennen mit Reserven beendet. Du stellst ein, um wie viele Sekunden pro Kilometer sich das Tempo ändert. Die Gesamtzeit bleibt dabei gleich.</li>
+<li><b>Positive Split:</b> Die erste Hälfte ist schneller, die zweite langsamer. Das passiert häufig ungewollt, wenn man zu schnell startet. Als bewusste Strategie kommt sie bei Rennen mit steilem Beginn oder bergab vor.</li>
+</ul>
+<p>Plane realistische Abweichungen von 5 bis 15 Sekunden pro Kilometer. Zu große Unterschiede belasten Körper und Kreislauf unnötig. Die Tabelle kannst du ausdrucken oder als Gedächtnisstütze auf das Handgelenk schreiben.</p>
+
+<h2>Typische Pace-Werte und Zielzeiten</h2>
+<p>Die folgende Übersicht zeigt, wie sich Pace und Zielzeiten zusammenhängen. Im Tool findest du die vollständige Tempotabelle von 3:00 bis 9:00 min/km.</p>
+<table>
+<tr><th>Pace (min/km)</th><th>km/h</th><th>5 km</th><th>10 km</th><th>Halbmarathon</th><th>Marathon</th></tr>
+<tr><td>4:00</td><td>15,0</td><td>20:00</td><td>40:00</td><td>1:24:23</td><td>2:48:47</td></tr>
+<tr><td>5:00</td><td>12,0</td><td>25:00</td><td>50:00</td><td>1:45:29</td><td>3:30:59</td></tr>
+<tr><td>5:41</td><td>10,6</td><td>28:25</td><td>56:50</td><td>1:59:54</td><td>3:59:48</td></tr>
+<tr><td>6:00</td><td>10,0</td><td>30:00</td><td>1:00:00</td><td>2:06:35</td><td>4:13:10</td></tr>
+<tr><td>7:00</td><td>8,6</td><td>35:00</td><td>1:10:00</td><td>2:27:41</td><td>4:55:22</td></tr>
+</table>
+<p>Die Werte sind gerundet und gehen von konstantem Tempo aus. In der Praxis verändern Gelände, Wetter, Wind und Tagesform die Zeit erheblich.</p>
+
+<h2>Pace in Meilen und Kilometern umrechnen</h2>
+<p>Viele Lauf-Apps, Trainingspläne und internationale Rennen verwenden Meilen. Eine Meile entspricht 1,609344 Kilometern. Eine Pace von 5:00 min/km entspricht damit etwa 8:03 min/Meile. Umgekehrt entsprechen 8:00 min/Meile ungefähr 4:58 min/km. Der Pace Rechner zeigt beide Werte gleichzeitig. Wenn du Meilen als Einheit wählst, gelten Distanz, Pace-Eingabe und Splits in Meilen.</p>
+
+<h2>So trainierst du mit der Pace</h2>
+<p>Trainingspläne arbeiten mit unterschiedlichen Tempobereichen. Lockere Dauerläufe sind langsamer als die Wettkampfpace, Tempodauerläufe liegen etwas darunter, und Intervalle werden schneller gelaufen. Als grobe Orientierung gilt: Locker bedeutet, dass du dich dabei noch unterhalten kannst. Die Wettkampfpace für 10 Kilometer ist meist deutlich schneller als dein Alltagstempo. Nutze die Rennprognose, um realistische Ziele zu setzen, und die Tempotabelle, um Trainingsabschnitte zu planen. Ein Beispiel: Wenn du einen Halbmarathon in 1:55 laufen möchtest, brauchst du eine Pace von etwa 5:27 min/km. Teste dieses Tempo in längeren Abschnitten im Training, bevor du es im Wettkampf probierst.</p>
+<p>Achte auf deine Gesundheit: Steigere Umfang und Tempo langsam, höre auf deinen Körper und lasse dich bei Vorerkrankungen oder Beschwerden ärztlich beraten. Der Rechner liefert Zahlen, ersetzt aber keine Trainingsberatung.</p>
+
+<h2>Typische Probleme und Lösungen</h2>
+<h3>Das Ergebnis erscheint nicht</h3>
+<p>Für die Berechnung brauchst du zwei Angaben. Prüfe, ob Strecke und Zeit beziehungsweise Pace eingetragen sind und ob die Zahlen größer als null sind. Dezimalzahlen kannst du mit Komma oder Punkt schreiben.</p>
+<h3>Meine Uhr zeigt eine andere Pace an</h3>
+<p>GPS-Uhren messen die Strecke mit Ungenauigkeiten, vor allem in Städten und im Wald. Oft werden Kurven abgekürzt, sodass die Uhr etwas weniger Kilometer misst. Rechne mit der offiziellen Streckenlänge des Wettkampfs, nicht mit der Uhr.</p>
+<h3>Die Prognose ist zu optimistisch</h3>
+<p>Die Riegel-Formel setzt voraus, dass du für die längere Strecke gleich gut trainiert bist wie für die kürzere. Wenn dein Training für den Marathon nicht reicht, wirst du die prognostizierte Zeit vermutlich verfehlen. Rechne bei längeren Strecken lieber vorsichtiger.</p>
+<h3>Die Splits sehen komisch aus</h3>
+<p>Bei Strecken, die nicht in ganze Kilometer teilbar sind, zum Beispiel 10,5 km, wird der letzte Abschnitt kürzer berechnet. Die Gesamtzeit bleibt dennoch erhalten.</p>
+
+<h2>Häufige Fragen zum Pace Rechner</h2>
+<h3>Ist der Pace Rechner kostenlos?</h3>
+<p>Ja, ohne Anmeldung und ohne Einschränkung.</p>
+<h3>Wie berechne ich die Pace von Hand?</h3>
+<p>Teile die Zeit in Sekunden durch die Strecke in Kilometern und wandle das Ergebnis in Minuten und Sekunden um. Beispiel: 3000 Sekunden geteilt durch 10 Kilometer sind 300 Sekunden, also 5:00 min/km.</p>
+<h3>Welche Pace ist für Anfänger sinnvoll?</h3>
+<p>Das ist individuell. Viele Anfänger laufen zwischen 6:30 und 8:00 min/km. Wichtiger als das Tempo ist ein Lauf, bei dem du dich noch unterhalten kannst.</p>
+<h3>Wie rechne ich Pace in km/h um?</h3>
+<p>Teile 60 durch die Pace in Minuten. 6:00 min/km entsprechen 10 km/h, 5:30 min/km etwa 10,9 km/h.</p>
+<h3>Wie lang ist ein Halbmarathon genau?</h3>
+<p>21,0975 Kilometer. Ein Marathon hat 42,195 Kilometer. Diese Werte sind im Tool als Vorlagen hinterlegt.</p>
+<p>Weitere Zeit- und Mathe-Helfer findest du oben unter „Passende Tools“, zum Beispiel Timer und Stoppuhr, Durchschnitt Rechner und Digitaluhr.</p>
+
+</article>
+</div>
+</main>
+<footer class="site-footer">
+  <div class="container">
+    <img src="/assets/images/logo-full.png" alt="Toolyfix">
+    <nav class="footer-links">
+      <a href="/ueber-uns.html">Über uns</a>
+      <a href="/datenschutz.html">Datenschutz</a>
+      <a href="/nutzungsbedingungen.html">Nutzungsbedingungen</a>
+      <a href="/kontakt.html">Kontakt</a>
+    </nav>
+    <p class="footer-note">© 2026 Toolyfix – Alle Tools laufen lokal in deinem Browser.</p>
+  </div>
+</footer>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script>
+function toast(m){var t=document.getElementById('toast');t.textContent=m;t.classList.add('on');clearTimeout(window._tt);window._tt=setTimeout(function(){t.classList.remove('on')},1800)}
+function copyText(s){if(navigator.clipboard&&window.isSecureContext){return navigator.clipboard.writeText(s).then(function(){toast('Kopiert')},function(){fb(s)})}fb(s)}
+function fb(s){var a=document.createElement('textarea');a.value=s;a.style.position='fixed';a.style.opacity='0';document.body.appendChild(a);a.select();try{document.execCommand('copy');toast('Kopiert')}catch(e){toast('Kopieren nicht möglich')}document.body.removeChild(a)}
+function dl(name,blob){var u=URL.createObjectURL(blob),a=document.createElement('a');a.href=u;a.download=name;document.body.appendChild(a);a.click();document.body.removeChild(a);setTimeout(function(){URL.revokeObjectURL(u)},4000)}
+
+function $(i){return document.getElementById(i)}
+var MI=1.609344,mode='pace';
+function val(id){var v=parseFloat(String($(id).value).replace(',','.'));return isFinite(v)&&v>=0?v:NaN}
+function p2(n){return n<10?'0'+n:''+n}
+function tsec(){return(val('th')||0)*3600+(val('tm')||0)*60+(val('ts')||0)}
+function ft(sec){sec=Math.round(sec);var h=Math.floor(sec/3600),m=Math.floor(sec%3600/60),s=sec%60;return h?h+':'+p2(m)+':'+p2(s):m+':'+p2(s)}
+function fp(sec){var m=Math.floor(sec/60),s=Math.round(sec-m*60);if(s===60){m++;s=0}return m+':'+p2(s)}
+function nf(n,d){return n.toLocaleString('de-DE',{maximumFractionDigits:d===undefined?2:d,minimumFractionDigits:d===undefined?0:d})}
+function uf(){return $('un').value==='mi'?MI:1}
+function dKm(){var d=val('dist');return isFinite(d)?d*uf():NaN}
+function psec(){var m=val('pm')||0,s=val('ps')||0,p=m*60+s;return p>0?p:NaN}
+function card(a){return'<div class="cd">'+a.map(function(x){return'<div><b>'+x[0]+'</b><span>'+x[1]+'</span></div>'}).join('')+'</div>'}
+var DEST=[[5,'5 km'],[10,'10 km'],[21.0975,'Halbmarathon'],[42.195,'Marathon']];
+function setMode(m){
+ mode=m;
+ [].forEach.call(document.querySelectorAll('[data-m]'),function(b){b.classList.toggle('on',b.dataset.m===m)});
+ $('bD').classList.toggle('hid',m==='dist');
+ $('bT').classList.toggle('hid',m==='time');
+ $('bP').classList.toggle('hid',m==='pace'||m==='pred');
+ $('lpre').textContent=m==='pred'?'Zuletzt gelaufene Strecke':'Strecke';
+ $('ht').textContent={pace:'Strecke und Zeit eingeben',time:'Strecke und Pace eingeben',dist:'Zeit und Pace eingeben',pred:'Eine aktuelle Bestzeit eingeben'}[m];
+ run();
+}
+[].forEach.call(document.querySelectorAll('[data-m]'),function(b){b.onclick=function(){setMode(b.dataset.m)}});
+$('pu').textContent='Kilometer';
+$('pre').onchange=function(){var v=parseFloat(this.value);if(!isFinite(v))return;$('dist').value=nf(v/uf(),4).replace(/\./g,'');run()};
+$('un').onchange=function(){$('pu').textContent=this.value==='mi'?'Meile':'Kilometer';var p=$('pre').value;if(p!=='x'){var v=parseFloat(p);$('dist').value=nf(v/uf(),4).replace(/\./g,'')}run()};
+['dist','th','tm','ts','pm','ps','stg'].forEach(function(i){$(i).addEventListener('input',function(){if(i==='dist')$('pre').value='x';run()})});
+$('dx').oninput=function(){$('dxv').textContent=this.value;run()};
+function stats(dk,sec){
+ var pk=sec/dk,pm=pk*MI,kmh=dk/(sec/3600),mph=kmh/MI;
+ return card([[fp(pk)+' min/km','Pace pro Kilometer'],[fp(pm)+' min/Meile','Pace pro Meile'],[nf(kmh,2)+' km/h','Geschwindigkeit'],[nf(mph,2)+' mph','Meilen pro Stunde']]);
+}
+function splits(dk,sec){
+ var U=$('un').value==='mi'?MI:1,dU=dk/U,n=Math.ceil(dU-1e-9),st=$('stg').value,dx=+$('dx').value;
+ $('dxw').classList.toggle('hid',st==='even');
+ if(n>200){$('spt').innerHTML='<tr><td>Zu viele Abschnitte für die Tabelle (mehr als 200).</td></tr>';return}
+ var p=sec/dU,seg=[];
+ for(var i=0;i<n;i++){var len=Math.min(1,dU-i),mid=i+len/2,adj=0;if(st==='neg')adj=mid<dU/2?dx:-dx;else if(st==='pos')adj=mid<dU/2?-dx:dx;seg.push({len:len,pace:Math.max(30,p+adj)})}
+ var sum=seg.reduce(function(a,s){return a+s.pace*s.len},0),k=sec/sum,cum=0,u=$('un').value==='mi'?'Meile':'km';
+ var rows='<tr><th>'+u+'</th><th>Pace</th><th>Abschnitt</th><th>Gesamt</th></tr>';
+ seg.forEach(function(s,i){var pc=s.pace*k,t=pc*s.len;cum+=t;rows+='<tr><td>'+(s.len<1?nf(dU,2):i+1)+'</td><td>'+fp(pc)+'</td><td>'+ft(t)+'</td><td>'+ft(cum)+'</td></tr>'});
+ $('spt').innerHTML=rows;
+}
+function run(){
+ var o=$('rs'),sp=$('sp');sp.classList.add('hid');o.innerHTML='';
+ if(mode==='pace'){
+  var dk=dKm(),sec=tsec();
+  if(!(dk>0)||!(sec>0)){return}
+  o.innerHTML='<section class="tf-card"><div class="big"><span>Deine Pace</span><b>'+fp(sec/dk)+' min/km</b><span>Für '+nf(dk,3)+' km in '+ft(sec)+'</span></div>'+stats(dk,sec)+'</section>';
+  sp.classList.remove('hid');splits(dk,sec);
+ }else if(mode==='time'){
+  var dk2=dKm(),pu=psec();
+  if(!(dk2>0)||!(pu>0))return;
+  var pk=$('un').value==='mi'?pu/MI:pu,sec2=pk*dk2;
+  o.innerHTML='<section class="tf-card"><div class="big"><span>Deine Zielzeit</span><b>'+ft(sec2)+'</b><span>Für '+nf(dk2,3)+' km bei '+fp(pk)+' min/km</span></div>'+stats(dk2,sec2)+'</section>';
+  sp.classList.remove('hid');splits(dk2,sec2);
+ }else if(mode==='dist'){
+  var s3=tsec(),pu3=psec();
+  if(!(s3>0)||!(pu3>0))return;
+  var pk3=$('un').value==='mi'?pu3/MI:pu3,d3=s3/pk3;
+  var rel=DEST.map(function(x){return[nf(d3/x[0]*100,1)+' %','von '+x[1]]});
+  o.innerHTML='<section class="tf-card"><div class="big"><span>Deine Strecke</span><b>'+nf(d3,2)+' km</b><span>'+nf(d3/MI,2)+' Meilen in '+ft(s3)+' bei '+fp(pk3)+' min/km</span></div>'+card(rel)+'</section>';
+ }else{
+  var dk4=dKm(),s4=tsec();
+  if(!(dk4>0)||!(s4>0))return;
+  var rows='<tr><th>Strecke</th><th>Prognose</th><th>Pace (min/km)</th></tr>';
+  var list=DEST.concat([[dk4,'Deine Eingabe']]).sort(function(a,b){return a[0]-b[0]});
+  list.forEach(function(x){var t=s4*Math.pow(x[0]/dk4,1.06),ref=x[1]==='Deine Eingabe';rows+='<tr'+(ref?' class="hl"':'')+'><td>'+(ref?'Eingabe: '+nf(dk4,3)+' km':x[1])+'</td><td>'+ft(t)+'</td><td>'+fp(t/x[0])+'</td></tr>'});
+  o.innerHTML='<section class="tf-card"><h2>Prognostizierte Zeiten</h2><div class="tbw"><table class="t">'+rows+'</table></div><p class="note">Schätzung mit der Riegel-Formel: Zeit2 = Zeit1 × (Strecke2 ÷ Strecke1)^1,06. Sie passt am besten für gut trainierte Läufer. Für sehr lange Strecken ist sie oft zu optimistisch, wenn dein Training dafür nicht reicht.</p></section>';
+ }
+ table();
+}
+function table(){
+ var cur=mode==='pace'&&dKm()>0&&tsec()>0?tsec()/dKm():mode==='time'?(function(){var p=psec();return $('un').value==='mi'?p/MI:p})():NaN,best=-1,bd=1e9,rows='<tr><th>Pace (min/km)</th><th>km/h</th><th>5 km</th><th>10 km</th><th>Halbmarathon</th><th>Marathon</th></tr>';
+ for(var p=180;p<=540;p+=15){if(isFinite(cur)&&Math.abs(cur-p)<bd){bd=Math.abs(cur-p);best=p}}
+ for(var q=180;q<=540;q+=15){rows+='<tr'+(q===best?' class="hl"':'')+'><td>'+fp(q)+'</td><td>'+nf(3600/q,1)+'</td><td>'+ft(q*5)+'</td><td>'+ft(q*10)+'</td><td>'+ft(q*21.0975)+'</td><td>'+ft(q*42.195)+'</td></tr>'}
+ $('tt').innerHTML=rows;
+}
+setMode('pace');
+
+</script>
+</body>
+</html>

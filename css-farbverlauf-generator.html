@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CSS Farbverlauf Generator – Gradient erstellen | Toolyfix</title>
+<meta name="description" content="CSS Farbverlauf Generator: linear-, radial- und conic-gradient mit Transparenz, Vorlagen, Tailwind-Code und PNG-Export. Kostenlos.">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+<link rel="canonical" href="https://toolyfix.de/tools/css-farbverlauf-generator">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Toolyfix">
+<meta property="og:locale" content="de_DE">
+<meta property="og:title" content="CSS Farbverlauf Generator – Gradient erstellen | Toolyfix">
+<meta property="og:description" content="CSS Farbverlauf Generator: linear-, radial- und conic-gradient mit Transparenz, Vorlagen, Tailwind-Code und PNG-Export. Kostenlos.">
+<meta property="og:url" content="https://toolyfix.de/tools/css-farbverlauf-generator">
+<meta property="og:image" content="https://toolyfix.de/assets/og/css-farbverlauf-generator.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Toolyfix: CSS Farbverlauf Generator">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="CSS Farbverlauf Generator – Gradient erstellen | Toolyfix">
+<meta name="twitter:description" content="CSS Farbverlauf Generator: linear-, radial- und conic-gradient mit Transparenz, Vorlagen, Tailwind-Code und PNG-Export. Kostenlos.">
+<meta name="twitter:image" content="https://toolyfix.de/assets/og/css-farbverlauf-generator.jpg">
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "WebApplication", "name": "CSS Farbverlauf Generator", "url": "https://toolyfix.de/tools/css-farbverlauf-generator", "description": "CSS Farbverlauf Generator: linear-, radial- und conic-gradient mit Transparenz, Vorlagen, Tailwind-Code und PNG-Export. Kostenlos.", "applicationCategory": "DesignApplication", "operatingSystem": "Any (Webbrowser)", "browserRequirements": "Benötigt JavaScript", "inLanguage": "de", "isAccessibleForFree": true, "image": "https://toolyfix.de/assets/og/css-farbverlauf-generator.jpg", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "EUR"}, "publisher": {"@type": "Organization", "name": "Toolyfix", "url": "https://toolyfix.de/"}}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Startseite", "item": "https://toolyfix.de/"}, {"@type": "ListItem", "position": 2, "name": "CSS Farbverlauf Generator", "item": "https://toolyfix.de/tools/css-farbverlauf-generator"}]}]}</script>
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="stylesheet" href="/assets/style.css">
+<style>
+:root{--bg:#F7F7F4;--ink:#1A1A1A;--blue:#1D3557;--amber:#E9A93B;--line:#dcdcd2;--card:#fff;--mut:#5b6470;--bad:#b3261e;--ok:#1f7a45}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{background:var(--bg);color:var(--ink);margin:0;font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;line-height:1.6}
+.tf-wrap{max-width:1000px;margin:0 auto;padding:22px 16px 56px}
+.tf-wrap h1{font-size:clamp(1.6rem,4.4vw,2.3rem);line-height:1.15;margin:.2em 0 .3em;color:var(--blue)}
+.tf-intro{color:var(--mut);margin:0 0 14px;max-width:70ch}
+.tf-related{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:0 0 18px;padding:10px 12px;background:#fff;border:1px solid var(--line);border-radius:10px;font-size:.92rem}
+.tf-related b{color:var(--blue);margin-right:4px}
+.tf-related a{color:var(--blue);background:#eef1f6;border-radius:999px;padding:4px 12px;text-decoration:none;font-weight:500}
+.tf-related a:hover,.tf-related a:focus-visible{background:var(--blue);color:#fff;outline:none}
+.tf-card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px;margin-bottom:16px}
+.tf-card h2{font-size:1.05rem;margin:0 0 10px;color:var(--blue)}
+.tf-grid{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(170px,1fr))}
+.tf-wrap label{display:block;font-size:.82rem;font-weight:600;margin:0 0 4px;color:#333}
+.tf-wrap input[type=text],.tf-wrap input[type=number],.tf-wrap input[type=date],.tf-wrap select,.tf-wrap textarea{width:100%;padding:9px 10px;border:1px solid #c9c9bf;border-radius:8px;font:inherit;background:#fff;color:var(--ink)}
+.tf-wrap input[type=color]{width:100%;height:40px;border:1px solid #c9c9bf;border-radius:8px;padding:2px;background:#fff}
+.tf-wrap textarea{min-height:130px;resize:vertical}
+.tf-wrap input:focus-visible,.tf-wrap select:focus-visible,.tf-wrap textarea:focus-visible,.btn:focus-visible{outline:3px solid var(--amber);outline-offset:1px}
+.btn{font:inherit;font-weight:600;padding:9px 16px;border-radius:8px;border:1px solid var(--blue);background:#fff;color:var(--blue);cursor:pointer}
+.btn:hover{background:#eef1f6}
+.btn.pri{background:var(--blue);color:#fff}
+.btn.pri:hover{background:#16294a}
+.btn.amb{background:var(--amber);border-color:var(--amber);color:#1A1A1A}
+.btn[disabled]{opacity:.5;cursor:not-allowed}
+.tf-btns{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.chk{display:flex;gap:8px;align-items:center;font-weight:500;font-size:.92rem;margin:6px 0}
+.chk input{width:18px;height:18px}
+.tf-article{margin-top:34px;background:#fff;border:1px solid var(--line);border-radius:12px;padding:22px 20px}
+.tf-article h2{color:var(--blue);font-size:1.4rem;margin:1.4em 0 .4em;line-height:1.25}
+.tf-article h2:first-child{margin-top:0}
+.tf-article h3{font-size:1.1rem;margin:1.1em 0 .3em}
+.tf-article p,.tf-article li{max-width:75ch}
+.tf-article table{border-collapse:collapse;width:100%;font-size:.92rem;display:block;overflow-x:auto}
+.tf-article th,.tf-article td{border:1px solid var(--line);padding:6px 10px;text-align:left}
+.tf-article th{background:#eef1f6}
+.toast{position:fixed;left:50%;bottom:22px;transform:translateX(-50%);background:var(--blue);color:#fff;padding:9px 18px;border-radius:999px;font-size:.9rem;opacity:0;pointer-events:none;transition:opacity .2s;z-index:50}
+.toast.on{opacity:1}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+@media print{.site-header,.site-footer,.tf-related,.tf-intro,.tf-wrap>h1,.tf-article,.tf-noprint,.toast{display:none!important}body{background:#fff}.tf-wrap{padding:0;max-width:none}}
+
+#pv{height:240px;border-radius:12px;border:1px solid var(--line);transition:none}
+.smp{display:flex;flex-wrap:wrap;gap:18px;align-items:center;margin-top:14px}
+.smp .tx{font-size:clamp(2rem,9vw,3.4rem);font-weight:800;line-height:1.1}
+.smp .bt{border:0;border-radius:10px;padding:13px 26px;font:inherit;font-weight:700;color:#fff;cursor:default;text-shadow:0 1px 2px rgba(0,0,0,.35)}
+.st{display:grid;grid-template-columns:48px 1fr 74px 34px;gap:10px;align-items:center;padding:8px 0;border-bottom:1px solid var(--line)}
+.st input[type=color]{width:48px;height:38px;padding:2px}
+.st .pp{display:flex;gap:8px;align-items:center}
+.st .pp input[type=range]{flex:1;min-width:60px}
+.st .pp input[type=number]{width:64px}
+.st .al{width:100%}
+.ib{border:1px solid var(--line);background:#fff;border-radius:6px;width:34px;height:34px;cursor:pointer;color:var(--bad);font-size:1rem}
+.ib[disabled]{opacity:.35;cursor:not-allowed}
+.pr{display:grid;gap:10px;grid-template-columns:repeat(auto-fill,minmax(110px,1fr))}
+.pr button{height:62px;border-radius:10px;border:1px solid var(--line);cursor:pointer;color:#fff;font:inherit;font-size:.78rem;font-weight:600;text-shadow:0 1px 2px rgba(0,0,0,.5);padding:4px}
+.pr button:focus-visible{outline:3px solid var(--amber)}
+.hid{display:none}
+.code{width:100%;min-height:120px;font-family:ui-monospace,Menlo,Consolas,monospace;font-size:.84rem}
+.rg{display:flex;gap:10px;align-items:center}.rg input[type=range]{flex:1}.rg input[type=number]{width:84px}
+@media(max-width:560px){.st{grid-template-columns:44px 1fr 34px}.st .al{grid-column:1/3}}
+</style>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-F9VY193ZMP"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-F9VY193ZMP');</script>
+</head>
+<body>
+<header class="site-header">
+  <div class="container">
+    <a href="/" class="logo-link"><img src="/assets/images/logo-full.png" alt="Toolyfix"></a>
+    <span class="header-tagline">Kostenlose Tools, direkt im Browser</span>
+  </div>
+</header>
+<main>
+<div class="tf-wrap">
+<h1>CSS Farbverlauf Generator</h1>
+<p class="tf-intro">Gestalte lineare, radiale und kegelförmige Farbverläufe mit bis zu acht Farbstopps und kopiere den fertigen CSS-Code – oder exportiere den Verlauf als PNG.</p>
+<nav class="tf-related" aria-label="Passende Tools"><b>Passende Tools:</b><a href="/tools/farbwaehler">Farbwähler</a><a href="/tools/farbpalette-generator">Farbpalette Generator</a><a href="/tools/seitenverhaeltnis-rechner">Seitenverhältnis Rechner</a><a href="/tools/bild-komprimieren">Bilder Komprimieren</a></nav>
+
+<section class="tf-card">
+<div id="pv" role="img" aria-label="Vorschau des Farbverlaufs"></div>
+<div class="smp"><div class="tx" id="tx">Verlauf</div><button class="bt" id="bt" type="button" tabindex="-1">Button</button></div>
+</section>
+<section class="tf-card">
+<h2>Verlauf einstellen</h2>
+<div class="tf-grid">
+<div><label for="type">Typ</label><select id="type"><option value="linear">Linear</option><option value="radial">Radial</option><option value="conic">Konisch (conic)</option></select></div>
+<div id="wShape"><label for="shape">Form</label><select id="shape"><option value="circle">Kreis</option><option value="ellipse">Ellipse</option></select></div>
+</div>
+<div id="wAng" style="margin-top:12px"><label for="ang">Winkel: <b id="angv">135</b>°</label><div class="rg"><input type="range" id="ang" min="0" max="360" value="135"><input type="number" id="angn" min="0" max="360" value="135"></div></div>
+<div class="tf-grid hid" id="wPos" style="margin-top:12px">
+<div><label for="px">Mittelpunkt X: <b id="pxv">50</b> %</label><input type="range" id="px" min="0" max="100" value="50"></div>
+<div><label for="py">Mittelpunkt Y: <b id="pyv">50</b> %</label><input type="range" id="py" min="0" max="100" value="50"></div>
+</div>
+<h2 style="margin-top:18px">Farbstopps</h2>
+<div id="stops"></div>
+<div class="tf-btns">
+<button class="btn" id="add" type="button">+ Farbstopp</button>
+<button class="btn" id="rev" type="button">Umkehren</button>
+<button class="btn" id="eq" type="button">Gleichmäßig verteilen</button>
+<button class="btn amb" id="rnd" type="button">Zufälliger Verlauf</button>
+</div>
+</section>
+<section class="tf-card">
+<h2>Vorlagen</h2>
+<div class="pr" id="pr"></div>
+</section>
+<section class="tf-card">
+<h2>Code und Export</h2>
+<div class="tf-grid">
+<div><label for="fmt">Ausgabeformat</label><select id="fmt"><option value="css">CSS-Hintergrund</option><option value="text">Text-Verlauf (background-clip)</option><option value="var">CSS-Variable</option><option value="tw">Tailwind-Klasse</option></select></div>
+</div>
+<label class="chk"><input type="checkbox" id="fb" checked> Fallback-Farbe für alte Browser ergänzen</label>
+<textarea class="code" id="out" readonly></textarea>
+<div class="tf-btns"><button class="btn pri" id="cp" type="button">Code kopieren</button></div>
+<h2 style="margin-top:18px">Als PNG exportieren</h2>
+<div class="tf-grid" style="align-items:end">
+<div><label for="w">Breite (px)</label><input type="number" id="w" value="1920" min="16" max="4000"></div>
+<div><label for="h">Höhe (px)</label><input type="number" id="h" value="1080" min="16" max="4000"></div>
+<div><button class="btn amb" id="png" type="button">PNG herunterladen</button></div>
+</div>
+</section>
+
+<article class="tf-article">
+
+<h2>CSS Farbverlauf erstellen: Gradient Generator für Webdesign und Entwicklung</h2>
+<p>Farbverläufe gehören zu den wirkungsvollsten Gestaltungsmitteln im Webdesign. Sie verleihen Hintergründen Tiefe, lassen Buttons plastischer wirken, ersetzen schwere Bilddateien und sorgen für einen modernen Look. Das Schöne daran: Für einen Verlauf brauchst du kein Bild, denn CSS kann ihn selbst berechnen. Der Haken ist die Schreibweise. Winkel, Farbstopps, Positionen und Transparenzen in Code zu formulieren, ist fehleranfällig und mühsam. Der CSS Farbverlauf Generator von Toolyfix nimmt dir das ab. Du stellst alles visuell ein, siehst die Wirkung sofort und kopierst den fertigen Code mit einem Klick in dein Stylesheet.</p>
+<p>Das Tool unterstützt die drei Verlaufstypen, die in CSS verfügbar sind: linear, radial und konisch. Bis zu acht Farbstopps, eine Deckkraft je Farbe, über zehn Vorlagen, vier Ausgabeformate und ein PNG-Export machen aus dem einfachen Generator ein vollwertiges Werkzeug für Webdesigner, Entwickler und Content-Ersteller.</p>
+
+<h2>Die drei Verlaufstypen im Überblick</h2>
+<h3>Linearer Verlauf (linear-gradient)</h3>
+<p>Der lineare Verlauf geht in einer geraden Linie von einer Farbe zur nächsten. Die Richtung bestimmst du mit einem Winkel: 0 Grad verläuft von unten nach oben, 90 Grad von links nach rechts, 180 Grad von oben nach unten. Diagonale Verläufe mit 135 Grad sind besonders beliebt, weil sie lebendig wirken. Linear-Gradients eignen sich für Hintergründe, Banner, Buttons und Kopfbereiche.</p>
+<h3>Radialer Verlauf (radial-gradient)</h3>
+<p>Beim radialen Verlauf breiten sich die Farben von einem Mittelpunkt kreis- oder ellipsenförmig aus. Mit den Reglern für X- und Y-Position verschiebst du den Mittelpunkt, etwa in eine Ecke, um einen Lichtschein zu simulieren. Radiale Verläufe wirken wie Spotlights, Glanzpunkte oder weiche Vignetten.</p>
+<h3>Konischer Verlauf (conic-gradient)</h3>
+<p>Der konische Verlauf dreht sich um einen Mittelpunkt, ähnlich wie ein Farbkreis oder der Zeiger einer Uhr. Er eignet sich für Kreisdiagramme, Ladeanzeigen, Farbräder und grafische Effekte. Der Startwinkel legt fest, wo der Verlauf beginnt.</p>
+
+<h2>So arbeitest du mit dem Generator</h2>
+<ol>
+<li><b>Typ wählen:</b> Entscheide dich für linear, radial oder konisch. Passende Einstellungen wie Winkel, Form und Mittelpunkt erscheinen automatisch.</li>
+<li><b>Farben festlegen:</b> Klicke auf ein Farbfeld und wähle eine Farbe. Mit „+ Farbstopp“ ergänzt du eine weitere Farbe zwischen den vorhandenen.</li>
+<li><b>Positionen anpassen:</b> Verschiebe die Stopps per Regler oder gib Prozentwerte ein. Wenn zwei Stopps dieselbe Position haben, entsteht eine harte Kante, perfekt für Streifenmuster.</li>
+<li><b>Deckkraft einstellen:</b> Jede Farbe lässt sich einzeln transparent machen. So erzeugst du Verläufe, die in den Hintergrund auslaufen und über Bildern liegen können.</li>
+<li><b>Code kopieren:</b> Wähle das Format, das du brauchst, und füge den Code in dein CSS ein.</li>
+</ol>
+
+<h2>Ausgabeformate: Vom CSS-Hintergrund bis zur Tailwind-Klasse</h2>
+<p>Der Generator liefert je nach Anwendung unterschiedlichen Code. Beim CSS-Hintergrund erhältst du die Anweisung „background“ mit dem fertigen Gradienten. Optional steht davor eine einfarbige Fallback-Farbe, damit sehr alte Browser wenigstens eine Farbfläche anzeigen. Das Format „Text-Verlauf“ ergänzt die Eigenschaften, mit denen du Schrift mit einem Farbverlauf füllst, also background-clip auf text und eine transparente Textfarbe. Die „CSS-Variable“ speichert den Verlauf einmal in einer benutzerdefinierten Eigenschaft, die du an beliebigen Stellen wiederverwenden kannst, was Designsysteme übersichtlich hält. Die „Tailwind-Klasse“ gibt den Verlauf in der Schreibweise für beliebige Werte aus, bei der Leerzeichen durch Unterstriche ersetzt werden.</p>
+
+<h2>Farbverläufe richtig einsetzen: Tipps aus der Praxis</h2>
+<ul>
+<li><b>Weniger ist mehr:</b> Zwei bis drei Farben reichen meistens. Viele Farbstopps wirken schnell unruhig.</li>
+<li><b>Benachbarte Farben wählen:</b> Verläufe zwischen Farben, die im Farbkreis nahe beieinander liegen, wirken harmonisch. Gegensätzliche Farben können einen schmutzigen Mittelton erzeugen. Mit dem Farbpaletten Generator findest du passende Kombinationen.</li>
+<li><b>Auf Lesbarkeit achten:</b> Text auf Verläufen muss an jeder Stelle gut lesbar bleiben. Prüfe den Kontrast an der hellsten und der dunkelsten Stelle, am besten mit dem Farbwähler und seinem Kontrast-Check.</li>
+<li><b>Dezent starten:</b> Ein leichter Verlauf zwischen zwei Tönen derselben Farbe wirkt hochwertiger als ein greller Regenbogen.</li>
+<li><b>Marke beachten:</b> Nutze Farben aus deiner Corporate Identity, damit Verläufe zum restlichen Auftritt passen.</li>
+<li><b>Performance:</b> CSS-Verläufe sind viel kleiner als Bilddateien und skalieren verlustfrei. Sie laden sofort und bleiben auf hochauflösenden Displays scharf.</li>
+</ul>
+
+<h2>Harte Kanten, Streifen und Muster</h2>
+<p>Wenn zwei Farbstopps an derselben Position stehen, springt die Farbe abrupt. So lassen sich Streifen, Fahnen oder zweifarbige Flächen erzeugen. Setze beispielsweise Rot bei 0 und 50 Prozent und Gold bei 50 und 100 Prozent, und du erhältst zwei exakt halbierte Farbflächen. Mit mehreren Stopps entstehen Karomuster oder Segmente. Im konischen Typ lassen sich so Kuchendiagramme ohne Bildbearbeitung gestalten.</p>
+
+<h2>Deckkraft und Überlagerung</h2>
+<p>Die Deckkraft pro Farbstopp ist ein unterschätztes Werkzeug. Ein Verlauf von komplett deckendem Schwarz zu vollständig transparentem Schwarz legt sich als Abdunkelung über ein Foto, sodass weißer Text darüber lesbar bleibt. Das kennst du von Hero-Bereichen und Karten mit Bildern. Im Generator setzt du dazu den letzten Stopp auf null Prozent Deckkraft und überlagerst den Verlauf im eigenen Projekt mit mehreren Hintergründen, die du durch Kommas trennst.</p>
+
+<h2>PNG-Export für Grafiken und Präsentationen</h2>
+<p>Manchmal brauchst du keinen Code, sondern ein Bild: einen Hintergrund für eine Präsentation, ein Handy-Wallpaper oder ein Social-Media-Motiv. Gib dazu Breite und Höhe in Pixeln an und lade den Verlauf als PNG herunter. Standard sind 1920 mal 1080 Pixel für Full-HD-Hintergründe. Für Social Media eignen sich je nach Plattform andere Verhältnisse. Das passende Format berechnest du mit dem Seitenverhältnis Rechner. Konische Verläufe lassen sich nur exportieren, wenn dein Browser diese Funktion im Canvas unterstützt, was in aktuellen Browsern der Fall ist.</p>
+
+<h2>Häufige Probleme und Lösungen</h2>
+<h3>Der Verlauf sieht im Browser anders aus als erwartet</h3>
+<p>Meist liegt es an der Reihenfolge oder den Positionen der Stopps. Das Tool sortiert die Stopps automatisch nach Position. Prüfe, ob zwei Stopps versehentlich übereinander liegen und eine harte Kante erzeugen.</p>
+<h3>Mein Text mit Verlauf bleibt unsichtbar</h3>
+<p>Beim Text-Verlauf muss die Textfarbe transparent sein, sonst überdeckt sie den Hintergrund. Das Format „Text-Verlauf“ enthält diese Zeilen bereits. Außerdem braucht das Element eine Größe, die zum Text passt.</p>
+<h3>Der Verlauf wirkt gestreift</h3>
+<p>Bei sehr flachen Verläufen über große Flächen kann es zu sichtbaren Stufen („Banding“) kommen. Abhilfe schafft ein größerer Farbunterschied oder ein feines Rauschen als zusätzliche Ebene.</p>
+<h3>Der Verlauf funktioniert nicht in alten Browsern</h3>
+<p>Lineare und radiale Verläufe werden von allen gängigen Browsern unterstützt. Konische Verläufe sind in aktuellen Versionen verfügbar. Für sehr alte Systeme hilft die Fallback-Farbe.</p>
+<h3>Der PNG-Export weicht leicht von der Vorschau ab</h3>
+<p>Beim Export werden Winkel und Radien auf die gewählte Bildgröße umgerechnet. Das Ergebnis entspricht dem CSS-Verlauf auf einem Element derselben Größe. Wenn dein Element andere Proportionen hat, ändert sich der Eindruck.</p>
+
+<h2>Barrierefreiheit und Design</h2>
+<p>Verläufe dürfen nie die einzige Informationsquelle sein. Wichtige Inhalte brauchen ausreichenden Kontrast zum Hintergrund und eine zusätzliche Kennzeichnung neben der Farbe. Wer Menschen mit Sehschwäche berücksichtigt, wählt Verläufe mit deutlichem Helligkeitsunterschied zwischen Text und Fläche. Setze bei Animationen von Verläufen auf Zurückhaltung und respektiere die Systemeinstellung für reduzierte Bewegung.</p>
+
+<h2>Häufige Fragen zum CSS Farbverlauf Generator</h2>
+<h3>Ist der Generator kostenlos?</h3>
+<p>Ja, vollständig und ohne Registrierung.</p>
+<h3>Kann ich den Code kommerziell verwenden?</h3>
+<p>Der erzeugte Code ist dein eigener. Du kannst ihn in privaten und kommerziellen Projekten einsetzen.</p>
+<h3>Wie viele Farben kann ich verwenden?</h3>
+<p>Bis zu acht Farbstopps. Mindestens zwei werden für einen Verlauf benötigt.</p>
+<h3>Was bedeutet der Winkel bei konischen Verläufen?</h3>
+<p>Er bestimmt, wo der Verlauf beginnt. Null Grad liegt oben, der Verlauf läuft im Uhrzeigersinn.</p>
+<h3>Kann ich einen vorhandenen Verlauf importieren?</h3>
+<p>Aktuell nicht. Nutze die Vorlagen als Ausgangspunkt und passe Farben und Positionen an.</p>
+<p>Weitere Tools für Farben und Design findest du oben unter „Passende Tools“, zum Beispiel den Farbwähler, den Farbpaletten Generator und den Seitenverhältnis Rechner.</p>
+
+</article>
+</div>
+</main>
+<footer class="site-footer">
+  <div class="container">
+    <img src="/assets/images/logo-full.png" alt="Toolyfix">
+    <nav class="footer-links">
+      <a href="/ueber-uns.html">Über uns</a>
+      <a href="/datenschutz.html">Datenschutz</a>
+      <a href="/nutzungsbedingungen.html">Nutzungsbedingungen</a>
+      <a href="/kontakt.html">Kontakt</a>
+    </nav>
+    <p class="footer-note">© 2026 Toolyfix – Alle Tools laufen lokal in deinem Browser.</p>
+  </div>
+</footer>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script>
+function toast(m){var t=document.getElementById('toast');t.textContent=m;t.classList.add('on');clearTimeout(window._tt);window._tt=setTimeout(function(){t.classList.remove('on')},1800)}
+function copyText(s){if(navigator.clipboard&&window.isSecureContext){return navigator.clipboard.writeText(s).then(function(){toast('Kopiert')},function(){fb(s)})}fb(s)}
+function fb(s){var a=document.createElement('textarea');a.value=s;a.style.position='fixed';a.style.opacity='0';document.body.appendChild(a);a.select();try{document.execCommand('copy');toast('Kopiert')}catch(e){toast('Kopieren nicht möglich')}document.body.removeChild(a)}
+function dl(name,blob){var u=URL.createObjectURL(blob),a=document.createElement('a');a.href=u;a.download=name;document.body.appendChild(a);a.click();document.body.removeChild(a);setTimeout(function(){URL.revokeObjectURL(u)},4000)}
+
+function $(i){return document.getElementById(i)}
+var G={type:'linear',angle:135,shape:'circle',px:50,py:50,stops:[{c:'#1d3557',a:100,p:0},{c:'#e9a93b',a:100,p:100}]};
+var PRE=[['Sonnenuntergang',135,['#ff7e5f','#feb47b']],['Ozean',160,['#2193b0','#6dd5ed']],['Wald',135,['#134e5e','#71b280']],['Dämmerung',120,['#3a1c71','#d76d77','#ffaf7b']],['Minze',90,['#00b09b','#96c93d']],['Glut',45,['#f12711','#f5af19']],['Nacht',180,['#0f2027','#203a43','#2c5364']],['Pfirsich',135,['#ffecd2','#fcb69f']],['Regenbogen',90,['#ff0000','#ffff00','#00ff00','#00ffff','#0000ff','#ff00ff']],['Prussian',135,['#1d3557','#457b9d','#a8dadc']]];
+function rgb(h){return[parseInt(h.slice(1,3),16),parseInt(h.slice(3,5),16),parseInt(h.slice(5,7),16)]}
+function col(s){var r=rgb(s.c);return s.a>=100?s.c:'rgba('+r[0]+', '+r[1]+', '+r[2]+', '+parseFloat((s.a/100).toFixed(2))+')'}
+function sorted(){return G.stops.slice().sort(function(a,b){return a.p-b.p})}
+function grad(){
+ var ss=sorted().map(function(s){return col(s)+' '+s.p+'%'}).join(', ');
+ if(G.type==='linear')return'linear-gradient('+G.angle+'deg, '+ss+')';
+ if(G.type==='radial')return'radial-gradient('+G.shape+' at '+G.px+'% '+G.py+'%, '+ss+')';
+ return'conic-gradient(from '+G.angle+'deg at '+G.px+'% '+G.py+'%, '+ss+')';
+}
+function code(){
+ var g=grad(),f=$('fmt').value,fb=$('fb').checked?'background: '+sorted()[0].c+';\n':'';
+ if(f==='css')return fb+'background: '+g+';';
+ if(f==='text')return fb.replace('background:','background-color:')+'background-image: '+g+';\n-webkit-background-clip: text;\nbackground-clip: text;\n-webkit-text-fill-color: transparent;\ncolor: transparent;';
+ if(f==='var')return'--verlauf: '+g+';\n\n/* Verwendung */\nbackground: var(--verlauf);';
+ return'bg-['+g.replace(/ /g,'_')+']';
+}
+function paint(){
+ var g=grad();
+ $('pv').style.background=g;
+ $('bt').style.background=g;
+ var t=$('tx');t.style.backgroundImage=g;t.style.webkitBackgroundClip='text';t.style.backgroundClip='text';t.style.webkitTextFillColor='transparent';t.style.color='transparent';
+ $('out').value=code();
+}
+function vis(){
+ var t=G.type;
+ $('wShape').classList.toggle('hid',t!=='radial');
+ $('wAng').classList.toggle('hid',t==='radial');
+ $('wPos').classList.toggle('hid',t==='linear');
+ $('angv').textContent=G.angle;$('px').value=G.px;$('py').value=G.py;$('pxv').textContent=G.px;$('pyv').textContent=G.py;
+ $('ang').value=G.angle;$('angn').value=G.angle;$('type').value=G.type;$('shape').value=G.shape;
+}
+function list(){
+ var h='';
+ G.stops.forEach(function(s,i){
+  h+='<div class="st"><input type="color" value="'+s.c+'" data-i="'+i+'" data-f="c" aria-label="Farbe '+(i+1)+'">'
+   +'<div class="pp"><input type="range" min="0" max="100" value="'+s.p+'" data-i="'+i+'" data-f="p" aria-label="Position '+(i+1)+'"><input type="number" min="0" max="100" value="'+s.p+'" data-i="'+i+'" data-f="p" aria-label="Position in Prozent"><span>%</span></div>'
+   +'<button type="button" class="ib" data-rm="'+i+'" aria-label="Farbstopp entfernen"'+(G.stops.length<=2?' disabled':'')+'>✕</button>'
+   +'<div class="al" style="display:flex;gap:8px;align-items:center;grid-column:1/-1"><label style="margin:0;white-space:nowrap" for="al'+i+'">Deckkraft '+s.a+' %</label><input type="range" id="al'+i+'" min="0" max="100" value="'+s.a+'" data-i="'+i+'" data-f="a" style="flex:1"></div></div>';
+ });
+ $('stops').innerHTML=h;
+ $('add').disabled=G.stops.length>=8;
+}
+$('stops').addEventListener('input',function(e){
+ var t=e.target,i=+t.dataset.i,f=t.dataset.f;if(f===undefined)return;
+ var v=f==='c'?t.value:Math.max(0,Math.min(100,parseInt(t.value,10)||0));
+ G.stops[i][f]=v;
+ if(f==='p'){[].forEach.call($('stops').querySelectorAll('[data-i="'+i+'"][data-f="p"]'),function(x){if(x!==t)x.value=v})}
+ if(f==='a'){t.parentNode.querySelector('label').textContent='Deckkraft '+v+' %'}
+ paint();
+});
+$('stops').addEventListener('click',function(e){var b=e.target.closest('[data-rm]');if(!b||G.stops.length<=2)return;G.stops.splice(+b.dataset.rm,1);list();paint()});
+function eq(){var n=G.stops.length;sorted().forEach(function(s,i){s.p=Math.round(i/(n-1)*100)})}
+$('add').onclick=function(){if(G.stops.length>=8)return;var s=sorted(),a=s[s.length-2]||s[0],b=s[s.length-1],m=Math.round((a.p+b.p)/2),c=mix(a.c,b.c);G.stops.push({c:c,a:100,p:m});list();paint()};
+function mix(a,b){var x=rgb(a),y=rgb(b);return'#'+[0,1,2].map(function(i){return('0'+Math.round((x[i]+y[i])/2).toString(16)).slice(-2)}).join('')}
+$('rev').onclick=function(){G.stops.forEach(function(s){s.p=100-s.p});G.stops.reverse();list();paint()};
+$('eq').onclick=function(){eq();list();paint()};
+function h2h(h,s,l){l/=100;var a=s*Math.min(l,1-l)/100,f=function(n){var k=(n+h/30)%12,c=l-a*Math.max(Math.min(k-3,9-k,1),-1);return('0'+Math.round(255*c).toString(16)).slice(-2)};return'#'+f(0)+f(8)+f(4)}
+$('rnd').onclick=function(){var n=2+Math.floor(Math.random()*3),h=Math.random()*360;G.stops=[];for(var i=0;i<n;i++)G.stops.push({c:h2h((h+i*(40+Math.random()*60))%360,60+Math.random()*30,45+Math.random()*20),a:100,p:Math.round(i/(n-1)*100)});G.angle=Math.floor(Math.random()*12)*30;vis();list();paint()};
+PRE.forEach(function(p){var b=document.createElement('button');b.type='button';b.textContent=p[0];b.style.background='linear-gradient(135deg,'+p[2].join(',')+')';b.onclick=function(){G.type='linear';G.angle=p[1];G.stops=p[2].map(function(c,i){return{c:c,a:100,p:Math.round(i/(p[2].length-1)*100)}});vis();list();paint()};$('pr').appendChild(b)});
+$('type').onchange=function(){G.type=this.value;vis();paint()};
+$('shape').onchange=function(){G.shape=this.value;paint()};
+function setAng(v){v=Math.max(0,Math.min(360,parseInt(v,10)||0));G.angle=v;$('ang').value=v;$('angn').value=v;$('angv').textContent=v;paint()}
+$('ang').oninput=function(){setAng(this.value)};$('angn').oninput=function(){setAng(this.value)};
+$('px').oninput=function(){G.px=+this.value;$('pxv').textContent=this.value;paint()};
+$('py').oninput=function(){G.py=+this.value;$('pyv').textContent=this.value;paint()};
+$('fmt').onchange=paint;$('fb').onchange=paint;
+$('cp').onclick=function(){copyText($('out').value)};
+$('png').onclick=function(){
+ var w=Math.max(16,Math.min(4000,parseInt($('w').value,10)||1920)),h=Math.max(16,Math.min(4000,parseInt($('h').value,10)||1080));
+ var cv=document.createElement('canvas');cv.width=w;cv.height=h;var x=cv.getContext('2d'),g,px=G.px/100*w,py=G.py/100*h;
+ if(G.type==='linear'){var th=G.angle*Math.PI/180,dx=Math.sin(th),dy=-Math.cos(th),len=Math.abs(w*dx)+Math.abs(h*dy),cx=w/2,cy=h/2;g=x.createLinearGradient(cx-dx*len/2,cy-dy*len/2,cx+dx*len/2,cy+dy*len/2)}
+ else if(G.type==='radial'){
+  if(G.shape==='circle')g=x.createRadialGradient(px,py,0,px,py,Math.hypot(Math.max(px,w-px),Math.max(py,h-py))||1);
+  else{var rx=Math.max(px,w-px)*Math.SQRT2||1,ry=Math.max(py,h-py)*Math.SQRT2||1;x.translate(px,py);x.scale(rx/ry,1);g=x.createRadialGradient(0,0,0,0,0,ry)}
+ }else{if(!x.createConicGradient){toast('Dein Browser unterstützt den PNG-Export für konische Verläufe nicht');return}g=x.createConicGradient((G.angle-90)*Math.PI/180,px,py)}
+ sorted().forEach(function(s){var r=rgb(s.c);g.addColorStop(s.p/100,'rgba('+r[0]+','+r[1]+','+r[2]+','+s.a/100+')')});
+ x.fillStyle=g;x.fillRect(-1e5,-1e5,2e5,2e5);
+ cv.toBlob(function(b){dl('farbverlauf-'+w+'x'+h+'-toolyfix.png',b);toast('PNG wird heruntergeladen')},'image/png');
+};
+vis();list();paint();
+
+</script>
+</body>
+</html>

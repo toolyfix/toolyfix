@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Datumsrechner – Tage addieren &amp; Tage zwischen | Toolyfix</title>
+<meta name="description" content="Datumsrechner: Tage, Wochen, Monate und Werktage addieren, Tage zwischen zwei Daten berechnen, mit Feiertagen je Bundesland. Kostenlos.">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+<link rel="canonical" href="https://toolyfix.de/tools/datumsrechner">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Toolyfix">
+<meta property="og:locale" content="de_DE">
+<meta property="og:title" content="Datumsrechner – Tage addieren &amp; Tage zwischen | Toolyfix">
+<meta property="og:description" content="Datumsrechner: Tage, Wochen, Monate und Werktage addieren, Tage zwischen zwei Daten berechnen, mit Feiertagen je Bundesland. Kostenlos.">
+<meta property="og:url" content="https://toolyfix.de/tools/datumsrechner">
+<meta property="og:image" content="https://toolyfix.de/assets/og/datumsrechner.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Toolyfix: Datumsrechner">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Datumsrechner – Tage addieren &amp; Tage zwischen | Toolyfix">
+<meta name="twitter:description" content="Datumsrechner: Tage, Wochen, Monate und Werktage addieren, Tage zwischen zwei Daten berechnen, mit Feiertagen je Bundesland. Kostenlos.">
+<meta name="twitter:image" content="https://toolyfix.de/assets/og/datumsrechner.jpg">
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "WebApplication", "name": "Datumsrechner", "url": "https://toolyfix.de/tools/datumsrechner", "description": "Datumsrechner: Tage, Wochen, Monate und Werktage addieren, Tage zwischen zwei Daten berechnen, mit Feiertagen je Bundesland. Kostenlos.", "applicationCategory": "UtilitiesApplication", "operatingSystem": "Any (Webbrowser)", "browserRequirements": "Benötigt JavaScript", "inLanguage": "de", "isAccessibleForFree": true, "image": "https://toolyfix.de/assets/og/datumsrechner.jpg", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "EUR"}, "publisher": {"@type": "Organization", "name": "Toolyfix", "url": "https://toolyfix.de/"}}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Startseite", "item": "https://toolyfix.de/"}, {"@type": "ListItem", "position": 2, "name": "Datumsrechner", "item": "https://toolyfix.de/tools/datumsrechner"}]}]}</script>
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="stylesheet" href="/assets/style.css">
+<style>
+:root{--bg:#F7F7F4;--ink:#1A1A1A;--blue:#1D3557;--amber:#E9A93B;--line:#dcdcd2;--card:#fff;--mut:#5b6470;--bad:#b3261e;--ok:#1f7a45}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{background:var(--bg);color:var(--ink);margin:0;font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;line-height:1.6}
+.tf-wrap{max-width:1000px;margin:0 auto;padding:22px 16px 56px}
+.tf-wrap h1{font-size:clamp(1.6rem,4.4vw,2.3rem);line-height:1.15;margin:.2em 0 .3em;color:var(--blue)}
+.tf-intro{color:var(--mut);margin:0 0 14px;max-width:70ch}
+.tf-related{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:0 0 18px;padding:10px 12px;background:#fff;border:1px solid var(--line);border-radius:10px;font-size:.92rem}
+.tf-related b{color:var(--blue);margin-right:4px}
+.tf-related a{color:var(--blue);background:#eef1f6;border-radius:999px;padding:4px 12px;text-decoration:none;font-weight:500}
+.tf-related a:hover,.tf-related a:focus-visible{background:var(--blue);color:#fff;outline:none}
+.tf-card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px;margin-bottom:16px}
+.tf-card h2{font-size:1.05rem;margin:0 0 10px;color:var(--blue)}
+.tf-grid{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(170px,1fr))}
+.tf-wrap label{display:block;font-size:.82rem;font-weight:600;margin:0 0 4px;color:#333}
+.tf-wrap input[type=text],.tf-wrap input[type=number],.tf-wrap input[type=date],.tf-wrap select,.tf-wrap textarea{width:100%;padding:9px 10px;border:1px solid #c9c9bf;border-radius:8px;font:inherit;background:#fff;color:var(--ink)}
+.tf-wrap input[type=color]{width:100%;height:40px;border:1px solid #c9c9bf;border-radius:8px;padding:2px;background:#fff}
+.tf-wrap textarea{min-height:130px;resize:vertical}
+.tf-wrap input:focus-visible,.tf-wrap select:focus-visible,.tf-wrap textarea:focus-visible,.btn:focus-visible{outline:3px solid var(--amber);outline-offset:1px}
+.btn{font:inherit;font-weight:600;padding:9px 16px;border-radius:8px;border:1px solid var(--blue);background:#fff;color:var(--blue);cursor:pointer}
+.btn:hover{background:#eef1f6}
+.btn.pri{background:var(--blue);color:#fff}
+.btn.pri:hover{background:#16294a}
+.btn.amb{background:var(--amber);border-color:var(--amber);color:#1A1A1A}
+.btn[disabled]{opacity:.5;cursor:not-allowed}
+.tf-btns{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.chk{display:flex;gap:8px;align-items:center;font-weight:500;font-size:.92rem;margin:6px 0}
+.chk input{width:18px;height:18px}
+.tf-article{margin-top:34px;background:#fff;border:1px solid var(--line);border-radius:12px;padding:22px 20px}
+.tf-article h2{color:var(--blue);font-size:1.4rem;margin:1.4em 0 .4em;line-height:1.25}
+.tf-article h2:first-child{margin-top:0}
+.tf-article h3{font-size:1.1rem;margin:1.1em 0 .3em}
+.tf-article p,.tf-article li{max-width:75ch}
+.tf-article table{border-collapse:collapse;width:100%;font-size:.92rem;display:block;overflow-x:auto}
+.tf-article th,.tf-article td{border:1px solid var(--line);padding:6px 10px;text-align:left}
+.tf-article th{background:#eef1f6}
+.toast{position:fixed;left:50%;bottom:22px;transform:translateX(-50%);background:var(--blue);color:#fff;padding:9px 18px;border-radius:999px;font-size:.9rem;opacity:0;pointer-events:none;transition:opacity .2s;z-index:50}
+.toast.on{opacity:1}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+@media print{.site-header,.site-footer,.tf-related,.tf-intro,.tf-wrap>h1,.tf-article,.tf-noprint,.toast{display:none!important}body{background:#fff}.tf-wrap{padding:0;max-width:none}}
+
+.mt{display:flex;gap:8px;margin-bottom:14px;flex-wrap:wrap}
+.mt button.on{background:var(--blue);color:#fff}
+.hid{display:none}
+.big{background:var(--blue);color:#fff;border-radius:12px;padding:16px;margin-top:14px}
+.big b{display:block;font-size:clamp(1.2rem,4.5vw,1.8rem);line-height:1.25}
+.big span{opacity:.85;font-size:.9rem}
+.cd{display:grid;gap:10px;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));margin-top:12px}
+.cd div{background:#f4f6fa;border-radius:10px;padding:10px 12px}
+.cd b{display:block;font-size:1.2rem;color:var(--blue)}
+.cd span{font-size:.78rem;color:var(--mut)}
+.row2{display:flex;gap:8px;align-items:end}
+.row2>div{flex:1}
+.mini{padding:9px 12px;white-space:nowrap}
+.warn{background:#fff6dd;border:1px solid #f0d58a;border-radius:8px;padding:9px 12px;font-size:.88rem;margin-top:10px}
+</style>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-F9VY193ZMP"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-F9VY193ZMP');</script>
+</head>
+<body>
+<header class="site-header">
+  <div class="container">
+    <a href="/" class="logo-link"><img src="/assets/images/logo-full.png" alt="Toolyfix"></a>
+    <span class="header-tagline">Kostenlose Tools, direkt im Browser</span>
+  </div>
+</header>
+<main>
+<div class="tf-wrap">
+<h1>Datumsrechner</h1>
+<p class="tf-intro">Rechne mit Datumsangaben: Tage, Wochen, Monate, Jahre oder Werktage addieren und abziehen, die Tage zwischen zwei Daten bestimmen und Infos zu einem Datum abrufen.</p>
+<nav class="tf-related" aria-label="Passende Tools"><b>Passende Tools:</b><a href="/tools/altersrechner">Altersrechner</a><a href="/tools/geburtstags-countdown">Geburtstags Countdown</a><a href="/tools/kalender-generator">Kalender Generator</a><a href="/tools/timer-stoppuhr">Timer &amp; Stoppuhr</a><a href="/tools/digitaluhr">Digitaluhr</a></nav>
+
+<div class="mt tf-noprint">
+<button class="btn on" id="m1" type="button">Datum plus/minus</button>
+<button class="btn" id="m2" type="button">Tage zwischen zwei Daten</button>
+<button class="btn" id="m3" type="button">Datumsinfo</button>
+</div>
+<section class="tf-card" id="sA">
+<h2>Tage, Wochen, Monate, Jahre oder Werktage addieren</h2>
+<div class="tf-grid">
+<div class="row2"><div><label for="a1">Startdatum</label><input type="date" id="a1"></div><button class="btn mini" data-today="a1" type="button">Heute</button></div>
+<div><label for="op">Rechenart</label><select id="op"><option value="1">Addieren (+)</option><option value="-1">Subtrahieren (−)</option></select></div>
+<div><label for="n">Anzahl</label><input type="number" id="n" min="0" max="100000" inputmode="numeric"></div>
+<div><label for="u">Einheit</label><select id="u"><option value="d">Tage</option><option value="w">Wochen</option><option value="m">Monate</option><option value="y">Jahre</option><option value="wd">Werktage (Mo bis Fr)</option></select></div>
+<div id="aw" class="hid"><label for="ast">Feiertage berücksichtigen</label><select id="ast"></select></div>
+</div>
+<div id="aout"></div>
+</section>
+<section class="tf-card hid" id="sB">
+<h2>Tage zwischen zwei Daten berechnen</h2>
+<div class="tf-grid">
+<div class="row2"><div><label for="b1">Datum 1</label><input type="date" id="b1"></div><button class="btn mini" data-today="b1" type="button">Heute</button></div>
+<div class="row2"><div><label for="b2">Datum 2</label><input type="date" id="b2"></div><button class="btn mini" data-today="b2" type="button">Heute</button></div>
+<div><label for="bst">Feiertage bei Werktagen abziehen</label><select id="bst"></select></div>
+</div>
+<label class="chk"><input type="checkbox" id="inc"> Enddatum mitzählen (beide Tage einschließen)</label>
+<div class="tf-btns"><button class="btn" id="swap" type="button">Daten tauschen</button></div>
+<div id="bout"></div>
+</section>
+<section class="tf-card hid" id="sC">
+<h2>Informationen zu einem Datum</h2>
+<div class="tf-grid"><div class="row2"><div><label for="c1">Datum</label><input type="date" id="c1"></div><button class="btn mini" data-today="c1" type="button">Heute</button></div></div>
+<div id="cout"></div>
+</section>
+
+<article class="tf-article">
+
+<h2>Datumsrechner: Tage addieren, subtrahieren und Zeiträume berechnen</h2>
+<p>Wann ist eine Frist abgelaufen? Welches Datum haben wir in 90 Tagen? Wie viele Tage sind es zwischen zwei Terminen? Wie viele Werktage bleiben bis zur Abgabe? Solche Fragen stellen sich im Berufsleben, bei Verträgen, Projekten, Schwangerschaft, Reisen oder Studium ständig. Von Hand sind sie mühsam, denn Monate haben unterschiedlich viele Tage, Schaltjahre bringen Ausnahmen, und Wochenenden und Feiertage verschieben Werktage. Der Datumsrechner von Toolyfix übernimmt die Arbeit. Er addiert und subtrahiert Tage, Wochen, Monate, Jahre und Werktage, berechnet die Tage zwischen zwei Daten und liefert zusätzliche Informationen wie Wochentag und Kalenderwoche. Alles läuft lokal in deinem Browser.</p>
+
+<h2>Drei Rechner in einem Tool</h2>
+<h3>1. Datum plus/minus</h3>
+<p>Gib ein Startdatum und eine Anzahl ein, wähle die Einheit und die Rechenart. Das Tool nennt das Ergebnisdatum mit Wochentag und zeigt zusätzlich die Kalenderwoche, den Tag des Jahres, das Quartal und den Abstand zu heute. Du kannst Tage, Wochen, Monate, Jahre und Werktage verwenden. Beispiele: „Datum in 30 Tagen“, „Datum vor 6 Monaten“, „10 Werktage nach dem 15. März“.</p>
+<h3>2. Tage zwischen zwei Daten</h3>
+<p>Trage zwei Daten ein, und du erhältst die Anzahl der Tage dazwischen, die Dauer in Wochen, in Jahren, Monaten und Tagen sowie in Stunden und Minuten. Zusätzlich werden Werktage von Montag bis Freitag, Wochenendtage und Feiertage gezählt. Mit der Option „Enddatum mitzählen“ schließt du beide Tage ein. Mit „Daten tauschen“ vertauschst du Start und Ende mit einem Klick.</p>
+<h3>3. Datumsinfo</h3>
+<p>Für ein einzelnes Datum erfährst du den Wochentag, die ISO-Kalenderwoche, den Tag des Jahres, die verbleibenden Tage bis Jahresende, das Quartal, die Länge des Monats und ob es sich um ein Schaltjahr handelt.</p>
+
+<h2>Wie rechnet der Datumsrechner mit Monaten und Jahren?</h2>
+<p>Monate sind keine feste Anzahl von Tagen, deshalb gibt es bei Monatsrechnungen eine Regel: Das Tool behält den Tag des Monats bei, soweit er existiert. Addierst du einen Monat zum 15. Januar, erhältst du den 15. Februar. Gibt es den Zieltag nicht, etwa beim Addieren eines Monats zum 31. Januar, ergibt das den letzten Tag des Zielmonats, hier den 28. oder 29. Februar. Auch beim Addieren von Jahren zum 29. Februar eines Schaltjahres landest du im Folgejahr am 28. Februar. Das Ergebnis weist dich in diesen Fällen darauf hin.</p>
+<p>Für den Abstand in Jahren, Monaten und Tagen verwendet das Tool die übliche Kalenderrechnung: Zuerst werden volle Jahre abgezogen, dann volle Monate, und der Rest sind Tage. Fehlt beim Tagesvergleich etwas, wird der vorherige Monat als Länge herangezogen. Diese Methode entspricht dem, wie Menschen Zeiträume im Alltag benennen.</p>
+
+<h2>Werktage berechnen: mit und ohne Feiertage</h2>
+<p>Werktage sind im Büroalltag die Tage von Montag bis Freitag. Lieferzeiten, Zahlungsfristen und Bearbeitungszeiten werden häufig in Werktagen angegeben. Das Tool überspringt beim Addieren und Subtrahieren Samstage und Sonntage. Wähle zusätzlich dein Bundesland, werden auch die gesetzlichen Feiertage übersprungen, einschließlich beweglicher Feiertage wie Karfreitag, Ostermontag, Christi Himmelfahrt, Pfingstmontag und Fronleichnam. Bei der Berechnung zwischen zwei Daten zeigt das Tool, wie viele Werktage nach Abzug von Feiertagen verbleiben.</p>
+<p>Beachte, dass Gesetze, Branchen und Verträge Werktage unterschiedlich definieren und teils auch den Samstag mitzählen. Klärst du eine konkrete Vertragsfrist, prüfe die genaue Definition.</p>
+
+<h2>Anwendungsbeispiele</h2>
+<ul>
+<li><b>Fristen im Alltag:</b> Widerrufsfrist, Kündigungsfrist, Rückgabefrist: Du addierst die Tage und siehst das Enddatum samt Wochentag.</li>
+<li><b>Projektplanung:</b> Wann ist der Meilenstein, wenn die Aufgabe 25 Werktage dauert? Mit Feiertagen deines Bundeslandes bekommst du ein realistisches Datum.</li>
+<li><b>Schwangerschaft und Familie:</b> Zeiträume in Wochen und Tagen lassen sich schnell berechnen. Für medizinische Fragen gilt jedoch immer die Einschätzung deiner Ärztin oder deines Arztes.</li>
+<li><b>Reise und Urlaub:</b> Wie viele Tage dauert der Urlaub, und wie viele Werktage fallen darin an?</li>
+<li><b>Verträge und Abonnements:</b> Laufzeitenden berechnen und rechtzeitig kündigen.</li>
+<li><b>Lernen und Studium:</b> Abgaben und Prüfungen planen, Lernzeiträume in Wochen aufteilen.</li>
+<li><b>Jubiläen:</b> Wie viele Tage ist man schon zusammen? Zeiträume in Tagen und Jahren zeigen das auf einen Blick.</li>
+</ul>
+
+<h2>Inklusive oder exklusive Enddatum: der Unterschied</h2>
+<p>Die häufigste Frage bei Zeiträumen lautet: Zählt der Endtag mit? Zwischen dem 1. und dem 10. des Monats liegen neun Tage, wenn du nur die Differenz berechnest. Zählst du beide Tage mit, ergeben sich zehn Tage. Welche Variante die richtige ist, hängt vom Zweck ab. Bei „Wie viele Tage dauert der Urlaub vom 1. bis 10.?“ zählst du beide Tage und erhältst zehn. Bei „Wie viele Tage sind es noch bis zum 10.?“ nutzt du die Differenz. Mit der Option „Enddatum mitzählen“ schaltest du zwischen beiden Sichtweisen um.</p>
+<p>Bei rechtlichen Fristen gelten feste Regeln, in Deutschland unter anderem in den Paragrafen 187 bis 193 des Bürgerlichen Gesetzbuchs. Nach der Grundregel wird der Tag des Ereignisses nicht mitgezählt, und fällt das Fristende auf einen Samstag, Sonntag oder Feiertag, endet die Frist am nächsten Werktag. Der Datumsrechner bildet solche Sonderregeln nicht ab. Für verbindliche Fristen in Verträgen oder Verfahren hole dir fachlichen Rat ein.</p>
+
+<h2>Typische Probleme und Lösungen</h2>
+<h3>Mein Ergebnis weicht um einen Tag ab</h3>
+<p>Prüfe, ob du das Enddatum mitzählen wolltest. Das ist die häufigste Ursache. Schalte die Option um und vergleiche.</p>
+<h3>Das Ergebnis liegt am Monatsende, nicht am gleichen Tag</h3>
+<p>Wenn der Zieltag im Zielmonat nicht existiert, setzt das Tool den letzten Tag des Monats. Ein Hinweis erscheint unter dem Ergebnis.</p>
+<h3>Werktage stimmen nicht mit meiner Erwartung überein</h3>
+<p>Wähle das richtige Bundesland aus. Ohne Auswahl werden nur Wochenenden übersprungen. Lokale Feiertage wie das Augsburger Friedensfest sind nicht enthalten, und Brückentage oder Betriebsurlaub kennt das Tool nicht.</p>
+<h3>Zwischen zwei Daten kommt eine negative Zahl</h3>
+<p>Das Tool zeigt immer den positiven Abstand an und weist darauf hin, wenn Datum 2 vor Datum 1 liegt.</p>
+<h3>Die Kalenderwoche stimmt nicht mit meinem Kalender überein</h3>
+<p>Das Tool nutzt die ISO-Norm 8601: Die Woche beginnt am Montag, und die erste Kalenderwoche enthält den ersten Donnerstag des Jahres. Kalender in den USA zählen anders, dort beginnt die Woche am Sonntag.</p>
+
+<h2>Tipps für genaue Berechnungen</h2>
+<ul>
+<li>Kläre bei jeder Frist, ob der Starttag und der Endtag zählen.</li>
+<li>Wähle für Werktage dein Bundesland, damit Feiertage korrekt berücksichtigt werden.</li>
+<li>Rechne bei Monaten mit dem Hinweis auf den Monatsletzten.</li>
+<li>Für eine Altersangabe in Jahren, Monaten und Tagen, bis zum nächsten Geburtstag oder zum Sternzeichen ist der Altersrechner die bessere Wahl.</li>
+<li>Um Termine übersichtlich zu planen, nutze den Kalender Generator mit Feiertagen und Kalenderwochen.</li>
+</ul>
+
+<h2>Datenschutz</h2>
+<p>Alle Berechnungen erfolgen im Browser. Deine Datumsangaben werden nicht gespeichert und nicht an einen Server gesendet.</p>
+
+<h2>Häufige Fragen zum Datumsrechner</h2>
+<h3>Ist der Datumsrechner kostenlos?</h3>
+<p>Ja, ohne Anmeldung und ohne Einschränkung.</p>
+<h3>Wie berechne ich die Tage zwischen zwei Daten?</h3>
+<p>Wechsle zum Reiter „Tage zwischen zwei Daten“, trage beide Daten ein, und das Tool zeigt die Differenz in Tagen, Wochen, Monaten, Jahren, Werktagen und Stunden.</p>
+<h3>Wie viele Tage hat ein Jahr?</h3>
+<p>Ein gewöhnliches Jahr hat 365 Tage, ein Schaltjahr 366. Schaltjahre sind durch vier teilbar, mit der Ausnahme von Jahrhundertjahren, die nur dann Schaltjahre sind, wenn sie durch 400 teilbar sind.</p>
+<h3>Kann ich Daten in der Vergangenheit berechnen?</h3>
+<p>Ja, sowohl in die Vergangenheit als auch in die Zukunft. Mit „Subtrahieren“ gehst du zurück.</p>
+<h3>Berücksichtigt das Tool die Zeitumstellung?</h3>
+<p>Das Tool rechnet mit reinen Kalendertagen. Die Zeitumstellung beeinflusst die Tagesanzahl nicht.</p>
+<p>Weitere Zeit- und Planungstools findest du oben unter „Passende Tools“, zum Beispiel den Altersrechner, den Geburtstags Countdown und den Kalender Generator.</p>
+
+</article>
+</div>
+</main>
+<footer class="site-footer">
+  <div class="container">
+    <img src="/assets/images/logo-full.png" alt="Toolyfix">
+    <nav class="footer-links">
+      <a href="/ueber-uns.html">Über uns</a>
+      <a href="/datenschutz.html">Datenschutz</a>
+      <a href="/nutzungsbedingungen.html">Nutzungsbedingungen</a>
+      <a href="/kontakt.html">Kontakt</a>
+    </nav>
+    <p class="footer-note">© 2026 Toolyfix – Alle Tools laufen lokal in deinem Browser.</p>
+  </div>
+</footer>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script>
+function toast(m){var t=document.getElementById('toast');t.textContent=m;t.classList.add('on');clearTimeout(window._tt);window._tt=setTimeout(function(){t.classList.remove('on')},1800)}
+function copyText(s){if(navigator.clipboard&&window.isSecureContext){return navigator.clipboard.writeText(s).then(function(){toast('Kopiert')},function(){fb(s)})}fb(s)}
+function fb(s){var a=document.createElement('textarea');a.value=s;a.style.position='fixed';a.style.opacity='0';document.body.appendChild(a);a.select();try{document.execCommand('copy');toast('Kopiert')}catch(e){toast('Kopieren nicht möglich')}document.body.removeChild(a)}
+function dl(name,blob){var u=URL.createObjectURL(blob),a=document.createElement('a');a.href=u;a.download=name;document.body.appendChild(a);a.click();document.body.removeChild(a);setTimeout(function(){URL.revokeObjectURL(u)},4000)}
+
+function $(i){return document.getElementById(i)}
+var ST={BW:'Baden-Württemberg',BY:'Bayern',BE:'Berlin',BB:'Brandenburg',HB:'Bremen',HH:'Hamburg',HE:'Hessen',MV:'Mecklenburg-Vorpommern',NI:'Niedersachsen',NW:'Nordrhein-Westfalen',RP:'Rheinland-Pfalz',SL:'Saarland',SN:'Sachsen',ST:'Sachsen-Anhalt',SH:'Schleswig-Holstein',TH:'Thüringen'};
+['ast','bst'].forEach(function(id){var s=$(id),o=document.createElement('option');o.value='';o.textContent=id==='ast'?'Nur Wochenenden überspringen':'Keine Feiertage abziehen';s.appendChild(o);o=document.createElement('option');o.value='DE';o.textContent='Bundesweite Feiertage';s.appendChild(o);Object.keys(ST).forEach(function(k){o=document.createElement('option');o.value=k;o.textContent=ST[k];s.appendChild(o)})});
+function pad(n){return n<10?'0'+n:''+n}
+function key(y,m,d){return y+'-'+pad(m+1)+'-'+pad(d)}
+function P(v){if(!v)return null;var p=v.split('-');return new Date(+p[0],+p[1]-1,+p[2])}
+function U(d){return Date.UTC(d.getFullYear(),d.getMonth(),d.getDate())}
+function dd(a,b){return Math.round((U(b)-U(a))/864e5)}
+function dim(y,m){return new Date(y,m+1,0).getDate()}
+function fd(d){return d.toLocaleDateString('de-DE',{weekday:'long',day:'numeric',month:'long',year:'numeric'})}
+function iso(d){return d.getFullYear()+'-'+pad(d.getMonth()+1)+'-'+pad(d.getDate())}
+function num(n){return n.toLocaleString('de-DE')}
+function pl(n,s,p){return num(n)+' '+(n===1?s:p)}
+function easter(y){var a=y%19,b=Math.floor(y/100),c=y%100,d=Math.floor(b/4),e=b%4,f=Math.floor((b+8)/25),g=Math.floor((b-f+1)/3),h=(19*a+b-d-g+15)%30,i=Math.floor(c/4),k=c%4,l=(32+2*e+2*i-h-k)%7,m=Math.floor((a+11*h+22*l)/451),mo=Math.floor((h+l-7*m+114)/31),da=((h+l-7*m+114)%31)+1;return new Date(y,mo-1,da)}
+var hc={};
+function holidays(y,st){
+ var ck=y+'|'+st;if(hc[ck])return hc[ck];
+ var e=easter(y),h={};
+ function add(d,n){h[key(d.getFullYear(),d.getMonth(),d.getDate())]=n}
+ function off(o){return new Date(e.getFullYear(),e.getMonth(),e.getDate()+o)}
+ function fx(m,d){return new Date(y,m-1,d)}
+ function is(l){return l.indexOf(st)>-1}
+ add(fx(1,1),'Neujahr');
+ if(is(['BW','BY','ST']))add(fx(1,6),'Heilige Drei Könige');
+ if((y>=2019&&is(['BE']))||(y>=2023&&is(['MV'])))add(fx(3,8),'Internationaler Frauentag');
+ add(off(-2),'Karfreitag');
+ if(is(['BB']))add(off(0),'Ostersonntag');
+ add(off(1),'Ostermontag');
+ add(fx(5,1),'Tag der Arbeit');
+ add(off(39),'Christi Himmelfahrt');
+ if(is(['BB']))add(off(49),'Pfingstsonntag');
+ add(off(50),'Pfingstmontag');
+ if(is(['BW','BY','HE','NW','RP','SL']))add(off(60),'Fronleichnam');
+ if(is(['SL']))add(fx(8,15),'Mariä Himmelfahrt');
+ if(y>=2019&&is(['TH']))add(fx(9,20),'Weltkindertag');
+ add(fx(10,3),'Tag der Deutschen Einheit');
+ var ref=['BB','MV','SN','ST','TH'];if(y>=2018)ref=ref.concat(['HB','HH','NI','SH']);
+ if(is(ref))add(fx(10,31),'Reformationstag');
+ if(is(['BW','BY','NW','RP','SL']))add(fx(11,1),'Allerheiligen');
+ if(is(['SN'])){var b=new Date(y,10,22);while(b.getDay()!==3)b.setDate(b.getDate()-1);add(b,'Buß- und Bettag')}
+ add(fx(12,25),'1. Weihnachtstag');add(fx(12,26),'2. Weihnachtstag');
+ hc[ck]=h;return h;
+}
+function isHol(d,st){return st?!!holidays(d.getFullYear(),st)[key(d.getFullYear(),d.getMonth(),d.getDate())]:false}
+function addM(d,n){var m=d.getMonth()+n,y=d.getFullYear()+Math.floor(m/12),nm=((m%12)+12)%12;return new Date(y,nm,Math.min(d.getDate(),dim(y,nm)))}
+function addWD(d,n,st){var step=n<0?-1:1,c=Math.abs(n),cur=new Date(d),g=0;while(c>0&&g++<400000){cur.setDate(cur.getDate()+step);var w=cur.getDay();if(w!==0&&w!==6&&!isHol(cur,st))c--}return cur}
+function isoWeek(d){var t=new Date(Date.UTC(d.getFullYear(),d.getMonth(),d.getDate()));var n=t.getUTCDay()||7;t.setUTCDate(t.getUTCDate()+4-n);var y0=new Date(Date.UTC(t.getUTCFullYear(),0,1));return Math.ceil(((t-y0)/864e5+1)/7)}
+function doy(d){return dd(new Date(d.getFullYear(),0,1),d)+1}
+function leap(y){return(y%4===0&&y%100!==0)||y%400===0}
+function card(a){return'<div class="cd">'+a.map(function(x){return'<div><b>'+x[0]+'</b><span>'+x[1]+'</span></div>'}).join('')+'</div>'}
+function runA(){
+ var d=P($('a1').value),n=parseInt($('n').value,10),u=$('u').value,sg=+$('op').value,o=$('aout');
+ $('aw').classList.toggle('hid',u!=='wd');
+ if(!d||isNaN(n)){o.innerHTML='';return}
+ var r,st=$('ast').value==='DE'?'DE':$('ast').value;
+ if(u==='d')r=new Date(d.getFullYear(),d.getMonth(),d.getDate()+sg*n);
+ else if(u==='w')r=new Date(d.getFullYear(),d.getMonth(),d.getDate()+sg*n*7);
+ else if(u==='m')r=addM(d,sg*n);
+ else if(u==='y')r=addM(d,sg*n*12);
+ else r=addWD(d,sg*n,st);
+ var diff=dd(d,r),t=dd(new Date(),r),
+ txt=t===0?'heute':t>0?'in '+pl(t,'Tag','Tagen'):'vor '+pl(-t,'Tag','Tagen');
+ o.innerHTML='<div class="big"><span>Ergebnis</span><b>'+fd(r)+'</b></div>'+card([[pl(Math.abs(diff),'Tag','Tage'),'Abstand zum Startdatum'],['KW '+isoWeek(r),'Kalenderwoche'],['Tag '+doy(r),'Tag des Jahres'],['Quartal '+(Math.floor(r.getMonth()/3)+1),'Quartal'],[txt,'Abstand zu heute']])+((u==='m'||u==='y')&&d.getDate()>dim(r.getFullYear(),r.getMonth())-0&&d.getDate()!==r.getDate()?'<div class="warn">Der Zieltag existiert in diesem Monat nicht. Das Ergebnis ist der letzte Tag des Monats.</div>':'');
+}
+['a1','op','n','u','ast'].forEach(function(i){$(i).addEventListener('input',runA)});
+function ymd(a,b){var y=b.getFullYear()-a.getFullYear(),m=b.getMonth()-a.getMonth(),d=b.getDate()-a.getDate();if(d<0){m--;d+=dim(b.getFullYear(),b.getMonth()-1)}if(m<0){y--;m+=12}return[y,m,d]}
+function runB(){
+ var a=P($('b1').value),b=P($('b2').value),o=$('bout');
+ if(!a||!b){o.innerHTML='';return}
+ var rev=b<a;if(rev){var t=a;a=b;b=t}
+ var inc=$('inc').checked,days=dd(a,b),tot=days+(inc?1:0),st=$('bst').value,wd=0,we=0,hol=0,end=tot;
+ for(var i=0,d=new Date(a);i<end&&i<400000;i++){var w=d.getDay();if(w===0||w===6)we++;else if(st&&isHol(d,st))hol++;else wd++;d.setDate(d.getDate()+1)}
+ var y=ymd(a,b),mo=y[0]*12+y[1],ps=[];
+ if(y[0])ps.push(pl(y[0],'Jahr','Jahre'));if(y[1])ps.push(pl(y[1],'Monat','Monate'));if(y[2]||!ps.length)ps.push(pl(y[2],'Tag','Tage'));
+ var wk=Math.floor(tot/7),rd=tot%7;
+ o.innerHTML='<div class="big"><span>'+(inc?'Tage inklusive Enddatum':'Tage zwischen den Daten')+'</span><b>'+pl(tot,'Tag','Tage')+'</b><span>'+ps.join(', ')+(inc?' (ohne Enddatum gerechnet)':'')+'</span></div>'
+  +card([[pl(wk,'Woche','Wochen')+(rd?' und '+pl(rd,'Tag','Tage'):''),'Wochen'],[num(mo)+' Monate und '+y[2]+' Tage','Kalendermonate'],[pl(wd,'Werktag','Werktage'),'Mo bis Fr'+(st?', ohne Feiertage':'')],[pl(we,'Tag','Tage'),'Wochenendtage (Sa, So)'],[st?pl(hol,'Feiertag','Feiertage'):'–','Feiertage an Werktagen'],[num(tot*24)+' Std.','Stunden gesamt'],[num(tot*1440)+' Min.','Minuten gesamt']])
+  +(rev?'<div class="warn">Datum 2 liegt vor Datum 1. Das Ergebnis zeigt den Abstand trotzdem als positive Zahl.</div>':'');
+}
+['b1','b2','bst','inc'].forEach(function(i){$(i).addEventListener('input',runB)});
+$('swap').onclick=function(){var t=$('b1').value;$('b1').value=$('b2').value;$('b2').value=t;runB()};
+function runC(){
+ var d=P($('c1').value),o=$('cout');if(!d){o.innerHTML='';return}
+ var y=d.getFullYear(),t=dd(new Date(),d),yl=leap(y)?366:365,doyv=doy(d);
+ o.innerHTML='<div class="big"><span>Datum</span><b>'+fd(d)+'</b></div>'+card([[d.toLocaleDateString('de-DE',{weekday:'long'}),'Wochentag'],['KW '+isoWeek(d),'Kalenderwoche (ISO 8601)'],['Tag '+doyv+' von '+yl,'Tag des Jahres'],[pl(yl-doyv,'Tag','Tage'),'Bis Jahresende'],['Quartal '+(Math.floor(d.getMonth()/3)+1),'Quartal'],[pl(dim(y,d.getMonth()),'Tag','Tage'),'Länge des Monats'],[leap(y)?'Ja':'Nein','Schaltjahr'],[t===0?'Heute':t>0?'in '+pl(t,'Tag','Tagen'):'vor '+pl(-t,'Tag','Tagen'),'Abstand zu heute']]);
+}
+$('c1').addEventListener('input',runC);
+[].forEach.call(document.querySelectorAll('[data-today]'),function(b){b.onclick=function(){$(b.dataset.today).value=iso(new Date());runA();runB();runC()}});
+function mode(k){['A','B','C'].forEach(function(x,i){$('s'+x).classList.toggle('hid',i+1!==k);$('m'+(i+1)).classList.toggle('on',i+1===k)})}
+[1,2,3].forEach(function(k){$('m'+k).onclick=function(){mode(k)}});
+
+</script>
+</body>
+</html>

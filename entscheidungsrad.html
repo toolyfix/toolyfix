@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Entscheidungsrad online – Glücksrad drehen | Toolyfix</title>
+<meta name="description" content="Entscheidungsrad: Optionen eingeben, Rad drehen, Gewinner ermitteln. Mit Gewichtung, Eliminierung und Verlauf. Kostenlos, ohne Anmeldung.">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+<link rel="canonical" href="https://toolyfix.de/tools/entscheidungsrad">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Toolyfix">
+<meta property="og:locale" content="de_DE">
+<meta property="og:title" content="Entscheidungsrad online – Glücksrad drehen | Toolyfix">
+<meta property="og:description" content="Entscheidungsrad: Optionen eingeben, Rad drehen, Gewinner ermitteln. Mit Gewichtung, Eliminierung und Verlauf. Kostenlos, ohne Anmeldung.">
+<meta property="og:url" content="https://toolyfix.de/tools/entscheidungsrad">
+<meta property="og:image" content="https://toolyfix.de/assets/og/entscheidungsrad.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Toolyfix: Entscheidungsrad">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Entscheidungsrad online – Glücksrad drehen | Toolyfix">
+<meta name="twitter:description" content="Entscheidungsrad: Optionen eingeben, Rad drehen, Gewinner ermitteln. Mit Gewichtung, Eliminierung und Verlauf. Kostenlos, ohne Anmeldung.">
+<meta name="twitter:image" content="https://toolyfix.de/assets/og/entscheidungsrad.jpg">
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "WebApplication", "name": "Entscheidungsrad", "url": "https://toolyfix.de/tools/entscheidungsrad", "description": "Entscheidungsrad: Optionen eingeben, Rad drehen, Gewinner ermitteln. Mit Gewichtung, Eliminierung und Verlauf. Kostenlos, ohne Anmeldung.", "applicationCategory": "EntertainmentApplication", "operatingSystem": "Any (Webbrowser)", "browserRequirements": "Benötigt JavaScript", "inLanguage": "de", "isAccessibleForFree": true, "image": "https://toolyfix.de/assets/og/entscheidungsrad.jpg", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "EUR"}, "publisher": {"@type": "Organization", "name": "Toolyfix", "url": "https://toolyfix.de/"}}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Startseite", "item": "https://toolyfix.de/"}, {"@type": "ListItem", "position": 2, "name": "Entscheidungsrad", "item": "https://toolyfix.de/tools/entscheidungsrad"}]}]}</script>
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="stylesheet" href="/assets/style.css">
+<style>
+:root{--bg:#F7F7F4;--ink:#1A1A1A;--blue:#1D3557;--amber:#E9A93B;--line:#dcdcd2;--card:#fff;--mut:#5b6470;--bad:#b3261e;--ok:#1f7a45}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{background:var(--bg);color:var(--ink);margin:0;font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;line-height:1.6}
+.tf-wrap{max-width:1000px;margin:0 auto;padding:22px 16px 56px}
+.tf-wrap h1{font-size:clamp(1.6rem,4.4vw,2.3rem);line-height:1.15;margin:.2em 0 .3em;color:var(--blue)}
+.tf-intro{color:var(--mut);margin:0 0 14px;max-width:70ch}
+.tf-related{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:0 0 18px;padding:10px 12px;background:#fff;border:1px solid var(--line);border-radius:10px;font-size:.92rem}
+.tf-related b{color:var(--blue);margin-right:4px}
+.tf-related a{color:var(--blue);background:#eef1f6;border-radius:999px;padding:4px 12px;text-decoration:none;font-weight:500}
+.tf-related a:hover,.tf-related a:focus-visible{background:var(--blue);color:#fff;outline:none}
+.tf-card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px;margin-bottom:16px}
+.tf-card h2{font-size:1.05rem;margin:0 0 10px;color:var(--blue)}
+.tf-grid{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(170px,1fr))}
+.tf-wrap label{display:block;font-size:.82rem;font-weight:600;margin:0 0 4px;color:#333}
+.tf-wrap input[type=text],.tf-wrap input[type=number],.tf-wrap input[type=date],.tf-wrap select,.tf-wrap textarea{width:100%;padding:9px 10px;border:1px solid #c9c9bf;border-radius:8px;font:inherit;background:#fff;color:var(--ink)}
+.tf-wrap input[type=color]{width:100%;height:40px;border:1px solid #c9c9bf;border-radius:8px;padding:2px;background:#fff}
+.tf-wrap textarea{min-height:130px;resize:vertical}
+.tf-wrap input:focus-visible,.tf-wrap select:focus-visible,.tf-wrap textarea:focus-visible,.btn:focus-visible{outline:3px solid var(--amber);outline-offset:1px}
+.btn{font:inherit;font-weight:600;padding:9px 16px;border-radius:8px;border:1px solid var(--blue);background:#fff;color:var(--blue);cursor:pointer}
+.btn:hover{background:#eef1f6}
+.btn.pri{background:var(--blue);color:#fff}
+.btn.pri:hover{background:#16294a}
+.btn.amb{background:var(--amber);border-color:var(--amber);color:#1A1A1A}
+.btn[disabled]{opacity:.5;cursor:not-allowed}
+.tf-btns{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.chk{display:flex;gap:8px;align-items:center;font-weight:500;font-size:.92rem;margin:6px 0}
+.chk input{width:18px;height:18px}
+.tf-article{margin-top:34px;background:#fff;border:1px solid var(--line);border-radius:12px;padding:22px 20px}
+.tf-article h2{color:var(--blue);font-size:1.4rem;margin:1.4em 0 .4em;line-height:1.25}
+.tf-article h2:first-child{margin-top:0}
+.tf-article h3{font-size:1.1rem;margin:1.1em 0 .3em}
+.tf-article p,.tf-article li{max-width:75ch}
+.tf-article table{border-collapse:collapse;width:100%;font-size:.92rem;display:block;overflow-x:auto}
+.tf-article th,.tf-article td{border:1px solid var(--line);padding:6px 10px;text-align:left}
+.tf-article th{background:#eef1f6}
+.toast{position:fixed;left:50%;bottom:22px;transform:translateX(-50%);background:var(--blue);color:#fff;padding:9px 18px;border-radius:999px;font-size:.9rem;opacity:0;pointer-events:none;transition:opacity .2s;z-index:50}
+.toast.on{opacity:1}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+@media print{.site-header,.site-footer,.tf-related,.tf-intro,.tf-wrap>h1,.tf-article,.tf-noprint,.toast{display:none!important}body{background:#fff}.tf-wrap{padding:0;max-width:none}}
+
+.lay{display:grid;gap:16px;grid-template-columns:minmax(0,1fr) minmax(0,1fr);align-items:start}
+@media(max-width:760px){.lay{grid-template-columns:1fr}}
+.wh{display:flex;justify-content:center}
+#wheel{display:block;max-width:100%;cursor:pointer;touch-action:manipulation}
+.win{background:var(--blue);color:#fff;border-radius:12px;padding:14px;text-align:center;margin-top:12px;min-height:74px}
+.win b{display:block;font-size:clamp(1.3rem,5vw,2rem);overflow-wrap:anywhere}
+.win span{opacity:.85;font-size:.9rem}
+.opt{width:100%;min-height:260px;font-size:1rem}
+.pre{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+.pre button{border:1px solid var(--line);background:#fff;border-radius:999px;padding:6px 14px;font:inherit;font-size:.86rem;cursor:pointer;color:var(--blue);font-weight:600}
+.pre button:hover{background:#eef1f6}
+.hl{list-style:none;margin:8px 0 0;padding:0;max-height:240px;overflow:auto}
+.hl li{padding:6px 0;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;gap:10px;font-size:.92rem}
+.hl li span{color:var(--mut);font-size:.82rem;white-space:nowrap}
+.cnt{font-size:.85rem;color:var(--mut);margin:6px 0 0}
+</style>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-F9VY193ZMP"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-F9VY193ZMP');</script>
+</head>
+<body>
+<header class="site-header">
+  <div class="container">
+    <a href="/" class="logo-link"><img src="/assets/images/logo-full.png" alt="Toolyfix"></a>
+    <span class="header-tagline">Kostenlose Tools, direkt im Browser</span>
+  </div>
+</header>
+<main>
+<div class="tf-wrap">
+<h1>Entscheidungsrad</h1>
+<p class="tf-intro">Gib deine Optionen ein, drehe das Rad und lass den Zufall entscheiden. Mit Gewichtung, Eliminierungs-Modus, Farbpaletten und Verlauf, ideal für Auslosungen, Spiele und Alltagsfragen.</p>
+<nav class="tf-related" aria-label="Passende Tools"><b>Passende Tools:</b><a href="/tools/muenzwurf">Münzwurf</a><a href="/tools/wuerfel-online">Würfel Online</a><a href="/tools/bingo-karten-generator">Bingo Karten Generator</a><a href="/tools/alphabetisch-sortieren">Alphabetisch Sortieren</a></nav>
+
+<div class="lay">
+<section class="tf-card">
+<div class="wh"><canvas id="wheel" aria-label="Entscheidungsrad. Klicken zum Drehen" role="img"></canvas></div>
+<div class="win" id="win" aria-live="polite"><b>Bereit</b><span>Tippe auf das Rad oder auf „Drehen“</span></div>
+<div class="tf-btns" style="justify-content:center"><button class="btn pri" id="spin" type="button" style="font-size:1.1rem;padding:12px 34px">Drehen</button></div>
+</section>
+<section class="tf-card">
+<h2>Optionen</h2>
+<label for="opt">Eine Option pro Zeile</label>
+<textarea class="opt" id="opt" placeholder="Option eintragen. Mit „*3“ am Ende erhöhst du die Gewinnchance."></textarea>
+<p class="cnt" id="cnt"></p>
+<div class="pre" id="pre"></div>
+<div class="tf-btns"><button class="btn" id="shuf" type="button">Mischen</button><button class="btn" id="clr" type="button">Leeren</button></div>
+</section>
+</div>
+<section class="tf-card">
+<h2>Einstellungen</h2>
+<div class="tf-grid">
+<div><label for="spd">Drehdauer</label><select id="spd"><option value="3">Kurz (3 Sekunden)</option><option value="5" selected>Mittel (5 Sekunden)</option><option value="8">Lang (8 Sekunden)</option></select></div>
+<div><label for="pal">Farben</label><select id="pal"><option value="bunt">Bunt</option><option value="blau">Blautöne</option><option value="pastell">Pastell</option></select></div>
+</div>
+<label class="chk"><input type="checkbox" id="elim"> Gewinner nach dem Drehen entfernen (Eliminierung)</label>
+<label class="chk"><input type="checkbox" id="snd"> Ton beim Drehen</label>
+</section>
+<section class="tf-card">
+<h2>Verlauf</h2>
+<ul class="hl" id="hl"></ul>
+<p class="cnt" id="hn">Noch keine Ergebnisse.</p>
+<div class="tf-btns"><button class="btn" id="hc" type="button">Verlauf löschen</button></div>
+</section>
+
+<article class="tf-article">
+
+<h2>Entscheidungsrad: Das Glücksrad für Entscheidungen, Auslosungen und Spiele</h2>
+<p>Wohin gehen wir essen? Wer räumt die Spülmaschine aus? Welcher Schüler hält das Referat? Wer bekommt den Gewinn? Wenn mehrere Möglichkeiten gleich gut oder gleich lästig sind, hilft nur eines: der Zufall. Das Entscheidungsrad von Toolyfix ist ein digitales Glücksrad, das du mit beliebigen Optionen füllst. Ein Klick, und das Rad dreht sich, wird langsamer und bleibt bei einem Gewinner stehen. Die Entscheidung ist fair, nachvollziehbar und macht dabei auch noch Spaß. Das Rad läuft direkt im Browser, ohne Anmeldung, ohne Installation und ohne dass deine Eingaben irgendwo gespeichert werden.</p>
+<p>Anders als ein Münzwurf mit zwei Seiten oder ein Würfel mit sechs Zahlen kann das Entscheidungsrad beliebig viele Optionen enthalten: zwei, zehn oder bis zu hundert. Du schreibst sie einfach untereinander und siehst das Rad sofort entstehen.</p>
+
+<h2>Funktionen des Entscheidungsrads</h2>
+<ul>
+<li><b>Bis zu 100 Optionen:</b> Gib eine Option pro Zeile ein. Das Rad passt sich automatisch an, Beschriftungen werden bei Bedarf verkleinert oder gekürzt.</li>
+<li><b>Gewichtung:</b> Mit einem „*“ und einer Zahl am Zeilenende vergrößerst du die Gewinnchance. „Pizza*3“ bekommt ein dreimal so großes Segment wie eine Option ohne Zusatz. So lassen sich Wahrscheinlichkeiten abstufen.</li>
+<li><b>Eliminierungs-Modus:</b> Wenn du „Gewinner entfernen“ aktivierst, verschwindet das gezogene Ergebnis nach dem Drehen aus der Liste. Perfekt für Auslosungen, bei denen jede Person nur einmal drankommen soll.</li>
+<li><b>Drehdauer wählen:</b> Kurz, mittel oder lang, je nachdem, wie viel Spannung du möchtest.</li>
+<li><b>Drei Farbpaletten:</b> Bunt, Blautöne und Pastell. Die Schriftfarbe passt sich an die Segmentfarbe an, damit alles gut lesbar bleibt.</li>
+<li><b>Ton:</b> Optional klickt das Rad beim Drehen und spielt am Ende eine kurze Melodie.</li>
+<li><b>Mischen und Vorlagen:</b> Mit einem Klick mischst du die Reihenfolge der Optionen oder lädst Vorlagen wie „Ja / Nein“, „Was essen?“ oder „Wochentage“.</li>
+<li><b>Verlauf:</b> Alle Ergebnisse der Sitzung stehen mit Uhrzeit in einer Liste.</li>
+</ul>
+
+<h2>So benutzt du das Entscheidungsrad</h2>
+<ol>
+<li>Trage rechts im Feld deine Optionen ein, jede in eine eigene Zeile. Alternativ wählst du eine Vorlage.</li>
+<li>Passe bei Bedarf Farben, Drehdauer und Ton an.</li>
+<li>Klicke auf das Rad oder auf „Drehen“.</li>
+<li>Warte, bis das Rad stehen bleibt. Der rote Zeiger oben zeigt den Gewinner, der zusätzlich groß unter dem Rad erscheint.</li>
+<li>Wenn du weiterlosen möchtest, drehe erneut oder aktiviere den Eliminierungs-Modus.</li>
+</ol>
+
+<h2>Wie fair ist das Entscheidungsrad?</h2>
+<p>Der Gewinner wird mit der Zufallsfunktion deines Browsers ausgewählt, die auf sicheren Zufallsquellen des Betriebssystems beruht. Jede Option erhält genau die Chance, die ihrer Segmentgröße entspricht. Die Animation dient nur der Darstellung, sie beeinflusst das Ergebnis nicht. Ohne Gewichtung hat jede Option dieselbe Wahrscheinlichkeit. Mit Gewichtung steigt die Chance proportional: Bei „A*3“ und „B“ gewinnt A mit einer Wahrscheinlichkeit von 75 Prozent und B mit 25 Prozent. Dass sich das Rad dabei physisch „wirklich“ so verhält, ist eine Illusion, denn das Ergebnis steht schon fest, bevor es sich dreht. Für Auslosungen ist das kein Nachteil, denn entscheidend ist ein unabhängiger, nicht beeinflussbarer Zufall.</p>
+
+<h2>Anwendungsbeispiele für das Glücksrad</h2>
+<h3>Alltag und Familie</h3>
+<p>Was gibt es heute zum Abendessen? Welchen Film schauen wir? Wer ist mit Abwaschen dran? Bei Familien und Wohngemeinschaften beendet das Rad Diskussionen. Kinder lieben es besonders, wenn sie das Rad selbst drehen dürfen. Mit der Gewichtung lässt sich außerdem eine Vorliebe abbilden, etwa wenn die Pizza öfter gewählt werden soll, aber nicht immer.</p>
+<h3>Schule und Unterricht</h3>
+<p>Lehrkräfte nutzen das Rad, um Schülerinnen und Schüler aufzurufen, Gruppen einzuteilen oder Themen zu verteilen. Im Eliminierungs-Modus kommt jede Person genau einmal dran, bis alle Namen verbraucht sind. Das wirkt gerecht, weil niemand das Gefühl hat, übergangen zu werden.</p>
+<h3>Team, Büro und Meetings</h3>
+<p>Wer moderiert das Meeting? Wer schreibt das Protokoll? Wer bringt den Kuchen mit? Das Rad nimmt Entscheidungen die Schwere und macht Rituale lebendig. Auch für Brainstormings und Retrospektiven lassen sich Themen zufällig auswählen.</p>
+<h3>Gewinnspiele und Verlosungen</h3>
+<p>Bei Social-Media-Aktionen, Vereinsfesten oder Tombolas lässt sich ein Gewinner live per Bildschirm ziehen. Beachte bei öffentlichen Gewinnspielen die rechtlichen Vorgaben und Teilnahmebedingungen der jeweiligen Plattform sowie das Datenschutzrecht, wenn du Namen von Teilnehmenden verwendest.</p>
+<h3>Spiele und Partys</h3>
+<p>Wahrheit oder Pflicht, Partyspiele, Rollenspiele oder Trinkspiele: Mit eigenen Aufgaben auf dem Rad entsteht schnell ein Spiel. Für Zahlenreihen wie 1 bis 75 kann das Rad auch als Zahlenziehung dienen. Für Bingo-Karten gibt es den Bingo Karten Generator.</p>
+<h3>Kochen, Reisen und Freizeit</h3>
+<p>Welches Reiseziel? Welche Wanderung? Welches Gericht? Das Rad inspiriert, wenn man sich nicht entscheiden kann, und bringt manchmal auf Ideen, an die man sonst nicht gedacht hätte.</p>
+
+<h2>Tipps für gute Entscheidungen mit dem Rad</h2>
+<ul>
+<li><b>Nur Optionen aufnehmen, mit denen du leben kannst:</b> Setze nur Möglichkeiten aufs Rad, die du wirklich akzeptierst. Sonst entsteht Frust.</li>
+<li><b>Vorher vereinbaren:</b> Bei Gruppen sollte feststehen, dass das Ergebnis gilt. So bleibt die Entscheidung fair.</li>
+<li><b>Kurze Beschriftungen wählen:</b> Kurze Texte sind auf dem Rad gut lesbar. Lange Texte werden gekürzt dargestellt, das Ergebnis erscheint aber vollständig unter dem Rad.</li>
+<li><b>Die erste Reaktion beachten:</b> Wenn du beim Ergebnis spontan enttäuscht bist, weißt du, was du eigentlich wolltest. Manchmal ist das die eigentliche Entscheidung.</li>
+<li><b>Bei zwei Optionen:</b> Für Ja-Nein-Fragen genügt auch der Münzwurf. Das Rad lohnt sich ab drei Optionen.</li>
+<li><b>Würfeln oder drehen:</b> Wenn jede Option eine Zahl ist, kannst du auch den Würfel Online nutzen.</li>
+</ul>
+
+<h2>Typische Probleme und Lösungen</h2>
+<h3>Das Rad zeigt „Mindestens 2 Optionen eingeben“</h3>
+<p>Für ein Rad brauchst du mindestens zwei Zeilen. Leere Zeilen werden ignoriert.</p>
+<h3>Meine Beschriftungen sind sehr klein</h3>
+<p>Bei vielen Optionen werden die Segmente schmal und der Text verkleinert. Reduziere die Zahl der Optionen oder kürze die Namen. Das Ergebnis erscheint trotzdem groß unter dem Rad.</p>
+<h3>Das Rad dreht sich nicht</h3>
+<p>Während sich das Rad dreht, ist der Button gesperrt. Warte, bis es stillsteht. Auf Touchgeräten genügt ein Tipp auf das Rad.</p>
+<h3>Der Ton funktioniert nicht</h3>
+<p>Browser erlauben Ton erst nach einer Aktion. Aktiviere die Option und starte danach ein Drehen. Prüfe außerdem die Lautstärke deines Geräts.</p>
+<h3>Ich möchte dieselbe Option mehrfach auf dem Rad</h3>
+<p>Trage sie mehrfach ein oder nutze die Gewichtung mit „*“. Beides erhöht die Gewinnchance.</p>
+<h3>Meine Optionen sind nach dem Neuladen weg</h3>
+<p>Das Rad speichert nichts dauerhaft. Das ist ein Vorteil für den Datenschutz, bedeutet aber, dass du Listen, die du wiederverwenden willst, selbst aufbewahren solltest.</p>
+
+<h2>Datenschutz</h2>
+<p>Alle Optionen, Ergebnisse und Einstellungen bleiben im Arbeitsspeicher deines Browsers. Es wird nichts an einen Server gesendet. Wenn du Namen von Kindern oder Teilnehmenden eingibst, verlassen diese dein Gerät nicht.</p>
+
+<h2>Häufige Fragen zum Entscheidungsrad</h2>
+<h3>Ist das Entscheidungsrad kostenlos?</h3>
+<p>Ja, vollständig und ohne Anmeldung.</p>
+<h3>Wie viele Optionen sind möglich?</h3>
+<p>Bis zu 100. Für eine gute Lesbarkeit sind deutlich weniger sinnvoll.</p>
+<h3>Wie funktioniert die Gewichtung?</h3>
+<p>Schreibe hinter eine Option ein Sternchen und eine Zahl, zum Beispiel „Pizza*2“. Das Segment wird entsprechend größer, und die Gewinnchance steigt im gleichen Verhältnis.</p>
+<h3>Kann ich mit dem Rad Namen auslosen?</h3>
+<p>Ja. Trage die Namen untereinander ein und aktiviere bei Bedarf „Gewinner entfernen“, damit jeder Name nur einmal gezogen wird.</p>
+<h3>Wie unterscheidet sich das Rad vom Münzwurf?</h3>
+<p>Der Münzwurf kennt zwei Ausgänge, das Rad beliebig viele, dazu Gewichtung und Eliminierung.</p>
+<p>Weitere Zufallswerkzeuge findest du oben unter „Passende Tools“, zum Beispiel Münzwurf, Würfel Online und Bingo Karten Generator.</p>
+
+</article>
+</div>
+</main>
+<footer class="site-footer">
+  <div class="container">
+    <img src="/assets/images/logo-full.png" alt="Toolyfix">
+    <nav class="footer-links">
+      <a href="/ueber-uns.html">Über uns</a>
+      <a href="/datenschutz.html">Datenschutz</a>
+      <a href="/nutzungsbedingungen.html">Nutzungsbedingungen</a>
+      <a href="/kontakt.html">Kontakt</a>
+    </nav>
+    <p class="footer-note">© 2026 Toolyfix – Alle Tools laufen lokal in deinem Browser.</p>
+  </div>
+</footer>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script>
+function toast(m){var t=document.getElementById('toast');t.textContent=m;t.classList.add('on');clearTimeout(window._tt);window._tt=setTimeout(function(){t.classList.remove('on')},1800)}
+function copyText(s){if(navigator.clipboard&&window.isSecureContext){return navigator.clipboard.writeText(s).then(function(){toast('Kopiert')},function(){fb(s)})}fb(s)}
+function fb(s){var a=document.createElement('textarea');a.value=s;a.style.position='fixed';a.style.opacity='0';document.body.appendChild(a);a.select();try{document.execCommand('copy');toast('Kopiert')}catch(e){toast('Kopieren nicht möglich')}document.body.removeChild(a)}
+function dl(name,blob){var u=URL.createObjectURL(blob),a=document.createElement('a');a.href=u;a.download=name;document.body.appendChild(a);a.click();document.body.removeChild(a);setTimeout(function(){URL.revokeObjectURL(u)},4000)}
+
+function $(i){return document.getElementById(i)}
+var PAL={bunt:['#1D3557','#E9A93B','#2A9D8F','#E63946','#8E5AA8','#457B9D','#F4A261','#6A994E'],blau:['#1D3557','#2B4C7E','#457B9D','#6A9FB5','#8FC1D4','#A8DADC'],pastell:['#FFADAD','#FFD6A5','#FDFFB6','#CAFFBF','#9BF6FF','#A0C4FF','#BDB2FF','#FFC6FF']};
+var cv=$('wheel'),ctx=cv.getContext('2d'),rot=0,busy=false,AC=null,HIST=[],TAU=Math.PI*2;
+function rand(){if(window.crypto&&crypto.getRandomValues){var a=new Uint32Array(1);crypto.getRandomValues(a);return a[0]/4294967296}return Math.random()}
+function opts(){
+ return $('opt').value.split('\n').map(function(s){return s.trim()}).filter(Boolean).slice(0,100).map(function(s){
+  var m=s.match(/^(.*?)\s*\*\s*(\d+(?:[.,]\d+)?)$/),t=s,w=1;
+  if(m&&m[1]){t=m[1];w=parseFloat(m[2].replace(',','.'))||1}
+  return{t:t,w:Math.max(.1,Math.min(100,w)),raw:s};
+ });
+}
+function lum(h){var r=parseInt(h.slice(1,3),16)/255,g=parseInt(h.slice(3,5),16)/255,b=parseInt(h.slice(5,7),16)/255;return .2126*r+.7152*g+.0722*b}
+function size(){var w=Math.max(220,Math.min(cv.parentNode.clientWidth||320,460)),d=window.devicePixelRatio||1;cv.style.width=w+'px';cv.style.height=w+'px';cv.width=Math.round(w*d);cv.height=Math.round(w*d)}
+function draw(){
+ var s=cv.width,c=s/2,r=c*.93,o=opts(),tot=o.reduce(function(a,x){return a+x.w},0),col=PAL[$('pal').value];
+ ctx.clearRect(0,0,s,s);
+ if(o.length<2){
+  ctx.beginPath();ctx.arc(c,c,r,0,TAU);ctx.fillStyle='#e8e8df';ctx.fill();
+  ctx.fillStyle='#5b6470';ctx.textAlign='center';ctx.textBaseline='middle';ctx.font='600 '+(s*.045)+'px Arial,sans-serif';
+  ctx.fillText('Mindestens 2 Optionen eingeben',c,c);
+ }else{
+  var a0=0;
+  o.forEach(function(x,i){
+   var a1=a0+x.w/tot*TAU,bg=col[i%col.length];
+   ctx.beginPath();ctx.moveTo(c,c);ctx.arc(c,c,r,a0+rot,a1+rot);ctx.closePath();ctx.fillStyle=bg;ctx.fill();ctx.strokeStyle='#fff';ctx.lineWidth=Math.max(1,s*.004);ctx.stroke();
+   var fs=Math.min(s*.06,(a1-a0)*r*.55),t=x.t,wMax=r*.74;
+   if(fs>=s*.018){
+    ctx.save();ctx.translate(c,c);ctx.rotate((a0+a1)/2+rot);ctx.textAlign='right';ctx.textBaseline='middle';ctx.fillStyle=lum(bg)>.6?'#1A1A1A':'#fff';
+    ctx.font='600 '+fs+'px Arial,sans-serif';var tw=ctx.measureText(t).width;
+    if(tw>wMax){fs=Math.max(fs*wMax/tw,s*.02);ctx.font='600 '+fs+'px Arial,sans-serif';tw=ctx.measureText(t).width;
+     if(tw>wMax){while(t.length>2&&ctx.measureText(t+'…').width>wMax)t=t.slice(0,-1);t+='…'}}
+    ctx.fillText(t,r*.93,0);ctx.restore();
+   }
+   a0=a1;
+  });
+ }
+ ctx.beginPath();ctx.arc(c,c,s*.05,0,TAU);ctx.fillStyle='#fff';ctx.fill();ctx.lineWidth=s*.008;ctx.strokeStyle='#1D3557';ctx.stroke();
+ ctx.beginPath();ctx.moveTo(c-s*.04,s*.012);ctx.lineTo(c+s*.04,s*.012);ctx.lineTo(c,s*.092);ctx.closePath();ctx.fillStyle='#E63946';ctx.fill();ctx.lineWidth=s*.006;ctx.strokeStyle='#fff';ctx.stroke();
+}
+function audio(){if(!AC){try{AC=new (window.AudioContext||window.webkitAudioContext)()}catch(e){}}if(AC&&AC.state==='suspended')AC.resume()}
+function tone(f,d,v){if(!AC||!$('snd').checked)return;var o=AC.createOscillator(),g=AC.createGain();o.type='square';o.frequency.value=f;g.gain.value=v;o.connect(g);g.connect(AC.destination);o.start();o.stop(AC.currentTime+d)}
+function idxAt(o,tot){var th=((1.5*Math.PI-rot)%TAU+TAU)%TAU,acc=0;for(var i=0;i<o.length;i++){acc+=o[i].w/tot*TAU;if(th<acc)return i}return o.length-1}
+function spin(){
+ if(busy)return;
+ var o=opts();if(o.length<2){toast('Bitte mindestens 2 Optionen eingeben');return}
+ audio();
+ var tot=o.reduce(function(a,x){return a+x.w},0),r=rand()*tot,acc=0,wi=0;
+ for(;wi<o.length;wi++){acc+=o[wi].w;if(r<acc)break}wi=Math.min(wi,o.length-1);
+ var start=0;for(var i=0;i<wi;i++)start+=o[i].w/tot*TAU;
+ var span=o[wi].w/tot*TAU,center=start+span/2+(rand()-.5)*span*.7;
+ var dur=+$('spd').value*1000,turns=4+Math.floor(dur/1000);
+ var cur=((rot%TAU)+TAU)%TAU,tgt=(((1.5*Math.PI-center)%TAU)+TAU)%TAU,delta=((tgt-cur)+TAU)%TAU+turns*TAU;
+ var from=rot,to=rot+delta,t0=performance.now(),last=-1;
+ busy=true;$('spin').disabled=true;$('win').innerHTML='<b>…</b><span>Das Rad dreht sich</span>';
+ function frame(now){
+  var p=Math.min(1,(now-t0)/dur),e=1-Math.pow(1-p,3.2);
+  rot=from+(to-from)*e;draw();
+  var k=idxAt(o,tot);if(k!==last){if(last!==-1)tone(900,.02,.04);last=k}
+  if(p<1)requestAnimationFrame(frame);
+  else{rot=((to%TAU)+TAU)%TAU;draw();busy=false;$('spin').disabled=false;done(o[wi])}
+ }
+ requestAnimationFrame(frame);
+}
+function done(x){
+ tone(660,.18,.08);setTimeout(function(){tone(880,.25,.08)},170);
+ $('win').innerHTML='<b>'+x.t.replace(/[&<>]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;'}[c]})+'</b><span>Das Rad hat entschieden</span>';
+ HIST.unshift({t:x.t,time:new Date()});HIST=HIST.slice(0,50);hist();
+ if($('elim').checked){setTimeout(function(){
+  var lines=$('opt').value.split('\n'),i=lines.findIndex(function(l){return l.trim()===x.raw});
+  if(i>-1){lines.splice(i,1);$('opt').value=lines.join('\n');upd()}
+ },1300)}
+}
+function hist(){
+ var ul=$('hl');ul.innerHTML='';
+ HIST.forEach(function(h){var li=document.createElement('li'),a=document.createElement('b'),b=document.createElement('span');a.textContent=h.t;b.textContent=h.time.toLocaleTimeString('de-DE',{hour:'2-digit',minute:'2-digit',second:'2-digit'});li.appendChild(a);li.appendChild(b);ul.appendChild(li)});
+ $('hn').textContent=HIST.length?HIST.length+' Ergebnis'+(HIST.length===1?'':'se')+' in dieser Sitzung.':'Noch keine Ergebnisse.';
+}
+function upd(){var o=opts();$('cnt').textContent=o.length+' Option'+(o.length===1?'':'en')+(o.length>=100?' (Maximum erreicht)':'');draw()}
+$('opt').addEventListener('input',upd);
+$('pal').addEventListener('change',draw);
+$('spin').onclick=spin;cv.addEventListener('click',spin);
+$('shuf').onclick=function(){var l=$('opt').value.split('\n').filter(function(x){return x.trim()});for(var i=l.length-1;i>0;i--){var j=Math.floor(rand()*(i+1)),t=l[i];l[i]=l[j];l[j]=t}$('opt').value=l.join('\n');upd()};
+$('clr').onclick=function(){$('opt').value='';upd();$('win').innerHTML='<b>Bereit</b><span>Tippe auf das Rad oder auf „Drehen“</span>'};
+$('hc').onclick=function(){HIST=[];hist()};
+[['Ja / Nein','Ja\nNein'],['Was essen?','Pizza\nPasta\nBurger\nSushi\nSalat\nDöner'],['Wochentage','Montag\nDienstag\nMittwoch\nDonnerstag\nFreitag\nSamstag\nSonntag'],['Zahlen 1 bis 10','1\n2\n3\n4\n5\n6\n7\n8\n9\n10'],['Wahrheit / Pflicht','Wahrheit\nPflicht']].forEach(function(p){
+ var b=document.createElement('button');b.type='button';b.textContent=p[0];b.onclick=function(){$('opt').value=p[1];upd()};$('pre').appendChild(b)});
+window.addEventListener('resize',function(){if(!busy){size();draw()}});
+size();upd();hist();
+
+</script>
+</body>
+</html>
