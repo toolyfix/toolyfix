@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Dreisatz Rechner – proportional &amp; umgekehrt | Toolyfix</title>
+<meta name="description" content="Dreisatz Rechner: proportional, umgekehrt proportional und Mehrsatz mit Rechenweg Schritt für Schritt. Kostenlos, ohne Anmeldung.">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+<link rel="canonical" href="https://toolyfix.de/tools/dreisatz-rechner">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Toolyfix">
+<meta property="og:locale" content="de_DE">
+<meta property="og:title" content="Dreisatz Rechner – proportional &amp; umgekehrt | Toolyfix">
+<meta property="og:description" content="Dreisatz Rechner: proportional, umgekehrt proportional und Mehrsatz mit Rechenweg Schritt für Schritt. Kostenlos, ohne Anmeldung.">
+<meta property="og:url" content="https://toolyfix.de/tools/dreisatz-rechner">
+<meta property="og:image" content="https://toolyfix.de/assets/og/home.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Toolyfix: Kostenlose Online-Tools">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Dreisatz Rechner – proportional &amp; umgekehrt | Toolyfix">
+<meta name="twitter:description" content="Dreisatz Rechner: proportional, umgekehrt proportional und Mehrsatz mit Rechenweg Schritt für Schritt. Kostenlos, ohne Anmeldung.">
+<meta name="twitter:image" content="https://toolyfix.de/assets/og/home.jpg">
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "WebApplication", "name": "Dreisatz Rechner", "url": "https://toolyfix.de/tools/dreisatz-rechner", "description": "Dreisatz Rechner: proportional, umgekehrt proportional und Mehrsatz mit Rechenweg Schritt für Schritt. Kostenlos, ohne Anmeldung.", "applicationCategory": "EducationalApplication", "operatingSystem": "Any (Webbrowser)", "browserRequirements": "Benötigt JavaScript", "inLanguage": "de", "isAccessibleForFree": true, "image": "https://toolyfix.de/assets/og/home.jpg", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "EUR"}, "publisher": {"@type": "Organization", "name": "Toolyfix", "url": "https://toolyfix.de/"}}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Startseite", "item": "https://toolyfix.de/"}, {"@type": "ListItem", "position": 2, "name": "Dreisatz Rechner", "item": "https://toolyfix.de/tools/dreisatz-rechner"}]}]}</script>
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="stylesheet" href="/assets/style.css">
+<style>
+:root{--bg:#F7F7F4;--ink:#1A1A1A;--blue:#1D3557;--amber:#E9A93B;--line:#dcdcd2;--card:#fff;--mut:#5b6470;--bad:#b3261e;--ok:#1f7a45}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{background:var(--bg);color:var(--ink);margin:0;font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;line-height:1.6}
+.tf-wrap{max-width:1000px;margin:0 auto;padding:22px 16px 56px}
+.tf-wrap h1{font-size:clamp(1.6rem,4.4vw,2.3rem);line-height:1.15;margin:.2em 0 .3em;color:var(--blue)}
+.tf-intro{color:var(--mut);margin:0 0 14px;max-width:70ch}
+.tf-related{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:0 0 18px;padding:10px 12px;background:#fff;border:1px solid var(--line);border-radius:10px;font-size:.92rem}
+.tf-related b{color:var(--blue);margin-right:4px}
+.tf-related a{color:var(--blue);background:#eef1f6;border-radius:999px;padding:4px 12px;text-decoration:none;font-weight:500}
+.tf-related a:hover,.tf-related a:focus-visible{background:var(--blue);color:#fff;outline:none}
+.tf-card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px;margin-bottom:16px}
+.tf-card h2{font-size:1.05rem;margin:0 0 10px;color:var(--blue)}
+.tf-grid{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(170px,1fr))}
+.tf-wrap label{display:block;font-size:.82rem;font-weight:600;margin:0 0 4px;color:#333}
+.tf-wrap input[type=text],.tf-wrap input[type=number],.tf-wrap input[type=date],.tf-wrap select,.tf-wrap textarea{width:100%;padding:9px 10px;border:1px solid #c9c9bf;border-radius:8px;font:inherit;background:#fff;color:var(--ink)}
+.tf-wrap input[type=color]{width:100%;height:40px;border:1px solid #c9c9bf;border-radius:8px;padding:2px;background:#fff}
+.tf-wrap textarea{min-height:130px;resize:vertical}
+.tf-wrap input:focus-visible,.tf-wrap select:focus-visible,.tf-wrap textarea:focus-visible,.btn:focus-visible{outline:3px solid var(--amber);outline-offset:1px}
+.btn{font:inherit;font-weight:600;padding:9px 16px;border-radius:8px;border:1px solid var(--blue);background:#fff;color:var(--blue);cursor:pointer}
+.btn:hover{background:#eef1f6}
+.btn.pri{background:var(--blue);color:#fff}
+.btn.pri:hover{background:#16294a}
+.btn.amb{background:var(--amber);border-color:var(--amber);color:#1A1A1A}
+.btn[disabled]{opacity:.5;cursor:not-allowed}
+.tf-btns{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.chk{display:flex;gap:8px;align-items:center;font-weight:500;font-size:.92rem;margin:6px 0}
+.chk input{width:18px;height:18px}
+.tf-article{margin-top:34px;background:#fff;border:1px solid var(--line);border-radius:12px;padding:22px 20px}
+.tf-article h2{color:var(--blue);font-size:1.4rem;margin:1.4em 0 .4em;line-height:1.25}
+.tf-article h2:first-child{margin-top:0}
+.tf-article h3{font-size:1.1rem;margin:1.1em 0 .3em}
+.tf-article p,.tf-article li{max-width:75ch}
+.tf-article table{border-collapse:collapse;width:100%;font-size:.92rem;display:block;overflow-x:auto}
+.tf-article th,.tf-article td{border:1px solid var(--line);padding:6px 10px;text-align:left}
+.tf-article th{background:#eef1f6}
+.toast{position:fixed;left:50%;bottom:22px;transform:translateX(-50%);background:var(--blue);color:#fff;padding:9px 18px;border-radius:999px;font-size:.9rem;opacity:0;pointer-events:none;transition:opacity .2s;z-index:50}
+.toast.on{opacity:1}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+@media print{.site-header,.site-footer,.tf-related,.tf-intro,.tf-wrap>h1,.tf-article,.tf-noprint,.toast{display:none!important}body{background:#fff}.tf-wrap{padding:0;max-width:none}}
+
+.mt{display:flex;gap:8px;margin-bottom:14px;flex-wrap:wrap}
+.mt button.on{background:var(--blue);color:#fff}
+.hid{display:none}
+.eq{display:grid;gap:10px;grid-template-columns:1fr 34px 1fr;align-items:end;margin-bottom:10px}
+.eq .ar{text-align:center;font-weight:700;font-size:1.3rem;padding-bottom:8px;color:var(--blue)}
+.eq .rs{background:#f4f6fa;border-radius:8px;padding:9px 10px;min-height:42px;font-weight:700;color:var(--blue);font-size:1.1rem}
+.big{background:var(--blue);color:#fff;border-radius:12px;padding:16px;margin-top:14px}
+.big b{display:block;font-size:clamp(1.5rem,6vw,2.4rem);line-height:1.2;overflow-wrap:anywhere}
+.big span{opacity:.88;font-size:.92rem}
+.warn{background:#fff6dd;border:1px solid #f0d58a;border-radius:8px;padding:9px 12px;font-size:.88rem;margin-top:10px}
+.steps{margin:12px 0 0;padding-left:20px}
+.steps li{margin:0 0 6px}
+.tbw{overflow-x:auto;margin-top:12px}
+table.t{border-collapse:collapse;width:100%;font-size:.95rem}
+table.t th,table.t td{border:1px solid var(--line);padding:7px 10px;text-align:left;font-variant-numeric:tabular-nums}
+table.t th{background:#eef1f6}
+table.t td.x{background:#fff3d6;font-weight:700}
+.hist{list-style:none;margin:8px 0 0;padding:0}
+.hist li{padding:6px 0;border-bottom:1px solid var(--line);font-size:.92rem}
+</style>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-F9VY193ZMP"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-F9VY193ZMP');</script>
+</head>
+<body>
+<header class="site-header">
+  <div class="container">
+    <a href="/" class="logo-link"><img src="/assets/images/logo-full.png" alt="Toolyfix"></a>
+    <span class="header-tagline">Kostenlose Tools, direkt im Browser</span>
+  </div>
+</header>
+<main>
+<div class="tf-wrap">
+<h1>Dreisatz Rechner</h1>
+<p class="tf-intro">Löse Dreisatz-Aufgaben mit Rechenweg: proportional (je mehr, desto mehr), umgekehrt proportional (je mehr, desto weniger) und mit zwei Einflussgrößen im Mehrsatz.</p>
+<nav class="tf-related" aria-label="Passende Tools"><b>Passende Tools:</b><a href="/tools/durchschnitt-rechner">Durchschnitt Rechner</a><a href="/tools/gleichungen-loesen">Gleichungen Lösen</a><a href="/tools/flaechenrechner">Flächenrechner</a><a href="/tools/kuechen-umrechner">Küchen-Umrechner</a></nav>
+
+<div class="mt tf-noprint">
+<button class="btn on" data-m="p" type="button">Proportional</button>
+<button class="btn" data-m="a" type="button">Umgekehrt proportional</button>
+<button class="btn" data-m="m" type="button">Mehrsatz (zwei Größen)</button>
+</div>
+<section class="tf-card">
+<h2 id="ht">Aufgabe eingeben</h2>
+<div id="sPA">
+<p id="hint" style="margin:0 0 10px;color:var(--mut);font-size:.92rem"></p>
+<div class="tf-grid" style="margin-bottom:12px">
+<div><label for="l1">Bezeichnung Größe 1 (optional)</label><input type="text" id="l1" maxlength="20" placeholder="z. B. kg"></div>
+<div><label for="l2">Bezeichnung Größe 2 (optional)</label><input type="text" id="l2" maxlength="20" placeholder="z. B. Euro"></div>
+</div>
+<div class="eq"><div><label for="a">Bekannt: Größe 1</label><input type="text" id="a" inputmode="decimal"></div><div class="ar">↔</div><div><label for="b">Bekannt: Größe 2</label><input type="text" id="b" inputmode="decimal"></div></div>
+<div class="eq"><div><label for="c">Gesucht für: Größe 1</label><input type="text" id="c" inputmode="decimal"></div><div class="ar">↔</div><div><label>Ergebnis: Größe 2</label><div class="rs" id="xr">?</div></div></div>
+</div>
+<div id="sM" class="hid">
+<div class="tf-grid" style="margin-bottom:12px">
+<div><label for="m0">Bezeichnung Ergebnisgröße (optional)</label><input type="text" id="m0" maxlength="20" placeholder="z. B. Teile"></div>
+<div><label for="m1">Bezeichnung Einflussgröße 1</label><input type="text" id="m1" maxlength="20" placeholder="z. B. Maschinen"></div>
+<div><label for="m2">Bezeichnung Einflussgröße 2</label><input type="text" id="m2" maxlength="20" placeholder="z. B. Stunden"></div>
+</div>
+<p style="margin:0 0 8px;color:var(--mut);font-size:.92rem">Bekannte Situation</p>
+<div class="tf-grid">
+<div><label for="y0">Ergebnis</label><input type="text" id="y0" inputmode="decimal"></div>
+<div><label for="g10">Einflussgröße 1</label><input type="text" id="g10" inputmode="decimal"></div>
+<div><label for="g20">Einflussgröße 2</label><input type="text" id="g20" inputmode="decimal"></div>
+</div>
+<p style="margin:14px 0 8px;color:var(--mut);font-size:.92rem">Neue Situation</p>
+<div class="tf-grid">
+<div><label for="g1">Einflussgröße 1</label><input type="text" id="g1" inputmode="decimal"></div>
+<div><label for="g2">Einflussgröße 2</label><input type="text" id="g2" inputmode="decimal"></div>
+</div>
+<p style="margin:14px 0 8px;color:var(--mut);font-size:.92rem">Wie wirkt sich die Einflussgröße auf das Ergebnis aus?</p>
+<div class="tf-grid">
+<div><label for="r1">Einflussgröße 1</label><select id="r1"><option value="p">Je mehr, desto mehr</option><option value="a">Je mehr, desto weniger</option></select></div>
+<div><label for="r2">Einflussgröße 2</label><select id="r2"><option value="p">Je mehr, desto mehr</option><option value="a">Je mehr, desto weniger</option></select></div>
+</div>
+</div>
+<div class="tf-grid" style="margin-top:12px">
+<div><label for="dec">Nachkommastellen</label><select id="dec"><option value="auto">Automatisch (bis 4)</option><option value="0">0</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="6">6</option></select></div>
+</div>
+<div class="tf-btns"><button class="btn" id="clr" type="button">Eingaben leeren</button></div>
+</section>
+<div id="out"></div>
+<section class="tf-card hid" id="hs">
+<h2>Letzte Berechnungen</h2>
+<ul class="hist" id="hl"></ul>
+</section>
+
+<article class="tf-article">
+
+<h2>Dreisatz Rechner: Aufgaben mit Rechenweg lösen</h2>
+<p>Der Dreisatz gehört zu den wichtigsten Rechenverfahren im Alltag und in der Schule. Er hilft immer dann, wenn von drei bekannten Werten auf einen vierten geschlossen werden soll: Wenn fünf Kilo Äpfel 12,50 Euro kosten, was kosten dann acht Kilo? Wenn vier Arbeiter sechs Tage brauchen, wie lange brauchen drei? Wie viel Mehl brauche ich für sechs Personen, wenn das Rezept für vier gilt? Der Dreisatz Rechner von Toolyfix löst solche Aufgaben in Sekunden und zeigt den vollständigen Rechenweg. Er beherrscht den proportionalen Dreisatz, den umgekehrt proportionalen Dreisatz und den Mehrsatz mit zwei Einflussgrößen. Alles läuft in deinem Browser, ohne Anmeldung und ohne Datenübertragung.</p>
+
+<h2>Funktionen des Dreisatz Rechners</h2>
+<ul>
+<li><b>Drei Rechenarten:</b> Proportional, umgekehrt proportional und Mehrsatz.</li>
+<li><b>Rechenweg Schritt für Schritt:</b> Das Tool zeigt jeden Rechenschritt in verständlichen Worten, ideal zum Lernen und Kontrollieren.</li>
+<li><b>Verhältnistabelle:</b> Die Aufgabe wird als Tabelle dargestellt, wie du sie auch im Heft aufschreiben würdest.</li>
+<li><b>Eigene Bezeichnungen:</b> Du kannst Einheiten wie „kg“, „Euro“ oder „Stunden“ eintragen. Sie erscheinen im Ergebnis und im Rechenweg.</li>
+<li><b>Nachkommastellen einstellbar:</b> Automatisch oder genau 0 bis 6 Stellen.</li>
+<li><b>Verlauf und Kopieren:</b> Die letzten Berechnungen bleiben sichtbar, das Ergebnis lässt sich kopieren.</li>
+<li><b>Dezimalkomma:</b> Du kannst Zahlen mit Komma oder Punkt eingeben.</li>
+</ul>
+
+<h2>Was ist der Dreisatz?</h2>
+<p>Der Name kommt von den drei Sätzen, aus denen die Rechnung besteht: Zuerst steht der bekannte Zusammenhang, dann wird auf eine Einheit zurückgerechnet, und zuletzt wird auf die gesuchte Menge hochgerechnet. Man nennt das Verfahren deshalb auch Schlussrechnung. Die Grundlage ist ein Zusammenhang zwischen zwei Größen, der entweder proportional oder umgekehrt proportional ist. Ob ein Dreisatz überhaupt passt, erkennst du an der Frage: Verhalten sich die Größen im gleichen Verhältnis zueinander? Wenn nicht, ist der Dreisatz die falsche Methode.</p>
+
+<h2>Proportionaler Dreisatz: je mehr, desto mehr</h2>
+<p>Beim proportionalen Dreisatz wächst die zweite Größe im gleichen Verhältnis wie die erste. Doppelte Menge bedeutet doppelter Preis, dreifache Menge dreifacher Preis. Beispiel: 5 Kilo Äpfel kosten 12,50 Euro. Gesucht ist der Preis für 8 Kilo.</p>
+<ol>
+<li>Auf eine Einheit zurückrechnen: 12,50 Euro geteilt durch 5 ergibt 2,50 Euro für 1 Kilo.</li>
+<li>Auf die gesuchte Menge hochrechnen: 2,50 Euro mal 8 ergibt 20,00 Euro.</li>
+</ol>
+<p>Als Formel: x gleich b mal c geteilt durch a. Weitere typische Beispiele sind Preisberechnungen, Rezeptmengen, Strecken bei gleichem Tempo und Währungsumrechnungen. Wenn ein Auto 6,5 Liter auf 100 Kilometer verbraucht, sind es für 350 Kilometer 22,75 Liter.</p>
+
+<h2>Umgekehrt proportionaler Dreisatz: je mehr, desto weniger</h2>
+<p>Beim umgekehrten Dreisatz schrumpft die zweite Größe, wenn die erste wächst. Doppelt so viele Arbeiter brauchen nur halb so lange, ein doppelt so schnelles Auto braucht nur die halbe Zeit. Beispiel: 4 Arbeiter brauchen 6 Tage für eine Arbeit. Wie lange brauchen 3 Arbeiter?</p>
+<ol>
+<li>Produkt bilden: 4 mal 6 ergibt 24 Arbeitertage. Das ist der gesamte Arbeitsaufwand.</li>
+<li>Durch die neue Größe teilen: 24 geteilt durch 3 ergibt 8 Tage.</li>
+</ol>
+<p>Als Formel: x gleich a mal b geteilt durch c. Typische Anwendungen sind Arbeitszeiten, Reisegeschwindigkeiten, Füllzeiten von Behältern und Vorräte, die bei mehr Personen schneller aufgebraucht sind.</p>
+
+<h2>Mehrsatz: Wenn zwei Größen im Spiel sind</h2>
+<p>Manche Aufgaben hängen von mehr als einer Größe ab. Der Mehrsatz, auch zusammengesetzter Dreisatz oder Vielsatz genannt, behandelt sie nacheinander. Beispiel: 5 Maschinen produzieren in 8 Stunden 400 Teile. Wie viele Teile produzieren 10 Maschinen in 6 Stunden? Beide Größen wirken proportional: Der Faktor für die Maschinen beträgt 10 geteilt durch 5, also 2. Der Faktor für die Stunden beträgt 6 geteilt durch 8, also 0,75. Das Ergebnis ist 400 mal 2 mal 0,75, also 600 Teile. Im Tool trägst du die bekannte und die neue Situation ein und wählst für jede Größe, ob sie „je mehr, desto mehr“ oder „je mehr, desto weniger“ wirkt. Der Rechner multipliziert die Faktoren und erklärt jeden Schritt.</p>
+
+<h2>Dreisatz in Alltag, Beruf und Schule</h2>
+<h3>Einkauf und Haushalt</h3>
+<p>Beim Preisvergleich zeigt der Dreisatz, was ein Kilo, ein Liter oder ein Stück kostet. Bei Rezepten rechnest du Mengen auf mehr oder weniger Personen um, zum Beispiel von 4 auf 6 Portionen. Für Einheiten in der Küche hilft zusätzlich der Küchen-Umrechner.</p>
+<h3>Arbeit und Planung</h3>
+<p>Wie lange dauert ein Projekt mit mehr Personen? Wie viel Material braucht eine größere Fläche? Der Dreisatz liefert schnelle Schätzungen. Für Flächen kombinierst du ihn mit dem Flächenrechner.</p>
+<h3>Reise und Verkehr</h3>
+<p>Wenn du 120 Kilometer in 90 Minuten fährst, brauchst du für 200 Kilometer bei gleichem Tempo 150 Minuten. Auch Spritkosten, Ankunftszeiten und Geschwindigkeiten lassen sich so berechnen.</p>
+<h3>Schule und Prüfung</h3>
+<p>Der Dreisatz wird in der Mittelstufe eingeführt und taucht in Mathematik, Physik, Chemie und Wirtschaft immer wieder auf. Der Rechenweg im Tool eignet sich zur Kontrolle von Hausaufgaben. Wichtig: Schreibe den Rechenweg selbst auf, denn in Klassenarbeiten zählt er mit.</p>
+<h3>Prozentrechnung</h3>
+<p>Auch Prozentaufgaben lassen sich mit dem Dreisatz lösen. Wie viel sind 15 Prozent von 80? 100 Prozent entsprechen 80, 1 Prozent entspricht 0,8, 15 Prozent entsprechen 12.</p>
+
+<h2>Typische Fehler beim Dreisatz</h2>
+<ul>
+<li><b>Falsche Art gewählt:</b> Der häufigste Fehler ist, proportional und umgekehrt proportional zu verwechseln. Stelle dir die Frage: Wenn die eine Größe doppelt so groß ist, was passiert mit der anderen?</li>
+<li><b>Dreisatz bei nicht-proportionalen Zusammenhängen:</b> Nicht alles ist proportional. Ein Tarif mit Grundgebühr, ein Rabatt ab einer bestimmten Menge oder die Bremsstrecke eines Autos folgen anderen Regeln.</li>
+<li><b>Verschiedene Einheiten:</b> Achte darauf, dass beide Werte derselben Größe in derselben Einheit stehen, etwa nicht Minuten mit Stunden mischen.</li>
+<li><b>Zu früh runden:</b> Rechne mit genauen Zwischenwerten und runde erst am Ende.</li>
+<li><b>Vertauschte Zeilen:</b> Wenn du die Tabelle falsch aufstellst, steht der Bruch auf dem Kopf. Prüfe das Ergebnis auf Plausibilität.</li>
+</ul>
+
+<h2>Typische Probleme und Lösungen</h2>
+<h3>Es erscheint kein Ergebnis</h3>
+<p>Alle drei Eingabefelder müssen ausgefüllt sein. Beim Mehrsatz brauchst du die bekannte Situation und die neuen Werte.</p>
+<h3>Der Rechner meldet, dass ein Wert nicht 0 sein darf</h3>
+<p>Beim proportionalen Dreisatz kann die bekannte Größe 1 nicht 0 sein, weil durch sie geteilt wird. Beim umgekehrten Dreisatz gilt das auch für die gesuchte Größe.</p>
+<h3>Das Ergebnis erscheint mit vielen Nachkommastellen</h3>
+<p>Stelle die Nachkommastellen ein, zum Beispiel auf 2 für Geldbeträge.</p>
+<h3>Ich weiß nicht, ob proportional oder umgekehrt</h3>
+<p>Formuliere einen Je-desto-Satz. „Je mehr Äpfel, desto höher der Preis“ ist proportional. „Je mehr Arbeiter, desto weniger Tage“ ist umgekehrt proportional.</p>
+
+<h2>Häufige Fragen zum Dreisatz Rechner</h2>
+<h3>Ist der Dreisatz Rechner kostenlos?</h3>
+<p>Ja, ohne Anmeldung und ohne Einschränkung.</p>
+<h3>Wie rechnet man einen Dreisatz?</h3>
+<p>Du rechnest erst auf eine Einheit zurück und dann auf die gesuchte Menge hoch. Beim umgekehrten Dreisatz bildest du das Produkt und teilst durch die neue Größe.</p>
+<h3>Was ist der Unterschied zwischen Dreisatz und Prozentrechnung?</h3>
+<p>Die Prozentrechnung ist ein Sonderfall des Dreisatzes mit 100 Prozent als Grundwert. Sie lässt sich mit den gleichen Schritten lösen.</p>
+<h3>Was ist ein Mehrsatz?</h3>
+<p>Eine Aufgabe, bei der das Ergebnis von zwei oder mehr Größen abhängt. Du berechnest nacheinander den Faktor jeder Größe und multiplizierst sie.</p>
+<h3>Kann ich auch mit Brüchen rechnen?</h3>
+<p>Gib Brüche als Dezimalzahl ein, zum Beispiel 0,5 statt ein halb. Das Ergebnis erscheint als Dezimalzahl.</p>
+<p>Weitere Mathe-Helfer findest du oben unter „Passende Tools“, zum Beispiel Durchschnitt Rechner, Gleichungen Lösen und Flächenrechner.</p>
+
+</article>
+</div>
+</main>
+<footer class="site-footer">
+  <div class="container">
+    <img src="/assets/images/logo-full.png" alt="Toolyfix">
+    <nav class="footer-links">
+      <a href="/ueber-uns.html">Über uns</a>
+      <a href="/datenschutz.html">Datenschutz</a>
+      <a href="/nutzungsbedingungen.html">Nutzungsbedingungen</a>
+      <a href="/kontakt.html">Kontakt</a>
+    </nav>
+    <p class="footer-note">© 2026 Toolyfix – Alle Tools laufen lokal in deinem Browser.</p>
+  </div>
+</footer>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script>
+function toast(m){var t=document.getElementById('toast');t.textContent=m;t.classList.add('on');clearTimeout(window._tt);window._tt=setTimeout(function(){t.classList.remove('on')},1800)}
+function copyText(s){if(navigator.clipboard&&window.isSecureContext){return navigator.clipboard.writeText(s).then(function(){toast('Kopiert')},function(){fb(s)})}fb(s)}
+function fb(s){var a=document.createElement('textarea');a.value=s;a.style.position='fixed';a.style.opacity='0';document.body.appendChild(a);a.select();try{document.execCommand('copy');toast('Kopiert')}catch(e){toast('Kopieren nicht möglich')}document.body.removeChild(a)}
+function dl(name,blob){var u=URL.createObjectURL(blob),a=document.createElement('a');a.href=u;a.download=name;document.body.appendChild(a);a.click();document.body.removeChild(a);setTimeout(function(){URL.revokeObjectURL(u)},4000)}
+
+function $(i){return document.getElementById(i)}
+var mode='p',H=[];
+function num(id){var v=parseFloat(String($(id).value).replace(/\s/g,'').replace(',','.'));return isFinite(v)?v:NaN}
+function nf(n){var d=$('dec').value;return n.toLocaleString('de-DE',d==='auto'?{maximumFractionDigits:4}:{minimumFractionDigits:+d,maximumFractionDigits:+d})}
+function nr(n){return n.toLocaleString('de-DE',{maximumFractionDigits:6})}
+function u(id,def){var v=$(id).value.trim();return v?' '+v:(def?' '+def:'')}
+function setMode(m){
+ mode=m;
+ [].forEach.call(document.querySelectorAll('[data-m]'),function(b){b.classList.toggle('on',b.dataset.m===m)});
+ $('sPA').classList.toggle('hid',m==='m');$('sM').classList.toggle('hid',m!=='m');
+ $('hint').textContent=m==='p'?'Proportional: Wird die eine Größe größer, wächst die andere im gleichen Verhältnis mit. Beispiel: mehr Äpfel kosten mehr Geld.':'Umgekehrt proportional: Wird die eine Größe größer, schrumpft die andere im gleichen Verhältnis. Beispiel: mehr Arbeiter brauchen weniger Tage.';
+ $('ht').textContent=m==='m'?'Mehrsatz: Ergebnis hängt von zwei Größen ab':'Aufgabe eingeben';
+ run();
+}
+[].forEach.call(document.querySelectorAll('[data-m]'),function(b){b.onclick=function(){setMode(b.dataset.m)}});
+function card(inner){return'<section class="tf-card">'+inner+'</section>'}
+function run(){
+ var o=$('out'),xr=$('xr');o.innerHTML='';xr.textContent='?';
+ var line,res,html='';
+ if(mode==='p'||mode==='a'){
+  var a=num('a'),b=num('b'),c=num('c');
+  if(isNaN(a)||isNaN(b)||isNaN(c))return;
+  var l1=$('l1').value.trim(),l2=$('l2').value.trim();
+  if(a===0||(mode==='a'&&c===0)){o.innerHTML=card('<div class="warn">'+(a===0?'Größe 1 darf nicht 0 sein.':'Die gesuchte Größe 1 darf beim umgekehrten Dreisatz nicht 0 sein.')+'</div>');return}
+  var x=mode==='p'?b*c/a:a*b/c;
+  xr.textContent=nf(x)+(l2?' '+l2:'');
+  var s;
+  if(mode==='p'){var one=b/a;s=['<b>Schritt 1 – auf eine Einheit:</b> '+nf(b)+(l2?' '+l2:'')+' ÷ '+nf(a)+' = '+nr(one)+(l2?' '+l2:'')+' für 1'+(l1?' '+l1:' Einheit von Größe 1')+'.','<b>Schritt 2 – auf die gesuchte Menge:</b> '+nr(one)+' × '+nf(c)+' = '+nf(x)+(l2?' '+l2:'')+'.']}
+  else{var k=a*b;s=['<b>Schritt 1 – Produkt bilden:</b> '+nf(a)+' × '+nf(b)+' = '+nr(k)+'. Dieser Wert bleibt bei umgekehrter Proportionalität gleich.','<b>Schritt 2 – durch die neue Größe teilen:</b> '+nr(k)+' ÷ '+nf(c)+' = '+nf(x)+(l2?' '+l2:'')+'.']}
+  var tb='<div class="tbw"><table class="t"><tr><th>'+(l1||'Größe 1')+'</th><th>'+(l2||'Größe 2')+'</th></tr><tr><td>'+nf(a)+'</td><td>'+nf(b)+'</td></tr><tr><td>'+nf(c)+'</td><td class="x">'+nf(x)+'</td></tr></table></div>';
+  html='<div class="big"><span>Ergebnis ('+(mode==='p'?'proportional':'umgekehrt proportional')+')</span><b>'+nf(x)+(l2?' '+l2:'')+'</b></div><ol class="steps">'+s.map(function(t){return'<li>'+t+'</li>'}).join('')+'</ol>'+tb+'<div class="tf-btns"><button class="btn" id="cpr" type="button">Ergebnis kopieren</button></div>'+(mode==='p'&&(c<0||a<0||b<0)?'<div class="warn">Negative Werte sind bei Sachaufgaben meist nicht sinnvoll. Prüfe deine Eingaben.</div>':'');
+  line=(mode==='p'?'Proportional: ':'Umgekehrt: ')+nf(a)+(u('l1'))+' ↔ '+nf(b)+(u('l2'))+'; für '+nf(c)+(u('l1'))+' gilt '+nf(x)+(u('l2'));res=nf(x)+(u('l2'));
+ }else{
+  var y0=num('y0'),g10=num('g10'),g20=num('g20'),g1=num('g1'),g2=num('g2');
+  if([y0,g10,g20,g1,g2].some(isNaN))return;
+  if(g10<=0||g20<=0||((($('r1').value==='a')&&g1<=0)||(($('r2').value==='a')&&g2<=0))){o.innerHTML=card('<div class="warn">Die bekannten Einflussgrößen müssen größer als 0 sein, bei „je mehr, desto weniger“ auch die neuen.</div>');return}
+  var f1=$('r1').value==='p'?g1/g10:g10/g1,f2=$('r2').value==='p'?g2/g20:g20/g2,x2=y0*f1*f2;
+  var n0=$('m0').value.trim(),n1=$('m1').value.trim()||'Einflussgröße 1',n2=$('m2').value.trim()||'Einflussgröße 2',ul=n0?' '+n0:'';
+  var st=['<b>Schritt 1 – Faktor für '+n1+':</b> '+($('r1').value==='p'?nf(g1)+' ÷ '+nf(g10):nf(g10)+' ÷ '+nf(g1))+' = '+nr(f1)+' ('+($('r1').value==='p'?'proportional':'umgekehrt proportional')+').','<b>Schritt 2 – Faktor für '+n2+':</b> '+($('r2').value==='p'?nf(g2)+' ÷ '+nf(g20):nf(g20)+' ÷ '+nf(g2))+' = '+nr(f2)+' ('+($('r2').value==='p'?'proportional':'umgekehrt proportional')+').','<b>Schritt 3 – Ergebnis berechnen:</b> '+nf(y0)+' × '+nr(f1)+' × '+nr(f2)+' = '+nf(x2)+ul+'.'];
+  html='<div class="big"><span>Ergebnis (Mehrsatz)</span><b>'+nf(x2)+ul+'</b></div><ol class="steps">'+st.map(function(t){return'<li>'+t+'</li>'}).join('')+'</ol><div class="tf-btns"><button class="btn" id="cpr" type="button">Ergebnis kopieren</button></div>';
+  line='Mehrsatz: '+nf(y0)+ul+' bei '+nf(g10)+' '+n1+' und '+nf(g20)+' '+n2+'; bei '+nf(g1)+' '+n1+' und '+nf(g2)+' '+n2+' ergibt sich '+nf(x2)+ul;res=nf(x2)+ul;
+ }
+ o.innerHTML=card(html);
+ var cp=$('cpr');if(cp)cp.onclick=function(){copyText(res)};
+ if(H[0]!==line){H.unshift(line);H=H.slice(0,6);var ul2=$('hl');ul2.innerHTML=H.map(function(t){return'<li>'+t.replace(/</g,'&lt;')+'</li>'}).join('');$('hs').classList.remove('hid')}
+}
+['a','b','c','l1','l2','dec','m0','m1','m2','y0','g10','g20','g1','g2','r1','r2'].forEach(function(i){$(i).addEventListener('input',run)});
+$('clr').onclick=function(){['a','b','c','y0','g10','g20','g1','g2'].forEach(function(i){$(i).value=''});$('out').innerHTML='';$('xr').textContent='?'};
+setMode('p');
+
+</script>
+</body>
+</html>
