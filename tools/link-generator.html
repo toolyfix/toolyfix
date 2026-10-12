@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Link Generator – Mailto, WhatsApp, Maps &amp; iFrame | Toolyfix</title>
+<meta name="description" content="Link Generator: Mailto-, WhatsApp-, Telefon-, Google-Maps-, Teilen- und iFrame-Code sowie HTML-Links erstellen. Kostenlos, ohne Anmeldung.">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+<link rel="canonical" href="https://toolyfix.de/tools/link-generator">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Toolyfix">
+<meta property="og:locale" content="de_DE">
+<meta property="og:title" content="Link Generator – Mailto, WhatsApp, Maps &amp; iFrame | Toolyfix">
+<meta property="og:description" content="Link Generator: Mailto-, WhatsApp-, Telefon-, Google-Maps-, Teilen- und iFrame-Code sowie HTML-Links erstellen. Kostenlos, ohne Anmeldung.">
+<meta property="og:url" content="https://toolyfix.de/tools/link-generator">
+<meta property="og:image" content="https://toolyfix.de/assets/og/home.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Toolyfix: Kostenlose Online-Tools">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Link Generator – Mailto, WhatsApp, Maps &amp; iFrame | Toolyfix">
+<meta name="twitter:description" content="Link Generator: Mailto-, WhatsApp-, Telefon-, Google-Maps-, Teilen- und iFrame-Code sowie HTML-Links erstellen. Kostenlos, ohne Anmeldung.">
+<meta name="twitter:image" content="https://toolyfix.de/assets/og/home.jpg">
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "WebApplication", "name": "Link Generator", "url": "https://toolyfix.de/tools/link-generator", "description": "Link Generator: Mailto-, WhatsApp-, Telefon-, Google-Maps-, Teilen- und iFrame-Code sowie HTML-Links erstellen. Kostenlos, ohne Anmeldung.", "applicationCategory": "DeveloperApplication", "operatingSystem": "Any (Webbrowser)", "browserRequirements": "Benötigt JavaScript", "inLanguage": "de", "isAccessibleForFree": true, "image": "https://toolyfix.de/assets/og/home.jpg", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "EUR"}, "publisher": {"@type": "Organization", "name": "Toolyfix", "url": "https://toolyfix.de/"}}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Startseite", "item": "https://toolyfix.de/"}, {"@type": "ListItem", "position": 2, "name": "Link Generator", "item": "https://toolyfix.de/tools/link-generator"}]}]}</script>
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="stylesheet" href="/assets/style.css">
+<style>
+:root{--bg:#F7F7F4;--ink:#1A1A1A;--blue:#1D3557;--amber:#E9A93B;--line:#dcdcd2;--card:#fff;--mut:#5b6470;--bad:#b3261e;--ok:#1f7a45}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{background:var(--bg);color:var(--ink);margin:0;font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;line-height:1.6}
+.tf-wrap{max-width:1000px;margin:0 auto;padding:22px 16px 56px}
+.tf-wrap h1{font-size:clamp(1.6rem,4.4vw,2.3rem);line-height:1.15;margin:.2em 0 .3em;color:var(--blue)}
+.tf-intro{color:var(--mut);margin:0 0 14px;max-width:70ch}
+.tf-related{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:0 0 18px;padding:10px 12px;background:#fff;border:1px solid var(--line);border-radius:10px;font-size:.92rem}
+.tf-related b{color:var(--blue);margin-right:4px}
+.tf-related a{color:var(--blue);background:#eef1f6;border-radius:999px;padding:4px 12px;text-decoration:none;font-weight:500}
+.tf-related a:hover,.tf-related a:focus-visible{background:var(--blue);color:#fff;outline:none}
+.tf-card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px;margin-bottom:16px}
+.tf-card h2{font-size:1.05rem;margin:0 0 10px;color:var(--blue)}
+.tf-grid{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(170px,1fr))}
+.tf-wrap label{display:block;font-size:.82rem;font-weight:600;margin:0 0 4px;color:#333}
+.tf-wrap input[type=text],.tf-wrap input[type=number],.tf-wrap input[type=date],.tf-wrap select,.tf-wrap textarea{width:100%;padding:9px 10px;border:1px solid #c9c9bf;border-radius:8px;font:inherit;background:#fff;color:var(--ink)}
+.tf-wrap input[type=color]{width:100%;height:40px;border:1px solid #c9c9bf;border-radius:8px;padding:2px;background:#fff}
+.tf-wrap textarea{min-height:130px;resize:vertical}
+.tf-wrap input:focus-visible,.tf-wrap select:focus-visible,.tf-wrap textarea:focus-visible,.btn:focus-visible{outline:3px solid var(--amber);outline-offset:1px}
+.btn{font:inherit;font-weight:600;padding:9px 16px;border-radius:8px;border:1px solid var(--blue);background:#fff;color:var(--blue);cursor:pointer}
+.btn:hover{background:#eef1f6}
+.btn.pri{background:var(--blue);color:#fff}
+.btn.pri:hover{background:#16294a}
+.btn.amb{background:var(--amber);border-color:var(--amber);color:#1A1A1A}
+.btn[disabled]{opacity:.5;cursor:not-allowed}
+.tf-btns{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.chk{display:flex;gap:8px;align-items:center;font-weight:500;font-size:.92rem;margin:6px 0}
+.chk input{width:18px;height:18px}
+.tf-article{margin-top:34px;background:#fff;border:1px solid var(--line);border-radius:12px;padding:22px 20px}
+.tf-article h2{color:var(--blue);font-size:1.4rem;margin:1.4em 0 .4em;line-height:1.25}
+.tf-article h2:first-child{margin-top:0}
+.tf-article h3{font-size:1.1rem;margin:1.1em 0 .3em}
+.tf-article p,.tf-article li{max-width:75ch}
+.tf-article table{border-collapse:collapse;width:100%;font-size:.92rem;display:block;overflow-x:auto}
+.tf-article th,.tf-article td{border:1px solid var(--line);padding:6px 10px;text-align:left}
+.tf-article th{background:#eef1f6}
+.toast{position:fixed;left:50%;bottom:22px;transform:translateX(-50%);background:var(--blue);color:#fff;padding:9px 18px;border-radius:999px;font-size:.9rem;opacity:0;pointer-events:none;transition:opacity .2s;z-index:50}
+.toast.on{opacity:1}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+@media print{.site-header,.site-footer,.tf-related,.tf-intro,.tf-wrap>h1,.tf-article,.tf-noprint,.toast{display:none!important}body{background:#fff}.tf-wrap{padding:0;max-width:none}}
+
+.hid{display:none}
+.row{border:1px solid var(--line);border-radius:10px;padding:12px;margin-bottom:12px;background:#fcfcfa}
+.row b{display:block;margin-bottom:6px;color:var(--blue)}
+.row textarea{min-height:64px;font-family:ui-monospace,Menlo,Consolas,monospace;font-size:.84rem;word-break:break-all}
+.row .tf-btns{margin-top:8px}
+.warn{background:#fff6dd;border:1px solid #f0d58a;border-radius:8px;padding:9px 12px;font-size:.88rem;margin:8px 0}
+.note{font-size:.85rem;color:var(--mut);margin:8px 0 0}
+</style>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-F9VY193ZMP"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-F9VY193ZMP');</script>
+</head>
+<body>
+<header class="site-header">
+  <div class="container">
+    <a href="/" class="logo-link"><img src="/assets/images/logo-full.png" alt="Toolyfix"></a>
+    <span class="header-tagline">Kostenlose Tools, direkt im Browser</span>
+  </div>
+</header>
+<main>
+<div class="tf-wrap">
+<h1>Link Generator</h1>
+<p class="tf-intro">Erstelle fertige Links und Einbettungs-Code: Mailto, WhatsApp-Link, Telefon- und SMS-Link, Google-Maps-Link, Teilen-Links für soziale Netzwerke, YouTube-iFrame, allgemeiner iFrame und HTML-Link.</p>
+<nav class="tf-related" aria-label="Passende Tools"><b>Passende Tools:</b><a href="/tools/email-signatur-generator">E-Mail Signatur Generator</a><a href="/tools/open-graph-checker">Open Graph Checker</a><a href="/tools/slug-generator">Slug Generator</a><a href="/tools/zeichenzaehler">Zeichenzähler</a></nav>
+
+<section class="tf-card">
+<h2>1. Linktyp wählen</h2>
+<div class="tf-grid"><div><label for="ty">Was möchtest du erstellen?</label><select id="ty">
+<option value="mail">E-Mail-Link (mailto)</option>
+<option value="wa">WhatsApp-Link</option>
+<option value="tel">Telefon- oder SMS-Link</option>
+<option value="map">Google-Maps-Link (Adresse und Route)</option>
+<option value="share">Teilen-Links (WhatsApp, Facebook, X, LinkedIn, …)</option>
+<option value="yt">YouTube-Video einbetten (iFrame)</option>
+<option value="ifr">iFrame für beliebige Seite</option>
+<option value="html">HTML-Link mit Attributen</option>
+</select></div></div>
+</section>
+<section class="tf-card">
+<h2>2. Angaben</h2>
+<div id="fm"></div>
+</section>
+<section class="tf-card">
+<h2>3. Ergebnis</h2>
+<div id="msg"></div>
+<div id="out"></div>
+</section>
+
+<article class="tf-article">
+
+<h2>Link Generator: Mailto, WhatsApp, Maps, Teilen-Links und iFrame in Sekunden</h2>
+<p>Ein Klick auf eine Telefonnummer, der direkt den Anruf startet. Ein Button, der eine E-Mail mit Betreff und Text vorbereitet. Ein Link, der WhatsApp mit einer fertigen Nachricht öffnet, oder ein Kartenlink, der die Route zum Geschäft zeigt. Solche Links machen Webseiten, Newsletter und Signaturen deutlich nützlicher, und sie sind mit dem richtigen Aufbau schnell erstellt. Der Link Generator von Toolyfix übernimmt die Kleinarbeit: Du trägst Telefonnummer, Adresse oder Video-Link ein, und das Tool erzeugt den passenden Link und fertigen Code zum Kopieren. Er beherrscht Mailto-Links, WhatsApp-Links, Telefon- und SMS-Links, Google-Maps-Links, Teilen-Links für soziale Netzwerke, YouTube-iFrames, allgemeine iFrames und HTML-Links mit allen wichtigen Attributen. Alles läuft in deinem Browser, ohne Anmeldung.</p>
+
+<h2>Funktionen im Überblick</h2>
+<ul>
+<li><b>Mailto-Links:</b> Mit Empfänger, Kopie, Blindkopie, Betreff und vorgeschriebenem Text, korrekt für URLs kodiert.</li>
+<li><b>WhatsApp-Links:</b> Aus einer Telefonnummer und optionaler Nachricht entsteht ein wa.me-Link. Das Tool bereinigt die Nummer und setzt die Ländervorwahl.</li>
+<li><b>Telefon- und SMS-Links:</b> Für den Direktanruf per Klick auf dem Smartphone oder eine vorbereitete SMS.</li>
+<li><b>Google-Maps-Links:</b> Für eine Adresse oder eine Route mit Startpunkt und Verkehrsmittel, dazu Apple Karten und OpenStreetMap.</li>
+<li><b>Teilen-Links:</b> Für WhatsApp, Facebook, X, LinkedIn, Telegram, Reddit und E-Mail, plus Code für das Teilen-Menü des Geräts.</li>
+<li><b>YouTube einbetten:</b> iFrame-Code mit Größe, Startzeit, Datenschutz-Modus und einem responsiven Rahmen.</li>
+<li><b>Allgemeiner iFrame:</b> Mit Titel, Lazy-Loading, Vollbild und Sandbox.</li>
+<li><b>HTML-Links:</b> Mit neuem Tab, nofollow, sponsored, ugc, Titel und Download, zusätzlich als Markdown und BBCode.</li>
+<li><b>Kopieren und Testen:</b> Jedes Ergebnis lässt sich mit einem Klick kopieren, URLs kannst du direkt ausprobieren.</li>
+</ul>
+
+<h2>Mailto-Link erstellen</h2>
+<p>Ein Mailto-Link beginnt mit „mailto:“ und der E-Mail-Adresse. Optional folgen Parameter wie Betreff und Text. Das sieht dann so aus: mailto:name@beispiel.de?subject=Anfrage&body=Hallo. Sonderzeichen und Leerzeichen müssen kodiert werden, ein Leerzeichen wird zu %20 und ein Zeilenumbruch zu %0D%0A. Genau das erledigt das Tool automatisch. Für mehrere Empfänger trennst du die Adressen mit Komma. Beachte, dass sehr lange Mailto-Links von manchen Programmen gekürzt werden. Außerdem sehen Spam-Roboter E-Mail-Adressen im Quelltext. Wenn du das vermeiden möchtest, nutze ein Kontaktformular oder verschleiere die Adresse. Eine passende Signatur für deine Mails erstellst du mit dem E-Mail Signatur Generator.</p>
+
+<h2>WhatsApp-Link erstellen</h2>
+<p>Mit einem WhatsApp-Link öffnest du direkt einen Chat. Die Adresse lautet https://wa.me/ gefolgt von der Telefonnummer im internationalen Format ohne Pluszeichen, Leerzeichen oder führende Nullen. Aus 0170 1234567 in Deutschland wird 491701234567. Optional hängst du ?text= und die kodierte Nachricht an, die im Eingabefeld erscheint. Das Tool übernimmt die Umwandlung: Du wählst das Land, trägst die Nummer so ein, wie du sie kennst, und erhältst den fertigen Link. Wenn du eine Nummer mit Pluszeichen oder 00 eingibst, erkennt das Tool die Vorwahl selbst. Der Link eignet sich für Buttons auf Webseiten, für Instagram-Profile, Visitenkarten und QR-Codes. Beachte beim Einsatz im Geschäft die Vorgaben des Datenschutzes, und verwende nach Möglichkeit eine geschäftliche Nummer.</p>
+
+<h2>Telefon- und SMS-Links</h2>
+<p>Ein Telefonlink beginnt mit „tel:“, gefolgt von der Nummer in internationaler Schreibweise, zum Beispiel tel:+4930123456. Auf dem Smartphone startet ein Klick den Anruf, auf dem Computer öffnet sich je nach System eine Telefonie-App oder nichts. Verwende immer die internationale Schreibweise mit Pluszeichen, damit der Link im In- und Ausland funktioniert. Entferne Leerzeichen, Klammern und Bindestriche, was das Tool für dich tut. Ein SMS-Link beginnt mit „sms:“ und kann einen vorgeschriebenen Text enthalten. Die Unterstützung des Textparameters unterscheidet sich je nach Gerät und Betriebssystem.</p>
+
+<h2>Google-Maps-Links für Adresse und Route</h2>
+<p>Google bietet ein einheitliches Linkformat für Karten. Eine Suche besteht aus https://www.google.com/maps/search/?api=1&query= mit der kodierten Adresse. Für eine Route kommen Start, Ziel und Verkehrsmittel hinzu. Der Link öffnet auf dem Smartphone die Karten-App und am Computer den Browser. Das Tool erzeugt außerdem Links für Apple Karten und OpenStreetMap, damit du Nutzer ohne Google-Konto bedienen kannst. Für Koordinaten gibst du Breiten- und Längengrad mit Punkt als Dezimalzeichen ein, zum Beispiel 52.5163,13.3777. Ein Link ist nicht dasselbe wie eine eingebettete Karte. Wer eine Karte direkt auf der Seite zeigen möchte, braucht einen Einbettungscode des Kartenanbieters und beachtet die Datenschutzfragen, die damit verbunden sind.</p>
+
+<h2>Teilen-Links für soziale Netzwerke</h2>
+<p>Teilen-Links ermöglichen es Besuchern, deine Seite mit einem Klick zu verbreiten, ohne dass du fremde Skripte einbinden musst. Jeder Dienst hat sein eigenes Linkformat: WhatsApp nutzt wa.me mit Textparameter, Facebook den Sharer, X den Intent, LinkedIn die Share-Adresse. Das Tool erzeugt alle Varianten aus deiner Seiten-Adresse und einem optionalen Text. Zusätzlich bekommst du ein Stück JavaScript für das Teilen-Menü des Geräts, das auf Smartphones eine Auswahl aller installierten Apps öffnet. Wie die geteilte Seite dann in der Vorschau aussieht, hängt von den Open-Graph-Angaben ab. Prüfe sie mit dem Open Graph Checker.</p>
+
+<h2>YouTube-Videos und andere Seiten einbetten</h2>
+<p>Mit einem iFrame bettest du Videos und andere Inhalte in deine Seite ein. Bei YouTube ersetzt das Tool die normale Adresse durch die Einbettungs-Adresse und setzt Größe, Startzeit und Optionen. Der Datenschutz-Modus verwendet die Domain youtube-nocookie.com. Laut Anbieter werden dabei Cookies erst gesetzt, wenn das Video abgespielt wird. Das erleichtert die Einhaltung der DSGVO, ersetzt aber keine rechtliche Prüfung, denn auch dann werden Verbindungsdaten übertragen. Für responsives Verhalten gibt das Tool einen Rahmen mit dem Seitenverhältnis 16 zu 9 aus, der sich der Breite anpasst. Der allgemeine iFrame arbeitet mit jeder Adresse, setzt aber voraus, dass die Zielseite das Einbetten erlaubt. Viele Seiten verbieten es aus Sicherheitsgründen.</p>
+
+<h2>HTML-Links mit den richtigen Attributen</h2>
+<p>Ein Link besteht aus dem Anker-Element mit dem Attribut href. Dazu kommen Zusätze mit klarer Bedeutung. Mit target="_blank" öffnet sich der Link in einem neuen Tab. Dabei sollte immer rel="noopener noreferrer" gesetzt werden, damit die neue Seite keinen Zugriff auf deine Seite bekommt. Das Tool ergänzt es automatisch. Mit nofollow sagst du Suchmaschinen, dass sie dem Link nicht folgen sollen. Mit sponsored kennzeichnest du bezahlte Links und Affiliate-Links, mit ugc Links aus Nutzerinhalten wie Kommentaren. Ein Titelattribut liefert einen Tooltip, ersetzt aber keinen guten Linktext. Der Linktext sollte beschreiben, wohin der Link führt, nicht nur „hier klicken“ lauten.</p>
+
+<h2>Typische Probleme und Lösungen</h2>
+<h3>Der WhatsApp-Link öffnet kein Chatfenster</h3>
+<p>Meist ist die Nummer falsch formatiert. Sie muss die Ländervorwahl enthalten und darf keine führende Null haben. Prüfe die Nummer im Ergebnisfeld „Nummer im internationalen Format“.</p>
+<h3>Umlaute sehen im Mailto-Link seltsam aus</h3>
+<p>Das ist normal, denn sie werden als Prozent-Zeichenfolgen kodiert. Mail-Programme wandeln sie beim Öffnen zurück. Ein Test mit „Link testen“ zeigt, ob alles richtig ankommt.</p>
+<h3>Der Telefonlink funktioniert am Computer nicht</h3>
+<p>Auf Desktop-Geräten ist oft keine Telefon-App hinterlegt. Der Link ist vor allem für Smartphones gedacht. Zeige die Nummer zusätzlich als Text an.</p>
+<h3>Der eingebettete Inhalt bleibt leer</h3>
+<p>Die Zielseite erlaubt das Einbetten nicht. Teste mit einer anderen Adresse, oder verlinke statt einzubetten.</p>
+<h3>Der YouTube-Link wird nicht erkannt</h3>
+<p>Verwende die Adresse aus der Adressleiste oder den Teilen-Link. Playlist-Links ohne Video-ID funktionieren nicht.</p>
+<h3>Die Teilen-Vorschau zeigt das falsche Bild</h3>
+<p>Das liegt an den Open-Graph-Tags der geteilten Seite. Prüfe sie und aktualisiere gegebenenfalls den Zwischenspeicher des Netzwerks.</p>
+
+<h2>Tipps für bessere Links</h2>
+<ul>
+<li>Teste jeden Link nach dem Erstellen, am besten auf Smartphone und Computer.</li>
+<li>Verwende klare Linktexte wie „Per WhatsApp schreiben“ statt der nackten Adresse.</li>
+<li>Gib Telefonnummern zusätzlich als sichtbaren Text an, damit Nutzer sie kopieren können.</li>
+<li>Kennzeichne Werbung und Affiliate-Links mit rel="sponsored" und beachte die Kennzeichnungspflichten.</li>
+<li>Gib iFrames immer einen Titel, damit Screenreader sie beschreiben können.</li>
+<li>Kurze, lesbare Adressen für Seiten erzeugst du mit dem Slug Generator.</li>
+</ul>
+
+<h2>Häufige Fragen zum Link Generator</h2>
+<h3>Ist der Link Generator kostenlos?</h3>
+<p>Ja, ohne Anmeldung und ohne Begrenzung.</p>
+<h3>Werden meine Eingaben gespeichert?</h3>
+<p>Nein. Alle Links werden in deinem Browser erzeugt.</p>
+<h3>Wie funktioniert ein WhatsApp-Link ohne Telefonnummer?</h3>
+<p>Mit wa.me/?text=… öffnet WhatsApp die Kontaktauswahl und fügt den Text ein. Das ist die Grundlage für Teilen-Buttons.</p>
+<h3>Was bedeutet noopener?</h3>
+<p>Es verhindert, dass eine per target="_blank" geöffnete Seite über das Browserfenster auf deine Seite zugreifen kann. Es ist eine Sicherheitsmaßnahme.</p>
+<h3>Kann ich eine Google-Karte auf meiner Seite einbetten?</h3>
+<p>Dafür brauchst du den Einbettungscode von Google Maps oder einem anderen Anbieter. Dieses Tool erstellt Links zu Karten, keine Kartenansicht.</p>
+<p>Weitere Werkzeuge für Webseiten findest du oben unter „Passende Tools“, zum Beispiel E-Mail Signatur Generator, Open Graph Checker und Slug Generator.</p>
+
+</article>
+</div>
+</main>
+<footer class="site-footer">
+  <div class="container">
+    <img src="/assets/images/logo-full.png" alt="Toolyfix">
+    <nav class="footer-links">
+      <a href="/ueber-uns.html">Über uns</a>
+      <a href="/datenschutz.html">Datenschutz</a>
+      <a href="/nutzungsbedingungen.html">Nutzungsbedingungen</a>
+      <a href="/kontakt.html">Kontakt</a>
+    </nav>
+    <p class="footer-note">© 2026 Toolyfix – Alle Tools laufen lokal in deinem Browser.</p>
+  </div>
+</footer>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script>
+function toast(m){var t=document.getElementById('toast');t.textContent=m;t.classList.add('on');clearTimeout(window._tt);window._tt=setTimeout(function(){t.classList.remove('on')},1800)}
+function copyText(s){if(navigator.clipboard&&window.isSecureContext){return navigator.clipboard.writeText(s).then(function(){toast('Kopiert')},function(){fb(s)})}fb(s)}
+function fb(s){var a=document.createElement('textarea');a.value=s;a.style.position='fixed';a.style.opacity='0';document.body.appendChild(a);a.select();try{document.execCommand('copy');toast('Kopiert')}catch(e){toast('Kopieren nicht möglich')}document.body.removeChild(a)}
+function dl(name,blob){var u=URL.createObjectURL(blob),a=document.createElement('a');a.href=u;a.download=name;document.body.appendChild(a);a.click();document.body.removeChild(a);setTimeout(function(){URL.revokeObjectURL(u)},4000)}
+
+function $(i){return document.getElementById(i)}
+function esc(s){return String(s).replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}
+function enc(s){return encodeURIComponent(s)}
+var CC=[['Deutschland (+49)','49'],['Österreich (+43)','43'],['Schweiz (+41)','41'],['Liechtenstein (+423)','423'],['Niederlande (+31)','31'],['Belgien (+32)','32'],['Frankreich (+33)','33'],['Italien (+39)','39'],['Spanien (+34)','34'],['Portugal (+351)','351'],['Polen (+48)','48'],['Tschechien (+420)','420'],['Dänemark (+45)','45'],['Schweden (+46)','46'],['Norwegen (+47)','47'],['Finnland (+358)','358'],['Großbritannien (+44)','44'],['Irland (+353)','353'],['USA und Kanada (+1)','1'],['Türkei (+90)','90'],['Griechenland (+30)','30'],['Ungarn (+36)','36'],['Rumänien (+40)','40'],['Ukraine (+380)','380'],['Indien (+91)','91'],['Pakistan (+92)','92'],['Andere: Nummer mit + eingeben','']];
+var F={
+ mail:[['to','Empfänger (E-Mail-Adresse)','text','name@beispiel.de'],['cc','Kopie (CC, optional)','text',''],['bcc','Blindkopie (BCC, optional)','text',''],['subject','Betreff (optional)','text',''],['body','Text (optional)','area',''],['lt','Linktext (optional)','text','z. B. E-Mail schreiben']],
+ wa:[['cc','Land','sel',CC],['num','Telefonnummer','text','z. B. 0170 1234567 oder +49 170 1234567'],['text','Vorgeschriebene Nachricht (optional)','area',''],['lt','Linktext (optional)','text','z. B. Per WhatsApp schreiben']],
+ tel:[['kind','Art','sel',[['Anruf (tel:)','tel'],['SMS (sms:)','sms']]],['num','Telefonnummer','text','z. B. +49 30 123456'],['body','SMS-Text (nur bei SMS, optional)','area',''],['lt','Linktext (optional)','text','z. B. Jetzt anrufen']],
+ map:[['q','Adresse, Ort oder Koordinaten (Ziel)','text','z. B. Brandenburger Tor, Berlin oder 52.5163,13.3777'],['start','Startpunkt (optional, ergibt eine Route)','text',''],['travel','Verkehrsmittel (nur Route)','sel',[['Auto','driving'],['Zu Fuß','walking'],['Fahrrad','bicycling'],['Bahn und Bus','transit']]],['lt','Linktext (optional)','text','z. B. So finden Sie uns']],
+ share:[['url','Adresse der Seite (URL)','text','https://'],['text','Text oder Titel (optional)','text','']],
+ yt:[['url','YouTube-Adresse','text','https://www.youtube.com/watch?v=…'],['w','Breite (px)','text','560'],['h','Höhe (px)','text','315'],['start','Startzeit in Sekunden (optional)','text',''],['nc','Datenschutz-Modus (youtube-nocookie.com)','chk',true],['ctl','Steuerelemente anzeigen','chk',true],['lazy','Verzögert laden (lazy)','chk',true],['resp','Responsive Rahmen (16:9) dazu ausgeben','chk',true]],
+ ifr:[['url','Adresse der Seite (src)','text','https://'],['w','Breite','text','100%'],['h','Höhe','text','500'],['title','Titel (für Barrierefreiheit)','text',''],['bd','Rahmen entfernen','chk',true],['lazy','Verzögert laden (lazy)','chk',true],['fs','Vollbild erlauben','chk',false],['sb','Sandbox (eingeschränkte Rechte)','chk',false]],
+ html:[['url','Ziel-Adresse (URL)','text','https://'],['text','Linktext','text',''],['title','Titel-Hinweis (optional)','text',''],['blank','In neuem Tab öffnen','chk',false],['nf','rel=nofollow','chk',false],['sp','rel=sponsored (Werbung, Affiliate)','chk',false],['ugc','rel=ugc (Nutzerinhalte)','chk',false],['dl','Als Download anbieten','chk',false]]
+};
+function build(){
+ var t=$('ty').value,h='';
+ F[t].forEach(function(f){
+  var id='f_'+f[0];
+  if(f[2]==='chk')h+='<label class="chk"><input type="checkbox" id="'+id+'"'+(f[3]?' checked':'')+'> '+f[1]+'</label>';
+  else if(f[2]==='sel')h+='<div style="margin-bottom:10px"><label for="'+id+'">'+f[1]+'</label><select id="'+id+'">'+f[3].map(function(o){return'<option value="'+o[1]+'">'+o[0]+'</option>'}).join('')+'</select></div>';
+  else if(f[2]==='area')h+='<div style="margin-bottom:10px"><label for="'+id+'">'+f[1]+'</label><textarea id="'+id+'" style="min-height:80px"></textarea></div>';
+  else h+='<div style="margin-bottom:10px"><label for="'+id+'">'+f[1]+'</label><input type="text" id="'+id+'" placeholder="'+esc(f[3]||'')+'" autocomplete="off"></div>';
+ });
+ $('fm').innerHTML=h;
+ [].forEach.call($('fm').querySelectorAll('input,select,textarea'),function(e){e.addEventListener('input',run)});
+ run();
+}
+function v(id){var e=$('f_'+id);return e?(e.type==='checkbox'?e.checked:e.value.trim()):''}
+function nl(s){return s.replace(/\r?\n/g,'\r\n')}
+var ROWS=[];
+function row(label,value,opt){ROWS.push({l:label,v:value,u:opt&&opt.u,h:opt&&opt.h})}
+function lt(def){return v('lt')||def}
+function run(){
+ ROWS=[];var t=$('ty').value,msg='';
+ if(t==='mail'){
+  var to=v('to'),p=[];if(v('cc'))p.push('cc='+enc(v('cc')));if(v('bcc'))p.push('bcc='+enc(v('bcc')));if(v('subject'))p.push('subject='+enc(v('subject')));if(v('body'))p.push('body='+enc(nl(v('body'))));
+  if(to||p.length){var u='mailto:'+to.replace(/\s/g,'')+(p.length?'?'+p.join('&'):'');row('Mailto-Link',u,{u:1});row('HTML',  '<a href="'+esc(u)+'">'+esc(lt(to||'E-Mail schreiben'))+'</a>');row('Markdown','['+lt(to||'E-Mail schreiben')+']('+u+')');if(u.length>1800)msg='Der Link ist sehr lang. Viele Programme schneiden Mailto-Links ab einer bestimmten Länge ab.'}
+  if(to&&!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(to.replace(/\s/g,'').split(',')[0]))msg='Die E-Mail-Adresse sieht ungewöhnlich aus. Prüfe sie.';
+ }else if(t==='wa'){
+  var n=v('num'),code=v('cc'),d=n.replace(/[^\d+]/g,''),full='';
+  if(d){if(d.charAt(0)==='+')full=d.slice(1).replace(/\D/g,'');else{d=d.replace(/\D/g,'');if(d.indexOf('00')===0)full=d.slice(2);else if(code)full=code+d.replace(/^0+/,'');else full=d}}
+  if(full){if(full.length<8||full.length>15)msg='Die Nummer wirkt ungültig. Internationale Nummern haben mit Ländervorwahl meist 8 bis 15 Ziffern.';
+   var u='https://wa.me/'+full+(v('text')?'?text='+enc(v('text')):'');row('WhatsApp-Link',u,{u:1});row('HTML','<a href="'+esc(u)+'" target="_blank" rel="noopener noreferrer">'+esc(lt('Per WhatsApp schreiben'))+'</a>');row('Markdown','['+lt('Per WhatsApp schreiben')+']('+u+')');row('Nummer im internationalen Format','+'+full)}
+  else if(!d&&(v('text')))row('WhatsApp-Link ohne Nummer (Kontakt wählen)','https://wa.me/?text='+enc(v('text')),{u:1});
+ }else if(t==='tel'){
+  var raw=v('num'),num=(raw.charAt(0)==='+'?'+':'')+raw.replace(/\D/g,'');
+  if(num.length>1){var k=v('kind'),u2=k==='sms'?'sms:'+num+(v('body')?'?&body='+enc(v('body')):''):'tel:'+num;row(k==='sms'?'SMS-Link':'Telefon-Link',u2,{u:1});row('HTML','<a href="'+esc(u2)+'">'+esc(lt(raw||'Anrufen'))+'</a>');row('Markdown','['+lt(raw||'Anrufen')+']('+u2+')');if(num.charAt(0)!=='+')msg='Verwende die internationale Schreibweise mit + und Ländervorwahl, zum Beispiel +49 30 123456. So funktioniert der Link im Ausland.'}
+ }else if(t==='map'){
+  var q=v('q'),s=v('start'),mode=v('travel'),co=/^\s*-?\d+(\.\d+)?\s*,\s*-?\d+(\.\d+)?\s*$/.test(q);
+  if(q){var g,a,o;
+   if(s){g='https://www.google.com/maps/dir/?api=1&origin='+enc(s)+'&destination='+enc(q)+'&travelmode='+mode;a='https://maps.apple.com/?saddr='+enc(s)+'&daddr='+enc(q)+'&dirflg='+({driving:'d',walking:'w',bicycling:'w',transit:'r'}[mode]);o='https://www.openstreetmap.org/directions?from='+enc(s)+'&to='+enc(q)}
+   else{g='https://www.google.com/maps/search/?api=1&query='+enc(q.replace(/\s/g,co?'':' '));a='https://maps.apple.com/?q='+enc(q);o=co?'https://www.openstreetmap.org/?mlat='+q.split(',')[0].trim()+'&mlon='+q.split(',')[1].trim()+'#map=16/'+q.split(',')[0].trim()+'/'+q.split(',')[1].trim():'https://www.openstreetmap.org/search?query='+enc(q)}
+   row('Google Maps',g,{u:1});row('HTML (Google Maps)','<a href="'+esc(g)+'" target="_blank" rel="noopener noreferrer">'+esc(lt(s?'Route anzeigen':'Auf der Karte anzeigen'))+'</a>');row('Apple Karten',a,{u:1});row('OpenStreetMap',o,{u:1})}
+ }else if(t==='share'){
+  var url=v('url'),tx=v('text');
+  if(url){if(!/^https?:\/\//i.test(url))msg='Die Adresse sollte mit https:// beginnen.';
+   var L=[['WhatsApp','https://wa.me/?text='+enc((tx?tx+' ':'')+url)],['Facebook','https://www.facebook.com/sharer/sharer.php?u='+enc(url)],['X (Twitter)','https://twitter.com/intent/tweet?text='+enc(tx)+'&url='+enc(url)],['LinkedIn','https://www.linkedin.com/sharing/share-offsite/?url='+enc(url)],['Telegram','https://t.me/share/url?url='+enc(url)+'&text='+enc(tx)],['Reddit','https://www.reddit.com/submit?url='+enc(url)+'&title='+enc(tx)],['E-Mail','mailto:?subject='+enc(tx||url)+'&body='+enc(url)]];
+   L.forEach(function(x){row(x[0],x[1],{u:1,h:'<a href="'+esc(x[1])+'" target="_blank" rel="noopener noreferrer">Auf '+x[0]+' teilen</a>'})});
+   row('JavaScript: Teilen-Menü des Geräts (Web Share API)',"if (navigator.share) {\n  navigator.share({ title: "+JSON.stringify(tx||document.title||'')+", text: "+JSON.stringify(tx)+", url: "+JSON.stringify(url)+" });\n}")}
+ }else if(t==='yt'){
+  var yu=v('url'),m=yu.match(/(?:youtu\.be\/|youtube(?:-nocookie)?\.com\/(?:watch\?(?:.*&)?v=|embed\/|shorts\/|live\/|v\/))([\w-]{11})/);
+  if(yu&&!m)msg='Aus dieser Adresse konnte keine Video-ID gelesen werden. Verwende einen Link wie https://www.youtube.com/watch?v=… oder https://youtu.be/…';
+  if(m){var id=m[1],w=v('w')||'560',h=v('h')||'315',q2=[];if(v('start')&&+v('start')>0)q2.push('start='+parseInt(v('start'),10));if(!v('ctl'))q2.push('controls=0');q2.push('rel=0');
+   var src='https://www.'+(v('nc')?'youtube-nocookie':'youtube')+'.com/embed/'+id+'?'+q2.join('&');
+   var ifr='<iframe width="'+esc(w)+'" height="'+esc(h)+'" src="'+src+'" title="YouTube-Video" frameborder="0" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen'+(v('lazy')?' loading="lazy"':'')+'></iframe>';
+   row('iFrame-Code',ifr);row('Einbettungs-Adresse',src,{u:1});
+   if(v('resp')){row('Responsiver Rahmen (HTML)','<div class="video-wrap">\n  <iframe src="'+src+'" title="YouTube-Video" frameborder="0" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen'+(v('lazy')?' loading="lazy"':'')+'></iframe>\n</div>');row('Responsiver Rahmen (CSS)','.video-wrap { position: relative; aspect-ratio: 16 / 9; }\n.video-wrap iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }')}
+   msg='Auch der erweiterte Datenschutz-Modus ersetzt keine Prüfung der Rechtslage. Frage bei Bedarf eine fachkundige Stelle, ob du eine Einwilligung brauchst.'}
+ }else if(t==='ifr'){
+  var su=v('url');if(su){if(!/^https?:\/\//i.test(su))msg='Die Adresse sollte mit https:// beginnen.';
+   var at=['src="'+esc(su)+'"','width="'+esc(v('w')||'100%')+'"','height="'+esc(v('h')||'500')+'"'];if(v('title'))at.push('title="'+esc(v('title'))+'"');else msg=msg||'Ein Titel hilft Screenreadern. Trage einen kurzen Titel ein.';if(v('bd'))at.push('style="border:0"');if(v('lazy'))at.push('loading="lazy"');if(v('fs'))at.push('allowfullscreen');if(v('sb'))at.push('sandbox="allow-scripts allow-same-origin"');
+   row('iFrame-Code','<iframe '+at.join(' ')+'></iframe>');
+   msg=(msg?msg+' ':'')+'Viele Webseiten verbieten das Einbetten (X-Frame-Options oder Content-Security-Policy). Dann bleibt der Rahmen leer.'}
+ }else{
+  var hu=v('url');if(hu){var tx2=v('text')||hu,at2=['href="'+esc(hu)+'"'],rel=[];if(v('title'))at2.push('title="'+esc(v('title'))+'"');if(v('blank')){at2.push('target="_blank"');rel.push('noopener','noreferrer')}if(v('nf'))rel.push('nofollow');if(v('sp'))rel.push('sponsored');if(v('ugc'))rel.push('ugc');if(rel.length)at2.push('rel="'+rel.join(' ')+'"');if(v('dl'))at2.push('download');
+   row('HTML-Code','<a '+at2.join(' ')+'>'+esc(tx2)+'</a>');row('Markdown','['+tx2+']('+hu+')');row('BBCode','[url='+hu+']'+tx2+'[/url]')}
+ }
+ $('msg').innerHTML=msg?'<div class="warn">'+esc(msg)+'</div>':'';
+ $('out').innerHTML=ROWS.length?ROWS.map(function(r,i){return'<div class="row"><b>'+esc(r.l)+'</b><textarea readonly rows="2">'+esc(r.v)+'</textarea><div class="tf-btns"><button class="btn pri" data-c="'+i+'" type="button">Kopieren</button>'+(r.h?'<button class="btn" data-h="'+i+'" type="button">HTML kopieren</button>':'')+(r.u&&/^https?:/.test(r.v)?'<button class="btn" data-t="'+i+'" type="button">Link testen</button>':'')+'</div></div>'}).join(''):'<p class="note">Fülle die Angaben aus, dann erscheinen hier Link und Code.</p>';
+}
+$('out').addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;var r;
+ if(b.dataset.c!==undefined)copyText(ROWS[+b.dataset.c].v);
+ else if(b.dataset.h!==undefined)copyText(ROWS[+b.dataset.h].h);
+ else if(b.dataset.t!==undefined){window.open(ROWS[+b.dataset.t].v,'_blank','noopener')}});
+$('ty').addEventListener('input',build);
+build();
+
+</script>
+</body>
+</html>

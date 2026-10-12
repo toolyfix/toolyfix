@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Spalte in Kommaliste umwandeln – Excel, SQL, JSON | Toolyfix</title>
+<meta name="description" content="Spalte in Kommaliste umwandeln und zurück: Excel-Zeilen als Liste mit Komma, SQL-IN, JSON-Array oder Python-Liste, mit Duplikaten entfernen. Kostenlos.">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+<link rel="canonical" href="https://toolyfix.de/tools/kommaliste-umwandeln">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Toolyfix">
+<meta property="og:locale" content="de_DE">
+<meta property="og:title" content="Spalte in Kommaliste umwandeln – Excel, SQL, JSON | Toolyfix">
+<meta property="og:description" content="Spalte in Kommaliste umwandeln und zurück: Excel-Zeilen als Liste mit Komma, SQL-IN, JSON-Array oder Python-Liste, mit Duplikaten entfernen. Kostenlos.">
+<meta property="og:url" content="https://toolyfix.de/tools/kommaliste-umwandeln">
+<meta property="og:image" content="https://toolyfix.de/assets/og/home.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Toolyfix: Kostenlose Online-Tools">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Spalte in Kommaliste umwandeln – Excel, SQL, JSON | Toolyfix">
+<meta name="twitter:description" content="Spalte in Kommaliste umwandeln und zurück: Excel-Zeilen als Liste mit Komma, SQL-IN, JSON-Array oder Python-Liste, mit Duplikaten entfernen. Kostenlos.">
+<meta name="twitter:image" content="https://toolyfix.de/assets/og/home.jpg">
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "WebApplication", "name": "Spalte in Kommaliste umwandeln", "url": "https://toolyfix.de/tools/kommaliste-umwandeln", "description": "Spalte in Kommaliste umwandeln und zurück: Excel-Zeilen als Liste mit Komma, SQL-IN, JSON-Array oder Python-Liste, mit Duplikaten entfernen. Kostenlos.", "applicationCategory": "DeveloperApplication", "operatingSystem": "Any (Webbrowser)", "browserRequirements": "Benötigt JavaScript", "inLanguage": "de", "isAccessibleForFree": true, "image": "https://toolyfix.de/assets/og/home.jpg", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "EUR"}, "publisher": {"@type": "Organization", "name": "Toolyfix", "url": "https://toolyfix.de/"}}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Startseite", "item": "https://toolyfix.de/"}, {"@type": "ListItem", "position": 2, "name": "Spalte in Kommaliste umwandeln", "item": "https://toolyfix.de/tools/kommaliste-umwandeln"}]}]}</script>
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="stylesheet" href="/assets/style.css">
+<style>
+:root{--bg:#F7F7F4;--ink:#1A1A1A;--blue:#1D3557;--amber:#E9A93B;--line:#dcdcd2;--card:#fff;--mut:#5b6470;--bad:#b3261e;--ok:#1f7a45}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{background:var(--bg);color:var(--ink);margin:0;font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;line-height:1.6}
+.tf-wrap{max-width:1000px;margin:0 auto;padding:22px 16px 56px}
+.tf-wrap h1{font-size:clamp(1.6rem,4.4vw,2.3rem);line-height:1.15;margin:.2em 0 .3em;color:var(--blue)}
+.tf-intro{color:var(--mut);margin:0 0 14px;max-width:70ch}
+.tf-related{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:0 0 18px;padding:10px 12px;background:#fff;border:1px solid var(--line);border-radius:10px;font-size:.92rem}
+.tf-related b{color:var(--blue);margin-right:4px}
+.tf-related a{color:var(--blue);background:#eef1f6;border-radius:999px;padding:4px 12px;text-decoration:none;font-weight:500}
+.tf-related a:hover,.tf-related a:focus-visible{background:var(--blue);color:#fff;outline:none}
+.tf-card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px;margin-bottom:16px}
+.tf-card h2{font-size:1.05rem;margin:0 0 10px;color:var(--blue)}
+.tf-grid{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(170px,1fr))}
+.tf-wrap label{display:block;font-size:.82rem;font-weight:600;margin:0 0 4px;color:#333}
+.tf-wrap input[type=text],.tf-wrap input[type=number],.tf-wrap input[type=date],.tf-wrap select,.tf-wrap textarea{width:100%;padding:9px 10px;border:1px solid #c9c9bf;border-radius:8px;font:inherit;background:#fff;color:var(--ink)}
+.tf-wrap input[type=color]{width:100%;height:40px;border:1px solid #c9c9bf;border-radius:8px;padding:2px;background:#fff}
+.tf-wrap textarea{min-height:130px;resize:vertical}
+.tf-wrap input:focus-visible,.tf-wrap select:focus-visible,.tf-wrap textarea:focus-visible,.btn:focus-visible{outline:3px solid var(--amber);outline-offset:1px}
+.btn{font:inherit;font-weight:600;padding:9px 16px;border-radius:8px;border:1px solid var(--blue);background:#fff;color:var(--blue);cursor:pointer}
+.btn:hover{background:#eef1f6}
+.btn.pri{background:var(--blue);color:#fff}
+.btn.pri:hover{background:#16294a}
+.btn.amb{background:var(--amber);border-color:var(--amber);color:#1A1A1A}
+.btn[disabled]{opacity:.5;cursor:not-allowed}
+.tf-btns{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.chk{display:flex;gap:8px;align-items:center;font-weight:500;font-size:.92rem;margin:6px 0}
+.chk input{width:18px;height:18px}
+.tf-article{margin-top:34px;background:#fff;border:1px solid var(--line);border-radius:12px;padding:22px 20px}
+.tf-article h2{color:var(--blue);font-size:1.4rem;margin:1.4em 0 .4em;line-height:1.25}
+.tf-article h2:first-child{margin-top:0}
+.tf-article h3{font-size:1.1rem;margin:1.1em 0 .3em}
+.tf-article p,.tf-article li{max-width:75ch}
+.tf-article table{border-collapse:collapse;width:100%;font-size:.92rem;display:block;overflow-x:auto}
+.tf-article th,.tf-article td{border:1px solid var(--line);padding:6px 10px;text-align:left}
+.tf-article th{background:#eef1f6}
+.toast{position:fixed;left:50%;bottom:22px;transform:translateX(-50%);background:var(--blue);color:#fff;padding:9px 18px;border-radius:999px;font-size:.9rem;opacity:0;pointer-events:none;transition:opacity .2s;z-index:50}
+.toast.on{opacity:1}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+@media print{.site-header,.site-footer,.tf-related,.tf-intro,.tf-wrap>h1,.tf-article,.tf-noprint,.toast{display:none!important}body{background:#fff}.tf-wrap{padding:0;max-width:none}}
+
+.hid{display:none}
+.io{width:100%;min-height:200px;font-family:ui-monospace,Menlo,Consolas,monospace;font-size:.88rem;white-space:pre}
+.pre{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 12px}
+.pre button{border:1px solid var(--line);background:#fff;border-radius:999px;padding:6px 14px;font:inherit;font-size:.88rem;cursor:pointer;color:var(--blue);font-weight:600}
+.pre button:hover{background:#eef1f6}
+.stt{display:flex;flex-wrap:wrap;gap:6px 18px;font-size:.88rem;color:var(--mut);margin:8px 0}
+.stt b{color:var(--blue)}
+</style>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-F9VY193ZMP"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-F9VY193ZMP');</script>
+</head>
+<body>
+<header class="site-header">
+  <div class="container">
+    <a href="/" class="logo-link"><img src="/assets/images/logo-full.png" alt="Toolyfix"></a>
+    <span class="header-tagline">Kostenlose Tools, direkt im Browser</span>
+  </div>
+</header>
+<main>
+<div class="tf-wrap">
+<h1>Spalte in Kommaliste umwandeln</h1>
+<p class="tf-intro">Wandle untereinander stehende Werte, zum Beispiel aus einer Excel-Spalte, in eine Liste mit Komma, Semikolon oder anderem Trenner um, auch als SQL-IN-Klausel, JSON-Array oder Python-Liste. Und zurück.</p>
+<nav class="tf-related" aria-label="Passende Tools"><b>Passende Tools:</b><a href="/tools/alphabetisch-sortieren">Alphabetisch Sortieren</a><a href="/tools/csv-zu-json">CSV in JSON</a><a href="/tools/json-formatter">JSON-Formatter</a><a href="/tools/zeichenzaehler">Zeichenzähler</a><a href="/tools/fallkonverter">Fallkonverter</a></nav>
+
+<section class="tf-card">
+<h2>1. Vorlage und Richtung</h2>
+<div class="pre" id="pre"></div>
+<div class="tf-grid">
+<div><label for="dir">Richtung</label><select id="dir"><option value="fwd">Spalte → Liste</option><option value="rev">Liste → Spalte</option></select></div>
+</div>
+</section>
+<section class="tf-card">
+<h2>2. Eingabe</h2>
+<label for="in" id="lin">Werte, ein Eintrag pro Zeile (zum Beispiel aus Excel kopiert)</label>
+<textarea class="io" id="in" spellcheck="false"></textarea>
+</section>
+<section class="tf-card">
+<h2>3. Optionen</h2>
+<div class="tf-grid">
+<div><label for="sp">Trennzeichen</label><select id="sp"><option value=",">Komma ( , )</option><option value=", ">Komma mit Leerzeichen</option><option value=";">Semikolon ( ; )</option><option value="; ">Semikolon mit Leerzeichen</option><option value="|">Senkrechter Strich ( | )</option><option value=" ">Leerzeichen</option><option value="&#9;">Tabulator</option><option value="&#10;">Zeilenumbruch</option><option value="custom">Eigenes Trennzeichen</option></select></div>
+<div id="cw" class="hid"><label for="cs">Eigenes Trennzeichen</label><input type="text" id="cs" maxlength="10"></div>
+<div><label for="q">Anführungszeichen</label><select id="q"><option value="">Keine</option><option value="'">Einfach (')</option><option value='"'>Doppelt (")</option><option value="`">Backtick (`)</option></select></div>
+<div><label for="br">Klammern</label><select id="br"><option value="">Keine</option><option value="()">Rund ( )</option><option value="[]">Eckig [ ]</option><option value="{}">Geschweift { }</option></select></div>
+<div><label for="es">Anführungszeichen im Text</label><select id="es"><option value="sql">Verdoppeln (SQL)</option><option value="bs">Mit Backslash maskieren</option><option value="none">Nicht ändern</option></select></div>
+<div><label for="so">Sortieren</label><select id="so"><option value="">Nicht sortieren</option><option value="az">A bis Z</option><option value="za">Z bis A</option><option value="n1">Zahlen aufsteigend</option><option value="n2">Zahlen absteigend</option><option value="rnd">Zufällige Reihenfolge</option></select></div>
+<div><label for="nb">Zeilenumbruch nach N Einträgen</label><input type="text" id="nb" inputmode="numeric" placeholder="z. B. 10"></div>
+<div><label for="pf">Text vor jedem Eintrag</label><input type="text" id="pf" maxlength="20"></div>
+<div><label for="sf">Text nach jedem Eintrag</label><input type="text" id="sf" maxlength="20"></div>
+</div>
+<div style="margin-top:8px">
+<label class="chk"><input type="checkbox" id="tr" checked> Leerzeichen am Rand entfernen</label>
+<label class="chk"><input type="checkbox" id="em" checked> Leere Zeilen entfernen</label>
+<label class="chk"><input type="checkbox" id="du"> Doppelte Einträge entfernen</label>
+<label class="chk"><input type="checkbox" id="ci"> Groß- und Kleinschreibung bei Duplikaten ignorieren</label>
+<label class="chk"><input type="checkbox" id="nq"> Zahlen ohne Anführungszeichen ausgeben</label>
+<label class="chk"><input type="checkbox" id="dk"> Dezimalkomma bei Zahlen in Punkt umwandeln</label>
+</div>
+</section>
+<section class="tf-card">
+<h2>4. Ergebnis</h2>
+<div class="stt" id="st"></div>
+<textarea class="io" id="out" readonly spellcheck="false"></textarea>
+<div class="tf-btns"><button class="btn pri" id="cp" type="button">Kopieren</button><button class="btn" id="dlb" type="button">Als .txt speichern</button><button class="btn" id="clr" type="button">Leeren</button></div>
+</section>
+
+<article class="tf-article">
+
+<h2>Spalte in Kommaliste umwandeln: Excel-Zeilen als Liste mit Komma, Semikolon oder SQL</h2>
+<p>Du hast eine Excel-Spalte mit 200 Kundennummern und brauchst sie als Liste mit Komma für eine Datenbankabfrage. Oder du hast eine Liste von E-Mail-Adressen, die ein Programm nur mit Semikolon getrennt annimmt. Oder du bekommst ein JSON-Array mit Werten und möchtest sie wieder untereinander in einer Tabelle sehen. Das händische Einfügen von Kommas ist mühsam und fehleranfällig. Der Spalte-in-Kommaliste-Umwandler von Toolyfix erledigt das in einem Schritt. Du fügst die Werte ein, wählst eine Vorlage oder stellst Trennzeichen, Anführungszeichen und Klammern selbst ein, und das Ergebnis steht sofort bereit. Auch der umgekehrte Weg von der Liste zurück zur Spalte funktioniert. Alles läuft in deinem Browser, ohne Anmeldung.</p>
+
+<h2>Funktionen des Umwandlers</h2>
+<ul>
+<li><b>Sechs Vorlagen:</b> Kommaliste, SQL-IN-Klausel, JSON-Array, Python- und JavaScript-Liste, Semikolon-Liste und Tabulator für eine Zeile in Excel.</li>
+<li><b>Beide Richtungen:</b> Von der Spalte zur Liste und von der Liste zur Spalte.</li>
+<li><b>Trennzeichen frei wählbar:</b> Komma, Semikolon, senkrechter Strich, Leerzeichen, Tabulator, Zeilenumbruch oder ein eigenes Zeichen.</li>
+<li><b>Anführungszeichen und Klammern:</b> Einfach, doppelt oder Backtick, rund, eckig oder geschweift.</li>
+<li><b>Sichere Maskierung:</b> Anführungszeichen im Text werden nach SQL-Art verdoppelt oder mit Backslash maskiert.</li>
+<li><b>Aufräumen:</b> Leerzeichen entfernen, leere Zeilen löschen und doppelte Einträge entfernen, auf Wunsch ohne Beachtung der Groß- und Kleinschreibung.</li>
+<li><b>Sortieren:</b> Alphabetisch mit deutscher Sortierung, nach Zahlen oder in zufälliger Reihenfolge.</li>
+<li><b>Zahlen ohne Anführungszeichen:</b> Zahlen bleiben Zahlen, Texte erhalten Anführungszeichen. Auf Wunsch wird das Dezimalkomma zum Punkt.</li>
+<li><b>Zeilenumbruch nach N Einträgen:</b> Praktisch für lange Listen, die lesbar bleiben sollen.</li>
+<li><b>Text vor und nach jedem Eintrag:</b> Zum Beispiel ein Präfix wie „ID_“ oder ein Suffix wie „@beispiel.de“.</li>
+</ul>
+
+<h2>So wandelst du eine Excel-Spalte in eine Kommaliste um</h2>
+<ol>
+<li>Markiere die Spalte in Excel oder Google Tabellen und kopiere sie mit Strg+C.</li>
+<li>Füge die Werte in das Eingabefeld ein. Jede Zelle erscheint in einer eigenen Zeile.</li>
+<li>Wähle eine Vorlage, zum Beispiel „Kommaliste“, oder stelle die Optionen selbst ein.</li>
+<li>Kopiere das Ergebnis mit einem Klick und füge es dort ein, wo du es brauchst.</li>
+</ol>
+<p>Wer in Excel selbst arbeiten möchte, kann die Funktion TEXTVERKETTEN nutzen, in der englischen Version TEXTJOIN. Mit der Formel =TEXTVERKETTEN(",";WAHR;A1:A200) entsteht aus dem Bereich A1 bis A200 eine Kommaliste ohne leere Zellen. Das funktioniert in aktuellen Excel-Versionen. Der Umwandler hat den Vorteil, dass du Anführungszeichen, Duplikate und Sortierung gleich mit erledigst und nicht an eine Excel-Version gebunden bist.</p>
+
+<h2>SQL-IN-Liste erstellen</h2>
+<p>Eine der häufigsten Anwendungen ist die IN-Klausel in einer SQL-Abfrage. Aus einer Spalte mit Werten wird eine Klammerliste: ('A101', 'A102', 'A103'). Die Vorlage „SQL IN-Klausel“ erledigt das mit einfachen Anführungszeichen, runden Klammern und Komma plus Leerzeichen. Zahlen bleiben ohne Anführungszeichen. Einfache Anführungszeichen im Text werden verdoppelt, wie es SQL verlangt. Zwei Hinweise aus der Praxis: Einige Datenbanken begrenzen die Zahl der Werte in einer IN-Liste, bei Oracle sind es zum Beispiel 1.000. Teile lange Listen in mehrere Abschnitte, oder nutze die Option „Zeilenumbruch nach N Einträgen“. Und: Füge keine ungeprüften Daten aus fremden Quellen in SQL-Abfragen ein. Für Programme, die Eingaben von Nutzern verarbeiten, gehören parametrisierte Abfragen dazu. Die Umwandlung hier eignet sich für manuelle Auswertungen.</p>
+
+<h2>JSON-Arrays, Python- und JavaScript-Listen</h2>
+<p>Entwickler brauchen Listen als Code. Ein JSON-Array nutzt doppelte Anführungszeichen und eckige Klammern: ["rot", "grün", "blau"]. Python- und JavaScript-Listen funktionieren ähnlich, dort sind auch einfache Anführungszeichen üblich. Die Vorlagen setzen Trennzeichen, Anführungszeichen und Klammern passend und maskieren Anführungszeichen und Backslashes im Text. Ob das Ergebnis als gültiges JSON durchgeht, prüfst du mit dem JSON-Formatter. Wenn du ganze Tabellen statt einzelner Spalten umwandeln willst, hilft das Tool CSV in JSON.</p>
+
+<h2>Von der Liste zurück zur Spalte</h2>
+<p>Auch der umgekehrte Weg kommt oft vor: Eine Kommaliste soll in einzelne Zeilen aufgeteilt werden, etwa um sie in Excel einzufügen oder zu sortieren. Wähle dafür die Richtung „Liste → Spalte“, das passende Trennzeichen und, falls die Werte in Anführungszeichen stehen, das entsprechende Zeichen. Das Tool entfernt äußere Klammern, beachtet Trennzeichen innerhalb von Anführungszeichen und gibt jeden Eintrag in eine eigene Zeile aus. Sortieren und Duplikate entfernen funktioniert auch hier.</p>
+
+<h2>Typische Probleme und Lösungen</h2>
+<h3>Ich sehe am Ende ein überflüssiges Komma oder Leerzeichen</h3>
+<p>Das passiert, wenn am Ende der Eingabe eine leere Zeile steht oder Leerzeichen vorkommen. Aktiviere „Leere Zeilen entfernen“ und „Leerzeichen am Rand entfernen“.</p>
+<h3>Die Werte aus Excel stehen in einer Zeile statt in mehreren</h3>
+<p>Wenn du mehrere Spalten kopierst, trennt Excel sie mit Tabulatoren. Kopiere nur eine Spalte, oder wähle die Richtung „Liste → Spalte“ mit Tabulator als Trennzeichen.</p>
+<h3>Zahlen werden in Anführungszeichen gesetzt</h3>
+<p>Aktiviere „Zahlen ohne Anführungszeichen ausgeben“. Bei Zahlen mit Dezimalkomma hilft zusätzlich die Umwandlung in Punkte.</p>
+<h3>Führende Nullen gehen verloren</h3>
+<p>Das Tool verändert Werte nicht. Gehen die Nullen schon in Excel verloren, formatiere die Spalte vorher als Text. Mit Anführungszeichen bleiben sie in der Liste sichtbar.</p>
+<h3>Sonderzeichen sehen falsch aus</h3>
+<p>Prüfe, ob deine Daten als UTF-8 vorliegen. Beim Kopieren und Einfügen im Browser bleiben Umlaute und Sonderzeichen in der Regel erhalten.</p>
+<h3>Das Ergebnis ist sehr lang</h3>
+<p>Nutze den Zeilenumbruch nach einer bestimmten Anzahl von Einträgen oder teile die Liste in Abschnitte.</p>
+
+<h2>Tipps für saubere Listen</h2>
+<ul>
+<li>Entferne Duplikate vor der Weiterverarbeitung, besonders bei Datenbankabfragen und E-Mail-Verteilern.</li>
+<li>Sortiere Listen, um sie besser zu prüfen. Bei Zahlen nutzt du die numerische Sortierung, damit „10“ nicht vor „2“ steht.</li>
+<li>Prüfe die Anzahl der Einträge in der Statistik. Sie zeigt sofort, ob Zeilen verloren gegangen sind.</li>
+<li>Für das Zählen von Zeichen oder Wörtern nutzt du den Zeichenzähler, für alphabetisches Sortieren ganzer Listen Alphabetisch Sortieren.</li>
+<li>Bei E-Mail-Adressen prüfe, welches Trennzeichen dein Programm erwartet. Viele nutzen Semikolon, andere Komma.</li>
+</ul>
+
+<h2>Häufige Fragen zum Spalte-in-Kommaliste-Umwandler</h2>
+<h3>Wie wandle ich eine Excel-Spalte in eine Kommaliste um?</h3>
+<p>Kopiere die Spalte, füge sie in das Eingabefeld ein und wähle die Vorlage „Kommaliste“. Danach kopierst du das Ergebnis.</p>
+<h3>Kann ich auch Semikolon statt Komma verwenden?</h3>
+<p>Ja, wähle bei „Trennzeichen“ das Semikolon oder die Vorlage „Semikolon-Liste“.</p>
+<h3>Wie viele Zeilen kann ich umwandeln?</h3>
+<p>Das Tool begrenzt die Zahl nicht. Bei mehreren zehntausend Zeilen hängt die Geschwindigkeit von deinem Gerät ab.</p>
+<h3>Werden meine Daten gespeichert?</h3>
+<p>Nein. Alles bleibt in deinem Browser.</p>
+<h3>Ist der Umwandler kostenlos?</h3>
+<p>Ja, ohne Anmeldung und ohne Einschränkung.</p>
+<p>Weitere Daten-Werkzeuge findest du oben unter „Passende Tools“, zum Beispiel Alphabetisch Sortieren, CSV in JSON, JSON-Formatter und Zeichenzähler.</p>
+
+</article>
+</div>
+</main>
+<footer class="site-footer">
+  <div class="container">
+    <img src="/assets/images/logo-full.png" alt="Toolyfix">
+    <nav class="footer-links">
+      <a href="/ueber-uns.html">Über uns</a>
+      <a href="/datenschutz.html">Datenschutz</a>
+      <a href="/nutzungsbedingungen.html">Nutzungsbedingungen</a>
+      <a href="/kontakt.html">Kontakt</a>
+    </nav>
+    <p class="footer-note">© 2026 Toolyfix – Alle Tools laufen lokal in deinem Browser.</p>
+  </div>
+</footer>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script>
+function toast(m){var t=document.getElementById('toast');t.textContent=m;t.classList.add('on');clearTimeout(window._tt);window._tt=setTimeout(function(){t.classList.remove('on')},1800)}
+function copyText(s){if(navigator.clipboard&&window.isSecureContext){return navigator.clipboard.writeText(s).then(function(){toast('Kopiert')},function(){fb(s)})}fb(s)}
+function fb(s){var a=document.createElement('textarea');a.value=s;a.style.position='fixed';a.style.opacity='0';document.body.appendChild(a);a.select();try{document.execCommand('copy');toast('Kopiert')}catch(e){toast('Kopieren nicht möglich')}document.body.removeChild(a)}
+function dl(name,blob){var u=URL.createObjectURL(blob),a=document.createElement('a');a.href=u;a.download=name;document.body.appendChild(a);a.click();document.body.removeChild(a);setTimeout(function(){URL.revokeObjectURL(u)},4000)}
+
+function $(i){return document.getElementById(i)}
+function sep(){var v=$('sp').value;return v==='custom'?$('cs').value:v}
+var P=[['Kommaliste',{sp:',',q:'',br:'',es:'none',nq:false}],['SQL IN-Klausel',{sp:', ',q:"'",br:'()',es:'sql',nq:true,dk:true}],['JSON-Array',{sp:', ',q:'"',br:'[]',es:'bs',nq:true,dk:true}],['Python- oder JavaScript-Liste',{sp:', ',q:"'",br:'[]',es:'bs',nq:true,dk:true}],['Semikolon-Liste',{sp:';',q:'',br:'',es:'none',nq:false}],['Tabulator (eine Zeile in Excel)',{sp:'\t',q:'',br:'',es:'none',nq:false}]];
+P.forEach(function(p){var b=document.createElement('button');b.type='button';b.textContent=p[0];b.onclick=function(){var o=p[1];$('sp').value=o.sp;$('q').value=o.q;$('br').value=o.br;$('es').value=o.es;$('nq').checked=!!o.nq;$('dk').checked=!!o.dk;$('dir').value='fwd';run()};$('pre').appendChild(b)});
+var isNum=/^[-+]?\d+([.,]\d+)?$/;
+function wrap(s,nq,dk){
+ var q=$('q').value,num=isNum.test(s.trim());
+ if(num&&dk&&/,/.test(s))s=s.replace(',','.');
+ if(q&&!(num&&nq)){var e=$('es').value;if(e==='sql')s=s.split(q).join(q+q);else if(e==='bs')s=s.replace(/\\/g,'\\\\').split(q).join('\\'+q);s=q+s+q}
+ return $('pf').value+s+$('sf').value;
+}
+function fwd(){
+ var t=$('in').value,lines=t.split(/\r?\n/),n0=lines.length;
+ if($('tr').checked)lines=lines.map(function(x){return x.trim()});
+ var empty=0;if($('em').checked){var l2=lines.filter(function(x){return x!==''});empty=lines.length-l2.length;lines=l2}
+ var dup=0;if($('du').checked){var seen={};lines=lines.filter(function(x){var k=$('ci').checked?x.toLowerCase():x;if(seen[k]){dup++;return false}seen[k]=1;return true})}
+ var so=$('so').value;
+ if(so==='az'||so==='za')lines.sort(function(a,b){return a.localeCompare(b,'de',{numeric:true,sensitivity:'base'})});
+ if(so==='za')lines.reverse();
+ if(so==='n1'||so==='n2'){lines.sort(function(a,b){return parseFloat(String(a).replace(',','.'))-parseFloat(String(b).replace(',','.'))});if(so==='n2')lines.reverse()}
+ if(so==='rnd'){for(var i=lines.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1)),x=lines[i];lines[i]=lines[j];lines[j]=x}}
+ var items=lines.map(function(x){return wrap(x,$('nq').checked,$('dk').checked)}),s=sep(),N=parseInt($('nb').value,10),b=$('br').value,txt;
+ if(N>0){var rows=[];for(var k=0;k<items.length;k+=N)rows.push(items.slice(k,k+N).join(s));txt=rows.join(s.replace(/\s+$/,'')+'\n')}
+ else txt=items.join(s);
+ if(b)txt=b.charAt(0)+txt+b.charAt(1);
+ $('st').innerHTML='<span><b>'+n0+'</b> Zeilen eingegeben</span><span><b>'+items.length+'</b> Einträge im Ergebnis</span>'+(empty?'<span><b>'+empty+'</b> leere entfernt</span>':'')+(dup?'<span><b>'+dup+'</b> Duplikate entfernt</span>':'');
+ return items.length?txt:'';
+}
+function rev(){
+ var t=$('in').value,b=$('br').value;t=t.trim();
+ if(b&&t.charAt(0)===b.charAt(0)&&t.charAt(t.length-1)===b.charAt(1))t=t.slice(1,-1);
+ else{var m=t.match(/^[\(\[\{]([\s\S]*)[\)\]\}]$/);if(m&&!b)t=m[1]}
+ var s=sep(),q=$('q').value,items=[],cur='',inq=false,ch,auto=false,ss;
+ if(s===' '||s===''){}
+ var seps=s.length?s:',';
+ for(var i=0;i<t.length;i++){
+  ch=t[i];
+  if(q&&inq){if(ch===q&&t[i+1]===q&&$('es').value==='sql'){cur+=q;i++;continue}if(ch==='\\'&&$('es').value==='bs'&&i+1<t.length){cur+=t[++i];continue}if(ch===q){inq=false;continue}cur+=ch;continue}
+  if(q&&ch===q&&cur.trim()===''){inq=true;cur='';continue}
+  if(t.substr(i,seps.length)===seps){items.push(cur);cur='';i+=seps.length-1;continue}
+  if(seps.charAt(0)===','&&ch==='\n'&&false){}
+  cur+=ch;
+ }
+ items.push(cur);
+ if($('tr').checked)items=items.map(function(x){return x.trim()});
+ var n0=items.length;if($('em').checked)items=items.filter(function(x){return x!==''});
+ var dup=0;if($('du').checked){var seen={};items=items.filter(function(x){var k=$('ci').checked?x.toLowerCase():x;if(seen[k]){dup++;return false}seen[k]=1;return true})}
+ var so=$('so').value;if(so==='az')items.sort(function(a,b){return a.localeCompare(b,'de',{numeric:true,sensitivity:'base'})});if(so==='za')items.sort(function(a,b){return b.localeCompare(a,'de',{numeric:true,sensitivity:'base'})});
+ if(so==='n1'||so==='n2'){items.sort(function(a,b){return parseFloat(a.replace(',','.'))-parseFloat(b.replace(',','.'))});if(so==='n2')items.reverse()}
+ items=items.map(function(x){return $('pf').value+x+$('sf').value});
+ $('st').innerHTML='<span><b>'+n0+'</b> Teile erkannt</span><span><b>'+items.length+'</b> Zeilen im Ergebnis</span>'+(dup?'<span><b>'+dup+'</b> Duplikate entfernt</span>':'');
+ return items.join('\n');
+}
+function run(){
+ var r=$('dir').value==='rev';
+ $('cw').classList.toggle('hid',$('sp').value!=='custom');
+ $('lin').textContent=r?'Liste, zum Beispiel: a, b, c oder \'a\', \'b\', \'c\'':'Werte, ein Eintrag pro Zeile (zum Beispiel aus Excel kopiert)';
+ var o=r?rev():fwd();$('out').value=o;
+}
+['dir','in','sp','cs','q','br','es','so','nb','pf','sf','tr','em','du','ci','nq','dk'].forEach(function(i){$(i).addEventListener('input',run)});
+$('cp').onclick=function(){if($('out').value)copyText($('out').value);else toast('Noch kein Ergebnis')};
+$('dlb').onclick=function(){if(!$('out').value){toast('Noch kein Ergebnis');return}dl('liste-toolyfix.txt',new Blob([$('out').value],{type:'text/plain;charset=utf-8'}))};
+$('clr').onclick=function(){$('in').value='';run();$('in').focus()};
+run();
+
+</script>
+</body>
+</html>

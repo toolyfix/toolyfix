@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>robots.txt Generator &amp; Tester – Crawler steuern | Toolyfix</title>
+<meta name="description" content="robots.txt erstellen und testen: Disallow, Allow und Sitemap per Klick, KI-Crawler sperren, URLs prüfen mit Regel-Anzeige. Kostenlos, ohne Anmeldung.">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+<link rel="canonical" href="https://toolyfix.de/tools/robots-txt-generator">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Toolyfix">
+<meta property="og:locale" content="de_DE">
+<meta property="og:title" content="robots.txt Generator &amp; Tester – Crawler steuern | Toolyfix">
+<meta property="og:description" content="robots.txt erstellen und testen: Disallow, Allow und Sitemap per Klick, KI-Crawler sperren, URLs prüfen mit Regel-Anzeige. Kostenlos, ohne Anmeldung.">
+<meta property="og:url" content="https://toolyfix.de/tools/robots-txt-generator">
+<meta property="og:image" content="https://toolyfix.de/assets/og/home.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Toolyfix: Kostenlose Online-Tools">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="robots.txt Generator &amp; Tester – Crawler steuern | Toolyfix">
+<meta name="twitter:description" content="robots.txt erstellen und testen: Disallow, Allow und Sitemap per Klick, KI-Crawler sperren, URLs prüfen mit Regel-Anzeige. Kostenlos, ohne Anmeldung.">
+<meta name="twitter:image" content="https://toolyfix.de/assets/og/home.jpg">
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "WebApplication", "name": "robots.txt Generator & Tester", "url": "https://toolyfix.de/tools/robots-txt-generator", "description": "robots.txt erstellen und testen: Disallow, Allow und Sitemap per Klick, KI-Crawler sperren, URLs prüfen mit Regel-Anzeige. Kostenlos, ohne Anmeldung.", "applicationCategory": "DeveloperApplication", "operatingSystem": "Any (Webbrowser)", "browserRequirements": "Benötigt JavaScript", "inLanguage": "de", "isAccessibleForFree": true, "image": "https://toolyfix.de/assets/og/home.jpg", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "EUR"}, "publisher": {"@type": "Organization", "name": "Toolyfix", "url": "https://toolyfix.de/"}}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Startseite", "item": "https://toolyfix.de/"}, {"@type": "ListItem", "position": 2, "name": "robots.txt Generator & Tester", "item": "https://toolyfix.de/tools/robots-txt-generator"}]}]}</script>
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="stylesheet" href="/assets/style.css">
+<style>
+:root{--bg:#F7F7F4;--ink:#1A1A1A;--blue:#1D3557;--amber:#E9A93B;--line:#dcdcd2;--card:#fff;--mut:#5b6470;--bad:#b3261e;--ok:#1f7a45}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{background:var(--bg);color:var(--ink);margin:0;font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;line-height:1.6}
+.tf-wrap{max-width:1000px;margin:0 auto;padding:22px 16px 56px}
+.tf-wrap h1{font-size:clamp(1.6rem,4.4vw,2.3rem);line-height:1.15;margin:.2em 0 .3em;color:var(--blue)}
+.tf-intro{color:var(--mut);margin:0 0 14px;max-width:70ch}
+.tf-related{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:0 0 18px;padding:10px 12px;background:#fff;border:1px solid var(--line);border-radius:10px;font-size:.92rem}
+.tf-related b{color:var(--blue);margin-right:4px}
+.tf-related a{color:var(--blue);background:#eef1f6;border-radius:999px;padding:4px 12px;text-decoration:none;font-weight:500}
+.tf-related a:hover,.tf-related a:focus-visible{background:var(--blue);color:#fff;outline:none}
+.tf-card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px;margin-bottom:16px}
+.tf-card h2{font-size:1.05rem;margin:0 0 10px;color:var(--blue)}
+.tf-grid{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(170px,1fr))}
+.tf-wrap label{display:block;font-size:.82rem;font-weight:600;margin:0 0 4px;color:#333}
+.tf-wrap input[type=text],.tf-wrap input[type=number],.tf-wrap input[type=date],.tf-wrap select,.tf-wrap textarea{width:100%;padding:9px 10px;border:1px solid #c9c9bf;border-radius:8px;font:inherit;background:#fff;color:var(--ink)}
+.tf-wrap input[type=color]{width:100%;height:40px;border:1px solid #c9c9bf;border-radius:8px;padding:2px;background:#fff}
+.tf-wrap textarea{min-height:130px;resize:vertical}
+.tf-wrap input:focus-visible,.tf-wrap select:focus-visible,.tf-wrap textarea:focus-visible,.btn:focus-visible{outline:3px solid var(--amber);outline-offset:1px}
+.btn{font:inherit;font-weight:600;padding:9px 16px;border-radius:8px;border:1px solid var(--blue);background:#fff;color:var(--blue);cursor:pointer}
+.btn:hover{background:#eef1f6}
+.btn.pri{background:var(--blue);color:#fff}
+.btn.pri:hover{background:#16294a}
+.btn.amb{background:var(--amber);border-color:var(--amber);color:#1A1A1A}
+.btn[disabled]{opacity:.5;cursor:not-allowed}
+.tf-btns{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.chk{display:flex;gap:8px;align-items:center;font-weight:500;font-size:.92rem;margin:6px 0}
+.chk input{width:18px;height:18px}
+.tf-article{margin-top:34px;background:#fff;border:1px solid var(--line);border-radius:12px;padding:22px 20px}
+.tf-article h2{color:var(--blue);font-size:1.4rem;margin:1.4em 0 .4em;line-height:1.25}
+.tf-article h2:first-child{margin-top:0}
+.tf-article h3{font-size:1.1rem;margin:1.1em 0 .3em}
+.tf-article p,.tf-article li{max-width:75ch}
+.tf-article table{border-collapse:collapse;width:100%;font-size:.92rem;display:block;overflow-x:auto}
+.tf-article th,.tf-article td{border:1px solid var(--line);padding:6px 10px;text-align:left}
+.tf-article th{background:#eef1f6}
+.toast{position:fixed;left:50%;bottom:22px;transform:translateX(-50%);background:var(--blue);color:#fff;padding:9px 18px;border-radius:999px;font-size:.9rem;opacity:0;pointer-events:none;transition:opacity .2s;z-index:50}
+.toast.on{opacity:1}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+@media print{.site-header,.site-footer,.tf-related,.tf-intro,.tf-wrap>h1,.tf-article,.tf-noprint,.toast{display:none!important}body{background:#fff}.tf-wrap{padding:0;max-width:none}}
+
+.mt{display:flex;gap:8px;margin-bottom:14px;flex-wrap:wrap}
+.mt button.on{background:var(--blue);color:#fff}
+.hid{display:none}
+.grp{border:1px solid var(--line);border-radius:10px;padding:12px;margin-bottom:12px;background:#fcfcfa}
+.grp .tf-btns{margin-top:8px}
+.pre{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px}
+.pre button{border:1px solid var(--line);background:#fff;border-radius:999px;padding:6px 14px;font:inherit;font-size:.88rem;cursor:pointer;color:var(--blue);font-weight:600}
+.pre button:hover{background:#eef1f6}
+.io{width:100%;min-height:220px;font-family:ui-monospace,Menlo,Consolas,monospace;font-size:.86rem;white-space:pre}
+.sm{min-height:90px}
+.warn{background:#fff6dd;border:1px solid #f0d58a;border-radius:8px;padding:9px 12px;font-size:.88rem;margin:8px 0}
+.tbw{overflow-x:auto;border:1px solid var(--line);border-radius:8px;margin-top:12px}
+table.t{border-collapse:collapse;width:100%;font-size:.92rem}
+table.t th,table.t td{border-bottom:1px solid var(--line);padding:7px 10px;text-align:left;vertical-align:top}
+table.t th{background:#eef1f6;white-space:nowrap}
+table.t td.u{overflow-wrap:anywhere;font-family:ui-monospace,Menlo,Consolas,monospace;font-size:.84rem}
+.ok{color:var(--ok);font-weight:700}.no{color:var(--bad);font-weight:700}
+.note{font-size:.85rem;color:var(--mut);margin:8px 0 0}
+</style>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-F9VY193ZMP"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-F9VY193ZMP');</script>
+</head>
+<body>
+<header class="site-header">
+  <div class="container">
+    <a href="/" class="logo-link"><img src="/assets/images/logo-full.png" alt="Toolyfix"></a>
+    <span class="header-tagline">Kostenlose Tools, direkt im Browser</span>
+  </div>
+</header>
+<main>
+<div class="tf-wrap">
+<h1>robots.txt Generator & Tester</h1>
+<p class="tf-intro">Erstelle eine robots.txt mit Vorlagen, Disallow, Allow, Sitemap und KI-Crawlern oder prüfe eine vorhandene Datei: Der Tester zeigt für jede URL, ob sie für einen Crawler erlaubt oder gesperrt ist und welche Regel greift.</p>
+<nav class="tf-related" aria-label="Passende Tools"><b>Passende Tools:</b><a href="/tools/open-graph-checker">Open Graph Checker</a><a href="/tools/slug-generator">Slug Generator</a><a href="/tools/zeichenzaehler">Zeichenzähler</a><a href="/tools/link-generator">Link Generator</a></nav>
+
+<div class="mt tf-noprint">
+<button class="btn on" data-m="g" type="button">Generator</button>
+<button class="btn" data-m="t" type="button">Tester</button>
+</div>
+<div id="sG">
+<section class="tf-card">
+<h2>1. Vorlage wählen</h2>
+<div class="pre" id="pre"></div>
+</section>
+<section class="tf-card">
+<h2>2. Regeln je Crawler</h2>
+<div id="groups"></div>
+<div class="tf-btns"><button class="btn" id="addg" type="button">+ Regelgruppe hinzufügen</button></div>
+<label class="chk" style="margin-top:12px"><input type="checkbox" id="ai"> Bekannte KI-Crawler komplett sperren (GPTBot, ClaudeBot, CCBot, PerplexityBot und weitere)</label>
+</section>
+<section class="tf-card">
+<h2>3. Sitemaps</h2>
+<label for="sm">Sitemap-Adressen, eine pro Zeile (mit https://)</label>
+<textarea id="sm" class="sm" placeholder="https://deine-seite.de/sitemap.xml"></textarea>
+</section>
+<section class="tf-card">
+<h2>4. Deine robots.txt</h2>
+<div id="gw"></div>
+<textarea class="io" id="gout" readonly spellcheck="false"></textarea>
+<div class="tf-btns"><button class="btn pri" id="gcp" type="button">Kopieren</button><button class="btn amb" id="gdl" type="button">Als robots.txt herunterladen</button></div>
+<p class="note">Die Datei muss im Hauptverzeichnis der Domain liegen, zum Beispiel unter https://deine-seite.de/robots.txt.</p>
+</section>
+</div>
+<div id="sT" class="hid">
+<section class="tf-card">
+<h2>1. robots.txt einfügen</h2>
+<textarea class="io" id="tin" spellcheck="false" placeholder="Inhalt der robots.txt hier einfügen"></textarea>
+<p class="note">Öffne https://deine-seite.de/robots.txt im Browser, kopiere den Text und füge ihn hier ein. Ein direkter Abruf ist aus dem Browser nicht möglich.</p>
+</section>
+<section class="tf-card">
+<h2>2. Crawler und URLs</h2>
+<div class="tf-grid">
+<div><label for="ua">Crawler</label><select id="ua"><option>Googlebot</option><option>Googlebot-Image</option><option>Bingbot</option><option>GPTBot</option><option>ClaudeBot</option><option>CCBot</option><option>PerplexityBot</option><option value="*">Alle anderen (*)</option><option value="custom">Eigener Name</option></select></div>
+<div id="cuw" class="hid"><label for="cu">Eigener User-agent</label><input type="text" id="cu" autocomplete="off"></div>
+</div>
+<label for="urls" style="margin-top:12px">Adressen oder Pfade, eine pro Zeile</label>
+<textarea id="urls" class="sm" spellcheck="false" placeholder="/warenkorb/&#10;https://deine-seite.de/produkt?farbe=rot"></textarea>
+</section>
+<section class="tf-card">
+<h2>3. Ergebnis</h2>
+<div id="tw"></div>
+<div class="tbw hid" id="tbw"><table class="t" id="tb"></table></div>
+</section>
+</div>
+
+<article class="tf-article">
+
+<h2>robots.txt Generator und Tester: Crawler richtig steuern</h2>
+<p>Jede Webseite wird ständig von automatischen Programmen besucht, den Crawlern oder Bots. Suchmaschinen wie Google und Bing lesen sie, um Seiten in den Index aufzunehmen. Daneben gibt es Werbe-Bots, Preisvergleichsdienste, Archivierer und zunehmend KI-Crawler, die Inhalte für Sprachmodelle einsammeln. Mit einer kleinen Textdatei namens robots.txt sagst du ihnen, welche Bereiche deiner Seite sie besuchen dürfen und welche nicht. Der robots.txt Generator von Toolyfix baut die Datei per Klick zusammen, mit Vorlagen für typische Fälle, mit Disallow, Allow, Sitemap und einem Schalter für KI-Crawler. Der Tester prüft eine vorhandene Datei: Du fügst sie ein, gibst Crawler und Adressen an, und das Tool zeigt, ob jede Adresse erlaubt oder gesperrt ist und welche Zeile entscheidet. Alles läuft in deinem Browser, ohne Anmeldung.</p>
+
+<h2>Funktionen</h2>
+<ul>
+<li><b>Fünf Vorlagen:</b> Alles erlauben, alles sperren, WordPress, Online-Shop und „Nur Google erlauben“.</li>
+<li><b>Mehrere Regelgruppen:</b> Für jeden Crawler eigene Disallow- und Allow-Regeln und optional ein Crawl-delay.</li>
+<li><b>KI-Crawler sperren:</b> Ein Schalter ergänzt eine Gruppe für bekannte KI-Bots wie GPTBot, ClaudeBot, CCBot und PerplexityBot.</li>
+<li><b>Sitemaps:</b> Beliebig viele Sitemap-Adressen werden in die Datei geschrieben.</li>
+<li><b>Warnungen:</b> Das Tool weist auf häufige Fehler hin, etwa „Disallow: /“ für alle oder fehlende Schrägstriche.</li>
+<li><b>Download:</b> Die fertige Datei lässt sich als robots.txt speichern.</li>
+<li><b>Tester:</b> Für jede URL ein Ergebnis mit der entscheidenden Regel, mit Unterstützung der Platzhalter * und $, und mit Syntaxprüfung der Datei.</li>
+</ul>
+
+<h2>Wie eine robots.txt aufgebaut ist</h2>
+<p>Die Datei besteht aus Gruppen. Jede Gruppe beginnt mit einer oder mehreren Zeilen „User-agent“, die den Crawler benennen. Darunter stehen die Regeln „Disallow“ für gesperrte Pfade und „Allow“ für erlaubte Ausnahmen. Ein Stern bei User-agent steht für alle Crawler. Eine leere Disallow-Zeile bedeutet, dass nichts gesperrt ist. „Disallow: /“ sperrt die komplette Seite. Zeilen mit „Sitemap“ nennen die Adresse deiner Sitemap, sie gelten unabhängig von den Gruppen. Ein Beispiel:</p>
+<table>
+<tr><th>Zeile</th><th>Bedeutung</th></tr>
+<tr><td>User-agent: *</td><td>Die Regeln gelten für alle Crawler</td></tr>
+<tr><td>Disallow: /intern/</td><td>Alles unter /intern/ ist gesperrt</td></tr>
+<tr><td>Allow: /intern/presse/</td><td>Ausnahme: Dieser Unterordner ist erlaubt</td></tr>
+<tr><td>Sitemap: https://deine-seite.de/sitemap.xml</td><td>Adresse der Sitemap</td></tr>
+</table>
+
+<h2>Platzhalter und Regelvorrang</h2>
+<p>Googles Crawler und viele andere verstehen zwei Platzhalter. Der Stern * steht für eine beliebige Zeichenfolge, das Dollarzeichen $ markiert das Ende einer Adresse. So sperrt „Disallow: /*.pdf$“ alle Adressen, die auf .pdf enden, und „Disallow: /*?sort=“ alle Adressen mit diesem Parameter. Wenn mehrere Regeln auf eine Adresse passen, entscheidet die spezifischste, also die mit dem längsten Pfadmuster. Bei gleicher Länge gewinnt „Allow“. Der Tester wendet genau diese Regel an. Er zeigt dir die Zeile, die den Ausschlag gibt. Das ist besonders bei Ausnahmen wichtig, zum Beispiel wenn /wp-admin/ gesperrt, aber admin-ajax.php erlaubt ist.</p>
+
+<h2>Was robots.txt kann und was nicht</h2>
+<p>Die robots.txt steuert das Crawlen, nicht die Indexierung. Eine gesperrte Seite kann trotzdem in den Suchergebnissen auftauchen, wenn andere Seiten auf sie verlinken, dann allerdings meist ohne Beschreibung. Wer eine Seite sicher aus dem Index heraushalten will, verwendet das Meta-Tag „robots“ mit dem Wert „noindex“ oder den entsprechenden HTTP-Header. Dann muss die Seite aber erreichbar sein, damit der Crawler die Anweisung lesen kann. Eine Sperre in der robots.txt und ein noindex im Seitenquelltext schließen sich also gegenseitig aus. Wichtig außerdem: Die Datei ist öffentlich und freiwillig. Seriöse Crawler halten sich daran, Schadsoftware nicht. Verstecke deshalb nie vertrauliche Inhalte per robots.txt. Dafür gehören ein Passwortschutz und eine Zugriffskontrolle auf den Server, und die Pfade, die du sperrst, verrät die Datei jedem Besucher.</p>
+
+<h2>Typische Einsatzfälle</h2>
+<h3>WordPress und andere Systeme</h3>
+<p>Üblich ist, den Verwaltungsbereich zu sperren und die Datei admin-ajax.php zuzulassen, weil manche Funktionen sie brauchen. Sperre keine Ordner mit Skripten und Stilen, die Google zum Darstellen der Seite braucht, denn sonst kann die Suchmaschine deine Seite nicht korrekt beurteilen.</p>
+<h3>Online-Shops</h3>
+<p>Warenkorb, Kasse, Kundenkonto und Seiten mit Filter- und Sortierparametern liefern keinen eigenen Suchwert und erzeugen viele Varianten derselben Seite. Sie lassen sich per Disallow aus dem Crawling nehmen. Die Vorlage nutzt Beispielwerte. Passe die Pfade an dein Shopsystem an.</p>
+<h3>Testseiten und Staging</h3>
+<p>Für Entwicklungsumgebungen sperrst du alles. Besser als die robots.txt allein ist ein Passwortschutz, denn er hält auch Besucher fern, und gesperrte Adressen können trotzdem bekannt werden.</p>
+<h3>KI-Crawler</h3>
+<p>Mit einer Gruppe aus bekannten Kennungen bittest du KI-Anbieter, deine Inhalte nicht für ihre Modelle zu nutzen. Die Liste im Tool enthält Beispiele wie GPTBot, ClaudeBot, CCBot und PerplexityBot. Sie ist nicht vollständig, und neue Kennungen kommen hinzu. Ob sich ein Anbieter an die Bitte hält, entscheidet er selbst. Beachte außerdem, dass „Google-Extended“ nicht das Crawlen für die Suche steuert, sondern die Nutzung für bestimmte KI-Funktionen von Google. Für die normale Suche bleibt Googlebot zuständig.</p>
+
+<h2>Wo liegt die robots.txt und wie lade ich sie hoch?</h2>
+<p>Die Datei muss genau robots.txt heißen, in Kleinbuchstaben, und im Hauptverzeichnis der Domain liegen, also erreichbar unter https://deine-seite.de/robots.txt. Für Unterdomains wie blog.deine-seite.de braucht jede ihre eigene Datei. Speichere sie als reinen Text in UTF-8. Google liest Dateien bis 500 Kibibyte, was darüber hinausgeht, wird ignoriert. Bei Seiten auf GitHub und Cloudflare Pages legst du die Datei in das oberste Verzeichnis des Repositorys neben die Startseite. Nach dem Hochladen rufst du die Adresse im Browser auf und prüfst, ob sie angezeigt wird. In der Google Search Console findest du einen Bericht, der zeigt, welche robots.txt Google gefunden hat und ob Fehler auftreten.</p>
+
+<h2>So testest du deine robots.txt</h2>
+<ol>
+<li>Rufe deine robots.txt im Browser auf und kopiere den Inhalt.</li>
+<li>Wechsle zum Tester und füge den Text ein.</li>
+<li>Wähle den Crawler, zum Beispiel Googlebot oder GPTBot.</li>
+<li>Trage Adressen oder Pfade ein, eine pro Zeile. Du kannst vollständige URLs oder nur Pfade verwenden.</li>
+<li>Das Tool zeigt für jede Adresse, ob sie erlaubt oder gesperrt ist, und nennt die Zeile mit der entscheidenden Regel.</li>
+</ol>
+<p>Zusätzlich prüft der Tester die Syntax. Er meldet unbekannte Anweisungen, Regeln ohne vorherigen User-agent, unvollständige Sitemap-Adressen und das nicht mehr unterstützte „Noindex“.</p>
+
+<h2>Typische Fehler und Lösungen</h2>
+<h3>Meine ganze Seite ist plötzlich nicht mehr bei Google</h3>
+<p>Prüfe, ob „Disallow: /“ für alle Crawler in der Datei steht. Das passiert oft, wenn eine Testseite live geht und die Sperre bleibt. Entferne die Zeile und lade die Datei neu hoch.</p>
+<h3>Eine Regel greift nicht</h3>
+<p>Kontrolliere Groß- und Kleinschreibung. Pfade unterscheiden sie, die Anweisungen nicht. Prüfe auch, ob eine spezifischere Allow-Regel die Sperre überschreibt.</p>
+<h3>Google zeigt trotz Sperre weiterhin die Seite</h3>
+<p>Die Sperre verhindert nur das Crawlen. Nutze noindex, und lasse die Seite dafür crawlbar.</p>
+<h3>Bilder oder Stile fehlen in der Vorschau</h3>
+<p>Wahrscheinlich sind Ordner mit Ressourcen gesperrt. Erlaube sie, damit Suchmaschinen die Seite so sehen wie Besucher.</p>
+<h3>Mein Crawl-delay wirkt nicht</h3>
+<p>Google ignoriert diese Anweisung. Die Crawlrate steuerst du bei Google über die Search Console oder über die Serverleistung.</p>
+
+<h2>Häufige Fragen zur robots.txt</h2>
+<h3>Brauche ich eine robots.txt?</h3>
+<p>Nicht zwingend. Ohne Datei dürfen Crawler alles besuchen. Sinnvoll ist sie, sobald du Bereiche aussparen oder die Sitemap nennen willst.</p>
+<h3>Ist der Generator kostenlos?</h3>
+<p>Ja, ohne Anmeldung und ohne Einschränkung.</p>
+<h3>Kann ich einzelne Seiten sperren?</h3>
+<p>Ja, mit „Disallow: /seite.html“. Für den Ausschluss aus dem Index nutze zusätzlich noindex.</p>
+<h3>Was passiert bei einem Fehler in der Datei?</h3>
+<p>Crawler ignorieren ungültige Zeilen meist, was zu unerwarteten Ergebnissen führen kann. Prüfe die Datei deshalb mit dem Tester.</p>
+<h3>Wo trage ich die Sitemap ein?</h3>
+<p>In der robots.txt mit „Sitemap: https://…“ und zusätzlich in der Google Search Console.</p>
+<p>Weitere SEO-Werkzeuge findest du oben unter „Passende Tools“, zum Beispiel Open Graph Checker, Slug Generator und Link Generator.</p>
+
+</article>
+</div>
+</main>
+<footer class="site-footer">
+  <div class="container">
+    <img src="/assets/images/logo-full.png" alt="Toolyfix">
+    <nav class="footer-links">
+      <a href="/ueber-uns.html">Über uns</a>
+      <a href="/datenschutz.html">Datenschutz</a>
+      <a href="/nutzungsbedingungen.html">Nutzungsbedingungen</a>
+      <a href="/kontakt.html">Kontakt</a>
+    </nav>
+    <p class="footer-note">© 2026 Toolyfix – Alle Tools laufen lokal in deinem Browser.</p>
+  </div>
+</footer>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script>
+function toast(m){var t=document.getElementById('toast');t.textContent=m;t.classList.add('on');clearTimeout(window._tt);window._tt=setTimeout(function(){t.classList.remove('on')},1800)}
+function copyText(s){if(navigator.clipboard&&window.isSecureContext){return navigator.clipboard.writeText(s).then(function(){toast('Kopiert')},function(){fb(s)})}fb(s)}
+function fb(s){var a=document.createElement('textarea');a.value=s;a.style.position='fixed';a.style.opacity='0';document.body.appendChild(a);a.select();try{document.execCommand('copy');toast('Kopiert')}catch(e){toast('Kopieren nicht möglich')}document.body.removeChild(a)}
+function dl(name,blob){var u=URL.createObjectURL(blob),a=document.createElement('a');a.href=u;a.download=name;document.body.appendChild(a);a.click();document.body.removeChild(a);setTimeout(function(){URL.revokeObjectURL(u)},4000)}
+
+function $(i){return document.getElementById(i)}
+function esc(s){return String(s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+var AI=['GPTBot','ChatGPT-User','OAI-SearchBot','CCBot','Google-Extended','ClaudeBot','anthropic-ai','PerplexityBot','Bytespider','Applebot-Extended','Amazonbot','Meta-ExternalAgent','cohere-ai'];
+var G=[{ua:'*',dis:'',alw:'',del:''}];
+var PRE=[['Alles erlauben',[{ua:'*',dis:'',alw:'',del:''}]],['Alles sperren (zum Beispiel Testseite)',[{ua:'*',dis:'/',alw:'',del:''}]],['WordPress (Standard)',[{ua:'*',dis:'/wp-admin/',alw:'/wp-admin/admin-ajax.php',del:''}]],['Online-Shop (Beispielwerte)',[{ua:'*',dis:'/warenkorb/\n/kasse/\n/mein-konto/\n/*?s=\n/*?orderby=\n/*?add-to-cart=',alw:'',del:''}]],['Nur Google erlauben',[{ua:'Googlebot',dis:'',alw:'',del:''},{ua:'*',dis:'/',alw:'',del:''}]]];
+PRE.forEach(function(p){var b=document.createElement('button');b.type='button';b.textContent=p[0];b.onclick=function(){G=JSON.parse(JSON.stringify(p[1]));draw();gen()};$('pre').appendChild(b)});
+function draw(){
+ $('groups').innerHTML=G.map(function(g,i){return'<div class="grp"><div class="tf-grid"><div><label for="ua'+i+'">User-agent (Crawler)</label><input type="text" id="ua'+i+'" data-i="'+i+'" data-f="ua" value="'+esc(g.ua)+'" autocomplete="off"></div><div><label for="dl'+i+'">Crawl-delay in Sekunden (optional)</label><input type="text" id="dl'+i+'" data-i="'+i+'" data-f="del" value="'+esc(g.del)+'" inputmode="numeric"></div></div><div class="tf-grid" style="margin-top:10px"><div><label for="di'+i+'">Disallow (gesperrte Pfade, einer pro Zeile)</label><textarea class="sm" id="di'+i+'" data-i="'+i+'" data-f="dis" spellcheck="false">'+esc(g.dis)+'</textarea></div><div><label for="al'+i+'">Allow (erlaubte Ausnahmen, einer pro Zeile)</label><textarea class="sm" id="al'+i+'" data-i="'+i+'" data-f="alw" spellcheck="false">'+esc(g.alw)+'</textarea></div></div>'+(G.length>1?'<div class="tf-btns"><button class="btn" data-rm="'+i+'" type="button">Gruppe entfernen</button></div>':'')+'</div>'}).join('');
+}
+$('groups').addEventListener('input',function(e){var t=e.target,i=t.dataset.i;if(i===undefined)return;G[+i][t.dataset.f]=t.value;gen()});
+$('groups').addEventListener('click',function(e){var b=e.target.closest('[data-rm]');if(!b)return;G.splice(+b.dataset.rm,1);draw();gen()});
+$('addg').onclick=function(){G.push({ua:'',dis:'',alw:'',del:''});draw();gen()};
+function lines(s){return s.split(/\r?\n/).map(function(x){return x.trim()}).filter(function(x){return x!==''})}
+function gen(){
+ var out=[],warn=[];
+ G.forEach(function(g){
+  var ua=g.ua.trim();if(!ua)return;var b=['User-agent: '+ua],d=lines(g.dis),a=lines(g.alw);
+  if(!d.length&&!a.length)b.push('Disallow:');
+  d.forEach(function(x){b.push('Disallow: '+x)});a.forEach(function(x){b.push('Allow: '+x)});
+  if(g.del.trim())b.push('Crawl-delay: '+g.del.trim());
+  out.push(b.join('\n'));
+  if(ua==='*'&&d.indexOf('/')>-1&&!a.length)warn.push('Mit „Disallow: /“ für alle Crawler sperrst du die gesamte Seite. Das ist nur für Testseiten sinnvoll.');
+  d.concat(a).forEach(function(x){if(x.charAt(0)!=='/'&&x.charAt(0)!=='*')warn.push('„'+x+'“ sollte mit / beginnen.')});
+ });
+ if($('ai').checked){out.push(AI.map(function(x){return'User-agent: '+x}).join('\n')+'\nDisallow: /')}
+ var sm=lines($('sm').value);
+ sm.forEach(function(x){if(!/^https?:\/\//i.test(x))warn.push('Die Sitemap-Adresse „'+x+'“ muss mit https:// beginnen.')});
+ var txt=out.join('\n\n');if(sm.length)txt+=(txt?'\n\n':'')+sm.map(function(x){return'Sitemap: '+x}).join('\n');
+ $('gout').value=txt?txt+'\n':'';
+ $('gw').innerHTML=warn.filter(function(w,i,a){return a.indexOf(w)===i}).map(function(w){return'<div class="warn">'+esc(w)+'</div>'}).join('');
+}
+$('ai').addEventListener('input',gen);$('sm').addEventListener('input',gen);
+$('gcp').onclick=function(){if($('gout').value)copyText($('gout').value);else toast('Noch keine Regeln')};
+$('gdl').onclick=function(){if(!$('gout').value){toast('Noch keine Regeln');return}dl('robots.txt',new Blob([$('gout').value],{type:'text/plain;charset=utf-8'}))};
+function parse(txt){
+ var groups=[],cur=null,last=false,sm=[],w=[];
+ txt.replace(/^\uFEFF/,'').split(/\r?\n/).forEach(function(raw,i){
+  var l=raw.replace(/#.*$/,'').trim();if(!l)return;
+  var m=l.match(/^([A-Za-z-]+)\s*:\s*(.*)$/);
+  if(!m){w.push('Zeile '+(i+1)+': Kein gültiges Format „Feld: Wert“.');return}
+  var k=m[1].toLowerCase(),v=m[2].trim();
+  if(k==='user-agent'){if(!cur||!last){cur={agents:[],rules:[]};groups.push(cur)}cur.agents.push(v.toLowerCase());last=true;return}
+  last=false;
+  if(k==='allow'||k==='disallow'){if(!cur){w.push('Zeile '+(i+1)+': „'+m[1]+'“ steht vor dem ersten User-agent und wird ignoriert.');return}if(v&&v.charAt(0)!=='/'&&v.charAt(0)!=='*')w.push('Zeile '+(i+1)+': Der Pfad sollte mit / oder * beginnen.');cur.rules.push({t:k,p:v,line:i+1})}
+  else if(k==='sitemap'){sm.push(v);if(!/^https?:\/\//i.test(v))w.push('Zeile '+(i+1)+': Die Sitemap-Adresse sollte vollständig mit https:// angegeben werden.')}
+  else if(k==='crawl-delay'){w.push('Zeile '+(i+1)+': Crawl-delay wird von Google ignoriert, andere Suchmaschinen wie Bing beachten ihn teilweise.')}
+  else if(k==='noindex'){w.push('Zeile '+(i+1)+': „Noindex“ wird in der robots.txt von Google nicht mehr unterstützt. Verwende das Meta-Tag robots oder den X-Robots-Tag.')}
+  else if(k==='host'||k==='clean-param'){w.push('Zeile '+(i+1)+': „'+m[1]+'“ wird von Google nicht verwendet.')}
+  else w.push('Zeile '+(i+1)+': Unbekannte Anweisung „'+m[1]+'“.');
+ });
+ return{groups:groups,sm:sm,w:w};
+}
+function agentRules(P,ua){
+ ua=ua.toLowerCase();var name=ua;
+ while(true){var hit=P.groups.filter(function(g){return g.agents.indexOf(name)>-1});if(hit.length)return{name:name,rules:[].concat.apply([],hit.map(function(g){return g.rules}))};var k=name.lastIndexOf('-');if(k<1)break;name=name.slice(0,k)}
+ var star=P.groups.filter(function(g){return g.agents.indexOf('*')>-1});
+ return{name:'*',rules:[].concat.apply([],star.map(function(g){return g.rules})),none:!star.length};
+}
+function toRe(p){var end=/\$$/.test(p);if(end)p=p.slice(0,-1);return new RegExp('^'+p.replace(/[.+?^${}()|[\]\\]/g,'\\$&').replace(/\*/g,'.*')+(end?'$':''))}
+function pathOf(u){u=u.trim();try{var x=new URL(u,'https://example.com');return x.pathname+x.search}catch(e){return u.charAt(0)==='/'?u:'/'+u}}
+function test(){
+ var P=parse($('tin').value),ua=$('ua').value==='custom'?$('cu').value.trim():$('ua').value,us=lines($('urls').value);
+ $('cuw').classList.toggle('hid',$('ua').value!=='custom');
+ var tw=$('tw'),tbw=$('tbw');tw.innerHTML='';tbw.classList.add('hid');
+ if(!$('tin').value.trim()){return}
+ var info=P.w.map(function(x){return'<div class="warn">'+esc(x)+'</div>'}).join('');
+ if(!P.groups.length)info='<div class="warn">Es wurde kein User-agent gefunden. Ohne Regelgruppe ist alles erlaubt.</div>'+info;
+ if(P.sm.length)info+='<div class="note">Gefundene Sitemaps: '+P.sm.map(esc).join(', ')+'</div>';
+ tw.innerHTML=info;
+ if(!ua||!us.length)return;
+ var R=agentRules(P,ua),rows=us.map(function(u){
+  var p=pathOf(u),best=null;
+  if(p==='/robots.txt')return[u,true,'Die robots.txt selbst ist immer abrufbar.','–'];
+  R.rules.forEach(function(r){if(r.p==='')return;var m;try{m=toRe(r.p).test(p)}catch(e){m=false}if(m&&(!best||r.p.length>best.p.length||(r.p.length===best.p.length&&r.t==='allow')))best=r});
+  var ok=!best||best.t==='allow';
+  return[u,ok,best?'Zeile '+best.line+': '+(best.t==='allow'?'Allow':'Disallow')+': '+best.p:(R.none?'Keine Regeln für diesen Crawler: erlaubt.':'Keine passende Regel: erlaubt.'),R.name];
+ });
+ $('tb').innerHTML='<tr><th>Adresse</th><th>Ergebnis</th><th>Regel</th><th>Gruppe</th></tr>'+rows.map(function(r){return'<tr><td class="u">'+esc(r[0])+'</td><td class="'+(r[1]?'ok':'no')+'">'+(r[1]?'Erlaubt':'Gesperrt')+'</td><td>'+esc(r[2])+'</td><td>'+esc(r[3])+'</td></tr>'}).join('');
+ tbw.classList.remove('hid');
+}
+['tin','ua','cu','urls'].forEach(function(i){$(i).addEventListener('input',test)});
+function mode(m){$('sG').classList.toggle('hid',m!=='g');$('sT').classList.toggle('hid',m!=='t');[].forEach.call(document.querySelectorAll('[data-m]'),function(b){b.classList.toggle('on',b.dataset.m===m)})}
+[].forEach.call(document.querySelectorAll('[data-m]'),function(b){b.onclick=function(){mode(b.dataset.m)}});
+draw();gen();
+
+</script>
+</body>
+</html>

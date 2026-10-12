@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Zeitstempel umrechnen – Unix, Epoch &amp; Datum | Toolyfix</title>
+<meta name="description" content="Unix-Zeitstempel in Datum umrechnen und zurück: Sekunden, Millisekunden, Zeitzonen, ISO 8601, Excel-Datum und eigene Formate. Mit Live-Zeit. Kostenlos.">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+<link rel="canonical" href="https://toolyfix.de/tools/zeitstempel-umrechner">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Toolyfix">
+<meta property="og:locale" content="de_DE">
+<meta property="og:title" content="Zeitstempel umrechnen – Unix, Epoch &amp; Datum | Toolyfix">
+<meta property="og:description" content="Unix-Zeitstempel in Datum umrechnen und zurück: Sekunden, Millisekunden, Zeitzonen, ISO 8601, Excel-Datum und eigene Formate. Mit Live-Zeit. Kostenlos.">
+<meta property="og:url" content="https://toolyfix.de/tools/zeitstempel-umrechner">
+<meta property="og:image" content="https://toolyfix.de/assets/og/home.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Toolyfix: Kostenlose Online-Tools">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Zeitstempel umrechnen – Unix, Epoch &amp; Datum | Toolyfix">
+<meta name="twitter:description" content="Unix-Zeitstempel in Datum umrechnen und zurück: Sekunden, Millisekunden, Zeitzonen, ISO 8601, Excel-Datum und eigene Formate. Mit Live-Zeit. Kostenlos.">
+<meta name="twitter:image" content="https://toolyfix.de/assets/og/home.jpg">
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "WebApplication", "name": "Zeitstempel & Datumsformate", "url": "https://toolyfix.de/tools/zeitstempel-umrechner", "description": "Unix-Zeitstempel in Datum umrechnen und zurück: Sekunden, Millisekunden, Zeitzonen, ISO 8601, Excel-Datum und eigene Formate. Mit Live-Zeit. Kostenlos.", "applicationCategory": "DeveloperApplication", "operatingSystem": "Any (Webbrowser)", "browserRequirements": "Benötigt JavaScript", "inLanguage": "de", "isAccessibleForFree": true, "image": "https://toolyfix.de/assets/og/home.jpg", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "EUR"}, "publisher": {"@type": "Organization", "name": "Toolyfix", "url": "https://toolyfix.de/"}}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Startseite", "item": "https://toolyfix.de/"}, {"@type": "ListItem", "position": 2, "name": "Zeitstempel & Datumsformate", "item": "https://toolyfix.de/tools/zeitstempel-umrechner"}]}]}</script>
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="stylesheet" href="/assets/style.css">
+<style>
+:root{--bg:#F7F7F4;--ink:#1A1A1A;--blue:#1D3557;--amber:#E9A93B;--line:#dcdcd2;--card:#fff;--mut:#5b6470;--bad:#b3261e;--ok:#1f7a45}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{background:var(--bg);color:var(--ink);margin:0;font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;line-height:1.6}
+.tf-wrap{max-width:1000px;margin:0 auto;padding:22px 16px 56px}
+.tf-wrap h1{font-size:clamp(1.6rem,4.4vw,2.3rem);line-height:1.15;margin:.2em 0 .3em;color:var(--blue)}
+.tf-intro{color:var(--mut);margin:0 0 14px;max-width:70ch}
+.tf-related{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:0 0 18px;padding:10px 12px;background:#fff;border:1px solid var(--line);border-radius:10px;font-size:.92rem}
+.tf-related b{color:var(--blue);margin-right:4px}
+.tf-related a{color:var(--blue);background:#eef1f6;border-radius:999px;padding:4px 12px;text-decoration:none;font-weight:500}
+.tf-related a:hover,.tf-related a:focus-visible{background:var(--blue);color:#fff;outline:none}
+.tf-card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px;margin-bottom:16px}
+.tf-card h2{font-size:1.05rem;margin:0 0 10px;color:var(--blue)}
+.tf-grid{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(170px,1fr))}
+.tf-wrap label{display:block;font-size:.82rem;font-weight:600;margin:0 0 4px;color:#333}
+.tf-wrap input[type=text],.tf-wrap input[type=number],.tf-wrap input[type=date],.tf-wrap select,.tf-wrap textarea{width:100%;padding:9px 10px;border:1px solid #c9c9bf;border-radius:8px;font:inherit;background:#fff;color:var(--ink)}
+.tf-wrap input[type=color]{width:100%;height:40px;border:1px solid #c9c9bf;border-radius:8px;padding:2px;background:#fff}
+.tf-wrap textarea{min-height:130px;resize:vertical}
+.tf-wrap input:focus-visible,.tf-wrap select:focus-visible,.tf-wrap textarea:focus-visible,.btn:focus-visible{outline:3px solid var(--amber);outline-offset:1px}
+.btn{font:inherit;font-weight:600;padding:9px 16px;border-radius:8px;border:1px solid var(--blue);background:#fff;color:var(--blue);cursor:pointer}
+.btn:hover{background:#eef1f6}
+.btn.pri{background:var(--blue);color:#fff}
+.btn.pri:hover{background:#16294a}
+.btn.amb{background:var(--amber);border-color:var(--amber);color:#1A1A1A}
+.btn[disabled]{opacity:.5;cursor:not-allowed}
+.tf-btns{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.chk{display:flex;gap:8px;align-items:center;font-weight:500;font-size:.92rem;margin:6px 0}
+.chk input{width:18px;height:18px}
+.tf-article{margin-top:34px;background:#fff;border:1px solid var(--line);border-radius:12px;padding:22px 20px}
+.tf-article h2{color:var(--blue);font-size:1.4rem;margin:1.4em 0 .4em;line-height:1.25}
+.tf-article h2:first-child{margin-top:0}
+.tf-article h3{font-size:1.1rem;margin:1.1em 0 .3em}
+.tf-article p,.tf-article li{max-width:75ch}
+.tf-article table{border-collapse:collapse;width:100%;font-size:.92rem;display:block;overflow-x:auto}
+.tf-article th,.tf-article td{border:1px solid var(--line);padding:6px 10px;text-align:left}
+.tf-article th{background:#eef1f6}
+.toast{position:fixed;left:50%;bottom:22px;transform:translateX(-50%);background:var(--blue);color:#fff;padding:9px 18px;border-radius:999px;font-size:.9rem;opacity:0;pointer-events:none;transition:opacity .2s;z-index:50}
+.toast.on{opacity:1}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+@media print{.site-header,.site-footer,.tf-related,.tf-intro,.tf-wrap>h1,.tf-article,.tf-noprint,.toast{display:none!important}body{background:#fff}.tf-wrap{padding:0;max-width:none}}
+
+.hid{display:none}
+.now{display:grid;gap:10px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}
+.now div{background:var(--blue);color:#fff;border-radius:12px;padding:12px 14px}
+.now b{display:block;font-size:clamp(1.3rem,4.5vw,1.9rem);font-variant-numeric:tabular-nums;overflow-wrap:anywhere}
+.now span{font-size:.85rem;opacity:.85}
+.now button{margin-top:6px;background:#fff;color:var(--blue);border:0;border-radius:8px;padding:5px 12px;font:inherit;font-weight:600;cursor:pointer}
+.tbw{overflow-x:auto;border:1px solid var(--line);border-radius:8px;margin-top:12px}
+table.t{border-collapse:collapse;width:100%;font-size:.93rem}
+table.t th,table.t td{border-bottom:1px solid var(--line);padding:7px 10px;text-align:left}
+table.t th{background:#eef1f6;white-space:nowrap}
+table.t td.v{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:.86rem;overflow-wrap:anywhere}
+table.t button{border:1px solid var(--line);background:#fff;border-radius:6px;padding:3px 10px;font:inherit;font-size:.8rem;cursor:pointer;color:var(--blue)}
+.warn{background:#fff6dd;border:1px solid #f0d58a;border-radius:8px;padding:9px 12px;font-size:.88rem;margin-top:10px}
+.note{font-size:.85rem;color:var(--mut);margin:8px 0 0}
+</style>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-F9VY193ZMP"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-F9VY193ZMP');</script>
+</head>
+<body>
+<header class="site-header">
+  <div class="container">
+    <a href="/" class="logo-link"><img src="/assets/images/logo-full.png" alt="Toolyfix"></a>
+    <span class="header-tagline">Kostenlose Tools, direkt im Browser</span>
+  </div>
+</header>
+<main>
+<div class="tf-wrap">
+<h1>Zeitstempel & Datumsformate</h1>
+<p class="tf-intro">Wandle Unix-Zeitstempel (Epoch) in lesbare Datumsangaben um und umgekehrt, wähle die Zeitzone und sieh denselben Zeitpunkt als ISO 8601, RFC 2822, Deutsch, US, SQL, Excel-Seriennummer und im eigenen Format.</p>
+<nav class="tf-related" aria-label="Passende Tools"><b>Passende Tools:</b><a href="/tools/datumsrechner">Datumsrechner</a><a href="/tools/cron-generator">Cron Generator</a><a href="/tools/digitaluhr">Digitaluhr</a><a href="/tools/kalender-generator">Kalender Generator</a><a href="/tools/json-formatter">JSON-Formatter</a></nav>
+
+<section class="tf-card">
+<h2>Aktuelle Zeit</h2>
+<div class="now">
+<div><span>Unix-Zeit in Sekunden</span><b id="ns">–</b><button id="cs1" type="button">Kopieren</button> <button id="us1" type="button">Übernehmen</button></div>
+<div><span>Unix-Zeit in Millisekunden</span><b id="nm">–</b><button id="cs2" type="button">Kopieren</button></div>
+</div>
+</section>
+<section class="tf-card">
+<h2>Zeitstempel oder Datum eingeben</h2>
+<div class="tf-grid">
+<div><label for="ts">Unix-Zeitstempel</label><input type="text" id="ts" inputmode="numeric" autocomplete="off"></div>
+<div><label for="un">Einheit</label><select id="un"><option value="auto">Automatisch erkennen</option><option value="s">Sekunden</option><option value="ms">Millisekunden</option><option value="us">Mikrosekunden</option><option value="ns">Nanosekunden</option></select></div>
+<div><label for="tz">Zeitzone</label><select id="tz"></select></div>
+</div>
+<div class="tf-grid" style="margin-top:12px">
+<div><label for="dt">Oder Datum</label><input type="date" id="dt"></div>
+<div><label for="tm">Uhrzeit</label><input type="time" id="tm" step="1"></div>
+</div>
+<div class="tf-grid" style="margin-top:12px"><div><label for="pt">Eigenes Format (optional)</label><input type="text" id="pt" placeholder="z. B. DD.MM.YYYY HH:mm:ss" autocomplete="off"></div></div>
+<p class="note">Muster: YYYY, YY, MMMM, MMM, MM, M, DD, D, dddd, ddd, HH, H, hh, h, mm, ss, SSS, A, Z. Text in eckigen Klammern wie [Uhr] bleibt unverändert.</p>
+<div id="msg"></div>
+</section>
+<section class="tf-card hid" id="rc">
+<h2>Ergebnis</h2>
+<div class="tbw"><table class="t" id="tb"></table></div>
+</section>
+
+<article class="tf-article">
+
+<h2>Unix-Zeitstempel umrechnen: Epoch-Zeit in Datum und zurück</h2>
+<p>Wer mit Datenbanken, Programmierung, Logdateien oder Schnittstellen arbeitet, begegnet ihnen ständig: Zahlen wie 1700000000, die nach nichts aussehen. Es sind Unix-Zeitstempel, auch Epoch-Zeit genannt. Sie zählen die Sekunden seit dem 1. Januar 1970, 00:00:00 Uhr Weltzeit. Computer rechnen damit besonders einfach, Menschen können damit wenig anfangen. Der Zeitstempel-Umrechner von Toolyfix übersetzt sie in lesbare Datumsangaben und zurück. Du siehst denselben Zeitpunkt als deutsches Datum, als ISO 8601, als RFC 2822, im US-Format, als SQL-Datum, als Excel-Seriennummer und in einem eigenen Format. Du wählst die Zeitzone aus, und die aktuelle Unix-Zeit läuft live mit. Alles geschieht in deinem Browser, ohne Anmeldung.</p>
+
+<h2>Funktionen des Umrechners</h2>
+<ul>
+<li><b>Zeitstempel in Datum:</b> Mit automatischer Erkennung von Sekunden, Millisekunden, Mikrosekunden und Nanosekunden.</li>
+<li><b>Datum in Zeitstempel:</b> Datum und Uhrzeit eingeben, Zeitzone wählen, Zeitstempel erhalten.</li>
+<li><b>15 Zeitzonen:</b> Deutschland, Österreich, Schweiz, UTC, London, Paris, New York, Chicago, Los Angeles, Dubai, Karatschi, Indien, China, Tokio, Sydney und die Zeitzone deines Geräts, jeweils mit korrekter Sommerzeit.</li>
+<li><b>Viele Formate:</b> Deutsch, ISO 8601, RFC 2822, HTTP-Datum, US, SQL, Excel-Seriennummer und Julianisches Datum.</li>
+<li><b>Zusatzinformationen:</b> Wochentag, Kalenderwoche, Tag des Jahres und relative Zeit wie „vor 3 Tagen“.</li>
+<li><b>Eigenes Format:</b> Mit Mustern wie DD.MM.YYYY HH:mm:ss baust du dein Wunschformat.</li>
+<li><b>Live-Zeit:</b> Aktuelle Unix-Zeit in Sekunden und Millisekunden zum Kopieren.</li>
+</ul>
+
+<h2>Was ist ein Unix-Zeitstempel?</h2>
+<p>Ein Unix-Zeitstempel ist die Anzahl der Sekunden, die seit dem Beginn der Unix-Epoche vergangen sind. Diese beginnt am 1. Januar 1970 um 0 Uhr UTC. Der Wert 0 steht für genau diesen Moment, 1000000000 für den 9. September 2001 um 01:46:40 Uhr UTC, 1700000000 für den 14. November 2023 um 22:13:20 Uhr UTC. Der große Vorteil: Ein Zeitstempel ist unabhängig von Zeitzone, Sommerzeit und Sprache. Er benennt immer denselben Moment, und der Vergleich zweier Zeiten ist eine einfache Subtraktion. Deshalb speichern viele Systeme Zeitpunkte als Zahl und rechnen sie erst bei der Anzeige in lokale Zeit um.</p>
+
+<h2>Sekunden, Millisekunden, Mikrosekunden: Welche Einheit?</h2>
+<p>Die ursprüngliche Unix-Zeit zählt in Sekunden und hat derzeit zehn Stellen. Viele Programmiersprachen und Systeme nutzen Millisekunden. Das ist etwa in JavaScript der Fall, wo Date.now() einen Wert mit 13 Stellen liefert. Datenbanken und Hochleistungsanwendungen verwenden teils Mikro- oder Nanosekunden mit 16 und 19 Stellen. Der Umrechner erkennt die Einheit an der Länge der Zahl. Wenn du sie kennst oder die Erkennung falsch liegt, wählst du die Einheit manuell. Ein typischer Fehler: Wer einen Wert in Millisekunden als Sekunden interpretiert, landet im Jahr 55000 oder darüber.</p>
+
+<h2>Zeitzonen und Sommerzeit</h2>
+<p>Ein Zeitstempel kennt keine Zeitzone, die Darstellung schon. Dieselbe Zahl ergibt in Berlin eine andere Uhrzeit als in New York. Deutschland liegt im Winter in der Mitteleuropäischen Zeit (UTC+1) und im Sommer in der Mitteleuropäischen Sommerzeit (UTC+2). Die Umstellung erfolgt am letzten Sonntag im März und am letzten Sonntag im Oktober. Das Tool berechnet die Zeitverschiebung für das gewählte Datum automatisch korrekt, auch für historische oder künftige Zeitpunkte. Besonders knifflig sind die Stunden der Umstellung: Am Ende der Sommerzeit gibt es eine Stunde doppelt, am Beginn eine Stunde gar nicht. Bei der Umwandlung von Datum in Zeitstempel kann deshalb eine Uhrzeit mehrdeutig oder nicht vorhanden sein. Für Systeme, die zuverlässig arbeiten müssen, speichere Zeiten in UTC.</p>
+
+<h2>Wichtige Datumsformate</h2>
+<table>
+<tr><th>Format</th><th>Beispiel</th><th>Verwendung</th></tr>
+<tr><td>ISO 8601</td><td>2026-10-06T14:30:00+02:00</td><td>Austausch zwischen Systemen, APIs, JSON</td></tr>
+<tr><td>RFC 2822</td><td>Tue, 06 Oct 2026 14:30:00 +0200</td><td>E-Mail-Kopfzeilen</td></tr>
+<tr><td>HTTP-Datum</td><td>Tue, 06 Oct 2026 12:30:00 GMT</td><td>HTTP-Header, Cookies</td></tr>
+<tr><td>SQL</td><td>2026-10-06 14:30:00</td><td>Datenbankfelder DATETIME</td></tr>
+<tr><td>Deutsch</td><td>06.10.2026 14:30:00</td><td>Anzeige für Menschen in Deutschland</td></tr>
+<tr><td>US</td><td>10/06/2026 02:30:00 PM</td><td>Anzeige in den USA</td></tr>
+</table>
+<p>ISO 8601 ist das empfehlenswerteste Format, wenn Maschinen Daten austauschen: Es ist eindeutig, sortierbar und unabhängig von Sprache. Das „T“ trennt Datum und Uhrzeit, ein „Z“ am Ende steht für UTC, und ein Versatz wie +02:00 gibt die Zeitzone an.</p>
+
+<h2>Excel-Seriennummer und Julianisches Datum</h2>
+<p>Excel speichert Datum und Uhrzeit als Zahl: Die Ganzzahl zählt Tage seit dem 30. Dezember 1899, die Nachkommastellen den Tagesanteil. Aus einem Unix-Zeitstempel wird die Excel-Zahl, indem du die Sekunden durch 86400 teilst und 25569 addierst, denn 25569 ist der Tag des 1. Januar 1970 in Excel. Das Tool zeigt den Wert für UTC. Wenn Excel andere Zeitzonen verwenden soll, rechne die Stunden entsprechend dazu. Das Julianische Datum zählt Tage seit einem astronomischen Ausgangspunkt und wird in der Astronomie und in einigen Datenbanken genutzt. Für den Unix-Zeitpunkt 0 beträgt es 2440587,5.</p>
+
+<h2>Das Jahr-2038-Problem</h2>
+<p>Ältere Systeme speichern Unix-Zeitstempel als vorzeichenbehaftete 32-Bit-Zahl. Diese hat ihren größten Wert bei 2147483647. Das entspricht dem 19. Januar 2038 um 03:14:07 Uhr UTC. Danach läuft der Zähler über und springt auf einen negativen Wert, der als Datum im Jahr 1901 erscheint. Moderne Systeme nutzen 64 Bit und sind davon nicht betroffen. Eingebettete Geräte, Dateiformate und ältere Software können es aber sein. Wenn du Zeitstempel über 2147483647 eingibst, zeigt das Tool sie korrekt an.</p>
+
+<h2>Eigene Formatmuster</h2>
+<p>Mit dem Feld „Eigenes Format“ gibst du ein Muster an, in dem bestimmte Zeichenfolgen ersetzt werden. YYYY steht für das vierstellige Jahr, MM für den Monat mit zwei Stellen, DD für den Tag, HH für die Stunde im 24-Stunden-Format, mm für die Minute und ss für die Sekunde. Achte auf Groß- und Kleinschreibung: Großes MM ist der Monat, kleines mm die Minute. Mit MMMM erhältst du den ausgeschriebenen Monatsnamen, mit dddd den Wochentag. Text in eckigen Klammern bleibt unverändert, zum Beispiel [Uhr]. Bedenke, dass Programmiersprachen unterschiedliche Muster verwenden. PHP nutzt Zeichen wie „Y-m-d H:i:s“, Python „%Y-%m-%d %H:%M:%S“, Java „yyyy-MM-dd HH:mm:ss“. Das hier verwendete Muster entspricht dem verbreiteten Stil von JavaScript-Bibliotheken.</p>
+
+<h2>Typische Probleme und Lösungen</h2>
+<h3>Das Datum liegt im Jahr 1970 oder weit in der Zukunft</h3>
+<p>Die Einheit ist falsch. Zeitstempel in Millisekunden, als Sekunden gelesen, ergeben weit entfernte Jahre. Zeitstempel in Sekunden, als Millisekunden gelesen, landen im Januar 1970. Stelle die Einheit manuell ein.</p>
+<h3>Die Uhrzeit weicht um ein oder zwei Stunden ab</h3>
+<p>Die Zeitzone ist nicht die erwartete. Prüfe die Auswahl und denke an die Sommerzeit.</p>
+<h3>Das Datum aus Excel stimmt nicht</h3>
+<p>Excel verwendet ein eigenes System, das Seriennummern ab 1900 zählt, und speichert keine Zeitzone. Rechne mit der Excel-Seriennummer aus dem Ergebnis.</p>
+<h3>Mein Zeitstempel hat ein Komma oder einen Punkt</h3>
+<p>Dezimalstellen bei Sekunden-Zeitstempeln werden nicht verwendet, das Tool entfernt Trennzeichen und rechnet mit der Ganzzahl.</p>
+<h3>Mein Muster liefert unerwartete Zeichen</h3>
+<p>Buchstaben, die zum Muster gehören, werden ersetzt. Schreibe zusätzlichen Text in eckige Klammern.</p>
+
+<h2>Häufige Fragen zum Zeitstempel-Umrechner</h2>
+<h3>Wie viele Sekunden hat ein Tag?</h3>
+<p>86.400. Das ist der Faktor zwischen Unix-Sekunden und Tagen.</p>
+<h3>Was bedeutet Epoch?</h3>
+<p>Der Startpunkt der Zählung. Bei Unix ist das der 1. Januar 1970, 00:00:00 UTC.</p>
+<h3>Wie bekomme ich den aktuellen Unix-Zeitstempel?</h3>
+<p>Er steht oben auf der Seite und läuft live mit. In JavaScript liefert Date.now() Millisekunden.</p>
+<h3>Werden meine Eingaben gespeichert?</h3>
+<p>Nein. Alles wird in deinem Browser berechnet.</p>
+<h3>Ist der Umrechner kostenlos?</h3>
+<p>Ja, ohne Anmeldung und ohne Einschränkung.</p>
+<p>Weitere Zeit-Werkzeuge findest du oben unter „Passende Tools“, zum Beispiel Datumsrechner, Cron Generator, Digitaluhr und Kalender Generator.</p>
+
+</article>
+</div>
+</main>
+<footer class="site-footer">
+  <div class="container">
+    <img src="/assets/images/logo-full.png" alt="Toolyfix">
+    <nav class="footer-links">
+      <a href="/ueber-uns.html">Über uns</a>
+      <a href="/datenschutz.html">Datenschutz</a>
+      <a href="/nutzungsbedingungen.html">Nutzungsbedingungen</a>
+      <a href="/kontakt.html">Kontakt</a>
+    </nav>
+    <p class="footer-note">© 2026 Toolyfix – Alle Tools laufen lokal in deinem Browser.</p>
+  </div>
+</footer>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script>
+function toast(m){var t=document.getElementById('toast');t.textContent=m;t.classList.add('on');clearTimeout(window._tt);window._tt=setTimeout(function(){t.classList.remove('on')},1800)}
+function copyText(s){if(navigator.clipboard&&window.isSecureContext){return navigator.clipboard.writeText(s).then(function(){toast('Kopiert')},function(){fb(s)})}fb(s)}
+function fb(s){var a=document.createElement('textarea');a.value=s;a.style.position='fixed';a.style.opacity='0';document.body.appendChild(a);a.select();try{document.execCommand('copy');toast('Kopiert')}catch(e){toast('Kopieren nicht möglich')}document.body.removeChild(a)}
+function dl(name,blob){var u=URL.createObjectURL(blob),a=document.createElement('a');a.href=u;a.download=name;document.body.appendChild(a);a.click();document.body.removeChild(a);setTimeout(function(){URL.revokeObjectURL(u)},4000)}
+
+function $(i){return document.getElementById(i)}
+function esc(s){return String(s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+function p2(n){return n<10?'0'+n:''+n}
+var local=Intl.DateTimeFormat().resolvedOptions().timeZone||'UTC';
+var TZ=[['Europe/Berlin','Deutschland (Berlin)'],['Europe/Vienna','Österreich (Wien)'],['Europe/Zurich','Schweiz (Zürich)'],['UTC','UTC (Weltzeit)'],['Europe/London','London'],['Europe/Paris','Paris'],['America/New_York','New York'],['America/Chicago','Chicago'],['America/Los_Angeles','Los Angeles'],['Asia/Dubai','Dubai'],['Asia/Karachi','Karatschi'],['Asia/Kolkata','Indien (Kalkutta)'],['Asia/Shanghai','China (Shanghai)'],['Asia/Tokyo','Tokio'],['Australia/Sydney','Sydney']];
+if(!TZ.some(function(t){return t[0]===local}))TZ.push([local,'Dieses Gerät ('+local+')']);
+TZ.forEach(function(t){var o=document.createElement('option');o.value=t[0];o.textContent=t[1];$('tz').appendChild(o)});
+$('tz').value='Europe/Berlin';
+var MN=['Januar','Februar','März','April','Mai','Juni','Juli','August','September','Oktober','November','Dezember'],WD=['Sonntag','Montag','Dienstag','Mittwoch','Donnerstag','Freitag','Samstag'],EM=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'],EW=['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+function parts(ms,tz){
+ var f=new Intl.DateTimeFormat('en-US',{timeZone:tz,hourCycle:'h23',year:'numeric',month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit',second:'2-digit'}),o={};
+ f.formatToParts(new Date(Math.floor(ms/1000)*1000)).forEach(function(p){if(p.type!=='literal')o[p.type]=+p.value});
+ var asUtc=Date.UTC(o.year,o.month-1,o.day,o.hour%24,o.minute,o.second);
+ o.off=Math.round((asUtc-Math.floor(ms/1000)*1000)/60000);
+ o.dow=new Date(Date.UTC(o.year,o.month-1,o.day)).getUTCDay();
+ o.ms=((ms%1000)+1000)%1000;return o;
+}
+function zoned(y,m,d,h,mi,s,tz){var g=Date.UTC(y,m-1,d,h,mi,s),o1=parts(g,tz).off,t=g-o1*60000,o2=parts(t,tz).off;if(o2!==o1)t=g-o2*60000;return t}
+function offs(o,colon){var a=Math.abs(o.off);return(o.off<0?'-':'+')+p2(Math.floor(a/60))+(colon?':':'')+p2(a%60)}
+function iso(o){return o.year+'-'+p2(o.month)+'-'+p2(o.day)}
+function doy(o){return Math.round((Date.UTC(o.year,o.month-1,o.day)-Date.UTC(o.year,0,1))/864e5)+1}
+function kw(o){var t=new Date(Date.UTC(o.year,o.month-1,o.day)),n=t.getUTCDay()||7;t.setUTCDate(t.getUTCDate()+4-n);var y0=new Date(Date.UTC(t.getUTCFullYear(),0,1));return Math.ceil(((t-y0)/864e5+1)/7)}
+function rel(ms){var d=Math.round((ms-Date.now())/1000),a=Math.abs(d),u=[['Jahr',31557600,'Jahren'],['Monat',2629800,'Monaten'],['Tag',86400,'Tagen'],['Stunde',3600,'Stunden'],['Minute',60,'Minuten'],['Sekunde',1,'Sekunden']];if(a<1)return'jetzt';for(var i=0;i<u.length;i++){if(a>=u[i][1]){var n=Math.floor(a/u[i][1]);return(d>0?'in ':'vor ')+n+' '+(n===1?u[i][0]:u[i][2])}}return'jetzt'}
+function fmt(pat,ms,tz){
+ var o=parts(ms,tz),h12=o.hour%12||12;
+ var map={YYYY:o.year,YY:p2(o.year%100),MMMM:MN[o.month-1],MMM:MN[o.month-1].slice(0,3),MM:p2(o.month),M:o.month,DD:p2(o.day),D:o.day,dddd:WD[o.dow],ddd:WD[o.dow].slice(0,2),HH:p2(o.hour),H:o.hour,hh:p2(h12),h:h12,mm:p2(o.minute),ss:p2(o.second),SSS:('00'+o.ms).slice(-3),A:o.hour<12?'AM':'PM',Z:offs(o,true)};
+ return pat.replace(/\[([^\]]*)\]|YYYY|YY|MMMM|MMM|MM|M|DD|D|dddd|ddd|HH|H|hh|h|mm|ss|SSS|A|Z/g,function(t,lit){return lit!==undefined?lit:map[t]});
+}
+var ms=null,src='ts';
+function fromTs(){
+ var raw=$('ts').value.trim().replace(/[\s.,_]/g,'');if(!/^-?\d+$/.test(raw))return NaN;
+ var u=$('un').value,len=raw.replace('-','').length;
+ if(u==='auto')u=len<=11?'s':len<=13?'ms':len<=16?'us':'ns';
+ var n=Number(raw);return u==='s'?n*1000:u==='ms'?n:u==='us'?n/1000:n/1e6;
+}
+function fromDt(){
+ var d=$('dt').value;if(!d)return NaN;var p=d.split('-'),t=($('tm').value||'00:00:00').split(':');
+ return zoned(+p[0],+p[1],+p[2],+t[0]||0,+t[1]||0,+t[2]||0,$('tz').value);
+}
+function render(){
+ var tz=$('tz').value,m=$('msg'),rc=$('rc');m.innerHTML='';
+ ms=src==='ts'?fromTs():fromDt();
+ if(isNaN(ms)||Math.abs(ms)>8.64e15){rc.classList.add('hid');if(($('ts').value||$('dt').value)&&src==='ts'&&$('ts').value)m.innerHTML='<div class="warn">Das ist kein gültiger Zeitstempel. Erlaubt sind ganze Zahlen.</div>';return}
+ var o=parts(ms,tz),u=parts(ms,'UTC'),rows=[];
+ function R(l,v){rows.push([l,String(v)])}
+ R('Zeitzone',tz+' (UTC'+offs(o,true)+')');
+ R('Deutsch',p2(o.day)+'.'+p2(o.month)+'.'+o.year+' '+p2(o.hour)+':'+p2(o.minute)+':'+p2(o.second));
+ R('Deutsch, ausgeschrieben',WD[o.dow]+', '+o.day+'. '+MN[o.month-1]+' '+o.year+', '+p2(o.hour)+':'+p2(o.minute)+' Uhr');
+ R('ISO 8601 (mit Zeitzone)',iso(o)+'T'+p2(o.hour)+':'+p2(o.minute)+':'+p2(o.second)+offs(o,true));
+ R('ISO 8601 (UTC)',new Date(Math.floor(ms/1000)*1000).toISOString().replace('.000Z','Z'));
+ R('RFC 2822',EW[o.dow]+', '+p2(o.day)+' '+EM[o.month-1]+' '+o.year+' '+p2(o.hour)+':'+p2(o.minute)+':'+p2(o.second)+' '+offs(o,false));
+ R('HTTP-Datum (GMT)',EW[u.dow]+', '+p2(u.day)+' '+EM[u.month-1]+' '+u.year+' '+p2(u.hour)+':'+p2(u.minute)+':'+p2(u.second)+' GMT');
+ R('US-Format',p2(o.month)+'/'+p2(o.day)+'/'+o.year+' '+p2(o.hour%12||12)+':'+p2(o.minute)+':'+p2(o.second)+' '+(o.hour<12?'AM':'PM'));
+ R('SQL (DATETIME)',iso(o)+' '+p2(o.hour)+':'+p2(o.minute)+':'+p2(o.second));
+ R('Unix-Zeit in Sekunden',Math.floor(ms/1000));
+ R('Unix-Zeit in Millisekunden',Math.floor(ms));
+ R('Relativ zu jetzt',rel(ms));
+ R('Wochentag und Kalenderwoche',WD[o.dow]+', KW '+kw(o));
+ R('Tag des Jahres',doy(o));
+ R('Excel-Seriennummer (UTC)',(ms/864e5+25569).toFixed(6).replace(/0+$/,'').replace(/\.$/,''));
+ R('Julianisches Datum (UTC)',(ms/864e5+2440587.5).toFixed(5));
+ if($('pt').value.trim())R('Eigenes Format',fmt($('pt').value,ms,tz));
+ $('tb').innerHTML='<tr><th>Format</th><th>Wert</th><th></th></tr>'+rows.map(function(r,i){return'<tr><td>'+esc(r[0])+'</td><td class="v">'+esc(r[1])+'</td><td><button type="button" data-i="'+i+'">Kopieren</button></td></tr>'}).join('');
+ window._rows=rows;rc.classList.remove('hid');
+ if(src==='ts'){var d=new Date(ms);if(true){var l=parts(ms,tz);$('dt').value=l.year+'-'+p2(l.month)+'-'+p2(l.day);$('tm').value=p2(l.hour)+':'+p2(l.minute)+':'+p2(l.second)}}
+ else{$('ts').value=Math.floor(ms/1000)}
+}
+$('tb').addEventListener('click',function(e){var b=e.target.closest('button');if(b)copyText(window._rows[+b.dataset.i][1])});
+['ts','un'].forEach(function(i){$(i).addEventListener('input',function(){src='ts';render()})});
+['dt','tm'].forEach(function(i){$(i).addEventListener('input',function(){src='dt';render()})});
+$('tz').addEventListener('input',function(){render()});
+$('pt').addEventListener('input',function(){if(ms!==null&&!isNaN(ms))render()});
+function tick(){var n=Date.now();$('ns').textContent=Math.floor(n/1000);$('nm').textContent=n}
+setInterval(tick,250);tick();
+$('cs1').onclick=function(){copyText(String(Math.floor(Date.now()/1000)))};$('cs2').onclick=function(){copyText(String(Date.now()))};
+$('us1').onclick=function(){$('ts').value=Math.floor(Date.now()/1000);$('un').value='s';src='ts';render()};
+
+</script>
+</body>
+</html>

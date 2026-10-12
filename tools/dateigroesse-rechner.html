@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Dateigröße Rechner – MB in GB, Downloadzeit | Toolyfix</title>
+<meta name="description" content="Dateigröße umrechnen (MB, GB, MiB), Downloadzeit, Bitrate und Speicherbedarf berechnen. Mit Festplatten-Rechner und Mbit/s zu MB/s. Kostenlos.">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+<link rel="canonical" href="https://toolyfix.de/tools/dateigroesse-rechner">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Toolyfix">
+<meta property="og:locale" content="de_DE">
+<meta property="og:title" content="Dateigröße Rechner – MB in GB, Downloadzeit | Toolyfix">
+<meta property="og:description" content="Dateigröße umrechnen (MB, GB, MiB), Downloadzeit, Bitrate und Speicherbedarf berechnen. Mit Festplatten-Rechner und Mbit/s zu MB/s. Kostenlos.">
+<meta property="og:url" content="https://toolyfix.de/tools/dateigroesse-rechner">
+<meta property="og:image" content="https://toolyfix.de/assets/og/home.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Toolyfix: Kostenlose Online-Tools">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Dateigröße Rechner – MB in GB, Downloadzeit | Toolyfix">
+<meta name="twitter:description" content="Dateigröße umrechnen (MB, GB, MiB), Downloadzeit, Bitrate und Speicherbedarf berechnen. Mit Festplatten-Rechner und Mbit/s zu MB/s. Kostenlos.">
+<meta name="twitter:image" content="https://toolyfix.de/assets/og/home.jpg">
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "WebApplication", "name": "Dateigröße- & Datenrate-Rechner", "url": "https://toolyfix.de/tools/dateigroesse-rechner", "description": "Dateigröße umrechnen (MB, GB, MiB), Downloadzeit, Bitrate und Speicherbedarf berechnen. Mit Festplatten-Rechner und Mbit/s zu MB/s. Kostenlos.", "applicationCategory": "UtilitiesApplication", "operatingSystem": "Any (Webbrowser)", "browserRequirements": "Benötigt JavaScript", "inLanguage": "de", "isAccessibleForFree": true, "image": "https://toolyfix.de/assets/og/home.jpg", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "EUR"}, "publisher": {"@type": "Organization", "name": "Toolyfix", "url": "https://toolyfix.de/"}}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Startseite", "item": "https://toolyfix.de/"}, {"@type": "ListItem", "position": 2, "name": "Dateigröße- & Datenrate-Rechner", "item": "https://toolyfix.de/tools/dateigroesse-rechner"}]}]}</script>
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="stylesheet" href="/assets/style.css">
+<style>
+:root{--bg:#F7F7F4;--ink:#1A1A1A;--blue:#1D3557;--amber:#E9A93B;--line:#dcdcd2;--card:#fff;--mut:#5b6470;--bad:#b3261e;--ok:#1f7a45}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{background:var(--bg);color:var(--ink);margin:0;font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;line-height:1.6}
+.tf-wrap{max-width:1000px;margin:0 auto;padding:22px 16px 56px}
+.tf-wrap h1{font-size:clamp(1.6rem,4.4vw,2.3rem);line-height:1.15;margin:.2em 0 .3em;color:var(--blue)}
+.tf-intro{color:var(--mut);margin:0 0 14px;max-width:70ch}
+.tf-related{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:0 0 18px;padding:10px 12px;background:#fff;border:1px solid var(--line);border-radius:10px;font-size:.92rem}
+.tf-related b{color:var(--blue);margin-right:4px}
+.tf-related a{color:var(--blue);background:#eef1f6;border-radius:999px;padding:4px 12px;text-decoration:none;font-weight:500}
+.tf-related a:hover,.tf-related a:focus-visible{background:var(--blue);color:#fff;outline:none}
+.tf-card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px;margin-bottom:16px}
+.tf-card h2{font-size:1.05rem;margin:0 0 10px;color:var(--blue)}
+.tf-grid{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(170px,1fr))}
+.tf-wrap label{display:block;font-size:.82rem;font-weight:600;margin:0 0 4px;color:#333}
+.tf-wrap input[type=text],.tf-wrap input[type=number],.tf-wrap input[type=date],.tf-wrap select,.tf-wrap textarea{width:100%;padding:9px 10px;border:1px solid #c9c9bf;border-radius:8px;font:inherit;background:#fff;color:var(--ink)}
+.tf-wrap input[type=color]{width:100%;height:40px;border:1px solid #c9c9bf;border-radius:8px;padding:2px;background:#fff}
+.tf-wrap textarea{min-height:130px;resize:vertical}
+.tf-wrap input:focus-visible,.tf-wrap select:focus-visible,.tf-wrap textarea:focus-visible,.btn:focus-visible{outline:3px solid var(--amber);outline-offset:1px}
+.btn{font:inherit;font-weight:600;padding:9px 16px;border-radius:8px;border:1px solid var(--blue);background:#fff;color:var(--blue);cursor:pointer}
+.btn:hover{background:#eef1f6}
+.btn.pri{background:var(--blue);color:#fff}
+.btn.pri:hover{background:#16294a}
+.btn.amb{background:var(--amber);border-color:var(--amber);color:#1A1A1A}
+.btn[disabled]{opacity:.5;cursor:not-allowed}
+.tf-btns{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.chk{display:flex;gap:8px;align-items:center;font-weight:500;font-size:.92rem;margin:6px 0}
+.chk input{width:18px;height:18px}
+.tf-article{margin-top:34px;background:#fff;border:1px solid var(--line);border-radius:12px;padding:22px 20px}
+.tf-article h2{color:var(--blue);font-size:1.4rem;margin:1.4em 0 .4em;line-height:1.25}
+.tf-article h2:first-child{margin-top:0}
+.tf-article h3{font-size:1.1rem;margin:1.1em 0 .3em}
+.tf-article p,.tf-article li{max-width:75ch}
+.tf-article table{border-collapse:collapse;width:100%;font-size:.92rem;display:block;overflow-x:auto}
+.tf-article th,.tf-article td{border:1px solid var(--line);padding:6px 10px;text-align:left}
+.tf-article th{background:#eef1f6}
+.toast{position:fixed;left:50%;bottom:22px;transform:translateX(-50%);background:var(--blue);color:#fff;padding:9px 18px;border-radius:999px;font-size:.9rem;opacity:0;pointer-events:none;transition:opacity .2s;z-index:50}
+.toast.on{opacity:1}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+@media print{.site-header,.site-footer,.tf-related,.tf-intro,.tf-wrap>h1,.tf-article,.tf-noprint,.toast{display:none!important}body{background:#fff}.tf-wrap{padding:0;max-width:none}}
+
+.mt{display:flex;gap:8px;margin-bottom:14px;flex-wrap:wrap}
+.mt button.on{background:var(--blue);color:#fff}
+.hid{display:none}
+.big{background:var(--blue);color:#fff;border-radius:12px;padding:16px;margin-top:14px}
+.big b{display:block;font-size:clamp(1.4rem,5.5vw,2.2rem);line-height:1.2;overflow-wrap:anywhere}
+.big span{opacity:.88;font-size:.92rem}
+.tbw{overflow-x:auto;border:1px solid var(--line);border-radius:8px;margin-top:12px}
+table.t{border-collapse:collapse;width:100%;font-size:.93rem}
+table.t th,table.t td{border-bottom:1px solid var(--line);padding:6px 10px;text-align:left;white-space:nowrap;font-variant-numeric:tabular-nums}
+table.t th{background:#eef1f6}
+table.t td:first-child{font-weight:700;color:var(--blue)}
+.pre{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+.pre button{border:1px solid var(--line);background:#fff;border-radius:999px;padding:6px 14px;font:inherit;font-size:.86rem;cursor:pointer;color:var(--blue);font-weight:600}
+.pre button:hover{background:#eef1f6}
+.note{font-size:.85rem;color:var(--mut);margin:8px 0 0}
+.tm{display:flex;gap:8px;align-items:end}.tm>div{flex:1;min-width:0}.tm span{padding-bottom:10px;font-weight:700}
+</style>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-F9VY193ZMP"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-F9VY193ZMP');</script>
+</head>
+<body>
+<header class="site-header">
+  <div class="container">
+    <a href="/" class="logo-link"><img src="/assets/images/logo-full.png" alt="Toolyfix"></a>
+    <span class="header-tagline">Kostenlose Tools, direkt im Browser</span>
+  </div>
+</header>
+<main>
+<div class="tf-wrap">
+<h1>Dateigröße- & Datenrate-Rechner</h1>
+<p class="tf-intro">Rechne Dateigrößen zwischen Byte, KB, MB, GB, TB und KiB, MiB, GiB um, berechne Downloadzeiten, die Größe von Audio und Video aus der Bitrate und den Speicherbedarf für viele Dateien.</p>
+<nav class="tf-related" aria-label="Passende Tools"><b>Passende Tools:</b><a href="/tools/bild-komprimieren">Bilder Komprimieren</a><a href="/tools/audio-schneiden">Audio Schneiden</a><a href="/tools/pdf-zu-url">PDF zu URL</a><a href="/tools/dateien-umbenennen">Dateien Umbenennen</a></nav>
+
+<div class="mt tf-noprint">
+<button class="btn on" data-m="1" type="button">Umrechnen</button>
+<button class="btn" data-m="2" type="button">Festplatte</button>
+<button class="btn" data-m="3" type="button">Downloadzeit</button>
+<button class="btn" data-m="4" type="button">Bitrate</button>
+<button class="btn" data-m="5" type="button">Speicherbedarf</button>
+</div>
+<section class="tf-card" id="s1">
+<h2>Dateigröße umrechnen</h2>
+<div class="tf-grid"><div><label for="v1">Wert</label><input type="text" id="v1" inputmode="decimal"></div><div><label for="u1">Einheit</label><select id="u1"></select></div></div>
+<div id="o1"></div>
+</section>
+<section class="tf-card hid" id="s2">
+<h2>Warum zeigt meine Festplatte weniger an?</h2>
+<div class="tf-grid"><div><label for="v2">Kapazität laut Verpackung</label><input type="text" id="v2" inputmode="decimal"></div><div><label for="u2">Einheit</label><select id="u2"><option value="1e9">GB</option><option value="1e12" selected>TB</option></select></div></div>
+<div class="pre" id="p2"></div>
+<div id="o2"></div>
+</section>
+<section class="tf-card hid" id="s3">
+<h2>Wie lange dauert der Download oder Upload?</h2>
+<div class="tf-grid">
+<div><label for="v3">Dateigröße</label><input type="text" id="v3" inputmode="decimal"></div>
+<div><label for="u3">Einheit</label><select id="u3"></select></div>
+<div><label for="s3v">Geschwindigkeit</label><input type="text" id="s3v" inputmode="decimal"></div>
+<div><label for="s3u">Einheit</label><select id="s3u"><option value="1000">kbit/s</option><option value="1000000" selected>Mbit/s</option><option value="1000000000">Gbit/s</option><option value="8000">kB/s</option><option value="8000000">MB/s</option></select></div>
+<div><label for="oh">Protokoll-Overhead (%)</label><input type="text" id="oh" inputmode="decimal" placeholder="z. B. 5"></div>
+</div>
+<div class="pre" id="p3"></div>
+<div id="o3"></div>
+</section>
+<section class="tf-card hid" id="s4">
+<h2>Bitrate und Dateigröße von Audio und Video</h2>
+<div class="tf-grid">
+<div><label for="m4">Berechnung</label><select id="m4"><option value="size">Dateigröße aus Bitrate und Dauer</option><option value="rate">Bitrate aus Dateigröße und Dauer</option></select></div>
+<div id="bw"><label for="pb">Typische Bitrate (optional)</label><select id="pb"><option value="">Eigene Eingabe</option><option value="128">MP3 128 kbit/s</option><option value="192">MP3 192 kbit/s</option><option value="256">AAC 256 kbit/s</option><option value="320">MP3 320 kbit/s</option><option value="1411">CD-Audio unkomprimiert 1.411 kbit/s</option><option value="5000">Video HD ca. 5 Mbit/s</option><option value="8000">Video Full HD ca. 8 Mbit/s</option><option value="25000">Video 4K ca. 25 Mbit/s</option></select></div>
+<div id="rw"><label for="br">Bitrate (kbit/s)</label><input type="text" id="br" inputmode="decimal"></div>
+<div id="sw" class="hid"><label for="sz4">Dateigröße (MB)</label><input type="text" id="sz4" inputmode="decimal"></div>
+</div>
+<label style="margin-top:12px">Dauer</label>
+<div class="tm"><div><input type="text" id="dh" inputmode="numeric" placeholder="Std." aria-label="Stunden"></div><span>:</span><div><input type="text" id="dm" inputmode="numeric" placeholder="Min." aria-label="Minuten"></div><span>:</span><div><input type="text" id="ds" inputmode="numeric" placeholder="Sek." aria-label="Sekunden"></div></div>
+<div id="o4"></div>
+</section>
+<section class="tf-card hid" id="s5">
+<h2>Speicherbedarf für viele Dateien</h2>
+<div class="tf-grid">
+<div><label for="n5">Anzahl der Dateien</label><input type="text" id="n5" inputmode="numeric"></div>
+<div><label for="v5">Größe pro Datei</label><input type="text" id="v5" inputmode="decimal"></div>
+<div><label for="u5">Einheit</label><select id="u5"></select></div>
+</div>
+<div id="o5"></div>
+</section>
+
+<article class="tf-article">
+
+<h2>Dateigröße Rechner: MB in GB umrechnen, Downloadzeit und Bitrate berechnen</h2>
+<p>Wie viele Megabyte hat ein Gigabyte? Warum zeigt meine neue Festplatte weniger Speicher an, als auf der Packung steht? Wie lange dauert der Download einer 4-Gigabyte-Datei bei 50 Mbit pro Sekunde? Und wie groß wird ein Video, das ich eine Stunde lang mit 8 Mbit/s aufnehme? Solche Fragen drehen sich um Dateigrößen und Datenraten, und die Antworten verwirren, weil unterschiedliche Einheiten und Schreibweisen im Umlauf sind. Der Dateigröße- und Datenrate-Rechner von Toolyfix klärt das. Er rechnet Einheiten um, erklärt Unterschiede zwischen Verpackung und Betriebssystem, berechnet Download- und Uploadzeiten, die Größe von Audio und Video aus der Bitrate und den Speicherbedarf für viele Dateien. Alles läuft in deinem Browser, ohne Anmeldung.</p>
+
+<h2>Funktionen des Rechners</h2>
+<ul>
+<li><b>Umrechnen:</b> Von Bit bis Petabyte, dezimal (KB, MB, GB) und binär (KiB, MiB, GiB) sowie Kilobit, Megabit und Gigabit, mit einer Tabelle aller Werte.</li>
+<li><b>Festplatte:</b> Zeigt, wie viel Speicher Windows und macOS bei einer gekauften Festplatte oder einem USB-Stick anzeigen.</li>
+<li><b>Downloadzeit:</b> Dauer für Download und Upload aus Dateigröße und Geschwindigkeit, mit einstellbarem Overhead und Schnellwahl für typische Anschlüsse.</li>
+<li><b>Bitrate:</b> Dateigröße von Audio und Video aus Bitrate und Dauer, oder die Bitrate aus Dateigröße und Dauer, mit typischen Richtwerten.</li>
+<li><b>Speicherbedarf:</b> Wie groß sind 2.000 Fotos? Auf welche DVD, welchen Stick oder welche Festplatte passen sie?</li>
+</ul>
+
+<h2>KB, MB, GB: dezimal oder binär?</h2>
+<p>Computer rechnen im Zweiersystem. Ein Kilobyte sind deshalb traditionell 1.024 Byte, ein Megabyte 1.024 Kilobyte. Der internationale Standard sieht dagegen vor, dass die Vorsätze Kilo, Mega und Giga immer Tausender bedeuten: 1 Kilobyte sind 1.000 Byte, 1 Megabyte 1.000 Kilobyte, 1 Gigabyte 1.000 Megabyte. Für die binären Werte wurden eigene Namen eingeführt: Kibibyte (KiB), Mebibyte (MiB), Gibibyte (GiB) mit je 1.024er-Schritten. Ein Gibibyte hat damit 1.073.741.824 Byte, ein Gigabyte nur 1.000.000.000. Der Unterschied wächst mit jeder Stufe: Bei Kilo sind es 2,4 Prozent, bei Giga schon 7,4 Prozent und bei Tera rund 10 Prozent.</p>
+<table>
+<tr><th>Dezimal</th><th>Bytes</th><th>Binär</th><th>Bytes</th></tr>
+<tr><td>1 KB</td><td>1.000</td><td>1 KiB</td><td>1.024</td></tr>
+<tr><td>1 MB</td><td>1.000.000</td><td>1 MiB</td><td>1.048.576</td></tr>
+<tr><td>1 GB</td><td>1.000.000.000</td><td>1 GiB</td><td>1.073.741.824</td></tr>
+<tr><td>1 TB</td><td>10¹²</td><td>1 TiB</td><td>1.099.511.627.776</td></tr>
+</table>
+
+<h2>Warum zeigt die Festplatte weniger an?</h2>
+<p>Hersteller geben Speichermedien in dezimalen Einheiten an. Eine Festplatte mit 1 Terabyte hat also 1.000.000.000.000 Byte. Windows teilt diese Zahl aber durch 1.024 hoch drei und zeigt das Ergebnis mit dem Kürzel „GB“ an. Das ergibt rund 931. Es fehlt nichts, die Zahl ist nur in einer anderen Einheit ausgedrückt. macOS rechnet seit vielen Jahren dezimal und zeigt deshalb den vollen Wert. Auf der Seite „Festplatte“ trägst du die Kapazität ein und siehst die Anzeige beider Systeme. Zusätzlich verbraucht das Dateisystem etwas Platz, und auf Smartphones und Computern belegt das Betriebssystem einen Teil des Speichers, sodass der freie Platz noch kleiner ausfällt.</p>
+
+<h2>Mbit/s und MB/s: Der Faktor 8</h2>
+<p>Internetanbieter geben Geschwindigkeiten in Megabit pro Sekunde an, Downloads zeigen Browser dagegen meist in Megabyte pro Sekunde. Ein Byte besteht aus 8 Bit, deshalb teilst du Mbit/s durch 8, um MB/s zu erhalten. Ein Anschluss mit 100 Mbit/s liefert höchstens 12,5 MB/s. Für den Downloadzeit-Rechner heißt das: Eine Datei mit 1 Gigabyte besteht aus 8.000 Megabit. Bei 100 Mbit/s dauert der Download idealerweise 80 Sekunden. In der Praxis kommt es meist länger, denn die Angaben der Anbieter sind Maximalwerte, und Protokolle verbrauchen einen Teil der Übertragung. Der einstellbare Overhead rechnet das ein. Mit 5 bis 10 Prozent liegst du oft näher an der Realität. WLAN, Server und gleichzeitige Nutzung bremsen zusätzlich.</p>
+
+<h2>Bitrate: Wie groß wird Audio und Video?</h2>
+<p>Die Bitrate gibt an, wie viele Daten pro Sekunde für Audio oder Video gespeichert werden. Mit der Dauer ergibt sich die Dateigröße: Bitrate mal Sekunden geteilt durch 8 ergibt Byte. Eine Minute Musik mit 128 kbit/s braucht 0,96 Megabyte, ein drei Minuten langes Lied mit 320 kbit/s etwa 7,2 Megabyte. Unkomprimiertes CD-Audio hat 1.411 kbit/s und belegt rund 10 Megabyte pro Minute. Bei Videos liegen typische Werte für Streaming in HD bei etwa 5 Mbit/s, in Full HD bei 8 und in 4K bei 25 Mbit/s. Das sind Richtwerte, die je nach Anbieter, Codec und Inhalt deutlich abweichen. Eine Stunde Video mit 8 Mbit/s ergibt rund 3,6 Gigabyte. Die Bitrate bestimmt auch, welchen Anschluss du zum Streamen brauchst: Sie sollte unter deiner Download-Geschwindigkeit liegen. Zum Kürzen von Audio nutzt du Audio Schneiden.</p>
+
+<h2>Speicherbedarf planen</h2>
+<p>Wie viel Speicher brauchst du für 3.000 Fotos mit je 4 Megabyte? Der Rechner multipliziert Anzahl und Größe, zeigt die Gesamtgröße und prüft, auf welche Medien sie passt: CD, DVD, Blu-ray, USB-Stick, SSD oder Festplatte. Wenn die Daten nicht auf ein Medium passen, nennt er die Zahl der benötigten Stück. Das hilft bei Backups, beim Brennen, beim Kauf neuer Speicher und beim Planen von Archiven. Fotos lassen sich mit dem Bilder-Komprimieren-Tool verkleinern, bevor du sie speicherst.</p>
+
+<h2>Typische Probleme und Lösungen</h2>
+<h3>Die Datei ist größer als erwartet</h3>
+<p>Prüfe die Einheit. Ein Wert in Megabit ist achtmal kleiner als derselbe Wert in Megabyte. Auch KB und KiB werden oft verwechselt.</p>
+<h3>Der Download dauert länger als berechnet</h3>
+<p>Die Rechnung geht vom Idealfall aus. Rechne Overhead ein, und beachte, dass der Server oder dein WLAN langsamer sein können als der Anschluss.</p>
+<h3>Mein USB-Stick hat weniger Platz als angegeben</h3>
+<p>Das ist der Unterschied zwischen Dezimal- und Binäranzeige, dazu kommt das Dateisystem. Auf der Seite „Festplatte“ siehst du den erwarteten Wert.</p>
+<h3>Meine Videodatei passt nicht zur Rechnung</h3>
+<p>Viele Videos haben eine variable Bitrate, bei der ruhige Szenen weniger und bewegte Szenen mehr Daten brauchen. Die Rechnung liefert dann einen Durchschnitt.</p>
+<h3>Ich weiß nicht, welche Einheit mein Anbieter meint</h3>
+<p>Hersteller und Anbieter rechnen in Dezimaleinheiten, Windows und viele Programme zeigen binäre Werte mit dezimalen Kürzeln. Die Umrechnungstabelle zeigt beide Varianten.</p>
+
+<h2>Tipps</h2>
+<ul>
+<li>Rechne Geschwindigkeiten immer in dieselbe Einheit um, bevor du sie vergleichst. Mbit/s geteilt durch 8 ergibt MB/s.</li>
+<li>Plane beim Speicherkauf 10 bis 15 Prozent Reserve ein, damit das Gerät nicht überfüllt wird.</li>
+<li>Große Dateien als PDF oder Bild kannst du vor dem Versand komprimieren. Der Link zu einer PDF-Datei entsteht mit dem Tool PDF zu URL.</li>
+<li>Prüfe bei Uploads die Obergrenzen des Dienstes, zum Beispiel bei E-Mail-Anhängen oder Formularen.</li>
+<li>Für Dateien, die du umbenennen willst, hilft das Tool Dateien Umbenennen.</li>
+</ul>
+
+<h2>Häufige Fragen zum Dateigröße Rechner</h2>
+<h3>Wie viele MB hat ein GB?</h3>
+<p>Dezimal 1.000 Megabyte, binär sind es 1.024 Mebibyte pro Gibibyte.</p>
+<h3>Wie viel MB/s sind 100 Mbit/s?</h3>
+<p>12,5 Megabyte pro Sekunde, denn du teilst durch 8.</p>
+<h3>Wie groß ist ein Terabyte in Gigabyte?</h3>
+<p>1.000 Gigabyte nach dezimaler Zählung. Windows zeigt für 1 Terabyte rund 931 Gigabyte an.</p>
+<h3>Ist der Rechner kostenlos?</h3>
+<p>Ja, ohne Anmeldung und ohne Einschränkung.</p>
+<h3>Was ist der Unterschied zwischen Bit und Byte?</h3>
+<p>Ein Byte besteht aus 8 Bit. Datenraten werden meist in Bit, Dateigrößen in Byte angegeben.</p>
+<p>Weitere Werkzeuge für Dateien findest du oben unter „Passende Tools“, zum Beispiel Bilder Komprimieren, Audio Schneiden, PDF zu URL und Dateien Umbenennen.</p>
+
+</article>
+</div>
+</main>
+<footer class="site-footer">
+  <div class="container">
+    <img src="/assets/images/logo-full.png" alt="Toolyfix">
+    <nav class="footer-links">
+      <a href="/ueber-uns.html">Über uns</a>
+      <a href="/datenschutz.html">Datenschutz</a>
+      <a href="/nutzungsbedingungen.html">Nutzungsbedingungen</a>
+      <a href="/kontakt.html">Kontakt</a>
+    </nav>
+    <p class="footer-note">© 2026 Toolyfix – Alle Tools laufen lokal in deinem Browser.</p>
+  </div>
+</footer>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script>
+function toast(m){var t=document.getElementById('toast');t.textContent=m;t.classList.add('on');clearTimeout(window._tt);window._tt=setTimeout(function(){t.classList.remove('on')},1800)}
+function copyText(s){if(navigator.clipboard&&window.isSecureContext){return navigator.clipboard.writeText(s).then(function(){toast('Kopiert')},function(){fb(s)})}fb(s)}
+function fb(s){var a=document.createElement('textarea');a.value=s;a.style.position='fixed';a.style.opacity='0';document.body.appendChild(a);a.select();try{document.execCommand('copy');toast('Kopiert')}catch(e){toast('Kopieren nicht möglich')}document.body.removeChild(a)}
+function dl(name,blob){var u=URL.createObjectURL(blob),a=document.createElement('a');a.href=u;a.download=name;document.body.appendChild(a);a.click();document.body.removeChild(a);setTimeout(function(){URL.revokeObjectURL(u)},4000)}
+
+function $(i){return document.getElementById(i)}
+function num(id){var v=parseFloat(String($(id).value).replace(/\s/g,'').replace(',','.'));return isFinite(v)?v:NaN}
+function nf(n,d){if(!isFinite(n))return'–';var a=Math.abs(n),dd=d!==undefined?d:(a>=1000?1:a>=100?2:a>=1?3:6);return n.toLocaleString('de-DE',{maximumFractionDigits:dd})}
+var U=[['Bit',0.125],['Byte (B)',1],['Kilobyte (KB)',1e3],['Megabyte (MB)',1e6],['Gigabyte (GB)',1e9],['Terabyte (TB)',1e12],['Petabyte (PB)',1e15],['Kibibyte (KiB)',1024],['Mebibyte (MiB)',1048576],['Gibibyte (GiB)',1073741824],['Tebibyte (TiB)',1099511627776],['Pebibyte (PiB)',1125899906842624],['Kilobit (kbit)',125],['Megabit (Mbit)',125000],['Gigabit (Gbit)',125000000]];
+['u1','u3','u5'].forEach(function(id){U.forEach(function(u,i){var o=document.createElement('option');o.value=u[1];o.textContent=u[0];$(id).appendChild(o)})});
+$('u1').value=1e6;$('u3').value=1e9;$('u5').value=1e6;
+function bytesFmt(b){var u=[['PB',1e15],['TB',1e12],['GB',1e9],['MB',1e6],['KB',1e3]];for(var i=0;i<u.length;i++)if(b>=u[i][1])return nf(b/u[i][1],2)+' '+u[i][0];return nf(b,0)+' Byte'}
+function tfmt(s){if(!isFinite(s))return'–';if(s<1)return nf(s*1000,0)+' Millisekunden';var d=Math.floor(s/86400),h=Math.floor(s%86400/3600),m=Math.floor(s%3600/60),sec=Math.round(s%60),p=[];if(d)p.push(d+' Tg.');if(d||h)p.push(h+' Std.');if(d||h||m)p.push(m+' Min.');if(!d)p.push(sec+' Sek.');return p.join(' ')}
+function run1(){var v=num('v1'),o=$('o1');if(!(v>=0)){o.innerHTML='';return}var b=v*+$('u1').value;o.innerHTML='<div class="big"><span>Das entspricht</span><b>'+bytesFmt(b)+'</b><span>= '+nf(b,0)+' Byte</span></div><div class="tbw"><table class="t"><tr><th>Einheit</th><th>Wert</th></tr>'+U.map(function(u){return'<tr><td>'+u[0]+'</td><td>'+nf(b/u[1])+'</td></tr>'}).join('')+'</table></div><p class="note">Dezimale Einheiten (KB, MB, GB) zählen in Tausendern, binäre Einheiten (KiB, MiB, GiB) in 1.024er-Schritten. Windows zeigt binäre Werte oft mit den dezimalen Kürzeln an.</p>'}
+['v1','u1'].forEach(function(i){$(i).addEventListener('input',run1)});
+[['128 GB','1e9',128],['256 GB','1e9',256],['512 GB','1e9',512],['1 TB','1e12',1],['2 TB','1e12',2],['4 TB','1e12',4]].forEach(function(p){var b=document.createElement('button');b.type='button';b.textContent=p[0];b.onclick=function(){$('v2').value=p[2];$('u2').value=p[1];run2()};$('p2').appendChild(b)});
+function run2(){var v=num('v2'),o=$('o2');if(!(v>0)){o.innerHTML='';return}var b=v*+$('u2').value,gib=b/1073741824,loss=(1-gib/(b/1e9))*100;o.innerHTML='<div class="big"><span>Windows zeigt ungefähr</span><b>'+nf(gib,1)+' GB</b><span>genauer '+nf(gib,2)+' GiB, das sind '+nf(loss,1)+' % weniger als die Angabe auf der Verpackung</span></div><div class="tbw"><table class="t"><tr><th>Betriebssystem</th><th>Anzeige</th></tr><tr><td>Verpackung (dezimal)</td><td>'+nf(b/1e9,1)+' GB</td></tr><tr><td>Windows (binär, Kürzel GB)</td><td>'+nf(gib,1)+' GB</td></tr><tr><td>macOS (dezimal)</td><td>'+nf(b/1e9,1)+' GB</td></tr><tr><td>In TiB</td><td>'+nf(b/1099511627776,3)+' TiB</td></tr></table></div><p class="note">Zusätzlich belegen Dateisystem und vorinstallierte Daten einen Teil des Speichers. Der tatsächlich freie Platz ist daher noch kleiner.</p>'}
+['v2','u2'].forEach(function(i){$(i).addEventListener('input',run2)});
+[['16 Mbit/s',16],['50 Mbit/s',50],['100 Mbit/s',100],['250 Mbit/s',250],['1 Gbit/s',1000]].forEach(function(p){var b=document.createElement('button');b.type='button';b.textContent=p[0];b.onclick=function(){$('s3v').value=p[1];$('s3u').value=1e6;run3()};$('p3').appendChild(b)});
+function run3(){var v=num('v3'),sp=num('s3v'),o=$('o3');if(!(v>0)||!(sp>0)){o.innerHTML='';return}var oh=num('oh'),b=v*+$('u3').value;var bps=sp*+$('s3u').value*(1-(oh>0?oh/100:0)),s=b*8/bps;o.innerHTML='<div class="big"><span>Dauer</span><b>'+tfmt(s)+'</b><span>'+bytesFmt(b)+' bei '+nf(bps/1e6,2)+' Mbit/s effektiv, das sind '+nf(bps/8e6,2)+' MB/s</span></div><p class="note">Das ist eine Idealrechnung. Server, WLAN und Auslastung bremsen oft. Bei Mbit/s teilst du durch 8, um MB/s zu erhalten.</p>'}
+['v3','u3','s3v','s3u','oh'].forEach(function(i){$(i).addEventListener('input',run3)});
+function dur(){return(num('dh')||0)*3600+(num('dm')||0)*60+(num('ds')||0)}
+function run4(){
+ var size=$('m4').value==='size',o=$('o4');$('rw').classList.toggle('hid',!size);$('sw').classList.toggle('hid',size);$('bw').classList.toggle('hid',!size);
+ var d=dur();if(!(d>0)){o.innerHTML='';return}
+ if(size){var br=num('br');if(!(br>0)){o.innerHTML='';return}var b=br*1000*d/8;o.innerHTML='<div class="big"><span>Dateigröße</span><b>'+bytesFmt(b)+'</b><span>bei '+nf(br,1)+' kbit/s und '+tfmt(d)+'</span></div><div class="tbw"><table class="t"><tr><th>Pro</th><th>Größe</th></tr><tr><td>Minute</td><td>'+bytesFmt(br*1000*60/8)+'</td></tr><tr><td>Stunde</td><td>'+bytesFmt(br*1000*3600/8)+'</td></tr><tr><td>Gesamt</td><td>'+bytesFmt(b)+'</td></tr></table></div>'}
+ else{var mb=num('sz4');if(!(mb>0)){o.innerHTML='';return}var r=mb*1e6*8/d/1000;o.innerHTML='<div class="big"><span>Durchschnittliche Bitrate</span><b>'+nf(r,1)+' kbit/s</b><span>= '+nf(r/1000,2)+' Mbit/s bei '+tfmt(d)+'</span></div>'}
+}
+$('pb').addEventListener('input',function(){if(this.value){$('br').value=this.value}run4()});
+['m4','br','sz4','dh','dm','ds'].forEach(function(i){$(i).addEventListener('input',run4)});
+var MED=[['CD (700 MB)',700e6],['DVD (4,7 GB)',4.7e9],['DVD Dual Layer (8,5 GB)',8.5e9],['Blu-ray (25 GB)',25e9],['Blu-ray Dual Layer (50 GB)',50e9],['USB-Stick 16 GB',16e9],['USB-Stick 32 GB',32e9],['USB-Stick 64 GB',64e9],['USB-Stick 128 GB',128e9],['USB-Stick 256 GB',256e9],['SSD 512 GB',512e9],['Festplatte 1 TB',1e12],['Festplatte 2 TB',2e12]];
+function run5(){var n=num('n5'),v=num('v5'),o=$('o5');if(!(n>0)||!(v>0)){o.innerHTML='';return}var each=v*+$('u5').value,tot=n*each;
+ o.innerHTML='<div class="big"><span>Gesamtgröße</span><b>'+bytesFmt(tot)+'</b><span>'+nf(n,0)+' Dateien à '+bytesFmt(each)+'</span></div><div class="tbw"><table class="t"><tr><th>Medium</th><th>Ergebnis</th></tr>'+MED.map(function(m){var fit=Math.floor(m[1]/each),txt=tot<=m[1]?'passt, '+nf(tot/m[1]*100,1)+' % belegt':'nicht ganz: '+nf(Math.ceil(tot/m[1]),0)+' Stück nötig (pro Stück ca. '+nf(fit,0)+' Dateien)';return'<tr><td>'+m[0]+'</td><td>'+txt+'</td></tr>'}).join('')+'</table></div><p class="note">Die Kapazitäten sind die Angaben der Hersteller in Dezimaleinheiten. Nutzbarer Platz ist durch das Dateisystem etwas kleiner.</p>'}
+['n5','v5','u5'].forEach(function(i){$(i).addEventListener('input',run5)});
+function mode(k){for(var i=1;i<=5;i++){$('s'+i).classList.toggle('hid',i!==k)}[].forEach.call(document.querySelectorAll('[data-m]'),function(b){b.classList.toggle('on',+b.dataset.m===k)})}
+[].forEach.call(document.querySelectorAll('[data-m]'),function(b){b.onclick=function(){mode(+b.dataset.m)}});
+
+</script>
+</body>
+</html>

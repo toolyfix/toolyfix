@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Betonrechner &amp; Kiesrechner – Menge in m³ und kg | Toolyfix</title>
+<meta name="description" content="Beton-, Kies- &amp; Schüttgut-Rechner: Menge in m³, Tonnen und Säcken berechnen, Zement und Wasser für Beton, mit Kosten. Kostenlos, ohne Anmeldung.">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+<link rel="canonical" href="https://toolyfix.de/tools/beton-kies-rechner">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Toolyfix">
+<meta property="og:locale" content="de_DE">
+<meta property="og:title" content="Betonrechner &amp; Kiesrechner – Menge in m³ und kg | Toolyfix">
+<meta property="og:description" content="Beton-, Kies- &amp; Schüttgut-Rechner: Menge in m³, Tonnen und Säcken berechnen, Zement und Wasser für Beton, mit Kosten. Kostenlos, ohne Anmeldung.">
+<meta property="og:url" content="https://toolyfix.de/tools/beton-kies-rechner">
+<meta property="og:image" content="https://toolyfix.de/assets/og/home.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Toolyfix: Kostenlose Online-Tools">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Betonrechner &amp; Kiesrechner – Menge in m³ und kg | Toolyfix">
+<meta name="twitter:description" content="Beton-, Kies- &amp; Schüttgut-Rechner: Menge in m³, Tonnen und Säcken berechnen, Zement und Wasser für Beton, mit Kosten. Kostenlos, ohne Anmeldung.">
+<meta name="twitter:image" content="https://toolyfix.de/assets/og/home.jpg">
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "WebApplication", "name": "Beton-, Kies- & Schüttgut-Rechner", "url": "https://toolyfix.de/tools/beton-kies-rechner", "description": "Beton-, Kies- & Schüttgut-Rechner: Menge in m³, Tonnen und Säcken berechnen, Zement und Wasser für Beton, mit Kosten. Kostenlos, ohne Anmeldung.", "applicationCategory": "UtilitiesApplication", "operatingSystem": "Any (Webbrowser)", "browserRequirements": "Benötigt JavaScript", "inLanguage": "de", "isAccessibleForFree": true, "image": "https://toolyfix.de/assets/og/home.jpg", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "EUR"}, "publisher": {"@type": "Organization", "name": "Toolyfix", "url": "https://toolyfix.de/"}}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Startseite", "item": "https://toolyfix.de/"}, {"@type": "ListItem", "position": 2, "name": "Beton-, Kies- & Schüttgut-Rechner", "item": "https://toolyfix.de/tools/beton-kies-rechner"}]}]}</script>
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="stylesheet" href="/assets/style.css">
+<style>
+:root{--bg:#F7F7F4;--ink:#1A1A1A;--blue:#1D3557;--amber:#E9A93B;--line:#dcdcd2;--card:#fff;--mut:#5b6470;--bad:#b3261e;--ok:#1f7a45}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{background:var(--bg);color:var(--ink);margin:0;font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;line-height:1.6}
+.tf-wrap{max-width:1000px;margin:0 auto;padding:22px 16px 56px}
+.tf-wrap h1{font-size:clamp(1.6rem,4.4vw,2.3rem);line-height:1.15;margin:.2em 0 .3em;color:var(--blue)}
+.tf-intro{color:var(--mut);margin:0 0 14px;max-width:70ch}
+.tf-related{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:0 0 18px;padding:10px 12px;background:#fff;border:1px solid var(--line);border-radius:10px;font-size:.92rem}
+.tf-related b{color:var(--blue);margin-right:4px}
+.tf-related a{color:var(--blue);background:#eef1f6;border-radius:999px;padding:4px 12px;text-decoration:none;font-weight:500}
+.tf-related a:hover,.tf-related a:focus-visible{background:var(--blue);color:#fff;outline:none}
+.tf-card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px;margin-bottom:16px}
+.tf-card h2{font-size:1.05rem;margin:0 0 10px;color:var(--blue)}
+.tf-grid{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(170px,1fr))}
+.tf-wrap label{display:block;font-size:.82rem;font-weight:600;margin:0 0 4px;color:#333}
+.tf-wrap input[type=text],.tf-wrap input[type=number],.tf-wrap input[type=date],.tf-wrap select,.tf-wrap textarea{width:100%;padding:9px 10px;border:1px solid #c9c9bf;border-radius:8px;font:inherit;background:#fff;color:var(--ink)}
+.tf-wrap input[type=color]{width:100%;height:40px;border:1px solid #c9c9bf;border-radius:8px;padding:2px;background:#fff}
+.tf-wrap textarea{min-height:130px;resize:vertical}
+.tf-wrap input:focus-visible,.tf-wrap select:focus-visible,.tf-wrap textarea:focus-visible,.btn:focus-visible{outline:3px solid var(--amber);outline-offset:1px}
+.btn{font:inherit;font-weight:600;padding:9px 16px;border-radius:8px;border:1px solid var(--blue);background:#fff;color:var(--blue);cursor:pointer}
+.btn:hover{background:#eef1f6}
+.btn.pri{background:var(--blue);color:#fff}
+.btn.pri:hover{background:#16294a}
+.btn.amb{background:var(--amber);border-color:var(--amber);color:#1A1A1A}
+.btn[disabled]{opacity:.5;cursor:not-allowed}
+.tf-btns{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.chk{display:flex;gap:8px;align-items:center;font-weight:500;font-size:.92rem;margin:6px 0}
+.chk input{width:18px;height:18px}
+.tf-article{margin-top:34px;background:#fff;border:1px solid var(--line);border-radius:12px;padding:22px 20px}
+.tf-article h2{color:var(--blue);font-size:1.4rem;margin:1.4em 0 .4em;line-height:1.25}
+.tf-article h2:first-child{margin-top:0}
+.tf-article h3{font-size:1.1rem;margin:1.1em 0 .3em}
+.tf-article p,.tf-article li{max-width:75ch}
+.tf-article table{border-collapse:collapse;width:100%;font-size:.92rem;display:block;overflow-x:auto}
+.tf-article th,.tf-article td{border:1px solid var(--line);padding:6px 10px;text-align:left}
+.tf-article th{background:#eef1f6}
+.toast{position:fixed;left:50%;bottom:22px;transform:translateX(-50%);background:var(--blue);color:#fff;padding:9px 18px;border-radius:999px;font-size:.9rem;opacity:0;pointer-events:none;transition:opacity .2s;z-index:50}
+.toast.on{opacity:1}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+@media print{.site-header,.site-footer,.tf-related,.tf-intro,.tf-wrap>h1,.tf-article,.tf-noprint,.toast{display:none!important}body{background:#fff}.tf-wrap{padding:0;max-width:none}}
+
+.mt{display:flex;gap:8px;margin-bottom:14px;flex-wrap:wrap}
+.mt button.on{background:var(--blue);color:#fff}
+.hid{display:none}
+.big{background:var(--blue);color:#fff;border-radius:12px;padding:16px;margin-top:14px}
+.big b{display:block;font-size:clamp(1.4rem,5.5vw,2.2rem);line-height:1.2}
+.big span{opacity:.88;font-size:.92rem}
+.cd{display:grid;gap:10px;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));margin-top:12px}
+.cd div{background:#f4f6fa;border-radius:10px;padding:10px 12px}
+.cd b{display:block;font-size:1.2rem;color:var(--blue);font-variant-numeric:tabular-nums}
+.cd span{font-size:.78rem;color:var(--mut)}
+.warn{background:#fff6dd;border:1px solid #f0d58a;border-radius:8px;padding:9px 12px;font-size:.88rem;margin-top:10px}
+.note{font-size:.85rem;color:var(--mut);margin:8px 0 0}
+</style>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-F9VY193ZMP"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-F9VY193ZMP');</script>
+</head>
+<body>
+<header class="site-header">
+  <div class="container">
+    <a href="/" class="logo-link"><img src="/assets/images/logo-full.png" alt="Toolyfix"></a>
+    <span class="header-tagline">Kostenlose Tools, direkt im Browser</span>
+  </div>
+</header>
+<main>
+<div class="tf-wrap">
+<h1>Beton-, Kies- & Schüttgut-Rechner</h1>
+<p class="tf-intro">Berechne, wie viel Kies, Sand, Splitt, Erde oder Beton du brauchst: aus Länge, Breite und Tiefe, Fläche und Schichtdicke oder Durchmesser. Mit Gewicht, Säcken, Zementbedarf, Zuschlag und Kosten.</p>
+<nav class="tf-related" aria-label="Passende Tools"><b>Passende Tools:</b><a href="/tools/flaechenrechner">Flächenrechner</a><a href="/tools/kuechen-umrechner">Küchen-Umrechner</a><a href="/tools/dreisatz-rechner">Dreisatz Rechner</a><a href="/tools/papierformate-din-a">Papierformate DIN A</a></nav>
+
+<div class="mt tf-noprint">
+<button class="btn on" data-m="s" type="button">Schüttgut (Kies, Sand, Splitt, Erde)</button>
+<button class="btn" data-m="b" type="button">Beton</button>
+</div>
+<section class="tf-card">
+<h2>1. Form und Maße</h2>
+<div class="tf-grid">
+<div><label for="sh">Form</label><select id="sh"><option value="r">Rechteck, Platte oder Streifen (L × B × Tiefe)</option><option value="k">Kreis oder Säule (Durchmesser × Höhe)</option><option value="f">Fläche × Schichtdicke</option><option value="v">Volumen direkt eingeben</option></select></div>
+<div id="w1"><label for="d1" id="l1">Länge (m)</label><input type="text" id="d1" inputmode="decimal"></div>
+<div id="w2"><label for="d2" id="l2">Breite (m)</label><input type="text" id="d2" inputmode="decimal"></div>
+<div id="w3"><label for="d3" id="l3">Tiefe oder Höhe (cm)</label><input type="text" id="d3" inputmode="decimal"></div>
+</div>
+<div class="tf-grid" style="margin-top:12px">
+<div><label for="n">Anzahl gleicher Teile</label><input type="text" id="n" inputmode="numeric" placeholder="1"></div>
+<div><label for="z">Zuschlag für Verlust und Verdichtung (%)</label><input type="text" id="z" inputmode="decimal" placeholder="z. B. 10"></div>
+</div>
+</section>
+<section class="tf-card" id="sS">
+<h2>2. Material</h2>
+<div class="tf-grid">
+<div><label for="mt">Material</label><select id="mt"></select></div>
+<div id="cdw" class="hid"><label for="cd">Eigene Schüttdichte (t pro m³)</label><input type="text" id="cd" inputmode="decimal" placeholder="z. B. 1,6"></div>
+<div><label for="pr">Preis (optional)</label><input type="text" id="pr" inputmode="decimal" placeholder="z. B. 28"></div>
+<div><label for="pu">Preis pro</label><select id="pu"><option value="t">Tonne</option><option value="m">m³</option></select></div>
+</div>
+</section>
+<section class="tf-card hid" id="sB">
+<h2>2. Betonsorte und Mischung</h2>
+<div class="tf-grid">
+<div><label for="bs">Betonsorte (Richtwert Zement pro m³)</label><select id="bs"><option value="200">C8/10, Unterbeton (ca. 200 kg)</option><option value="240">C12/15 (ca. 240 kg)</option><option value="270">C16/20 (ca. 270 kg)</option><option value="300" selected>C20/25 (ca. 300 kg)</option><option value="330">C25/30 (ca. 330 kg)</option><option value="360">C30/37 (ca. 360 kg)</option></select></div>
+<div><label for="zk">Zement in kg pro m³ (überschreibt Sorte)</label><input type="text" id="zk" inputmode="decimal" placeholder="z. B. 300"></div>
+<div><label for="wz">Wasserzementwert</label><input type="text" id="wz" inputmode="decimal" placeholder="0,55"></div>
+<div><label for="zs">Zementsack</label><select id="zs"><option value="25">25 kg</option><option value="40">40 kg</option></select></div>
+</div>
+<div class="tf-grid" style="margin-top:12px">
+<div><label for="fs">Fertigmischung: Sackgröße</label><select id="fs"><option value="25">25 kg</option><option value="30">30 kg</option><option value="40">40 kg</option></select></div>
+<div><label for="fe">Ergiebigkeit pro Sack (Liter)</label><input type="text" id="fe" inputmode="decimal" placeholder="Standard: halb so viele Liter wie kg"></div>
+</div>
+</section>
+<div id="out"></div>
+
+<article class="tf-article">
+
+<h2>Beton-, Kies- und Schüttgut-Rechner: Wie viel Material brauche ich?</h2>
+<p>Ein neuer Weg im Garten, eine Terrasse, ein Fundament für das Gartenhaus oder eine Auffahrt aus Schotter: Bei fast jedem Bauprojekt stellt sich die gleiche Frage. Wie viel Kies, Sand, Splitt oder Beton muss ich bestellen? Zu wenig Material bedeutet Nachlieferungen und Wartezeit, zu viel kostet Geld und lässt einen Berg zurück, den niemand haben will. Der Beton-, Kies- und Schüttgut-Rechner von Toolyfix beantwortet die Frage in Sekunden. Du gibst die Maße deines Projekts ein, wählst das Material und erhältst das Volumen in Kubikmetern, das Gewicht in Tonnen, die Zahl der Säcke und Big-Bags und auf Wunsch die Kosten. Für Beton berechnet das Tool zusätzlich Zement, Wasser, Sand und Kies sowie die Zahl der Fertigmischungs-Säcke. Alles läuft in deinem Browser, ohne Anmeldung.</p>
+
+<h2>Funktionen des Rechners</h2>
+<ul>
+<li><b>Vier Formen:</b> Rechteck, Platte oder Streifen aus Länge, Breite und Tiefe, Kreis oder Säule aus Durchmesser und Höhe, Fläche mit Schichtdicke sowie die direkte Eingabe eines Volumens.</li>
+<li><b>Neun Materialien:</b> Kies, Sand, Splitt, Schotter, Mutterboden, Pflanzerde, Rindenmulch, Frischbeton und eigene Dichte.</li>
+<li><b>Mehrere gleiche Teile:</b> Für vier Punktfundamente oder sechs Pflanzbeete gibst du die Anzahl ein.</li>
+<li><b>Zuschlag:</b> Ein Aufschlag in Prozent für Verlust, Verdichtung und Unebenheiten.</li>
+<li><b>Gewicht und Verpackung:</b> Tonnen, Kilogramm, Säcke zu 25 Kilogramm, Big-Bags zu einem Kubikmeter und Schubkarren zu 80 Litern.</li>
+<li><b>Kosten:</b> Mit Preis pro Tonne oder pro Kubikmeter erhältst du die Materialkosten.</li>
+<li><b>Betonmodus:</b> Zementbedarf nach Betonsorte, Wasser über den Wasserzementwert, Kies, Sand, Fertigmischung und die Bestellmenge für Transportbeton.</li>
+</ul>
+
+<h2>So berechnest du das Volumen</h2>
+<p>Die Grundlage jeder Mengenberechnung ist das Volumen. Es ergibt sich aus der Form, die du füllen möchtest:</p>
+<table>
+<tr><th>Form</th><th>Formel</th><th>Beispiel</th></tr>
+<tr><td>Rechteck oder Platte</td><td>Länge × Breite × Tiefe</td><td>4 m × 3 m × 0,10 m = 1,2 m³</td></tr>
+<tr><td>Kreis oder Säule</td><td>π × (Durchmesser ÷ 2)² × Höhe</td><td>Ø 0,4 m, Höhe 1 m = 0,126 m³</td></tr>
+<tr><td>Fläche mit Schicht</td><td>Fläche × Schichtdicke</td><td>20 m² × 0,05 m = 1,0 m³</td></tr>
+</table>
+<p>Achte darauf, dass du die Tiefe in Zentimetern angibst. Das Tool rechnet sie selbst in Meter um. Bei unregelmäßigen Flächen teilst du sie in einfache Formen auf, berechnest jede einzeln und addierst die Ergebnisse. Das Flächenrechner-Tool von Toolyfix hilft dabei, die Fläche verschiedener Formen zu bestimmen, die du dann im Modus „Fläche × Schichtdicke“ weiterverwendest.</p>
+
+<h2>Vom Volumen zum Gewicht: Die Schüttdichte</h2>
+<p>Händler liefern Kies, Sand und Splitt nach Gewicht, oft in Tonnen. Dein Projekt rechnest du dagegen in Kubikmetern. Die Umrechnung erfolgt über die Schüttdichte, also das Gewicht pro Kubikmeter im losen Zustand. Gewaschener Kies wiegt etwa 1,7 Tonnen pro Kubikmeter, erdfeuchter Sand etwa 1,6, Splitt rund 1,5, Mutterboden etwa 1,3 und Rindenmulch nur rund 0,3. Frischbeton kommt auf etwa 2,4 Tonnen pro Kubikmeter. Das bedeutet: Ein Kubikmeter Kies wiegt fast zwei Tonnen. Plane deshalb Transport und Untergrund entsprechend ein, denn ein normaler Anhänger darf selten so viel laden.</p>
+<p>Die genannten Werte sind Richtwerte. Feuchtigkeit erhöht das Gewicht, und je nach Körnung und Herkunft schwankt die Dichte. Frage bei größeren Bestellungen den Händler, mit welchem Gewicht er rechnet. Wenn du den genauen Wert kennst, wählst du „Eigene Dichte“ und trägst ihn ein.</p>
+
+<h2>Zuschlag: Warum du etwas mehr bestellen solltest</h2>
+<p>Die rechnerische Menge reicht in der Praxis selten genau aus. Beim Einbringen und Verdichten sackt Material zusammen, Untergründe sind nie perfekt eben, und beim Verteilen geht immer etwas verloren. Bei Schotter und Kies für Tragschichten rechnet man häufig mit einem Zuschlag von 10 bis 20 Prozent, bei Beton mit etwa 5 bis 10 Prozent. Trage den Wert im Feld „Zuschlag“ ein, und das Tool addiert ihn auf das Volumen. Für unebene Böden oder komplizierte Formen plane großzügiger.</p>
+
+<h2>Beton berechnen: Zement, Wasser und Zuschlag</h2>
+<p>Beton besteht aus Zement, Wasser und Gesteinskörnung, also Sand und Kies. Wie viel du von jedem Bestandteil brauchst, hängt von der gewünschten Betonsorte ab. Die Bezeichnung wie C20/25 steht für die Druckfestigkeitsklasse: Die erste Zahl nennt die Festigkeit am Zylinder, die zweite am Würfel in Newton pro Quadratmillimeter. Je höher die Klasse, desto mehr Zement enthält die Mischung. Als Richtwerte gelten etwa 200 Kilogramm Zement pro Kubikmeter für Magerbeton C8/10, 300 Kilogramm für C20/25 und 360 Kilogramm für C30/37. Den Wasseranteil bestimmt der Wasserzementwert, kurz w/z-Wert. Er liegt bei Normalbeton meist zwischen 0,5 und 0,6. Ein Beton mit 300 Kilogramm Zement und einem w/z-Wert von 0,55 braucht rund 165 Liter Wasser. Der Rest des Kubikmeters, etwa 1.900 bis 2.000 Kilogramm, besteht aus Sand und Kies, grob zu einem Drittel Sand und zu zwei Dritteln Kies.</p>
+<p>Wer Beton nicht selbst mischt, nutzt Fertigmischung im Sack. Sie enthält Zement und Zuschlag trocken und muss nur mit Wasser angerührt werden. Ein Sack mit 25 Kilogramm ergibt etwa 12 Liter Frischbeton, ein Kubikmeter braucht also rund 80 Säcke. Das Tool rechnet das für dich aus. Für größere Mengen lohnt sich Transportbeton: Der Lieferant mischt im Werk und liefert im Fahrmischer. Mengen werden meist auf eine Viertelkubikmeter-Stufe gerundet. Das Tool nennt dir die passende Bestellmenge.</p>
+<p>Wichtig: Für tragende Bauteile, Fundamente von Gebäuden und alles, was die Statik betrifft, gelten besondere Anforderungen. Dort bestimmen Statiker und Betonlieferant Sorte und Rezeptur. Dieser Rechner dient der Mengenplanung für Gartenprojekte, Fundamente kleiner Bauten und Ähnliches.</p>
+
+<h2>Typische Projekte und ihre Mengen</h2>
+<h3>Gartenweg und Terrasse</h3>
+<p>Ein Weg aus Pflastersteinen braucht eine Tragschicht aus Schotter, ein Splittbett und die Fugenfüllung. Rechne jede Schicht einzeln mit Fläche und Schichtdicke. Typische Dicken sind 15 bis 30 Zentimeter für die Tragschicht und 3 bis 5 Zentimeter für das Bett.</p>
+<h3>Punktfundamente und Streifenfundamente</h3>
+<p>Für Pfosten, Carports oder Zäune gräbst du Löcher und füllst sie mit Beton. Gib den Durchmesser und die Tiefe ein, und trage bei mehreren Löchern die Anzahl ein. Der Frostschutz verlangt in Deutschland oft eine Fundamenttiefe von etwa 80 Zentimetern, die genaue Anforderung hängt vom Ort und vom Bauwerk ab.</p>
+<h3>Auffahrt und Parkfläche</h3>
+<p>Hier sind Schotter und Kies in großen Mengen gefragt. Der Zuschlag fällt höher aus, weil verdichtet wird. Plane auch die Anlieferung: Schwere Lkw brauchen Platz und einen tragfähigen Untergrund.</p>
+<h3>Beete und Pflanzflächen</h3>
+<p>Mutterboden, Pflanzerde und Rindenmulch werden meist in Kubikmetern bestellt. Für Hochbeete rechnest du Länge, Breite und Höhe, für Mulchschichten die Fläche mit etwa 5 bis 8 Zentimetern Dicke.</p>
+
+<h2>Typische Probleme und Lösungen</h2>
+<h3>Das Gewicht kommt mir zu hoch vor</h3>
+<p>Kies und Sand sind schwer, ein Kubikmeter wiegt 1,5 bis 1,7 Tonnen. Kontrolliere die Maße, besonders die Tiefe in Zentimetern. Ein Zahlendreher bei der Tiefe verändert das Ergebnis stark.</p>
+<h3>Die Menge reicht in der Praxis nicht</h3>
+<p>Plane einen Zuschlag ein. Vergiss bei Pflasterarbeiten nicht, dass du mehrere Schichten brauchst, und dass Verdichten das Volumen verringert.</p>
+<h3>Mein Händler rechnet in Säcken, nicht in Tonnen</h3>
+<p>Der Rechner zeigt Säcke zu 25 Kilogramm. Hat dein Sack ein anderes Gewicht, teilst du die Gesamtkilogramm durch dein Sackgewicht.</p>
+<h3>Ich brauche eine genaue Betonrezeptur</h3>
+<p>Für Bauteile mit statischen Anforderungen lässt du dich vom Betonlieferanten oder Statiker beraten. Die Werte hier sind Planungshilfen für übliche Gartenprojekte.</p>
+<h3>Die Fertigmischung ergibt weniger Beton als berechnet</h3>
+<p>Die Ergiebigkeit hängt vom Produkt ab. Lies sie auf dem Sack nach und trage sie im Feld „Ergiebigkeit“ ein.</p>
+
+<h2>Tipps für Bestellung und Verarbeitung</h2>
+<ul>
+<li>Vergleiche Preise pro Tonne und pro Kubikmeter. Manche Händler rechnen in Kubikmetern, andere in Tonnen.</li>
+<li>Frage nach Lieferkosten und Mindestmengen, bei kleinen Mengen sind Säcke oft einfacher.</li>
+<li>Bestelle Material trocken zu lagern: Zement und Fertigmischung vertragen keine Feuchtigkeit.</li>
+<li>Prüfe die Tragfähigkeit der Zufahrt und den Platz zum Abkippen.</li>
+<li>Beton nicht bei Frost oder in sengender Hitze verarbeiten und anschließend feucht halten.</li>
+<li>Trage Schutzkleidung. Zement ist ätzend, besonders für Haut und Augen.</li>
+</ul>
+
+<h2>Häufige Fragen zum Beton- und Kiesrechner</h2>
+<h3>Wie viel wiegt ein Kubikmeter Kies?</h3>
+<p>Gewaschener Kies wiegt im Mittel etwa 1,7 Tonnen pro Kubikmeter, je nach Feuchte und Körnung 1,5 bis 1,8.</p>
+<h3>Wie viele Säcke Fertigbeton brauche ich für einen Kubikmeter?</h3>
+<p>Bei 25-Kilogramm-Säcken mit rund 12 Litern Ergiebigkeit sind es etwa 80 Säcke.</p>
+<h3>Wie viel Wasser braucht Beton?</h3>
+<p>Bei einem Wasserzementwert von 0,55 sind es rund 55 Liter pro 100 Kilogramm Zement.</p>
+<h3>Wie rechne ich die Menge für ein Rundfundament?</h3>
+<p>Wähle „Kreis oder Säule“, gib den Durchmesser in Metern und die Tiefe in Zentimetern an.</p>
+<h3>Ist der Rechner kostenlos?</h3>
+<p>Ja, ohne Anmeldung und ohne Einschränkung.</p>
+<p>Weitere Rechner findest du oben unter „Passende Tools“, zum Beispiel Flächenrechner, Dreisatz Rechner und Küchen-Umrechner.</p>
+
+</article>
+</div>
+</main>
+<footer class="site-footer">
+  <div class="container">
+    <img src="/assets/images/logo-full.png" alt="Toolyfix">
+    <nav class="footer-links">
+      <a href="/ueber-uns.html">Über uns</a>
+      <a href="/datenschutz.html">Datenschutz</a>
+      <a href="/nutzungsbedingungen.html">Nutzungsbedingungen</a>
+      <a href="/kontakt.html">Kontakt</a>
+    </nav>
+    <p class="footer-note">© 2026 Toolyfix – Alle Tools laufen lokal in deinem Browser.</p>
+  </div>
+</footer>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script>
+function toast(m){var t=document.getElementById('toast');t.textContent=m;t.classList.add('on');clearTimeout(window._tt);window._tt=setTimeout(function(){t.classList.remove('on')},1800)}
+function copyText(s){if(navigator.clipboard&&window.isSecureContext){return navigator.clipboard.writeText(s).then(function(){toast('Kopiert')},function(){fb(s)})}fb(s)}
+function fb(s){var a=document.createElement('textarea');a.value=s;a.style.position='fixed';a.style.opacity='0';document.body.appendChild(a);a.select();try{document.execCommand('copy');toast('Kopiert')}catch(e){toast('Kopieren nicht möglich')}document.body.removeChild(a)}
+function dl(name,blob){var u=URL.createObjectURL(blob),a=document.createElement('a');a.href=u;a.download=name;document.body.appendChild(a);a.click();document.body.removeChild(a);setTimeout(function(){URL.revokeObjectURL(u)},4000)}
+
+function $(i){return document.getElementById(i)}
+function num(id){var v=parseFloat(String($(id).value).replace(/\s/g,'').replace(',','.'));return isFinite(v)?v:NaN}
+function nf(n,d){return n.toLocaleString('de-DE',{maximumFractionDigits:d===undefined?2:d,minimumFractionDigits:0})}
+var MAT=[['Kies (gewaschen, 2–32 mm)',1.7],['Sand (0–2 mm, erdfeucht)',1.6],['Splitt',1.5],['Schotter (Tragschicht)',1.7],['Mutterboden und Erde',1.3],['Pflanzerde und Substrat',0.7],['Rindenmulch',0.3],['Frischbeton',2.4],['Eigene Dichte',0]];
+MAT.forEach(function(m,i){var o=document.createElement('option');o.value=i;o.textContent=m[0]+(m[1]?' (ca. '+String(m[1]).replace('.',',')+' t/m³)':'');$('mt').appendChild(o)});
+var mode='s';
+function setMode(m){mode=m;[].forEach.call(document.querySelectorAll('[data-m]'),function(b){b.classList.toggle('on',b.dataset.m===m)});$('sS').classList.toggle('hid',m!=='s');$('sB').classList.toggle('hid',m!=='b');run()}
+[].forEach.call(document.querySelectorAll('[data-m]'),function(b){b.onclick=function(){setMode(b.dataset.m)}});
+function labels(){
+ var s=$('sh').value,L={r:['Länge (m)','Breite (m)','Tiefe oder Höhe (cm)'],k:['Durchmesser (m)','','Höhe oder Tiefe (cm)'],f:['Fläche (m²)','','Schichtdicke (cm)'],v:['Volumen (m³)','','']}[s];
+ $('l1').textContent=L[0];$('l2').textContent=L[1];$('l3').textContent=L[2];
+ $('w2').classList.toggle('hid',s!=='r');$('w3').classList.toggle('hid',s==='v');
+}
+function volume(){
+ var s=$('sh').value,a=num('d1'),b=num('d2'),c=num('d3'),v;
+ if(s==='r')v=a*b*(c/100);else if(s==='k')v=Math.PI*Math.pow(a/2,2)*(c/100);else if(s==='f')v=a*(c/100);else v=a;
+ return v;
+}
+function run(){
+ labels();$('cdw').classList.toggle('hid',+$('mt').value!==MAT.length-1);
+ var o=$('out'),v=volume();o.innerHTML='';
+ if(!(v>0)||!isFinite(v))return;
+ var n=num('n'),z=num('z');n=n>0?n:1;z=z>0?z:0;
+ var base=v*n,tot=base*(1+z/100);
+ var head='<div class="big"><span>'+(mode==='s'?'Benötigte Menge':'Benötigte Betonmenge')+(z?' inklusive '+nf(z,1)+' % Zuschlag':'')+'</span><b>'+nf(tot,3)+' m³</b><span>Reines Volumen ohne Zuschlag: '+nf(base,3)+' m³ ('+nf(base*1000,0)+' Liter)</span></div>';
+ if(mode==='s'){
+  var mi=+$('mt').value,rho=mi===MAT.length-1?num('cd'):MAT[mi][1];
+  if(!(rho>0)){o.innerHTML='<section class="tf-card">'+head+'<div class="warn">Bitte eine Schüttdichte eintragen, um das Gewicht zu berechnen.</div></section>';return}
+  var t=tot*rho,kg=t*1000,pr=num('pr'),cards=[[nf(t,2)+' t','Gewicht ('+nf(kg,0)+' kg)'],[nf(Math.ceil(kg/25),0)+' Säcke','Säcke à 25 kg'],[nf(Math.ceil(tot/1),0)+' Big-Bags','Big-Bags à 1 m³'],[nf(Math.ceil(tot/0.08),0)+' Schubkarren','Schubkarren à 80 Liter'],[nf(Math.ceil(t/10),0)+' Fuhren','Fuhren à 10 t (Kipper, Richtwert)']];
+  if(pr>0){var cost=$('pu').value==='t'?t*pr:tot*pr;cards.push([nf(cost,2)+' €','Materialkosten bei '+nf(pr,2)+' € pro '+($('pu').value==='t'?'Tonne':'m³')])}
+  o.innerHTML='<section class="tf-card">'+head+'<div class="cd">'+cards.map(function(c){return'<div><b>'+c[0]+'</b><span>'+c[1]+'</span></div>'}).join('')+'</div><p class="note">Schüttdichten sind Richtwerte. Feuchtigkeit, Körnung und Verdichtung verändern das Gewicht deutlich. Frage bei größeren Mengen den Händler nach dem genauen Wert.</p></section>';
+ }else{
+  var zk=num('zk'),zem=zk>0?zk:+$('bs').value,wz=num('wz'),w=wz>0?wz:0.55,wasser=zem*w,zuschlag=Math.max(0,2400-zem-wasser);
+  var zkg=tot*zem,zsack=Math.ceil(zkg/+$('zs').value),wl=tot*wasser,agg=tot*zuschlag,sand=agg/3,kies=agg*2/3;
+  var fs=+$('fs').value,fe=num('fe'),lit=fe>0?fe:fs*0.5,fsack=Math.ceil(tot*1000/lit),order=Math.ceil(tot/0.25)*0.25;
+  var cards=[[nf(zkg,0)+' kg','Zement ('+nf(zsack,0)+' Säcke à '+$('zs').value+' kg)'],[nf(wl,0)+' Liter','Wasser bei w/z '+nf(w,2)],[nf(kies,0)+' kg','Kies (ca. 2/3 des Zuschlags)'],[nf(sand,0)+' kg','Sand (ca. 1/3 des Zuschlags)'],[nf(agg/1000,2)+' t','Zuschlag gesamt'],[nf(fsack,0)+' Säcke','Fertigmischung à '+fs+' kg ('+nf(lit,1)+' l je Sack)'],[nf(fsack*fs/1000,2)+' t','Gewicht der Fertigmischung'],[nf(order,2)+' m³','Bestellmenge Transportbeton (auf 0,25 m³ aufgerundet)']];
+  o.innerHTML='<section class="tf-card">'+head+'<div class="cd">'+cards.map(function(c){return'<div><b>'+c[0]+'</b><span>'+c[1]+'</span></div>'}).join('')+'</div><div class="warn">Die Mischwerte sind Richtwerte für Normalbeton mit einer Frischbetondichte von etwa 2.400 kg/m³. Für tragende Bauteile gelten die Vorgaben der Statik und der Betonlieferanten. Verwende dort keine selbst errechnete Mischung.</div></section>';
+ }
+}
+['sh','d1','d2','d3','n','z','mt','cd','pr','pu','bs','zk','wz','zs','fs','fe'].forEach(function(i){$(i).addEventListener('input',run)});
+setMode('s');
+
+</script>
+</body>
+</html>

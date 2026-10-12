@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Prozentrechner – Rabatt, MwSt &amp; Veränderung | Toolyfix</title>
+<meta name="description" content="Prozentrechner: Prozentwert, Prozentsatz und Grundwert berechnen, Rabatt, Mehrwertsteuer und prozentuale Veränderung mit Rechenweg. Kostenlos.">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+<link rel="canonical" href="https://toolyfix.de/tools/prozentrechner">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Toolyfix">
+<meta property="og:locale" content="de_DE">
+<meta property="og:title" content="Prozentrechner – Rabatt, MwSt &amp; Veränderung | Toolyfix">
+<meta property="og:description" content="Prozentrechner: Prozentwert, Prozentsatz und Grundwert berechnen, Rabatt, Mehrwertsteuer und prozentuale Veränderung mit Rechenweg. Kostenlos.">
+<meta property="og:url" content="https://toolyfix.de/tools/prozentrechner">
+<meta property="og:image" content="https://toolyfix.de/assets/og/home.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Toolyfix: Kostenlose Online-Tools">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Prozentrechner – Rabatt, MwSt &amp; Veränderung | Toolyfix">
+<meta name="twitter:description" content="Prozentrechner: Prozentwert, Prozentsatz und Grundwert berechnen, Rabatt, Mehrwertsteuer und prozentuale Veränderung mit Rechenweg. Kostenlos.">
+<meta name="twitter:image" content="https://toolyfix.de/assets/og/home.jpg">
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "WebApplication", "name": "Prozentrechner", "url": "https://toolyfix.de/tools/prozentrechner", "description": "Prozentrechner: Prozentwert, Prozentsatz und Grundwert berechnen, Rabatt, Mehrwertsteuer und prozentuale Veränderung mit Rechenweg. Kostenlos.", "applicationCategory": "UtilitiesApplication", "operatingSystem": "Any (Webbrowser)", "browserRequirements": "Benötigt JavaScript", "inLanguage": "de", "isAccessibleForFree": true, "image": "https://toolyfix.de/assets/og/home.jpg", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "EUR"}, "publisher": {"@type": "Organization", "name": "Toolyfix", "url": "https://toolyfix.de/"}}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Startseite", "item": "https://toolyfix.de/"}, {"@type": "ListItem", "position": 2, "name": "Prozentrechner", "item": "https://toolyfix.de/tools/prozentrechner"}]}]}</script>
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="stylesheet" href="/assets/style.css">
+<style>
+:root{--bg:#F7F7F4;--ink:#1A1A1A;--blue:#1D3557;--amber:#E9A93B;--line:#dcdcd2;--card:#fff;--mut:#5b6470;--bad:#b3261e;--ok:#1f7a45}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{background:var(--bg);color:var(--ink);margin:0;font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;line-height:1.6}
+.tf-wrap{max-width:1000px;margin:0 auto;padding:22px 16px 56px}
+.tf-wrap h1{font-size:clamp(1.6rem,4.4vw,2.3rem);line-height:1.15;margin:.2em 0 .3em;color:var(--blue)}
+.tf-intro{color:var(--mut);margin:0 0 14px;max-width:70ch}
+.tf-related{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:0 0 18px;padding:10px 12px;background:#fff;border:1px solid var(--line);border-radius:10px;font-size:.92rem}
+.tf-related b{color:var(--blue);margin-right:4px}
+.tf-related a{color:var(--blue);background:#eef1f6;border-radius:999px;padding:4px 12px;text-decoration:none;font-weight:500}
+.tf-related a:hover,.tf-related a:focus-visible{background:var(--blue);color:#fff;outline:none}
+.tf-card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px;margin-bottom:16px}
+.tf-card h2{font-size:1.05rem;margin:0 0 10px;color:var(--blue)}
+.tf-grid{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(170px,1fr))}
+.tf-wrap label{display:block;font-size:.82rem;font-weight:600;margin:0 0 4px;color:#333}
+.tf-wrap input[type=text],.tf-wrap input[type=number],.tf-wrap input[type=date],.tf-wrap select,.tf-wrap textarea{width:100%;padding:9px 10px;border:1px solid #c9c9bf;border-radius:8px;font:inherit;background:#fff;color:var(--ink)}
+.tf-wrap input[type=color]{width:100%;height:40px;border:1px solid #c9c9bf;border-radius:8px;padding:2px;background:#fff}
+.tf-wrap textarea{min-height:130px;resize:vertical}
+.tf-wrap input:focus-visible,.tf-wrap select:focus-visible,.tf-wrap textarea:focus-visible,.btn:focus-visible{outline:3px solid var(--amber);outline-offset:1px}
+.btn{font:inherit;font-weight:600;padding:9px 16px;border-radius:8px;border:1px solid var(--blue);background:#fff;color:var(--blue);cursor:pointer}
+.btn:hover{background:#eef1f6}
+.btn.pri{background:var(--blue);color:#fff}
+.btn.pri:hover{background:#16294a}
+.btn.amb{background:var(--amber);border-color:var(--amber);color:#1A1A1A}
+.btn[disabled]{opacity:.5;cursor:not-allowed}
+.tf-btns{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.chk{display:flex;gap:8px;align-items:center;font-weight:500;font-size:.92rem;margin:6px 0}
+.chk input{width:18px;height:18px}
+.tf-article{margin-top:34px;background:#fff;border:1px solid var(--line);border-radius:12px;padding:22px 20px}
+.tf-article h2{color:var(--blue);font-size:1.4rem;margin:1.4em 0 .4em;line-height:1.25}
+.tf-article h2:first-child{margin-top:0}
+.tf-article h3{font-size:1.1rem;margin:1.1em 0 .3em}
+.tf-article p,.tf-article li{max-width:75ch}
+.tf-article table{border-collapse:collapse;width:100%;font-size:.92rem;display:block;overflow-x:auto}
+.tf-article th,.tf-article td{border:1px solid var(--line);padding:6px 10px;text-align:left}
+.tf-article th{background:#eef1f6}
+.toast{position:fixed;left:50%;bottom:22px;transform:translateX(-50%);background:var(--blue);color:#fff;padding:9px 18px;border-radius:999px;font-size:.9rem;opacity:0;pointer-events:none;transition:opacity .2s;z-index:50}
+.toast.on{opacity:1}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+@media print{.site-header,.site-footer,.tf-related,.tf-intro,.tf-wrap>h1,.tf-article,.tf-noprint,.toast{display:none!important}body{background:#fff}.tf-wrap{padding:0;max-width:none}}
+
+.hid{display:none}
+.big{background:var(--blue);color:#fff;border-radius:12px;padding:16px;margin-top:14px}
+.big b{display:block;font-size:clamp(1.5rem,6vw,2.4rem);line-height:1.2;overflow-wrap:anywhere}
+.big span{opacity:.88;font-size:.92rem}
+.steps{margin:12px 0 0;padding-left:20px}.steps li{margin:0 0 6px}
+.cd{display:grid;gap:10px;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));margin-top:12px}
+.cd div{background:#f4f6fa;border-radius:10px;padding:10px 12px}
+.cd b{display:block;font-size:1.15rem;color:var(--blue);font-variant-numeric:tabular-nums}
+.cd span{font-size:.78rem;color:var(--mut)}
+.pre{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
+.pre button{border:1px solid var(--line);background:#fff;border-radius:999px;padding:5px 14px;font:inherit;font-size:.86rem;cursor:pointer;color:var(--blue);font-weight:600}
+.warn{background:#fff6dd;border:1px solid #f0d58a;border-radius:8px;padding:9px 12px;font-size:.88rem;margin-top:10px}
+.hint{font-size:.9rem;color:var(--mut);margin:0 0 10px}
+</style>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-F9VY193ZMP"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-F9VY193ZMP');</script>
+</head>
+<body>
+<header class="site-header">
+  <div class="container">
+    <a href="/" class="logo-link"><img src="/assets/images/logo-full.png" alt="Toolyfix"></a>
+    <span class="header-tagline">Kostenlose Tools, direkt im Browser</span>
+  </div>
+</header>
+<main>
+<div class="tf-wrap">
+<h1>Prozentrechner</h1>
+<p class="tf-intro">Berechne Prozentwert, Prozentsatz und Grundwert, prozentuale Veränderung, Rabatt und Ursprungspreis, Mehrwertsteuer sowie Erhöhung und Verringerung um Prozent, jeweils mit Rechenweg.</p>
+<nav class="tf-related" aria-label="Passende Tools"><b>Passende Tools:</b><a href="/tools/dreisatz-rechner">Dreisatz Rechner</a><a href="/tools/durchschnitt-rechner">Durchschnitt Rechner</a><a href="/tools/zahlen-schreiben">Zahlen schreiben</a><a href="/tools/gleichungen-loesen">Gleichungen Lösen</a></nav>
+
+<section class="tf-card">
+<h2>Was möchtest du berechnen?</h2>
+<div class="tf-grid"><div><label for="md">Berechnung</label><select id="md">
+<option value="a">Prozentwert: Wie viel sind p % von G?</option>
+<option value="b">Prozentsatz: Wie viel Prozent sind W von G?</option>
+<option value="c">Grundwert: W sind p %, wie groß ist G?</option>
+<option value="d">Prozentuale Veränderung von alt zu neu</option>
+<option value="e">Rabatt: Endpreis und Ersparnis</option>
+<option value="f">Ursprungspreis aus Endpreis und Rabatt</option>
+<option value="g">Mehrwertsteuer: Netto und Brutto</option>
+<option value="h">Wert um Prozent erhöhen oder verringern</option>
+</select></div></div>
+<p class="hint" id="hn" style="margin-top:12px"></p>
+<div class="tf-grid">
+<div><label for="a" id="la">Wert 1</label><input type="text" id="a" inputmode="decimal"></div>
+<div><label for="b" id="lb">Wert 2</label><input type="text" id="b" inputmode="decimal"></div>
+<div id="vw" class="hid"><label for="vr" id="lv">Richtung</label><select id="vr"></select></div>
+<div><label for="dc">Nachkommastellen</label><select id="dc"><option value="auto">Automatisch</option><option value="0">0</option><option value="1">1</option><option value="2" selected>2</option><option value="3">3</option><option value="4">4</option></select></div>
+</div>
+<div class="pre hid" id="pr"><button type="button" data-v="19">19 %</button><button type="button" data-v="7">7 %</button></div>
+<div id="out"></div>
+</section>
+
+<article class="tf-article">
+
+<h2>Prozentrechner: Prozentwert, Prozentsatz, Grundwert, Rabatt und Mehrwertsteuer</h2>
+<p>Prozente begegnen uns jeden Tag: Im Supermarkt gibt es 20 Prozent Rabatt, auf dem Konto fallen Zinsen an, auf der Rechnung steht die Mehrwertsteuer, die Wahlbeteiligung wird in Prozent angegeben, und im Schulheft heißt die Aufgabe „Berechne den Prozentwert“. Die Rechnung selbst ist einfach, aber viele zögern, weil sie nicht wissen, welche der drei Größen gesucht ist und welche Formel passt. Der Prozentrechner von Toolyfix nimmt dir das ab. Du wählst, was du berechnen möchtest, trägst zwei Werte ein, und er liefert das Ergebnis samt Rechenweg. Er beherrscht acht Berechnungen: Prozentwert, Prozentsatz, Grundwert, prozentuale Veränderung, Rabatt, Ursprungspreis aus Rabatt, Mehrwertsteuer in beide Richtungen sowie Erhöhung und Verringerung um einen Prozentsatz. Alles läuft in deinem Browser, ohne Anmeldung.</p>
+
+<h2>Funktionen des Prozentrechners</h2>
+<ul>
+<li><b>Acht Rechenarten:</b> Alle typischen Aufgaben der Prozentrechnung in einem Tool.</li>
+<li><b>Rechenweg Schritt für Schritt:</b> Jede Rechnung wird erklärt, sodass du sie nachvollziehen oder in der Schule abschreiben kannst.</li>
+<li><b>Zusatzwerte:</b> Zum Beispiel Differenz, Faktor, Ersparnis oder Steuerbetrag.</li>
+<li><b>Mehrwertsteuer in beide Richtungen:</b> Vom Nettobetrag zum Bruttobetrag und zurück, mit Schnellwahl für 19 und 7 Prozent.</li>
+<li><b>Nachkommastellen einstellbar:</b> Für Geldbeträge sind zwei Stellen üblich.</li>
+<li><b>Hinweise zu typischen Fehlern:</b> Das Tool warnt bei Rabatt-Rückrechnungen und bei Prozent-Erhöhungen.</li>
+</ul>
+
+<h2>Die drei Grundgrößen der Prozentrechnung</h2>
+<p>Jede Prozentaufgabe arbeitet mit drei Größen. Der Grundwert G ist das Ganze, also 100 Prozent, zum Beispiel der ursprüngliche Preis. Der Prozentsatz p gibt den Anteil an, etwa 15 Prozent. Der Prozentwert W ist der Anteil in absoluten Zahlen, zum Beispiel 12 Euro. Sie hängen über die Grundformel zusammen: W gleich G mal p geteilt durch 100. Daraus ergeben sich die drei Grundaufgaben:</p>
+<table>
+<tr><th>Gesucht</th><th>Formel</th><th>Beispiel</th></tr>
+<tr><td>Prozentwert W</td><td>W = G × p ÷ 100</td><td>15 % von 80 sind 12</td></tr>
+<tr><td>Prozentsatz p</td><td>p = W ÷ G × 100</td><td>12 von 80 sind 15 %</td></tr>
+<tr><td>Grundwert G</td><td>G = W × 100 ÷ p</td><td>12 sind 15 %, also ist G gleich 80</td></tr>
+</table>
+<p>Prozentrechnung ist ein Sonderfall des Dreisatzes. Wenn du lieber mit dem Dreisatz rechnest, hilft dir der Dreisatz Rechner.</p>
+
+<h2>Prozentuale Veränderung berechnen</h2>
+<p>Preise steigen, Mieten sinken, Verkaufszahlen wachsen. Um wie viel Prozent sich etwas verändert hat, berechnest du aus altem und neuem Wert: Die Veränderung in Prozent ist die Differenz geteilt durch den alten Wert, mal 100. Steigt ein Preis von 60 auf 75 Euro, beträgt die Differenz 15 Euro und die Veränderung 15 geteilt durch 60, also 25 Prozent. Sinkt er von 75 auf 60, beträgt die Veränderung 15 geteilt durch 75, also minus 20 Prozent. Dass die beiden Werte nicht gleich sind, ist kein Fehler: Die Bezugsgröße ist jedes Mal eine andere. Der Rechner zeigt dir außerdem den Veränderungsfaktor, den du für weitere Berechnungen brauchst.</p>
+
+<h2>Rabatt berechnen und Ursprungspreis ermitteln</h2>
+<p>Bei einem Rabatt von 20 Prozent auf 49,90 Euro sparst du 9,98 Euro und zahlst 39,92 Euro. Der Endpreis entspricht 80 Prozent des Ursprungspreises. Spannend wird es bei der Rückrechnung: Wenn du nur den Endpreis und den Rabatt kennst, teilst du den Endpreis durch 0,8, um den Ursprungspreis zu erhalten. Wer dagegen 20 Prozent auf den Endpreis draufschlägt, kommt auf 47,90 Euro und liegt falsch. Denn die 20 Prozent beziehen sich auf den höheren Ursprungspreis. Der Rechner kennt beide Richtungen. Beachte auch, dass mehrere Rabatte nacheinander nicht einfach addiert werden: 20 Prozent und danach 10 Prozent ergeben nicht 30, sondern 28 Prozent Gesamtrabatt, weil der zweite Rabatt auf den bereits reduzierten Preis wirkt.</p>
+
+<h2>Mehrwertsteuer berechnen</h2>
+<p>In Deutschland gelten bei der Umsatzsteuer, im Alltag Mehrwertsteuer genannt, derzeit ein Regelsatz von 19 Prozent und ein ermäßigter Satz von 7 Prozent. Prüfe vor wichtigen Berechnungen den aktuellen Steuersatz für deinen Fall. Vom Nettobetrag zum Bruttobetrag rechnest du, indem du mit 1,19 multiplizierst: 100 Euro netto sind 119 Euro brutto. Die Mehrwertsteuer beträgt dann 19 Euro. Umgekehrt teilst du den Bruttobetrag durch 1,19. Aus 119 Euro brutto werden 100 Euro netto. Das Herausrechnen der Steuer mit „minus 19 Prozent“ ist ein häufiger Fehler: 19 Prozent von 119 sind 22,61, nicht 19. Der Rechner nutzt die richtige Methode und zeigt Netto, Steuer und Brutto auf einen Blick. Für Kleinunternehmer, Reverse-Charge-Fälle und Sonderregelungen gelten besondere Vorschriften. Lass dich dazu fachkundig beraten.</p>
+
+<h2>Prozent und Prozentpunkte: Ein wichtiger Unterschied</h2>
+<p>Wenn ein Zinssatz von 2 auf 3 Prozent steigt, ist er um einen Prozentpunkt gestiegen, aber um 50 Prozent im Verhältnis zum alten Wert. Beide Aussagen stimmen und bedeuten Verschiedenes. Medien verwechseln das gelegentlich. Achte beim Lesen und Schreiben darauf: Prozentpunkte beschreiben die Differenz zweier Prozentwerte, Prozent die relative Veränderung. Mit der Funktion „Prozentuale Veränderung“ rechnest du die relative Veränderung, indem du die beiden Prozentsätze als alten und neuen Wert eingibst.</p>
+
+<h2>Wert erhöhen und verringern</h2>
+<p>Wenn du einen Wert um 10 Prozent erhöhst, multiplizierst du ihn mit 1,10. Verringerst du ihn um 10 Prozent, multiplizierst du mit 0,90. Nach einer Erhöhung um 10 Prozent und einer Verringerung um 10 Prozent liegst du allerdings nicht beim Ausgangswert: 100 wird zu 110 und danach zu 99. Der Grund liegt in der Bezugsgröße. Der Rechner weist bei dieser Funktion darauf hin. Typische Anwendungen sind Preiserhöhungen, Gehaltsrunden, Rezepte (zum Beispiel 20 Prozent mehr Teig) und Budgetplanung.</p>
+
+<h2>Typische Fehler bei der Prozentrechnung</h2>
+<ul>
+<li><b>Falscher Grundwert:</b> Die Bezugsgröße muss stimmen. „20 Prozent mehr“ bezieht sich auf den alten Wert, „20 Prozent weniger“ ebenfalls.</li>
+<li><b>Rabatte addieren:</b> Mehrere Rabatte wirken nacheinander, nicht summiert.</li>
+<li><b>Mehrwertsteuer herausrechnen:</b> Bruttobeträge werden geteilt, nicht mit dem Prozentsatz gekürzt.</li>
+<li><b>Prozent und Prozentpunkte verwechseln:</b> Siehe oben.</li>
+<li><b>Komma und Punkt:</b> Im Deutschen ist das Komma das Dezimalzeichen. Das Tool versteht beides.</li>
+<li><b>Zu frühes Runden:</b> Rechne mit allen Stellen und runde erst das Endergebnis.</li>
+</ul>
+
+<h2>Typische Probleme und Lösungen</h2>
+<h3>Es erscheint kein Ergebnis</h3>
+<p>Beide Felder müssen ausgefüllt sein. Bei Mehrwertsteuer und Erhöhung wählst du zusätzlich die Richtung.</p>
+<h3>Der Rechner meldet, dass ein Wert nicht 0 sein darf</h3>
+<p>Bei Divisionen darf der Nenner nicht null sein, zum Beispiel der Grundwert beim Prozentsatz.</p>
+<h3>Mein Ergebnis weicht von meinem Taschenrechner ab</h3>
+<p>Meist liegt es an der Rundung. Stelle mehr Nachkommastellen ein und vergleiche erneut.</p>
+<h3>Ich brauche den Rechenweg für die Schule</h3>
+<p>Der Rechenweg erscheint unter dem Ergebnis. Schreibe ihn in deiner eigenen Form auf, denn Lehrkräfte bewerten den Lösungsweg.</p>
+<h3>Mehrwertsteuer stimmt nicht mit der Rechnung überein</h3>
+<p>Rechnungen runden oft pro Position. Bei mehreren Positionen können sich Cent-Abweichungen ergeben.</p>
+
+<h2>Häufige Fragen zum Prozentrechner</h2>
+<h3>Wie berechne ich Prozent von einer Zahl?</h3>
+<p>Multipliziere die Zahl mit dem Prozentsatz und teile durch 100. 15 Prozent von 80 sind 80 mal 15 geteilt durch 100, also 12.</p>
+<h3>Wie rechne ich Prozent in Dezimalzahl um?</h3>
+<p>Teile den Prozentsatz durch 100. 15 Prozent sind 0,15.</p>
+<h3>Wie berechne ich 19 Prozent Mehrwertsteuer?</h3>
+<p>Netto mal 1,19 ergibt Brutto. Brutto geteilt durch 1,19 ergibt Netto.</p>
+<h3>Ist der Prozentrechner kostenlos?</h3>
+<p>Ja, ohne Anmeldung und ohne Einschränkung.</p>
+<h3>Was ist der Unterschied zwischen Prozent und Prozentpunkt?</h3>
+<p>Prozentpunkte sind die Differenz zweier Prozentwerte, Prozent die relative Veränderung.</p>
+<p>Weitere Mathe-Helfer findest du oben unter „Passende Tools“, zum Beispiel Dreisatz Rechner, Durchschnitt Rechner und Zahlen schreiben.</p>
+
+</article>
+</div>
+</main>
+<footer class="site-footer">
+  <div class="container">
+    <img src="/assets/images/logo-full.png" alt="Toolyfix">
+    <nav class="footer-links">
+      <a href="/ueber-uns.html">Über uns</a>
+      <a href="/datenschutz.html">Datenschutz</a>
+      <a href="/nutzungsbedingungen.html">Nutzungsbedingungen</a>
+      <a href="/kontakt.html">Kontakt</a>
+    </nav>
+    <p class="footer-note">© 2026 Toolyfix – Alle Tools laufen lokal in deinem Browser.</p>
+  </div>
+</footer>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script>
+function toast(m){var t=document.getElementById('toast');t.textContent=m;t.classList.add('on');clearTimeout(window._tt);window._tt=setTimeout(function(){t.classList.remove('on')},1800)}
+function copyText(s){if(navigator.clipboard&&window.isSecureContext){return navigator.clipboard.writeText(s).then(function(){toast('Kopiert')},function(){fb(s)})}fb(s)}
+function fb(s){var a=document.createElement('textarea');a.value=s;a.style.position='fixed';a.style.opacity='0';document.body.appendChild(a);a.select();try{document.execCommand('copy');toast('Kopiert')}catch(e){toast('Kopieren nicht möglich')}document.body.removeChild(a)}
+function dl(name,blob){var u=URL.createObjectURL(blob),a=document.createElement('a');a.href=u;a.download=name;document.body.appendChild(a);a.click();document.body.removeChild(a);setTimeout(function(){URL.revokeObjectURL(u)},4000)}
+
+function $(i){return document.getElementById(i)}
+function num(id){var v=parseFloat(String($(id).value).replace(/\s/g,'').replace(',','.').replace('%',''));return isFinite(v)?v:NaN}
+function nf(n){var d=$('dc').value;return n.toLocaleString('de-DE',d==='auto'?{maximumFractionDigits:4}:{minimumFractionDigits:+d,maximumFractionDigits:+d})}
+function r6(n){return n.toLocaleString('de-DE',{maximumFractionDigits:6})}
+var M={
+ a:{h:'Beispiel: Wie viel sind 15 % von 80?',la:'Grundwert G',lb:'Prozentsatz p (in %)'},
+ b:{h:'Beispiel: Wie viel Prozent sind 12 von 80?',la:'Prozentwert W',lb:'Grundwert G'},
+ c:{h:'Beispiel: 12 sind 15 %. Wie groß ist der Grundwert?',la:'Prozentwert W',lb:'Prozentsatz p (in %)'},
+ d:{h:'Beispiel: Der Preis steigt von 60 auf 75. Um wie viel Prozent?',la:'Alter Wert',lb:'Neuer Wert'},
+ e:{h:'Beispiel: Ein Artikel kostet 49,90 € und ist um 20 % reduziert.',la:'Ursprünglicher Preis',lb:'Rabatt (in %)'},
+ f:{h:'Beispiel: Der Endpreis nach 20 % Rabatt beträgt 39,92 €.',la:'Endpreis nach Rabatt',lb:'Rabatt (in %)'},
+ g:{h:'Beispiel: Ein Nettopreis von 100 € plus 19 % Mehrwertsteuer. Prüfe den aktuellen Steuersatz.',la:'Betrag',lb:'Steuersatz (in %)',v:[['Netto → Brutto (Steuer aufschlagen)','nb'],['Brutto → Netto (Steuer herausrechnen)','bn']],lv:'Richtung'},
+ h:{h:'Beispiel: Ein Wert wird um 10 % erhöht oder um 10 % verringert.',la:'Wert',lb:'Prozent (in %)',v:[['Um Prozent erhöhen','up'],['Um Prozent verringern','dn']],lv:'Aktion'}
+};
+function setup(){
+ var m=$('md').value,c=M[m];
+ $('hn').textContent=c.h;$('la').textContent=c.la;$('lb').textContent=c.lb;
+ $('vw').classList.toggle('hid',!c.v);$('pr').classList.toggle('hid',m!=='g');
+ if(c.v){$('lv').textContent=c.lv;$('vr').innerHTML=c.v.map(function(o){return'<option value="'+o[1]+'">'+o[0]+'</option>'}).join('')}
+ run();
+}
+function out(main,sub,steps,extras,warn){
+ var h='<div class="big"><span>Ergebnis</span><b>'+main+'</b>'+(sub?'<span>'+sub+'</span>':'')+'</div>';
+ if(steps)h+='<ol class="steps">'+steps.map(function(s){return'<li>'+s+'</li>'}).join('')+'</ol>';
+ if(extras)h+='<div class="cd">'+extras.map(function(x){return'<div><b>'+x[0]+'</b><span>'+x[1]+'</span></div>'}).join('')+'</div>';
+ if(warn)h+='<div class="warn">'+warn+'</div>';
+ h+='<div class="tf-btns"><button class="btn" id="cpy" type="button">Ergebnis kopieren</button></div>';
+ $('out').innerHTML=h;var c=$('cpy');if(c)c.onclick=function(){copyText(main.replace(/<[^>]+>/g,''))};
+}
+function run(){
+ var m=$('md').value,a=num('a'),b=num('b'),o=$('out');o.innerHTML='';
+ if(isNaN(a)||isNaN(b))return;
+ var w=function(t){o.innerHTML='<div class="warn">'+t+'</div>'};
+ if(m==='a'){var x=a*b/100;out(nf(x),b+' % von '+nf(a),['<b>1 % von '+nf(a)+'</b> = '+nf(a)+' ÷ 100 = '+r6(a/100),'<b>'+nf(b)+' %</b> = '+r6(a/100)+' × '+nf(b)+' = '+nf(x)],[[nf(a+x),'Grundwert plus Prozentwert'],[nf(a-x),'Grundwert minus Prozentwert']])}
+ else if(m==='b'){if(b===0)return w('Der Grundwert darf nicht 0 sein.');var p=a/b*100;out(nf(p)+' %',nf(a)+' von '+nf(b),['<b>Anteil</b> = '+nf(a)+' ÷ '+nf(b)+' = '+r6(a/b),'<b>In Prozent</b> = '+r6(a/b)+' × 100 = '+nf(p)+' %'])}
+ else if(m==='c'){if(b===0)return w('Der Prozentsatz darf nicht 0 sein.');var g=a*100/b;out(nf(g),nf(a)+' entsprechen '+nf(b)+' %',['<b>1 %</b> = '+nf(a)+' ÷ '+nf(b)+' = '+r6(a/b),'<b>100 %</b> = '+r6(a/b)+' × 100 = '+nf(g)])}
+ else if(m==='d'){if(a===0)return w('Der alte Wert darf nicht 0 sein.');var d=b-a,pc=d/a*100;out((pc>0?'+':'')+nf(pc)+' %',pc>0?'Erhöhung':pc<0?'Senkung':'keine Veränderung',['<b>Differenz</b> = '+nf(b)+' − '+nf(a)+' = '+nf(d),'<b>Anteil am alten Wert</b> = '+nf(d)+' ÷ '+nf(a)+' = '+r6(d/a),'<b>In Prozent</b> = '+r6(d/a)+' × 100 = '+nf(pc)+' %'],[[nf(b/a),'Veränderungsfaktor (neu ÷ alt)'],[(d>0?'+':'')+nf(d),'Absolute Veränderung']])}
+ else if(m==='e'){var s=a*b/100;out(nf(a-s),'Endpreis nach '+nf(b)+' % Rabatt',['<b>Rabatt in Euro</b> = '+nf(a)+' × '+nf(b)+' ÷ 100 = '+nf(s),'<b>Endpreis</b> = '+nf(a)+' − '+nf(s)+' = '+nf(a-s)],[[nf(s),'Ersparnis'],[nf(100-b)+' %','Du zahlst noch']],b>100?'Ein Rabatt über 100 % ergibt einen negativen Preis.':'')}
+ else if(m==='f'){if(b>=100)return w('Der Rabatt muss unter 100 % liegen.');var og=a/(1-b/100);out(nf(og),'Ursprungspreis vor '+nf(b)+' % Rabatt',['<b>Der Endpreis entspricht</b> '+nf(100-b)+' % des Ursprungspreises.','<b>Ursprungspreis</b> = '+nf(a)+' ÷ '+r6(1-b/100)+' = '+nf(og)],[[nf(og-a),'Ersparnis in Euro']],'Ein häufiger Fehler: Den Rabatt einfach auf den Endpreis aufzuschlagen ergibt einen falschen Wert.')}
+ else if(m==='g'){var f=1+b/100;if($('vr').value==='nb'){out(nf(a*f),'Brutto bei '+nf(b)+' % Mehrwertsteuer',['<b>Steuerbetrag</b> = '+nf(a)+' × '+nf(b)+' ÷ 100 = '+nf(a*b/100),'<b>Brutto</b> = '+nf(a)+' + '+nf(a*b/100)+' = '+nf(a*f)],[[nf(a),'Netto'],[nf(a*b/100),'Mehrwertsteuer'],[nf(a*f),'Brutto']])}
+  else{out(nf(a/f),'Netto bei '+nf(b)+' % Mehrwertsteuer',['<b>Brutto entspricht</b> '+nf(100+b)+' % des Nettobetrags.','<b>Netto</b> = '+nf(a)+' ÷ '+r6(f)+' = '+nf(a/f),'<b>Steuerbetrag</b> = '+nf(a)+' − '+nf(a/f)+' = '+nf(a-a/f)],[[nf(a/f),'Netto'],[nf(a-a/f),'Mehrwertsteuer'],[nf(a),'Brutto']],'Wichtig: Die Steuer wird durch '+r6(f)+' herausgerechnet, nicht mit '+nf(b)+' % vom Bruttobetrag abgezogen.')}}
+ else{var up=$('vr').value==='up',x2=up?a*(1+b/100):a*(1-b/100);out(nf(x2),(up?'Erhöhung':'Verringerung')+' um '+nf(b)+' %',['<b>Veränderung</b> = '+nf(a)+' × '+nf(b)+' ÷ 100 = '+nf(a*b/100),'<b>Ergebnis</b> = '+nf(a)+(up?' + ':' − ')+nf(a*b/100)+' = '+nf(x2)],[[r6(up?1+b/100:1-b/100),'Faktor'],[nf(x2-a),'Differenz']],'Um Prozent erhöhen und danach um dieselben Prozent verringern führt nicht zum Ausgangswert zurück: Die zweite Rechnung bezieht sich auf den neuen Grundwert.')}
+}
+['a','b','vr','dc'].forEach(function(i){$(i).addEventListener('input',run)});
+$('md').addEventListener('input',setup);
+$('pr').addEventListener('click',function(e){var b=e.target.closest('[data-v]');if(b){$('b').value=b.dataset.v;run()}});
+setup();
+
+</script>
+</body>
+</html>
