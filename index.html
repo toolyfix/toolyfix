@@ -1,494 +1,81 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-  <meta name="google-site-verification" content="u9XPGCmqDPDjtxBbSq5wrCM63Poqipxs3sAUvdPwBDc" />
-  <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-F9VY193ZMP"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-F9VY193ZMP');
-</script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Toolyfix – Kostenlose Online-Tools für Text, Bild &amp; Rechner</title>
-<meta name="description" content="Über 50 kostenlose Online-Tools: Wortzähler, Bild komprimieren, Kalender, Datumsrechner und mehr. Direkt im Browser, ohne Anmeldung.">
+<title>Blog: Rechnen, Text und Alltagswissen | Toolyfix</title>
+<meta name="description" content="Der Toolyfix Blog erklärt Prozentrechnung, Dreisatz, Durchschnitt und mehr Schritt für Schritt, mit Beispielen und passenden Online-Tools.">
 <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
-<link rel="canonical" href="https://toolyfix.de/">
+<link rel="canonical" href="https://toolyfix.de/blog/">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Toolyfix">
 <meta property="og:locale" content="de_DE">
-<meta property="og:title" content="Toolyfix – Kostenlose Online-Tools für Text, Bild &amp; Rechner">
-<meta property="og:description" content="Über 50 kostenlose Online-Tools: Wortzähler, Bild komprimieren, Kalender, Datumsrechner und mehr. Direkt im Browser, ohne Anmeldung.">
-<meta property="og:url" content="https://toolyfix.de/">
-<meta property="og:image" content="https://toolyfix.de/assets/og/home.jpg">
+<meta property="og:title" content="Blog: Rechnen, Text und Alltagswissen | Toolyfix">
+<meta property="og:description" content="Ratgeber mit Beispielen und passenden Online-Tools von Toolyfix.">
+<meta property="og:url" content="https://toolyfix.de/blog/">
+<meta property="og:image" content="https://toolyfix.de/assets/blog/toolyfix-rechner-hero.webp">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="Toolyfix: Kostenlose Online-Tools">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Toolyfix – Kostenlose Online-Tools für Text, Bild &amp; Rechner">
-<meta name="twitter:description" content="Über 50 kostenlose Online-Tools: Wortzähler, Bild komprimieren, Kalender, Datumsrechner und mehr. Direkt im Browser, ohne Anmeldung.">
-<meta name="twitter:image" content="https://toolyfix.de/assets/og/home.jpg">
-<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "WebSite", "@id": "https://toolyfix.de/#website", "url": "https://toolyfix.de/", "name": "Toolyfix", "description": "Über 50 kostenlose Online-Tools: Wortzähler, Bild komprimieren, Kalender, Datumsrechner und mehr. Direkt im Browser, ohne Anmeldung.", "inLanguage": "de", "publisher": {"@id": "https://toolyfix.de/#org"}}, {"@type": "Organization", "@id": "https://toolyfix.de/#org", "name": "Toolyfix", "url": "https://toolyfix.de/", "logo": {"@type": "ImageObject", "url": "https://toolyfix.de/icon-512.png", "width": 512, "height": 512}}]}</script>
 <link rel="icon" type="image/x-icon" href="/favicon.ico">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/assets/style.css">
+<style>
+:root{--bg:#F7F7F4;--ink:#1A1A1A;--blue:#1D3557;--amber:#E9A93B;--line:#dcdcd2;--mut:#5b6470}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);margin:0;font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;line-height:1.65}
+.tf-wrap{max-width:900px;margin:0 auto;padding:26px 16px 56px}
+.tf-wrap h1{font-size:clamp(1.7rem,4.6vw,2.4rem);line-height:1.15;margin:.2em 0 .3em;color:var(--blue)}
+.intro{color:var(--mut);max-width:62ch;margin:0 0 24px}
+.post{display:grid;grid-template-columns:260px 1fr;gap:18px;background:#fff;border:1px solid var(--line);border-radius:12px;padding:14px;margin-bottom:16px;text-decoration:none;color:inherit}
+.post img{width:100%;height:auto;border-radius:8px;display:block}
+.post h2{font-size:1.25rem;line-height:1.25;margin:0 0 6px;color:var(--blue)}
+.post p{margin:0 0 8px}
+.post .d{font-size:.85rem;color:var(--mut)}
+.post:hover h2,.post:focus-visible h2{text-decoration:underline}
+:focus-visible{outline:3px solid var(--amber);outline-offset:1px}
+@media (max-width:640px){.post{grid-template-columns:1fr}}
+</style>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-F9VY193ZMP"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-F9VY193ZMP');</script>
 </head>
 <body>
-
 <header class="site-header">
   <div class="container">
-    <a href="/" class="logo-link">
-      <img src="/assets/images/logo-full.png" alt="Toolyfix">
-    </a>
+    <a href="/" class="logo-link"><img src="/assets/images/logo-full.png" alt="Toolyfix"></a>
     <span class="header-tagline">Kostenlose Tools, direkt im Browser</span>
   </div>
 </header>
-
 <main>
-  <section class="hero">
-    <div class="container">
-      <h1>Werkzeuge, die einfach funktionieren.</h1>
-      <p>Kleine, schnelle Tools für Text, Code und den Alltag. Kein Konto, keine Installation, keine Datenübertragung an einen Server – alles läuft direkt in deinem Browser.</p>
-    </div>
-  </section>
-
-  <div class="container">
-    <p class="category-label">Beliebte Tools</p>
-    <div class="tool-grid">
-
-      <a class="tool-card" href="/tools/wortzaehler.html">
-        <div class="tool-icon">📝</div>
-        <h3>Wortzähler</h3>
-        <p>Wörter, Zeichen und Lesezeit sofort zählen.</p>
-      </a>
-
-      <a class="tool-card" href="/tools/json-formatter.html">
-        <div class="tool-icon">{ }</div>
-        <h3>JSON-Formatter</h3>
-        <p>JSON validieren und übersichtlich formatieren.</p>
-      </a>
-
-      <a class="tool-card" href="/tools/fallkonverter.html">
-        <div class="tool-icon">Aa</div>
-        <h3>Fallkonverter</h3>
-        <p>Text in GROSS-, klein- oder Titelschreibung wandeln.</p>
-      </a>
-
-      <a class="tool-card" href="/tools/passwort-generator.html">
-        <div class="tool-icon">🔑</div>
-        <h3>Passwort-Generator</h3>
-        <p>Sichere, zufällige Passwörter direkt erstellen.</p>
-      </a>
-
-      <a class="tool-card" href="/tools/bild-komprimieren.html">
-        <div class="tool-icon">🖼️</div>
-        <h3>Bilder Komprimieren</h3>
-        <p>JPG, PNG und WebP verkleinern, ohne Upload.</p>
-      </a>
-
-      <a class="tool-card" href="/tools/email-signatur-generator.html">
-        <div class="tool-icon">✉️</div>
-        <h3>E-Mail Signatur Generator</h3>
-        <p>Professionelle Signatur erstellen, HTML kopieren.</p>
-      </a>
-
-      <a class="tool-card" href="/tools/gleichungen-loesen.html">
-        <div class="tool-icon">√x</div>
-        <h3>Gleichungen Lösen</h3>
-        <p>Lineare und quadratische Gleichungen lösen.</p>
-      </a>
-
-      <a class="tool-card" href="/tools/slug-generator.html">
-        <div class="tool-icon">/#</div>
-        <h3>Slug Generator</h3>
-        <p>Titel in saubere URL-Slugs umwandeln.</p>
-      </a>
-
-      <a class="tool-card" href="/tools/farbwaehler.html">
-        <div class="tool-icon">🎨</div>
-        <h3>Farbwähler</h3>
-        <p>HEX, RGB, HSL & Kontrast-Check auf einen Blick.</p>
-      </a>
-
-      <a class="tool-card" href="/tools/farbpalette-generator.html">
-        <div class="tool-icon">🟦</div>
-        <h3>Farbpalette Generator</h3>
-        <p>Farbschemata aus einer Basisfarbe erstellen.</p>
-      </a>
-
-      <a class="tool-card" href="/tools/wuerfel-online.html">
-        <div class="tool-icon">🎲</div>
-        <h3>Würfel Online</h3>
-        <p>W4 bis W100, mehrere Würfel, mit Verlauf.</p>
-      </a>
-
-      <a class="tool-card" href="/tools/digitaluhr.html">
-        <div class="tool-icon">🕐</div>
-        <h3>Digitaluhr</h3>
-        <p>Weltzeit, 12/24h-Format und Vollbildmodus.</p>
-      </a>
-
-      <a class="tool-card" href="/tools/wecker-online.html">
-        <div class="tool-icon">⏰</div>
-        <h3>Wecker Online</h3>
-        <p>Mehrere Alarme, Wiederholung, Schlummerfunktion.</p>
-      </a>
-
-      <a class="tool-card" href="/tools/altersrechner.html">
-        <div class="tool-icon">🎂</div>
-        <h3>Altersrechner</h3>
-        <p>Exaktes Alter, nächster Geburtstag, Sternzeichen.</p>
-      </a>
-
-      <a class="tool-card" href="/tools/alter-schaetzen-kamera.html">
-        <div class="tool-icon">📷</div>
-        <h3>Alter Schätzen per Kamera</h3>
-        <p>KI schätzt dein Alter per Webcam oder Foto.</p>
-      </a>
-
-      <a class="tool-card" href="/tools/timer-stoppuhr.html">
-        <div class="tool-icon">⏱️</div>
-        <h3>Timer & Stoppuhr</h3>
-        <p>Countdown mit Alarm, Stoppuhr mit Rundenzeiten.</p>
-      </a>
-
-      <a class="tool-card" href="/tools/bingo-karten-generator.html">
-        <div class="tool-icon">🎟️</div>
-        <h3>Bingo Karten Generator</h3>
-        <p>Zahlen- oder Wörter-Bingo, mehrere Karten, druckfertig.</p>
-      </a>
-
-      <a class="tool-card" href="/tools/geburtstags-countdown.html">
-        <div class="tool-icon">🎈</div>
-        <h3>Geburtstags Countdown</h3>
-        <p>Live-Countdown bis zum nächsten Geburtstag, teilbar.</p>
-      </a>
-
-      <a class="tool-card" href="/tools/flaechenrechner.html">
-        <div class="tool-icon">📐</div>
-        <h3>Flächenrechner</h3>
-        <p>Fläche & Umfang für 8 Formen, mit Einheitenwahl.</p>
-      </a>
-
-      <a class="tool-card" href="/tools/anagramm-finder.html">
-        <div class="tool-icon">🔤</div>
-        <h3>Anagramm Finder</h3>
-        <p>Echte deutsche Wörter aus denselben Buchstaben finden.</p>
-      </a>
-
-      <a class="tool-card" href="/tools/alphabetisch-sortieren.html">
-        <div class="tool-icon">🔠</div>
-        <h3>Alphabetisch Sortieren</h3>
-        <p>Listen sortieren, mit deutschen Sortierregeln.</p>
-      </a>
-
-      <a class="tool-card" href="/tools/seitenverhaeltnis-rechner.html">
-        <div class="tool-icon">⬜</div>
-        <h3>Seitenverhältnis Rechner</h3>
-        <p>Aspect Ratio berechnen, mit Presets & Vorschau.</p>
-      </a>
-
-      <a class="tool-card" href="/tools/ascii-art-generator.html">
-        <div class="tool-icon">▓▒░</div>
-        <h3>ASCII Art Generator</h3>
-        <p>Text oder Foto in ASCII-Kunst umwandeln.</p>
-      </a>
-
-      <a class="tool-card" href="/tools/fetter-text-generator.html">
-        <div class="tool-icon"><strong>B</strong></div>
-        <h3>Fetter Text Generator</h3>
-        <p>8 Unicode-Textstile für Instagram, WhatsApp & Co.</p>
-      </a>
-
-      <a class="tool-card" href="/tools/firmennamen-generator.html">
-        <div class="tool-icon">🏢</div>
-        <h3>Firmennamen Generator</h3>
-        <p>Namensideen mit direktem Domain-Check-Link.</p>
-      </a>
-
-      <a class="tool-card" href="/tools/balkendiagramm-erstellen.html">
-        <div class="tool-icon">📊</div>
-        <h3>Balkendiagramm Erstellen</h3>
-        <p>Eigene Daten als Diagramm, Export als PNG/SVG.</p>
-      </a>
-
-      <a class="tool-card" href="/tools/dateien-umbenennen.html">
-        <div class="tool-icon">📁</div>
-        <h3>Dateien Umbenennen</h3>
-        <p>Mehrere Dateien umbenennen, Download als ZIP.</p>
-      </a>
-
-      <a class="tool-card" href="/tools/audio-schneiden.html">
-        <div class="tool-icon">🎵</div>
-        <h3>Audio Schneiden</h3>
-        <p>Audio zuschneiden mit Wellenform, per Drag & Drop.</p>
-      </a>
-
-      <a class="tool-card" href="/tools/durchschnitt-rechner.html">
-        <div class="tool-icon">➗</div>
-        <h3>Durchschnitt Rechner</h3>
-        <p>Mittelwert, Median, Modus & gewichteter Durchschnitt.</p>
-      </a>
-
-      <a class="tool-card" href="/tools/eigene-handschrift.html">
-        <div class="tool-icon">✍️</div>
-        <h3>Eigene Handschrift Erstellen</h3>
-        <p>Buchstaben zeichnen, Text in deiner Schrift erstellen.</p>
-      </a>
-
-      <a class="tool-card" href="/tools/deutsches-woerterbuch.html">
-        <div class="tool-icon">📖</div>
-        <h3>Deutsches Wörterbuch</h3>
-        <p>Bedeutung, Wortart & Beispiele nachschlagen.</p>
-      </a>
-
-      <a class="tool-card" href="/tools/abkuerzungen-generator.html">
-        <div class="tool-icon">AG</div>
-        <h3>Abkürzungen Generator</h3>
-        <p>Akronyme erstellen oder Backronym-Ideen finden.</p>
-      </a>
-
-      <a class="tool-card" href="/tools/hintergrund-entfernen.html">
-        <div class="tool-icon">✂️</div>
-        <h3>Hintergrund Entfernen</h3>
-        <p>Bildhintergrund per KI entfernen, ohne Upload.</p>
-      </a>
-
-      <a class="tool-card" href="/tools/barcode-generator.html">
-        <div class="tool-icon">▮▯</div>
-        <h3>Barcode Generator</h3>
-        <p>Code128, EAN-13, UPC & mehr erstellen.</p>
-      </a>
-
-      <a class="tool-card" href="/tools/binaer-uebersetzer.html">
-        <div class="tool-icon">01</div>
-        <h3>Binär Übersetzer</h3>
-        <p>Text und Zahlen in Binärcode umwandeln.</p>
-      </a>
-
-      <a class="tool-card" href="/tools/base64-kodieren-dekodieren.html">
-        <div class="tool-icon">B64</div>
-        <h3>Base64 Kodieren & Dekodieren</h3>
-        <p>Text oder Dateien in Base64 umwandeln.</p>
-      </a>
-
-      <a class="tool-card" href="/tools/barcode-scanner.html">
-        <div class="tool-icon">📷</div>
-        <h3>Barcode Scanner</h3>
-        <p>Barcode oder QR-Code per Kamera oder Foto scannen.</p>
-      </a>
-
-      <a class="tool-card" href="/tools/kalender-generator.html">
-        <div class="tool-icon">📅</div>
-        <h3>Kalender Generator</h3>
-        <p>Monats- und Jahreskalender mit Feiertagen je Bundesland.</p>
-      </a>
-
-      <a class="tool-card" href="/tools/urkunden-generator.html">
-        <div class="tool-icon">🏅</div>
-        <h3>Urkunden Generator</h3>
-        <p>Urkunden gestalten, drucken oder als PDF speichern.</p>
-      </a>
-
-      <a class="tool-card" href="/tools/zeichenzaehler.html">
-        <div class="tool-icon">🔢</div>
-        <h3>Zeichenzähler</h3>
-        <p>Zeichen zählen und Limits für X, SMS & Google prüfen.</p>
-      </a>
-
-      <a class="tool-card" href="/tools/muenzwurf.html">
-        <div class="tool-icon">🪙</div>
-        <h3>Münzwurf</h3>
-        <p>Kopf oder Zahl mit Animation, Best-of und Statistik.</p>
-      </a>
-
-      <a class="tool-card" href="/tools/pdf-zu-url.html">
-        <div class="tool-icon">🔗</div>
-        <h3>PDF zu URL</h3>
-        <p>PDF in Vorschau-Link, Data-URI und Embed-Code wandeln.</p>
-      </a>
-
-      <a class="tool-card" href="/tools/lebenslauf-generator.html">
-        <div class="tool-icon">📄</div>
-        <h3>Lebenslauf Generator</h3>
-        <p>Tabellarischen Lebenslauf erstellen, als PDF speichern.</p>
-      </a>
-
-      <a class="tool-card" href="/tools/csv-zu-json.html">
-        <div class="tool-icon">🔄</div>
-        <h3>CSV in JSON</h3>
-        <p>CSV und JSON umwandeln, mit deutschem Zahlenformat.</p>
-      </a>
-
-      <a class="tool-card" href="/tools/css-farbverlauf-generator.html">
-        <div class="tool-icon">🌈</div>
-        <h3>CSS Farbverlauf Generator</h3>
-        <p>Linear, radial und conic Gradients mit Code & PNG.</p>
-      </a>
-
-      <a class="tool-card" href="/tools/open-graph-checker.html">
-        <div class="tool-icon">🔍</div>
-        <h3>Open Graph Checker</h3>
-        <p>OG-Tags prüfen und Social-Media-Vorschau ansehen.</p>
-      </a>
-
-      <a class="tool-card" href="/tools/cron-generator.html">
-        <div class="tool-icon">⚙️</div>
-        <h3>Cron Generator</h3>
-        <p>Cron-Ausdrücke erstellen und auf Deutsch erklären.</p>
-      </a>
-
-      <a class="tool-card" href="/tools/cps-test.html">
-        <div class="tool-icon">🖱️</div>
-        <h3>CPS Test</h3>
-        <p>Klicks pro Sekunde messen, mit Rang und Bestwerten.</p>
-      </a>
-
-      <a class="tool-card" href="/tools/datumsrechner.html">
-        <div class="tool-icon">🗓️</div>
-        <h3>Datumsrechner</h3>
-        <p>Tage addieren, Tage zwischen Daten, Werktage.</p>
-      </a>
-
-      <a class="tool-card" href="/tools/entscheidungsrad.html">
-        <div class="tool-icon">🎡</div>
-        <h3>Entscheidungsrad</h3>
-        <p>Glücksrad für Entscheidungen, mit Gewichtung.</p>
-      </a>
-
-      <a class="tool-card" href="/tools/kuechen-umrechner.html">
-        <div class="tool-icon">🍳</div>
-        <h3>Küchen-Umrechner</h3>
-        <p>Tassen, ml, Gramm, Backofen und Backform umrechnen.</p>
-      </a>
-
-      <a class="tool-card" href="/tools/morsecode-uebersetzer.html">
-        <div class="tool-icon">📡</div>
-        <h3>Morsecode Übersetzer</h3>
-        <p>Text in Morsecode, mit Ton, Licht und Tabelle.</p>
-      </a>
-
-      <a class="tool-card" href="/tools/buchstabiertafel.html">
-        <div class="tool-icon">🔤</div>
-        <h3>Buchstabiertafel</h3>
-        <p>DIN 5009 (Städte & Vornamen) und NATO-Alphabet.</p>
-      </a>
-
-      <a class="tool-card" href="/tools/abwesenheitsnotiz-generator.html">
-        <div class="tool-icon">📧</div>
-        <h3>Abwesenheitsnotiz Generator</h3>
-        <p>Out-of-Office-Text für Outlook & Gmail erstellen.</p>
-      </a>
-
-      <a class="tool-card" href="/tools/pace-rechner.html">
-        <div class="tool-icon">🏃</div>
-        <h3>Pace Rechner</h3>
-        <p>Laufpace, Zielzeit, Distanz und Splits berechnen.</p>
-      </a>
-
-      <a class="tool-card" href="/tools/blindtext-generator.html">
-        <div class="tool-icon">📝</div>
-        <h3>Blindtext Generator</h3>
-        <p>Lorem Ipsum und deutscher Platzhaltertext erzeugen.</p>
-      </a>
-
-      <a class="tool-card" href="/tools/papierformate-din-a.html">
-        <div class="tool-icon">📄</div>
-        <h3>Papierformate DIN A</h3>
-        <p>A0 bis A10, B- und C-Reihe in mm, Zoll und Pixel.</p>
-      </a>
-
-      <a class="tool-card" href="/tools/dreisatz-rechner.html">
-        <div class="tool-icon">🧮</div>
-        <h3>Dreisatz Rechner</h3>
-        <p>Proportional, umgekehrt und Mehrsatz mit Rechenweg.</p>
-      </a>
-
-      <a class="tool-card" href="/tools/beton-kies-rechner.html">
-        <div class="tool-icon">🏗️</div>
-        <h3>Beton-, Kies- & Schüttgut-Rechner</h3>
-        <p>Menge in m³, Tonnen und Säcken, Zement für Beton.</p>
-      </a>
-
-      <a class="tool-card" href="/tools/unregelmaessige-verben.html">
-        <div class="tool-icon">📚</div>
-        <h3>Unregelmäßige Verben</h3>
-        <p>Deutsch & Englisch: Liste, Suche und Trainer.</p>
-      </a>
-
-      <a class="tool-card" href="/tools/bild-konvertieren.html">
-        <div class="tool-icon">🖼️</div>
-        <h3>Bild konvertieren</h3>
-        <p>JPG, PNG, WebP, AVIF, BMP, TIFF und SVG umwandeln.</p>
-      </a>
-
-      <a class="tool-card" href="/tools/link-generator.html">
-        <div class="tool-icon">🔗</div>
-        <h3>Link Generator</h3>
-        <p>Mailto, WhatsApp, Maps, Teilen-Links und iFrame.</p>
-      </a>
-
-      <a class="tool-card" href="/tools/dateigroesse-rechner.html">
-        <div class="tool-icon">💾</div>
-        <h3>Dateigröße- & Datenrate-Rechner</h3>
-        <p>MB in GB, Downloadzeit, Bitrate, Speicherbedarf.</p>
-      </a>
-
-      <a class="tool-card" href="/tools/zahlen-schreiben.html">
-        <div class="tool-icon">🔢</div>
-        <h3>Zahlen schreiben</h3>
-        <p>Zahl in Worte, Euro, Ordnungszahlen, Römische Zahlen.</p>
-      </a>
-
-      <a class="tool-card" href="/tools/prozentrechner.html">
-        <div class="tool-icon">％</div>
-        <h3>Prozentrechner</h3>
-        <p>Prozent, Rabatt, Mehrwertsteuer und Veränderung.</p>
-      </a>
-
-      <a class="tool-card" href="/tools/kommaliste-umwandeln.html">
-        <div class="tool-icon">📋</div>
-        <h3>Spalte in Kommaliste</h3>
-        <p>Excel-Spalte als Kommaliste, SQL-IN oder JSON.</p>
-      </a>
-
-      <a class="tool-card" href="/tools/zeitstempel-umrechner.html">
-        <div class="tool-icon">🕐</div>
-        <h3>Zeitstempel & Datumsformate</h3>
-        <p>Unix-Zeit in Datum, Zeitzonen, ISO 8601, Excel.</p>
-      </a>
-
-      <a class="tool-card" href="/tools/robots-txt-generator.html">
-        <div class="tool-icon">🤖</div>
-        <h3>robots.txt Generator & Tester</h3>
-        <p>robots.txt erstellen und URLs prüfen.</p>
-      </a>
-
-    </div>
-  </div>
+<div class="tf-wrap">
+<h1>Toolyfix Blog</h1>
+<p class="intro">Hier erklären wir Rechnen, Text und Alltagswissen Schritt für Schritt. Jeder Beitrag kommt mit Beispielen und den passenden Tools zum Ausprobieren.</p>
+
+<a class="post" href="/blog/prozentrechnung-dreisatz-durchschnitt">
+<img src="/assets/blog/toolyfix-rechner-hero.webp" width="1200" height="630" alt="Laptop mit dem Toolyfix Rechner auf einem Schreibtisch">
+<div>
+<h2>Prozentrechnung erklärt: Prozent, Dreisatz und Durchschnitt im Alltag</h2>
+<p>Prozent, Rabatt und Mehrwertsteuer berechnen, Dreisatz lösen und den Durchschnitt bestimmen, mit Rechenwegen und Beispielen.</p>
+<span class="d">17.10.2026</span>
+</div>
+</a>
+
+</div>
 </main>
-
 <footer class="site-footer">
   <div class="container">
     <img src="/assets/images/logo-full.png" alt="Toolyfix">
     <nav class="footer-links">
       <a href="/blog/">Blog</a>
-      <a href="/ueber-uns.html">Über uns</a>
-      <a href="/datenschutz.html">Datenschutz</a>
-      <a href="/nutzungsbedingungen.html">Nutzungsbedingungen</a>
-      <a href="/kontakt.html">Kontakt</a>
+      <a href="/ueber-uns">Über uns</a>
+      <a href="/datenschutz">Datenschutz</a>
+      <a href="/nutzungsbedingungen">Nutzungsbedingungen</a>
+      <a href="/kontakt">Kontakt</a>
     </nav>
-    <p class="footer-note">© 2026 Toolyfix – Alle Tools laufen lokal in deinem Browser.</p>
+    <p class="footer-note">© 2026 Toolyfix. Alle Tools laufen lokal in deinem Browser.</p>
   </div>
 </footer>
-
 </body>
 </html>
