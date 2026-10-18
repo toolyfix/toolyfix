@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Excel Daten umwandeln: Kommaliste, CSV, JSON, Zeitstempel</title>
+<meta name="description" content="Excel Daten umwandeln leicht gemacht: Spalte in Kommaliste, Excel in CSV und JSON, JSON prüfen, Unix Zeitstempel umrechnen. Mit Beispielen und Rechenweg.">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+<link rel="canonical" href="https://toolyfix.de/blog/excel-daten-umwandeln">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Toolyfix">
+<meta property="og:locale" content="de_DE">
+<meta property="og:title" content="Excel Daten umwandeln: Kommaliste, CSV, JSON, Zeitstempel">
+<meta property="og:description" content="Der komplette Weg von der Excel Tabelle zur fertigen JSON Datei, mit allen Stolpersteinen und Beispielen.">
+<meta property="og:url" content="https://toolyfix.de/blog/excel-daten-umwandeln">
+<meta property="og:image" content="https://toolyfix.de/assets/blog/excel-daten-umwandeln-hero.webp">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Excel Daten umwandeln: Kommaliste, CSV, JSON, Zeitstempel">
+<meta name="twitter:image" content="https://toolyfix.de/assets/blog/excel-daten-umwandeln-hero.webp">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Article","headline":"Excel Daten umwandeln: Kommaliste, CSV, JSON und Zeitstempel richtig konvertieren","inLanguage":"de","datePublished":"2026-10-18","dateModified":"2026-10-18","image":"https://toolyfix.de/assets/blog/excel-daten-umwandeln-hero.webp","author":{"@type":"Organization","name":"Toolyfix","url":"https://toolyfix.de/"},"publisher":{"@type":"Organization","name":"Toolyfix","url":"https://toolyfix.de/"},"mainEntityOfPage":"https://toolyfix.de/blog/excel-daten-umwandeln"},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Start","item":"https://toolyfix.de/"},{"@type":"ListItem","position":2,"name":"Blog","item":"https://toolyfix.de/blog/"},{"@type":"ListItem","position":3,"name":"Excel Daten umwandeln"}]},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Kann ich eine Excel Datei direkt in JSON umwandeln?","acceptedAnswer":{"@type":"Answer","text":"Nein, eine .xlsx Datei lässt sich nicht direkt einlesen. Speichere die Tabelle in Excel als CSV UTF-8 und wandle sie dann mit einem CSV in JSON Konverter um."}},{"@type":"Question","name":"Wie viele Stellen hat ein Unix Zeitstempel?","acceptedAnswer":{"@type":"Answer","text":"Ein Zeitstempel in Sekunden hat derzeit 10 Stellen, einer in Millisekunden 13 Stellen."}},{"@type":"Question","name":"Semikolon oder Komma: Was passt für CSV?","acceptedAnswer":{"@type":"Answer","text":"Deutsches Excel speichert CSV mit Semikolon, weil das Komma als Dezimalzeichen dient. Internationale Programme erwarten oft ein Komma. Ein guter Konverter erkennt das Trennzeichen automatisch."}},{"@type":"Question","name":"Werden meine Daten bei der Umwandlung hochgeladen?","acceptedAnswer":{"@type":"Answer","text":"Bei den Toolyfix Tools nicht. Die Umwandlung läuft im Browser, die Daten bleiben auf deinem Gerät."}}]}]}</script>
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="stylesheet" href="/assets/style.css">
+<style>
+:root{--bg:#F7F7F4;--ink:#1A1A1A;--blue:#1D3557;--amber:#E9A93B;--line:#dcdcd2;--mut:#5b6470}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);margin:0;font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;line-height:1.7}
+.tf-wrap{max-width:820px;margin:0 auto;padding:22px 16px 56px}
+.crumbs{font-size:.85rem;color:var(--mut);margin:0 0 10px}
+.crumbs a,.meta a{color:var(--blue)}
+.tf-wrap h1{font-size:clamp(1.6rem,4.6vw,2.4rem);line-height:1.15;margin:.2em 0 .4em;color:var(--blue)}
+.meta{font-size:.88rem;color:var(--mut);margin:0 0 16px}
+.lead{font-size:1.1rem;max-width:70ch}
+.tf-related{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:16px 0 22px;padding:10px 12px;background:#fff;border:1px solid var(--line);border-radius:10px;font-size:.92rem}
+.tf-related b{color:var(--blue);margin-right:4px}
+.tf-related a{color:var(--blue);background:#eef1f6;border-radius:999px;padding:4px 12px;text-decoration:none;font-weight:500}
+.tf-related a:hover,.tf-related a:focus-visible{background:var(--blue);color:#fff;outline:none}
+article h2{color:var(--blue);font-size:1.45rem;line-height:1.25;margin:2em 0 .5em}
+article h3{font-size:1.12rem;margin:1.5em 0 .3em}
+article p,article li{max-width:72ch}
+article a{color:var(--blue)}
+figure{margin:18px 0}
+figure img{display:block;width:100%;height:auto;border:1px solid var(--line);border-radius:10px;background:#fff}
+figcaption{font-size:.84rem;color:var(--mut);margin-top:6px}
+blockquote{margin:18px 0;padding:10px 16px;border-left:4px solid var(--amber);background:#fff;border-radius:0 8px 8px 0}
+.tw{overflow-x:auto;margin:14px 0}
+table{border-collapse:collapse;width:100%;font-size:.93rem;background:#fff}
+th,td{border:1px solid var(--line);padding:7px 10px;text-align:left;vertical-align:top}
+th{background:#eef1f6}
+code{background:#eef1f6;padding:1px 5px;border-radius:4px;font-size:.9em;word-break:break-word}
+.hint{background:#fff6dd;border:1px solid #f0d58a;border-radius:8px;padding:10px 14px;font-size:.92rem}
+:focus-visible{outline:3px solid var(--amber);outline-offset:1px}
+</style>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-F9VY193ZMP"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-F9VY193ZMP');</script>
+</head>
+<body>
+<header class="site-header">
+  <div class="container">
+    <a href="/" class="logo-link"><img src="/assets/images/logo-full.png" alt="Toolyfix"></a>
+    <span class="header-tagline">Kostenlose Tools, direkt im Browser</span>
+  </div>
+</header>
+<main>
+<div class="tf-wrap">
+<nav class="crumbs" aria-label="Brotkrumen"><a href="/">Start</a> / <a href="/blog/">Blog</a> / Excel Daten umwandeln</nav>
+<h1>Excel Daten umwandeln: Kommaliste, CSV, JSON und Zeitstempel richtig konvertieren</h1>
+<p class="meta">Von Toolyfix, <a href="/ueber-uns">über uns</a>. Zuletzt aktualisiert am 18.10.2026. Lesezeit: 11 Minuten.</p>
+<p class="lead">Excel Daten umwandeln heißt meistens: Die Tabelle muss in ein Format, das ein anderes Programm versteht. Für eine Spalte brauchst du eine Kommaliste, für eine Tabelle CSV oder JSON, für eine Zahl wie 1700000000 ein lesbares Datum. Ich führe dich in 4 Schritten durch den ganzen Weg, mit Zahlen zum Nachrechnen.</p>
+<figure><img src="/assets/blog/excel-daten-umwandeln-hero.webp" width="1200" height="630" alt="Laptop mit einer Tabelle auf einem Schreibtisch, von der Pfeile zu Symbolen für Liste, JSON und Uhr führen"></figure>
+<nav class="tf-related" aria-label="Passende Tools"><b>Passende Tools:</b><a href="/tools/kommaliste-umwandeln">Spalte in Kommaliste</a><a href="/tools/csv-zu-json">CSV in JSON</a><a href="/tools/json-formatter">JSON Formatter</a><a href="/tools/zeitstempel-umrechner">Zeitstempel umrechnen</a></nav>
+
+<article>
+
+<h2>Excel Daten umwandeln: Welcher Weg passt zu deinem Ziel?</h2>
+<p>Der richtige Weg hängt vom Ziel ab: Eine einzelne Spalte wird zur Kommaliste, eine ganze Tabelle zu CSV und JSON, und Zeitangaben werden mit einem Umrechner lesbar. Wer das einmal sortiert hat, spart sich Stunden an Handarbeit.</p>
+<div class="tw"><table>
+<tr><th>Dein Problem</th><th>Ziel</th><th>Tool</th></tr>
+<tr><td>200 Kundennummern für eine Abfrage</td><td>Kommaliste oder SQL IN Liste</td><td><a href="/tools/kommaliste-umwandeln">Spalte in Kommaliste umwandeln</a></td></tr>
+<tr><td>Preisliste für eine Webseite</td><td>JSON Datei</td><td><a href="/tools/csv-zu-json">CSV in JSON umwandeln</a></td></tr>
+<tr><td>JSON bringt eine Fehlermeldung</td><td>Gültiges, lesbares JSON</td><td><a href="/tools/json-formatter">JSON Formatter</a></td></tr>
+<tr><td>Zahl wie 1700000000 in einer Datenbank</td><td>Datum mit Uhrzeit</td><td><a href="/tools/zeitstempel-umrechner">Zeitstempel umrechnen</a></td></tr>
+</table></div>
+
+<h3>Wie entscheide ich zwischen Kommaliste, CSV und JSON?</h3>
+<p>Nimm eine Kommaliste für einzelne Werte, CSV für Tabellen und JSON für Programme. Eine Kommaliste hat 1 Dimension, CSV hat Zeilen und Spalten, JSON kann zusätzlich Zahlen, Texte und verschachtelte Daten sauber unterscheiden.</p>
+<blockquote>Merksatz: Je maschinenlesbarer das Ziel, desto strenger die Regeln. Excel verzeiht vieles, JSON verzeiht fast nichts.</blockquote>
+
+<h3>In welcher Reihenfolge arbeite ich am besten?</h3>
+<p>Erst aufräumen, dann exportieren, dann umwandeln, zuletzt prüfen. Genau diese Reihenfolge nutze ich selbst, und sie verhindert die meisten Fehler.</p>
+<ul>
+<li>Schritt 1: Tabelle in Excel aufräumen (leere Zeilen, Duplikate, einfache Spaltennamen)</li>
+<li>Schritt 2: Als CSV UTF-8 speichern</li>
+<li>Schritt 3: Mit dem passenden Tool umwandeln</li>
+<li>Schritt 4: Ergebnis prüfen, bevor es irgendwo importiert wird</li>
+</ul>
+
+<h2>Excel Spalte in Kommaliste umwandeln: 2 Wege, die wirklich funktionieren</h2>
+<h3>Wie wandle ich eine Excel Spalte in eine Kommaliste um?</h3>
+<p>Mit der Funktion TEXTVERKETTEN geht es direkt in Excel, mit dem Umwandler geht es ohne Formel. Die Formel <code>=TEXTVERKETTEN(", ";WAHR;A2:A201)</code> fügt die 200 Zellen von A2 bis A201 mit Komma zusammen und überspringt leere Zellen. In der englischen Version heißt sie TEXTJOIN.</p>
+<p>Das klappt nur in aktuellen Excel Versionen. Wer eine ältere Version hat oder zusätzlich Anführungszeichen, Sortierung und Duplikate braucht, kopiert die Spalte einfach in den <a href="/tools/kommaliste-umwandeln">Spalte in Kommaliste Umwandler</a>.</p>
+<figure><img src="/assets/blog/kommaliste-spalte-zu-liste-illustration.webp" width="1100" height="619" loading="lazy" alt="Illustration: Eine Spalte mit 5 Einträgen wird zu einer Liste in einer Zeile, getrennt durch kleine Punkte"><figcaption>Illustration: Aus einer Spalte wird eine Liste in 1 Zeile.</figcaption></figure>
+<p>Mein Eindruck vom Tool: Es bietet 6 Vorlagen, entfernt Duplikate und leere Zeilen und trennt Zahlen von Texten. Die Grenze: Es arbeitet mit Text, nicht mit Excel Dateien, du musst die Spalte also kopieren.</p>
+
+<h3>Wie erstelle ich eine SQL IN Liste aus Excel?</h3>
+<p>Wähle die Vorlage für die IN Klausel, dann werden aus der Spalte Werte wie <code>('A101', 'A102', 'A103')</code>. Texte bekommen einfache Anführungszeichen, Zahlen bleiben ohne, und ein Anführungszeichen im Text wird verdoppelt, wie SQL es verlangt.</p>
+<p>Beispiel aus dem Alltag: Du hast 2.500 Kundennummern aus Excel. Oracle erlaubt in einer IN Liste höchstens 1.000 Einträge, also teilst du in 3 Blöcke (1.000, 1.000 und 500). Die Option für einen Zeilenumbruch nach N Einträgen hilft dabei, die Blöcke zu erkennen.</p>
+<p class="hint">Wichtig: Diese Methode ist für manuelle Auswertungen gedacht. Programme, die Eingaben von Nutzern verarbeiten, brauchen parametrisierte Abfragen, sonst droht SQL Injection.</p>
+
+<h3>Welche Fehler passieren bei Kommalisten am häufigsten?</h3>
+<p>Meist sind es unsichtbare Dinge: Leerzeichen am Rand, leere Zeilen und Zahlen, die plötzlich in Anführungszeichen stehen.</p>
+<ul>
+<li>Komma am Ende: Eine leere Zeile steckt in der Eingabe, also leere Zeilen entfernen</li>
+<li>Alles in 1 Zeile: Du hast mehrere Spalten kopiert, Excel trennt sie mit Tabulatoren</li>
+<li>Zahlen in Anführungszeichen: Die Option für Zahlen ohne Anführungszeichen einschalten</li>
+<li>Führende Nullen weg: Die Spalte schon in Excel als Text formatieren</li>
+</ul>
+
+<h2>Excel in CSV speichern: Semikolon, Umlaute und führende Nullen</h2>
+<h3>Warum zeigt Excel Umlaute in meiner CSV falsch an?</h3>
+<p>Weil die Datei nicht in der Kodierung gelesen wird, in der sie gespeichert wurde. Excel öffnet UTF 8 Dateien per Doppelklick oft als Windows 1252, aus „ä“ wird dann ein seltsames Zeichenpaar.</p>
+<p>Die sichere Lösung ist der Import über den Reiter Daten, dort „Aus Text/CSV“ wählen und bei der Dateikodierung UTF 8 einstellen. Eine verständliche Anleitung dazu liefert <a href="https://www.schieb.de/excel-csv-dateien-mit-komma-zeichen-verarbeiten" rel="noopener" target="_blank">schieb.de</a>. Beim Speichern wählst du in Excel „CSV UTF-8“.</p>
+
+<h3>Warum nutzt deutsches Excel das Semikolon?</h3>
+<p>Weil das Komma bei uns das Dezimalzeichen ist. Die Zahl 2,49 würde sonst in 2 Felder zerfallen. Internationale Programme erwarten dagegen ein Komma, deshalb landen deutsche CSV Dateien dort oft in 1 einzigen Spalte.</p>
+
+<h3>Warum fehlen bei Postleitzahlen die führenden Nullen?</h3>
+<p>Excel behandelt „01067“ als Zahl und schneidet die Null ab. Formatiere die Spalte vor dem Eintippen als Text, oder wähle beim Import für die Spalte den Datentyp Text.</p>
+<div class="tw"><table>
+<tr><th>Symptom</th><th>Ursache</th><th>Lösung</th></tr>
+<tr><td>Umlaute kaputt</td><td>Falsche Kodierung</td><td>Import mit UTF 8</td></tr>
+<tr><td>Alles in 1 Spalte</td><td>Falsches Trennzeichen</td><td>Semikolon oder Komma wählen</td></tr>
+<tr><td>01067 wird 1067</td><td>Spalte als Zahl gelesen</td><td>Datentyp Text</td></tr>
+<tr><td>Datum vertauscht</td><td>US Format gegen deutsches</td><td>Format JJJJ-MM-TT nutzen</td></tr>
+</table></div>
+
+<h2>CSV in JSON umwandeln: Excel in JSON in 5 Schritten</h2>
+<h3>Wie wandle ich Excel in JSON um?</h3>
+<p>Speichere die Tabelle als CSV UTF 8 und füge sie in den <a href="/tools/csv-zu-json">CSV in JSON Konverter</a> ein. Eine .xlsx Datei kann das Tool nicht direkt lesen, der Umweg über CSV ist also Pflicht.</p>
+<ul>
+<li>Schritt 1: CSV einfügen oder Datei laden</li>
+<li>Schritt 2: Prüfen, ob das Trennzeichen stimmt</li>
+<li>Schritt 3: Festlegen, ob die erste Zeile Spaltennamen enthält</li>
+<li>Schritt 4: JSON Format und Einrückung wählen</li>
+<li>Schritt 5: Kopieren oder als .json herunterladen</li>
+</ul>
+<figure><img src="/assets/blog/csv-in-json-umwandeln-illustration.webp" width="1100" height="619" loading="lazy" alt="Illustration: Eine CSV Tabelle mit den Spalten id, name, email und age wird in ein JSON Array umgewandelt"><figcaption>Illustration mit Beispieldaten: Aus einer CSV Tabelle wird ein JSON Array.</figcaption></figure>
+
+<h3>Was passiert mit Dezimalkomma und Zahlen?</h3>
+<p>Aus 2,49 wird die JSON Zahl 2.49, denn JSON kennt nur den Punkt. Das Tool erledigt das bei Semikolon Dateien automatisch, sobald das Dezimalkomma aktiv ist.</p>
+<div class="tw"><table>
+<tr><th>CSV Zeile</th><th>JSON Wert</th></tr>
+<tr><td><code>A101;2,49;120</code></td><td><code>{"Artikel":"A101","Preis":2.49,"Bestand":120}</code></td></tr>
+<tr><td><code>A102;12,90;35</code></td><td><code>{"Artikel":"A102","Preis":12.9,"Bestand":35}</code></td></tr>
+</table></div>
+<p>Die Artikelnummer bleibt Text, Preis und Bestand werden Zahlen. Bei der Zahl 12,90 fällt die letzte Null weg, das ist bei JSON Zahlen normal. Soll ein Wert wirklich Text bleiben, schalte die Zahlenerkennung aus.</p>
+
+<h3>Welches JSON Format passt zu meinem Zweck?</h3>
+<p>Für die meisten Fälle ist „Array von Objekten“ richtig, weil jeder Wert einen Namen trägt. Das Tool bietet 4 Formate an.</p>
+<ul>
+<li>Array von Objekten: Standard für APIs und Webseiten</li>
+<li>Array von Arrays: kompakt, passt zu vielen Diagrammen</li>
+<li>Objekt nach erster Spalte: ideal für Nachschlagetabellen, doppelte Schlüssel überschreiben sich</li>
+<li>JSON Lines: 1 Datensatz pro Zeile, gut für große Dateien</li>
+</ul>
+
+<h3>Wie prüfe ich, ob alle Zeilen angekommen sind?</h3>
+<p>Vergleiche die Anzahl der Datensätze im Ergebnis mit den Zeilen in Excel. Hat die Tabelle 250 Zeilen plus 1 Kopfzeile, müssen 250 Objekte im JSON stehen. Weichen die Zahlen ab, sind meist leere Zeilen oder ein Trennzeichen im Feld schuld.</p>
+<p>Das Tool meldet Zeilen mit abweichender Spaltenzahl und zeigt die ersten 50 Zeilen als Vorschau. Schau dir diese Vorschau immer an, bevor du kopierst. Das dauert 10 Sekunden und spart dir später die Fehlersuche.</p>
+
+<h2>JSON formatieren und Fehler finden: Warum ist mein JSON ungültig?</h2>
+<h3>Warum zeigt mein JSON einen Fehler?</h3>
+<p>In fast allen Fällen steckt einer von 4 Fehlern dahinter. JSON ist strenger als Excel und strenger als JavaScript, die Regeln stehen auch auf <a href="https://www.json.org/json-de.html" rel="noopener" target="_blank">json.org</a>.</p>
+<ul>
+<li>Komma nach dem letzten Element: <code>{"a":1,}</code> ist ungültig</li>
+<li>Einfache statt doppelte Anführungszeichen: <code>{'a':1}</code> geht nicht</li>
+<li>Schlüssel ohne Anführungszeichen: <code>{a:1}</code> geht nicht</li>
+<li>Fehlendes Komma zwischen 2 Werten</li>
+</ul>
+<figure><img src="/assets/blog/json-fehler-finden-illustration.webp" width="1100" height="293" loading="lazy" alt="Illustration: Ein JSON Codefenster mit einer markierten Zeile, über der eine Lupe mit Warnzeichen liegt"><figcaption>Illustration: Eine Lupe markiert die fehlerhafte Zeile im JSON.</figcaption></figure>
+<p>Der <a href="/tools/json-formatter">JSON Formatter</a> zeigt, an welcher Stelle der Fehler liegt, und rückt gültiges JSON übersichtlich ein. Er repariert nichts automatisch, du siehst aber sofort, wo du ansetzen musst.</p>
+
+<h3>Wann nutze ich Formatieren und wann Minimieren?</h3>
+<p>Formatiere zum Lesen und Prüfen, minimiere zum Speichern und Versenden. Eine minimierte Datei ist kleiner, weil Leerzeichen und Zeilenumbrüche wegfallen, ein Mensch liest sie aber kaum noch.</p>
+
+<h2>Unix Zeitstempel umrechnen: Aus 1700000000 wird ein Datum</h2>
+<h3>Wie rechne ich einen Unix Zeitstempel in ein Datum um?</h3>
+<p>Ein Unix Zeitstempel zählt die Sekunden seit dem 1. Januar 1970, 00:00:00 UTC. Der Wert 1700000000 ist der 14.11.2023 um 22:13:20 UTC, in Deutschland also 23:13:20 Uhr, weil im November die Mitteleuropäische Zeit (UTC+1) gilt.</p>
+<p>Im <a href="/tools/zeitstempel-umrechner">Zeitstempel Umrechner</a> gibst du die Zahl ein, wählst die Zeitzone und siehst den Zeitpunkt in vielen Formaten, darunter ISO 8601 und als Excel Seriennummer.</p>
+<figure><img src="/assets/blog/zeitstempel-zu-datum-illustration.webp" width="1100" height="314" loading="lazy" alt="Illustration: Ein Zähler mit der Zahl 1728794365 wird zu einem Kalenderblatt mit Uhr"><figcaption>Illustration: Aus einem Unix Zeitstempel wird ein lesbares Datum mit Uhrzeit.</figcaption></figure>
+
+<h3>Sekunden oder Millisekunden: Woran erkenne ich die Einheit?</h3>
+<p>Zähle die Stellen. Das Tool erkennt die Einheit daran selbst, du kannst sie bei Bedarf aber manuell setzen.</p>
+<div class="tw"><table>
+<tr><th>Einheit</th><th>Stellen heute</th><th>Beispiel</th></tr>
+<tr><td>Sekunden</td><td>10</td><td>1700000000</td></tr>
+<tr><td>Millisekunden</td><td>13</td><td>1700000000000</td></tr>
+<tr><td>Mikrosekunden</td><td>16</td><td>1700000000000000</td></tr>
+<tr><td>Nanosekunden</td><td>19</td><td>1700000000000000000</td></tr>
+</table></div>
+<p>Ein falscher Wert fällt sofort auf: Landet das Datum im Januar 1970, war es eine Zahl in Sekunden, die als Millisekunden gelesen wurde. Liegt es tausende Jahre in der Zukunft, ist es umgekehrt.</p>
+
+<h3>Wie rechne ich einen Zeitstempel in Excel in ein Datum um?</h3>
+<p>Teile durch 86.400 und addiere 25.569. In Excel lautet die Formel <code>=A2/86400+25569</code>, danach formatierst du die Zelle als Datum mit Uhrzeit. Für 1700000000 kommt 45244,9259 heraus, also der 14.11.2023, 22:13 Uhr UTC.</p>
+<p>Diese Zahl gilt für UTC. Für deutsche Zeit addierst du im Winter <code>+1/24</code> und im Sommer <code>+2/24</code>. Das Tool nimmt dir die Sommerzeit ab, die Excel Formel nicht.</p>
+
+<h3>Warum weicht die Uhrzeit um 1 oder 2 Stunden ab?</h3>
+<p>Weil der Zeitstempel selbst keine Zeitzone kennt, nur die Anzeige. Deutschland liegt im Winter bei UTC+1 und im Sommer bei UTC+2, die Umstellung passiert am letzten Sonntag im März und im Oktober.</p>
+<p>Beispiel aus dem Alltag: Ein Server Log meldet den Eintrag 1751000000. Das ist der 27.06.2025 um 04:53:20 UTC, in Deutschland wegen der Sommerzeit 06:53:20 Uhr. Wer im Log nach „Fehler um 6 Uhr“ sucht, findet ihn nur mit der richtigen Zeitzone. Speichere Zeiten in Systemen deshalb immer in UTC und rechne erst bei der Anzeige um.</p>
+
+<h3>Was ist das Jahr 2038 Problem?</h3>
+<p>Ältere Systeme speichern den Zeitstempel als 32 Bit Zahl, und die läuft am 19. Januar 2038 um 03:14:07 UTC über. Der größte Wert ist 2147483647, danach springt der Zähler ins Jahr 1901. Die Hintergründe erklärt <a href="https://de.wikipedia.org/wiki/Jahr-2038-Problem" rel="noopener" target="_blank">Wikipedia</a>. Moderne 64 Bit Systeme sind nicht betroffen.</p>
+
+<h2>Praxisbeispiel: Von der Excel Preisliste zur fertigen JSON Datei</h2>
+<p>Stell dir vor, du pflegst die Preise für einen kleinen Onlineshop in Excel und willst sie in eine Webseite einbinden. Das ist ein typischer Fall, der alle 4 Tools verbindet.</p>
+<ul>
+<li>1. Aufräumen: Leere Zeilen löschen, Spaltennamen ohne Sonderzeichen (Artikel, Preis, Bestand)</li>
+<li>2. Exportieren: Speichern als „CSV UTF-8“</li>
+<li>3. Umwandeln: Im CSV in JSON Konverter „Array von Objekten“ wählen</li>
+<li>4. Prüfen: Das Ergebnis im JSON Formatter einfügen, damit Syntaxfehler auffallen</li>
+<li>5. Zeiten klären: Steht eine Spalte mit Zeitstempeln drin, rechnest du sie im Zeitstempel Umrechner gegen</li>
+</ul>
+<p>Zusätzlich brauchst du vielleicht eine Liste aller Artikelnummern für eine Abfrage. Dann kopierst du nur diese Spalte in den Kommaliste Umwandler. Aus 1 Tabelle werden so 3 Ergebnisse in unter 5 Minuten.</p>
+
+<h2>Die 4 Tools im Check: Stärken und Grenzen</h2>
+<p>Jedes der 4 Tools löst genau 1 Problem gut und hat klare Grenzen. Ich sage dir ehrlich, wo welches Tool aufhört, damit du keine Zeit verlierst.</p>
+<div class="tw"><table>
+<tr><th>Tool</th><th>Das kann es richtig gut</th><th>Das kann es nicht</th></tr>
+<tr><td>Spalte in Kommaliste</td><td>6 Vorlagen, Duplikate und Leerzeilen entfernen, Sortieren, Zahlen ohne Anführungszeichen</td><td>Keine Excel Dateien lesen, nur kopierter Text</td></tr>
+<tr><td>CSV in JSON</td><td>Trennzeichen automatisch erkennen, Dezimalkomma, Windows 1252 für alte Dateien, 4 JSON Formate</td><td>Keine .xlsx Dateien, Datumswerte bleiben Text</td></tr>
+<tr><td>JSON Formatter</td><td>Formatieren, minimieren, Fehlerstelle anzeigen</td><td>Fehler nicht automatisch reparieren</td></tr>
+<tr><td>Zeitstempel umrechnen</td><td>Einheit erkennen, 15 Zeitzonen mit Sommerzeit, ISO 8601 und Excel Seriennummer</td><td>Keine ganzen Spalten auf einmal umrechnen</td></tr>
+</table></div>
+<p>Wenn du ganze Spalten mit Zeitstempeln hast, nimm in Excel die Formel aus dem Abschnitt oben. Für einzelne Werte und zum Prüfen ist der Umrechner schneller.</p>
+
+<h2>Meine 6 Checks vor jedem Import</h2>
+<p>Prüfe vor dem Import 6 Dinge, dann bleiben die meisten Überraschungen aus. Ich gehe sie immer in dieser Reihenfolge durch.</p>
+<ul>
+<li>Original sichern, bevor du etwas veränderst</li>
+<li>Anzahl der Zeilen vor und nach der Umwandlung vergleichen</li>
+<li>Trennzeichen und Kodierung prüfen (Semikolon, UTF 8)</li>
+<li>Führende Nullen und Zahlenformate stichprobenartig kontrollieren</li>
+<li>JSON im Formatter validieren</li>
+<li>Zeitzonen bei Zeitstempeln bewusst festlegen</li>
+</ul>
+<p class="hint">Datenschutz: Kundenlisten und E-Mail Adressen sind personenbezogene Daten. Die Toolyfix Tools verarbeiten sie im Browser und laden nichts hoch. Trotzdem gehört eine Datei mit solchen Daten nur dorthin, wo sie hingehört. Bei Unsicherheit frag deine Datenschutzbeauftragte oder einen Fachmann.</p>
+
+<h2>Häufige Fragen zum Umwandeln von Excel Daten</h2>
+<h3>Kann ich eine Excel Datei direkt in JSON umwandeln?</h3>
+<p>Nein, eine .xlsx Datei lässt sich nicht direkt einlesen. Speichere sie als CSV UTF 8 und nutze danach den CSV in JSON Konverter.</p>
+<h3>Wie viele Stellen hat ein Unix Zeitstempel?</h3>
+<p>10 Stellen in Sekunden und 13 Stellen in Millisekunden, Stand heute.</p>
+<h3>Semikolon oder Komma: Was passt für CSV?</h3>
+<p>Deutsches Excel nutzt das Semikolon, internationale Programme oft das Komma. Der Konverter erkennt das Trennzeichen automatisch, du kannst es aber festlegen.</p>
+<h3>Werden meine Daten bei der Umwandlung hochgeladen?</h3>
+<p>Nein, bei den Toolyfix Tools läuft alles im Browser und bleibt auf deinem Gerät.</p>
+<p class="hint">Alle Beispiele dienen der Orientierung. Prüfe Ergebnisse immer stichprobenartig, bevor du Daten in produktive Systeme importierst.</p>
+
+</article>
+</div>
+</main>
+<footer class="site-footer">
+  <div class="container">
+    <img src="/assets/images/logo-full.png" alt="Toolyfix">
+    <nav class="footer-links">
+      <a href="/blog/">Blog</a>
+      <a href="/ueber-uns">Über uns</a>
+      <a href="/datenschutz">Datenschutz</a>
+      <a href="/nutzungsbedingungen">Nutzungsbedingungen</a>
+      <a href="/kontakt">Kontakt</a>
+    </nav>
+    <p class="footer-note">© 2026 Toolyfix. Alle Tools laufen lokal in deinem Browser.</p>
+  </div>
+</footer>
+</body>
+</html>
