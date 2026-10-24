@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Zeichen zählen und Wörter zählen: Der Praxis Guide</title>
+<meta name="description" content="Zeichen zählen und Wörter zählen mit und ohne Leerzeichen, Limits für SMS, X und Meta Description, Fallkonverter und Blindtext. Mit Beispielen.">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+<link rel="canonical" href="https://toolyfix.de/blog/zeichen-zaehlen-woerter-zaehlen">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Toolyfix">
+<meta property="og:locale" content="de_DE">
+<meta property="og:title" content="Zeichen zählen und Wörter zählen: Der Praxis Guide">
+<meta property="og:description" content="Zeichen mit und ohne Leerzeichen, Wörter, Limits, Groß und Kleinschreibung und Blindtext: alles in 1 Guide, mit Rechenbeispielen.">
+<meta property="og:url" content="https://toolyfix.de/blog/zeichen-zaehlen-woerter-zaehlen">
+<meta property="og:image" content="https://toolyfix.de/assets/blog/zeichen-zaehlen-hero.webp">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Zeichen zählen und Wörter zählen: Der Praxis Guide">
+<meta name="twitter:image" content="https://toolyfix.de/assets/blog/zeichen-zaehlen-hero.webp">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Article","headline":"Zeichen zählen und Wörter zählen: Texte prüfen, umwandeln und mit Blindtext testen","inLanguage":"de","datePublished":"2026-10-22","dateModified":"2026-10-22","image":"https://toolyfix.de/assets/blog/zeichen-zaehlen-hero.webp","author":{"@type":"Organization","name":"Toolyfix","url":"https://toolyfix.de/"},"publisher":{"@type":"Organization","name":"Toolyfix","url":"https://toolyfix.de/"},"mainEntityOfPage":"https://toolyfix.de/blog/zeichen-zaehlen-woerter-zaehlen"},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Start","item":"https://toolyfix.de/"},{"@type":"ListItem","position":2,"name":"Blog","item":"https://toolyfix.de/blog/"},{"@type":"ListItem","position":3,"name":"Zeichen zählen und Wörter zählen"}]},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Zählen Leerzeichen als Zeichen?","acceptedAnswer":{"@type":"Answer","text":"Ja, in den meisten Vorgaben zählen Leerzeichen mit. Die Angabe inklusive Leerzeichen ist Standard, ohne Leerzeichen wird oft in der Übersetzungsbranche gezählt. Der Satz Zeichen zählen ist ganz einfach. hat 32 Zeichen mit und 28 ohne Leerzeichen."}},{"@type":"Question","name":"Wie viele Zeichen hat eine Normseite?","acceptedAnswer":{"@type":"Answer","text":"Eine Normseite hat in der Verlagswelt meist 1.800 Zeichen inklusive Leerzeichen, das sind 30 Zeilen mit je 60 Anschlägen. Andere Branchen nutzen abweichende Definitionen."}},{"@type":"Question","name":"Wie lang darf eine Meta Description sein?","acceptedAnswer":{"@type":"Answer","text":"Als Richtwert gelten 155 bis 160 Zeichen. Google kürzt nach Pixelbreite und schreibt Beschreibungen auch um, ein festes Limit gibt es nicht."}},{"@type":"Question","name":"Wie viele Zeichen passen in eine SMS?","acceptedAnswer":{"@type":"Answer","text":"Eine SMS fasst 160 Zeichen im GSM Standardalphabet. Mit Emoji oder Sonderzeichen sinkt das Limit auf 70 Zeichen, bei mehreren Segmenten auf 153 beziehungsweise 67 Zeichen je Segment."}}]}]}</script>
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="stylesheet" href="/assets/style.css">
+<style>
+:root{--bg:#F7F7F4;--ink:#1A1A1A;--blue:#1D3557;--amber:#E9A93B;--line:#dcdcd2;--mut:#5b6470}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);margin:0;font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;line-height:1.7}
+.tf-wrap{max-width:820px;margin:0 auto;padding:22px 16px 56px}
+.crumbs{font-size:.85rem;color:var(--mut);margin:0 0 10px}
+.crumbs a,.meta a{color:var(--blue)}
+.tf-wrap h1{font-size:clamp(1.6rem,4.6vw,2.4rem);line-height:1.15;margin:.2em 0 .4em;color:var(--blue)}
+.meta{font-size:.88rem;color:var(--mut);margin:0 0 16px}
+.lead{font-size:1.1rem;max-width:70ch}
+.tf-related{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:16px 0 22px;padding:10px 12px;background:#fff;border:1px solid var(--line);border-radius:10px;font-size:.92rem}
+.tf-related b{color:var(--blue);margin-right:4px}
+.tf-related a{color:var(--blue);background:#eef1f6;border-radius:999px;padding:4px 12px;text-decoration:none;font-weight:500}
+.tf-related a:hover,.tf-related a:focus-visible{background:var(--blue);color:#fff;outline:none}
+article h2{color:var(--blue);font-size:1.45rem;line-height:1.25;margin:2em 0 .5em}
+article h3{font-size:1.12rem;margin:1.5em 0 .3em}
+article p,article li{max-width:72ch}
+article a{color:var(--blue)}
+figure{margin:18px 0}
+figure img{display:block;width:100%;height:auto;border:1px solid var(--line);border-radius:10px;background:#fff}
+figcaption{font-size:.84rem;color:var(--mut);margin-top:6px}
+blockquote{margin:18px 0;padding:10px 16px;border-left:4px solid var(--amber);background:#fff;border-radius:0 8px 8px 0}
+.tw{overflow-x:auto;margin:14px 0}
+table{border-collapse:collapse;width:100%;font-size:.93rem;background:#fff}
+th,td{border:1px solid var(--line);padding:7px 10px;text-align:left;vertical-align:top}
+th{background:#eef1f6}
+code{background:#eef1f6;padding:1px 5px;border-radius:4px;font-size:.9em;word-break:break-word}
+.hint{background:#fff6dd;border:1px solid #f0d58a;border-radius:8px;padding:10px 14px;font-size:.92rem}
+:focus-visible{outline:3px solid var(--amber);outline-offset:1px}
+</style>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-F9VY193ZMP"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-F9VY193ZMP');</script>
+</head>
+<body>
+<header class="site-header">
+  <div class="container">
+    <a href="/" class="logo-link"><img src="/assets/images/logo-full.png" alt="Toolyfix"></a>
+    <span class="header-tagline">Kostenlose Tools, direkt im Browser</span>
+  </div>
+</header>
+<main>
+<div class="tf-wrap">
+<nav class="crumbs" aria-label="Brotkrumen"><a href="/">Start</a> / <a href="/blog/">Blog</a> / Zeichen zählen und Wörter zählen</nav>
+<h1>Zeichen zählen und Wörter zählen: Texte prüfen, umwandeln und mit Blindtext testen</h1>
+<p class="meta">Von Toolyfix, <a href="/ueber-uns">über uns</a>. Zuletzt aktualisiert am 22.10.2026. Lesezeit: 12 Minuten.</p>
+<p class="lead">Zeichen zählen heißt: Du zählst Buchstaben, Ziffern, Satzzeichen und je nach Vorgabe auch die Leerzeichen. Der Satz „Zeichen zählen ist ganz einfach.“ hat 32 Zeichen mit Leerzeichen und 28 ohne. Ich zeige dir, wie du Zeichen und Wörter zählst, Limits einhältst, Groß und Kleinschreibung umwandelst und Layouts mit Blindtext testest.</p>
+<figure><img src="/assets/blog/zeichen-zaehlen-hero.webp" width="1200" height="630" alt="Laptop auf einem Schreibtisch mit einem Textdokument, darüber 3 Symbole für Groß und Kleinschreibung, Länge und Absatz"></figure>
+<nav class="tf-related" aria-label="Passende Tools"><b>Passende Tools:</b><a href="/tools/zeichenzaehler">Zeichenzähler</a><a href="/tools/wortzaehler">Wortzähler</a><a href="/tools/fallkonverter">Fallkonverter</a><a href="/tools/blindtext-generator">Blindtext Generator</a></nav>
+
+<article>
+
+<h2>Zeichen zählen: mit Leerzeichen, ohne Leerzeichen und was wirklich zählt</h2>
+<h3>Wie viele Zeichen hat ein Text?</h3>
+<p>Ein Text hat so viele Zeichen, wie Buchstaben, Ziffern, Satzzeichen, Leerzeichen und Zeilenumbrüche in ihm stecken. Bei „Zeichen zählen ist ganz einfach.“ sind das 27 Buchstaben, 4 Leerzeichen und 1 Punkt, zusammen also 32.</p>
+<figure><img src="/assets/blog/zeichen-zaehlen-text-und-zaehler.webp" width="1100" height="619" loading="lazy" alt="Illustration: Ein Textdokument mit Zeilen und hervorgehobenen Stellen wird zu einem runden Zähler mit der Beispielzahl 127"><figcaption>Illustration mit Beispielzahl: Aus einem Text wird eine Zeichenzahl.</figcaption></figure>
+<p>Der <a href="/tools/zeichenzaehler">Zeichenzähler</a> macht das in Echtzeit, während du tippst oder einfügst. Er zeigt neben den Zeichen auch Wörter, Sätze, Absätze und Bytes an, ohne dass dein Text den Browser verlässt.</p>
+
+<h3>Zählen Leerzeichen als Zeichen?</h3>
+<p>Ja, in den meisten Vorgaben zählen Leerzeichen mit. „Inklusive Leerzeichen“ ist der Standard bei Hausarbeiten, Artikeln und Social Media, „ohne Leerzeichen“ taucht vor allem in der Übersetzungsbranche auf.</p>
+<figure><img src="/assets/blog/zeichen-mit-und-ohne-leerzeichen.webp" width="1100" height="619" loading="lazy" alt="Illustration: Derselbe Beispielsatz in 2 Zeilen, oben mit hervorgehobenen Leerzeichen und der Zahl 35 mit Leerzeichen, unten ohne und mit der Zahl 30 ohne Leerzeichen"><figcaption>Illustration: Derselbe Satz hat 35 Zeichen mit und 30 ohne Leerzeichen.</figcaption></figure>
+<p>Klär deshalb immer, wie gezählt wird, bevor du abgibst. Bei 40.000 Zeichen Vorgabe können die Leerzeichen den Unterschied von mehreren Seiten ausmachen.</p>
+
+<h3>Was sind Anschläge und wie viele Zeichen hat eine Normseite?</h3>
+<p>Anschläge sind die Zeichen eines Textes, meist inklusive Leerzeichen. Eine Normseite hat in der Verlagswelt oft 1.800 Anschläge, das sind 30 Zeilen mit je 60 Zeichen, mehr dazu bei <a href="https://de.wikipedia.org/wiki/Normseite" rel="noopener" target="_blank">Wikipedia</a>.</p>
+<p>Andere Branchen definieren die Normseite anders. Eine DIN A4 Seite fasst je nach Schriftart, Schriftgröße und Zeilenabstand grob 2.000 bis 3.000 Zeichen. Für verbindliche Vorgaben zählst du deshalb immer den echten Text.</p>
+
+<h2>Wörter zählen: Wortzähler, Lesezeit und Zeichen pro Wort</h2>
+<h3>Wie zählt ein Wortzähler Wörter?</h3>
+<p>Ein Wortzähler trennt Wörter an Leerzeichen und Zeilenumbrüchen. Der <a href="/tools/wortzaehler">Wortzähler</a> zeigt dir dazu Zeichen, Sätze, Absätze und die Lesezeit, die er mit 200 Wörtern pro Minute rechnet.</p>
+<p>Sätze erkennt er an Punkt, Ausrufezeichen und Fragezeichen. Das hat einen Haken: Abkürzungen wie „z. B.“ können die Satzzahl leicht nach oben treiben. Ein Wort mit Bindestrich zählt als 1 Wort, weil dort kein Leerzeichen steht.</p>
+
+<h3>Wie viele Zeichen hat ein Wort im Schnitt?</h3>
+<p>Meine Faustregel für deutsche Texte lautet: 1 Wort entspricht etwa 7 Zeichen inklusive Leerzeichen. Das ist eine Schätzung und schwankt je nach Thema, mit dieser Tabelle kommst du aber schnell auf einen Richtwert.</p>
+<div class="tw"><table>
+<tr><th>Wörter</th><th>Zeichen mit Leerzeichen (ca.)</th><th>Lesezeit (200 Wörter/Min.)</th><th>Sprechzeit (130 Wörter/Min.)</th></tr>
+<tr><td>100</td><td>700</td><td>0,5 Min.</td><td>0,8 Min.</td></tr>
+<tr><td>250</td><td>1.750</td><td>1,25 Min.</td><td>1,9 Min.</td></tr>
+<tr><td>500</td><td>3.500</td><td>2,5 Min.</td><td>3,8 Min.</td></tr>
+<tr><td>1.000</td><td>7.000</td><td>5 Min.</td><td>7,7 Min.</td></tr>
+<tr><td>2.000</td><td>14.000</td><td>10 Min.</td><td>15,4 Min.</td></tr>
+</table></div>
+<p>Die Zeiten kommen aus den Richtwerten des Zeichenzählers: 200 Wörter pro Minute zum Lesen und 130 zum Sprechen. Für ein Referat mit 5 Minuten Redezeit brauchst du demnach rund 650 Wörter.</p>
+
+<h3>Wie viele Wörter passen auf eine Seite?</h3>
+<p>Auf eine Normseite mit 1.800 Zeichen passen nach der Faustregel rund 257 Wörter, auf eine DIN A4 Seite grob 290 bis 430. Die Spanne ist so groß, weil Schrift und Zeilenabstand mitspielen.</p>
+<p>Wer eine feste Seitenzahl abgeben muss, rechnet besser über Wörter oder Zeichen und prüft am Ende im Textprogramm das Layout.</p>
+
+<h2>Zeichenlimits 2026: SMS, X, Instagram und Meta Description</h2>
+<h3>Welche Zeichenlimits gelten für die wichtigsten Plattformen?</h3>
+<p>Die gängigen Limits liegen zwischen 30 Zeichen bei Google Ads Titeln und 3.000 bei LinkedIn Beiträgen. Die Tabelle fasst sie zusammen, der Zeichenzähler prüft sie live mit einem Fortschrittsbalken.</p>
+<div class="tw"><table>
+<tr><th>Einsatz</th><th>Limit</th><th>Wichtig zu wissen</th></tr>
+<tr><td>X Beitrag</td><td>280</td><td>Mit Premium sind bis zu 25.000 möglich, Links zählen mit fester Länge</td></tr>
+<tr><td>SMS (1 Segment)</td><td>160</td><td>Mit Emoji oder Sonderzeichen nur 70</td></tr>
+<tr><td>Meta Description</td><td>ca. 155 bis 160</td><td>Google kürzt nach Pixelbreite</td></tr>
+<tr><td>Title Tag</td><td>ca. 60</td><td>Auch hier zählt die Pixelbreite</td></tr>
+<tr><td>Instagram Bio</td><td>150</td><td>Inklusive Leerzeichen und Emojis</td></tr>
+<tr><td>Instagram Beschreibung</td><td>2.200</td><td>Im Feed sind nur etwa 125 Zeichen sofort sichtbar</td></tr>
+<tr><td>LinkedIn Beitrag</td><td>3.000</td><td>Vor „mehr anzeigen“ stehen nur wenige Zeilen</td></tr>
+<tr><td>YouTube Titel</td><td>100</td><td>Lange Titel werden gekürzt</td></tr>
+<tr><td>Google Ads Titel</td><td>30</td><td>Pro Titelzeile</td></tr>
+<tr><td>Google Ads Beschreibung</td><td>90</td><td>Pro Beschreibungszeile</td></tr>
+</table></div>
+<p class="hint">Plattformen ändern Limits gelegentlich und zählen Emojis oft anders. Prüfe bei wichtigen Kampagnen die aktuellen Angaben des Anbieters und plane einen kleinen Puffer ein.</p>
+
+<h3>Wie lang darf eine Meta Description sein?</h3>
+<p>Als Richtwert gelten 155 bis 160 Zeichen, ein festes Limit gibt es aber nicht. Google schneidet nach Pixelbreite ab und schreibt Beschreibungen auch um, das steht in der <a href="https://developers.google.com/search/docs/appearance/snippet" rel="noopener" target="_blank">Dokumentation zu Snippets</a>.</p>
+<p>Schmale Buchstaben wie „i“ und „l“ brauchen weniger Platz als „W“ und „M“. Setz das Wichtigste deshalb an den Anfang. Ein Beispiel mit 111 Zeichen: „Zeichen zählen mit und ohne Leerzeichen: So prüfst du Meta Description, SMS und Social Media Texte in Sekunden.“ Das lässt dir noch 44 Zeichen Luft.</p>
+
+<h3>Wie viele SMS sind 200 Zeichen?</h3>
+<p>200 Zeichen sind 2 SMS, solange du nur Standardzeichen nutzt, und 3 SMS, sobald ein Emoji im Text steckt. Bei mehreren Segmenten sinkt die Kapazität auf 153 beziehungsweise 67 Zeichen je Segment, weil ein Teil für die Verkettung reserviert ist.</p>
+<p>Die Rechnung: 200 ÷ 153 ergibt aufgerundet 2, und 200 ÷ 67 ergibt aufgerundet 3. Bei Massen SMS macht das schnell einen Unterschied, also schau vorher in die Bedingungen deines Anbieters.</p>
+
+<h3>Warum zählt Instagram manchmal anders?</h3>
+<p>Weil Plattformen Emojis und Sonderzeichen unterschiedlich behandeln. Ein Emoji zählt im Zeichenzähler als 1 Zeichen, manche Apps rechnen mit 2 oder mehr.</p>
+<p>Mein Tipp: Bleib bei der Instagram Bio ein paar Zeichen unter 150 und bei emojireichen Beiträgen unter dem Limit. Dann gibt es keine bösen Überraschungen beim Veröffentlichen.</p>
+
+<h2>Zeichen zählen in Excel und Word: Formeln und Menüpunkt</h2>
+<h3>Wie zähle ich Zeichen und Wörter in Excel?</h3>
+<p>Mit der Funktion LÄNGE zählst du die Zeichen einer Zelle, zum Beispiel <code>=LÄNGE(A1)</code>. Für Wörter ziehst du die Länge ohne Leerzeichen von der Länge mit Leerzeichen ab und addierst 1.</p>
+<p>Die Formel dafür lautet <code>=LÄNGE(GLÄTTEN(A1))-LÄNGE(WECHSELN(A1;" ";""))+1</code>. GLÄTTEN entfernt doppelte Leerzeichen, damit sich nichts verzählt. Wer Spalten zu Listen zusammenführen will, findet die nächsten Schritte im Beitrag <a href="/blog/excel-daten-umwandeln">Excel Daten umwandeln</a>.</p>
+
+<h3>Wie zähle ich Wörter in Word?</h3>
+<p>In Word findest du die Zählung im Reiter Überprüfen unter „Wörter zählen“. Das Fenster zeigt Seiten, Wörter, Zeichen ohne und mit Leerzeichen sowie Absätze und Zeilen.</p>
+<p>Word kann Fußnoten und Textfelder ein oder ausschließen. Weicht die Zahl vom Zeichenzähler ab, ist meist genau diese Einstellung der Grund. Bei reinem Text stimmen die Werte in der Regel überein.</p>
+
+<h2>Großbuchstaben in Kleinbuchstaben umwandeln: den Fallkonverter richtig nutzen</h2>
+<h3>Wie wandle ich Text in Großbuchstaben oder Kleinbuchstaben um?</h3>
+<p>Füge den Text in den <a href="/tools/fallkonverter">Fallkonverter</a> ein und klicke auf die gewünschte Schreibweise. Es gibt 4 davon: GROSSBUCHSTABEN, kleinbuchstaben, Titelschreibung und Satzschreibung, danach kopierst du das Ergebnis mit einem Klick.</p>
+<figure><img src="/assets/blog/grossbuchstaben-kleinbuchstaben.webp" width="1100" height="619" loading="lazy" alt="Illustration: Ein Feld mit den Buchstaben Aa wird per Pfeil zu 2 Feldern mit AA und aa"><figcaption>Illustration: Aus Aa wird AA oder aa.</figcaption></figure>
+<div class="tw"><table>
+<tr><th>Schreibweise</th><th>Beispiel</th><th>Wann sinnvoll</th></tr>
+<tr><td>GROSSBUCHSTABEN</td><td>DAS IST EIN TEXT.</td><td>Überschriften, Hinweise, Kennungen</td></tr>
+<tr><td>kleinbuchstaben</td><td>das ist ein text.</td><td>Dateinamen, Tags, technische Texte</td></tr>
+<tr><td>Titelschreibung</td><td>Das Ist Ein Text.</td><td>Englische Titel, Produktnamen</td></tr>
+<tr><td>Satzschreibung</td><td>Das ist ein text.</td><td>Versehentlich in Capslock getippt</td></tr>
+</table></div>
+
+<h3>Warum klappt die Satzschreibung im Deutschen nur halb?</h3>
+<p>Weil im Deutschen alle Substantive großgeschrieben werden, die Satzschreibung aber nur den ersten Buchstaben jedes Satzes groß macht. Aus „DER HUND LÄUFT.“ wird „Der hund läuft.“, den Hund musst du selbst wieder zum Hund machen.</p>
+<p>Mein Vorgehen: erst Satzschreibung, dann den Text einmal durchgehen und die Substantive korrigieren. Das ist immer noch schneller, als alles neu zu tippen.</p>
+
+<h3>Wie geht das in Excel und Word?</h3>
+<p>In Excel erledigen die Funktionen GROSS, KLEIN und GROSS2 die Umwandlung, zum Beispiel <code>=GROSS(A1)</code>. GROSS2 macht jeden Wortanfang groß. In Word schaltest du markierten Text mit Umschalt plus F3 zwischen den Schreibweisen um.</p>
+
+<h3>Was passiert mit dem ß in Großschrift?</h3>
+<p>Nach der amtlichen Rechtschreibung wird das ß in Großschrift zu SS, alternativ ist das große ẞ erlaubt. „STRASSE“ in Großschrift ist also kein Fehler, sondern die gängige Form.</p>
+<p>Prüf bei Namen und Adressen trotzdem die gewünschte Schreibweise, bevor du alles auf Großbuchstaben stellst.</p>
+
+<h2>Blindtext generieren: Lorem Ipsum und deutscher Platzhaltertext</h2>
+<h3>Was bedeutet Lorem Ipsum?</h3>
+<p>Lorem Ipsum ist ein Platzhaltertext, der wie Latein aussieht, aber keine zusammenhängende Aussage hat. Die Wurzeln gehen auf Abschnitte aus Ciceros „De finibus bonorum et malorum“ zurück, Hintergründe findest du bei <a href="https://de.wikipedia.org/wiki/Lorem_ipsum" rel="noopener" target="_blank">Wikipedia</a>.</p>
+<p>Der Vorteil: Weil der Text nichts bedeutet, lenkt er nicht vom Design ab. In Kundenterminen diskutieren dann alle über das Layout und nicht über Formulierungen.</p>
+
+<h3>Wie generiere ich Blindtext in der richtigen Länge?</h3>
+<p>Wähle im <a href="/tools/blindtext-generator">Blindtext Generator</a> die Textart, die Menge und die Einheit. Du kannst Absätze, Sätze, Wörter oder Zeichen erzeugen, bis zu 20.000 Wörter auf einmal.</p>
+<ul>
+<li>Schritt 1: Lorem Ipsum oder deutschen Blindtext wählen</li>
+<li>Schritt 2: Menge und Einheit festlegen, zum Beispiel 120 Wörter oder 500 Zeichen</li>
+<li>Schritt 3: Ausgabeformat wählen: reiner Text, HTML, HTML Liste oder Markdown</li>
+<li>Schritt 4: Satz und Absatzlänge anpassen</li>
+<li>Schritt 5: Kopieren oder als .txt speichern</li>
+</ul>
+<p>Mit einem Seed bekommst du bei gleichen Einstellungen immer denselben Text. Das hilft bei Tests und bei Absprachen im Team.</p>
+
+<h3>Wann ist deutscher Blindtext besser als Lorem Ipsum?</h3>
+<p>Immer dann, wenn Umlaute, ß und lange Wörter im Layout vorkommen werden. Lorem Ipsum kennt das alles nicht, und ein Layout, das damit perfekt aussieht, kann bei echtem Deutsch überraschen.</p>
+<figure><img src="/assets/blog/blindtext-platzhalter-layout.webp" width="1100" height="733" loading="lazy" alt="Illustration: Ein Webseiten Layout mit Kopfzeile, Bildfläche und grauen Balken, die Platzhalter für Text sind"><figcaption>Illustration: Platzhaltertext füllt das Layout, bis der echte Inhalt fertig ist.</figcaption></figure>
+<p>Ein Wort wie „Donaudampfschifffahrtsgesellschaft“ sprengt schmale Spalten. Gut lesbar sind etwa 50 bis 75 Zeichen pro Zeile, das misst du mit dem Zeichenzähler nach.</p>
+<p class="hint">Wichtig: Blindtext gehört nicht auf eine veröffentlichte Seite. Er wirkt unprofessionell und signalisiert Suchmaschinen eine Seite ohne Inhalt. Such vor dem Start einmal nach „Lorem“.</p>
+
+<h2>Praxisbeispiel: Produkttext für einen Onlineshop in 5 Schritten prüfen</h2>
+<p>Stell dir vor, du schreibst die Beschreibung für ein neues Produkt. Diese Reihenfolge nutze ich selbst, damit am Ende alles passt.</p>
+<ul>
+<li>Schritt 1: Layout mit Blindtext testen, zum Beispiel 3 Absätze mit je 4 bis 6 Sätzen</li>
+<li>Schritt 2: Echten Text schreiben und im Wortzähler die Lesezeit prüfen</li>
+<li>Schritt 3: Meta Description im Zeichenzähler auf höchstens 155 Zeichen bringen</li>
+<li>Schritt 4: Überschriften im Fallkonverter vereinheitlichen und Substantive kontrollieren</li>
+<li>Schritt 5: Blindtext suchen und restlos entfernen</li>
+</ul>
+<p>Beispiel aus dem Alltag: Ein Text mit 500 Wörtern hat rund 3.500 Zeichen und braucht etwa 2,5 Minuten zum Lesen. Das passt gut in eine Produktseite, ohne zu ermüden.</p>
+<p>Gerade Schritt 5 wird gern vergessen. Wer 2 Minuten vor dem Start noch Platzhalter findet, ist froh über diese Checkliste.</p>
+
+<h2>Die 4 Tools im Check: Stärken und Grenzen</h2>
+<p>Jedes Tool löst 1 Aufgabe gut, und jedes hat Grenzen. Ich sage dir ehrlich, wo welches aufhört.</p>
+<div class="tw"><table>
+<tr><th>Tool</th><th>Stärken</th><th>Grenzen</th></tr>
+<tr><td>Zeichenzähler</td><td>Zeichen mit und ohne Leerzeichen, Bytes, Limit Check für 10 Fälle, SMS Segmente</td><td>Zählt reinen Text, keine Word Dateien</td></tr>
+<tr><td>Wortzähler</td><td>Wörter, Sätze, Absätze und Lesezeit auf einen Blick</td><td>Sätze werden am Punkt erkannt, Abkürzungen können stören</td></tr>
+<tr><td>Fallkonverter</td><td>4 Schreibweisen und Kopieren mit einem Klick</td><td>Kennt keine Substantive, also nach der Satzschreibung nachkorrigieren</td></tr>
+<tr><td>Blindtext Generator</td><td>Lorem Ipsum und deutscher Text, 4 Einheiten, 4 Formate, Seed</td><td>Deutsche Sätze sind vorformuliert und nicht in der Länge einstellbar</td></tr>
+</table></div>
+
+<h2>Meine 7 Checks, bevor ein Text rausgeht</h2>
+<p>Geh diese 7 Punkte durch, dann stimmen Länge, Schreibweise und Inhalt.</p>
+<ul>
+<li>Zählweise klären: mit oder ohne Leerzeichen, mit oder ohne Fußnoten</li>
+<li>Limit der Plattform im Zeichenzähler prüfen und einen Puffer lassen</li>
+<li>Title unter etwa 60 und Meta Description unter etwa 155 Zeichen halten</li>
+<li>Lesezeit im Wortzähler kontrollieren</li>
+<li>Groß und Kleinschreibung durchgehen, besonders nach der Umwandlung</li>
+<li>Blindtext restlos entfernen</li>
+<li>Bilder mit gutem Alt Text und kleinen Dateien einbinden, wie im Beitrag <a href="/blog/bilder-fuer-webseite-optimieren">Bilder für Webseite optimieren</a> beschrieben</li>
+</ul>
+<p class="hint">Hinweis: Bei Abgaben mit Zeichenvorgabe, etwa Hausarbeiten oder Bewerbungen, gilt immer die Zählweise der Institution. Kläre sie im Zweifel vorher. Die Tools verarbeiten deinen Text im Browser, du solltest trotzdem keine vertraulichen Daten in fremde Programme kopieren.</p>
+
+<h2>Häufige Fragen zum Zeichen und Wörter zählen</h2>
+<h3>Zählen Leerzeichen als Zeichen?</h3>
+<p>Ja, meistens schon. „Zeichen zählen ist ganz einfach.“ hat 32 Zeichen mit und 28 ohne Leerzeichen.</p>
+<h3>Wie viele Zeichen hat eine Normseite?</h3>
+<p>In der Verlagswelt meist 1.800 Zeichen inklusive Leerzeichen, also 30 Zeilen mit je 60 Anschlägen. Andere Branchen nutzen andere Definitionen.</p>
+<h3>Wie lang darf eine Meta Description sein?</h3>
+<p>Als Richtwert 155 bis 160 Zeichen. Google kürzt nach Pixelbreite und schreibt Beschreibungen auch selbst um.</p>
+<h3>Wie viele Zeichen passen in eine SMS?</h3>
+<p>160 Zeichen mit Standardzeichen, mit Emoji nur 70. Bei mehreren Segmenten sind es 153 beziehungsweise 67 je Segment.</p>
+<p class="hint">Alle Beispiele dienen der Orientierung. Limits und Zählweisen können sich ändern, prüfe verbindliche Vorgaben immer beim jeweiligen Anbieter.</p>
+
+</article>
+</div>
+</main>
+<footer class="site-footer">
+  <div class="container">
+    <img src="/assets/images/logo-full.png" alt="Toolyfix">
+    <nav class="footer-links">
+      <a href="/blog/">Blog</a>
+      <a href="/ueber-uns">Über uns</a>
+      <a href="/datenschutz">Datenschutz</a>
+      <a href="/nutzungsbedingungen">Nutzungsbedingungen</a>
+      <a href="/kontakt">Kontakt</a>
+    </nav>
+    <p class="footer-note">© 2026 Toolyfix. Alle Tools laufen lokal in deinem Browser.</p>
+  </div>
+</footer>
+</body>
+</html>
