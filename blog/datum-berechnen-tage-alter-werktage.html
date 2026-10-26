@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Datum berechnen: Tage, Alter, Werktage und KW</title>
+<meta name="description" content="Datum berechnen leicht gemacht: Tage zwischen zwei Daten, Alter, Werktage, Fristen und Kalenderwochen. Mit Rechenbeispielen und Feiertagen 2026 und 2027.">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+<link rel="canonical" href="https://toolyfix.de/blog/datum-berechnen-tage-alter-werktage">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Toolyfix">
+<meta property="og:locale" content="de_DE">
+<meta property="og:title" content="Datum berechnen: Tage, Alter, Werktage und KW">
+<meta property="og:description" content="Von Tagen zwischen zwei Daten bis zur Kalenderwoche: alle Rechenwege mit Beispielen aus dem Alltag.">
+<meta property="og:url" content="https://toolyfix.de/blog/datum-berechnen-tage-alter-werktage">
+<meta property="og:image" content="https://toolyfix.de/assets/blog/datum-berechnen-hero.webp">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Datum berechnen: Tage, Alter, Werktage und KW">
+<meta name="twitter:image" content="https://toolyfix.de/assets/blog/datum-berechnen-hero.webp">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Article","headline":"Datum berechnen: Tage zwischen zwei Daten, Alter, Werktage und Kalenderwochen","inLanguage":"de","datePublished":"2026-10-22","dateModified":"2026-10-22","image":"https://toolyfix.de/assets/blog/datum-berechnen-hero.webp","author":{"@type":"Organization","name":"Toolyfix","url":"https://toolyfix.de/"},"publisher":{"@type":"Organization","name":"Toolyfix","url":"https://toolyfix.de/"},"mainEntityOfPage":"https://toolyfix.de/blog/datum-berechnen-tage-alter-werktage"},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Start","item":"https://toolyfix.de/"},{"@type":"ListItem","position":2,"name":"Blog","item":"https://toolyfix.de/blog/"},{"@type":"ListItem","position":3,"name":"Datum berechnen"}]},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Wie viele Tage sind es zwischen zwei Daten?","acceptedAnswer":{"@type":"Answer","text":"Ziehe das Startdatum vom Enddatum ab. Vom 22.10.2026 bis zum 24.12.2026 sind es 63 Tage, mit dem Endtag 64. Ob der Endtag mitzählt, hängt vom Zweck ab."}},{"@type":"Question","name":"Welche Kalenderwoche ist der 22.10.2026?","acceptedAnswer":{"@type":"Answer","text":"Der 22.10.2026 liegt in der Kalenderwoche 43. Nach ISO 8601 beginnt die Woche am Montag, und die erste Kalenderwoche enthält den ersten Donnerstag des Jahres."}},{"@type":"Question","name":"Hat 2026 wirklich 53 Kalenderwochen?","acceptedAnswer":{"@type":"Answer","text":"Ja. Der 1. Januar 2026 ist ein Donnerstag, deshalb hat das Jahr 53 Kalenderwochen. Der 1. Januar 2027 gehört noch zur KW 53 des Vorjahres, die KW 1 beginnt am 4. Januar 2027."}},{"@type":"Question","name":"Wie viele Tage hat ein Schaltjahr?","acceptedAnswer":{"@type":"Answer","text":"Ein Schaltjahr hat 366 Tage. Schaltjahre sind durch 4 teilbar, Jahrhundertjahre nur dann, wenn sie durch 400 teilbar sind. Das nächste Schaltjahr ist 2028."}}]}]}</script>
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="stylesheet" href="/assets/style.css">
+<style>
+:root{--bg:#F7F7F4;--ink:#1A1A1A;--blue:#1D3557;--amber:#E9A93B;--line:#dcdcd2;--mut:#5b6470}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);margin:0;font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;line-height:1.7}
+.tf-wrap{max-width:820px;margin:0 auto;padding:22px 16px 56px}
+.crumbs{font-size:.85rem;color:var(--mut);margin:0 0 10px}
+.crumbs a,.meta a{color:var(--blue)}
+.tf-wrap h1{font-size:clamp(1.6rem,4.6vw,2.4rem);line-height:1.15;margin:.2em 0 .4em;color:var(--blue)}
+.meta{font-size:.88rem;color:var(--mut);margin:0 0 16px}
+.lead{font-size:1.1rem;max-width:70ch}
+.tf-related{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:16px 0 22px;padding:10px 12px;background:#fff;border:1px solid var(--line);border-radius:10px;font-size:.92rem}
+.tf-related b{color:var(--blue);margin-right:4px}
+.tf-related a{color:var(--blue);background:#eef1f6;border-radius:999px;padding:4px 12px;text-decoration:none;font-weight:500}
+.tf-related a:hover,.tf-related a:focus-visible{background:var(--blue);color:#fff;outline:none}
+article h2{color:var(--blue);font-size:1.45rem;line-height:1.25;margin:2em 0 .5em}
+article h3{font-size:1.12rem;margin:1.5em 0 .3em}
+article p,article li{max-width:72ch}
+article a{color:var(--blue)}
+figure{margin:18px 0}
+figure img{display:block;width:100%;height:auto;border:1px solid var(--line);border-radius:10px;background:#fff}
+figcaption{font-size:.84rem;color:var(--mut);margin-top:6px}
+blockquote{margin:18px 0;padding:10px 16px;border-left:4px solid var(--amber);background:#fff;border-radius:0 8px 8px 0}
+.tw{overflow-x:auto;margin:14px 0}
+table{border-collapse:collapse;width:100%;font-size:.93rem;background:#fff}
+th,td{border:1px solid var(--line);padding:7px 10px;text-align:left;vertical-align:top}
+th{background:#eef1f6}
+code{background:#eef1f6;padding:1px 5px;border-radius:4px;font-size:.9em;word-break:break-word}
+.hint{background:#fff6dd;border:1px solid #f0d58a;border-radius:8px;padding:10px 14px;font-size:.92rem}
+:focus-visible{outline:3px solid var(--amber);outline-offset:1px}
+</style>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-F9VY193ZMP"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-F9VY193ZMP');</script>
+</head>
+<body>
+<header class="site-header">
+  <div class="container">
+    <a href="/" class="logo-link"><img src="/assets/images/logo-full.png" alt="Toolyfix"></a>
+    <span class="header-tagline">Kostenlose Tools, direkt im Browser</span>
+  </div>
+</header>
+<main>
+<div class="tf-wrap">
+<nav class="crumbs" aria-label="Brotkrumen"><a href="/">Start</a> / <a href="/blog/">Blog</a> / Datum berechnen</nav>
+<h1>Datum berechnen: Tage zwischen zwei Daten, Alter, Werktage und Kalenderwochen</h1>
+<p class="meta">Von Toolyfix, <a href="/ueber-uns">über uns</a>. Zuletzt aktualisiert am 22.10.2026. Lesezeit: 12 Minuten.</p>
+<p class="lead">Datum berechnen heißt: Du bestimmst aus einem Start, einem Ende oder einer Anzahl von Tagen ein neues Datum oder einen Zeitraum. Vom 22.10.2026 bis Heiligabend sind es 63 Tage, mit dem Endtag 64. Ich zeige dir, wie du Tage, Alter, Werktage, Fristen und Kalenderwochen sicher berechnest, mit Zahlen zum Nachrechnen.</p>
+<figure><img src="/assets/blog/datum-berechnen-hero.webp" width="1200" height="630" alt="Laptop auf einem Schreibtisch mit einem Kalender, in dem 2 Daten durch einen Bogen verbunden sind, darüber Symbole für Geburtstagskuchen, Uhr und Kalender"></figure>
+<nav class="tf-related" aria-label="Passende Tools"><b>Passende Tools:</b><a href="/tools/datumsrechner">Datumsrechner</a><a href="/tools/altersrechner">Altersrechner</a><a href="/tools/geburtstags-countdown">Geburtstags Countdown</a><a href="/tools/kalender-generator">Kalender Generator</a></nav>
+
+<article>
+
+<h2>Datum berechnen: Tage zwischen zwei Daten und Tage addieren</h2>
+<h3>Wie viele Tage sind es zwischen zwei Daten?</h3>
+<p>Ziehe das Startdatum vom Enddatum ab, dann hast du die Tage dazwischen. Vom 22.10.2026 bis zum 24.12.2026 sind es 63 Tage, und zählst du den Endtag mit, kommst du auf 64.</p>
+<figure><img src="/assets/blog/tage-zwischen-zwei-daten-berechnen.webp" width="1100" height="733" loading="lazy" alt="Illustration: Ein Kalender mit 2 markierten Tagen, die ein Bogen verbindet, darunter ein Maßpfeil für den Abstand"><figcaption>Illustration: Der Abstand zwischen 2 Daten, gemessen in Tagen.</figcaption></figure>
+<p>Im <a href="/tools/datumsrechner">Datumsrechner</a> trägst du beide Daten ein und bekommst die Differenz in Tagen, Wochen, Monaten, Jahren, Stunden und Minuten. Zusätzlich zählt er Werktage, Wochenendtage und Feiertage.</p>
+
+<h3>Zählt der Endtag mit?</h3>
+<p>Das hängt vom Zweck ab. Zwischen dem 1. und dem 10. November liegen 9 Tage, wenn du die Differenz rechnest, und 10 Tage, wenn du beide Tage einschließt.</p>
+<ul>
+<li>„Wie lange dauert der Urlaub vom 1. bis 10.?“ ergibt 10 Tage, denn beide Tage zählen</li>
+<li>„Wie viele Tage sind es noch bis zum 10.?“ ergibt 9 Tage, denn heute zählt nicht</li>
+</ul>
+<p>Im Datumsrechner schaltest du mit der Option „Enddatum mitzählen“ zwischen beiden Sichtweisen um. Das ist die häufigste Fehlerquelle bei Datumsrechnungen, also schau hier zuerst hin.</p>
+
+<h3>Wie berechne ich ein Datum in 14, 30 oder 90 Tagen?</h3>
+<p>Addiere die Tage zum Startdatum, am einfachsten im Reiter „Datum plus/minus“. Ab dem 22.10.2026 ergeben sich diese Termine:</p>
+<div class="tw"><table>
+<tr><th>Zeitraum</th><th>Ergebnisdatum</th><th>Wochentag</th></tr>
+<tr><td>+ 14 Tage</td><td>05.11.2026</td><td>Donnerstag</td></tr>
+<tr><td>+ 30 Tage</td><td>21.11.2026</td><td>Samstag</td></tr>
+<tr><td>+ 90 Tage</td><td>20.01.2027</td><td>Mittwoch</td></tr>
+</table></div>
+<p>Der Wochentag ist wichtig, denn bei Fristen entscheidet er, ob das Ende auf einen Arbeitstag fällt. Dazu gleich mehr.</p>
+
+<h3>Was passiert bei Monaten und Schaltjahren?</h3>
+<p>Der Datumsrechner behält den Tag des Monats bei, soweit er existiert, sonst nimmt er den letzten Tag des Zielmonats. Ein Monat nach dem 31.01.2027 ist deshalb der 28.02.2027, und ein Jahr nach dem 29.02.2028 der 28.02.2029.</p>
+<p>Ein Schaltjahr hat 366 Tage. Schaltjahre sind durch 4 teilbar, Jahrhundertjahre nur, wenn sie auch durch 400 teilbar sind. Darum waren 2000 und 2024 Schaltjahre, 2100 wird keins, und das nächste ist 2028.</p>
+
+<h3>Wie rechne ich Tage in Wochen um?</h3>
+<p>Teile die Tage durch 7, der Rest sind die übrigen Tage. 63 Tage sind genau 9 Wochen, 90 Tage sind 12 Wochen und 6 Tage.</p>
+<div class="tw"><table>
+<tr><th>Tage</th><th>Wochen und Tage</th></tr>
+<tr><td>30</td><td>4 Wochen und 2 Tage</td></tr>
+<tr><td>63</td><td>9 Wochen</td></tr>
+<tr><td>90</td><td>12 Wochen und 6 Tage</td></tr>
+<tr><td>365</td><td>52 Wochen und 1 Tag</td></tr>
+<tr><td>366</td><td>52 Wochen und 2 Tage</td></tr>
+</table></div>
+<p>Darum rutscht ein Datum von Jahr zu Jahr um 1 Wochentag weiter, in Schaltjahren um 2. Der 22.10.2026 ist ein Donnerstag, der 22.10.2027 wird ein Freitag.</p>
+
+<h2>Werktage berechnen: Arbeitstage mit Feiertagen je Bundesland</h2>
+<h3>Wie viele Werktage hat ein Zeitraum?</h3>
+<p>Zähle die Tage von Montag bis Freitag und ziehe die gesetzlichen Feiertage ab. Vom 22.10.2026 bis zum 24.12.2026, beide Tage eingeschlossen, sind das 46 Werktage.</p>
+<p>In Sachsen sind es nur 45, weil der Buß und Bettag am 18.11.2026 (ein Mittwoch) in den Zeitraum fällt. Genau deshalb fragt der Datumsrechner nach deinem Bundesland: Ohne Auswahl überspringt er nur die Wochenenden.</p>
+
+<h3>Wie viele Arbeitstage hat der Dezember 2026?</h3>
+<p>Der Dezember 2026 hat 23 Tage von Montag bis Freitag, abzüglich des 1. Weihnachtstags am Freitag, 25.12., bleiben 22 Arbeitstage. Der 26.12. fällt auf einen Samstag und kostet dich keinen Werktag.</p>
+<p>Heiligabend und Silvester sind keine gesetzlichen Feiertage. Ob du frei hast, regelt dein Arbeitsvertrag oder dein Betrieb, frag also vorher nach.</p>
+
+<h3>Welche Feiertage fallen 2027 auf ein Wochenende?</h3>
+<p>Von den 9 bundesweiten Feiertagen 2027 fallen 4 auf ein Wochenende. Das ist mies für Brückentage, denn du verlierst freie Tage, ohne dass du es merkst.</p>
+<div class="tw"><table>
+<tr><th>Feiertag 2027</th><th>Datum</th><th>Wochentag</th></tr>
+<tr><td>Neujahr</td><td>01.01.</td><td>Freitag</td></tr>
+<tr><td>Karfreitag</td><td>26.03.</td><td>Freitag</td></tr>
+<tr><td>Ostermontag</td><td>29.03.</td><td>Montag</td></tr>
+<tr><td>Tag der Arbeit</td><td>01.05.</td><td>Samstag</td></tr>
+<tr><td>Christi Himmelfahrt</td><td>06.05.</td><td>Donnerstag</td></tr>
+<tr><td>Pfingstmontag</td><td>17.05.</td><td>Montag</td></tr>
+<tr><td>Tag der Deutschen Einheit</td><td>03.10.</td><td>Sonntag</td></tr>
+<tr><td>1. Weihnachtstag</td><td>25.12.</td><td>Samstag</td></tr>
+<tr><td>2. Weihnachtstag</td><td>26.12.</td><td>Sonntag</td></tr>
+</table></div>
+<p>Dazu kommen je nach Bundesland weitere Feiertage, zum Beispiel Fronleichnam am 27.05.2027 oder der Weltkindertag am 20.09.2027 in Thüringen. Die vollständige Liste für dein Land zeigt dir der Kalender Generator.</p>
+
+<h3>Wie viele Arbeitstage hat ein ganzes Jahr?</h3>
+<p>2026 hat 261 Tage von Montag bis Freitag, abzüglich 7 bundesweiter Feiertage unter der Woche bleiben 254 Arbeitstage. 2027 hat ebenfalls 261 Werktage, aber nur 5 bundesweite Feiertage unter der Woche, also 256 Arbeitstage.</p>
+<p>Die Zahlen gelten ohne regionale Feiertage. In Bayern oder Baden-Württemberg kommen Heilige Drei Könige, Fronleichnam und Allerheiligen dazu, falls sie auf einen Werktag fallen. Für Urlaubsplanung und Lieferfristen lohnt sich also immer der Blick aufs eigene Land.</p>
+
+<h3>Wie rechne ich Fristen aus?</h3>
+<p>Bei den meisten Fristen zählt der Tag des Ereignisses nicht mit, und fällt das Ende auf einen Samstag, Sonntag oder Feiertag, verschiebt es sich auf den nächsten Werktag. Das regeln unter anderem <a href="https://www.gesetze-im-internet.de/bgb/__187.html" rel="noopener" target="_blank">§ 187 BGB</a> und <a href="https://www.gesetze-im-internet.de/bgb/__193.html" rel="noopener" target="_blank">§ 193 BGB</a>.</p>
+<p>Beispiel: Eine Frist von 14 Tagen ab dem 22.10.2026 endet am Donnerstag, 05.11.2026. Eine Frist von 30 Tagen endet rechnerisch am Samstag, 21.11.2026, also am Montag, 23.11.2026.</p>
+<p class="hint">Wichtig: Das ist eine allgemeine Orientierung und keine Rechtsberatung. Der Datumsrechner bildet Sonderregeln nicht ab. Bei Verträgen, Kündigungen oder Verfahren hol dir fachlichen Rat, bevor du dich auf ein Datum verlässt.</p>
+
+<h2>Alter berechnen: exakt in Jahren, Monaten und Tagen</h2>
+<h3>Wie berechne ich mein genaues Alter?</h3>
+<p>Zähle volle Jahre, dann volle Monate, den Rest in Tagen. Wer am 15.03.1990 geboren wurde, ist am 22.10.2026 genau 36 Jahre, 7 Monate und 7 Tage alt.</p>
+<figure><img src="/assets/blog/alter-berechnen-geburtstag.webp" width="1100" height="619" loading="lazy" alt="Illustration: Ein Geburtstagskuchen mit Kerze, eine Zeitleiste mit Strichen und ein Kalender, verbunden durch einen Pfeil"><figcaption>Illustration: Von der Geburt bis heute, gemessen auf der Zeitleiste.</figcaption></figure>
+<p>Der <a href="/tools/altersrechner">Altersrechner</a> zeigt dasselbe Ergebnis und rechnet gleich weiter: 13.370 gelebte Tage, rund 1.910 Wochen, dazu Stunden und Minuten. Die Zahl der Tage überrascht fast jeden.</p>
+
+<h3>Wie viele Tage sind es bis zum nächsten Geburtstag?</h3>
+<p>Setze den nächsten Geburtstag als Enddatum und rechne die Differenz zu heute. Bei Geburtsdatum 15.03.1990 fällt der nächste Geburtstag auf Montag, 15.03.2027, und bis dahin sind es 144 Tage.</p>
+<p>Der Altersrechner nennt dir den Wochentag direkt, das ist praktisch, wenn du eine Feier planst und wissen willst, ob sie auf einen Werktag fällt.</p>
+
+<h3>Was gilt beim Geburtstag am 29. Februar?</h3>
+<p>Der Altersrechner nimmt in Jahren ohne Schalttag den 28. Februar als Geburtstag für den Countdown. Das entspricht der üblichen Praxis, ist aber keine rechtliche Auskunft.</p>
+<p>Für rechtliche Fragen wie die Volljährigkeit zählen die Regeln im Gesetz, siehe oben. Mit der Option „Bestimmtes Datum“ rechnest du außerdem aus, wie alt jemand an einem Stichtag war oder sein wird, zum Beispiel am ersten Schultag.</p>
+
+<h2>Countdown: Tage bis zum Geburtstag, Weihnachten und anderen Terminen</h2>
+<h3>Wie viele Tage sind es noch bis Weihnachten?</h3>
+<p>Ab dem 22.10.2026 sind es 63 Tage bis Heiligabend. Für beliebige Termine setzt du im Datumsrechner Datum 1 auf heute und Datum 2 auf den Wunschtag.</p>
+<figure><img src="/assets/blog/countdown-tage-bis-zum-ereignis.webp" width="1100" height="825" loading="lazy" alt="Illustration: Ein runder Countdown Ring mit Geschenk und Fähnchen neben einem Kalender mit einem Stern auf einem Tag"><figcaption>Illustration: Ein Countdown zählt die Tage bis zum großen Tag.</figcaption></figure>
+<div class="tw"><table>
+<tr><th>Termin</th><th>Datum</th><th>Tage ab 22.10.2026</th></tr>
+<tr><td>Heiligabend</td><td>24.12.2026 (Donnerstag)</td><td>63</td></tr>
+<tr><td>1. Weihnachtstag</td><td>25.12.2026 (Freitag)</td><td>64</td></tr>
+<tr><td>Silvester</td><td>31.12.2026 (Donnerstag)</td><td>70</td></tr>
+<tr><td>Neujahr</td><td>01.01.2027 (Freitag)</td><td>71</td></tr>
+</table></div>
+
+<h3>Wie funktioniert der Geburtstags Countdown?</h3>
+<p>Du gibst ein Geburtsdatum ein, und der <a href="/tools/geburtstags-countdown">Geburtstags Countdown</a> zählt live in Tagen, Stunden, Minuten und Sekunden bis zum nächsten Geburtstag. Ist der Geburtstag dieses Jahr schon vorbei, nimmt er automatisch den nächsten.</p>
+<p>Am großen Tag erscheint ein Glückwunsch, und ein Vollbildmodus zeigt die Anzeige groß auf Fernseher oder Beamer. Wichtig: Das Tool zählt nur bis Geburtstage, für Urlaub, Prüfung oder Weihnachten nimmst du den Datumsrechner.</p>
+
+<h3>Ist der Teilen Link datenschutzfreundlich?</h3>
+<p>Das Tool speichert nichts auf einem Server, der Link enthält aber Name und Geburtsdatum direkt in der Webadresse. Wer den Link weitergibt, gibt diese Daten also mit.</p>
+<p>Mein Tipp: Teile Links nur mit Einverständnis der Person, und bei Kindern frag zuerst die Eltern. Ein Geburtsdatum ist ein persönliches Datum, auch wenn es harmlos wirkt.</p>
+
+<h2>Kalenderwoche berechnen und einen Kalender mit Feiertagen erstellen</h2>
+<h3>Welche Kalenderwoche ist heute?</h3>
+<p>Der 22.10.2026 liegt in der Kalenderwoche 43. Nach der Norm ISO 8601 beginnt die Woche am Montag, und die erste Kalenderwoche enthält den ersten Donnerstag des Jahres, mehr dazu bei <a href="https://de.wikipedia.org/wiki/Kalenderwoche" rel="noopener" target="_blank">Wikipedia</a>.</p>
+<p>In den USA beginnt die Woche am Sonntag, deshalb passen Kalenderwochen aus US Programmen manchmal nicht zu deinem Kalender. Die Datumsinfo im Datumsrechner zeigt dir die ISO Woche, den Tag des Jahres und das Quartal.</p>
+
+<h3>Warum hat 2026 53 Kalenderwochen?</h3>
+<p>Weil der 1. Januar 2026 ein Donnerstag ist. Jahre, die an einem Donnerstag beginnen, haben 53 Kalenderwochen, und 2026 ist so ein Jahr.</p>
+<p>Die Folge: Der 01.01.2027 (Freitag) gehört noch zur KW 53 von 2026, die KW 1 von 2027 beginnt erst am Montag, 04.01.2027. Wer „KW 1“ in Verträgen nennt, sollte also das Jahr dazuschreiben.</p>
+
+<h3>Wie erstelle ich einen Kalender mit Feiertagen zum Ausdrucken?</h3>
+<p>Wähle im <a href="/tools/kalender-generator">Kalender Generator</a> Monat oder Jahr, dein Bundesland, den Wochenstart und die Kalenderwochen, dann druckst du den Kalender oder speicherst ihn als PDF. Wer ihn digital braucht, lädt ihn als PNG oder exportiert Feiertage und Termine als ICS Datei.</p>
+<figure><img src="/assets/blog/kalender-erstellen-monatsansicht.webp" width="1100" height="825" loading="lazy" alt="Illustration: Ein Monatskalender mit einigen farbig markierten Tagen neben einem Drucker"><figcaption>Illustration: Ein Monatskalender zum Ausdrucken.</figcaption></figure>
+<p>Der Generator rechnet bewegliche Feiertage selbst aus. Sie hängen alle vom Ostersonntag ab, der sich jedes Jahr ändert:</p>
+<div class="tw"><table>
+<tr><th>Feiertag</th><th>2026</th><th>2027</th></tr>
+<tr><td>Karfreitag</td><td>03.04.</td><td>26.03.</td></tr>
+<tr><td>Ostersonntag</td><td>05.04.</td><td>28.03.</td></tr>
+<tr><td>Christi Himmelfahrt</td><td>14.05.</td><td>06.05.</td></tr>
+<tr><td>Pfingstmontag</td><td>25.05.</td><td>17.05.</td></tr>
+<tr><td>Fronleichnam (regional)</td><td>04.06.</td><td>27.05.</td></tr>
+</table></div>
+<p>Termine speichert der Generator nur in deinem Browser. Für eine dauerhafte Sicherung exportierst du sie als ICS Datei. Wenn du statt eines Datums eine Zahl wie 1700000000 vor dir hast, hilft dir der Beitrag <a href="/blog/excel-daten-umwandeln">Excel Daten umwandeln</a> weiter.</p>
+
+<h2>Praxisbeispiel: Urlaub über Weihnachten in 4 Schritten planen</h2>
+<p>Stell dir vor, du willst vom 21.12. bis zum 31.12.2026 frei nehmen und wissen, wie viele Urlaubstage das kostet. So gehe ich vor:</p>
+<ul>
+<li>Schritt 1: Im Datumsrechner die Tage zwischen 21.12. und 31.12.2026 mit Endtag berechnen, das sind 11 Kalendertage am Stück</li>
+<li>Schritt 2: Die Tage von Montag bis Freitag zählen: 9 Tage</li>
+<li>Schritt 3: Den 1. Weihnachtstag (25.12., Freitag) abziehen, damit bleiben 8 Urlaubstage</li>
+<li>Schritt 4: Mit dem Kalender Generator den Dezember 2026 drucken, dort stehen auch die KW 52 und 53</li>
+</ul>
+<p>Das Ergebnis: 8 Urlaubstage für 11 freie Tage am Stück. Heiligabend und Silvester habe ich hier als normale Arbeitstage gerechnet, regelt dein Betrieb sie anders, ändert sich die Zahl.</p>
+<p>Genau solche Rechnungen gehen von Hand schnell schief. Zack, einmal in den Tools geprüft, und du weißt Bescheid, bevor du den Urlaubsantrag abgibst.</p>
+
+<h2>Die 4 Tools im Check: Stärken und Grenzen</h2>
+<p>Jedes Tool löst genau 1 Aufgabe gut. Ich sage dir ehrlich, wo es aufhört, damit du keine Zeit verlierst.</p>
+<div class="tw"><table>
+<tr><th>Tool</th><th>Stärken</th><th>Grenzen</th></tr>
+<tr><td>Datumsrechner</td><td>Tage addieren, Tage zwischen 2 Daten, Werktage mit Feiertagen je Bundesland, Datumsinfo mit KW</td><td>Keine Sonderregeln für Fristen, keine lokalen Feiertage, keine Brückentage</td></tr>
+<tr><td>Altersrechner</td><td>Jahre, Monate, Tage, gelebte Tage, nächster Geburtstag</td><td>Keine rechtliche Altersberechnung, Sternzeichen nur zur Unterhaltung</td></tr>
+<tr><td>Geburtstags Countdown</td><td>Live bis zur Sekunde, Teilen Link, Vollbild</td><td>Nur für Geburtstage, Link enthält Name und Datum</td></tr>
+<tr><td>Kalender Generator</td><td>Monat und Jahr, Feiertage je Land, KW, Druck, PNG, ICS</td><td>Keine Schulferien, keine lokalen Feiertage</td></tr>
+</table></div>
+
+<h2>Meine 7 Checks bei Datumsrechnungen</h2>
+<p>Geh diese 7 Punkte durch, dann stimmt dein Datum.</p>
+<ul>
+<li>Klären, ob Start und Endtag mitzählen</li>
+<li>Das richtige Bundesland für Feiertage wählen</li>
+<li>Den Wochentag des Ergebnisses prüfen, besonders bei Fristen</li>
+<li>Bei Monatsrechnungen an das Monatsende denken, zum Beispiel den 31. Januar</li>
+<li>Bei Kalenderwochen das Jahr dazuschreiben, 2026 hat 53 Wochen</li>
+<li>Verbindliche Fristen von Fachleuten bestätigen lassen</li>
+<li>Geburtsdaten nur mit Einverständnis weitergeben</li>
+</ul>
+<p class="hint">Hinweis: Alle Beispiele dienen der Orientierung. Feiertage und Zählregeln können sich ändern oder je nach Vertrag abweichen. Für Arbeitsverträge, Kündigungen und Gerichtsfristen gilt der Gesetzestext oder die Auskunft einer Fachperson.</p>
+
+<h2>Häufige Fragen zum Datum berechnen</h2>
+<h3>Wie viele Tage sind es zwischen zwei Daten?</h3>
+<p>Enddatum minus Startdatum. Vom 22.10.2026 bis 24.12.2026 sind es 63 Tage, mit dem Endtag 64.</p>
+<h3>Welche Kalenderwoche ist der 22.10.2026?</h3>
+<p>Die KW 43. Nach ISO 8601 beginnt die Woche am Montag, und die erste Woche enthält den ersten Donnerstag.</p>
+<h3>Hat 2026 wirklich 53 Kalenderwochen?</h3>
+<p>Ja, weil der 1. Januar 2026 ein Donnerstag ist. Der 1. Januar 2027 gehört noch zur KW 53.</p>
+<h3>Wie viele Tage hat ein Schaltjahr?</h3>
+<p>366 Tage. Das nächste Schaltjahr ist 2028, 2100 wird keins.</p>
+<p class="hint">Prüfe wichtige Termine immer doppelt, bevor du dich darauf verlässt.</p>
+
+</article>
+</div>
+</main>
+<footer class="site-footer">
+  <div class="container">
+    <img src="/assets/images/logo-full.png" alt="Toolyfix">
+    <nav class="footer-links">
+      <a href="/blog/">Blog</a>
+      <a href="/ueber-uns">Über uns</a>
+      <a href="/datenschutz">Datenschutz</a>
+      <a href="/nutzungsbedingungen">Nutzungsbedingungen</a>
+      <a href="/kontakt">Kontakt</a>
+    </nav>
+    <p class="footer-note">© 2026 Toolyfix. Alle Tools laufen lokal in deinem Browser.</p>
+  </div>
+</footer>
+</body>
+</html>
